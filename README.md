@@ -1,6 +1,6 @@
 # SCP - Containment Breach Multiplayer
 
-As far as I'm aware, this mod never has its source code released. This code was produced using [B3DDecomp](https://github.com/juanjp600/B3DDecomp) on [executables that can be obtained on Steam](https://store.steampowered.com/app/1782380/SCP_Containment_Breach_Multiplayer/).
+As far as I'm aware, this mod never had its source code released. This code was produced using [B3DDecomp](https://github.com/juanjp600/B3DDecomp) on [executables that can be obtained on Steam](https://store.steampowered.com/app/1782380/SCP_Containment_Breach_Multiplayer/).
 
 The generated code has been slightly modified to disable the server list.
 
