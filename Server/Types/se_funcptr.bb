@@ -1,0 +1,10 @@
+Type se_funcptr
+    Field Field0$
+    Field Field1.se_script
+    Field Field2.se_inst
+    Field Field3.se_inst
+    Field Field4%
+    Field Field5%
+    Field Field6.se_funcptr
+    Field Field7.se_funcptr
+End Type

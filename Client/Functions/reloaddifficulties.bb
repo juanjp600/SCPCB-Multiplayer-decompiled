@@ -1,0 +1,41 @@
+Function reloaddifficulties%()
+    difficulties($00)\Field0 = "Safe"
+    difficulties($00)\Field1 = "The game can be saved any time. However, as in the case of SCP Objects, a Safe classification does not mean that handling it does not pose a threat."
+    difficulties($00)\Field2 = $00
+    difficulties($00)\Field3 = $00
+    difficulties($00)\Field4 = $00
+    difficulties($00)\Field5 = $00
+    difficulties($00)\Field6 = $78
+    difficulties($00)\Field7 = $96
+    difficulties($00)\Field8 = $32
+    difficulties($01)\Field0 = "Euclid"
+    difficulties($01)\Field1 = "In Euclid difficulty, saving is only allowed at specific locations marked by lit up computer screens. "
+    difficulties($01)\Field1 = (difficulties($01)\Field1 + "Euclid-class objects are inherently unpredictable, so that reliable containment is not always possible.")
+    difficulties($01)\Field2 = $00
+    difficulties($01)\Field3 = $00
+    difficulties($01)\Field4 = $02
+    difficulties($01)\Field5 = $01
+    difficulties($01)\Field6 = $C8
+    difficulties($01)\Field7 = $C8
+    difficulties($01)\Field8 = $00
+    difficulties($02)\Field0 = "Keter"
+    difficulties($02)\Field1 = "Keter-class objects are considered the most dangerous ones in Foundation containment. "
+    difficulties($02)\Field1 = (difficulties($02)\Field1 + "The same can be said for this difficulty level: the SCPs are more aggressive, and you have only one life - when you die, the game is over. ")
+    difficulties($02)\Field2 = $01
+    difficulties($02)\Field3 = $01
+    difficulties($02)\Field4 = $01
+    difficulties($02)\Field5 = $02
+    difficulties($02)\Field6 = $C8
+    difficulties($02)\Field7 = $00
+    difficulties($02)\Field8 = $00
+    difficulties($03)\Field0 = "Custom"
+    difficulties($03)\Field2 = $00
+    difficulties($03)\Field3 = $01
+    difficulties($03)\Field4 = $00
+    difficulties($03)\Field9 = $01
+    difficulties($03)\Field5 = $00
+    difficulties($03)\Field6 = $FF
+    difficulties($03)\Field7 = $FF
+    difficulties($03)\Field8 = $FF
+    Return $00
+End Function

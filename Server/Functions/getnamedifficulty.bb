@@ -1,0 +1,11 @@
+Function getnamedifficulty$(arg0%)
+    Select arg0
+        Case $00
+            Return "safe"
+        Case $01
+            Return "euclid"
+        Case $02
+            Return "keter"
+    End Select
+    Return ""
+End Function

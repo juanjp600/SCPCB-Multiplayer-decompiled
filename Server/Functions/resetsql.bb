@@ -1,0 +1,17 @@
+Function resetsql%(arg0%, arg1%)
+    Local local0%
+    If (arg0 = $00) Then
+        arg0 = currentstatementhandle
+    EndIf
+    If (arg0 <> $00) Then
+        local0 = sqlite3_reset(arg0)
+        If (local0 = $00) Then
+            Return $01
+        Else
+            Return sqlite3_errorhasoccurred("ResetSQL", arg1, "")
+        EndIf
+    Else
+        Return $00
+    EndIf
+    Return $00
+End Function

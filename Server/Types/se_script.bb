@@ -1,0 +1,12 @@
+Type se_script
+    Field Field0.se_inst
+    Field Field1.se_inst
+    Field Field2.se_funcptr
+    Field Field3.se_funcptr
+    Field Field4.se_funcptr
+    Field Field5.se_public
+    Field Field6.se_public
+    Field Field7%
+    Field Field8.se_funcptr[256]
+    Field Field9$
+End Type

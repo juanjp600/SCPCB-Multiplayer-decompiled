@@ -1,0 +1,10 @@
+Function bool$(arg0%)
+    Select arg0
+        Case $00
+            Return "False"
+        Case $01
+            Return "True"
+    End Select
+    Return "Undefined"
+    Return ""
+End Function

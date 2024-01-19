@@ -1,0 +1,28 @@
+Type roomtemplates
+    Field Field0%
+    Field Field1%
+    Field Field2$
+    Field Field3$
+    Field Field4%[5]
+    Field Field5%[8]
+    Field Field6#[8]
+    Field Field7#[8]
+    Field Field8#[8]
+    Field Field9#[8]
+    Field Field10%
+    Field Field11$
+    Field Field12%
+    Field Field13%
+    Field Field14%
+    Field Field15%
+    Field Field16%[128]
+    Field Field17$[128]
+    Field Field18%
+    Field Field19%
+    Field Field20#
+    Field Field21#
+    Field Field22#
+    Field Field23#
+    Field Field24#
+    Field Field25#
+End Type

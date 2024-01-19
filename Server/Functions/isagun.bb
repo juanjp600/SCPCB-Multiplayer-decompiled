@@ -1,0 +1,36 @@
+Function isagun%(arg0$)
+    Select lower(arg0)
+        Case "usp"
+            Return $01
+        Case "p90"
+            Return $02
+        Case "mp5sd"
+            Return $03
+        Case "rpg"
+            Return $04
+        Case "minigun"
+            Return $05
+        Case "grenade"
+            Return $0D
+        Case "grenadeflashbang"
+            Return $0E
+        Case "grenadesmoke"
+            Return $0F
+        Case "microhid"
+            Return $06
+        Case "deagle"
+            Return $07
+        Case "spas12"
+            Return $08
+        Case "m4a4"
+            Return $0A
+        Case "handcuffs"
+            Return $0B
+        Case "knife"
+            Return $0C
+        Case "hkg36"
+            Return $09
+    End Select
+    Return $00
+    Return $00
+End Function

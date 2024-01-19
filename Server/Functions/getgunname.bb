@@ -1,0 +1,36 @@
+Function getgunname$(arg0%)
+    Select arg0
+        Case $01
+            Return "usp"
+        Case $02
+            Return "p90"
+        Case $03
+            Return "mp5sd"
+        Case $04
+            Return "rpg"
+        Case $05
+            Return "minigun"
+        Case $0D
+            Return "grenade"
+        Case $06
+            Return "microhid"
+        Case $07
+            Return "deagle"
+        Case $08
+            Return "spas12"
+        Case $0A
+            Return "m4a4"
+        Case $0B
+            Return "handcuffs"
+        Case $0F
+            Return "grenadesmoke"
+        Case $0E
+            Return "grenadeflashbang"
+        Case $0C
+            Return "knife"
+        Case $09
+            Return "hkg36"
+    End Select
+    Return ""
+    Return ""
+End Function
