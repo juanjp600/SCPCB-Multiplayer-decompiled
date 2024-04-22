@@ -1,5 +1,5 @@
-; game_disasm
-; Decompiled on 1/19/2024 5:38:18 PM
+; scpcbmp_2024_4_22_disasm
+; Decompiled on 4/22/2024 10:24:47 PM
 
 Include "Globals.bb"
 Include "Data.bb"
@@ -852,6 +852,7 @@ Include "Functions/multiplayer_breach_roletakerolespawn.bb"
 Include "Functions/multiplayer_breach_markas035.bb"
 Include "Functions/multiplayer_breach_markas049.bb"
 Include "Functions/multiplayer_breach_getrolescale.bb"
+Include "Functions/multiplayer_updateplayermodel.bb"
 Include "Functions/se_getparamint.bb"
 Include "Functions/formattextdefault.bb"
 Include "Functions/steambrowser_gettexturehandle.bb"

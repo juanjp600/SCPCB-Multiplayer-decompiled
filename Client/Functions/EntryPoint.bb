@@ -179,7 +179,7 @@ Function EntryPoint%()
     steambrowser_callback_startrequest($00, $00, $00)
     steam_api_init()
     discord_api_init()
-    multiplayer_version = (version($10209) + ".4")
+    multiplayer_version = (version($10209) + ".5")
     statistic_stream = $00
     sendstatisticrequest($05)
     last_breach_type = $00

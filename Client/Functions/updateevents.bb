@@ -6367,7 +6367,12 @@ Function updateevents%()
                                     Case "1:1"
                                         invertmouse = (invertmouse = $00)
                                     Case "fine","very fine"
-                                        superman = $01
+                                        If (multiplayer_breach_isa035(myplayer\Field51) <> 0) Then
+                                            superman = $00
+                                            kill("was killed in SCP-914", $00)
+                                        Else
+                                            superman = $01
+                                        EndIf
                                 End Select
                             EndIf
                             local10\Field1\Field29[$00]\Field5 = $01

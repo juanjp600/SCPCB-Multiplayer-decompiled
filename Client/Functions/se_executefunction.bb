@@ -170,6 +170,8 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             If (local3 <> Null) Then
                 multiplayer_writedecal(local3, $01, $01)
             EndIf
+        Case $158
+            multiplayer_updateplayermodel(se_tointarg($00, $00))
         Case $138
             local4 = se_tostringarg($00, "")
             For local5 = Each rooms

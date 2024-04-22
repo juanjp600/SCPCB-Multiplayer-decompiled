@@ -62,6 +62,8 @@ Function se_getfunctionid%(arg0$)
             Return $153
         Case "createdecal"
             Return $157
+        Case "updateplayermodel"
+            Return $158
         Case "getitemtemplate"
             Return $136
         Case "getservertimeout"
