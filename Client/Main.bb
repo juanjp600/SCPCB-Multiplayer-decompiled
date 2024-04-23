@@ -1,5 +1,5 @@
-; scpcbmp_2024_4_22_disasm
-; Decompiled on 4/22/2024 10:24:47 PM
+; scpcbmp_2024_4_23_disasm
+; Decompiled on 4/23/2024 2:42:24 PM
 
 Include "Globals.bb"
 Include "Data.bb"
@@ -485,6 +485,7 @@ Include "Functions/getbytestreamdatasize.bb"
 Include "Functions/bytestreamreset.bb"
 Include "Functions/multiplayer_breach_createplayerrole.bb"
 Include "Functions/multiplayer_breach_markroleasscp.bb"
+Include "Functions/multiplayer_breach_markas035.bb"
 Include "Functions/multiplayer_breach_setrolesettings.bb"
 Include "Functions/multiplayer_breach_setroleeffects.bb"
 Include "Functions/multiplayer_breach_setroleambientsound.bb"
@@ -849,7 +850,6 @@ Include "Functions/se_tointarg.bb"
 Include "Functions/se_tofloatarg.bb"
 Include "Functions/se_tostringarg.bb"
 Include "Functions/multiplayer_breach_roletakerolespawn.bb"
-Include "Functions/multiplayer_breach_markas035.bb"
 Include "Functions/multiplayer_breach_markas049.bb"
 Include "Functions/multiplayer_breach_getrolescale.bb"
 Include "Functions/multiplayer_updateplayermodel.bb"
