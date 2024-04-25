@@ -59,7 +59,7 @@ Function EntryPoint%()
     lastpluginid = $00
     publics = (New pb)
     steam_release = $00
-    mp_version = (version($10209) + ".4")
+    mp_version = (version($10209) + ".5")
     addversion(mp_version)
     ntf_model = $01
     guard_model = $02
