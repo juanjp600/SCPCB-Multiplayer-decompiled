@@ -15,7 +15,6 @@ Function updatelauncher%()
     Local local13%
     Local local14%
     Local local15%
-    Local local16%
     local0 = aatextenable
     aatextenable = $00
     menuscale = 1.0
@@ -56,6 +55,7 @@ Function updatelauncher%()
         EndIf
     Next
     blinkmeterimg = loadimage_strict("GFX\blinkmeter.jpg")
+    checkforupdates()
     apptitle("SCP - Containment Breach Multiplayer Mod Launcher", "")
     local5 = loadimage_strict("GFX\multiplayer\menu\discord.png")
     local6 = loadimage_strict("GFX\multiplayer\menu\patreon.png")
@@ -296,7 +296,7 @@ Function updatelauncher%()
         putinivalue(optionfile, "options", "16bit", "false")
     EndIf
     putinivalue(optionfile, "options", "gfx driver new", (Str selectedgfxdriver))
-    If (local16 <> 0) Then
+    If (updatecheckenabled <> 0) Then
         putinivalue(optionfile, "options", "check for updates", "true")
     Else
         putinivalue(optionfile, "options", "check for updates", "false")

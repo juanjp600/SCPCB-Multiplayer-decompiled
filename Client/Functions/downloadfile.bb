@@ -37,6 +37,7 @@ Function downloadfile%(arg0$)
         writeline(local5, (("GET " + arg0) + " HTTP/1.1"))
         writeline(local5, ("Host: " + local1))
         writeline(local5, "User-Agent: SCP-CB Multiplayer Mod")
+        writeline(local5, "x-game-request: 6noork6wsqpdx4oyygpt9nzz3dj9j0tlitvbzvfo9/8=")
         writeline(local5, "Connection: Close")
         writeline(local5, "")
         Repeat

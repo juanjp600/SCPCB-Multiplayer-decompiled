@@ -679,6 +679,8 @@ Function acceptpacket%(arg0%, arg1%, arg2%)
                                         local38 = "AuthTicketInvalid"
                                     Case $09
                                         local38 = "PublisherIssuedBan"
+                                    Case $0A
+                                        local38 = "Central Server Banned"
                                 End Select
                                 udp_writebyte($71)
                                 udp_writeline(("SteamError: " + local38))

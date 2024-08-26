@@ -32,17 +32,22 @@ Function requestdatafromglobal%()
         Wend
         closetcpstream(local0)
     EndIf
-    local0 = downloadfile("http://127.0.0.1/CentralServers.txt")
-    If (local0 <> $00) Then
-        If (readline(local0) = "ContainServers") Then
-            Delete Each centralserversegments
-            While (eof(local0) = $00)
-                local7 = readline(local0)
-                local8 = (Int readline(local0))
-                addcentralserver(local7, local8)
-            Wend
+    If (server\Field70 = $00) Then
+        local0 = downloadfile("http://127.0.0.1/CentralServersUdp.txt")
+        If (local0 <> $00) Then
+            If (readline(local0) = "ContainServers") Then
+                Delete Each centralserversegments
+                While (eof(local0) = $00)
+                    local7 = readline(local0)
+                    local8 = (Int readline(local0))
+                    addcentralserver(local7, local8)
+                Wend
+            EndIf
+            closetcpstream(local0)
         EndIf
-        closetcpstream(local0)
+    Else
+        startcentralservertcpproxy()
+        addcentralserver("127.0.0.1", $3039)
     EndIf
     tcptimeouts($00, $00)
     Return $00

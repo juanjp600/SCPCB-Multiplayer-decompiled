@@ -321,6 +321,10 @@ Function EntryPoint%()
     g_viewport_width = g_desktop_screen_width
     g_viewport_height = g_desktop_screen_height
     g_app_handle = (Int systemproperty("AppHWND"))
+    useragent = "SCPCB"
+    responsedelay = $7D0
+    newline = (chr($0D) + chr($0A))
+    updatecheckenabled = $01
     analyzeerrorfile()
     replacedatafile($01, "Data\1499chunks.ini", $01)
     replacedatafile($02, "Data\rooms.ini", $01)
@@ -815,8 +819,8 @@ Function EntryPoint%()
     quickloadpercent = $FFFFFFFF
     quickloadpercent_displaytimer = 0.0
     onsliderid = $00
-    scrollbary = $00
-    scrollmenuheight = $00
+    scrollbary = 0.0
+    scrollmenuheight = 0.0
     mainmenuopen = $01
     flushkeys()
     flushmouse()

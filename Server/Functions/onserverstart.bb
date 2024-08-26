@@ -70,6 +70,7 @@ Function onserverstart%()
         addlog(("Only deathmatch: " + bool(server\Field29)), $00, $01, $00)
     EndIf
     addlog(("Using central server: " + bool(server\Field69)), $00, $01, $00)
+    addlog(("Central server using TCP passthrough: " + bool(server\Field70)), $00, $01, $00)
     addlog(("Noclip anticheat: " + bool(server\Field73)), $00, $01, $00)
     If (server\Field73 <> 0) Then
         addlog(("Speedhack rate: " + (Str server\Field74)), $00, $01, $00)
