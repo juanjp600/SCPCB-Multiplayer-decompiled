@@ -1,56 +1,30 @@
 Function rendermessages%()
     Local local0%
-    If (0.0 < msgtimer) Then
-        local0 = $00
-        If (invopen = $00) Then
-            If (selecteditem <> Null) Then
-                If (((selecteditem\Field3\Field2 = "paper") Or (selecteditem\Field3\Field2 = "oldpaper")) <> 0) Then
-                    local0 = $01
-                EndIf
-            EndIf
-        EndIf
-        If (local0 = $00) Then
-            color($00, $00, $00)
-            aatext(((graphicwidth Sar $01) + $01), ((graphicheight Sar $01) + $C9), msg, $01, $00, (min((msgtimer / 2.0), 255.0) / 255.0))
-            color($FF, $FF, $FF)
-            If (left(msg, $0E) = "Blitz3D Error!") Then
-                color($FF, $00, $00)
-            EndIf
-            aatext((graphicwidth Sar $01), ((graphicheight Sar $01) + $C8), msg, $01, $00, (min((msgtimer / 2.0), 255.0) / 255.0))
-        Else
-            color($00, $00, $00)
-            aatext(((graphicwidth Sar $01) + $01), (Int (((Float graphicheight) * 0.94) + 1.0)), msg, $01, $00, (min((msgtimer / 2.0), 255.0) / 255.0))
-            color($FF, $FF, $FF)
-            If (left(msg, $0E) = "Blitz3D Error!") Then
-                color($FF, $00, $00)
-            EndIf
-            aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.94)), msg, $01, $00, (min((msgtimer / 2.0), 255.0) / 255.0))
-        EndIf
+    Local local1%
+    Local local2%
+    Local local3%
+    If (((selecteddifficulty\Field0 = difficulties[$03]\Field0) Lor (opt\Field32 = $00)) <> 0) Then
+        Return $00
     EndIf
-    renderammotext()
+    If (0.0 < msg\Field1) Then
+        If ((invopen Lor (otheropen <> Null)) = $00) Then
+            local0 = (((i_294\Field0 Lor (d_i\Field6 <> Null)) Lor (selectedscreen <> Null)) Lor ((selecteditem <> Null) And (((((((selecteditem\Field4\Field2 = $00) Lor (selecteditem\Field4\Field2 = $20)) Lor (selecteditem\Field4\Field2 = $21)) Lor (selecteditem\Field4\Field2 = $01)) Lor (selecteditem\Field4\Field2 = $4D)) Lor (selecteditem\Field4\Field2 = $4E)) Lor (selecteditem\Field4\Field2 = $4F))))
+        EndIf
+        local1 = (Int min((msg\Field1 / 2.0), 255.0))
+        setfontex(fo\Field0[$00])
+        color(local1, local1, local1)
+        local2 = (Int ((Float mo\Field10) + (200.0 * menuscale)))
+        If (local0 <> 0) Then
+            local2 = (Int ((Float opt\Field47) * 0.94))
+        EndIf
+        textex((Int (((Float ((-200.0 > me\Field5) * rand($FFFFFFF6, $0A))) * menuscale) + (Float mo\Field9))), (Int (((Float ((-200.0 > me\Field5) * rand($FFFFFFF6, $0A))) * menuscale) + (Float local2))), msg\Field0, $01, $00)
+    EndIf
     color($FF, $FF, $FF)
-    If (showfps <> 0) Then
-        aasetfont(consolefont)
-        aatext($14, $14, ("FPS: " + (Str fps)), $00, $00, 1.0)
-        aasetfont(fontsl)
-        aatext($14, $28, ("MULTIPLAYER MOD v" + multiplayer_version), $00, $00, 1.0)
-        aasetfont(font1)
-    EndIf
-    If (0.0 > endingtimer) Then
-        If (selectedending <> "") Then
-            drawending()
-        EndIf
-    Else
-        drawmenu()
-    EndIf
-    If (b_br\Field9 > $00) Then
-        b_br\Field9 = (Int ((Float b_br\Field9) - fpsfactor))
-    EndIf
-    If (0.0 < msgtimer) Then
-        msgtimer = (msgtimer - fpsfactor)
-    EndIf
-    If (0.0 < b_br\Field0) Then
-        b_br\Field0 = (b_br\Field0 - fpsfactor)
+    If (opt\Field33 <> 0) Then
+        local3 = (Int (20.0 * menuscale))
+        setfontex(fo\Field0[$05])
+        textex(local3, local3, ("FPS: " + (Str fps\Field3)), $00, $00)
+        setfontex(fo\Field0[$00])
     EndIf
     Return $00
 End Function

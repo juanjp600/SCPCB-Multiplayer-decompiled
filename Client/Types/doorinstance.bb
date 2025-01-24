@@ -1,0 +1,14 @@
+Type doorinstance
+    Field Field0%[9]
+    Field Field1%[4]
+    Field Field2%[5]
+    Field Field3%[4]
+    Field Field4%
+    Field Field5%[3]
+    Field Field6.doors
+    Field Field7.doors
+    Field Field8.doors
+    Field Field9%
+    Field Field10%
+    Field Field11%
+End Type

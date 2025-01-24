@@ -1,9 +1,10 @@
 Function removeparticle%(arg0.particles)
-    If (arg0 = Null) Then
-        Return $00
-    EndIf
+    catcherrors("RemoveParticle()")
     freeentity(arg0\Field0)
+    arg0\Field0 = $00
     freeentity(arg0\Field1)
+    arg0\Field1 = $00
     Delete arg0
+    catcherrors("Uncaught: RemoveParticles()")
     Return $00
 End Function

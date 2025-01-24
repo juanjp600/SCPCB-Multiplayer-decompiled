@@ -1,81 +1,195 @@
 Function update294%()
-    Local local0%
-    Local local1.decals
-    If (0.0 < camerashaketimer) Then
-        camerashaketimer = (camerashaketimer - (fpsfactor / 70.0))
-        camerashake = 2.0
-    EndIf
-    If (0.0 < vomittimer) Then
-        debuglog((Str vomittimer))
-        vomittimer = (vomittimer - (fpsfactor / 70.0))
-        If ((millisecs2() Mod $640) < rand($C8, $190)) Then
-            If (0.0 = blurtimer) Then
-                blurtimer = (rnd(10.0, 20.0) * 70.0)
+    Local local0.items
+    Local local1#
+    Local local2#
+    Local local3%
+    Local local4%
+    Local local5$
+    Local local6%
+    Local local7%
+    Local local8#
+    Local local13%
+    Local local14$
+    Local local15%
+    Local local16%
+    Local local17%
+    Local local18.events
+    local1 = (Float (mo\Field9 - (imagewidth(t\Field1[$05]) Sar $01)))
+    local2 = (Float (mo\Field10 - (imageheight(t\Field1[$05]) Sar $01)))
+    local6 = (playerroom\Field9 = $00)
+    If (local6 <> 0) Then
+        If (mo\Field0 <> 0) Then
+            local3 = (Int floor((((mouseposx - local1) - (228.0 * menuscale)) / (35.5 * menuscale))))
+            local4 = (Int floor((((mouseposy - local2) - (342.0 * menuscale)) / (36.5 * menuscale))))
+            local6 = $00
+            If ((((local4 >= $00) And (local4 < $05)) And ((local3 >= $00) And (local3 < $0A))) <> 0) Then
+                playsound_strict(buttonsfx[$00], $00)
+                local5 = ""
+                Select local4
+                    Case $00
+                        local5 = (Str ((local3 + $01) Mod $0A))
+                    Case $01
+                        Select local3
+                            Case $00
+                                local5 = "Q"
+                            Case $01
+                                local5 = "W"
+                            Case $02
+                                local5 = "E"
+                            Case $03
+                                local5 = "R"
+                            Case $04
+                                local5 = "T"
+                            Case $05
+                                local5 = "Y"
+                            Case $06
+                                local5 = "U"
+                            Case $07
+                                local5 = "I"
+                            Case $08
+                                local5 = "O"
+                            Case $09
+                                local5 = "P"
+                        End Select
+                    Case $02
+                        Select local3
+                            Case $00
+                                local5 = "A"
+                            Case $01
+                                local5 = "S"
+                            Case $02
+                                local5 = "D"
+                            Case $03
+                                local5 = "F"
+                            Case $04
+                                local5 = "G"
+                            Case $05
+                                local5 = "H"
+                            Case $06
+                                local5 = "J"
+                            Case $07
+                                local5 = "K"
+                            Case $08
+                                local5 = "L"
+                            Case $09
+                                local6 = $01
+                        End Select
+                    Case $03
+                        Select local3
+                            Case $00
+                                local5 = "Z"
+                            Case $01
+                                local5 = "X"
+                            Case $02
+                                local5 = "C"
+                            Case $03
+                                local5 = "V"
+                            Case $04
+                                local5 = "B"
+                            Case $05
+                                local5 = "N"
+                            Case $06
+                                local5 = "M"
+                            Case $07
+                                local5 = "-"
+                            Case $08
+                                local5 = " "
+                            Case $09
+                                i_294\Field1 = left(i_294\Field1, (Int max((Float (len(i_294\Field1) - $01)), 0.0)))
+                        End Select
+                    Case $04
+                        local5 = " "
+                End Select
             EndIf
-            camerashake = rnd(0.0, 2.0)
-        EndIf
-        If (((rand($32, $01) = $32) And ((millisecs2() Mod $FA0) < $C8)) <> 0) Then
-            playsound_strict(coughsfx(rand($00, $02)))
-        EndIf
-        If (((10.0 > vomittimer) And (2.0 > rnd(0.0, (500.0 * vomittimer)))) <> 0) Then
-            If (((channelplaying(vomitchn) = $00) And (regurgitate = $00)) <> 0) Then
-                vomitchn = playsound_strict(loadtempsound((("SFX\SCP\294\Retch" + (Str rand($01, $02))) + ".ogg")))
-                multiplayer_writetempsound((("SFX\SCP\294\Retch" + (Str rand($01, $02))) + ".ogg"), entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-                regurgitate = (millisecs2() + $32)
+            i_294\Field1 = (i_294\Field1 + local5)
+            If ((local6 And (i_294\Field1 <> "")) <> 0) Then
+                mp_client_use294(i_294\Field1)
+                i_294\Field1 = trim(i_294\Field1)
+                If (left(i_294\Field1, (Int min(7.0, (Float len(i_294\Field1))))) = "cup of ") Then
+                    i_294\Field1 = right(i_294\Field1, (len(i_294\Field1) - $07))
+                ElseIf (left(i_294\Field1, (Int min(9.0, (Float len(i_294\Field1))))) = "a cup of ") Then
+                    i_294\Field1 = right(i_294\Field1, (len(i_294\Field1) - $09))
+                EndIf
+                If (s2imapcontains(i_294\Field2, i_294\Field1) <> 0) Then
+                    local13 = jsongetarrayvalue(i_294\Field3, s2imapget(i_294\Field2, i_294\Field1))
+                    If (jsonisnull(jsongetvalue(local13, "dispense_sound")) = $00) Then
+                        local14 = jsongetstring(jsongetvalue(local13, "dispense_sound"))
+                        playerroom\Field9 = playsound_strict(loadtempsound(local14), $00)
+                        mp_synchronize3dsound(Null, local14, playerroom\Field11[$00], 10.0, 1.0)
+                    EndIf
+                    If (me\Field64 > $00) Then
+                        local15 = ((me\Field64 = $02) + $61)
+                        playsound_strict(loadtempsound("SFX\SCP\294\PullMasterCard.ogg"), $00)
+                        mp_synchronize3dsound(Null, "SFX\SCP\294\PullMasterCard.ogg", playerroom\Field11[$00], 2.0, 1.0)
+                        If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
+                            If (getitemamount() < maxitemamount) Then
+                                local0 = createitem("Mastercard", local15, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+                                local0\Field12 = (Float me\Field63)
+                                entitytype(local0\Field2, $03, $00)
+                                pickitem(local0, $00)
+                            Else
+                                local0 = createitem("Mastercard", local15, entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.3), entityz(me\Field60, $00), $00, $00, $00, 1.0, $00)
+                                local0\Field4\Field4 = $01
+                                local0\Field12 = (Float me\Field63)
+                                entitytype(local0\Field2, $03, $00)
+                                createmsg(getlocalstring("msg", "cantcarry"), 6.0)
+                            EndIf
+                        EndIf
+                    EndIf
+                    local7 = jsongetvalue(local13, "explosion")
+                    If (jsonisnull(local7) = $00) Then
+                        If (jsongetbool(local7) <> 0) Then
+                            me\Field58 = 135.0
+                            local7 = jsongetvalue(local13, "death_message")
+                            If (jsonisnull(local7) = $00) Then
+                                msg\Field2 = jsongetstring(local7)
+                            EndIf
+                        EndIf
+                    EndIf
+                    local17 = jsongetarray(jsongetvalue(local13, "color"))
+                    local8 = jsongetfloat(jsongetvalue(local13, "alpha"))
+                    local7 = jsongetvalue(local13, "glow")
+                    If (jsonisnull(local7) = $00) Then
+                        If (jsongetbool(local7) <> 0) Then
+                            local8 = (- local8)
+                        EndIf
+                    EndIf
+                    If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
+                        local0 = createitem("Cup", $2B, entityx(playerroom\Field11[$02], $01), entityy(playerroom\Field11[$02], $01), entityz(playerroom\Field11[$02], $01), jsongetint(jsongetarrayvalue(local17, $00)), jsongetint(jsongetarrayvalue(local17, $01)), jsongetint(jsongetarrayvalue(local17, $02)), local8, $00)
+                        local0\Field1 = i_294\Field1
+                        local0\Field0 = format(getlocalstring("items", "cupof"), i_294\Field1, "%s")
+                        entitytype(local0\Field2, $03, $00)
+                    EndIf
+                Else
+                    i_294\Field1 = getlocalstring("misc", "ofr")
+                    playerroom\Field9 = playsound_strict(loadtempsound("SFX\SCP\294\OutOfRange.ogg"), $00)
+                    mp_synchronize3dsound(Null, "SFX\SCP\294\OutOfRange.ogg", playerroom\Field11[$00], 10.0, 1.0)
+                EndIf
             EndIf
         EndIf
-        If (((regurgitate > millisecs2()) And (regurgitate <> $00)) <> 0) Then
-            mouse_y_speed_1 = (mouse_y_speed_1 + 1.0)
-        Else
-            regurgitate = $00
+        If ((mo\Field1 Lor (i_294\Field0 = $00)) <> 0) Then
+            i_294\Field0 = $00
+            i_294\Field1 = ""
+            stopmousemovement()
         EndIf
-    ElseIf (0.0 > vomittimer) Then
-        vomittimer = (vomittimer - (fpsfactor / 70.0))
-        If (-5.0 < vomittimer) Then
-            If ((millisecs2() Mod $190) < $32) Then
-                camerashake = 4.0
+    Else
+        If (i_294\Field1 <> getlocalstring("misc", "ofr")) Then
+            i_294\Field1 = getlocalstring("misc", "dispensing")
+        EndIf
+        If (channelplaying(playerroom\Field9) = $00) Then
+            If (i_294\Field1 <> getlocalstring("misc", "ofr")) Then
+                i_294\Field0 = $00
+                me\Field64 = $00
+                stopmousemovement()
+                For local18 = Each events
+                    If (playerroom = local18\Field1) Then
+                        local18\Field3 = 0.0
+                        Exit
+                    EndIf
+                Next
             EndIf
-            mouse_x_speed_1 = 0.0
-            playable = $00
-        Else
-            playable = $01
-        EndIf
-        If (vomit = $00) Then
-            blurtimer = 2800.0
-            vomitsfx = loadsound_strict("SFX\SCP\294\Vomit.ogg")
-            vomitchn = playsound_strict(vomitsfx)
-            multiplayer_writetempsound("SFX\SCP\294\Vomit.ogg", entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-            previnjuries = injuries
-            prevbloodloss = bloodloss
-            injuries = 1.5
-            bloodloss = 70.0
-            eyeirritation = 630.0
-            local0 = createpivot($00)
-            positionentity(local0, entityx(camera, $00), (entityy(collider, $00) - 0.05), entityz(camera, $00), $00)
-            turnentity(local0, 90.0, 0.0, 0.0, $00)
-            entitypick(local0, 0.3)
-            local1 = createdecal($05, pickedx(), (pickedy() + 0.005), pickedz(), 90.0, 180.0, 0.0, 1.0, 1.0)
-            local1\Field2 = 0.001
-            local1\Field1 = 0.001
-            local1\Field3 = 0.6
-            entityalpha(local1\Field0, 1.0)
-            entitycolor(local1\Field0, 0.0, rnd(200.0, 255.0), 0.0)
-            scalesprite(local1\Field0, local1\Field2, local1\Field2)
-            multiplayer_writedecal(local1, $01, $01)
-            freeentity(local0)
-            vomit = $01
-        EndIf
-        updatedecals()
-        mouse_y_speed_1 = (max(((vomittimer / 10.0) + 1.0), 0.0) + mouse_y_speed_1)
-        If (-15.0 > vomittimer) Then
-            freesound_strict(vomitsfx)
-            vomittimer = 0.0
-            If (0.0 <= killtimer) Then
-                playsound_strict(breathsfx($00, $00))
-            EndIf
-            injuries = previnjuries
-            bloodloss = prevbloodloss
-            vomit = $00
+            i_294\Field1 = ""
+            playerroom\Field9 = $00
         EndIf
     EndIf
     Return $00

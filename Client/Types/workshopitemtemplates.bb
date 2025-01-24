@@ -1,2 +1,0 @@
-Type workshopitemtemplates
-End Type

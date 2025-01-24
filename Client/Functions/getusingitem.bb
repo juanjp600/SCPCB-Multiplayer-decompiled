@@ -1,0 +1,39 @@
+Function getusingitem%(arg0.items)
+    Select arg0\Field4\Field2
+        Case $5F
+            Return $01
+        Case $59
+            Return $02
+        Case $5A
+            Return $03
+        Case $5B
+            Return $04
+        Case $5C
+            Return $05
+        Case $5D
+            Return $06
+        Case $5E
+            Return $07
+        Case $60
+            Return $08
+        Case $08,$09,$0A
+            Return $09
+        Case $64
+            Return $FFFFFFFF
+        Case $65
+            Return $FFFFFFFE
+        Case $66
+            Return $FFFFFFFD
+        Case $1E,$1F
+            Return $FFFFFFFC
+        Case $67
+            Return $FFFFFFFB
+        Case $68
+            Return $FFFFFFFA
+        Case $69
+            Return $FFFFFFBE
+        Default
+            Return $00
+    End Select
+    Return $00
+End Function

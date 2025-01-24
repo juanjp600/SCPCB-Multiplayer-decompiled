@@ -9,4 +9,5 @@ Type difficulty
     Field Field7%
     Field Field8%
     Field Field9%
+    Field Field10%
 End Type

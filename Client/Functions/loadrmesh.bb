@@ -1,408 +1,373 @@
-Function loadrmesh%(arg0$, arg1.roomtemplates)
+Function loadrmesh%(arg0$, arg1.roomtemplates, arg2%)
     Local local0%
-    Local local1%
+    Local local1.materials
     Local local2%
     Local local3%
     Local local4%
-    Local local5%
+    Local local5#
     Local local6#
     Local local7#
-    Local local8#
-    Local local9#
+    Local local8%
+    Local local9%
     Local local10%
     Local local11%
-    Local local12%
+    Local local12$
     Local local13%
-    Local local14#
-    Local local15#
-    Local local16#
-    Local local17$
-    Local local18$
+    Local local14$
+    Local local15$
+    Local local16%
+    Local local17%
+    Local local18%
     Local local19%
-    Local local20%
-    Local local21$
+    Local local20%[2]
+    Local local21%
     Local local22%
-    Local local23%
-    Local local24%
+    Local local23#
+    Local local24#
     Local local25%
     Local local26%
     Local local27%
-    Local local28%[2]
+    Local local28$
     Local local29%
     Local local30%
-    Local local31#
-    Local local32#
-    Local local33%
-    Local local34%
-    Local local35%
+    Local local31.tempscreens
+    Local local32.tempwaypoints
+    Local local33.templights
+    Local local34.tempsoundemitters
+    Local local35.tempprops
     Local local36%
-    Local local37%
-    Local local39.tempscreens
-    Local local40.tempwaypoints
-    Local local41#
+    Local local37$
+    Local local38#
+    Local local39%
+    Local local40%
+    Local local41%
     Local local42$
-    Local local43#
-    Local local44%
+    Local local43$
     Local local45%
-    Local local46%
-    Local local47.lighttemplates
-    Local local48$
-    Local local49#
-    Local local50#
-    Local local51%
-    Local local52.props
-    Local local53%
-    local0 = createtexture($04, $04, $01, $01)
-    clscolor($FF, $FF, $FF)
-    setbuffer(texturebuffer(local0, $00))
-    cls()
-    setbuffer(backbuffer())
-    local1 = createtexture($04, $04, $01, $01)
-    clscolor($FF, $FF, $FF)
-    setbuffer(texturebuffer(local1, $00))
-    cls()
-    setbuffer(backbuffer())
+    catcherrors((("LoadRMesh(" + arg0) + ")"))
+    local0 = readfile_strict(arg0)
+    If (local0 = $00) Then
+        runtimeerrorex(format(getlocalstring("runerr", "file"), arg0, "%s"))
+    EndIf
     clscolor($00, $00, $00)
-    local2 = readfile(arg0)
-    local19 = createpivot($00)
-    local20 = $00
-    For local3 = $00 To $03 Step $01
-        If (local2 = $00) Then
-            local2 = readfile(arg0)
-        Else
-            Exit
-        EndIf
-    Next
-    If (local2 = $00) Then
-        runtimeerror(((("Error reading file " + chr($22)) + arg0) + chr($22)))
+    local9 = $00
+    local10 = $00
+    local11 = $00
+    local13 = createpivot($00)
+    local14 = readstring(local0)
+    If (local14 <> "RoomMesh") Then
+        runtimeerrorex(format(format(getlocalstring("runerr", "notrmesh"), arg0, "{0}"), local14, "{1}"))
     EndIf
-    local21 = readstring(local2)
-    If (local21 <> "RoomMesh") Then
-        If (local21 = "RoomMesh.HasTriggerBox") Then
-            local20 = $01
-        Else
-            runtimeerror((((((chr($22) + arg0) + chr($22)) + " is Not RMESH (") + local21) + ")"))
-        EndIf
-    EndIf
-    arg0 = stripfilename(arg0)
-    local24 = createmesh($00)
-    local25 = createmesh($00)
-    local22 = readint(local2)
-    For local3 = $01 To local22 Step $01
-        local26 = createmesh($00)
-        local27 = createsurface(local26, $00)
-        local29 = createbrush(255.0, 255.0, 255.0)
-        local28[$00] = $00
-        local28[$01] = $00
-        local30 = $00
-        For local4 = $00 To $01 Step $01
-            local11 = readbyte(local2)
-            If (local11 <> $00) Then
-                local17 = readstring(local2)
-                local28[local4] = gettexturefromcache(local17)
-                If (local28[local4] = $00) Then
-                    local33 = $01
-                    If (local33 <> (local11 < $03)) Then
-                        local28[local4] = loadtexture((arg0 + local17), $03)
+    local15 = stripfilename(arg0)
+    local16 = createmesh($00)
+    local17 = createmesh($00)
+    local25 = readint(local0)
+    For local2 = $01 To local25 Step $01
+        local18 = createmesh($00)
+        local19 = createsurface(local18, $00)
+        local21 = createbrush(255.0, 255.0, 255.0)
+        local20[$00] = $00
+        local20[$01] = $00
+        local22 = $00
+        For local3 = $00 To $01 Step $01
+            local9 = readbyte(local0)
+            If (local9 <> $00) Then
+                local12 = readstring(local0)
+                If (filetype((local15 + local12)) = $01) Then
+                    If (local9 < $03) Then
+                        If (instr(lower(local12), "_lm", $01) <> $00) Then
+                            local20[local3] = loadtexturecheckingifincache((local15 + local12), ((opt\Field3 Shl $08) + $01), $00)
+                        Else
+                            local20[local3] = loadtexturecheckingifincache((local15 + local12), $01, $00)
+                        EndIf
                     Else
-                        local28[local4] = loadtexture((arg0 + local17), $01)
+                        local20[local3] = loadtexturecheckingifincache((local15 + local12), $03, $00)
                     EndIf
-                    If (local28[local4] <> $00) Then
-                        If (local11 = $01) Then
-                            textureblend(local28[local4], $05)
+                ElseIf (filetype(("GFX\Map\Textures\" + local12)) = $01) Then
+                    If (local9 < $03) Then
+                        If (instr(lower(local12), "_lm", $01) <> $00) Then
+                            local20[local3] = loadtexturecheckingifincache(("GFX\Map\Textures\" + local12), ((opt\Field3 Shl $08) + $01), $00)
+                        Else
+                            local20[local3] = loadtexturecheckingifincache(("GFX\Map\Textures\" + local12), $01, $00)
                         EndIf
-                        If (instr(lower(local17), "_lm", $01) <> $00) Then
-                            textureblend(local28[local4], $03)
-                        EndIf
-                        addtexturetocache(local28[local4])
+                    Else
+                        local20[local3] = loadtexturecheckingifincache(("GFX\Map\Textures\" + local12), $03, $00)
                     EndIf
                 EndIf
-                If (local28[local4] <> $00) Then
-                    local30 = $02
-                    If (local11 = $03) Then
-                        local30 = $01
+                If (local20[local3] <> $00) Then
+                    If (local9 = $01) Then
+                        textureblend(local20[local3], $05)
                     EndIf
-                    texturecoords(local28[local4], ($01 - local4))
+                    If (instr(lower(local12), "_lm", $01) <> $00) Then
+                        textureblend(local20[local3], $03)
+                    EndIf
+                    local22 = $02
+                    If (local9 = $03) Then
+                        local22 = $01
+                    EndIf
+                    texturecoords(local20[local3], ($01 - local3))
                 EndIf
             EndIf
         Next
-        If (local30 = $01) Then
-            If (local28[$01] <> $00) Then
-                textureblend(local28[$01], $02)
-                brushtexture(local29, local28[$01], $00, $00)
+        If (local22 = $01) Then
+            If (local20[$01] <> $00) Then
+                textureblend(local20[$01], $02)
+                brushtexture(local21, local20[$01], $00, $00)
             Else
-                brushtexture(local29, local0, $00, $00)
-            EndIf
-        ElseIf (((local28[$00] <> $00) And (local28[$01] <> $00)) <> 0) Then
-            local34 = getbumpfromcache(strippath(texturename(local28[$01])))
-            For local4 = $00 To $01 Step $01
-                brushtexture(local29, local28[local4], $00, ((local4 + $01) + (local34 <> $00)))
-            Next
-            brushtexture(local29, ambientlightroomtex, $00, $00)
-            If (local34 <> $00) Then
-                brushtexture(local29, local34, $00, $01)
+                brushtexture(local21, missingtexture, $00, $00)
             EndIf
         Else
-            For local4 = $00 To $01 Step $01
-                If (local28[local4] <> $00) Then
-                    brushtexture(local29, local28[local4], $00, local4)
+            local27 = $00
+            If (((local20[$00] <> $00) And (local20[$01] <> $00)) <> 0) Then
+                If (opt\Field2 <> 0) Then
+                    local28 = strippath(texturename(local20[$01]))
+                    For local1 = Each materials
+                        If (local1\Field0 = local28) Then
+                            local27 = local1\Field1
+                            Exit
+                        EndIf
+                    Next
                 Else
-                    brushtexture(local29, local0, $00, local4)
+                    local27 = $00
                 EndIf
-            Next
-        EndIf
-        local27 = createsurface(local26, $00)
-        If (local30 > $00) Then
-            paintsurface(local27, local29)
-        EndIf
-        freebrush(local29)
-        local29 = $00
-        local23 = readint(local2)
-        For local4 = $01 To local23 Step $01
-            local6 = readfloat(local2)
-            local7 = readfloat(local2)
-            local8 = readfloat(local2)
-            local10 = addvertex(local27, local6, local7, local8, 0.0, 0.0, 1.0)
-            For local5 = $00 To $01 Step $01
-                local31 = readfloat(local2)
-                local32 = readfloat(local2)
-                vertextexcoords(local27, local10, local31, local32, 0.0, local5)
-            Next
-            local11 = readbyte(local2)
-            local12 = readbyte(local2)
-            local13 = readbyte(local2)
-            vertexcolor(local27, local10, (Float local11), (Float local12), (Float local13), 1.0)
-        Next
-        local23 = readint(local2)
-        For local4 = $01 To local23 Step $01
-            local11 = readint(local2)
-            local12 = readint(local2)
-            local13 = readint(local2)
-            addtriangle(local27, local11, local12, local13)
-        Next
-        If (local30 = $01) Then
-            addmesh(local26, local25)
-            entityalpha(local26, 0.0)
-        Else
-            addmesh(local26, local24)
-            entityparent(local26, local19, $01)
-            entityalpha(local26, 0.0)
-            entitytype(local26, $01, $00)
-            entitypickmode(local26, $02, $01)
-            local35 = copymesh(local26, $00)
-            flipmesh(local35)
-            addmesh(local35, local26)
-            freeentity(local35)
-        EndIf
-        For local4 = $00 To $01 Step $01
-            If (local28[local4] <> $00) Then
-                If (((lower(strippath(texturename(local28[local4]))) = "glass.png") Xor (lower(strippath(texturename(local28[local4]))) = "matglass.png")) <> 0) Then
-                    addmesh(local26, local24)
-                    entityparent(local26, local19, $01)
-                    entitytype(local26, $01, $00)
-                    entitypickmode(local26, $02, $01)
-                    local35 = copymesh(local26, $00)
-                    flipmesh(local35)
-                    addmesh(local35, local26)
-                    freeentity(local35)
-                EndIf
-            EndIf
-        Next
-    Next
-    local36 = createmesh($00)
-    local22 = readint(local2)
-    For local3 = $01 To local22 Step $01
-        local27 = createsurface(local36, $00)
-        local23 = readint(local2)
-        For local4 = $01 To local23 Step $01
-            local6 = readfloat(local2)
-            local7 = readfloat(local2)
-            local8 = readfloat(local2)
-            local10 = addvertex(local27, local6, local7, local8, 0.0, 0.0, 1.0)
-        Next
-        local23 = readint(local2)
-        For local4 = $01 To local23 Step $01
-            local11 = readint(local2)
-            local12 = readint(local2)
-            local13 = readint(local2)
-            addtriangle(local27, local11, local12, local13)
-            addtriangle(local27, local11, local13, local12)
-        Next
-    Next
-    If (local20 <> 0) Then
-        debuglog("TriggerBoxEnable")
-        arg1\Field15 = readint(local2)
-        For local37 = $00 To (arg1\Field15 - $01) Step $01
-            arg1\Field16[local37] = createmesh(arg1\Field0)
-            local22 = readint(local2)
-            For local3 = $01 To local22 Step $01
-                local27 = createsurface(arg1\Field16[local37], $00)
-                local23 = readint(local2)
-                For local4 = $01 To local23 Step $01
-                    local6 = readfloat(local2)
-                    local7 = readfloat(local2)
-                    local8 = readfloat(local2)
-                    local10 = addvertex(local27, local6, local7, local8, 0.0, 0.0, 1.0)
-                Next
-                local23 = readint(local2)
-                For local4 = $01 To local23 Step $01
-                    local11 = readint(local2)
-                    local12 = readint(local2)
-                    local13 = readint(local2)
-                    addtriangle(local27, local11, local12, local13)
-                    addtriangle(local27, local11, local13, local12)
-                Next
-            Next
-            arg1\Field17[local37] = readstring(local2)
-        Next
-    EndIf
-    local22 = readint(local2)
-    For local3 = $01 To local22 Step $01
-        local17 = readstring(local2)
-        Select local17
-            Case "screen"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
-                local18 = readstring(local2)
-                If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
-                    local39 = (New tempscreens)
-                    local39\Field1 = local14
-                    local39\Field2 = local15
-                    local39\Field3 = local16
-                    local39\Field0 = local18
-                    local39\Field4 = arg1
-                EndIf
-            Case "waypoint"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
-                local40 = (New tempwaypoints)
-                local40\Field3 = arg1
-                local40\Field0 = local14
-                local40\Field1 = local15
-                local40\Field2 = local16
-            Case "light"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
-                If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
-                    local41 = (readfloat(local2) / 2000.0)
-                    local42 = readstring(local2)
-                    local43 = min((readfloat(local2) * 0.8), 1.0)
-                    local44 = (Int ((Float (Int piece(local42, $01, " "))) * local43))
-                    local45 = (Int ((Float (Int piece(local42, $02, " "))) * local43))
-                    local46 = (Int ((Float (Int piece(local42, $03, " "))) * local43))
-                    addtemplight(arg1, local14, local15, local16, $02, local41, local44, local45, local46)
+                If (local27 = $00) Then
+                    For local3 = $00 To $01 Step $01
+                        brushtexture(local21, local20[local3], $00, (local3 + $01))
+                    Next
                 Else
-                    readfloat(local2)
-                    readstring(local2)
-                    readfloat(local2)
+                    texturecoords(local27, $00)
+                    For local3 = $00 To $01 Step $01
+                        brushtexture(local21, local20[local3], $00, (local3 + $02))
+                    Next
+                    brushtexture(local21, local27, $00, $01)
                 EndIf
-            Case "spotlight"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
-                If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
-                    local41 = (readfloat(local2) / 2000.0)
-                    local42 = readstring(local2)
-                    local43 = min((readfloat(local2) * 0.8), 1.0)
-                    local44 = (Int ((Float (Int piece(local42, $01, " "))) * local43))
-                    local45 = (Int ((Float (Int piece(local42, $02, " "))) * local43))
-                    local46 = (Int ((Float (Int piece(local42, $03, " "))) * local43))
-                    local47 = addtemplight(arg1, local14, local15, local16, $02, local41, local44, local45, local46)
-                    local48 = readstring(local2)
-                    local49 = (Float piece(local48, $01, " "))
-                    local9 = (Float piece(local48, $02, " "))
-                    local47\Field9 = local49
-                    local47\Field10 = local9
-                    local47\Field11 = readint(local2)
-                    local47\Field12 = (Float readint(local2))
-                Else
-                    readfloat(local2)
-                    readstring(local2)
-                    readfloat(local2)
-                    readstring(local2)
-                    readint(local2)
-                    readint(local2)
-                EndIf
-            Case "soundemitter"
-                local11 = $00
-                For local4 = $00 To $07 Step $01
-                    If (arg1\Field5[local4] = $00) Then
-                        arg1\Field6[local4] = (readfloat(local2) * roomscale)
-                        arg1\Field7[local4] = (readfloat(local2) * roomscale)
-                        arg1\Field8[local4] = (readfloat(local2) * roomscale)
-                        arg1\Field5[local4] = readint(local2)
-                        arg1\Field9[local4] = readfloat(local2)
-                        local11 = $01
-                        Exit
+                brushtexture(local21, ambientlightroomtex, $00, $00)
+            Else
+                If (opt\Field2 <> 0) Then
+                    If (local20[$01] <> $00) Then
+                        local28 = strippath(texturename(local20[$01]))
+                        For local1 = Each materials
+                            If (local1\Field0 = local28) Then
+                                local27 = local1\Field1
+                                Exit
+                            EndIf
+                        Next
                     EndIf
-                Next
-                If (local11 = $00) Then
-                    readfloat(local2)
-                    readfloat(local2)
-                    readfloat(local2)
-                    readint(local2)
-                    readfloat(local2)
-                EndIf
-            Case "playerstart"
-                local14 = readfloat(local2)
-                local15 = readfloat(local2)
-                local16 = readfloat(local2)
-                local48 = readstring(local2)
-                local49 = (Float piece(local48, $01, " "))
-                local9 = (Float piece(local48, $02, " "))
-                local50 = (Float piece(local48, $03, " "))
-                If (local51 <> 0) Then
-                    positionentity(local51, local14, local15, local16, $00)
-                    rotateentity(local51, local49, local9, local50, $00)
-                EndIf
-            Case "model"
-                arg0 = readstring(local2)
-                If (arg0 <> "") Then
-                    local52 = createpropobj(("GFX\Map\Props\" + arg0))
-                    local52\Field2 = readfloat(local2)
-                    local52\Field3 = readfloat(local2)
-                    local52\Field4 = readfloat(local2)
-                    local52\Field8 = readfloat(local2)
-                    local52\Field9 = readfloat(local2)
-                    local52\Field10 = readfloat(local2)
-                    local52\Field5 = readfloat(local2)
-                    local52\Field6 = readfloat(local2)
-                    local52\Field7 = readfloat(local2)
-                    local52\Field11 = arg1
                 Else
-                    debuglog("file = 0")
-                    local14 = readfloat(local2)
-                    local15 = readfloat(local2)
-                    local16 = readfloat(local2)
-                    debuglog((((((Str local14) + ", ") + (Str local15)) + ", ") + (Str local16)))
+                    local27 = $00
                 EndIf
-        End Select
+                If (local27 = $00) Then
+                    For local3 = $00 To $01 Step $01
+                        If (local20[local3] <> $00) Then
+                            brushtexture(local21, local20[local3], $00, local3)
+                        Else
+                            brushtexture(local21, missingtexture, $00, local3)
+                        EndIf
+                    Next
+                Else
+                    texturecoords(local27, $00)
+                    For local3 = $00 To $01 Step $01
+                        If (local20[local3] <> $00) Then
+                            brushtexture(local21, local20[local3], $00, (local3 + $01))
+                        Else
+                            brushtexture(local21, missingtexture, $00, (local3 + $01))
+                        EndIf
+                    Next
+                    brushtexture(local21, local27, $00, $00)
+                EndIf
+            EndIf
+        EndIf
+        local19 = createsurface(local18, $00)
+        If (local22 > $00) Then
+            paintsurface(local19, local21)
+        EndIf
+        freebrush(local21)
+        local21 = $00
+        local26 = readint(local0)
+        For local3 = $01 To local26 Step $01
+            local5 = readfloat(local0)
+            local6 = readfloat(local0)
+            local7 = readfloat(local0)
+            local8 = addvertex(local19, local5, local6, local7, 0.0, 0.0, 1.0)
+            For local4 = $00 To $01 Step $01
+                local23 = readfloat(local0)
+                local24 = readfloat(local0)
+                vertextexcoords(local19, local8, local23, local24, 0.0, local4)
+            Next
+            local9 = readbyte(local0)
+            local10 = readbyte(local0)
+            local11 = readbyte(local0)
+            vertexcolor(local19, local8, (Float local9), (Float local10), (Float local11), 1.0)
+        Next
+        local26 = readint(local0)
+        For local3 = $01 To local26 Step $01
+            local9 = readint(local0)
+            local10 = readint(local0)
+            local11 = readint(local0)
+            addtriangle(local19, local9, local10, local11)
+        Next
+        If (local22 = $01) Then
+            addmesh(local18, local17)
+            entityalpha(local18, 0.0)
+        Else
+            addmesh(local18, local16)
+            entityparent(local18, local13, $01)
+            entityalpha(local18, 0.0)
+            entitytype(local18, arg2, $00)
+            entitypickmode(local18, $02, $01)
+            If (arg2 <> 0) Then
+                local29 = copymesh(local18, $00)
+                flipmesh(local29)
+                addmesh(local29, local18)
+                freeentity(local29)
+                local29 = $00
+            EndIf
+        EndIf
     Next
-    local11 = copymesh(local25, $00)
-    flipmesh(local11)
-    addmesh(local11, local25)
-    freeentity(local11)
-    If (local29 <> $00) Then
-        freebrush(local29)
+    local30 = createmesh($00)
+    local25 = readint(local0)
+    For local2 = $01 To local25 Step $01
+        local19 = createsurface(local30, $00)
+        local26 = readint(local0)
+        For local3 = $01 To local26 Step $01
+            local5 = readfloat(local0)
+            local6 = readfloat(local0)
+            local7 = readfloat(local0)
+            local8 = addvertex(local19, local5, local6, local7, 0.0, 0.0, 1.0)
+        Next
+        local26 = readint(local0)
+        For local3 = $01 To local26 Step $01
+            local9 = readint(local0)
+            local10 = readint(local0)
+            local11 = readint(local0)
+            addtriangle(local19, local9, local10, local11)
+            addtriangle(local19, local9, local11, local10)
+        Next
+    Next
+    local25 = readint(local0)
+    If (arg1 <> Null) Then
+        For local2 = $01 To local25 Step $01
+            local12 = readstring(local0)
+            Select local12
+                Case "screen"
+                    local31 = (New tempscreens)
+                    local31\Field4 = arg1
+                    local31\Field1 = (readfloat(local0) * (1.0 / 256.0))
+                    local31\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local31\Field3 = (readfloat(local0) * (1.0 / 256.0))
+                    local43 = readstring(local0)
+                    local31\Field0 = local43
+                Case "waypoint"
+                    local32 = (New tempwaypoints)
+                    local32\Field3 = arg1
+                    local32\Field0 = (readfloat(local0) * (1.0 / 256.0))
+                    local32\Field1 = (readfloat(local0) * (1.0 / 256.0))
+                    local32\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                Case "light"
+                    local33 = (New templights)
+                    local33\Field0 = arg1
+                    local33\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field3 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field4 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field1 = $02
+                    local33\Field5 = (readfloat(local0) / 2000.0)
+                    local37 = readstring(local0)
+                    local38 = min((readfloat(local0) * 0.8), 1.0)
+                    local33\Field6 = (Int ((Float (Int piece(local37, $01, " "))) * local38))
+                    local33\Field7 = (Int ((Float (Int piece(local37, $02, " "))) * local38))
+                    local33\Field8 = (Int ((Float (Int piece(local37, $03, " "))) * local38))
+                    local33\Field13 = $01
+                Case "light_fix"
+                    local33 = (New templights)
+                    local33\Field0 = arg1
+                    local33\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field3 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field4 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field1 = $02
+                    local37 = readstring(local0)
+                    local38 = min((readfloat(local0) * 0.8), 1.0)
+                    local33\Field5 = (readfloat(local0) / 2000.0)
+                    local33\Field6 = (Int ((Float (Int piece(local37, $01, " "))) * local38))
+                    local33\Field7 = (Int ((Float (Int piece(local37, $02, " "))) * local38))
+                    local33\Field8 = (Int ((Float (Int piece(local37, $03, " "))) * local38))
+                    local33\Field13 = $00
+                Case "spotlight"
+                    local33 = (New templights)
+                    local33\Field0 = arg1
+                    local33\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field3 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field4 = (readfloat(local0) * (1.0 / 256.0))
+                    local33\Field1 = $03
+                    local33\Field5 = (readfloat(local0) / 2000.0)
+                    local37 = readstring(local0)
+                    local38 = min((readfloat(local0) * 0.8), 1.0)
+                    local33\Field6 = (Int ((Float (Int piece(local37, $01, " "))) * local38))
+                    local33\Field7 = (Int ((Float (Int piece(local37, $02, " "))) * local38))
+                    local33\Field8 = (Int ((Float (Int piece(local37, $03, " "))) * local38))
+                    local42 = readstring(local0)
+                    local33\Field9 = (Float piece(local42, $01, " "))
+                    local33\Field10 = (Float piece(local42, $02, " "))
+                    local33\Field11 = readint(local0)
+                    local33\Field12 = (Float readint(local0))
+                Case "soundemitter"
+                    local34 = (New tempsoundemitters)
+                    local34\Field5 = arg1
+                    local34\Field0 = (readfloat(local0) * (1.0 / 256.0))
+                    local34\Field1 = (readfloat(local0) * (1.0 / 256.0))
+                    local34\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local34\Field3 = readint(local0)
+                    local34\Field4 = readfloat(local0)
+                Case "model"
+                    local43 = readstring(local0)
+                    runtimeerrorex(format(format(getlocalstring("runerr", "model.support"), arg1\Field5, "{0}"), ("GFX\Map\Props\" + local43), "{1}"))
+                Case "mesh"
+                    local35 = (New tempprops)
+                    local35\Field13 = arg1
+                    local35\Field1 = (readfloat(local0) * (1.0 / 256.0))
+                    local35\Field2 = (readfloat(local0) * (1.0 / 256.0))
+                    local35\Field3 = (readfloat(local0) * (1.0 / 256.0))
+                    local43 = readstring(local0)
+                    If (fileextension(local43) = "b3d") Then
+                        local43 = left(local43, (len(local43) - $04))
+                    EndIf
+                    local35\Field0 = (("GFX\Map\Props\" + local43) + ".b3d")
+                    local35\Field4 = readfloat(local0)
+                    local35\Field5 = readfloat(local0)
+                    local35\Field6 = readfloat(local0)
+                    local35\Field7 = readfloat(local0)
+                    local35\Field8 = readfloat(local0)
+                    local35\Field9 = readfloat(local0)
+                    local35\Field10 = readbyte(local0)
+                    local35\Field11 = readint(local0)
+                    local35\Field12 = readstring(local0)
+            End Select
+        Next
     EndIf
-    addmesh(local25, local24)
-    freeentity(local25)
-    entityfx(local24, $03)
-    entityalpha(local36, 0.0)
-    entityalpha(local24, 1.0)
-    entitytype(local36, $01, $00)
-    freetexture(local0)
-    local53 = createpivot($00)
-    createpivot(local53)
-    entityparent(local24, local53, $01)
-    entityparent(local36, local53, $01)
-    createpivot(local53)
-    createpivot(local53)
-    entityparent(local19, local53, $01)
-    closefile(local2)
-    Return local53
+    local9 = copymesh(local17, $00)
+    flipmesh(local9)
+    addmesh(local9, local17)
+    freeentity(local9)
+    local9 = $00
+    If (local21 <> $00) Then
+        freebrush(local21)
+        local21 = $00
+    EndIf
+    addmesh(local17, local16)
+    freeentity(local17)
+    local17 = $00
+    entityfx(local16, $03)
+    entityalpha(local30, 0.0)
+    entitytype(local30, arg2, $00)
+    entityalpha(local16, 1.0)
+    local45 = createpivot($00)
+    createpivot(local45)
+    entityparent(local16, local45, $01)
+    entityparent(local30, local45, $01)
+    createpivot(local45)
+    createpivot(local45)
+    entityparent(local13, local45, $01)
+    closefile(local0)
+    catcherrors((("Uncaught: LoadRMesh(" + arg0) + ")"))
+    Return local45
     Return $00
 End Function

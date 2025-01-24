@@ -2,70 +2,79 @@ Function resumesounds%()
     Local local0.events
     Local local1.npcs
     Local local2.doors
-    Local local3.devilemitters
+    Local local3.securitycams
+    Local local4.rooms
+    Local local5.soundemitters
+    Local local6.emitter
+    Local local7%
     For local0 = Each events
-        If (local0\Field5 <> $00) Then
-            If (local0\Field9 = $00) Then
-                If (channelplaying(local0\Field5) <> 0) Then
-                    resumechannel(local0\Field5)
-                EndIf
-            Else
-                setstreampaused_strict(local0\Field5, $00)
-            EndIf
-        EndIf
-        If (local0\Field6 <> $00) Then
-            If (local0\Field10 = $00) Then
-                If (channelplaying(local0\Field6) <> 0) Then
-                    resumechannel(local0\Field6)
-                EndIf
-            Else
+        If (local0\Field11 <> 0) Then
+            If (local0\Field6 <> $00) Then
                 setstreampaused_strict(local0\Field6, $00)
             EndIf
+        Else
+            resumechannel(local0\Field6)
         EndIf
+        If (local0\Field12 <> 0) Then
+            If (local0\Field7 <> $00) Then
+                setstreampaused_strict(local0\Field7, $00)
+            EndIf
+        Else
+            resumechannel(local0\Field7)
+        EndIf
+        resumechannel(local0\Field10)
     Next
     For local1 = Each npcs
-        If (local1\Field17 <> $00) Then
-            If (local1\Field70 = $00) Then
-                If (channelplaying(local1\Field17) <> 0) Then
-                    resumechannel(local1\Field17)
-                EndIf
-            ElseIf (local1\Field70 = $01) Then
-                setstreampaused_strict(local1\Field17, $00)
+        If (local1\Field21 <> 0) Then
+            If (local1\Field18 <> $00) Then
+                setstreampaused_strict(local1\Field18, $00)
             EndIf
+        Else
+            resumechannel(local1\Field18)
         EndIf
-        If (local1\Field20 <> $00) Then
-            If (local1\Field71 = $00) Then
-                If (channelplaying(local1\Field20) <> 0) Then
-                    resumechannel(local1\Field20)
-                EndIf
-            ElseIf (local1\Field71 = $01) Then
+        If (local1\Field22 <> 0) Then
+            If (local1\Field20 <> $00) Then
                 setstreampaused_strict(local1\Field20, $00)
             EndIf
+        Else
+            resumechannel(local1\Field20)
         EndIf
     Next
     For local2 = Each doors
-        If (local2\Field16 <> $00) Then
-            If (channelplaying(local2\Field16) <> 0) Then
-                resumechannel(local2\Field16)
-            EndIf
-        EndIf
+        resumechannel(local2\Field17)
+        resumechannel(local2\Field18)
     Next
-    For local3 = Each devilemitters
-        If (local3\Field8 <> $00) Then
-            If (channelplaying(local3\Field8) <> 0) Then
-                resumechannel(local3\Field8)
-            EndIf
-        EndIf
+    For local3 = Each securitycams
+        resumechannel(local3\Field13)
     Next
-    If (ambientsfxchn <> $00) Then
-        If (channelplaying(ambientsfxchn) <> 0) Then
-            resumechannel(ambientsfxchn)
-        EndIf
-    EndIf
-    If (breathchn <> $00) Then
-        If (channelplaying(breathchn) <> 0) Then
-            resumechannel(breathchn)
-        EndIf
+    For local4 = Each rooms
+        resumechannel(local4\Field9)
+    Next
+    For local5 = Each soundemitters
+        resumechannel(local5\Field3)
+    Next
+    For local6 = Each emitter
+        resumechannel(local6\Field12)
+    Next
+    resumechannel(ambientsfxchn)
+    resumechannel(breathchn)
+    resumechannel(breathgasrelaxedchn)
+    resumechannel(vomitchn)
+    resumechannel(coughchn)
+    resumechannel(scramblechn)
+    For local7 = $00 To $01 Step $01
+        resumechannel(lowbatterychn[local7])
+        resumechannel(i_427\Field3[local7])
+    Next
+    resumechannel(i_1048a\Field2)
+    If (isusingradio <> 0) Then
+        For local7 = $00 To $05 Step $01
+            If ((Float local7) = selecteditem\Field13) Then
+                resumechannel(radiochn[local7])
+            EndIf
+        Next
+        stopchannel(radiochn[$06])
+        radiochn[$06] = $00
     EndIf
     If (intercomstreamchn <> $00) Then
         setstreampaused_strict(intercomstreamchn, $00)

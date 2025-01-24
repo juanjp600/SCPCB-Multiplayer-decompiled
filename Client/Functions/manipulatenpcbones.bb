@@ -1,67 +1,72 @@
-Function manipulatenpcbones%(arg0.npcs)
-    Local local0%
-    Local local1%
-    Local local2$
+Function manipulatenpcbones%()
+    Local local0.npcs
+    Local local1#
+    Local local2#
     Local local3#
     Local local4#
-    Local local5#
-    Local local6#
+    Local local5%
+    Local local6%
     Local local7%
-    Local local8#
-    Local local9%
-    If (arg0\Field51 <> 0) Then
-        local2 = getnpcmanipulationvalue(arg0\Field57, arg0\Field53, "bonename", $00)
-        If (local2 <> "") Then
-            local1 = createpivot($00)
-            local0 = findchild(arg0\Field0, local2)
-            If (local0 = $00) Then
-                freeentity(local1)
-                Return $00
+    Local local8$
+    Local local9#
+    Local local10%
+    Local local11%
+    For local0 = Each npcs
+        If (local0\Field52 <> 0) Then
+            local8 = getnpcmanipulationvalue(local0\Field58, local0\Field54, "bonename", $00)
+            If (local8 <> "") Then
+                local7 = createpivot($00)
+                local6 = findchild(local0\Field0, local8)
+                If (local6 = $00) Then
+                    runtimeerrorex(format(getlocalstring("runerr", "spawn.bone.notexist"), local8, "%s"))
+                EndIf
+                positionentity(local7, entityx(local6, $01), entityy(local6, $01), entityz(local6, $01), $00)
+                local10 = local0\Field53
+                If (local10 = $00) Then
+                    local11 = (Int getnpcmanipulationvalue(local0\Field58, local0\Field54, "controller_max", $01))
+                    For local5 = $01 To local11 Step $01
+                        If (getnpcmanipulationvalue(local0\Field58, local0\Field54, ("controlleraxis" + (Str local5)), $00) = "pitch") Then
+                            local1 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_max"), $02))
+                            local2 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_min"), $02))
+                            local3 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_offset"), $02))
+                            If ((Int getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_inverse"), $03)) <> 0) Then
+                                local9 = ((- deltapitch(local6, camera)) + local3)
+                            Else
+                                local9 = (deltapitch(local6, camera) + local3)
+                            EndIf
+                            local4 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_smoothing"), $02))
+                            If (0.0 < local4) Then
+                                local0\Field55 = curveangle(local9, local0\Field55, local4)
+                            Else
+                                local0\Field55 = local9
+                            EndIf
+                            local0\Field55 = changeanglevalueforcorrectboneassigning(local0\Field55)
+                            local0\Field55 = clamp(local0\Field55, local2, local1)
+                        ElseIf (getnpcmanipulationvalue(local0\Field58, local0\Field54, "controlleraxis1", $00) = "yaw") Then
+                            local1 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_max"), $02))
+                            local2 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_min"), $02))
+                            local3 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_offset"), $02))
+                            If ((Int getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_inverse"), $03)) <> 0) Then
+                                local9 = ((- deltayaw(local6, camera)) + local3)
+                            Else
+                                local9 = (deltayaw(local6, camera) + local3)
+                            EndIf
+                            local4 = (Float getnpcmanipulationvalue(local0\Field58, local0\Field54, (("controlleraxis" + (Str local5)) + "_smoothing"), $02))
+                            If (0.0 < local4) Then
+                                local0\Field56 = curveangle(local9, local0\Field56, local4)
+                            Else
+                                local0\Field56 = local9
+                            EndIf
+                            local0\Field56 = changeanglevalueforcorrectboneassigning(local0\Field56)
+                            local0\Field56 = clamp(local0\Field56, local2, local1)
+                        EndIf
+                    Next
+                    rotateentity(local6, (entitypitch(local6, $00) + local0\Field55), (entityyaw(local6, $00) + local0\Field56), (entityroll(local6, $00) + local0\Field57), $00)
+                EndIf
+                freeentity(local7)
+                local7 = $00
             EndIf
-            positionentity(local1, entityx(local0, $01), entityy(local0, $01), entityz(local0, $01), $00)
-            local9 = arg0\Field52
-            If (local9 = $00) Then
-                For local7 = $01 To (Int getnpcmanipulationvalue(arg0\Field57, arg0\Field53, "controller_max", $01)) Step $01
-                    If (getnpcmanipulationvalue(arg0\Field57, arg0\Field53, ("controlleraxis" + (Str local7)), $00) = "pitch") Then
-                        local3 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_max"), $02))
-                        local4 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_min"), $02))
-                        local5 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_offset"), $02))
-                        If ((Int getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_inverse"), $03)) <> 0) Then
-                            local8 = ((- deltapitch(local0, getplayerhead(arg0\Field74))) + local5)
-                        Else
-                            local8 = (deltapitch(local0, getplayerhead(arg0\Field74)) + local5)
-                        EndIf
-                        local6 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_smoothing"), $02))
-                        If (0.0 < local6) Then
-                            arg0\Field54 = curveangle(local8, arg0\Field54, local6)
-                        Else
-                            arg0\Field54 = local8
-                        EndIf
-                        arg0\Field54 = (Float changeanglevalueforcorrectboneassigning(arg0\Field54))
-                        arg0\Field54 = max(min(arg0\Field54, local3), local4)
-                    ElseIf (getnpcmanipulationvalue(arg0\Field57, arg0\Field53, "controlleraxis1", $00) = "yaw") Then
-                        local3 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_max"), $02))
-                        local4 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_min"), $02))
-                        local5 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_offset"), $02))
-                        If ((Int getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_inverse"), $03)) <> 0) Then
-                            local8 = ((- deltayaw(local0, getplayerhead(arg0\Field74))) + local5)
-                        Else
-                            local8 = (deltayaw(local0, getplayerhead(arg0\Field74)) + local5)
-                        EndIf
-                        local6 = (Float getnpcmanipulationvalue(arg0\Field57, arg0\Field53, (("controlleraxis" + (Str local7)) + "_smoothing"), $02))
-                        If (0.0 < local6) Then
-                            arg0\Field55 = curveangle(local8, arg0\Field55, local6)
-                        Else
-                            arg0\Field55 = local8
-                        EndIf
-                        arg0\Field55 = (Float changeanglevalueforcorrectboneassigning(arg0\Field55))
-                        arg0\Field55 = max(min(arg0\Field55, local3), local4)
-                    EndIf
-                Next
-                rotateentity(local0, (entitypitch(local0, $00) + arg0\Field54), (entityyaw(local0, $00) + arg0\Field55), (entityroll(local0, $00) + arg0\Field56), $00)
-            EndIf
-            freeentity(local1)
         EndIf
-    EndIf
+    Next
     Return $00
 End Function

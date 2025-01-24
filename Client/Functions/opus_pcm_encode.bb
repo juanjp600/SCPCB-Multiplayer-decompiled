@@ -12,6 +12,7 @@ Function opus_pcm_encode%(arg0%)
         resizebank(local1, local2)
     Else
         freebank(local1)
+        local1 = $00
         Return $00
     EndIf
     Return local1

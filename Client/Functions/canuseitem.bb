@@ -1,15 +1,15 @@
 Function canuseitem%(arg0%, arg1%, arg2%)
-    If (((arg0 = $00) And wearinghazmat) <> 0) Then
-        msg = "You can't use that item while wearing a hazmat suit."
-        msgtimer = 350.0
+    If (((arg1 = $00) And ((wi\Field0 > $00) Lor (i_1499\Field0 > $00))) <> 0) Then
+        createmsg(getlocalstring("msg", "mask.use"), 6.0)
+        selecteditem = Null
         Return $00
-    ElseIf (((arg1 = $00) And (wearinggasmask Or wearing1499)) <> 0) Then
-        msg = "You can't use that item while wearing a gas mask."
-        msgtimer = 350.0
+    ElseIf (((arg0 = $00) And ((wi\Field5 > $00) Lor (wi\Field9 > $00))) <> 0) Then
+        createmsg(getlocalstring("msg", "gear.use"), 6.0)
+        selecteditem = Null
         Return $00
-    ElseIf (((arg2 = $00) And wearingnightvision) <> 0) Then
-        msg = "You can't use that item while wearing headgear."
-        msgtimer = 350.0
+    ElseIf (((arg2 = $00) And (wi\Field2 > $00)) <> 0) Then
+        createmsg(getlocalstring("msg", "suit.use"), 6.0)
+        selecteditem = Null
         Return $00
     EndIf
     Return $01

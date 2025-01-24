@@ -1,10 +1,9 @@
 Type forest
-    Field Field0%[6]
-    Field Field1%[5]
+    Field Field0%[5]
+    Field Field1%[4]
     Field Field2%[111]
     Field Field3%[101]
     Field Field4%
-    Field Field5%[2]
+    Field Field5.doors[2]
     Field Field6%[2]
-    Field Field7%
 End Type

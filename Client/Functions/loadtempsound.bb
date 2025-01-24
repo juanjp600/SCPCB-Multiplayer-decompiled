@@ -1,10 +1,8 @@
 Function loadtempsound%(arg0$)
     Local local0%
-    If (instr(arg0, " ", $01) = $01) Then
-        arg0 = trim(arg0)
-    EndIf
     If (tempsounds[tempsoundindex] <> $00) Then
         freesound_strict(tempsounds[tempsoundindex])
+        tempsounds[tempsoundindex] = $00
     EndIf
     local0 = loadsound_strict(arg0)
     tempsounds[tempsoundindex] = local0

@@ -1,0 +1,15 @@
+Type npcinstance
+    Field Field0%[33]
+    Field Field1%[22]
+    Field Field2.npcs
+    Field Field3.npcs
+    Field Field4.npcs
+    Field Field5.npcs
+    Field Field6.npcs
+    Field Field7.npcs
+    Field Field8.npcs
+    Field Field9.npcs
+    Field Field10%
+    Field Field11%
+    Field Field12%
+End Type

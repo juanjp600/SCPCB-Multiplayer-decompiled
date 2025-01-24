@@ -4,26 +4,22 @@ Type securitycams
     Field Field2%
     Field Field3%
     Field Field4%
-    Field Field5#
-    Field Field6#
+    Field Field5%
+    Field Field6%
     Field Field7%
-    Field Field8%
-    Field Field9%
-    Field Field10%
+    Field Field8#
+    Field Field9#
+    Field Field10#
     Field Field11#
-    Field Field12#
-    Field Field13#
-    Field Field14#
-    Field Field15%
-    Field Field16%
+    Field Field12%
+    Field Field13%
+    Field Field14%
+    Field Field15#
+    Field Field16.rooms
     Field Field17%
     Field Field18%
-    Field Field19#
-    Field Field20.rooms
+    Field Field19%
+    Field Field20%
     Field Field21%
     Field Field22%
-    Field Field23%
-    Field Field24#
-    Field Field25#
-    Field Field26%
 End Type

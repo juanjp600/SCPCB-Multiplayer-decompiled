@@ -5,7 +5,7 @@ Function zipapi_compress%(arg0%, arg1%)
     If (arg0 = $00) Then
         Return $00
     EndIf
-    If (banksize(arg0) < $01) Then
+    If (banksize(arg0) = $00) Then
         Return $00
     EndIf
     If (arg1 < $01) Then
@@ -20,11 +20,14 @@ Function zipapi_compress%(arg0%, arg1%)
     local2 = zlibwapi_compress2(local0, local1, arg0, banksize(arg0), arg1)
     If (local2 <> $00) Then
         freebank(local1)
+        local1 = $00
         freebank(local0)
+        local0 = $00
         Return $00
     EndIf
     resizebank(local0, peekint(local1, $00))
     freebank(local1)
+    local1 = $00
     Return local0
     Return $00
 End Function

@@ -1,26 +1,21 @@
-Function playerinreachableroom%(arg0%)
-    Local local0$
-    Local local1%
-    Local local2%
-    local0 = playerroom\Field7\Field11
-    If (((((local0 = "pocketdimension") Or (local0 = "gatea")) Or (local0 = "dimension1499")) Or (local0 = "173")) <> 0) Then
+Function playerinreachableroom%(arg0%, arg1%)
+    Local local0%
+    If (((((playerroom\Field7\Field6 = $69) Lor (playerroom\Field7\Field6 = $6A)) Lor ((playerroom\Field7\Field6 = $04) And (arg1 = $00))) Lor isplayeroutsidefacility()) <> 0) Then
         Return $00
     EndIf
-    If (((local0 = "exit1") And ((1040.0 * roomscale) < entityy(collider, $00))) <> 0) Then
-        Return $00
-    EndIf
-    local2 = $00
-    If (room860event <> Null) Then
-        If (1.0 = room860event\Field2) Then
-            local2 = $01
+    If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
+        If (1.0 = forest_event\Field2) Then
+            Return $00
         EndIf
     EndIf
-    If (((local0 = "room860") And local2) <> 0) Then
-        Return $00
+    If (skull_event <> Null) Then
+        If (0.0 < skull_event\Field2) Then
+            Return $00
+        EndIf
     EndIf
     If (arg0 = $00) Then
-        If (selecteddifficulty\Field3 = $00) Then
-            If (((local0 = "room049") And ((-2848.0 * roomscale) >= entityy(collider, $00))) <> 0) Then
+        If (selecteddifficulty\Field2 = $00) Then
+            If (((playerroom\Field7\Field6 = $3A) And (infacility = $FFFFFFFF)) <> 0) Then
                 Return $00
             EndIf
         EndIf

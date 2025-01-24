@@ -1,23 +1,21 @@
-Function freeemitter%(arg0%, arg1%)
-    Local local0.emitter
-    Local local1.particle
-    For local0 = Each emitter
-        If (local0\Field5 = arg0) Then
-            If (arg1 <> 0) Then
-                For local1 = Each particle
-                    If (local1\Field0 = local0) Then
-                        Delete local1
-                    EndIf
-                Next
-                freeentity(local0\Field6)
-                If ((local0\Field0 And local0\Field5) <> 0) Then
-                    freeentity(local0\Field5)
-                EndIf
+Function freeemitter%(arg0.emitter, arg1%)
+    Local local0.particle
+    If (arg1 <> 0) Then
+        For local0 = Each particle
+            If (local0\Field0 = arg0) Then
                 Delete local0
-            Else
-                local0\Field8 = $01
             EndIf
-        EndIf
-    Next
+        Next
+        freeentity(arg0\Field7)
+        arg0\Field7 = $00
+        arg0\Field8 = $00
+        freeentity(arg0\Field6)
+        arg0\Field6 = $00
+        stopchannel(arg0\Field12)
+        arg0\Field12 = $00
+        Delete arg0
+    Else
+        arg0\Field9 = $01
+    EndIf
     Return $00
 End Function

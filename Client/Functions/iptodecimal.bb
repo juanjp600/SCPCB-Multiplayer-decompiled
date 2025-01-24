@@ -1,4 +1,4 @@
 Function iptodecimal%(arg0$)
-    Return (((((Int piece(arg0, $01, ".")) Shl $18) + ((Int piece(arg0, $02, ".")) Shl $10)) + ((Int piece(arg0, $03, ".")) Shl $08)) + (Int piece(arg0, $04, ".")))
+    Return (((((Int splitstring(arg0, ".", $00)) Shl $18) + ((Int splitstring(arg0, ".", $01)) Shl $10)) + ((Int splitstring(arg0, ".", $02)) Shl $08)) + (Int splitstring(arg0, ".", $03)))
     Return $00
 End Function

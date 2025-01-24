@@ -1,0 +1,9 @@
+Type mp_terminatesystem
+    Field Field0%
+    Field Field1%
+    Field Field2.mp_player
+    Field Field3%
+    Field Field4%
+    Field Field5%
+    Field Field6#
+End Type

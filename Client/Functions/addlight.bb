@@ -1,59 +1,49 @@
-Function addlight%(arg0.rooms, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%, arg8%)
-    Local local0%
+Function addlight.lights(arg0.rooms, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%, arg8%, arg9%)
+    Local local0.lights
     Local local1%
     Local local2%
+    local0 = (New lights)
+    local0\Field12 = arg0
+    local0\Field0 = createlight(arg4, $00)
+    lightrange(local0\Field0, arg5)
+    lightcolor(local0\Field0, (Float arg6), (Float arg7), (Float arg8))
+    positionentity(local0\Field0, arg1, arg2, arg3, $01)
     If (arg0 <> Null) Then
-        For local0 = $00 To $1F Step $01
-            If (arg0\Field16[local0] = $00) Then
-                arg0\Field16[local0] = createlight(arg4, $00)
-                lightrange(arg0\Field16[local0], arg5)
-                lightcolor(arg0\Field16[local0], (Float arg6), (Float arg7), (Float arg8))
-                positionentity(arg0\Field16[local0], arg1, arg2, arg3, $00)
-                entityparent(arg0\Field16[local0], arg0\Field2, $01)
-                arg0\Field17[local0] = (((Float ((arg6 + arg7) + arg8)) / 255.0) / 3.0)
-                arg0\Field24[local0] = createsprite($00)
-                positionentity(arg0\Field24[local0], arg1, arg2, arg3, $00)
-                scalesprite(arg0\Field24[local0], 0.13, 0.13)
-                entitytexture(arg0\Field24[local0], lightspritetex($00), $00, $00)
-                entityblend(arg0\Field24[local0], $03)
-                entitycolor(arg0\Field24[local0], (Float arg6), (Float arg7), (Float arg8))
-                entityparent(arg0\Field24[local0], arg0\Field2, $01)
-                arg0\Field20[local0] = createpivot($00)
-                entityradius(arg0\Field20[local0], 0.05, 0.0)
-                positionentity(arg0\Field20[local0], arg1, arg2, arg3, $00)
-                entityparent(arg0\Field20[local0], arg0\Field2, $01)
-                arg0\Field21[local0] = createsprite($00)
-                positionentity(arg0\Field21[local0], arg1, arg2, arg3, $00)
-                scalesprite(arg0\Field21[local0], 0.3, 0.3)
-                entitytexture(arg0\Field21[local0], lightspritetex($02), $00, $00)
-                entityblend(arg0\Field21[local0], $03)
-                entitycolor(arg0\Field21[local0], (Float arg6), (Float arg7), (Float arg8))
-                entityparent(arg0\Field21[local0], arg0\Field2, $01)
-                rotateentity(arg0\Field21[local0], 0.0, 0.0, (Float rand($168, $01)), $00)
-                spriteviewmode(arg0\Field21[local0], $01)
-                arg0\Field19[local0] = $01
-                hideentity(arg0\Field21[local0])
-                arg0\Field23[local0] = rand($01, $0A)
-                arg0\Field53[local0] = (Float arg6)
-                arg0\Field54[local0] = (Float arg7)
-                arg0\Field55[local0] = (Float arg8)
-                hideentity(arg0\Field16[local0])
-                arg0\Field18 = local0
-                Return arg0\Field16[local0]
-            EndIf
-        Next
-    Else
-        local1 = createlight(arg4, $00)
-        lightrange(local1, arg5)
-        lightcolor(local1, (Float arg6), (Float arg7), (Float arg8))
-        positionentity(local1, arg1, arg2, arg3, $01)
-        local2 = createsprite($00)
-        positionentity(local2, arg1, arg2, arg3, $00)
-        scalesprite(local2, 0.13, 0.13)
-        entitytexture(local2, lightspritetex($00), $00, $00)
-        entityblend(local2, $03)
-        entitycolor(local2, (Float arg6), (Float arg7), (Float arg8))
-        Return local1
+        entityparent(local0\Field0, arg0\Field2, $01)
     EndIf
-    Return $00
+    hideentity(local0\Field0)
+    If (arg9 <> 0) Then
+        local0\Field1 = createsprite($00)
+        positionentity(local0\Field1, arg1, arg2, arg3, $00)
+        scalesprite(local0\Field1, 0.13, 0.13)
+        entitytexture(local0\Field1, misc_i\Field2[$00], $00, $00)
+        entityfx(local0\Field1, $09)
+        entityblend(local0\Field1, $03)
+        entitycolor(local0\Field1, (Float arg6), (Float arg7), (Float arg8))
+        entityparent(local0\Field1, local0\Field0, $01)
+        hideentity(local0\Field1)
+        local0\Field2 = createsprite($00)
+        positionentity(local0\Field2, arg1, arg2, arg3, $00)
+        scalesprite(local0\Field2, rnd(0.36, 0.4), rnd(0.36, 0.4))
+        entitytexture(local0\Field2, misc_i\Field3, $00, $00)
+        entityfx(local0\Field2, $09)
+        entityblend(local0\Field2, $03)
+        entityorder(local0\Field2, $FFFFFFFF)
+        entitycolor(local0\Field2, (Float arg6), (Float arg7), (Float arg8))
+        rotateentity(local0\Field2, 0.0, 0.0, rnd(360.0, 0.0), $00)
+        spriteviewmode(local0\Field2, $01)
+        entityparent(local0\Field2, local0\Field0, $01)
+        hideentity(local0\Field2)
+    EndIf
+    local0\Field10 = (((Float ((arg6 + arg7) + arg8)) / 255.0) / 3.0)
+    If (arg0 <> Null) Then
+        If (rand($32, $01) = $01) Then
+            local2 = arg0\Field7\Field6
+            If ((((((local2 <> $04) And (local2 <> $47)) And (local2 <> $49)) And (local2 <> $69)) And (local2 <> $6A)) <> 0) Then
+                local0\Field11 = $01
+            EndIf
+        EndIf
+    EndIf
+    Return local0
+    Return Null
 End Function

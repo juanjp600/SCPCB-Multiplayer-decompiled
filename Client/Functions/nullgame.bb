@@ -1,229 +1,361 @@
 Function nullgame%(arg0%)
-    Local local0.screens
-    Local local1%
-    Local local2%
-    Local local3%
-    Local local4.itemtemplates
-    Local local5.events
-    Local local6.soundtodelete
-    Local local7.redirectedsound
-    Local local8.redirectedsound
-    Local local9.roomtemplates
+    Local local0.achievementmsg
+    Local local1.consolemsg
+    Local local2.events
+    Local local3.itemtemplates
+    Local local4.items
+    Local local5.decals
+    Local local6.particles
+    Local local7.doors
+    Local local8.levers
+    Local local9.securitycams
+    Local local10.dummy1499_1
+    Local local11.npcs
+    Local local12.screens
+    Local local13.waypoints
+    Local local14.props
+    Local local15.lights
+    Local local16.roomtemplates
+    Local local17.rooms
+    Local local18.materials
+    Local local19.sound
+    Local local20.forest
+    Local local21.mtgrid
+    Local local22.chunk
+    Local local23.chunkpart
+    Local local24.save
+    Local local25.custommaps
+    Local local26.soundemitters
+    Local local27.template
+    Local local28.emitter
+    Local local29%
+    catcherrors("NullGame()")
+    If (mp_getsocket() <> $00) Then
+        mp_flushserver()
+    EndIf
+    mp_destructrenderer()
+    deletetextureentriesfromcache($01)
+    stopmousemovement()
+    killsounds($00)
     If (arg0 <> 0) Then
-        playsound_strict(buttonsfx)
+        playsound_strict(buttonsfx[$00], $00)
     EndIf
-    If (menubrowser <> Null) Then
-        steambrowser_destroy(menubrowser)
-    EndIf
-    deleteguns()
-    reloaddifficulties()
-    freeparticles()
-    cleartexturecache()
-    killsounds()
-    cube = $00
-    gameload = $00
-    vest_obj = $00
-    nvg_obj = $00
-    gasmask_obj = $00
-    stated = $00
-    spectate\Field1 = $FFFFFFFF
-    holdinggun = $00
-    classdobj = $00
-    clerkmp = $00
-    using294 = $00
-    input294 = ""
-    debughud = $00
-    unabletomove = $00
-    quickloadpercent = $FFFFFFFF
-    quickloadpercent_displaytimer = 0.0
-    quickload_currevent = Null
-    deathmsg = ""
-    selectedmap = ""
+    randomseed = ""
     usedconsole = $00
-    doortempid = $00
-    roomtempid = $00
-    gamesaved = $00
-    hidedistance = 15.0
-    dropspeed = 0.0
-    shake = 0.0
-    currspeed = 0.0
-    deathtimer = 0.0
-    heartbeatvolume = 0.0
-    staminaeffect = 1.0
-    staminaeffecttimer = 0.0
-    blinkeffect = 1.0
-    blinkeffecttimer = 0.0
-    bloodloss = 0.0
-    injuries = 0.0
-    infect = 0.0
-    selectedending = ""
-    endingtimer = 0.0
-    explosiontimer = 0.0
-    camerashake = 0.0
-    shake = 0.0
-    lightflash = 0.0
-    godmode = $00
-    noclip = $00
+    Delete chs
+    chs = Null
     wireframestate = $00
     wireframe($00)
-    wearinggasmask = $00
-    wearinghazmat = $00
-    wearingvest = $00
-    wearing714 = $00
-    If (wearingnightvision <> 0) Then
-        camerafogfar = storedcamerafogfar
-        wearingnightvision = $00
-    EndIf
-    For local0 = Each screens
-        If (local0\Field2 <> $00) Then
-            freeimage(local0\Field2)
-            local0\Field2 = $00
-        EndIf
-    Next
-    For local1 = $00 To $05 Step $01
-        scp1025state[local1] = 0.0
-    Next
-    For local1 = $00 To $24 Step $01
-        achievements(local1) = $00
-    Next
-    For local2 = $00 To (mapwidth + $01) Step $01
-        For local3 = $00 To (mapheight + $01) Step $01
-            maptemp(local2, local3) = $00
-            mapfound(local2, local3) = $00
-        Next
-    Next
-    For local4 = Each itemtemplates
-        local4\Field4 = $00
-        If (local4\Field8 <> $00) Then
-            freeimage(local4\Field8)
-        EndIf
-        If (local4\Field9 <> $00) Then
-            freeimage(local4\Field9)
-        EndIf
-        If (local4\Field12 <> $00) Then
-            freeimage(local4\Field12)
-        EndIf
-    Next
-    i_427\Field0 = $00
-    i_427\Field1 = 0.0
-    forcemove = 0.0
-    forceangle = 0.0
-    playable = $01
-    coffindistance = 100.0
-    contained106 = $00
-    mtftimer = 0.0
-    refineditems = $00
-    consoleinput = ""
     consoleopen = $00
-    eyeirritation = 0.0
-    eyestuck = 0.0
-    shouldplay = $00
-    killtimer = 0.0
-    falltimer = 0.0
-    stamina = 100.0
-    blurtimer = 0.0
-    superman = $00
-    supermantimer = 0.0
-    sanity = 0.0
-    restoresanity = $01
-    crouch = $00
-    crouchstate = 0.0
-    lightvolume = 0.0
-    vomit = $00
-    vomittimer = 0.0
-    secondarylighton = 1.0
-    prevsecondarylighton = 1.0
-    remotedooron = $01
+    consoleinput = ""
+    consolescroll = 0.0
+    consolescrolldragging = $00
+    consolemousemem = $00
+    consoler = $00
+    consoleg = $00
+    consoleb = $00
+    consoleinbox = $00
+    consoleinbar = $00
+    For local1 = Each consolemsg
+        Delete local1
+    Next
+    subjectname = ""
+    infacility = $00
+    playerfallingpickdistance = 0.0
+    toelevatorfloor = $00
+    shouldentitiesfall = $00
+    hidedistance = 0.0
+    coffindistance = 0.0
+    camerazoomvalue = 0.0
+    secondarylighton = 0.0
+    isblackout = $00
+    previsblackout = $00
+    updatelightstimer = 0.0
+    lightrenderdistance = 0.0
+    remotedooron = $00
+    gamesaved = $00
+    cansave = $00
+    mtftimer = 0.0
+    mtfcamerachecktimer = 0.0
+    mtfcameracheckdetected = $00
+    snavunlocked = $00
+    ereaderunlocked = $00
+    code_dr_maynard = $00
+    code_dr_gears = $00
+    code_maintenance_tunnels = $00
+    code_o5_council = $00
+    shouldplay = $42
+    freeentity(soundemitter)
+    soundemitter = $00
     soundtransmission = $00
-    closestbutton = $00
-    infinitestamina = $00
-    msg = ""
-    msgtimer = 0.0
-    selecteditem = Null
+    templightvolume = 0.0
+    lightvolume = 0.0
+    grabbedentity = $00
+    camerapitch = 0.0
+    handentity = $00
+    For local29 = $00 To $03 Step $01
+        drawarrowicon[local29] = $00
+    Next
+    batmsgtimer = 0.0
+    escapesecondstimer = 0.0
+    escapetimer = $00
+    If (camera <> $00) Then
+        freeentity(camera)
+        camera = $00
+    EndIf
+    If (sky <> $00) Then
+        freeentity(sky)
+        sky = $00
+    EndIf
+    currtrisamount = $00
+    currachvmsgid = $00
+    For local0 = Each achievementmsg
+        Delete local0
+    Next
+    subfile = $00
+    localsubfile = $00
+    subcolors = $00
+    localsubcolors = $00
+    subtitlesinit = $00
+    clearsubtitles()
+    deinitsubtitlesassets()
+    Delete msg
+    msg = Null
+    Delete as
+    as = Null
+    Delete me
+    me = Null
+    Delete wi
+    wi = Null
+    Delete fog
+    fog = Null
+    Delete i_005
+    i_005 = Null
+    Delete i_008
+    i_008 = Null
+    Delete i_035
+    i_035 = Null
+    Delete i_268
+    i_268 = Null
+    destroys2imap(i_294\Field2)
+    i_294\Field2 = $00
+    Delete i_294
+    i_294 = Null
+    Delete i_409
+    i_409 = Null
+    For local29 = $00 To $01 Step $01
+        i_427\Field2[local29] = $00
+    Next
+    Delete i_427
+    i_427 = Null
+    Delete i_500
+    i_500 = Null
+    Delete i_714
+    i_714 = Null
+    Delete i_1025
+    i_1025 = Null
+    If (i_1499\Field8 <> $00) Then
+        freeentity(i_1499\Field8)
+        i_1499\Field8 = $00
+    EndIf
+    Delete i_1499
+    i_1499 = Null
+    scp1499chunks = $00
+    Delete i_1048a
+    i_1048a = Null
+    Delete i_966
+    i_966 = Null
+    quickloadpercent = $00
+    quickloadpercent_displaytimer = 0.0
+    For local2 = Each events
+        removeevent(local2)
+    Next
+    isusingradio = $00
+    invopen = $00
+    For local29 = $00 To $09 Step $01
+        If (local29 < $09) Then
+            radiostate[local29] = 0.0
+            radiostate2[local29] = $00
+        EndIf
+        radiostate3[local29] = $00
+    Next
+    maxitemamount = $00
+    lastitemid = $00
+    For local4 = Each items
+        removeitem(local4)
+    Next
+    Dim inventory.items($00)
+    For local3 = Each itemtemplates
+        removeitemtemplate(local3)
+    Next
+    For local5 = Each decals
+        removedecal(local5)
+    Next
+    removedecalinstances()
+    particlecam = $00
+    freeentity(particlepiv)
+    particlepiv = $00
+    dustparticlechance = $00
+    For local28 = Each emitter
+        freeemitter(local28, $01)
+    Next
+    For local27 = Each template
+        freetemplate((Handle local27))
+    Next
+    Delete Each template
+    For local6 = Each particles
+        removeparticle(local6)
+    Next
+    removeparticleinstances()
+    Delete bk
+    bk = Null
+    For local7 = Each doors
+        removedoor(local7)
+    Next
+    d_i\Field10 = $00
+    buttondirection = $00
+    removedoorinstances()
+    For local8 = Each levers
+        removelever(local8)
+    Next
+    removeleverinstances()
+    For local9 = Each securitycams
+        removesecuritycam(local9)
+    Next
+    removesecuritycaminstances()
+    removemonitorinstances()
+    For local12 = Each screens
+        removescreen(local12)
+    Next
+    For local13 = Each waypoints
+        removewaypoint(local13)
+    Next
+    For local14 = Each props
+        removeprop(local14)
+    Next
+    For local15 = Each lights
+        removelight(local15)
+    Next
+    For local26 = Each soundemitters
+        removesoundemitter(local26)
+    Next
+    For local20 = Each forest
+        If (local20 <> Null) Then
+            destroyforest(local20, $01)
+        EndIf
+        Delete local20
+    Next
+    For local21 = Each mtgrid
+        If (local21 <> Null) Then
+            destroymt(local21, $00)
+        EndIf
+        Delete local21
+    Next
+    For local29 = $00 To $FFF Step $01
+        chunkdata[local29] = $00
+    Next
+    For local22 = Each chunk
+        removechunk(local22)
+    Next
+    For local23 = Each chunkpart
+        removechunkpart(local23)
+    Next
+    Dim maproom$($00, $00)
+    Dim roomamount%($00, $00)
+    Delete currmapgrid
+    currmapgrid = Null
+    Delete i_zone
+    i_zone = Null
+    roomtempid = $00
+    key2_spawnrate = $00
+    For local17 = Each rooms
+        removeroom(local17)
+    Next
+    For local16 = Each roomtemplates
+        removeroomtemplate(local16)
+    Next
+    removehazmattimer = 0.0
+    remove714timer = 0.0
     forestnpc = $00
     forestnpctex = $00
-    For local5 = Each events
-        If (local5\Field7 <> $00) Then
-            freesound_strict(local5\Field7)
-        EndIf
-        If (local5\Field8 <> $00) Then
-            freesound_strict(local5\Field8)
-        EndIf
+    For local29 = $00 To $02 Step $01
+        forestnpcdata[local29] = 0.0
     Next
-    Delete Each rockets
-    Delete Each bullets
-    Delete Each grenades
-    Delete Each p_obj
-    Delete Each singlelights
-    Delete Each doors
-    Delete Each lighttemplates
-    Delete Each materials
-    Delete Each waypoints
-    Delete Each tempwaypoints
-    Delete Each tempscreens
-    Delete Each props
-    Delete Each rooms
-    Delete Each itemtemplates
-    Delete Each items
-    Delete Each props
-    Delete Each decals
-    Delete Each npcs
-    Delete Each events
-    Delete Each screens
-    Delete Each securitycams
-    Delete Each emitters
-    Delete Each particles
-    Delete Each achievementmsg
-    Delete Each forest
-    For local6 = Each soundtodelete
-        If (local6\Field0 <> $00) Then
-            freesound(local6\Field0)
+    For local10 = Each dummy1499_1
+        removedummy1499_1(local10)
+    Next
+    For local11 = Each npcs
+        removenpc(local11)
+    Next
+    removenpcinstances()
+    removemiscinstances()
+    For local18 = Each materials
+        Delete local18
+    Next
+    removetextureinstances()
+    Delete Each textureincache
+    ambientlightroomtex = $00
+    freetexture(missingtexture)
+    missingtexture = $00
+    mesh_minx = 0.0
+    mesh_miny = 0.0
+    mesh_minz = 0.0
+    mesh_maxx = 0.0
+    mesh_maxy = 0.0
+    mesh_maxz = 0.0
+    mesh_magx = 0.0
+    mesh_magy = 0.0
+    mesh_magz = 0.0
+    For local29 = $00 To $18 Step $01
+        commotionstate[local29] = $00
+    Next
+    currambientsfx = $00
+    tempsoundindex = $00
+    For local19 = Each sound
+        If (local19\Field0 <> $00) Then
+            freesound(local19\Field0)
+            local19\Field0 = $00
         EndIf
+        Delete local19
     Next
-    For local7 = Each redirectedsound
-        If (local7\Field3 <> 0) Then
-            local8 = redirectsound(local7\Field1, local7\Field0, $01)
-            Delete local8
-            Delete local7
-        EndIf
+    removesoundinstances()
+    For local24 = Each save
+        Delete local24
     Next
-    For local9 = Each roomtemplates
-        local9\Field0 = $00
+    For local25 = Each custommaps
+        Delete local25
     Next
-    For local1 = $00 To $05 Step $01
-        If (channelplaying(radiochn(local1)) <> 0) Then
-            stopchannel(radiochn(local1))
-        EndIf
-    Next
-    currachvmsgid = $00
-    notarget = $00
-    optionsmenu = $FFFFFFFF
-    quitmsg = $FFFFFFFF
-    achievementsmenu = $FFFFFFFF
-    musicvolume = prevmusicvolume
-    sfxvolume = prevsfxvolume
-    deafplayer = $00
-    deaftimer = 0.0
-    iszombie = $00
-    ntf_1499prevx = 0.0
-    ntf_1499prevy = 0.0
-    ntf_1499prevz = 0.0
-    ntf_1499prevroom = Null
-    ntf_1499x = 0.0
-    ntf_1499y = 0.0
-    ntf_1499z = 0.0
-    wearing1499 = $00
-    deletechunks()
-    deletedevilemitters()
-    aatextcam = $00
-    freeallfonts($00, $00)
+    freeblur()
+    If (fresizetexture <> $00) Then
+        freetexture(fresizetexture)
+        fresizetexture = $00
+    EndIf
+    If (fresizetexture2 <> $00) Then
+        freetexture(fresizetexture2)
+        fresizetexture2 = $00
+    EndIf
+    If (fresizeimage <> $00) Then
+        freeentity(fresizeimage)
+        fresizeimage = $00
+    EndIf
+    If (fresizecam <> $00) Then
+        freeentity(fresizecam)
+        fresizecam = $00
+    EndIf
+    rendertween = 0.0
+    clearcollisions()
     clearworld($01, $01, $01)
-    camera = $00
-    ark_blur_cam = $00
-    collider = $00
-    sky = $00
-    loadallfonts($01)
+    resettimingaccumulator()
     initfastresize()
-    reloadnecessaryentities()
+    selectedinputbox = $00
+    shoulddeletegadgets = $01
+    deletemenugadgets()
+    initmainmenuassets()
+    menuopen = $00
+    Delete igm
+    igm = Null
+    mainmenuopen = $01
+    mm\Field5 = $00
+    catcherrors("Uncaught: NullGame()")
     Return $00
 End Function

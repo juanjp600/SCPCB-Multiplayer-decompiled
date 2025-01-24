@@ -1,16 +1,14 @@
 Function setstreampan_strict%(arg0%, arg1#)
     Local local0.stream
-    Local local1%
     local0 = (Object.stream arg0)
     If (local0 = Null) Then
+        openconsoleonerror(getlocalstring("runerr", "sound.stream.failed.find"))
         Return $00
     EndIf
-    If (((local0\Field1 = $00) Or (local0\Field1 = $FFFFFFFF)) <> 0) Then
+    If (((local0\Field0 = $00) Lor (local0\Field0 = $FFFFFFFF)) <> 0) Then
+        openconsoleonerror(format(getlocalstring("runerr", "sound.stream.failed.find.v"), (Str local0\Field0), "%s"))
         Return $00
     EndIf
-    local1 = $00
-    local1 = (Int ((127.5 * arg1) + 127.5))
-    fsound_setpan(local0\Field1, local1)
-    local0\Field4 = (Float local1)
+    channelpan(local0\Field0, arg1)
     Return $00
 End Function

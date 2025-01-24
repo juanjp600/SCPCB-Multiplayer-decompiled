@@ -1,10 +1,7 @@
-Function changeanglevalueforcorrectboneassigning%(arg0#)
-    Local local0#
+Function changeanglevalueforcorrectboneassigning#(arg0#)
     If (180.0 >= arg0) Then
-        local0 = arg0
-    Else
-        local0 = (-360.0 + arg0)
+        Return arg0
     EndIf
-    Return (Int local0)
-    Return $00
+    Return (-360.0 + arg0)
+    Return 0.0
 End Function

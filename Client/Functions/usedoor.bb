@@ -1,213 +1,370 @@
-Function usedoor%(arg0.doors, arg1%, arg2%, arg3%, arg4$, arg5%)
+Function usedoor%(arg0%)
     Local local0%
+    Local local1%
+    Local local2%
     Local local3%
-    local0 = $00
-    If (multiplayer_isfullsync() <> 0) Then
-        If (((arg3 = $01) And udp_getstream()) <> 0) Then
-            multiplayer_senddoor(arg0, selecteditem, arg4)
+    Local local4%
+    Local local8%
+    Local local9%
+    Local local11.emitter
+    mp_client_usedoor(d_i\Field7, selecteditem, d_i\Field11, (Int msg\Field5))
+    local1 = $00
+    If (selecteditem <> Null) Then
+        local1 = getusingitem(selecteditem)
+    EndIf
+    local2 = (((((d_i\Field7\Field14 > $00) + (((d_i\Field7\Field14 > $FFFFFFFC) And (d_i\Field7\Field14 < $00)) Shl $01)) + ((d_i\Field7\Field19 <> $00) * $03)) + (((d_i\Field7\Field10 = $05) Lor (d_i\Field7\Field10 = $04)) Shl $02)) + ((d_i\Field7\Field10 = $01) * $05))
+    local3 = $00
+    d_i\Field7\Field35 = buttondirection
+    If (mp_getsocket() <> $00) Then
+        d_i\Field7\Field35 = $01
+        local4 = local2
+        If (local4 = $05) Then
+            local2 = $06
         EndIf
     EndIf
-    If (arg5 = $00) Then
-        If (arg0\Field12 > $00) Then
-            If (((selecteditem = Null) And (arg3 = $01)) <> 0) Then
-                If (arg1 = $01) Then
-                    If ((((instr(msg, "The keycard", $01) = $00) And (instr(msg, "A keycard with", $01) = $00)) Or (210.0 > msgtimer)) <> 0) Then
-                        msg = "A keycard is required to operate this door."
-                        msgtimer = 490.0
-                    EndIf
+    If ((mp_ishoster() And (currentsyncplayer = Null)) <> 0) Then
+        currentsyncplayer = ue_players[mp_getmyindex()]
+    EndIf
+    Select local2
+        Case $01
+            If (selecteditem = Null) Then
+                If (350.0 > msg\Field1) Then
+                    createmsg(getlocalstring("msg", "key.require"), 6.0)
                 EndIf
+                playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
                 Return $00
             Else
-                If (arg3 = $01) Then
-                    Select selecteditem\Field3\Field2
-                        Case "key1"
-                            local0 = $01
-                        Case "key2"
-                            local0 = $02
-                        Case "key3"
-                            local0 = $03
-                        Case "key4"
-                            local0 = $04
-                        Case "key5"
-                            local0 = $05
-                        Case "key6"
-                            local0 = $06
-                        Default
-                            local0 = $FFFFFFFF
-                    End Select
-                Else
-                    local0 = $3E8
-                EndIf
-                selecteditem = Null
-                If (local0 = $FFFFFFFF) Then
-                    If (arg1 = $01) Then
-                        If ((((instr(msg, "The keycard", $01) = $00) And (instr(msg, "A keycard with", $01) = $00)) Or (210.0 > msgtimer)) <> 0) Then
-                            msg = "A keycard is required to operate this door."
-                            msgtimer = 490.0
-                        EndIf
-                    EndIf
-                    Return $00
-                ElseIf (local0 >= arg0\Field12) Then
-                    If (arg1 = $01) Then
-                        If (arg0\Field4 <> 0) Then
-                            If (arg3 = $01) Then
-                                playsound_strict(keycardsfx2)
-                            EndIf
-                            msg = "The keycard was inserted into the slot but nothing happened."
-                            msgtimer = 490.0
-                            If (arg3 = $01) Then
-                                multiplayer_writesound(keycardsfx2, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-                            EndIf
-                            Return $00
-                        Else
-                            If (arg3 = $01) Then
-                                playsound_strict(keycardsfx1)
-                            EndIf
-                            msg = "The keycard was inserted into the slot."
-                            msgtimer = 490.0
-                            If (arg3 = $01) Then
-                                multiplayer_writesound(keycardsfx1, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-                            EndIf
-                        EndIf
+                If (local1 <= $00) Then
+                    If (350.0 > msg\Field1) Then
+                        createmsg(getlocalstring("msg", "key.require"), 6.0)
                     EndIf
                 Else
-                    If (arg1 = $01) Then
-                        If (arg3 = $01) Then
-                            playsound_strict(keycardsfx2)
-                        EndIf
-                        If (arg0\Field4 <> 0) Then
-                            msg = "The keycard was inserted into the slot but nothing happened."
+                    If (local1 = $01) Then
+                        createmsg(getlocalstring("msg", "key.slot.6"), 6.0)
+                    ElseIf (d_i\Field7\Field4 = $01) Then
+                        If (local1 = $09) Then
+                            createmsg(getlocalstring("msg", "key.nothappend.005"), 6.0)
                         Else
-                            msg = (("A keycard with security clearance " + (Str arg0\Field12)) + " or higher is required to operate this door.")
+                            createmsg(getlocalstring("msg", "key.nothappend"), 6.0)
                         EndIf
-                        msgtimer = 490.0
-                        If (arg3 = $01) Then
-                            multiplayer_writesound(keycardsfx2, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
+                    ElseIf (local1 = $09) Then
+                        createmsg(getlocalstring("msg", "key.005"), 6.0)
+                        If (selecteditem\Field4\Field2 = $09) Then
+                            local3 = $01
                         EndIf
-                    EndIf
-                    Return $00
-                EndIf
-            EndIf
-        ElseIf (arg0\Field12 < $00) Then
-            If (selecteditem <> Null) Then
-                local0 = (((selecteditem\Field3\Field2 = "hand") And (arg0\Field12 = $FFFFFFFF)) Or ((selecteditem\Field3\Field2 = "hand2") And (arg0\Field12 = $FFFFFFFE)))
-            EndIf
-            If (arg3 = $00) Then
-                local0 = $01
-            EndIf
-            If (local0 <> $00) Then
-                If (arg3 = $01) Then
-                    playsound_strict(scannersfx1)
-                EndIf
-                If (arg3 = $01) Then
-                    multiplayer_writesound(scannersfx1, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-                EndIf
-                If (((instr(msg, "You placed your", $01) = $00) Or (210.0 > msgtimer)) <> 0) Then
-                    msg = ((("You place the palm of the hand onto the scanner. The scanner reads: " + chr($22)) + "DNA verified. Access granted.") + chr($22))
-                EndIf
-                msgtimer = 700.0
-                selecteditem = Null
-            Else
-                If (arg1 = $01) Then
-                    If (arg3 = $01) Then
-                        playsound_strict(scannersfx2)
-                    EndIf
-                    msg = ((("You placed your palm onto the scanner. The scanner reads: " + chr($22)) + "DNA does not match known sample. Access denied.") + chr($22))
-                    msgtimer = 700.0
-                    If (arg3 = $01) Then
-                        multiplayer_writesound(scannersfx2, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), 10.0, 1.0)
-                    EndIf
-                EndIf
-                Return $00
-            EndIf
-        ElseIf (arg0\Field4 <> 0) Then
-            If (arg1 = $01) Then
-                If ((arg0\Field23 > $00) = $00) Then
-                    If (arg3 = $01) Then
-                        If (arg3 = $01) Then
-                            playsound_strict(buttonsfx2)
-                        EndIf
-                        If (arg3 = $01) Then
-                            multiplayer_writesound(buttonsfx2, 0.0, 0.0, 0.0, 10.0, 1.0)
-                        EndIf
-                    EndIf
-                    If (playerroom\Field7\Field11 <> "room2elevator") Then
-                        If (arg0\Field5 <> 0) Then
-                            msg = "You pushed the button but nothing happened."
+                    ElseIf (local1 < d_i\Field7\Field14) Then
+                        If (d_i\Field7\Field14 = $09) Then
+                            If (350.0 > msg\Field1) Then
+                                createmsg(getlocalstring("msg", "key.required.106"), 6.0)
+                            EndIf
                         Else
-                            msg = "The door appears to be locked."
+                            createmsg(format(getlocalstring("msg", "key.higher"), (Str (d_i\Field7\Field14 - $02)), "%s"), 6.0)
                         EndIf
                     Else
-                        msg = "The elevator appears to be broken."
+                        createmsg(getlocalstring("msg", "key.slot"), 6.0)
                     EndIf
-                    msgtimer = 350.0
-                ElseIf (arg0\Field23 = $01) Then
-                    msg = "You called the elevator."
-                    msgtimer = 350.0
-                ElseIf (arg0\Field23 = $03) Then
-                    msg = "The elevator is already on this floor."
-                    msgtimer = 350.0
-                ElseIf (msg <> "You called the elevator.") Then
-                    If ((((msg = "You already called the elevator.") Or (210.0 > msgtimer)) Or (msg = "")) <> 0) Then
-                        Select rand($0A, $01)
-                            Case $01
-                                msg = "Stop spamming the button."
-                                msgtimer = 490.0
-                            Case $02
-                                msg = "Pressing it harder does not make the elevator come faster."
-                                msgtimer = 490.0
-                            Case $03
-                                msg = "If you continue pressing this button I will generate a Memory Access Violation."
-                                msgtimer = 490.0
-                            Default
-                                msg = "You already called the elevator."
-                                msgtimer = 490.0
-                        End Select
-                    EndIf
+                    selecteditem = Null
+                EndIf
+                If (((d_i\Field7\Field4 <> $01) And ((((local1 > $00) And (local1 <> $01)) And (local1 >= d_i\Field7\Field14)) Lor (local1 = $09))) <> 0) Then
+                    playsoundex(snd_i\Field5[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field5[$00]), d_i\Field9, 10.0, 1.0)
                 Else
-                    msg = "You already called the elevator."
-                    msgtimer = 490.0
+                    If (local1 <= $00) Then
+                        playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
+                    Else
+                        playsoundex(snd_i\Field5[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field5[$01]), d_i\Field9, 10.0, 1.0)
+                    EndIf
+                    Return $00
                 EndIf
             EndIf
-            Return $00
-        EndIf
-    EndIf
-    arg0\Field5 = (arg0\Field5 = $00)
-    If (arg0\Field22 <> Null) Then
-        arg0\Field22\Field5 = (arg0\Field22\Field5 = $00)
-    EndIf
-    local3 = $00
-    If (arg0\Field9 = $01) Then
-        local3 = rand($00, $01)
-    Else
-        local3 = rand($00, $02)
-    EndIf
-    If (arg2 = $01) Then
-        If (arg0\Field5 <> 0) Then
-            If (arg0\Field22 <> Null) Then
-                arg0\Field22\Field11 = (Float arg0\Field22\Field10)
+        Case $02
+            If (selecteditem = Null) Then
+                If (350.0 > msg\Field1) Then
+                    createmsg(getlocalstring("msg", "dna.denied_1"), 6.0)
+                EndIf
+                playsoundex(snd_i\Field6[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$01]), d_i\Field9, 10.0, 1.0)
+                Return $00
+            Else
+                If ((((local1 >= $00) Lor (local1 < $FFFFFFFD)) And (local1 <> $09)) <> 0) Then
+                    If (350.0 > msg\Field1) Then
+                        createmsg(getlocalstring("msg", "dna.denied_1"), 6.0)
+                    EndIf
+                Else
+                    If (((d_i\Field7\Field14 <> local1) And (local1 <> $09)) <> 0) Then
+                        createmsg(getlocalstring("msg", "dna.denied_2"), 6.0)
+                    ElseIf (d_i\Field7\Field4 = $01) Then
+                        If (local1 = $09) Then
+                            createmsg(getlocalstring("msg", "key.nothappend.005"), 6.0)
+                        Else
+                            createmsg(getlocalstring("msg", "dna.nothappend"), 6.0)
+                        EndIf
+                    ElseIf (local1 = $09) Then
+                        createmsg(getlocalstring("msg", "dna.granted.005"), 6.0)
+                        If (selecteditem\Field4\Field2 = $09) Then
+                            local3 = $01
+                        EndIf
+                    Else
+                        createmsg(getlocalstring("msg", "dna.granted"), 6.0)
+                    EndIf
+                    selecteditem = Null
+                EndIf
+                If (((d_i\Field7\Field4 = $00) And ((local1 = d_i\Field7\Field14) Lor (local1 = $09))) <> 0) Then
+                    playsoundex(snd_i\Field6[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$00]), d_i\Field9, 10.0, 1.0)
+                Else
+                    playsoundex(snd_i\Field6[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$01]), d_i\Field9, 10.0, 1.0)
+                    Return $00
+                EndIf
             EndIf
-            arg0\Field11 = (Float arg0\Field10)
-            arg0\Field16 = playsound2(opendoorsfx(arg0\Field9, local3), camera, arg0\Field0, 10.0, 1.0)
-        Else
-            arg0\Field16 = playsound2(closedoorsfx(arg0\Field9, local3), camera, arg0\Field0, 10.0, 1.0)
+        Case $03
+            If (selecteditem = Null) Then
+                If ((((d_i\Field7\Field4 = $00) And (d_i\Field7\Field19 <> $FFFFFFFF)) And (d_i\Field7\Field19 = (Int msg\Field5))) <> 0) Then
+                    playsoundex(snd_i\Field6[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$00]), d_i\Field9, 10.0, 1.0)
+                Else
+                    playsoundex(snd_i\Field6[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$01]), d_i\Field9, 10.0, 1.0)
+                    Return $00
+                EndIf
+            Else
+                If (local1 = $09) Then
+                    If (d_i\Field7\Field4 = $01) Then
+                        createmsg(getlocalstring("msg", "keypad.nothappend.005"), 6.0)
+                    Else
+                        createmsg(getlocalstring("msg", "keypad.nothappend"), 6.0)
+                    EndIf
+                EndIf
+                selecteditem = Null
+                If ((((d_i\Field7\Field4 = $00) And (d_i\Field7\Field19 <> $FFFFFFFF)) And (local1 = $09)) <> 0) Then
+                    playsoundex(snd_i\Field6[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$00]), d_i\Field9, 10.0, 1.0)
+                    If (selecteditem\Field4\Field2 = $09) Then
+                        local3 = $01
+                    EndIf
+                Else
+                    playsoundex(snd_i\Field6[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field6[$01]), d_i\Field9, 10.0, 1.0)
+                    Return $00
+                EndIf
+            EndIf
+            Select d_i\Field7\Field19
+                Case code_dr_maynard
+                    giveachievement("maynard", $01)
+                Case code_dr_gears
+                    giveachievement("gears", $01)
+                Case $1E88
+                    giveachievement("harp", $01)
+                Case code_o5_council
+                    giveachievement("o5", $01)
+            End Select
+        Case $04
+            If (d_i\Field7\Field4 > $00) Then
+                If (selecteditem = Null) Then
+                    If (350.0 > msg\Field1) Then
+                        createmsg(getlocalstring("msg", "wood.wontbudge"), 6.0)
+                    EndIf
+                    If (d_i\Field7\Field10 = $04) Then
+                        playsoundex(snd_i\Field7[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field7[$00]), d_i\Field9, 10.0, 1.0)
+                        setanimtime(d_i\Field7\Field0, 1.0, $00)
+                        d_i\Field7\Field33 = $01
+                    Else
+                        playsoundex(snd_i\Field7[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field7[$01]), d_i\Field9, 10.0, 1.0)
+                    EndIf
+                Else
+                    If (((local1 > $FFFFFFFC) And (local1 <> $09)) <> 0) Then
+                        If (350.0 > msg\Field1) Then
+                            createmsg(getlocalstring("msg", "wood.wontbudge"), 6.0)
+                        EndIf
+                    Else
+                        If (((d_i\Field7\Field4 = $02) Lor ((local1 <> d_i\Field7\Field14) And (local1 <> $09))) <> 0) Then
+                            createmsg(getlocalstring("msg", "wood.nothappend.005"), 6.0)
+                        Else
+                            createmsg(getlocalstring("msg", "wood.unlock"), 6.0)
+                            d_i\Field7\Field4 = $00
+                            If (forest_event <> Null) Then
+                                If (forest_event\Field1 = playerroom) Then
+                                    giveachievement("860", $01)
+                                    forest_event\Field5 = 0.0
+                                    If (selecteditem\Field4\Field2 = $1F) Then
+                                        forest_event\Field5 = 1.0
+                                        removenpc(forest_event\Field1\Field15[$00])
+                                    EndIf
+                                    createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                                    createconsolemsg(getlocalstring("misc", "warning2"), $FF, $00, $00, $00)
+                                    createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                                EndIf
+                            EndIf
+                        EndIf
+                        selecteditem = Null
+                    EndIf
+                    If (((local1 > $FFFFFFFC) And (local1 <> $09)) <> 0) Then
+                        If (d_i\Field7\Field10 = $04) Then
+                            playsoundex(snd_i\Field7[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                            mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field7[$00]), d_i\Field9, 10.0, 1.0)
+                            setanimtime(d_i\Field7\Field0, 1.0, $00)
+                            d_i\Field7\Field33 = $01
+                        Else
+                            playsoundex(snd_i\Field7[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                            mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field7[$01]), d_i\Field9, 10.0, 1.0)
+                        EndIf
+                    Else
+                        playsoundex(snd_i\Field8, camera, d_i\Field9, 10.0, 1.0, $00)
+                        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field8), d_i\Field9, 10.0, 1.0)
+                    EndIf
+                EndIf
+                Return $00
+            ElseIf (d_i\Field7\Field10 = $04) Then
+                playsoundex(snd_i\Field7[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field7[$00]), d_i\Field9, 10.0, 1.0)
+                setanimtime(d_i\Field7\Field0, 1.0, $00)
+                d_i\Field7\Field33 = $01
+            EndIf
+        Case $05
+            If (d_i\Field7\Field4 = $01) Then
+                If ((d_i\Field7\Field22 > $00) = $00) Then
+                    createmsg(getlocalstring("msg", "elev.broken"), 6.0)
+                    playsoundex(buttonsfx[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$01]), d_i\Field9, 10.0, 1.0)
+                    setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                    d_i\Field7\Field34 = d_i\Field11
+                    Return $00
+                Else
+                    If (d_i\Field7\Field22 = $01) Then
+                        createmsg(getlocalstring("msg", "elev.called"), 6.0)
+                    ElseIf (d_i\Field7\Field22 = $03) Then
+                        createmsg(getlocalstring("msg", "elev.floor"), 6.0)
+                    ElseIf (msg\Field0 <> getlocalstring("msg", "elev.called")) Then
+                        Select rand($0A, $01)
+                            Case $01
+                                createmsg(getlocalstring("msg", "elev.stop"), 6.0)
+                            Case $02
+                                createmsg(getlocalstring("msg", "elev.faster"), 6.0)
+                            Case $03
+                                createmsg(getlocalstring("msg", "elev.mav"), 6.0)
+                            Default
+                                createmsg(getlocalstring("msg", "elev.already"), 6.0)
+                        End Select
+                    Else
+                        createmsg(getlocalstring("msg", "elev.already"), 6.0)
+                    EndIf
+                    playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                    mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
+                    setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                    d_i\Field7\Field34 = d_i\Field11
+                    Return $00
+                EndIf
+            Else
+                playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
+                setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                d_i\Field7\Field34 = d_i\Field11
+            EndIf
+        Case $06
+            If ((((d_i\Field7\Field29 = Null) Lor (d_i\Field7\Field4 = $01)) Lor ((d_i\Field7\Field29 <> Null) And (d_i\Field7\Field29\Field4 = $01))) <> 0) Then
+                createmsg(getlocalstring("msg", "elev.broken"), 6.0)
+                playsoundex(buttonsfx[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$01]), d_i\Field9, 10.0, 1.0)
+                d_i\Field7\Field35 = $01
+                setanimtime(d_i\Field9, 1.0, $00)
+                d_i\Field7\Field34 = d_i\Field11
+                Return $00
+            EndIf
+            local8 = isinsideelevator(entityx(me\Field60, $00), entityy(me\Field60, $00), entityz(me\Field60, $00), d_i\Field7\Field30)
+            local9 = $00
+            playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+            mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
+            If (((d_i\Field7\Field6 = $00) And (0.0 = d_i\Field7\Field8)) <> 0) Then
+                If ((d_i\Field7\Field29\Field6 And (180.0 = d_i\Field7\Field29\Field8)) <> 0) Then
+                    openclosedoor(d_i\Field7\Field29, $01, $00)
+                    d_i\Field7\Field29\Field31 = $01
+                    d_i\Field7\Field29\Field35 = (d_i\Field7\Field29\Field32 = $01)
+                    d_i\Field7\Field35 = d_i\Field7\Field29\Field35
+                    updateelevatorpanel(d_i\Field7)
+                    updateelevatorpanel(d_i\Field7\Field29)
+                    local9 = $01
+                EndIf
+                setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                d_i\Field7\Field34 = d_i\Field11
+                If (local9 = $01) Then
+                    createmsg(getlocalstring("msg", "elev.called"), 6.0)
+                ElseIf (msg\Field0 <> getlocalstring("msg", "elev.called")) Then
+                    Select rand($0A, $01)
+                        Case $01
+                            createmsg(getlocalstring("msg", "elev.stop"), 6.0)
+                        Case $02
+                            createmsg(getlocalstring("msg", "elev.faster"), 6.0)
+                        Case $03
+                            createmsg(getlocalstring("msg", "elev.mav"), 6.0)
+                        Default
+                            createmsg(getlocalstring("msg", "elev.already"), 6.0)
+                    End Select
+                Else
+                    createmsg(getlocalstring("msg", "elev.already"), 6.0)
+                EndIf
+                Return $00
+            ElseIf ((d_i\Field7\Field6 And (180.0 = d_i\Field7\Field8)) <> 0) Then
+                If (local8 <> 0) Then
+                    d_i\Field7\Field35 = (d_i\Field7\Field32 = $01)
+                    d_i\Field7\Field31 = $01
+                    setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                    d_i\Field7\Field34 = d_i\Field11
+                    d_i\Field7\Field29\Field6 = $01
+                    openclosedoor(d_i\Field7\Field29, $01, $00)
+                    d_i\Field7\Field29\Field35 = d_i\Field7\Field35
+                    updateelevatorpanel(d_i\Field7)
+                    updateelevatorpanel(d_i\Field7\Field29)
+                Else
+                    d_i\Field7\Field35 = $01
+                    setanimtime(d_i\Field9, 1.0, $00)
+                    d_i\Field7\Field34 = d_i\Field11
+                    createmsg(getlocalstring("msg", "elev.floor"), 6.0)
+                    Return $00
+                EndIf
+            ElseIf (((((((d_i\Field7\Field6 = $00) And (0.0 = d_i\Field7\Field8)) And (d_i\Field7\Field29\Field6 = $00)) And (0.0 = d_i\Field7\Field29\Field8)) And (d_i\Field7\Field31 = $00)) And (d_i\Field7\Field29\Field31 = $00)) <> 0) Then
+                d_i\Field7\Field35 = $01
+                setanimtime(d_i\Field9, 1.0, $00)
+                d_i\Field7\Field34 = d_i\Field11
+            Else
+                Return $00
+            EndIf
+        Default
+            If (d_i\Field7\Field4 = $01) Then
+                If (d_i\Field7\Field6 <> 0) Then
+                    createmsg(getlocalstring("msg", "button.nothappend"), 6.0)
+                Else
+                    createmsg(getlocalstring("msg", "button.locked"), 6.0)
+                EndIf
+                playsoundex(buttonsfx[$01], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$01]), d_i\Field9, 10.0, 1.0)
+                setanimtime(d_i\Field9, 1.0, $00)
+                d_i\Field7\Field34 = d_i\Field11
+                Return $00
+            Else
+                playsoundex(buttonsfx[$00], camera, d_i\Field9, 10.0, 1.0, $00)
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(buttonsfx[$00]), d_i\Field9, 10.0, 1.0)
+                setanimtime(d_i\Field9, (((Float (d_i\Field7\Field35 = $00)) * 20.0) + 1.0), $00)
+                d_i\Field7\Field34 = d_i\Field11
+            EndIf
+    End Select
+    openclosedoor(d_i\Field7, arg0, $00)
+    If (local3 <> 0) Then
+        d_i\Field7\Field9 = $01
+        If (d_i\Field7\Field6 <> 0) Then
+            d_i\Field7\Field4 = $01
         EndIf
-        updatesoundorigin(arg0\Field16, camera, arg0\Field0, 10.0, 1.0)
-    ElseIf (arg0\Field5 <> 0) Then
-        If (arg0\Field22 <> Null) Then
-            arg0\Field22\Field11 = (Float arg0\Field22\Field10)
-        EndIf
-        arg0\Field11 = (Float arg0\Field10)
+        me\Field24 = 3.0
+        local11 = setemitter(Null, entityx(d_i\Field7\Field0, $01), entityy(d_i\Field7\Field0, $01), entityz(d_i\Field7\Field0, $01), $10)
+        entityparent(local11\Field6, d_i\Field7\Field0, $01)
+        playsoundex(snd_i\Field9, camera, d_i\Field7\Field2, 10.0, 1.0, $00)
+        mp_synchronize3dsound(currentsyncplayer, getsoundfilename(snd_i\Field9), d_i\Field7\Field2, 10.0, 1.0)
     EndIf
-    If (arg0\Field36 <> Null) Then
-        arg0\Field35 = $01
-        arg0\Field36\Field35 = $01
-    EndIf
-    If (multiplayer_isfullsync() = $00) Then
-        If (((arg3 = $01) And udp_getstream()) <> 0) Then
-            multiplayer_senddoor(arg0, selecteditem, arg4)
-        EndIf
-    EndIf
-    Return $01
+    currentsyncplayer = Null
     Return $00
 End Function

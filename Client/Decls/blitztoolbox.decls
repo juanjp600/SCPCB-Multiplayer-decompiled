@@ -1,0 +1,13 @@
+.lib "blitztoolbox.dll"
+
+findnextdirectory$(arg0$, arg1$, arg2$):"_FindNextDirectory@12"
+downloadfilethread%(arg0$, arg1$):"_DownloadFileThread@8"
+getdownloadfilethreadsize%():"_GetDownloadFileThreadSize@0"
+creates2imap%():"_CreateS2IMap@0"
+s2imapsize%(arg0%):"_S2IMapSize@4"
+s2imaperase%(arg0%, arg1$):"_S2IMapErase@8"
+s2imapset%(arg0%, arg1$, arg2%):"_S2IMapSet@12"
+s2imapget%(arg0%, arg1$):"_S2IMapGet@8"
+s2imapcontains%(arg0%, arg1$):"_S2IMapContains@8"
+clears2imap%(arg0%):"_ClearS2IMap@4"
+destroys2imap%(arg0%):"_DestroyS2IMap@4"

@@ -1,220 +1,161 @@
 Function updateconsole%()
-    Local local0%
-    Local local1.consolemsg
+    Local local0.consolemsg
+    Local local1%
     Local local2%
     Local local3%
     Local local4%
     Local local5%
-    Local local6$
+    Local local6%
     Local local7%
     Local local8%
     Local local9%
-    Local local10%
+    Local local10$
     Local local11%
-    Local local12%
-    Local local13%
-    Local local14%
-    Local local15%
-    Local local16%
-    Local local17%
-    Local local18$
-    Local local19%
-    Local local20%
-    If (canopenconsole = $00) Then
+    catcherrors("UpdateConsole()")
+    If (opt\Field31 = $00) Then
         consoleopen = $00
         Return $00
     EndIf
     If (consoleopen <> 0) Then
-        aasetfont(consolefont)
+        local1 = (Int (15.0 * menuscale))
         consoler = $FF
         consoleg = $FF
         consoleb = $FF
         local2 = $00
-        local3 = (Int ((Float graphicheight) - (300.0 * menuscale)))
-        local4 = graphicwidth
-        local5 = (Int ((300.0 * menuscale) - (30.0 * menuscale)))
-        drawframe(local2, local3, local4, (Int ((30.0 * menuscale) + (Float local5))), $00, $00)
-        local12 = $00
-        local13 = $00
-        For local1 = Each consolemsg
-            local12 = (Int ((15.0 * menuscale) + (Float local12)))
+        local3 = (Int ((Float opt\Field47) - (300.0 * menuscale)))
+        local4 = opt\Field46
+        local5 = (Int (270.0 * menuscale))
+        local6 = (local5 Sar $01)
+        local7 = $00
+        local8 = $00
+        For local0 = Each consolemsg
+            local7 = (local7 + local1)
         Next
-        local13 = (Int (((Float local5) / (Float local12)) * (Float local5)))
-        If (local13 > local5) Then
-            local13 = local5
-        EndIf
-        If (local12 < local5) Then
-            local12 = local5
-        EndIf
-        color($32, $32, $32)
-        local14 = mouseon((Int ((Float (local2 + local4)) - (26.0 * menuscale))), local3, (Int (26.0 * menuscale)), local5)
-        If (local14 <> 0) Then
-            color($46, $46, $46)
-        EndIf
-        rect((Int ((Float (local2 + local4)) - (26.0 * menuscale))), local3, (Int (26.0 * menuscale)), local5, $01)
-        color($78, $78, $78)
-        local15 = mouseon((Int ((Float (local2 + local4)) - (23.0 * menuscale))), (Int (((consolescroll * (Float local13)) / (Float local5)) + (Float ((local3 + local5) - local13)))), (Int (20.0 * menuscale)), local13)
-        If (local15 <> 0) Then
-            color($C8, $C8, $C8)
-        EndIf
-        If (consolescrolldragging <> 0) Then
-            color($FF, $FF, $FF)
-        EndIf
-        rect((Int ((Float (local2 + local4)) - (23.0 * menuscale))), (Int (((consolescroll * (Float local13)) / (Float local5)) + (Float ((local3 + local5) - local13)))), (Int (20.0 * menuscale)), local13, $01)
-        If (mousedown($01) = $00) Then
+        local8 = (Int (((Float local5) / (Float local7)) * (Float local5)))
+        local8 = (Int min((Float local8), (Float local5)))
+        local7 = (Int max((Float local7), (Float local5)))
+        consoleinbar = mouseon((Int ((Float (local2 + local4)) - (26.0 * menuscale))), local3, (Int (26.0 * menuscale)), local5)
+        consoleinbox = mouseon((Int ((Float (local2 + local4)) - (23.0 * menuscale))), (Int (((consolescroll * (Float local8)) / (Float local5)) + (Float ((local3 + local5) - local8)))), (Int (20.0 * menuscale)), local8)
+        If (mo\Field2 = $00) Then
             consolescrolldragging = $00
         ElseIf (consolescrolldragging <> 0) Then
-            consolescroll = ((Float (((scaledmousey() - consolemousemem) * local5) / local13)) + consolescroll)
-            consolemousemem = scaledmousey()
+            consolescroll = ((((mouseposy - (Float consolemousemem)) * (Float local5)) / (Float local8)) + consolescroll)
+            consolemousemem = (Int mouseposy)
         EndIf
         If (consolescrolldragging = $00) Then
-            If (mousehit1 <> 0) Then
-                If (local15 <> 0) Then
+            If (mo\Field0 <> 0) Then
+                If (consoleinbox <> 0) Then
                     consolescrolldragging = $01
-                    consolemousemem = scaledmousey()
-                ElseIf (local14 <> 0) Then
-                    consolescroll = ((Float ((((scaledmousey() - (local3 + local5)) * local12) / local5) + (local5 Sar $01))) + consolescroll)
+                    consolemousemem = (Int mouseposy)
+                ElseIf (consoleinbar <> 0) Then
+                    consolescroll = (((((mouseposy - (Float (local3 + local5))) * (Float local7)) / (Float local5)) + (Float local6)) + consolescroll)
                     consolescroll = (consolescroll / 2.0)
                 EndIf
             EndIf
         EndIf
-        local16 = mousezspeed()
-        If (local16 = $01) Then
-            consolescroll = (consolescroll - (15.0 * menuscale))
-        ElseIf (local16 = $FFFFFFFF) Then
-            consolescroll = ((15.0 * menuscale) + consolescroll)
-        EndIf
+        consolescroll = (consolescroll + (Float ((- mousezspeed()) * local1)))
         If (keyhit($C8) <> 0) Then
-            local17 = $00
+            local9 = $00
             If (consolereissue = Null) Then
                 consolereissue = (First consolemsg)
                 While (consolereissue <> Null)
                     If (consolereissue\Field1 <> 0) Then
                         Exit
                     EndIf
-                    local17 = (Int ((Float local17) - (15.0 * menuscale)))
+                    local9 = (local9 - local1)
                     consolereissue = (After consolereissue)
                 Wend
             Else
-                local1 = (First consolemsg)
-                While (local1 <> Null)
-                    If (local1 = consolereissue) Then
+                local0 = (First consolemsg)
+                While (local0 <> Null)
+                    If (local0 = consolereissue) Then
                         Exit
                     EndIf
-                    local17 = (Int ((Float local17) - (15.0 * menuscale)))
-                    local1 = (After local1)
+                    local9 = (local9 - local1)
+                    local0 = (After local0)
                 Wend
                 consolereissue = (After consolereissue)
-                local17 = (Int ((Float local17) - (15.0 * menuscale)))
+                local9 = (local9 - local1)
                 Repeat
                     If (consolereissue = Null) Then
                         consolereissue = (First consolemsg)
-                        local17 = $00
+                        local9 = $00
                     EndIf
                     If (consolereissue\Field1 <> 0) Then
                         Exit
                     EndIf
-                    local17 = (Int ((Float local17) - (15.0 * menuscale)))
+                    local9 = (local9 - local1)
                     consolereissue = (After consolereissue)
                 Forever
             EndIf
             If (consolereissue <> Null) Then
                 consoleinput = consolereissue\Field0
-                consolescroll = (Float ((local5 Sar $01) + local17))
+                consolescroll = (Float (local9 + local6))
             EndIf
         EndIf
         If (keyhit($D0) <> 0) Then
-            local17 = (Int ((15.0 * menuscale) + (Float (- local12))))
+            local9 = ((- local7) + local1)
             If (consolereissue = Null) Then
                 consolereissue = (Last consolemsg)
                 While (consolereissue <> Null)
                     If (consolereissue\Field1 <> 0) Then
                         Exit
                     EndIf
-                    local17 = (Int ((15.0 * menuscale) + (Float local17)))
+                    local9 = (local9 + local1)
                     consolereissue = (Before consolereissue)
                 Wend
             Else
-                local1 = (Last consolemsg)
-                While (local1 <> Null)
-                    If (local1 = consolereissue) Then
+                local0 = (Last consolemsg)
+                While (local0 <> Null)
+                    If (local0 = consolereissue) Then
                         Exit
                     EndIf
-                    local17 = (Int ((15.0 * menuscale) + (Float local17)))
-                    local1 = (Before local1)
+                    local9 = (local9 + local1)
+                    local0 = (Before local0)
                 Wend
                 consolereissue = (Before consolereissue)
-                local17 = (Int ((15.0 * menuscale) + (Float local17)))
+                local9 = (local9 + local1)
                 Repeat
                     If (consolereissue = Null) Then
                         consolereissue = (Last consolemsg)
-                        local17 = (Int ((15.0 * menuscale) + (Float (- local12))))
+                        local9 = ((- local7) + local1)
                     EndIf
                     If (consolereissue\Field1 <> 0) Then
                         Exit
                     EndIf
-                    local17 = (Int ((15.0 * menuscale) + (Float local17)))
+                    local9 = (local9 + local1)
                     consolereissue = (Before consolereissue)
                 Forever
             EndIf
             If (consolereissue <> Null) Then
                 consoleinput = consolereissue\Field0
-                consolescroll = (Float ((local5 Sar $01) + local17))
+                consolescroll = (Float (local9 + local6))
             EndIf
         EndIf
-        If ((Float ((- local12) + local5)) > consolescroll) Then
-            consolescroll = (Float ((- local12) + local5))
-        EndIf
-        If (0.0 < consolescroll) Then
-            consolescroll = 0.0
-        EndIf
-        color($FF, $FF, $FF)
-        selectedinputbox = $02
-        local18 = consoleinput
-        consoleinput = inputbox(local2, (local3 + local5), local4, (Int (30.0 * menuscale)), consoleinput, $02, $00, -1.0)
-        If (local18 <> consoleinput) Then
+        consolescroll = clamp(consolescroll, (Float ((- local7) + local5)), 0.0)
+        selectedinputbox = $13
+        local10 = consoleinput
+        consoleinput = updatemenuinputbox(local2, (local3 + local5), local4, (Int (30.0 * menuscale)), consoleinput, $05, $13, $00, 1.0)
+        If (local10 <> consoleinput) Then
             consolereissue = Null
         EndIf
         consoleinput = left(consoleinput, $64)
         If ((keyhit($1C) And (consoleinput <> "")) <> 0) Then
-            If (getscripts() <> 0) Then
-                public_inqueue($0A, $00)
-                public_addparam(consoleinput, $03)
-                callback()
-            EndIf
             consolereissue = Null
             consolescroll = 0.0
             createconsolemsg(consoleinput, $FF, $FF, $00, $01)
-            executeconsolecommand(consoleinput, $01, $01)
+            mp_client_executeconsolecommand(consoleinput)
+            executeconsolecommand(consoleinput)
             consoleinput = ""
         EndIf
-        local19 = (Int (((Float (local3 + local5)) - (25.0 * menuscale)) - consolescroll))
-        local20 = $00
-        For local1 = Each consolemsg
-            local20 = (local20 + $01)
-            If (local20 > $3E8) Then
-                Delete local1
-            Else
-                If (((local19 >= local3) And ((Float local19) < ((Float (local3 + local5)) - (20.0 * menuscale)))) <> 0) Then
-                    If (local1 = consolereissue) Then
-                        color((local1\Field2 Sar $02), (local1\Field3 Sar $02), (local1\Field4 Sar $02))
-                        rect(local2, (Int ((Float local19) - (2.0 * menuscale))), (Int ((Float local4) - (30.0 * menuscale))), (Int (24.0 * menuscale)), $01)
-                    EndIf
-                    color(local1\Field2, local1\Field3, local1\Field4)
-                    If (local1\Field1 <> 0) Then
-                        aatext((Int ((20.0 * menuscale) + (Float local2))), local19, ("> " + local1\Field0), $00, $00, 1.0)
-                    Else
-                        aatext((Int ((20.0 * menuscale) + (Float local2))), local19, local1\Field0, $00, $00, 1.0)
-                    EndIf
-                EndIf
-                local19 = (Int ((Float local19) - (15.0 * menuscale)))
+        local11 = $00
+        For local0 = Each consolemsg
+            local11 = (local11 + $01)
+            If (local11 > $3E8) Then
+                Delete local0
             EndIf
         Next
-        color($FF, $FF, $FF)
-        If (fullscreen <> 0) Then
-            drawimage(cursorimg, scaledmousex(), scaledmousey(), $00)
-        EndIf
     EndIf
-    aasetfont(font1)
+    catcherrors("Uncaught: UpdateConsole()")
     Return $00
 End Function

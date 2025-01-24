@@ -1,17 +1,13 @@
-Function loadroommesh%(arg0.roomtemplates, arg1$)
-    Local local0%
-    If (arg1 = "") Then
-        arg1 = arg0\Field2
-    EndIf
-    If (instr(arg1, ".rmesh", $01) <> $00) Then
-        arg0\Field0 = loadrmesh(arg1, arg0)
-    ElseIf (arg1 <> "") Then
-        arg0\Field0 = loadworld(arg1, arg0)
+Function loadroommesh%(arg0.roomtemplates)
+    If (fileextension(arg0\Field2) = "rmesh") Then
+        arg0\Field0 = loadrmesh(arg0\Field2, arg0, $01)
+    ElseIf (fileextension(arg0\Field2) = "b3d") Then
+        runtimeerrorex(format(getlocalstring("runerr", "b3d"), arg0\Field2, "%s"))
     Else
-        arg0\Field0 = createpivot($00)
+        runtimeerrorex(format(getlocalstring("runerr", "notfound"), arg0\Field2, "%s"))
     EndIf
     If (arg0\Field0 = $00) Then
-        runtimeerror((((("Failed to load map file " + chr($22)) + (Str local0)) + chr($22)) + "."))
+        runtimeerrorex(format(getlocalstring("runerr", "failedload"), arg0\Field2, "%s"))
     EndIf
     calculateroomtemplateextents(arg0)
     hideentity(arg0\Field0)

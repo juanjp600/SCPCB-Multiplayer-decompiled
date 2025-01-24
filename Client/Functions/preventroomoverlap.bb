@@ -9,15 +9,16 @@ Function preventroomoverlap%(arg0.rooms)
     Local local7%
     Local local8%
     Local local9%
-    If (arg0\Field7\Field19 <> 0) Then
+    If (arg0\Field7\Field9 <> 0) Then
         Return $00
     EndIf
     local2 = $00
-    If ((((arg0\Field7\Field11 = "checkpoint1") Or (arg0\Field7\Field11 = "checkpoint2")) Or (arg0\Field7\Field11 = "start")) <> 0) Then
+    local3 = arg0\Field7\Field6
+    If (((local3 = $27) Lor (local3 = $45)) <> 0) Then
         Return $01
     EndIf
     For local0 = Each rooms
-        If (((local0 <> arg0) And (local0\Field7\Field19 = $00)) <> 0) Then
+        If (((local0 <> arg0) And (local0\Field7\Field9 = $00)) <> 0) Then
             If (checkroomoverlap(arg0, local0) <> 0) Then
                 local2 = $01
                 Exit
@@ -28,17 +29,17 @@ Function preventroomoverlap%(arg0.rooms)
         Return $01
     EndIf
     local2 = $00
-    local3 = (Int (arg0\Field3 / 8.0))
-    local4 = (Int (arg0\Field5 / 8.0))
-    If (arg0\Field7\Field10 = $02) Then
-        arg0\Field6 = (arg0\Field6 + $B4)
+    local4 = (Int (arg0\Field3 / 8.0))
+    local5 = (Int (arg0\Field5 / 8.0))
+    If (arg0\Field7\Field4 = $01) Then
+        arg0\Field6 = (Int ((Float arg0\Field6) + 180.0))
         rotateentity(arg0\Field2, 0.0, (Float arg0\Field6), 0.0, $00)
         calculateroomextents(arg0)
         For local0 = Each rooms
-            If (((local0 <> arg0) And (local0\Field7\Field19 = $00)) <> 0) Then
+            If (((local0 <> arg0) And (local0\Field7\Field9 = $00)) <> 0) Then
                 If (checkroomoverlap(arg0, local0) <> 0) Then
                     local2 = $01
-                    arg0\Field6 = (arg0\Field6 - $B4)
+                    arg0\Field6 = (Int ((Float arg0\Field6) - 180.0))
                     rotateentity(arg0\Field2, 0.0, (Float arg0\Field6), 0.0, $00)
                     calculateroomextents(arg0)
                     Exit
@@ -49,15 +50,15 @@ Function preventroomoverlap%(arg0.rooms)
         local2 = $01
     EndIf
     If (local2 = $00) Then
-        debuglog(("ROOM2 turning succesful! " + arg0\Field7\Field11))
         Return $01
     EndIf
     local2 = $01
     For local0 = Each rooms
-        If (((local0 <> arg0) And (local0\Field7\Field19 = $00)) <> 0) Then
-            If ((((arg0\Field7\Field10 = local0\Field7\Field10) And (arg0\Field0 = local0\Field0)) And (((local0\Field7\Field11 <> "checkpoint1") And (local0\Field7\Field11 <> "checkpoint2")) And (local0\Field7\Field11 <> "start"))) <> 0) Then
-                local3 = (Int (arg0\Field3 / 8.0))
-                local4 = (Int (arg0\Field5 / 8.0))
+        If (((local0 <> arg0) And (local0\Field7\Field9 = $00)) <> 0) Then
+            local3 = local0\Field7\Field6
+            If ((((arg0\Field7\Field4 = local0\Field7\Field4) And (arg0\Field0 = local0\Field0)) And (((local3 <> $27) And (local3 <> $45)) And (local3 <> $03))) <> 0) Then
+                local4 = (Int (arg0\Field3 / 8.0))
+                local5 = (Int (arg0\Field5 / 8.0))
                 local8 = arg0\Field6
                 local6 = (Int (local0\Field3 / 8.0))
                 local7 = (Int (local0\Field5 / 8.0))
@@ -69,14 +70,14 @@ Function preventroomoverlap%(arg0.rooms)
                 positionentity(arg0\Field2, arg0\Field3, arg0\Field4, arg0\Field5, $00)
                 rotateentity(arg0\Field2, 0.0, (Float arg0\Field6), 0.0, $00)
                 calculateroomextents(arg0)
-                local0\Field3 = ((Float local3) * 8.0)
-                local0\Field5 = ((Float local4) * 8.0)
+                local0\Field3 = ((Float local4) * 8.0)
+                local0\Field5 = ((Float local5) * 8.0)
                 local0\Field6 = local8
                 positionentity(local0\Field2, local0\Field3, local0\Field4, local0\Field5, $00)
                 rotateentity(local0\Field2, 0.0, (Float local0\Field6), 0.0, $00)
                 calculateroomextents(local0)
                 For local1 = Each rooms
-                    If (local1\Field7\Field19 = $00) Then
+                    If (local1\Field7\Field9 = $00) Then
                         If (local1 <> arg0) Then
                             If (checkroomoverlap(arg0, local1) <> 0) Then
                                 local2 = $01
@@ -92,8 +93,8 @@ Function preventroomoverlap%(arg0.rooms)
                     EndIf
                 Next
                 If (local2 <> 0) Then
-                    arg0\Field3 = ((Float local3) * 8.0)
-                    arg0\Field5 = ((Float local4) * 8.0)
+                    arg0\Field3 = ((Float local4) * 8.0)
+                    arg0\Field5 = ((Float local5) * 8.0)
                     arg0\Field6 = local8
                     positionentity(arg0\Field2, arg0\Field3, arg0\Field4, arg0\Field5, $00)
                     rotateentity(arg0\Field2, 0.0, (Float arg0\Field6), 0.0, $00)
@@ -110,10 +111,8 @@ Function preventroomoverlap%(arg0.rooms)
         EndIf
     Next
     If (local2 = $00) Then
-        debuglog(("Room re-placing successful! " + arg0\Field7\Field11))
         Return $01
     EndIf
-    debuglog(("Couldn't fix overlap issue for room " + arg0\Field7\Field11))
     Return $00
     Return $00
 End Function

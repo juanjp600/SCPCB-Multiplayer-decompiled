@@ -1,1387 +1,1469 @@
 Function updatemtfunit%(arg0.npcs)
-    Local local0#
-    Local local1#
-    Local local2#
-    Local local3.rooms
-    Local local4#
-    Local local5#
-    Local local6.npcs
-    Local local7.particles
-    Local local8%
-    Local local9#
-    Local local10#
+    Local local0.rooms
+    Local local1%
+    Local local2.npcs
+    Local local3.waypoints
+    Local local4%
+    Local local5%
+    Local local6.emitter
+    Local local7%
+    Local local8#
+    Local local9%
+    Local local10%
     Local local11#
-    Local local13%
-    Local local14%
-    Local local15%
+    Local local12#
+    Local local13#
+    Local local14#
+    Local local15#
     Local local16%
-    Local local17%
-    Local local18#
-    Local local19%
-    Local local20#
-    Local local21%
-    Local local22.waypoints
-    Local local23#
+    Local local17#
+    Local local18.npcs
+    Local local21#
+    Local local23.waypoints
     Local local24#
-    If (arg0\Field48 <> 0) Then
-        arg0\Field49 = -1.0
-        setnpcframe(arg0, 532.0)
-        If (channelplaying(arg0\Field20) <> 0) Then
-            stopchannel(arg0\Field20)
+    Local local25#
+    Local local26%
+    If (arg0\Field50 <> 0) Then
+        animatenpc(arg0, 1050.0, 1174.0, 0.7, $00)
+    Else
+        updatenpcblinking(arg0)
+        arg0\Field28 = max((arg0\Field28 - fps\Field7[$00]), 0.0)
+        If (((1.0 <> arg0\Field10) And (11.0 <> arg0\Field10)) <> 0) Then
+            arg0\Field13 = $00
         EndIf
-        Return $00
-    EndIf
-    arg0\Field45 = 0.03
-    arg0\Field49 = (arg0\Field49 - fpsfactor)
-    If (-5.0 >= arg0\Field49) Then
-        If (2.0 = arg0\Field9) Then
-            If (othernpcseesmenpc(curr173, arg0) <> 0) Then
-                playmtfsound(loadtempsound("SFX\Character\MTF\173\BLINKING.ogg"), arg0)
+        arg0\Field20 = loopsoundex(npcsound[$01], arg0\Field20, camera, arg0\Field3, 10.0, 1.0, $01)
+        local11 = arg0\Field14
+        local12 = 0.0
+        local13 = 0.0
+        local14 = 0.0
+        local17 = (fps\Field7[$00] * 2.0)
+        local18 = Null
+        If (arg0 <> n_i\Field8) Then
+            If (arg0 = n_i\Field9) Then
+                local18 = n_i\Field8
+            Else
+                local18 = n_i\Field9
             EndIf
         EndIf
-        arg0\Field49 = (rnd(10.0, 15.0) * 70.0)
-    EndIf
-    arg0\Field25 = (arg0\Field25 - fpsfactor)
-    local11 = arg0\Field14
-    arg0\Field53 = ""
-    arg0\Field51 = $00
-    arg0\Field52 = $00
-    arg0\Field57 = "MTF"
-    If ((Int arg0\Field9) <> $01) Then
-        arg0\Field12 = $00
-    EndIf
-    arg0\Field20 = loopsound2(mtfsfx($06), arg0\Field20, camera, arg0\Field4, 10.0, 1.0)
-    If (0.0 < arg0\Field24) Then
-        finishwalking(arg0, 488.0, 522.0, 0.39)
-        arg0\Field24 = (arg0\Field24 - fpsfactor)
-        If (0.0 >= arg0\Field24) Then
-            arg0\Field24 = 0.0
-        EndIf
-    Else
-        Select (Int arg0\Field9)
-            Case $00
-                arg0\Field21 = 0.015
-                If (0.0 >= arg0\Field38) Then
-                    If (arg0\Field47 <> Null) Then
-                        arg0\Field37 = findpath(arg0, entityx(arg0\Field47\Field4, $01), (entityy(arg0\Field47\Field4, $01) + 0.1), entityz(arg0\Field47\Field4, $01))
+        Select arg0\Field10
+            Case 0.0
+                arg0\Field23 = 0.015
+                If (local18 <> Null) Then
+                    local8 = entitydistancesquared(arg0\Field3, local18\Field3)
+                    If (0.64 > local8) Then
+                        arg0\Field12 = 70.0
+                    EndIf
+                    If (0.0 < arg0\Field12) Then
+                        arg0\Field40 = $00
+                        arg0\Field42 = $00
+                        arg0\Field41 = 1.0
+                        arg0\Field12 = max((arg0\Field12 - fps\Field7[$00]), 0.0)
+                    EndIf
+                EndIf
+                If (0.0 >= arg0\Field41) Then
+                    If (local18 <> Null) Then
+                        arg0\Field40 = findpath(arg0, entityx(local18\Field3, $01), (entityy(local18\Field3, $01) + 0.1), entityz(local18\Field3, $01))
                     Else
-                        If (2.0 <> curr173\Field24) Then
-                            For local3 = Each rooms
-                                If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                    local0 = local3\Field3
-                                    local1 = 0.1
-                                    local2 = local3\Field5
-                                    Exit
-                                EndIf
-                            Next
-                        Else
-                            local13 = $00
-                            If (4.0 < entitydistance(arg0\Field4, curr173\Field4)) Then
-                                If (entityvisible(arg0\Field4, curr173\Field4) = $00) Then
-                                    local13 = $01
-                                EndIf
-                            EndIf
-                            If (local13 = $00) Then
-                                For local3 = Each rooms
-                                    If (local3\Field7\Field11 = "start") Then
-                                        local14 = $00
-                                        local15 = createpivot($00)
-                                        positionentity(local15, (entityx(local3\Field2, $01) + (4736.0 * roomscale)), 0.5, (entityz(local3\Field2, $01) + (1692.0 * roomscale)), $00)
-                                        If (3.5 > distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))) Then
-                                            local14 = $01
-                                            debuglog((Str distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))))
-                                        EndIf
-                                        If (((3.0 = curr173\Field24) And (4.0 < distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00)))) <> 0) Then
-                                            If (local3\Field29[$01]\Field5 = $01) Then
-                                                usedoor(local3\Field29[$01], $00, $01, $00, "", $00)
-                                            EndIf
-                                        EndIf
-                                        freeentity(local15)
-                                        If (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field2, $01) + (4736.0 * roomscale)), (entityz(local3\Field2, $01) + (1692.0 * roomscale)))) And (local14 = $00)) <> 0) Then
-                                            local0 = (entityx(local3\Field2, $01) + (4736.0 * roomscale))
-                                            local1 = 0.1
-                                            local2 = (entityz(local3\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move to 173's chamber")
-                                            Exit
-                                        ElseIf (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field2, $01) + (4736.0 * roomscale)), (entityz(local3\Field2, $01) + (1692.0 * roomscale)))) And local14) <> 0) Then
-                                            arg0\Field60 = (entityx(local3\Field2, $01) + (4736.0 * roomscale))
-                                            arg0\Field61 = (entityz(local3\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move inside 173's chamber")
-                                            Exit
-                                        Else
-                                            curr173\Field24 = 3.0
-                                            curr173\Field31 = Null
-                                            curr173\Field48 = $01
-                                            If (arg0\Field16 <> $00) Then
-                                                freesound_strict(arg0\Field16)
-                                                arg0\Field16 = $00
-                                            EndIf
-                                            arg0\Field16 = loadsound_strict((("SFX\Character\MTF\173\Cont" + (Str rand($01, $04))) + ".ogg"))
-                                            playmtfsound(arg0\Field16, arg0)
-                                            playannouncement("SFX\Character\MTF\Announc173Contain.ogg", $01, $00)
-                                            debuglog("173 contained")
-                                            Exit
-                                        EndIf
+                        If (2.0 = n_i\Field2\Field26) Then
+                            For local0 = Each rooms
+                                If (local0\Field7\Field6 = $03) Then
+                                    local9 = $00
+                                    local10 = createpivot($00)
+                                    positionentity(local10, (local0\Field3 + 18.5), (local0\Field4 + 1.640625), (local0\Field5 + 14.74219), $01)
+                                    If (12.25 > distancesquared(entityx(local10, $00), entityx(arg0\Field3, $00), entityz(local10, $00), entityz(arg0\Field3, $00), 0.0, 0.0)) Then
+                                        local9 = $01
                                     EndIf
-                                Next
-                            Else
-                                local0 = entityx(curr173\Field4, $00)
-                                local1 = 0.1
-                                local2 = entityz(curr173\Field4, $00)
-                                debuglog("Going back to 173's cage")
-                            EndIf
-                        EndIf
-                        If (0.0 = arg0\Field60) Then
-                            arg0\Field37 = findpath(arg0, local0, local1, local2)
-                        EndIf
-                    EndIf
-                    If (arg0\Field37 = $01) Then
-                        While (arg0\Field36[arg0\Field39] = Null)
-                            If (arg0\Field39 > $13) Then
-                                Exit
-                            EndIf
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        Wend
-                        If (arg0\Field39 < $13) Then
-                            If (((arg0\Field36[arg0\Field39] <> Null) And (arg0\Field36[(arg0\Field39 + $01)] <> Null)) <> 0) Then
-                                If (arg0\Field36[arg0\Field39]\Field1 = Null) Then
-                                    If ((Abs deltayaw(arg0\Field4, arg0\Field36[(arg0\Field39 + $01)]\Field0)) < (Abs deltayaw(arg0\Field4, arg0\Field36[arg0\Field39]\Field0))) Then
-                                        arg0\Field39 = (arg0\Field39 + $01)
-                                    EndIf
-                                EndIf
-                            EndIf
-                        EndIf
-                    EndIf
-                    arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
-                ElseIf (((175.0 >= arg0\Field38) And (arg0\Field47 = Null)) <> 0) Then
-                    arg0\Field38 = (arg0\Field38 - fpsfactor)
-                    arg0\Field22 = 0.0
-                    If (rand($01, $23) = $01) Then
-                        rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                    EndIf
-                    finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                ElseIf (arg0\Field37 = $02) Then
-                    arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                    arg0\Field22 = 0.0
-                    If (rand($01, $23) = $01) Then
-                        rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                    EndIf
-                    finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                ElseIf (arg0\Field37 = $01) Then
-                    If (arg0\Field36[arg0\Field39] = Null) Then
-                        If (arg0\Field39 > $13) Then
-                            arg0\Field39 = $00
-                            arg0\Field37 = $00
-                        Else
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
-                    Else
-                        local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                        local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        If (((1.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                            If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                local16 = $00
-                                If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                    local16 = $00
-                                Else
-                                    local16 = rand($00, $02)
-                                EndIf
-                                playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                playmtfsound(mtfsfx($05), arg0)
-                            EndIf
-                            arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
-                            EndIf
-                        EndIf
-                        If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
-                    EndIf
-                    arg0\Field38 = (arg0\Field38 - fpsfactor)
-                ElseIf (0.0 <> arg0\Field60) Then
-                    local15 = createpivot($00)
-                    positionentity(local15, arg0\Field60, 0.5, arg0\Field61, $00)
-                    pointentity(arg0\Field4, local15, 0.0)
-                    rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                    arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                    translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                    animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                    If (0.2 > distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), arg0\Field60, arg0\Field61)) Then
-                        arg0\Field60 = 0.0
-                        arg0\Field61 = 0.0
-                        arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
-                    EndIf
-                    freeentity(local15)
-                Else
-                    arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                    If (arg0\Field47 = Null) Then
-                        If (rand($01, $23) = $01) Then
-                            rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                        EndIf
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field22 = 0.0
-                    ElseIf (1.0 < entitydistance(arg0\Field4, arg0\Field47\Field4)) Then
-                        pointentity(arg0\Field4, arg0\Field47\Field4, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                    Else
-                        If (rand($01, $23) = $01) Then
-                            rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                        EndIf
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field22 = 0.0
-                    EndIf
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                EndIf
-                local17 = menpcseesplayer(arg0, $00)
-                If (notarget <> 0) Then
-                    local17 = $00
-                EndIf
-                If (local17 > $00) Then
-                    If (((arg0\Field26 > $00) And (arg0\Field26 < $41A)) <> 0) Then
-                        If (local17 < $02) Then
-                            If (arg0\Field16 <> $00) Then
-                                freesound_strict(arg0\Field16)
-                                arg0\Field16 = $00
-                            EndIf
-                            arg0\Field16 = loadsound_strict((("SFX\Character\MTF\ThereHeIs" + (Str rand($01, $06))) + ".ogg"))
-                            playmtfsound(arg0\Field16, arg0)
-                        EndIf
-                    ElseIf (local17 = $01) Then
-                        If (arg0\Field16 <> $00) Then
-                            freesound_strict(arg0\Field16)
-                            arg0\Field16 = $00
-                        EndIf
-                        arg0\Field16 = loadsound_strict((("SFX\Character\MTF\Stop" + (Str rand($01, $06))) + ".ogg"))
-                        playmtfsound(arg0\Field16, arg0)
-                    ElseIf (local17 = $02) Then
-                        playmtfsound(mtfsfx(rand($00, $03)), arg0)
-                    EndIf
-                    arg0\Field26 = (Int (rnd(30.0, 40.0) * 70.0))
-                    arg0\Field27 = 1.0
-                    arg0\Field9 = 1.0
-                    arg0\Field33 = entityx(arg0\Field73, $01)
-                    arg0\Field34 = entityy(arg0\Field73, $01)
-                    arg0\Field35 = entityz(arg0\Field73, $01)
-                    arg0\Field10 = ((15.0 * (Float local17)) * 70.0)
-                    debuglog(("player spotted :" + (Str arg0\Field10)))
-                    arg0\Field38 = 0.0
-                    arg0\Field37 = $00
-                    arg0\Field25 = (Float ($C8 - (selecteddifficulty\Field3 * $64)))
-                EndIf
-                If (2.0 > curr173\Field24) Then
-                    local18 = max(min((distance(entityx(curr173\Field4, $00), entityz(curr173\Field4, $00), curr173\Field28, curr173\Field30) * 2.5), 1.0), 0.0)
-                    If ((othernpcseesmenpc(curr173, arg0) Or ((0.0 < local18) And (6.0 > entitydistance(arg0\Field4, curr173\Field4)))) <> 0) Then
-                        If ((entityvisible(arg0\Field4, curr173\Field4) Or (0.0 < local18)) <> 0) Then
-                            arg0\Field9 = 2.0
-                            arg0\Field33 = entityx(curr173\Field4, $01)
-                            arg0\Field34 = entityy(curr173\Field4, $01)
-                            arg0\Field35 = entityz(curr173\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field16 <> $00) Then
-                                freesound_strict(arg0\Field16)
-                                arg0\Field16 = $00
-                            EndIf
-                            arg0\Field16 = loadsound_strict((("SFX\Character\MTF\173\Spotted" + (Str rand($01, $02))) + ".ogg"))
-                            playmtfsound(arg0\Field16, arg0)
-                        EndIf
-                    EndIf
-                EndIf
-                If (0.0 >= curr106\Field9) Then
-                    If ((othernpcseesmenpc(curr106, arg0) Or (3.0 > entitydistance(arg0\Field4, curr106\Field4))) <> 0) Then
-                        If (entityvisible(arg0\Field4, curr106\Field4) <> 0) Then
-                            arg0\Field9 = 4.0
-                            arg0\Field33 = entityx(curr106\Field4, $01)
-                            arg0\Field34 = entityy(curr106\Field4, $01)
-                            arg0\Field35 = entityz(curr106\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                            arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field16 <> $00) Then
-                                freesound_strict(arg0\Field16)
-                                arg0\Field16 = $00
-                            EndIf
-                            arg0\Field16 = loadsound_strict((("SFX\Character\MTF\106\Spotted" + (Str rand($01, $03))) + ".ogg"))
-                            playmtfsound(arg0\Field16, arg0)
-                        EndIf
-                    EndIf
-                EndIf
-                If (curr096 <> Null) Then
-                    If (othernpcseesmenpc(curr096, arg0) <> 0) Then
-                        If (entityvisible(arg0\Field4, curr096\Field4) <> 0) Then
-                            arg0\Field9 = 8.0
-                            arg0\Field33 = entityx(curr096\Field4, $01)
-                            arg0\Field34 = entityy(curr096\Field4, $01)
-                            arg0\Field35 = entityz(curr096\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field16 <> $00) Then
-                                freesound_strict(arg0\Field16)
-                                arg0\Field16 = $00
-                            EndIf
-                            arg0\Field16 = loadsound_strict((("SFX\Character\MTF\096\Spotted" + (Str rand($01, $02))) + ".ogg"))
-                            playmtfsound(arg0\Field16, arg0)
-                        EndIf
-                    EndIf
-                EndIf
-                For local6 = Each npcs
-                    If (local6\Field5 = $0A) Then
-                        If (othernpcseesmenpc(local6, arg0) <> 0) Then
-                            If (entityvisible(arg0\Field4, local6\Field4) <> 0) Then
-                                arg0\Field9 = 4.0
-                                arg0\Field33 = entityx(local6\Field4, $01)
-                                arg0\Field34 = entityy(local6\Field4, $01)
-                                arg0\Field35 = entityz(local6\Field4, $01)
-                                arg0\Field10 = 1050.0
-                                arg0\Field11 = 0.0
-                                arg0\Field38 = 0.0
-                                arg0\Field37 = $00
-                                arg0\Field31 = local6
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict((("SFX\Character\MTF\049\Spotted" + (Str rand($01, $05))) + ".ogg"))
-                                playmtfsound(arg0\Field16, arg0)
-                                Exit
-                            EndIf
-                        EndIf
-                    ElseIf (((local6\Field5 = $0B) And (local6\Field48 = $00)) <> 0) Then
-                        If (othernpcseesmenpc(local6, arg0) <> 0) Then
-                            If (entityvisible(arg0\Field4, local6\Field4) <> 0) Then
-                                arg0\Field9 = 9.0
-                                arg0\Field33 = entityx(local6\Field4, $01)
-                                arg0\Field34 = entityy(local6\Field4, $01)
-                                arg0\Field35 = entityz(local6\Field4, $01)
-                                arg0\Field10 = 1050.0
-                                arg0\Field11 = 0.0
-                                arg0\Field38 = 0.0
-                                arg0\Field37 = $00
-                                arg0\Field31 = local6
-                                arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict("SFX\Character\MTF\049\Player0492_1.ogg")
-                                playmtfsound(arg0\Field16, arg0)
-                                Exit
-                            EndIf
-                        EndIf
-                    ElseIf (((local6\Field5 = $15) And (local6\Field48 = $00)) <> 0) Then
-                        If (othernpcseesmenpc(local6, arg0) <> 0) Then
-                            If (entityvisible(arg0\Field4, local6\Field4) <> 0) Then
-                                arg0\Field9 = 9.0
-                                arg0\Field33 = entityx(local6\Field4, $01)
-                                arg0\Field34 = entityy(local6\Field4, $01)
-                                arg0\Field35 = entityz(local6\Field4, $01)
-                                arg0\Field10 = 1050.0
-                                arg0\Field11 = 0.0
-                                arg0\Field38 = 0.0
-                                arg0\Field37 = $00
-                                arg0\Field31 = local6
-                                arg0\Field25 = 350.0
-                                debuglog(("008 spotted :" + (Str arg0\Field10)))
-                                Exit
-                            EndIf
-                        EndIf
-                    EndIf
-                Next
-            Case $01
-                arg0\Field21 = 0.015
-                arg0\Field10 = (arg0\Field10 - fpsfactor)
-                If (menpcseesplayer(arg0, $00) = $01) Then
-                    If (4.0 > (Float local19)) Then
-                        local20 = vectoryaw((entityx(arg0\Field73, $00) - entityx(arg0\Field4, $00)), 0.0, (entityz(arg0\Field73, $00) - entityz(arg0\Field4, $00)))
-                        rotateentity(arg0\Field4, 0.0, curveangle(local20, entityyaw(arg0\Field4, $00), 10.0), 0.0, $01)
-                        arg0\Field15 = entityyaw(arg0\Field4, $00)
-                        If (((0.0 >= arg0\Field25) And (0.0 = killtimer)) <> 0) Then
-                            If (entityvisible(arg0\Field4, camera) <> 0) Then
-                                local20 = wrapangle((local20 - entityyaw(arg0\Field4, $00)))
-                                If (((5.0 > local20) Or (355.0 < local20)) <> 0) Then
-                                    local21 = (Int killtimer)
-                                    playsound2(gunshotsfx, camera, arg0\Field4, 15.0, 1.0)
-                                    local15 = createpivot($00)
-                                    rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
-                                    positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
-                                    moveentity(local15, 0.0632, 0.84925, 0.5451)
-                                    shoot(arg0, entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), (5.0 / (Float local19)), $00, $00)
-                                    arg0\Field25 = 7.0
-                                    freeentity(local15)
-                                    deathmsg = "Subject D-9341. Died of blood loss after being shot by Nine-Tailed Fox."
-                                    If (((local21 >= $00) And (0.0 > killtimer)) <> 0) Then
-                                        deathmsg = "Subject D-9341. Terminated by Nine-Tailed Fox."
-                                        playmtfsound(loadtempsound((("SFX\Character\MTF\Targetterminated" + (Str rand($01, $04))) + ".ogg")), arg0)
-                                    EndIf
-                                EndIf
-                            EndIf
-                        EndIf
-                        For local6 = Each npcs
-                            If (((local6\Field5 = $08) And (local6 <> arg0)) <> 0) Then
-                                If (0.0 = local6\Field9) Then
-                                    If (6.0 > entitydistance(arg0\Field4, local6\Field4)) Then
-                                        arg0\Field12 = $01
-                                        local6\Field26 = (Int (rnd(30.0, 40.0) * 70.0))
-                                        local6\Field27 = 1.0
-                                        local6\Field9 = 1.0
-                                        local6\Field33 = entityx(arg0\Field73, $01)
-                                        local6\Field34 = entityy(arg0\Field73, $01)
-                                        local6\Field35 = entityz(arg0\Field73, $01)
-                                        local6\Field10 = arg0\Field10
-                                        local6\Field38 = 0.0
-                                        local6\Field37 = $00
-                                        local6\Field25 = (Float ($C8 - (selecteddifficulty\Field3 * $64)))
-                                        local6\Field12 = $00
-                                    EndIf
-                                EndIf
-                            EndIf
-                        Next
-                        If (arg0\Field12 = $01) Then
-                            setnpcframe(arg0, 423.0)
-                            arg0\Field12 = $02
-                        ElseIf (arg0\Field12 = $02) Then
-                            If (200.0 < arg0\Field14) Then
-                                arg0\Field22 = curvevalue(0.0, arg0\Field22, 20.0)
-                                animatenpc(arg0, 423.0, 463.0, 0.4, $00)
-                                If (462.9 < arg0\Field14) Then
-                                    arg0\Field14 = 78.0
-                                EndIf
-                            Else
-                                animatenpc(arg0, 78.0, 193.0, 0.2, $00)
-                                arg0\Field22 = curvevalue(0.0, arg0\Field22, 20.0)
-                            EndIf
-                        ElseIf (958.0 < arg0\Field14) Then
-                            animatenpc(arg0, 1374.0, 1383.0, 0.3, $00)
-                            arg0\Field22 = curvevalue(0.0, arg0\Field22, 20.0)
-                            If (1382.9 < arg0\Field14) Then
-                                arg0\Field14 = 78.0
-                            EndIf
-                        Else
-                            animatenpc(arg0, 78.0, 193.0, 0.2, $00)
-                            arg0\Field22 = curvevalue(0.0, arg0\Field22, 20.0)
-                        EndIf
-                    Else
-                        positionentity(arg0\Field0, arg0\Field33, arg0\Field34, arg0\Field35, $01)
-                        pointentity(arg0\Field4, arg0\Field0, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                    EndIf
-                Else
-                    arg0\Field26 = (Int ((Float arg0\Field26) - fpsfactor))
-                    If (7.0 >= arg0\Field25) Then
-                        arg0\Field25 = 7.0
-                    EndIf
-                    If (0.0 >= arg0\Field38) Then
-                        arg0\Field37 = findpath(arg0, arg0\Field33, (arg0\Field34 + 0.1), arg0\Field35)
-                        arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
-                    ElseIf (175.0 >= arg0\Field38) Then
-                        arg0\Field38 = (arg0\Field38 - fpsfactor)
-                        arg0\Field22 = 0.0
-                        If (rand($01, $23) = $01) Then
-                            rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                        EndIf
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                    ElseIf (arg0\Field37 = $02) Then
-                        arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                        arg0\Field22 = 0.0
-                        If (rand($01, $23) = $01) Then
-                            rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                        EndIf
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                    ElseIf (arg0\Field37 = $01) Then
-                        If (arg0\Field36[arg0\Field39] = Null) Then
-                            If (arg0\Field39 > $13) Then
-                                arg0\Field39 = $00
-                                arg0\Field37 = $00
-                            Else
-                                arg0\Field39 = (arg0\Field39 + $01)
-                            EndIf
-                        Else
-                            local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                            pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                            arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                            translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                            animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                            local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                            If (((1.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                                If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                    local16 = $00
-                                    If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                        local16 = $00
+                                    freeentity(local10)
+                                    local10 = $00
+                                    If (((2.56 < distancesquared(entityx(arg0\Field3, $00), (local0\Field3 + 18.5), entityz(arg0\Field3, $00), (local0\Field5 + 14.74219), 0.0, 0.0)) And (local9 = $00)) <> 0) Then
+                                        local12 = (local0\Field3 + 18.5)
+                                        local13 = (local0\Field4 + 1.640625)
+                                        local14 = (local0\Field5 + 14.74219)
+                                        Exit
+                                    ElseIf (((2.56 < distancesquared(entityx(arg0\Field3, $00), (local0\Field3 + 18.5), entityz(arg0\Field3, $00), (local0\Field5 + 14.74219), 0.0, 0.0)) And local9) <> 0) Then
+                                        arg0\Field36 = (local0\Field3 + 18.5)
+                                        arg0\Field37 = (local0\Field4 + 1.640625)
+                                        arg0\Field38 = (local0\Field5 + 14.74219)
+                                        Exit
                                     Else
-                                        local16 = rand($00, $02)
-                                    EndIf
-                                    playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                    playmtfsound(mtfsfx($05), arg0)
-                                EndIf
-                                arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                    arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
-                                EndIf
-                            EndIf
-                            If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                                arg0\Field39 = (arg0\Field39 + $01)
-                            EndIf
-                        EndIf
-                        arg0\Field38 = (arg0\Field38 - fpsfactor)
-                    Else
-                        positionentity(arg0\Field0, arg0\Field33, arg0\Field34, arg0\Field35, $01)
-                        If (((0.2 > distance(entityx(arg0\Field4, $01), entityz(arg0\Field4, $01), arg0\Field33, arg0\Field35)) Or (entityvisible(arg0\Field0, arg0\Field4) = $00)) <> 0) Then
-                            If (rand($01, $23) = $01) Then
-                                rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                            EndIf
-                            finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                            If (rand($01, $23) = $01) Then
-                                For local22 = Each waypoints
-                                    If (rand($01, $03) = $01) Then
-                                        If (6.0 > entitydistance(local22\Field0, arg0\Field4)) Then
-                                            arg0\Field33 = entityx(local22\Field0, $01)
-                                            arg0\Field34 = entityy(local22\Field0, $01)
-                                            arg0\Field35 = entityz(local22\Field0, $01)
-                                            arg0\Field38 = 0.0
-                                            Exit
+                                        loadnpcsound(arg0, (("SFX\Character\MTF\173\Cont" + (Str rand($00, $03))) + ".ogg"), $00)
+                                        playmtfsound(arg0\Field17, arg0)
+                                        playannouncement("SFX\Character\MTF\Announc173Contain.ogg", $01)
+                                        If (local0\Field14[$00]\Field6 <> 0) Then
+                                            openclosedoor(local0\Field14[$00], $01, $00)
                                         EndIf
-                                    EndIf
-                                Next
-                            EndIf
-                            arg0\Field38 = (arg0\Field38 - fpsfactor)
-                        Else
-                            pointentity(arg0\Field4, arg0\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                            arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                            translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                            animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                        EndIf
-                    EndIf
-                    If ((((arg0\Field47 = Null) And (arg0\Field26 < $834)) And (2100.0 <= ((Float arg0\Field26) + fpsfactor))) <> 0) Then
-                        If (rand($02, $01) = $01) Then
-                            playmtfsound(loadtempsound((("SFX\Character\MTF\Searching" + (Str rand($01, $06))) + ".ogg")), arg0)
-                        EndIf
-                    EndIf
-                EndIf
-                If (((0.0 >= arg0\Field10) And (0.0 < (arg0\Field10 + fpsfactor))) <> 0) Then
-                    If (arg0\Field47 = Null) Then
-                        debuglog(("targetlost: " + (Str arg0\Field10)))
-                        playmtfsound(loadtempsound((("SFX\Character\MTF\Targetlost" + (Str rand($01, $03))) + ".ogg")), arg0)
-                        If (0.0 = mtf_camerachecktimer) Then
-                            If (rand(($0F - (selecteddifficulty\Field3 * $07)), $01) = $01) Then
-                                playannouncement("SFX\Character\MTF\AnnouncCameraCheck.ogg", $01, $00)
-                                mtf_camerachecktimer = fpsfactor
-                            EndIf
-                        EndIf
-                    EndIf
-                    arg0\Field9 = 0.0
-                EndIf
-                If (2.0 > curr173\Field24) Then
-                    local18 = max(min((distance(entityx(curr173\Field4, $00), entityz(curr173\Field4, $00), curr173\Field28, curr173\Field30) * 2.5), 1.0), 0.0)
-                    If ((othernpcseesmenpc(curr173, arg0) Or ((0.0 < local18) And (6.0 > entitydistance(arg0\Field4, curr173\Field4)))) <> 0) Then
-                        If ((entityvisible(arg0\Field4, curr173\Field4) Or (0.0 < local18)) <> 0) Then
-                            arg0\Field9 = 2.0
-                            arg0\Field33 = entityx(curr173\Field4, $01)
-                            arg0\Field34 = entityy(curr173\Field4, $01)
-                            arg0\Field35 = entityz(curr173\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field16 <> $00) Then
-                                freesound_strict(arg0\Field16)
-                                arg0\Field16 = $00
-                            EndIf
-                            arg0\Field16 = loadsound_strict("SFX\Character\MTF\173\Spotted3.ogg")
-                            playmtfsound(arg0\Field16, arg0)
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                        EndIf
-                    EndIf
-                EndIf
-                If (0.0 >= curr106\Field9) Then
-                    If ((othernpcseesmenpc(curr106, arg0) Or (3.0 > entitydistance(arg0\Field4, curr106\Field4))) <> 0) Then
-                        If (entityvisible(arg0\Field4, curr106\Field4) <> 0) Then
-                            arg0\Field9 = 4.0
-                            arg0\Field33 = entityx(curr106\Field4, $01)
-                            arg0\Field34 = entityy(curr106\Field4, $01)
-                            arg0\Field35 = entityz(curr106\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                            arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field47 = Null) Then
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict("SFX\Character\MTF\106\Spotted4.ogg")
-                                playmtfsound(arg0\Field16, arg0)
-                            EndIf
-                        EndIf
-                    EndIf
-                EndIf
-                If (curr096 <> Null) Then
-                    If (othernpcseesmenpc(curr096, arg0) <> 0) Then
-                        If (entityvisible(arg0\Field4, curr096\Field4) <> 0) Then
-                            arg0\Field9 = 8.0
-                            arg0\Field33 = entityx(curr096\Field4, $01)
-                            arg0\Field34 = entityy(curr096\Field4, $01)
-                            arg0\Field35 = entityz(curr096\Field4, $01)
-                            arg0\Field10 = 1050.0
-                            arg0\Field11 = 0.0
-                            arg0\Field38 = 0.0
-                            arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
-                            If (arg0\Field47 = Null) Then
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict((("SFX\Character\MTF\096\Spotted" + (Str rand($01, $02))) + ".ogg"))
-                                playmtfsound(arg0\Field16, arg0)
-                            EndIf
-                        EndIf
-                    EndIf
-                EndIf
-                For local6 = Each npcs
-                    If (local6\Field5 = $0A) Then
-                        If (othernpcseesmenpc(local6, arg0) <> 0) Then
-                            If (entityvisible(arg0\Field4, local6\Field4) <> 0) Then
-                                arg0\Field9 = 4.0
-                                arg0\Field33 = entityx(local6\Field4, $01)
-                                arg0\Field34 = entityy(local6\Field4, $01)
-                                arg0\Field35 = entityz(local6\Field4, $01)
-                                arg0\Field10 = 1050.0
-                                arg0\Field11 = 0.0
-                                arg0\Field38 = 0.0
-                                arg0\Field37 = $00
-                                arg0\Field31 = local6
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict((("SFX\Character\MTF\049\Spotted" + (Str rand($01, $05))) + ".ogg"))
-                                playmtfsound(arg0\Field16, arg0)
-                                Exit
-                            EndIf
-                        EndIf
-                    ElseIf (((local6\Field5 = $0B) And (local6\Field48 = $00)) <> 0) Then
-                        If (othernpcseesmenpc(local6, arg0) <> 0) Then
-                            If (entityvisible(arg0\Field4, local6\Field4) <> 0) Then
-                                arg0\Field9 = 9.0
-                                arg0\Field33 = entityx(local6\Field4, $01)
-                                arg0\Field34 = entityy(local6\Field4, $01)
-                                arg0\Field35 = entityz(local6\Field4, $01)
-                                arg0\Field10 = 1050.0
-                                arg0\Field11 = 0.0
-                                arg0\Field38 = 0.0
-                                arg0\Field37 = $00
-                                arg0\Field31 = local6
-                                arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
-                                If (arg0\Field16 <> $00) Then
-                                    freesound_strict(arg0\Field16)
-                                    arg0\Field16 = $00
-                                EndIf
-                                arg0\Field16 = loadsound_strict("SFX\Character\MTF\049\Player0492_1.ogg")
-                                playmtfsound(arg0\Field16, arg0)
-                                Exit
-                            EndIf
-                        EndIf
-                    EndIf
-                Next
-            Case $02
-                If (2.0 = curr173\Field24) Then
-                    arg0\Field9 = 0.0
-                Else
-                    For local6 = Each npcs
-                        If (local6 <> arg0) Then
-                            If (local6\Field5 = $08) Then
-                                local6\Field9 = 2.0
-                            EndIf
-                        EndIf
-                    Next
-                    local23 = distance(entityx(arg0\Field4, $01), entityz(arg0\Field4, $01), entityx(curr173\Field4, $01), entityz(curr173\Field4, $01))
-                    If (5.0 > local23) Then
-                        If (2.0 <> curr173\Field24) Then
-                            curr173\Field24 = 1.0
-                        EndIf
-                        arg0\Field10 = 1050.0
-                        arg0\Field38 = 0.0
-                        local24 = 1.0
-                        If (arg0\Field47 <> Null) Then
-                            local24 = 2.0
-                        EndIf
-                        If (local24 > local23) Then
-                            If (arg0\Field47 = Null) Then
-                                arg0\Field11 = (arg0\Field11 + fpsfactor)
-                                debuglog(("CONTAINING 173: " + (Str arg0\Field11)))
-                                If (1050.0 <= arg0\Field11) Then
-                                    curr173\Field24 = 2.0
-                                    If (arg0\Field47 = Null) Then
-                                        curr173\Field31 = arg0
-                                    EndIf
-                                    If (arg0\Field16 <> $00) Then
-                                        freesound_strict(arg0\Field16)
-                                        arg0\Field16 = $00
-                                    EndIf
-                                    arg0\Field16 = loadsound_strict((("SFX\Character\MTF\173\Box" + (Str rand($01, $03))) + ".ogg"))
-                                    playmtfsound(arg0\Field16, arg0)
-                                EndIf
-                            EndIf
-                            positionentity(arg0\Field0, entityx(curr173\Field4, $01), entityy(curr173\Field4, $01), entityz(curr173\Field4, $01), $01)
-                            pointentity(arg0\Field4, arg0\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        Else
-                            positionentity(arg0\Field0, entityx(curr173\Field4, $01), entityy(curr173\Field4, $01), entityz(curr173\Field4, $01), $01)
-                            pointentity(arg0\Field4, arg0\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                            arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                            translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                            animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                        EndIf
-                    Else
-                        If (2.0 <> curr173\Field24) Then
-                            curr173\Field24 = 0.0
-                        EndIf
-                        If (0.0 >= arg0\Field38) Then
-                            arg0\Field37 = findpath(arg0, entityx(curr173\Field4, $01), (entityy(curr173\Field4, $01) + 0.1), entityz(curr173\Field4, $01))
-                            arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
-                        ElseIf (175.0 >= arg0\Field38) Then
-                            arg0\Field38 = (arg0\Field38 - fpsfactor)
-                            arg0\Field22 = 0.0
-                            If (rand($01, $23) = $01) Then
-                                rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                            EndIf
-                            finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        ElseIf (arg0\Field37 = $02) Then
-                            arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                            arg0\Field22 = 0.0
-                            If (rand($01, $23) = $01) Then
-                                rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                            EndIf
-                            finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        ElseIf (arg0\Field37 = $01) Then
-                            If (arg0\Field36[arg0\Field39] = Null) Then
-                                If (arg0\Field39 > $13) Then
-                                    arg0\Field39 = $00
-                                    arg0\Field37 = $00
-                                Else
-                                    arg0\Field39 = (arg0\Field39 + $01)
-                                EndIf
-                            Else
-                                local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                                pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                                rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                                arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                                rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                                arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                                translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                                animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                                local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                                If (((1.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                                    If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                        local16 = $00
-                                        If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                            local16 = $00
-                                        Else
-                                            local16 = rand($00, $02)
-                                        EndIf
-                                        playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                        playmtfsound(mtfsfx($05), arg0)
-                                    EndIf
-                                    arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                    If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                        arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
-                                    EndIf
-                                EndIf
-                                If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                                    arg0\Field39 = (arg0\Field39 + $01)
-                                EndIf
-                            EndIf
-                            arg0\Field38 = (arg0\Field38 - fpsfactor)
-                        Else
-                            arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                            arg0\Field22 = 0.0
-                            If (rand($01, $23) = $01) Then
-                                rotateentity(arg0\Field4, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                            EndIf
-                            finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        EndIf
-                    EndIf
-                EndIf
-            Case $03
-                arg0\Field15 = curvevalue(0.0, arg0\Field15, 40.0)
-                If (arg0\Field37 = $02) Then
-                    arg0\Field9 = 5.0
-                    arg0\Field22 = 0.0
-                ElseIf (arg0\Field37 = $01) Then
-                    If (arg0\Field36[arg0\Field39] = Null) Then
-                        If (arg0\Field39 > $13) Then
-                            arg0\Field39 = $00
-                            arg0\Field37 = $00
-                            If (arg0\Field26 > $00) Then
-                                arg0\Field9 = 5.0
-                            EndIf
-                        Else
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
-                    Else
-                        If (arg0\Field36[arg0\Field39]\Field1 <> Null) Then
-                            If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                arg0\Field36[arg0\Field39]\Field1\Field11 = 560.0
-                                playmtfsound(mtfsfx($05), arg0)
-                            EndIf
-                        EndIf
-                        If (local9 < (hidedistance * 0.7)) Then
-                            local10 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                            pointentity(arg0\Field0, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field4, $00), 10.0), 0.0, $00)
-                            If (0.0 = arg0\Field24) Then
-                                arg0\Field22 = curvevalue((arg0\Field21 * max(min(local10, 1.0), 0.1)), arg0\Field22, 20.0)
-                                moveentity(arg0\Field4, 0.0, 0.0, (arg0\Field22 * fpsfactor))
-                                If (0.5 > entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)) Then
-                                    arg0\Field39 = (arg0\Field39 + $01)
-                                EndIf
-                            EndIf
-                        ElseIf (rand($14, $01) = $01) Then
-                            positionentity(arg0\Field4, entityx(arg0\Field36[arg0\Field39]\Field0, $01), (entityy(arg0\Field36[arg0\Field39]\Field0, $01) + 0.25), entityz(arg0\Field36[arg0\Field39]\Field0, $01), $01)
-                            arg0\Field39 = (arg0\Field39 + $01)
-                            resetentity(arg0\Field4)
-                        EndIf
-                    EndIf
-                Else
-                    arg0\Field22 = 0.0
-                    arg0\Field9 = 5.0
-                EndIf
-                If (((0.0 = arg0\Field24) And (arg0\Field37 = $01)) <> 0) Then
-                    If (hidedistance > local9) Then
-                        If (959.0 < arg0\Field14) Then
-                            animatenpc(arg0, 1376.0, 1383.0, 0.2, $00)
-                            If (1382.9 < arg0\Field14) Then
-                                arg0\Field14 = 488.0
-                            EndIf
-                        Else
-                            animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 30.0), $01)
-                        EndIf
-                    EndIf
-                Else
-                    If (hidedistance > local9) Then
-                        If (arg0\Field26 > $00) Then
-                            animatenpc(arg0, 78.0, 312.0, 0.2, $01)
-                        ElseIf (962.0 > arg0\Field14) Then
-                            If (487.0 < arg0\Field14) Then
-                                arg0\Field14 = 463.0
-                            EndIf
-                            animatenpc(arg0, 463.0, 487.0, 0.3, $00)
-                            If (486.9 < arg0\Field14) Then
-                                arg0\Field14 = 962.0
-                            EndIf
-                        Else
-                            animatenpc(arg0, 962.0, 1259.0, 0.3, $01)
-                        EndIf
-                    EndIf
-                    arg0\Field22 = curvevalue(0.0, arg0\Field22, 20.0)
-                EndIf
-                arg0\Field15 = entityyaw(arg0\Field4, $00)
-            Case $04
-                arg0\Field21 = 0.03
-                arg0\Field10 = (arg0\Field10 - fpsfactor)
-                If (0.0 < arg0\Field10) Then
-                    If (othernpcseesmenpc(arg0\Field31, arg0) <> 0) Then
-                        arg0\Field10 = 1050.0
-                    EndIf
-                    If (hidedistance < entitydistance(arg0\Field31\Field4, arg0\Field4)) Then
-                        If (70.0 < arg0\Field10) Then
-                            arg0\Field10 = 70.0
-                        EndIf
-                    EndIf
-                    If (((3.0 > entitydistance(arg0\Field31\Field4, arg0\Field4)) And (0.0 <= arg0\Field11)) <> 0) Then
-                        arg0\Field11 = 350.0
-                    EndIf
-                    If (0.0 < arg0\Field11) Then
-                        arg0\Field37 = $00
-                        arg0\Field39 = $00
-                        arg0\Field21 = 0.02
-                        pointentity(arg0\Field4, arg0\Field31\Field4, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        arg0\Field22 = curvevalue((- arg0\Field21), arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 522.0, 488.0, (arg0\Field22 * 26.0), $01)
-                        arg0\Field38 = 1.0
-                        arg0\Field11 = max((arg0\Field11 - fpsfactor), 0.0)
-                        hideentity(arg0\Field4)
-                        turnentity(arg0\Field4, 0.0, 180.0, 0.0, $00)
-                        entitypick(arg0\Field4, 1.0)
-                        If (pickedentity() <> $00) Then
-                            arg0\Field11 = -140.0
-                        EndIf
-                        showentity(arg0\Field4)
-                        turnentity(arg0\Field4, 0.0, 180.0, 0.0, $00)
-                    ElseIf (0.0 > arg0\Field11) Then
-                        arg0\Field11 = min((arg0\Field11 + fpsfactor), 0.0)
-                    EndIf
-                    If (0.0 >= arg0\Field38) Then
-                        If (arg0\Field47 <> Null) Then
-                            arg0\Field37 = findpath(arg0, entityx(arg0\Field47\Field4, $01), (entityy(arg0\Field47\Field4, $01) + 0.1), entityz(arg0\Field47\Field4, $01))
-                        Else
-                            For local3 = Each rooms
-                                If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                    If (6.0 < entitydistance(local3\Field2, arg0\Field31\Field4)) Then
-                                        local0 = local3\Field3
-                                        local1 = 0.1
-                                        local2 = local3\Field5
-                                        debuglog(local3\Field7\Field11)
+                                        n_i\Field2\Field26 = 3.0
                                         Exit
                                     EndIf
                                 EndIf
                             Next
-                            arg0\Field37 = findpath(arg0, local0, local1, local2)
-                        EndIf
-                        If (arg0\Field37 = $01) Then
-                            While (arg0\Field36[arg0\Field39] = Null)
-                                If (arg0\Field39 > $13) Then
+                        Else
+                            For local0 = Each rooms
+                                If ((((12.0 < (Abs (local0\Field3 - entityx(arg0\Field3, $01)))) Lor (12.0 < (Abs (local0\Field5 - entityz(arg0\Field3, $01))))) And (rand((Int max((Float ($04 - (Int (Abs (local0\Field5 - (entityz(arg0\Field3, $01) / 8.0)))))), 2.0)), $01) = $01)) <> 0) Then
+                                    local12 = local0\Field3
+                                    local13 = 0.1
+                                    local14 = local0\Field5
                                     Exit
                                 EndIf
-                                arg0\Field39 = (arg0\Field39 + $01)
+                            Next
+                        EndIf
+                        If (((0.0 = arg0\Field36) And (0.0 = arg0\Field38)) <> 0) Then
+                            arg0\Field40 = findpath(arg0, local12, local13, local14)
+                        Else
+                            arg0\Field10 = 3.0
+                        EndIf
+                    EndIf
+                    If (arg0\Field40 = $01) Then
+                        While (arg0\Field39[arg0\Field42] = Null)
+                            If (arg0\Field42 > $14) Then
+                                arg0\Field42 = $00
+                                arg0\Field40 = $00
+                                Exit
+                            Else
+                                arg0\Field42 = (arg0\Field42 + $01)
+                            EndIf
+                        Wend
+                        If (arg0\Field42 < $14) Then
+                            If (((arg0\Field39[arg0\Field42] <> Null) And (arg0\Field39[(arg0\Field42 + $01)] <> Null)) <> 0) Then
+                                If (arg0\Field39[arg0\Field42]\Field1 = Null) Then
+                                    If ((Abs deltayaw(arg0\Field3, arg0\Field39[(arg0\Field42 + $01)]\Field0)) < (Abs deltayaw(arg0\Field3, arg0\Field39[arg0\Field42]\Field0))) Then
+                                        arg0\Field42 = (arg0\Field42 + $01)
+                                    EndIf
+                                EndIf
+                            EndIf
+                        EndIf
+                        usedoornpc(arg0, $01, $00)
+                    EndIf
+                    arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
+                ElseIf (((175.0 >= arg0\Field41) And (local18 = Null)) <> 0) Then
+                    arg0\Field24 = 0.0
+                    If (rand($23, $01) = $01) Then
+                        rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                    EndIf
+                    finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                    arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                    arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                Else
+                    If (arg0\Field40 = $02) Then
+                        arg0\Field24 = 0.0
+                        If (rand($23, $01) = $01) Then
+                            rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                        EndIf
+                        finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                        arg0\Field41 = (arg0\Field41 - local17)
+                    ElseIf (arg0\Field40 = $01) Then
+                        If (arg0\Field39[arg0\Field42] = Null) Then
+                            If (arg0\Field42 > $14) Then
+                                arg0\Field42 = $00
+                                arg0\Field40 = $00
+                            Else
+                                arg0\Field42 = (arg0\Field42 + $01)
+                            EndIf
+                        Else
+                            pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                            rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                            usedoornpc(arg0, $01, $01)
+                        EndIf
+                        arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                    Else
+                        If (local18 = Null) Then
+                            arg0\Field24 = 0.0
+                            If (rand($23, $01) = $01) Then
+                                rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                            EndIf
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                        ElseIf (((1.0 <= local8) And (0.0 >= arg0\Field12)) <> 0) Then
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            pointentity(arg0\Field3, local18\Field3, 0.0)
+                            rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        ElseIf (0.0 >= arg0\Field12) Then
+                            arg0\Field24 = 0.0
+                            If (rand($23, $01) = $01) Then
+                                rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                            EndIf
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                        Else
+                            arg0\Field24 = curvevalue((- arg0\Field23), arg0\Field24, 20.0)
+                            pointentity(arg0\Field3, local18\Field3, 0.0)
+                            rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 522.0, 488.0, (arg0\Field24 * 26.0), $01)
+                        EndIf
+                        arg0\Field41 = (arg0\Field41 - local17)
+                    EndIf
+                    arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                EndIf
+                If (0.0 >= arg0\Field66) Then
+                    If (arg0\Field34 = Null) Then
+                        local16 = npcseesplayer(arg0, ((4.0 - me\Field40) + me\Field42), 60.0, $00)
+                        If (local16 > $00) Then
+                            If (((arg0\Field29 > $00) And (1050.0 > (Float arg0\Field29))) <> 0) Then
+                                If (local16 < $02) Then
+                                    loadnpcsound(arg0, (("SFX\Character\MTF\ThereHeIs" + (Str rand($00, $05))) + ".ogg"), $00)
+                                    playmtfsound(arg0\Field17, arg0)
+                                EndIf
+                            ElseIf (local16 = $01) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\Stop" + (Str rand($00, $05))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            ElseIf (local16 = $02) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\ClassD" + (Str rand($00, $03))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            arg0\Field36 = entityx(me\Field60, $01)
+                            arg0\Field37 = entityy(me\Field60, $01)
+                            arg0\Field38 = entityz(me\Field60, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field29 = (Int (rnd(30.0, 40.0) * 70.0))
+                            arg0\Field28 = ((3.0 - (Float selecteddifficulty\Field2)) * 70.0)
+                            arg0\Field11 = ((15.0 * (Float local16)) * 70.0)
+                            arg0\Field10 = 1.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (2.0 > n_i\Field2\Field26) Then
+                        If (npcseesnpc(n_i\Field2, arg0, 36.0) > $00) Then
+                            If (local18 = Null) Then
+                                If (0.0 < arg0\Field11) Then
+                                    loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
+                                Else
+                                    loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                EndIf
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            For local2 = Each npcs
+                                If (local2\Field4 = $15) Then
+                                    local2\Field36 = entityx(n_i\Field2\Field3, $01)
+                                    local2\Field37 = entityy(n_i\Field2\Field3, $01)
+                                    local2\Field38 = entityz(n_i\Field2\Field3, $01)
+                                    local2\Field41 = 0.0
+                                    local2\Field40 = $00
+                                    local2\Field34 = n_i\Field2
+                                    local2\Field11 = 2100.0
+                                    local2\Field12 = 0.0
+                                    local2\Field10 = 2.0
+                                EndIf
+                            Next
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (1.0 < n_i\Field3\Field10) Then
+                        If (npcseesnpc(n_i\Field3, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            arg0\Field36 = entityx(n_i\Field3\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field3\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field3\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field3
+                            arg0\Field11 = 1050.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field4 <> Null) Then
+                        If (npcseesnpc(n_i\Field4, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00)
+                            arg0\Field36 = entityx(n_i\Field4\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field4\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field4\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field4
+                            arg0\Field11 = 700.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 8.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field6 <> Null) Then
+                        If (npcseesnpc(n_i\Field6, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            arg0\Field36 = entityx(n_i\Field6\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field6\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field6\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field6
+                            arg0\Field11 = 1050.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field7 <> Null) Then
+                        If (npcseesnpc(n_i\Field7, arg0, 36.0) = $01) Then
+                            arg0\Field36 = entityx(n_i\Field7\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field7\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field7\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field7
+                            arg0\Field11 = 700.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    For local2 = Each npcs
+                        If (local2\Field50 = $00) Then
+                            Select local2\Field4
+                                Case $03
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        If (local18 = Null) Then
+                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
+                                            playmtfsound(arg0\Field17, arg0)
+                                        EndIf
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 280.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $00
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $01
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $0F
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                            End Select
+                        EndIf
+                    Next
+                    arg0\Field66 = (fps\Field7[$00] * 45.0)
+                Else
+                    arg0\Field66 = (arg0\Field66 - fps\Field7[$00])
+                EndIf
+            Case 1.0
+                arg0\Field23 = 0.015
+                arg0\Field11 = max((arg0\Field11 - fps\Field7[$00]), 0.0)
+                If (0.0 < arg0\Field11) Then
+                    local16 = npcseesplayer(arg0, ((4.0 - me\Field40) + me\Field42), 60.0, $00)
+                    If (local16 > $00) Then
+                        arg0\Field11 = 1050.0
+                    EndIf
+                    If (local16 = $01) Then
+                        arg0\Field36 = entityx(me\Field60, $01)
+                        arg0\Field37 = entityy(me\Field60, $01)
+                        arg0\Field38 = entityz(me\Field60, $01)
+                        pointentity(arg0\Field3, me\Field60, 0.0)
+                        If (((0.0 >= arg0\Field28) And (0.0 = me\Field0)) <> 0) Then
+                            local21 = me\Field0
+                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                            local10 = createpivot($00)
+                            rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
+                            positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
+                            moveentity(local10, 0.0622, 0.83925, 0.5351)
+                            local15 = sqr(local8)
+                            shoot(arg0, entityx(local10, $00), entityy(local10, $00), entityz(local10, $00), arg0\Field3, ((25.0 / local15) * (1.0 / local15)), $01, $00)
+                            freeentity(local10)
+                            local10 = $00
+                            msg\Field2 = format(getlocalstring("death", "ntf.blood"), subjectname, "%s")
+                            If (((0.0 = local21) And (Int me\Field0)) <> 0) Then
+                                msg\Field2 = format(getlocalstring("death", "ntf.terminated"), subjectname, "%s")
+                                playmtfsound(loadtempsound((("SFX\Character\MTF\TargetTerminated" + (Str rand($00, $03))) + ".ogg")), arg0)
+                            EndIf
+                            arg0\Field28 = 8.0
+                        EndIf
+                        local8 = entitydistancesquared(me\Field60, arg0\Field3)
+                        If (local8 < (((Float (playerroom\Field7\Field6 = $47)) * 16.0) + 9.0)) Then
+                            For local2 = Each npcs
+                                If (((local2\Field4 = $15) And (local2 <> arg0)) <> 0) Then
+                                    If (0.0 = local2\Field10) Then
+                                        If (36.0 > entitydistancesquared(arg0\Field3, local2\Field3)) Then
+                                            arg0\Field13 = $01
+                                            local2\Field29 = (Int (rnd(30.0, 40.0) * 70.0))
+                                            local2\Field36 = entityx(me\Field60, $01)
+                                            local2\Field37 = entityy(me\Field60, $01)
+                                            local2\Field38 = entityz(me\Field60, $01)
+                                            local2\Field11 = arg0\Field11
+                                            local2\Field41 = 0.0
+                                            local2\Field40 = $00
+                                            local2\Field28 = ((4.0 - (Float selecteddifficulty\Field2)) * 70.0)
+                                            local2\Field13 = $00
+                                            local2\Field10 = 1.0
+                                        EndIf
+                                    EndIf
+                                EndIf
+                            Next
+                            If (arg0\Field13 = $01) Then
+                                setnpcframe(arg0, 423.0)
+                                arg0\Field13 = $02
+                            ElseIf (arg0\Field13 = $02) Then
+                                arg0\Field24 = 0.0
+                                If (200.0 < arg0\Field14) Then
+                                    animatenpc(arg0, 424.0, 463.0, 0.5, $00)
+                                    If (462.9 < arg0\Field14) Then
+                                        setnpcframe(arg0, 78.0)
+                                    EndIf
+                                Else
+                                    animatenpc(arg0, 78.0, 193.0, 0.2, $00)
+                                EndIf
+                            EndIf
+                        Else
+                            positionentity(arg0\Field0, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                            pointentity(arg0\Field3, arg0\Field0, 0.0)
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        EndIf
+                        rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 10.0)
+                    Else
+                        arg0\Field29 = (Int ((Float arg0\Field29) - fps\Field7[$00]))
+                        If (8.0 >= arg0\Field28) Then
+                            arg0\Field28 = 8.0
+                        EndIf
+                        If (0.0 >= arg0\Field41) Then
+                            arg0\Field40 = findpath(arg0, arg0\Field36, (arg0\Field37 + 0.1), arg0\Field38)
+                            arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
+                            If (local18 = Null) Then
+                                If (rand($0A, $01) = $01) Then
+                                    For local2 = Each npcs
+                                        If (((local2\Field4 = $15) And (local2 <> arg0)) <> 0) Then
+                                            If (36.0 > entitydistancesquared(arg0\Field3, local2\Field3)) Then
+                                                arg0\Field13 = $03
+                                            EndIf
+                                        EndIf
+                                    Next
+                                EndIf
+                            EndIf
+                        ElseIf (175.0 >= arg0\Field41) Then
+                            arg0\Field24 = 0.0
+                            If (arg0\Field13 = $00) Then
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                                arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                            ElseIf (arg0\Field13 = $03) Then
+                                setnpcframe(arg0, 350.0)
+                                arg0\Field13 = $04
+                            ElseIf (arg0\Field13 = $04) Then
+                                animatenpc(arg0, 350.0, 423.0, 0.5, $00)
+                                If (422.9 < arg0\Field14) Then
+                                    arg0\Field13 = $00
+                                EndIf
+                            EndIf
+                            arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                        Else
+                            If (arg0\Field40 = $02) Then
+                                arg0\Field24 = 0.0
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                                arg0\Field41 = (arg0\Field41 - local17)
+                            ElseIf (arg0\Field40 = $01) Then
+                                If (arg0\Field39[arg0\Field42] = Null) Then
+                                    If (arg0\Field42 > $14) Then
+                                        arg0\Field42 = $00
+                                        arg0\Field40 = $00
+                                    Else
+                                        arg0\Field42 = (arg0\Field42 + $01)
+                                    EndIf
+                                Else
+                                    pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                                    rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                    arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                    translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                    animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                                    usedoornpc(arg0, $01, $01)
+                                EndIf
+                                arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                            Else
+                                positionentity(arg0\Field0, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                                If (((0.04 > distancesquared(entityx(arg0\Field3, $01), arg0\Field36, entityz(arg0\Field3, $01), arg0\Field38, 0.0, 0.0)) Lor (entityvisible(arg0\Field0, arg0\Field3) = $00)) <> 0) Then
+                                    If (rand($23, $01) = $01) Then
+                                        rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                        For local3 = Each waypoints
+                                            If (rand($03, $01) = $01) Then
+                                                If (36.0 > entitydistancesquared(local3\Field0, arg0\Field3)) Then
+                                                    arg0\Field36 = entityx(local3\Field0, $01)
+                                                    arg0\Field37 = entityy(local3\Field0, $01)
+                                                    arg0\Field38 = entityz(local3\Field0, $01)
+                                                    arg0\Field41 = 0.0
+                                                    Exit
+                                                EndIf
+                                            EndIf
+                                        Next
+                                    EndIf
+                                    finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                                    arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                                Else
+                                    pointentity(arg0\Field3, arg0\Field0, 0.0)
+                                    rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                    arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                    translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                    animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                                EndIf
+                            EndIf
+                            arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                        EndIf
+                        If ((((local18 = Null) And (2100.0 > (Float arg0\Field29))) And (2100.0 <= ((Float arg0\Field29) + fps\Field7[$00]))) <> 0) Then
+                            If (rand($02, $01) = $01) Then
+                                playmtfsound(loadtempsound((("SFX\Character\MTF\Searching" + (Str rand($00, $05))) + ".ogg")), arg0)
+                            EndIf
+                        EndIf
+                    EndIf
+                Else
+                    If (local18 = Null) Then
+                        playmtfsound(loadtempsound((("SFX\Character\MTF\TargetLost" + (Str rand($00, $02))) + ".ogg")), arg0)
+                        If (0.0 = mtfcamerachecktimer) Then
+                            If (rand(($0F - (selecteddifficulty\Field2 * $07)), $01) = $01) Then
+                                playannouncement("SFX\Character\MTF\AnnouncCameraCheck.ogg", $01)
+                                mtfcamerachecktimer = fps\Field7[$00]
+                            EndIf
+                        EndIf
+                    EndIf
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+                If (0.0 >= arg0\Field66) Then
+                    If (2.0 > n_i\Field2\Field26) Then
+                        If (npcseesnpc(n_i\Field2, arg0, 36.0) > $00) Then
+                            If (local18 = Null) Then
+                                If (0.0 < arg0\Field11) Then
+                                    loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
+                                Else
+                                    loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                EndIf
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            For local2 = Each npcs
+                                If (local2\Field4 = $15) Then
+                                    local2\Field36 = entityx(n_i\Field2\Field3, $01)
+                                    local2\Field37 = entityy(n_i\Field2\Field3, $01)
+                                    local2\Field38 = entityz(n_i\Field2\Field3, $01)
+                                    local2\Field41 = 0.0
+                                    local2\Field40 = $00
+                                    local2\Field34 = n_i\Field2
+                                    local2\Field11 = 2100.0
+                                    local2\Field12 = 0.0
+                                    local2\Field10 = 2.0
+                                EndIf
+                            Next
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (1.0 < n_i\Field3\Field10) Then
+                        If (npcseesnpc(n_i\Field3, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            arg0\Field36 = entityx(n_i\Field3\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field3\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field3\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field3
+                            arg0\Field11 = 1050.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field4 <> Null) Then
+                        If (npcseesnpc(n_i\Field4, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00)
+                            arg0\Field36 = entityx(n_i\Field4\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field4\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field4\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field4
+                            arg0\Field11 = 700.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 8.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field6 <> Null) Then
+                        If (npcseesnpc(n_i\Field6, arg0, 36.0) = $01) Then
+                            If (local18 = Null) Then
+                                loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
+                                playmtfsound(arg0\Field17, arg0)
+                            EndIf
+                            arg0\Field36 = entityx(n_i\Field6\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field6\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field6\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field6
+                            arg0\Field11 = 1050.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    If (n_i\Field7 <> Null) Then
+                        If (npcseesnpc(n_i\Field7, arg0, 36.0) = $01) Then
+                            arg0\Field36 = entityx(n_i\Field7\Field3, $01)
+                            arg0\Field37 = entityy(n_i\Field7\Field3, $01)
+                            arg0\Field38 = entityz(n_i\Field7\Field3, $01)
+                            arg0\Field41 = 0.0
+                            arg0\Field40 = $00
+                            arg0\Field34 = n_i\Field7
+                            arg0\Field11 = 700.0
+                            arg0\Field12 = 0.0
+                            arg0\Field10 = 4.0
+                            Return $00
+                        EndIf
+                    EndIf
+                    For local2 = Each npcs
+                        If (local2\Field50 = $00) Then
+                            Select local2\Field4
+                                Case $03
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        If (local18 = Null) Then
+                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
+                                            playmtfsound(arg0\Field17, arg0)
+                                        EndIf
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 280.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $00
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $01
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                                Case $0F
+                                    If (npcseesnpc(local2, arg0, 36.0) = $01) Then
+                                        arg0\Field36 = entityx(local2\Field3, $01)
+                                        arg0\Field37 = entityy(local2\Field3, $01)
+                                        arg0\Field38 = entityz(local2\Field3, $01)
+                                        arg0\Field41 = 0.0
+                                        arg0\Field40 = $00
+                                        arg0\Field34 = local2
+                                        arg0\Field28 = 210.0
+                                        arg0\Field11 = 1050.0
+                                        arg0\Field12 = 0.0
+                                        arg0\Field10 = 9.0
+                                        Return $00
+                                        Exit
+                                    EndIf
+                            End Select
+                        EndIf
+                    Next
+                    arg0\Field66 = (fps\Field7[$00] * 45.0)
+                Else
+                    arg0\Field66 = (arg0\Field66 - fps\Field7[$00])
+                EndIf
+            Case 3.0
+                local10 = createpivot($00)
+                positionentity(local10, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                If (0.25 > distancesquared(entityx(arg0\Field3, $00), entityx(local10, $00), entityx(arg0\Field3, $00), entityx(local10, $00), 0.0, 0.0)) Then
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    freeentity(local10)
+                    local10 = $00
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+                freeentity(local10)
+                local10 = $00
+                If (arg0\Field40 = $01) Then
+                    If (arg0\Field39[arg0\Field42] = Null) Then
+                        If (arg0\Field42 > $14) Then
+                            arg0\Field42 = $00
+                            arg0\Field40 = $00
+                        Else
+                            arg0\Field42 = (arg0\Field42 + $01)
+                        EndIf
+                    Else
+                        pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                        rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                        arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                        translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                        animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        usedoornpc(arg0, $01, $01)
+                    EndIf
+                Else
+                    If (0.0 = arg0\Field41) Then
+                        arg0\Field40 = findpath(arg0, arg0\Field36, (arg0\Field37 + 0.2), arg0\Field38)
+                    EndIf
+                    local23 = Null
+                    local10 = createpivot($00)
+                    positionentity(local10, arg0\Field36, arg0\Field37, arg0\Field38, $00)
+                    For local3 = Each waypoints
+                        If (4.0 > entitydistancesquared(local3\Field0, local10)) Then
+                            local23 = local3
+                            Exit
+                        EndIf
+                    Next
+                    freeentity(local10)
+                    local10 = $00
+                    If (local23 <> Null) Then
+                        arg0\Field41 = 1.0
+                        If (entityvisible(local23\Field0, arg0\Field3) <> 0) Then
+                            If (0.0 < (Abs deltayaw(arg0\Field3, local23\Field0))) Then
+                                pointentity(arg0\Field0, local23\Field0, 0.0)
+                                rotateentity(arg0\Field3, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field3, $00), 20.0), 0.0, $00)
+                            EndIf
+                        EndIf
+                    Else
+                        arg0\Field41 = 0.0
+                    EndIf
+                    If (1.0 = arg0\Field41) Then
+                        animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                        translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                    EndIf
+                EndIf
+                arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+            Case 5.0
+                local10 = createpivot($00)
+                positionentity(local10, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                pointentity(arg0\Field3, local10, 0.0)
+                freeentity(local10)
+                local10 = $00
+                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                arg0\Field24 = 0.0
+                animatenpc(arg0, 78.0, 194.0, 0.2, $01)
+                arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+            Case 6.0
+                pointentity(arg0\Field3, me\Field60, 0.0)
+                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                arg0\Field24 = 0.0
+                animatenpc(arg0, 346.0, 351.0, 0.2, $01)
+                arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 10.0)
+                local8 = entitydistancesquared(me\Field60, arg0\Field3)
+                If (((0.0 >= arg0\Field28) And (0.0 = me\Field0)) <> 0) Then
+                    local21 = me\Field0
+                    playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                    local10 = createpivot($00)
+                    rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
+                    positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
+                    moveentity(local10, 0.0622, 0.83925, 0.5351)
+                    local15 = sqr(local8)
+                    shoot(arg0, entityx(local10, $00), entityy(local10, $00), entityz(local10, $00), arg0\Field3, ((25.0 / local15) * (1.0 / local15)), $01, $00)
+                    freeentity(local10)
+                    local10 = $00
+                    msg\Field2 = format(getlocalstring("death", "ntf.blood"), subjectname, "%s")
+                    If (((0.0 = local21) And (Int me\Field0)) <> 0) Then
+                        If (playerroom\Field7\Field6 = $3A) Then
+                            msg\Field2 = getlocalstring("death", "0492")
+                            playmtfsound(loadtempsound("SFX\Character\MTF\049_2\TargetTerminated.ogg"), arg0)
+                        Else
+                            msg\Field2 = format(getlocalstring("death", "ntf.gatea"), subjectname, "%s")
+                            playmtfsound(loadtempsound((("SFX\Character\MTF\Targetterminated" + (Str rand($00, $03))) + ".ogg")), arg0)
+                        EndIf
+                    EndIf
+                    arg0\Field28 = 8.0
+                EndIf
+            Case 11.0
+                For local2 = Each npcs
+                    If (((local2\Field4 = $15) And (local2 <> arg0)) <> 0) Then
+                        If (((4.0 > entitydistancesquared(arg0\Field3, local2\Field3)) And (5.0 <> local2\Field10)) <> 0) Then
+                            local2\Field13 = $00
+                            local2\Field41 = 0.0
+                            local2\Field42 = $00
+                            local2\Field40 = $00
+                            local2\Field36 = entityx(arg0\Field3, $00)
+                            local2\Field37 = entityy(arg0\Field3, $00)
+                            local2\Field38 = entityz(arg0\Field3, $00)
+                            local2\Field10 = 5.0
+                        EndIf
+                    EndIf
+                Next
+                If (arg0\Field13 = $01) Then
+                    setnpcframe(arg0, 423.0)
+                    arg0\Field13 = $02
+                ElseIf (arg0\Field13 = $02) Then
+                    arg0\Field24 = 0.0
+                    If (1175.0 > arg0\Field14) Then
+                        animatenpc(arg0, 423.0, 463.0, 0.5, $00)
+                        If (462.9 < arg0\Field14) Then
+                            loadnpcsound(arg0, "SFX\Character\MTF\TeslaRequest.ogg", $00)
+                            playmtfsound(arg0\Field17, arg0)
+                            setnpcframe(arg0, 1175.0)
+                        EndIf
+                    Else
+                        animatenpc(arg0, 1175.0, 1290.0, 0.18, $00)
+                    EndIf
+                EndIf
+                arg0\Field12 = max((arg0\Field12 - fps\Field7[$00]), 0.0)
+                If (0.0 >= arg0\Field12) Then
+                    For local2 = Each npcs
+                        If (((local2\Field4 = $15) And (local2 <> arg0)) <> 0) Then
+                            If (6.0 > entitydistancesquared(arg0\Field3, local2\Field3)) Then
+                                local2\Field36 = 0.0
+                                local2\Field37 = 0.0
+                                local2\Field38 = 0.0
+                                local2\Field10 = 0.0
+                            EndIf
+                        EndIf
+                    Next
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+            Case 2.0
+                arg0\Field11 = max((arg0\Field11 - fps\Field7[$00]), 0.0)
+                If (0.0 >= arg0\Field51) Then
+                    If (npcsound[$02] = $00) Then
+                        npcsound[$02] = loadsound_strict("SFX\Character\MTF\173\BLINKING.ogg")
+                    EndIf
+                    playmtfsound(npcsound[$02], arg0)
+                EndIf
+                If (npcseesnpc(arg0\Field34, arg0, 36.0) = $01) Then
+                    arg0\Field36 = entityx(arg0\Field34\Field3, $01)
+                    arg0\Field37 = entityy(arg0\Field34\Field3, $01)
+                    arg0\Field38 = entityz(arg0\Field34\Field3, $01)
+                    arg0\Field11 = 2100.0
+                    arg0\Field42 = $00
+                    arg0\Field41 = 0.0
+                    arg0\Field40 = $00
+                    If (2.0 <> arg0\Field34\Field26) Then
+                        arg0\Field34\Field26 = 1.0
+                    EndIf
+                    local24 = distancesquared(entityx(arg0\Field3, $01), entityx(arg0\Field34\Field3, $01), entityz(arg0\Field3, $01), entityz(arg0\Field34\Field3, $01), 0.0, 0.0)
+                    If (25.0 > local24) Then
+                        local25 = 1.0
+                        If (local18 <> Null) Then
+                            local25 = (((Float (local18 = n_i\Field9)) * 3.0) + 3.0)
+                        EndIf
+                        pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                        If (local25 > local24) Then
+                            arg0\Field12 = (arg0\Field12 + fps\Field7[$00])
+                            If (1050.0 <= arg0\Field12) Then
+                                loadnpcsound(n_i\Field8, (("SFX\Character\MTF\173\Box" + (Str rand($00, $02))) + ".ogg"), $00)
+                                playmtfsound(n_i\Field8\Field17, n_i\Field8)
+                                arg0\Field34\Field26 = 2.0
+                            EndIf
+                            arg0\Field24 = 0.0
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                        Else
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        EndIf
+                    Else
+                        positionentity(arg0\Field0, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                        pointentity(arg0\Field3, arg0\Field0, 0.0)
+                        arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                        translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                        animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                    EndIf
+                    rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                    arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                ElseIf (0.0 >= arg0\Field41) Then
+                    arg0\Field40 = findpath(arg0, arg0\Field36, (arg0\Field37 + 0.1), arg0\Field38)
+                    If (arg0\Field40 = $01) Then
+                        While (arg0\Field39[arg0\Field42] = Null)
+                            If (arg0\Field42 > $14) Then
+                                arg0\Field42 = $00
+                                arg0\Field40 = $00
+                                Exit
+                            Else
+                                arg0\Field42 = (arg0\Field42 + $01)
+                            EndIf
+                        Wend
+                        If (arg0\Field42 < $14) Then
+                            If (((arg0\Field39[arg0\Field42] <> Null) And (arg0\Field39[(arg0\Field42 + $01)] <> Null)) <> 0) Then
+                                If (arg0\Field39[arg0\Field42]\Field1 = Null) Then
+                                    If ((Abs deltayaw(arg0\Field3, arg0\Field39[(arg0\Field42 + $01)]\Field0)) < (Abs deltayaw(arg0\Field3, arg0\Field39[arg0\Field42]\Field0))) Then
+                                        arg0\Field42 = (arg0\Field42 + $01)
+                                    EndIf
+                                EndIf
+                            EndIf
+                        EndIf
+                        usedoornpc(arg0, $01, $00)
+                    EndIf
+                    arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
+                ElseIf (175.0 >= arg0\Field41) Then
+                    arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                    arg0\Field24 = 0.0
+                    If (rand($23, $01) = $01) Then
+                        rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                    EndIf
+                    finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                    arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                Else
+                    If (arg0\Field40 = $01) Then
+                        If (arg0\Field39[arg0\Field42] = Null) Then
+                            If (arg0\Field42 > $14) Then
+                                arg0\Field42 = $00
+                                arg0\Field40 = $00
+                            Else
+                                arg0\Field42 = (arg0\Field42 + $01)
+                            EndIf
+                        Else
+                            pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                            rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                            usedoornpc(arg0, $01, $01)
+                        EndIf
+                        arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                    Else
+                        positionentity(arg0\Field0, arg0\Field36, arg0\Field37, arg0\Field38, $01)
+                        If (((0.25 > distancesquared(entityx(arg0\Field3, $01), arg0\Field36, entityz(arg0\Field3, $01), arg0\Field38, 0.0, 0.0)) Lor (entityvisible(arg0\Field0, arg0\Field3) = $00)) <> 0) Then
+                            If (rand($23, $01) = $01) Then
+                                rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                For local3 = Each waypoints
+                                    If (rand($03, $01) = $01) Then
+                                        If (36.0 > entitydistancesquared(local3\Field0, arg0\Field3)) Then
+                                            arg0\Field36 = entityx(local3\Field0, $01)
+                                            arg0\Field37 = entityy(local3\Field0, $01)
+                                            arg0\Field38 = entityz(local3\Field0, $01)
+                                            arg0\Field41 = 0.0
+                                            Exit
+                                        EndIf
+                                    EndIf
+                                Next
+                            EndIf
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                        Else
+                            pointentity(arg0\Field3, arg0\Field0, 0.0)
+                            rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                            arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                        EndIf
+                    EndIf
+                    arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                EndIf
+                If (((0.0 >= arg0\Field11) Lor (2.0 = arg0\Field34\Field26)) <> 0) Then
+                    arg0\Field34 = Null
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    arg0\Field11 = 0.0
+                    arg0\Field12 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+            Case 4.0
+                arg0\Field23 = 0.03
+                arg0\Field11 = max((arg0\Field11 - fps\Field7[$00]), 0.0)
+                If (0.0 < arg0\Field11) Then
+                    local8 = entitydistancesquared(arg0\Field3, arg0\Field34\Field3)
+                    If (npcseesnpc(arg0\Field34, arg0, 36.0) = $01) Then
+                        arg0\Field11 = ((15.0 - ((Float (arg0\Field34 = n_i\Field7)) * 5.0)) * 70.0)
+                    EndIf
+                    If (((70.0 < arg0\Field11) And ((hidedistance * hidedistance) < local8)) <> 0) Then
+                        arg0\Field11 = 70.0
+                    EndIf
+                    If (((9.0 > local8) And (arg0\Field34 <> n_i\Field7)) <> 0) Then
+                        arg0\Field12 = 210.0
+                    EndIf
+                    If (0.0 < arg0\Field12) Then
+                        arg0\Field23 = 0.02
+                        arg0\Field40 = $00
+                        arg0\Field42 = $00
+                        arg0\Field41 = 1.0
+                        arg0\Field12 = max((arg0\Field12 - fps\Field7[$00]), 0.0)
+                    EndIf
+                    If (0.0 >= arg0\Field41) Then
+                        If (local18 <> Null) Then
+                            arg0\Field40 = findpath(arg0, entityx(local18\Field3, $01), (entityy(local18\Field3, $01) + 0.1), entityz(local18\Field3, $01))
+                        Else
+                            For local0 = Each rooms
+                                If ((((12.0 < (Abs (local0\Field3 - entityx(arg0\Field3, $01)))) Lor (12.0 < (Abs (local0\Field5 - entityz(arg0\Field3, $01))))) And (rand((Int max((Float ($04 - (Int (Abs (local0\Field5 - (entityz(arg0\Field3, $01) / 8.0)))))), 2.0)), $01) = $01)) <> 0) Then
+                                    If (36.0 < entitydistancesquared(local0\Field2, arg0\Field34\Field3)) Then
+                                        local12 = local0\Field3
+                                        local13 = 0.1
+                                        local14 = local0\Field5
+                                        Exit
+                                    EndIf
+                                EndIf
+                            Next
+                            arg0\Field40 = findpath(arg0, local12, local13, local14)
+                        EndIf
+                        If (arg0\Field40 = $01) Then
+                            While (arg0\Field39[arg0\Field42] = Null)
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
+                                    Exit
+                                Else
+                                    arg0\Field42 = (arg0\Field42 + $01)
+                                EndIf
                             Wend
-                            If (arg0\Field39 < $13) Then
-                                If (((arg0\Field36[arg0\Field39] <> Null) And (arg0\Field36[(arg0\Field39 + $01)] <> Null)) <> 0) Then
-                                    If (arg0\Field36[arg0\Field39]\Field1 = Null) Then
-                                        If ((Abs deltayaw(arg0\Field4, arg0\Field36[(arg0\Field39 + $01)]\Field0)) < (Abs deltayaw(arg0\Field4, arg0\Field36[arg0\Field39]\Field0))) Then
-                                            arg0\Field39 = (arg0\Field39 + $01)
+                            If (arg0\Field42 < $14) Then
+                                If (((arg0\Field39[arg0\Field42] <> Null) And (arg0\Field39[(arg0\Field42 + $01)] <> Null)) <> 0) Then
+                                    If (arg0\Field39[arg0\Field42]\Field1 = Null) Then
+                                        If ((Abs deltayaw(arg0\Field3, arg0\Field39[(arg0\Field42 + $01)]\Field0)) < (Abs deltayaw(arg0\Field3, arg0\Field39[arg0\Field42]\Field0))) Then
+                                            arg0\Field42 = (arg0\Field42 + $01)
                                         EndIf
                                     EndIf
                                 EndIf
                             EndIf
+                            usedoornpc(arg0, $01, $00)
                         EndIf
-                        arg0\Field38 = 700.0
-                    ElseIf (arg0\Field37 = $01) Then
-                        If (arg0\Field36[arg0\Field39] = Null) Then
-                            If (arg0\Field39 > $13) Then
-                                arg0\Field39 = $00
-                                arg0\Field37 = $00
-                            Else
-                                arg0\Field39 = (arg0\Field39 + $01)
-                            EndIf
-                        Else
-                            local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                            pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                            rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                            arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                            rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                            arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                            translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                            animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                            local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                            If (((2.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                                If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                    local16 = $00
-                                    If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                        local16 = $00
-                                    Else
-                                        local16 = rand($00, $02)
-                                    EndIf
-                                    playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                    playmtfsound(mtfsfx($05), arg0)
-                                EndIf
-                                arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                    arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
-                                EndIf
-                            EndIf
-                            If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                                arg0\Field39 = (arg0\Field39 + $01)
-                            EndIf
-                        EndIf
-                        arg0\Field38 = (arg0\Field38 - fpsfactor)
+                        arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
                     Else
-                        arg0\Field38 = 0.0
-                    EndIf
-                Else
-                    arg0\Field9 = 0.0
-                EndIf
-            Case $05
-                local8 = createpivot($00)
-                positionentity(local8, arg0\Field33, arg0\Field34, arg0\Field35, $01)
-                If (hidedistance > local9) Then
-                    animatenpc(arg0, 346.0, 351.0, 0.2, $00)
-                EndIf
-                If ((((55.0 > (Abs (entityx(local8, $00) - entityx(arg0\Field4, $00)))) And (55.0 > (Abs (entityz(local8, $00) - entityz(arg0\Field4, $00))))) And (20.0 > (Abs (entityy(local8, $00) - entityy(arg0\Field4, $00))))) <> 0) Then
-                    pointentity(arg0\Field0, local8, 0.0)
-                    rotateentity(arg0\Field4, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field4, $00), 30.0), 0.0, $01)
-                    If (0.0 = arg0\Field38) Then
-                        arg0\Field37 = entityvisible(arg0\Field4, local8)
-                        arg0\Field38 = (Float rand($64, $C8))
-                    Else
-                        arg0\Field38 = min((arg0\Field38 - fpsfactor), 0.0)
-                    EndIf
-                    If (((arg0\Field37 = $01) And (0.0 >= arg0\Field25)) <> 0) Then
-                        local9 = distance(entityx(local8, $00), entityz(local8, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))
-                    EndIf
-                EndIf
-                freeentity(local8)
-                arg0\Field15 = entityyaw(arg0\Field4, $00)
-            Case $06
-                pointentity(arg0\Field0, arg0\Field73, 0.0)
-                rotateentity(arg0\Field4, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field4, $00), 20.0), 0.0, $00)
-                arg0\Field15 = entityyaw(arg0\Field4, $00)
-                animatenpc(arg0, 346.0, 351.0, 0.2, $00)
-                If (((0.0 >= arg0\Field25) And (0.0 = killtimer)) <> 0) Then
-                    If (entityvisible(arg0\Field4, arg0\Field73) <> 0) Then
-                        If (50.0 > (Abs deltayaw(arg0\Field4, arg0\Field73))) Then
-                            playsound2(gunshotsfx, camera, arg0\Field4, 15.0, 1.0)
-                            local15 = createpivot($00)
-                            rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
-                            positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
-                            moveentity(local15, 0.0632, 0.84925, 0.5451)
-                            shoot(arg0, entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), 0.9, $00, $00)
-                            arg0\Field25 = 7.0
-                            freeentity(local15)
-                        EndIf
-                    EndIf
-                EndIf
-            Case $07
-                animatenpc(arg0, 346.0, 351.0, 0.2, $00)
-                rotateentity(arg0\Field4, 0.0, curveangle(arg0\Field10, entityyaw(arg0\Field4, $00), 20.0), 0.0, $00)
-                arg0\Field15 = entityyaw(arg0\Field4, $00)
-                If (0.0 >= arg0\Field25) Then
-                    lightvolume = (templightvolume * 1.2)
-                    playsound2(gunshotsfx, camera, arg0\Field4, 20.0, 1.0)
-                    local15 = createpivot($00)
-                    rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
-                    positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
-                    moveentity(local15, 0.0632, 0.84925, 0.5451)
-                    local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05)
-                    turnentity(local7\Field0, 0.0, 0.0, rnd(360.0, 0.0), $00)
-                    local7\Field15 = -0.15
-                    freeentity(local15)
-                    arg0\Field25 = 7.0
-                EndIf
-            Case $08
-                arg0\Field21 = 0.015
-                arg0\Field53 = "head"
-                arg0\Field51 = $01
-                arg0\Field52 = $02
-                If (0.0 >= arg0\Field38) Then
-                    If (arg0\Field47 <> Null) Then
-                        arg0\Field37 = findpath(arg0, entityx(arg0\Field47\Field4, $01), (entityy(arg0\Field47\Field4, $01) + 0.1), entityz(arg0\Field47\Field4, $01))
-                    Else
-                        For local3 = Each rooms
-                            If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                local0 = local3\Field3
-                                local1 = 0.1
-                                local2 = local3\Field5
-                                debuglog(local3\Field7\Field11)
-                                Exit
+                        If (arg0\Field40 = $02) Then
+                            arg0\Field24 = 0.0
+                            If (rand($23, $01) = $01) Then
+                                rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
                             EndIf
-                        Next
-                        arg0\Field37 = findpath(arg0, local0, local1, local2)
-                    EndIf
-                    If (arg0\Field37 = $01) Then
-                        While (arg0\Field36[arg0\Field39] = Null)
-                            If (arg0\Field39 > $13) Then
-                                Exit
-                            EndIf
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        Wend
-                        If (arg0\Field39 < $13) Then
-                            If (((arg0\Field36[arg0\Field39] <> Null) And (arg0\Field36[(arg0\Field39 + $01)] <> Null)) <> 0) Then
-                                If (arg0\Field36[arg0\Field39]\Field1 = Null) Then
-                                    If ((Abs deltayaw(arg0\Field4, arg0\Field36[(arg0\Field39 + $01)]\Field0)) < (Abs deltayaw(arg0\Field4, arg0\Field36[arg0\Field39]\Field0))) Then
-                                        arg0\Field39 = (arg0\Field39 + $01)
-                                    EndIf
-                                EndIf
-                            EndIf
-                        EndIf
-                    EndIf
-                    arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
-                ElseIf (((175.0 >= arg0\Field38) And (arg0\Field47 = Null)) <> 0) Then
-                    arg0\Field38 = (arg0\Field38 - fpsfactor)
-                    arg0\Field22 = 0.0
-                    finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                ElseIf (arg0\Field37 = $02) Then
-                    arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                    arg0\Field22 = 0.0
-                    finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                ElseIf (arg0\Field37 = $01) Then
-                    If (arg0\Field36[arg0\Field39] = Null) Then
-                        If (arg0\Field39 > $13) Then
-                            arg0\Field39 = $00
-                            arg0\Field37 = $00
-                        Else
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
-                    Else
-                        local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                        local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        If (((1.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                            If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                local16 = $00
-                                If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                    local16 = $00
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            arg0\Field41 = (arg0\Field41 - local17)
+                        ElseIf (arg0\Field40 = $01) Then
+                            If (arg0\Field39[arg0\Field42] = Null) Then
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
                                 Else
-                                    local16 = rand($00, $02)
+                                    arg0\Field42 = (arg0\Field42 + $01)
                                 EndIf
-                                playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                playmtfsound(mtfsfx($05), arg0)
-                            EndIf
-                            arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
-                            EndIf
-                        EndIf
-                        If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
-                    EndIf
-                    arg0\Field38 = (arg0\Field38 - fpsfactor)
-                Else
-                    arg0\Field38 = (arg0\Field38 - (fpsfactor * 2.0))
-                    If (arg0\Field47 = Null) Then
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field22 = 0.0
-                    ElseIf (1.0 < entitydistance(arg0\Field4, arg0\Field47\Field4)) Then
-                        pointentity(arg0\Field4, arg0\Field47\Field4, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                    Else
-                        finishwalking(arg0, 488.0, 522.0, (arg0\Field21 * 26.0))
-                        arg0\Field22 = 0.0
-                    EndIf
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                EndIf
-                If (((entityvisible(arg0\Field4, curr096\Field4) = $00) Or (6.0 < entitydistance(arg0\Field4, curr096\Field4))) <> 0) Then
-                    arg0\Field9 = 0.0
-                EndIf
-            Case $09
-                If (entityvisible(arg0\Field4, arg0\Field31\Field4) <> 0) Then
-                    pointentity(arg0\Field0, arg0\Field31\Field4, 0.0)
-                    rotateentity(arg0\Field4, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field4, $00), 20.0), 0.0, $00)
-                    arg0\Field15 = entityyaw(arg0\Field4, $00)
-                    If (1.3 > entitydistance(arg0\Field31\Field4, arg0\Field4)) Then
-                        arg0\Field11 = 140.0
-                    EndIf
-                    If (0.0 < arg0\Field11) Then
-                        arg0\Field37 = $00
-                        arg0\Field39 = $00
-                        arg0\Field21 = 0.02
-                        arg0\Field22 = curvevalue((- arg0\Field21), arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 522.0, 488.0, (arg0\Field22 * 26.0), $01)
-                        arg0\Field38 = 1.0
-                        arg0\Field11 = max((arg0\Field11 - fpsfactor), 0.0)
-                    Else
-                        arg0\Field11 = 0.0
-                        animatenpc(arg0, 346.0, 351.0, 0.2, $00)
-                    EndIf
-                    If (((0.0 >= arg0\Field25) And (arg0\Field31\Field48 = $00)) <> 0) Then
-                        If (50.0 > (Abs deltayaw(arg0\Field4, arg0\Field31\Field4))) Then
-                            playsound2(gunshotsfx, camera, arg0\Field4, 15.0, 1.0)
-                            local15 = createpivot($00)
-                            rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
-                            positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
-                            moveentity(local15, 0.0632, 0.84925, 0.5451)
-                            local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05)
-                            turnentity(local7\Field0, 0.0, 0.0, rnd(360.0, 0.0), $00)
-                            local7\Field15 = -0.15
-                            If (arg0\Field31\Field59 > $00) Then
-                                arg0\Field31\Field59 = (Int max((Float (arg0\Field31\Field59 - rand($05, $0A))), 0.0))
                             Else
-                                If (arg0\Field31\Field48 = $00) Then
-                                    If (arg0\Field16 <> $00) Then
-                                        freesound_strict(arg0\Field16)
-                                        arg0\Field16 = $00
-                                    EndIf
-                                    If (arg0\Field31\Field5 = $0B) Then
-                                        arg0\Field16 = loadsound_strict("SFX\Character\MTF\049\Player0492_2.ogg")
-                                        playmtfsound(arg0\Field16, arg0)
+                                pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                                usedoornpc(arg0, $01, $01)
+                            EndIf
+                            arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                        Else
+                            If (((1.0 <= local8) And (0.0 >= arg0\Field12)) <> 0) Then
+                                pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                            ElseIf (0.0 >= arg0\Field12) Then
+                                arg0\Field24 = 0.0
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            Else
+                                pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue((- arg0\Field23), arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 522.0, 488.0, (arg0\Field24 * 26.0), $01)
+                            EndIf
+                            arg0\Field41 = (arg0\Field41 - local17)
+                        EndIf
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                    EndIf
+                Else
+                    arg0\Field34 = Null
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    arg0\Field11 = 0.0
+                    arg0\Field12 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+            Case 8.0
+                arg0\Field23 = 0.0175
+                arg0\Field11 = max((arg0\Field11 - fps\Field7[$00]), 0.0)
+                arg0\Field18 = loopsoundex(snd_i\Field39, arg0\Field18, camera, arg0\Field3, 5.0, 1.0, $00)
+                If (0.0 < arg0\Field11) Then
+                    If (npcseesnpc(arg0\Field34, arg0, 36.0) = $01) Then
+                        arg0\Field11 = 700.0
+                    EndIf
+                    If (local18 <> Null) Then
+                        local8 = entitydistancesquared(arg0\Field3, local18\Field3)
+                        If (0.64 > local8) Then
+                            arg0\Field12 = 70.0
+                        EndIf
+                        If (0.0 < arg0\Field12) Then
+                            arg0\Field40 = $00
+                            arg0\Field42 = $00
+                            arg0\Field41 = 1.0
+                            arg0\Field12 = max((arg0\Field12 - fps\Field7[$00]), 0.0)
+                        EndIf
+                    EndIf
+                    If (0.0 >= arg0\Field41) Then
+                        If (local18 <> Null) Then
+                            arg0\Field40 = findpath(arg0, entityx(local18\Field3, $01), (entityy(local18\Field3, $01) + 0.1), entityz(local18\Field3, $01))
+                        Else
+                            For local0 = Each rooms
+                                If ((((12.0 < (Abs (local0\Field3 - entityx(arg0\Field3, $01)))) Lor (12.0 < (Abs (local0\Field5 - entityz(arg0\Field3, $01))))) And (rand((Int max((Float ($04 - (Int (Abs (local0\Field5 - (entityz(arg0\Field3, $01) / 8.0)))))), 2.0)), $01) = $01)) <> 0) Then
+                                    local12 = local0\Field3
+                                    local13 = 0.1
+                                    local14 = local0\Field5
+                                    Exit
+                                EndIf
+                            Next
+                            arg0\Field40 = findpath(arg0, local12, local13, local14)
+                        EndIf
+                        If (arg0\Field40 = $01) Then
+                            While (arg0\Field39[arg0\Field42] = Null)
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
+                                    Exit
+                                Else
+                                    arg0\Field42 = (arg0\Field42 + $01)
+                                EndIf
+                            Wend
+                            If (arg0\Field42 < $14) Then
+                                If (((arg0\Field39[arg0\Field42] <> Null) And (arg0\Field39[(arg0\Field42 + $01)] <> Null)) <> 0) Then
+                                    If (arg0\Field39[arg0\Field42]\Field1 = Null) Then
+                                        If ((Abs deltayaw(arg0\Field3, arg0\Field39[(arg0\Field42 + $01)]\Field0)) < (Abs deltayaw(arg0\Field3, arg0\Field39[arg0\Field42]\Field0))) Then
+                                            arg0\Field42 = (arg0\Field42 + $01)
+                                        EndIf
                                     EndIf
                                 EndIf
-                                setnpcframe(arg0\Field31, 133.0)
-                                arg0\Field31\Field48 = $01
-                                arg0\Field31 = Null
-                                arg0\Field9 = 0.0
+                            EndIf
+                            usedoornpc(arg0, $01, $00)
+                        EndIf
+                        arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
+                    ElseIf (((175.0 >= arg0\Field41) And (local18 = Null)) <> 0) Then
+                        arg0\Field24 = 0.0
+                        finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                        arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                    Else
+                        If (arg0\Field40 = $02) Then
+                            arg0\Field24 = 0.0
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            arg0\Field41 = (arg0\Field41 - local17)
+                        ElseIf (arg0\Field40 = $01) Then
+                            If (arg0\Field39[arg0\Field42] = Null) Then
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
+                                Else
+                                    arg0\Field42 = (arg0\Field42 + $01)
+                                EndIf
+                            Else
+                                pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                                usedoornpc(arg0, $01, $01)
+                            EndIf
+                            arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                        Else
+                            If (local18 = Null) Then
+                                arg0\Field24 = 0.0
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            ElseIf (((1.0 <= local8) And (0.0 >= arg0\Field12)) <> 0) Then
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                pointentity(arg0\Field3, local18\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                            ElseIf (0.0 >= arg0\Field12) Then
+                                arg0\Field24 = 0.0
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            Else
+                                arg0\Field24 = curvevalue((- arg0\Field23), arg0\Field24, 20.0)
+                                pointentity(arg0\Field3, local18\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 522.0, 488.0, (arg0\Field24 * 26.0), $01)
+                            EndIf
+                            arg0\Field41 = (arg0\Field41 - local17)
+                        EndIf
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
+                    EndIf
+                Else
+                    stopchannel(arg0\Field18)
+                    arg0\Field18 = $00
+                    playsoundex(snd_i\Field40[$01], camera, arg0\Field3, 5.0, 1.0, $00)
+                    arg0\Field34 = Null
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
+                    arg0\Field38 = 0.0
+                    arg0\Field11 = 0.0
+                    arg0\Field12 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
+                EndIf
+            Case 9.0
+                arg0\Field11 = max((arg0\Field11 - fps\Field7[$00]), 0.0)
+                If (((0.0 < arg0\Field11) And (arg0\Field34\Field50 = $00)) <> 0) Then
+                    local8 = entitydistancesquared(arg0\Field3, arg0\Field34\Field3)
+                    If (npcseesnpc(arg0\Field34, arg0, 36.0) = $01) Then
+                        arg0\Field11 = 1050.0
+                        pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                        rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                        If (4.0 > local8) Then
+                            arg0\Field12 = 140.0
+                        EndIf
+                        If (0.0 < arg0\Field12) Then
+                            arg0\Field23 = 0.02
+                            arg0\Field40 = $00
+                            arg0\Field42 = $00
+                            arg0\Field41 = 1.0
+                            arg0\Field24 = curvevalue((- arg0\Field23), arg0\Field24, 20.0)
+                            translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                            animatenpc(arg0, 522.0, 488.0, (arg0\Field24 * 26.0), $01)
+                            arg0\Field12 = max((arg0\Field12 - fps\Field7[$00]), 0.0)
+                        EndIf
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 10.0)
+                        If (0.0 >= arg0\Field28) Then
+                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                            local10 = createpivot($00)
+                            rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
+                            positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
+                            moveentity(local10, 0.0622, 0.83925, 0.5351)
+                            If ((fog\Field0 * fog\Field0) > entitydistancesquared(me\Field60, arg0\Field3)) Then
+                                lightvolume = (templightvolume * 1.2)
+                            EndIf
+                            local6 = setemitter(Null, entityx(local10, $00), entityy(local10, $00), entityz(local10, $00), $0D)
+                            entityparent(local6\Field6, arg0\Field3, $01)
+                            setemitter(Null, entityx(arg0\Field34\Field3, $00), entityy(arg0\Field34\Field3, $00), entityz(arg0\Field34\Field3, $00), $0F)
+                            freeentity(local10)
+                            local10 = $00
+                            playsoundex(snd_i\Field15, camera, arg0\Field34\Field3, 5.0, 1.0, $00)
+                            If (arg0\Field34\Field60 > $00) Then
+                                arg0\Field34\Field60 = (Int max((Float (arg0\Field34\Field60 - rand($05, $0A))), 0.0))
+                            Else
+                                If (arg0\Field34\Field50 = $00) Then
+                                    local26 = arg0\Field34\Field4
+                                    If (local26 = $03) Then
+                                        If (local18 = Null) Then
+                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\TargetTerminated.ogg", $00)
+                                            playmtfsound(arg0\Field17, arg0)
+                                        EndIf
+                                    EndIf
+                                EndIf
+                                arg0\Field34 = Null
+                                arg0\Field36 = 0.0
+                                arg0\Field37 = 0.0
+                                arg0\Field38 = 0.0
+                                arg0\Field11 = 0.0
+                                arg0\Field12 = 0.0
+                                arg0\Field10 = 0.0
                                 Return $00
                             EndIf
-                            arg0\Field25 = 7.0
-                            freeentity(local15)
+                            arg0\Field28 = 8.0
                         EndIf
-                    EndIf
-                    arg0\Field37 = $00
-                ElseIf (0.0 >= arg0\Field38) Then
-                    arg0\Field37 = findpath(arg0, entityx(arg0\Field31\Field4, $00), entityy(arg0\Field31\Field4, $00), entityz(arg0\Field31\Field4, $00))
-                    If (arg0\Field37 = $01) Then
-                        While (arg0\Field36[arg0\Field39] = Null)
-                            If (arg0\Field39 > $13) Then
-                                Exit
-                            EndIf
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        Wend
-                        If (arg0\Field39 < $13) Then
-                            If (((arg0\Field36[arg0\Field39] <> Null) And (arg0\Field36[(arg0\Field39 + $01)] <> Null)) <> 0) Then
-                                If (arg0\Field36[arg0\Field39]\Field1 = Null) Then
-                                    If ((Abs deltayaw(arg0\Field4, arg0\Field36[(arg0\Field39 + $01)]\Field0)) < (Abs deltayaw(arg0\Field4, arg0\Field36[arg0\Field39]\Field0))) Then
-                                        arg0\Field39 = (arg0\Field39 + $01)
+                        arg0\Field40 = $00
+                    ElseIf (0.0 >= arg0\Field41) Then
+                        arg0\Field40 = findpath(arg0, entityx(arg0\Field34\Field3, $00), entityy(arg0\Field34\Field3, $00), entityz(arg0\Field34\Field3, $00))
+                        If (arg0\Field40 = $01) Then
+                            While (arg0\Field39[arg0\Field42] = Null)
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
+                                    Exit
+                                Else
+                                    arg0\Field42 = (arg0\Field42 + $01)
+                                EndIf
+                            Wend
+                            If (arg0\Field42 < $14) Then
+                                If (((arg0\Field39[arg0\Field42] <> Null) And (arg0\Field39[(arg0\Field42 + $01)] <> Null)) <> 0) Then
+                                    If (arg0\Field39[arg0\Field42]\Field1 = Null) Then
+                                        If ((Abs deltayaw(arg0\Field3, arg0\Field39[(arg0\Field42 + $01)]\Field0)) < (Abs deltayaw(arg0\Field3, arg0\Field39[arg0\Field42]\Field0))) Then
+                                            arg0\Field42 = (arg0\Field42 + $01)
+                                        EndIf
                                     EndIf
                                 EndIf
                             EndIf
+                            usedoornpc(arg0, $01, $00)
                         EndIf
-                    EndIf
-                    arg0\Field38 = 700.0
-                ElseIf (arg0\Field37 = $01) Then
-                    If (arg0\Field36[arg0\Field39] = Null) Then
-                        If (arg0\Field39 > $13) Then
-                            arg0\Field39 = $00
-                            arg0\Field37 = $00
-                        Else
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
+                        arg0\Field41 = (rnd(6.0, 10.0) * 70.0)
                     Else
-                        local4 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        pointentity(arg0\Field4, arg0\Field36[arg0\Field39]\Field0, 0.0)
-                        rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                        arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-                        arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
-                        translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
-                        animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                        local5 = entitydistance(arg0\Field4, arg0\Field36[arg0\Field39]\Field0)
-                        If (((1.0 > local5) And (arg0\Field36[arg0\Field39]\Field1 <> Null)) <> 0) Then
-                            If (arg0\Field36[arg0\Field39]\Field1\Field5 = $00) Then
-                                local16 = $00
-                                If (arg0\Field36[arg0\Field39]\Field1\Field9 = $01) Then
-                                    local16 = $00
+                        If (arg0\Field40 = $02) Then
+                            arg0\Field24 = 0.0
+                            If (rand($23, $01) = $01) Then
+                                rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                            EndIf
+                            finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            arg0\Field41 = (arg0\Field41 - local17)
+                        ElseIf (arg0\Field40 = $01) Then
+                            If (arg0\Field39[arg0\Field42] = Null) Then
+                                If (arg0\Field42 > $14) Then
+                                    arg0\Field42 = $00
+                                    arg0\Field40 = $00
                                 Else
-                                    local16 = rand($00, $02)
+                                    arg0\Field42 = (arg0\Field42 + $01)
                                 EndIf
-                                playsound2(opendoorsfx(arg0\Field36[arg0\Field39]\Field1\Field9, local16), camera, arg0\Field36[arg0\Field39]\Field1\Field0, 10.0, 1.0)
-                                playmtfsound(mtfsfx($05), arg0)
+                            Else
+                                pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                                usedoornpc(arg0, $01, $01)
                             EndIf
-                            arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
-                                arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
+                            arg0\Field41 = (arg0\Field41 - fps\Field7[$00])
+                        Else
+                            If (((1.0 <= local8) And (0.0 >= arg0\Field12)) <> 0) Then
+                                pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 488.0, 522.0, (arg0\Field24 * 26.0), $01)
+                            ElseIf (0.0 >= arg0\Field12) Then
+                                arg0\Field24 = 0.0
+                                If (rand($23, $01) = $01) Then
+                                    rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
+                                EndIf
+                                finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
+                            Else
+                                pointentity(arg0\Field3, arg0\Field34\Field3, 0.0)
+                                rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
+                                arg0\Field24 = curvevalue((- arg0\Field23), arg0\Field24, 20.0)
+                                translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $01) + 90.0)) * arg0\Field24) * fps\Field7[$00]), $01)
+                                animatenpc(arg0, 522.0, 488.0, (arg0\Field24 * 26.0), $01)
                             EndIf
+                            arg0\Field41 = (arg0\Field41 - local17)
                         EndIf
-                        If (((0.2 > local5) Or ((local5 > local4) And (1.0 > local4))) <> 0) Then
-                            arg0\Field39 = (arg0\Field39 + $01)
-                        EndIf
+                        arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                     EndIf
-                    arg0\Field38 = (arg0\Field38 - fpsfactor)
                 Else
+                    arg0\Field34 = Null
+                    arg0\Field36 = 0.0
+                    arg0\Field37 = 0.0
                     arg0\Field38 = 0.0
-                EndIf
-                If (arg0\Field31\Field48 = $01) Then
-                    arg0\Field31 = Null
-                    arg0\Field9 = 0.0
+                    arg0\Field11 = 0.0
+                    arg0\Field12 = 0.0
+                    arg0\Field10 = 0.0
+                    Return $00
                 EndIf
         End Select
-        If (0.01 < arg0\Field22) Then
-            If (((500.0 < local11) And (495.0 > arg0\Field14)) <> 0) Then
-                playsound2(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field4, 8.0, rnd(0.5, 0.7))
-            ElseIf (((505.0 > local11) And (505.0 <= arg0\Field14)) <> 0) Then
-                playsound2(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field4, 8.0, rnd(0.5, 0.7))
+        If (0.01 < arg0\Field24) Then
+            If ((((505.0 > local11) And (505.0 <= arg0\Field14)) Lor ((521.0 > local11) And (521.0 <= arg0\Field14))) <> 0) Then
+                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+            EndIf
+        ElseIf (-0.01 > arg0\Field24) Then
+            If ((((521.0 <= local11) And (521.0 > arg0\Field14)) Lor ((505.0 <= local11) And (505.0 > arg0\Field14))) <> 0) Then
+                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
             EndIf
         EndIf
-        If ((notarget And (1.0 = arg0\Field9)) <> 0) Then
-            arg0\Field9 = 0.0
-        EndIf
-        If (((((3.0 <> arg0\Field9) And (5.0 <> arg0\Field9)) And (6.0 <> arg0\Field9)) And (7.0 <> arg0\Field9)) <> 0) Then
-            If (arg0\Field47 <> Null) Then
-                If (0.7 > entitydistance(arg0\Field4, arg0\Field47\Field4)) Then
-                    pointentity(arg0\Field4, arg0\Field47\Field4, 0.0)
-                    rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
-                    arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
-                    translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) - 45.0)) * 0.01) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) - 45.0)) * 0.01) * fpsfactor), $01)
-                EndIf
-            Else
-                For local6 = Each npcs
-                    If (((local6 <> arg0) And (local6\Field48 = $00)) <> 0) Then
-                        If (80.0 > (Abs deltayaw(arg0\Field4, local6\Field4))) Then
-                            If (0.7 > entitydistance(arg0\Field4, local6\Field4)) Then
-                                translateentity(local6\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * 0.01) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * 0.01) * fpsfactor), $01)
+        If (playerroom\Field7\Field6 <> $47) Then
+            If (rand($64, $01) = $01) Then
+                If (local18 <> Null) Then
+                    If (((0.0 = arg0\Field10) Lor (8.0 = arg0\Field10)) <> 0) Then
+                        If (256.0 < entitydistancesquared(arg0\Field3, local18\Field3)) Then
+                            If (((entityinview(arg0\Field3, camera) = $00) And (entityinview(local18\Field3, camera) = $00)) <> 0) Then
+                                teleportentity(arg0\Field3, entityx(local18\Field3, $01), (entityy(local18\Field3, $01) + 0.28), entityz(local18\Field3, $01), arg0\Field6, $01, 2.0, $00)
                             EndIf
                         EndIf
                     EndIf
-                Next
+                EndIf
             EndIf
         EndIf
-        If (((6.0 <> arg0\Field9) And (7.0 <> arg0\Field9)) <> 0) Then
-            If (-10.0 > entityy(arg0\Field4, $00)) Then
-                teleportcloser(arg0)
-            EndIf
+        If (((playerroom\Field7\Field6 <> $3A) And (arg0\Field59 = $FFFFFFFF)) <> 0) Then
+            teleportcloser(arg0)
         EndIf
-        rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
-        positionentity(arg0\Field0, entityx(arg0\Field4, $01), (entityy(arg0\Field4, $01) - 0.15), entityz(arg0\Field4, $01), $01)
+        If (arg0\Field60 <= $00) Then
+            arg0\Field50 = $01
+            n_i\Field8 = Null
+            n_i\Field9 = Null
+        EndIf
     EndIf
+    positionentity(arg0\Field0, entityx(arg0\Field3, $01), (entityy(arg0\Field3, $01) - 0.2), entityz(arg0\Field3, $01), $01)
+    rotateentity(arg0\Field0, -90.0, arg0\Field15, 0.0, $01)
     Return $00
 End Function

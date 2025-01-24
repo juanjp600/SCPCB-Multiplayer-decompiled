@@ -1,0 +1,12 @@
+Type mp_network
+    Field Field0.mp_packet
+    Field Field1.mp_netbuffer
+    Field Field2.mp_netbuffer
+    Field Field3.mp_netbuffer
+    Field Field4%
+    Field Field5%
+    Field Field6%
+    Field Field7%
+    Field Field8%
+    Field Field9%
+End Type

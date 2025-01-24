@@ -2,40 +2,36 @@ Function updatemonitorsaving%()
     Local local0.securitycams
     Local local1%
     Local local2%
-    local1 = $00
-    If (selecteddifficulty\Field4 <> $02) Then
+    Local local3#
+    If (((((((((selecteddifficulty\Field3 <> $01) Lor invopen) Lor i_294\Field0) Lor (otheropen <> Null)) Lor (d_i\Field6 <> Null)) Lor (selectedscreen <> Null)) Lor (Int me\Field0)) Lor (0.3 >= secondarylighton)) <> 0) Then
         Return $00
     EndIf
     For local0 = Each securitycams
-        If ((local0\Field23 And local0\Field7) <> 0) Then
-            local1 = local0\Field20\Field69
-            If (((local1 And (grabbedentity = $00)) And (closestbutton = $00)) <> 0) Then
-                If ((entityinview(local0\Field4, camera) And (1.0 > entitydistance(local0\Field4, camera))) <> 0) Then
-                    If (entityvisible(local0\Field4, camera) <> 0) Then
-                        drawhandicon = $01
-                        If (mousehit1 <> 0) Then
-                            selectedmonitor = local0
-                        EndIf
-                    ElseIf (selectedmonitor = local0) Then
-                        selectedmonitor = Null
+        If ((local0\Field19 And local0\Field5) <> 0) Then
+            local1 = ((6.0 > local0\Field16\Field8) Lor (playerroom = local0\Field16))
+            If (local1 <> 0) Then
+                If ((((local0\Field14 And (0.5 > entitydistancesquared(local0\Field4, camera))) And (grabbedentity = $00)) And (d_i\Field9 = $00)) <> 0) Then
+                    handentity = local0\Field2
+                    If (mo\Field0 <> 0) Then
+                        sc_i\Field3 = local0
                     EndIf
-                ElseIf (selectedmonitor = local0) Then
-                    selectedmonitor = Null
-                EndIf
-                If (selectedmonitor = local0) Then
-                    If (local0\Field17 <> 0) Then
+                    If (sc_i\Field3 = local0) Then
                         local2 = createpivot($00)
+                        local3 = clamp((15000.0 / (- me\Field5)), 20.0, 200.0)
                         positionentity(local2, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
-                        pointentity(local2, local0\Field4, 0.0)
-                        rotateentity(collider, entitypitch(collider, $00), curveangle(entityyaw(local2, $00), entityyaw(collider, $00), min(max((15000.0 / (- sanity)), 20.0), 200.0)), 0.0, $00)
+                        pointentity(local2, local0\Field2, 0.0)
+                        rotateentity(me\Field60, entitypitch(me\Field60, $00), curveangle(entityyaw(local2, $00), entityyaw(me\Field60, $00), local3), 0.0, $00)
                         turnentity(local2, 90.0, 0.0, 0.0, $00)
-                        user_camera_pitch = curveangle(entitypitch(local2, $00), (user_camera_pitch + 90.0), min(max((15000.0 / (- sanity)), 20.0), 200.0))
-                        user_camera_pitch = (user_camera_pitch - 90.0)
+                        camerapitch = curveangle(entitypitch(local2, $00), (camerapitch + 90.0), local3)
+                        camerapitch = (camerapitch - 90.0)
                         freeentity(local2)
+                        local2 = $00
                     EndIf
+                ElseIf (sc_i\Field3 = local0) Then
+                    sc_i\Field3 = Null
                 EndIf
-            ElseIf (selectedmonitor = local0) Then
-                selectedmonitor = Null
+            ElseIf (sc_i\Field3 = local0) Then
+                sc_i\Field3 = Null
             EndIf
         EndIf
     Next

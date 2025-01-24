@@ -1,33 +1,18 @@
 Function playstartupvideos%()
-    Local local0$
-    Local local1%
-    Local local2%
-    If (getiniint(optionfile, "options", "play startup video", $00) = $00) Then
-        Return $00
-    EndIf
-    local0 = "GFX\menu\startup_Undertow"
-    local1 = openmovie((local0 + ".avi"))
-    local2 = streamsound_strict((local0 + ".ogg"), sfxvolume, $00)
-    Repeat
-        cls()
-        drawmovie(local1, $00, $00, realgraphicwidth, realgraphicheight)
-        flip($01)
-    Until ((getkey() Or (isstreamplaying_strict(local2) = $00)) <> 0)
-    stopstream_strict(local2)
-    closemovie(local1)
-    cls()
-    flip($01)
-    local0 = "GFX\menu\startup_TSS"
-    local1 = openmovie((local0 + ".avi"))
-    local2 = streamsound_strict((local0 + ".ogg"), sfxvolume, $00)
-    Repeat
-        cls()
-        drawmovie(local1, $00, $00, realgraphicwidth, realgraphicheight)
-        flip($01)
-    Until ((getkey() Or (isstreamplaying_strict(local2) = $00)) <> 0)
-    stopstream_strict(local2)
-    closemovie(local1)
-    cls()
-    flip($01)
+    Local local0%
+    Local local1$
+    For local0 = $00 To $03 Step $01
+        Select local0
+            Case $00
+                local1 = "startup_Undertow"
+            Case $01
+                local1 = "startup_TSS"
+            Case $02
+                local1 = "startup_UET"
+            Case $03
+                local1 = "startup_Warning"
+        End Select
+        playmovie(local1)
+    Next
     Return $00
 End Function

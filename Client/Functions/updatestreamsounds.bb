@@ -1,46 +1,39 @@
 Function updatestreamsounds%()
     Local local0.events
-    If (10.0 < updatestreamsfactor) Then
+    Local local1%
+    Local local2#
+    If (0.0 < fps\Field7[$00]) Then
+        local1 = ((playerinreachableroom($01, $00) = $00) And (isplayeroutsidefacility() = $00))
         If (intercomstreamchn <> $00) Then
-            setstreamvolume_strict(intercomstreamchn, sfxvolume)
+            setstreamvolume_strict(intercomstreamchn, (opt\Field21 * opt\Field16))
+            If (local1 <> 0) Then
+                stopstream_strict(intercomstreamchn)
+                intercomstreamchn = $00
+            EndIf
         EndIf
+        local2 = (opt\Field20 * opt\Field16)
         For local0 = Each events
-            If (local0\Field5 <> $00) Then
-                If (local0\Field9 <> 0) Then
-                    setstreamvolume_strict(local0\Field5, sfxvolume)
+            If (local0\Field11 <> 0) Then
+                If (local0\Field6 <> $00) Then
+                    setstreamvolume_strict(local0\Field6, local2)
+                    If ((local1 And (playerroom\Field7\Field6 <> $6A)) <> 0) Then
+                        stopstream_strict(local0\Field6)
+                        local0\Field6 = $00
+                        local0\Field11 = $00
+                    EndIf
                 EndIf
             EndIf
-            If (local0\Field6 <> $00) Then
-                If (local0\Field10 <> 0) Then
-                    setstreamvolume_strict(local0\Field6, sfxvolume)
+            If (local0\Field12 <> 0) Then
+                If (local0\Field7 <> $00) Then
+                    setstreamvolume_strict(local0\Field7, local2)
+                    If ((local1 And (playerroom\Field7\Field6 <> $6A)) <> 0) Then
+                        stopstream_strict(local0\Field7)
+                        local0\Field7 = $00
+                        local0\Field12 = $00
+                    EndIf
                 EndIf
             EndIf
         Next
-        If (playerinreachableroom($00) = $00) Then
-            If (((playerroom\Field7\Field11 <> "exit1") And (playerroom\Field7\Field11 <> "gatea")) <> 0) Then
-                If (intercomstreamchn <> $00) Then
-                    stopstream_strict(intercomstreamchn)
-                    intercomstreamchn = $00
-                EndIf
-                If (playerroom\Field7\Field11 <> "dimension1499") Then
-                    For local0 = Each events
-                        If (((local0\Field5 <> $00) And local0\Field9) <> 0) Then
-                            stopstream_strict(local0\Field5)
-                            local0\Field5 = $00
-                            local0\Field9 = $00
-                        EndIf
-                        If (((local0\Field6 <> $00) And local0\Field10) <> 0) Then
-                            stopstream_strict(local0\Field6)
-                            local0\Field6 = $00
-                            local0\Field10 = $00
-                        EndIf
-                    Next
-                EndIf
-            EndIf
-        EndIf
-        updatestreamsfactor = 0.0
-    Else
-        updatestreamsfactor = (updatestreamsfactor + fpsfactor)
     EndIf
     Return $00
 End Function

@@ -1,806 +1,1117 @@
-Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
+Function use914%(arg0.items, arg1%, arg2#, arg3#, arg4#)
     Local local0.items
-    Local local4.decals
-    Local local16.npcs
-    Local local22.items
-    Local local32%
-    Local local33%
-    Local local39.items
-    Local local40.items
-    Local local41.items
-    Local local54%
-    refineditems = (refineditems + $01)
-    If (networkserver\Field18 = $00) Then
+    Local local1.items
+    Local local2.items
+    Local local3.decals
+    Local local4.npcs
+    Local local5.rooms
+    Local local6%
+    Local local7%
+    Local local8%
+    Local local29%
+    Local local30%
+    Local local38%
+    Local local48%
+    Local local49%
+    Local local50%
+    Local local64%
+    me\Field53 = (me\Field53 + $01)
+    If (((mp_getsocket() <> $00) And (mp_ishoster() = $00)) <> 0) Then
         Return $00
     EndIf
-    debuglog(("Using item " + arg0\Field3\Field1))
-    Select arg0\Field3\Field1
-        Case "Grenade"
+    local6 = $01
+    local8 = $00
+    Select arg0\Field4\Field2
+        Case $38,$39,$3A,$3B
             Select arg1
-                Case "rough","coarse"
-                    local0 = createitem("Smoke grenade", "grenadesmoke", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
                     If (rand($04, $01) = $01) Then
-                        local0 = createitem("Rocket Launcher", "rpg", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local1 = createitem("Hazmat Suit", $3C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("Flashbang", "grenadeflashbang", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local1 = createitem("Gas Mask", $38, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
-            End Select
-        Case "Smoke grenade"
-            Select arg1
-                Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    local0 = createitem("Flashbang", "grenadeflashbang", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "fine","very fine"
-                    If (rand($06, $01) = $01) Then
-                        local0 = createitem("Micro-HID", "microhid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                Case $01
+                    If (rand($32, $01) = $01) Then
+                        local1 = createitem("SCP-1499", $24, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("Grenade", "grenade", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local1 = createitem("Fine Gas Mask", $39, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
-            End Select
-        Case "Flashbang"
-            Select arg1
-                Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    local0 = createitem("Smoke grenade", "grenadesmoke", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "fine","very fine"
-                    If (rand($06, $01) = $01) Then
-                        local0 = createitem("Micro-HID", "microhid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                Case $02
+                    If (rand($64, $01) = $01) Then
+                        local1 = createitem("SCP-1499", $24, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("Grenade", "grenade", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local1 = createitem("Very Fine Gas Mask", $3A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
             End Select
-        Case "Minigun"
+        Case $24,$25
             Select arg1
-                Case "rough","course"
-                    local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Gas Mask", $38, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Fine SCP-1499", $25, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local4 = createnpc($10, arg2, arg3, arg4)
+                    local4\Field10 = 1.0
+                    local4\Field12 = 1.0
+                    local4\Field17 = loadsound_strict("SFX\SCP\1499\Triggered.ogg")
+                    local4\Field18 = playsoundex(local4\Field17, camera, local4\Field3, 20.0, 1.0, $00)
+                    local4\Field87 = $00
             End Select
-        Case "HK-G36"
+        Case $40,$41,$42
             Select arg1
-                Case "rough","course"
-                    local0 = createitem("FN P90", "p90", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    If (rand($04, $01) = $01) Then
-                        local0 = createitem("Minigun", "minigun", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Electronical Components", $2F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("SCRAMBLE Gear", $43, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 1000.0)
+                Case $01
+                    If (rand($05, $01) = $01) Then
+                        local1 = createitem("Fine SCRAMBLE Gear", $44, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = rnd(0.0, 1000.0)
                     Else
-                        local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local1 = createitem("Fine Night Vision Goggles", $42, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
+                Case $02
+                    local1 = createitem("Very Fine Night Vision Goggles", $41, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 1000.0)
             End Select
-        Case "FN P90"
+        Case $43,$44
             Select arg1
-                Case "rough","course"
-                    If (rand($02, $01) = $01) Then
-                        local0 = createitem("Desert Eagle", "deagle", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Electronical Components", $2F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("Night Vision Goggles", $40, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 1000.0)
+                Case $01,$02
+                    local1 = createitem("Fine SCRAMBLE Gear", $44, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 1000.0)
+            End Select
+        Case $26
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Ballistic Vest", $27, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01,$02
+                    local1 = createitem("Heavy Ballistic Vest", $28, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $0D,$0E,$0F
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Newsboy Cap", $0D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local6 = $00
+                Case $01,$02
+                    local1 = createitem("Fine SCP-268", $0F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $27,$28
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Corrosive Ballistic Vest", $29, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("Ballistic Helmet", $26, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Heavy Ballistic Vest", $28, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Bulky Ballistic Vest", $2A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $3C,$3D,$3F
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Hazmat Suit", $3C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Fine Hazmat Suit", $3D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Very Fine Hazmat Suit", $3E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $3E
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Hazmat Suit", $3C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01,$02
+                    local1 = createitem("Infected Syringe", $58, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $2D,$2E
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                    clearsecondinv(arg0, $00)
+                Case $FFFFFFFF
+                    If (arg0\Field20 > $05) Then
+                        arg0\Field20 = (arg0\Field20 - $05)
+                        clearsecondinv(arg0, arg0\Field20)
+                    ElseIf (arg0\Field20 = $05) Then
+                        arg0\Field20 = $01
+                        clearsecondinv(arg0, $01)
                     Else
-                        local0 = createitem("SPAS-12", "spas12", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        local8 = $01
+                        clearsecondinv(arg0, $00)
                     EndIf
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    If (rand($02, $01) = $01) Then
-                        local0 = createitem("Combat knife", "knife", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                    local6 = $00
+                Case $00
+                    local6 = $00
+                Case $01
+                    If (arg0\Field20 = $01) Then
+                        arg0\Field20 = $05
                     Else
-                        local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        arg0\Field20 = (Int min(20.0, (Float (arg0\Field20 + $05))))
                     EndIf
-            End Select
-        Case "Desert Eagle","SPAS-12"
-            Select arg1
-                Case "rough","course"
-                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local0 = createitem("FN P90", "p90", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "M4A4"
-            Select arg1
-                Case "rough","course"
-                    local0 = createitem("MP5-SD", "mp5sd", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    If (rand($02, $01) = $01) Then
-                        local0 = createitem("Desert Eagle", "deagle", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                    local6 = $00
+                Case $02
+                    If (arg0\Field20 = $01) Then
+                        arg0\Field20 = $0A
                     Else
-                        local0 = createitem("SPAS-12", "spas12", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
+                        arg0\Field20 = (Int min(20.0, (Float (arg0\Field20 + $0A))))
                     EndIf
+                    local6 = $00
             End Select
-        Case "MP5-SD"
+        Case $2F
             Select arg1
-                Case "rough","course"
-                    local0 = createitem("USP Tactical", "usp", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "USP Tactical"
-            Select arg1
-                Case "rough","course"
-                    local0 = createitem("Combat knife", "knife", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "Combat knife"
-            Select arg1
-                Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local0 = createitem("USP Tactical", "usp", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "Gas Mask","Heavy Gas Mask"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local0 = createitem("Gas Mask", "supergasmask", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "Cooked Chicken"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine","very fine"
-                    local16 = createnpc($04, arg2, arg3, arg4)
-                    local16\Field9 = 1.0
-                    removeitem(arg0, $01)
-            End Select
-        Case "SCP-1499"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    local0 = createitem("Gas Mask", "gasmask", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "fine"
-                    local0 = createitem("SCP-1499", "super1499", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "very fine"
-                    If (networkserver\Field15 = $00) Then
-                        local16 = createnpc($14, arg2, arg3, arg4)
-                        local16\Field78 = $01
-                        local16\Field9 = 1.0
-                        local16\Field16 = loadsound_strict("SFX\SCP\1499\Triggered.ogg")
-                        local16\Field17 = playsound2(local16\Field16, camera, local16\Field4, 20.0, 1.0)
-                        local16\Field11 = 1.0
-                    EndIf
-                    removeitem(arg0, $01)
-            End Select
-        Case "Ballistic Vest"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine"
-                    local0 = createitem("Heavy Ballistic Vest", "finevest", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "very fine"
-                    local0 = createitem("Bulky Ballistic Vest", "veryfinevest", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-            End Select
-        Case "Cowbell"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1","fine","very fine"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-            End Select
-        Case "Night Vision Goggles"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                    removeitem(arg0, $01)
-                Case "1:1"
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
-                Case "fine"
-                    local0 = createitem("Night Vision Goggles", "finenvgoggles", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "very fine"
-                    local0 = createitem("Night Vision Goggles", "supernv", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 1000.0
-                    removeitem(arg0, $01)
-            End Select
-        Case "Metal Panel","SCP-148 Ingot"
-            Select arg1
-                Case "rough","coarse"
-                    local0 = createitem("SCP-148 Ingot", "scp148ingot", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "1:1","fine","very fine"
-                    local0 = Null
-                    For local22 = Each items
-                        If ((((local22 <> arg0) And (local22\Field1 <> $00)) And (local22\Field15 = $00)) <> 0) Then
-                            If ((180.0 * roomscale) > distance(entityx(local22\Field1, $01), entityz(local22\Field1, $01), entityx(arg0\Field1, $01), entityz(arg0\Field1, $01))) Then
-                                local0 = local22
-                                Exit
-                            ElseIf ((180.0 * roomscale) > distance(entityx(local22\Field1, $01), entityz(local22\Field1, $01), arg2, arg4)) Then
-                                local0 = local22
-                                Exit
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local6 = $00
+                Case $01
+                    For local0 = Each items
+                        If ((((local0 <> arg0) And (local0\Field2 <> $00)) And (local0\Field15 = $00)) <> 0) Then
+                            If ((1.0 / 2.022716) > distancesquared(entityx(local0\Field2, $01), arg2, entityz(local0\Field2, $01), arg4, 0.0, 0.0)) Then
+                                If (local0\Field4\Field2 = $2D) Then
+                                    removeitem(local0)
+                                    local1 = createitem("E-Reader", $4D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    Exit
+                                EndIf
                             EndIf
                         EndIf
                     Next
-                    If (local0 <> Null) Then
-                        Select local0\Field3\Field2
-                            Case "gasmask","supergasmask"
-                                removeitem(local0, $01)
-                                removeitem(arg0, $01)
-                                local0 = createitem("Heavy Gas Mask", "gasmask3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            Case "vest"
-                                removeitem(local0, $01)
-                                removeitem(arg0, $01)
-                                local0 = createitem("Heavy Ballistic Vest", "finevest", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            Case "hazmatsuit","hazmatsuit2"
-                                removeitem(local0, $01)
-                                removeitem(arg0, $01)
-                                local0 = createitem("Heavy Hazmat Suit", "hazmatsuit3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    If (local1 = Null) Then
+                        Select rand($03, $01)
+                            Case $01
+                                local1 = createitem("Radio Transceiver", $45, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = rnd(0.0, 100.0)
+                            Case $02
+                                If (rand($03, $01) = $01) Then
+                                    local1 = createitem("S-NAV 300 Navigator", $4A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                Else
+                                    local1 = createitem("S-NAV Navigator", $49, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    local1\Field12 = rnd(0.0, 100.0)
+                                EndIf
+                            Case $03
+                                local1 = createitem("Night Vision Goggles", $40, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = rnd(0.0, 1000.0)
                         End Select
-                    ElseIf (arg0\Field3\Field1 = "SCP-148 Ingot") Then
-                        local0 = createitem("Metal Panel", "scp148", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        removeitem(arg0, $01)
-                    Else
-                        positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                        resetentity(arg0\Field1)
+                    EndIf
+                Case $02
+                    For local0 = Each items
+                        If ((((local0 <> arg0) And (local0\Field2 <> $00)) And (local0\Field15 = $00)) <> 0) Then
+                            If ((1.0 / 2.022716) > distancesquared(entityx(local0\Field2, $01), arg2, entityz(local0\Field2, $01), arg4, 0.0, 0.0)) Then
+                                If (local0\Field4\Field2 = $2D) Then
+                                    removeitem(local0)
+                                    local1 = createitem("E-Reader", $4D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    Exit
+                                EndIf
+                            EndIf
+                        EndIf
+                    Next
+                    If (local1 = Null) Then
+                        Select rand($03, $01)
+                            Case $01
+                                If (rand($03, $01) = $01) Then
+                                    local1 = createitem("Fine Radio Transceiver", $47, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                Else
+                                    local1 = createitem("Very Fine Radio Transceiver", $48, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                EndIf
+                            Case $02
+                                If (rand($02, $01) = $01) Then
+                                    local1 = createitem("S-NAV 300 Navigator", $4A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                Else
+                                    local1 = createitem("S-NAV 310 Navigator", $4B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    local1\Field12 = rnd(0.0, 100.0)
+                                EndIf
+                            Case $03
+                                Select rand($04, $01)
+                                    Case $01
+                                        local1 = createitem("Fine Night Vision Goggles", $42, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    Case $02
+                                        local1 = createitem("Very Fine Night Vision Goggles", $41, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = rnd(0.0, 1000.0)
+                                    Case $03
+                                        local1 = createitem("SCRAMBLE Gear", $43, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = rnd(0.0, 1000.0)
+                                    Case $04
+                                        local1 = createitem("Fine SCRAMBLE Gear", $44, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                End Select
+                        End Select
                     EndIf
             End Select
-        Case "Severed Hand","Black Severed Hand"
+        Case $0C
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($03, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1","fine","very fine"
-                    If (arg0\Field3\Field1 = "Severed Hand") Then
-                        local0 = createitem("Black Severed Hand", "hand2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    Else
-                        local0 = createitem("Severed Hand", "hand", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("SCP-148 Ingot", $0B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00,$01,$02
+                    local6 = $00
+            End Select
+        Case $0B
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local1 = createitem("SCP-148 Ingot", $0B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00,$01,$02
+                    For local0 = Each items
+                        If ((((local0 <> arg0) And (local0\Field2 <> $00)) And (local0\Field15 = $00)) <> 0) Then
+                            If ((1.0 / 2.022716) > distancesquared(entityx(local0\Field2, $01), arg2, entityz(local0\Field2, $01), arg4, 0.0, 0.0)) Then
+                                Select local0\Field4\Field2
+                                    Case $38,$39,$3A
+                                        removeitem(local0)
+                                        local1 = createitem("Heavy Gas Mask", $3B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        Exit
+                                    Case $3C,$3D,$3E
+                                        removeitem(local0)
+                                        local1 = createitem("Heavy Hazmat Suit", $3F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        Exit
+                                End Select
+                            EndIf
+                        EndIf
+                    Next
+                    If (local1 = Null) Then
+                        local1 = createitem("Metal Panel", $0C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
             End Select
-            removeitem(arg0, $01)
-        Case "First Aid Kit","Blue First Aid Kit"
+        Case $64,$65,$66
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.12
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    If (rand($02, $01) = $01) Then
-                        local0 = createitem("Blue First Aid Kit", "firstaid2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00,$01
+                    If (arg0\Field4\Field2 = $64) Then
+                        If (rand($02, $01) = $01) Then
+                            local1 = createitem("Black Severed Hand", $65, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        Else
+                            local1 = createitem("Yellow Severed Hand", $66, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        EndIf
+                    ElseIf (arg0\Field4\Field2 = $65) Then
+                        If (rand($02, $01) = $01) Then
+                            local1 = createitem("White Severed Hand", $64, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        Else
+                            local1 = createitem("Yellow Severed Hand", $66, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        EndIf
+                    ElseIf (rand($02, $01) = $01) Then
+                        local1 = createitem("White Severed Hand", $64, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("First Aid Kit", "firstaid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        local1 = createitem("Black Severed Hand", $65, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
-                Case "fine"
-                    local0 = createitem("Small First Aid Kit", "finefirstaid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "very fine"
-                    local0 = createitem("Strange Bottle", "veryfinefirstaid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $01,$02
+                    local4 = createnpc($00, arg2, arg3, arg4)
+                    local4\Field10 = 3.0
             End Select
-            removeitem(arg0, $01)
-        Case "Level 1 Key Card","Level 2 Key Card","Level 3 Key Card","Level 4 Key Card","Level 5 Key Card","Key Card"
+        Case $34,$35,$36,$37
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.07
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine"
-                    Select arg0\Field3\Field1
-                        Case "Level 1 Key Card"
-                            Select selecteddifficulty\Field5
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    If (arg0\Field4\Field2 = $34) Then
+                        local1 = createitem("Blue First Aid Kit", $35, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("First Aid Kit", $34, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01
+                    local1 = createitem("Compact First Aid Kit", $36, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Strange Bottle", $37, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $59,$5A,$5B,$5C,$5D,$5E,$5F
+            local29 = arg0\Field4\Field2
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    If (local29 = $59) Then
+                        local8 = $01
+                    ElseIf (local29 = $5F) Then
+                        local1 = createitem("Level 0 Key Card", $59, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        Select local29
+                            Case $5A
+                                local30 = $01
+                            Case $5B
+                                local30 = $02
+                            Case $5C
+                                local30 = $03
+                            Case $5D
+                                local30 = $04
+                            Case $5E
+                                local30 = $05
+                        End Select
+                        local1 = createitem((("Level " + (Str (local30 - $01))) + " Key Card"), (local29 - $01), arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $00
+                    local1 = createitem("Playing Card", $63, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    Select local29
+                        Case $59
+                            Select selecteddifficulty\Field4
                                 Case $00
-                                    local0 = createitem("Level 2 Key Card", "key2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                    local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                Case $01
+                                    If (rand($06, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                                Case $02
+                                    If (rand($05, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                                Case $03
+                                    If (rand($04, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                            End Select
+                        Case $5A
+                            Select selecteddifficulty\Field4
+                                Case $00
+                                    local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                 Case $01
                                     If (rand($05, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Level 2 Key Card", "key2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                                 Case $02
                                     If (rand($04, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Level 2 Key Card", "key2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                                Case $03
+                                    If (rand($03, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                             End Select
-                        Case "Level 2 Key Card"
-                            Select selecteddifficulty\Field5
+                        Case $5B
+                            Select selecteddifficulty\Field4
                                 Case $00
-                                    local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                    local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                 Case $01
                                     If (rand($04, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                                 Case $02
                                     If (rand($03, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                                Case $03
+                                    If (rand($02, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                             End Select
-                        Case "Level 3 Key Card"
-                            Select selecteddifficulty\Field5
+                        Case $5C
+                            If (rand(((selecteddifficulty\Field4 * $06) + $0C), $01) = $01) Then
+                                local1 = createitem("Level 4 Key Card", $5D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            Else
+                                local1 = createitem("Playing Card", $63, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            EndIf
+                        Case $5D
+                            Select selecteddifficulty\Field4
                                 Case $00
-                                    If (rand($0A, $01) = $01) Then
-                                        local0 = createitem("Level 4 Key Card", "key4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
+                                    local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                 Case $01
-                                    If (rand($0F, $01) = $01) Then
-                                        local0 = createitem("Level 4 Key Card", "key4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
-                                Case $02
-                                    If (rand($14, $01) = $01) Then
-                                        local0 = createitem("Level 4 Key Card", "key4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
-                            End Select
-                        Case "Level 4 Key Card"
-                            Select selecteddifficulty\Field5
-                                Case $00
-                                    local0 = createitem("Level 5 Key Card", "key5", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $01
-                                    If (rand($04, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Level 5 Key Card", "key5", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
-                                Case $02
                                     If (rand($03, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Level 5 Key Card", "key5", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
-                            End Select
-                        Case "Level 5 Key Card"
-                            local32 = $00
-                            For local33 = $00 To $24 Step $01
-                                If (achievements(local33) = $01) Then
-                                    local32 = (local32 + $01)
-                                EndIf
-                            Next
-                            debuglog((Str local32))
-                            Select selecteddifficulty\Field5
-                                Case $00
-                                    If (rand($00, ($6C - ((local32 - $01) * $03))) = $00) Then
-                                        local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
-                                Case $01
-                                    If (rand($00, ($90 - ((local32 - $01) * $03))) = $00) Then
-                                        local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                                 Case $02
-                                    If (rand($00, ($B4 - ((local32 - $01) * $03))) = $00) Then
-                                        local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                    If (rand($02, $01) = $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
                                     Else
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                        local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                    EndIf
+                                Case $03
+                                    If (rand($03, $01) > $01) Then
+                                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                        local1\Field12 = (Float rand($00, $06))
+                                    Else
+                                        local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                                     EndIf
                             End Select
-                    End Select
-                Case "very fine"
-                    local32 = $00
-                    For local33 = $00 To $24 Step $01
-                        If (achievements(local33) = $01) Then
-                            local32 = (local32 + $01)
-                        EndIf
-                    Next
-                    debuglog((Str local32))
-                    Select selecteddifficulty\Field5
-                        Case $00
-                            If (rand($00, ($6C - ((local32 - $01) * $03))) = $00) Then
-                                local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        Case $5E
+                            local38 = (Int max((Float ((((s2imapsize(achievementsindex) - $03) - (s2imapsize(unlockedachievements) - $01)) - s2imapcontains(unlockedachievements, "apollyon")) * (selecteddifficulty\Field4 + $02))), 0.0))
+                            If (rand($00, local38) = $00) Then
+                                local1 = createitem("Key Card Omni", $60, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            ElseIf (rand(((selecteddifficulty\Field4 * $06) + $0C), $01) = $01) Then
+                                local1 = createitem("Level 6 Key Card", $5F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            ElseIf (rand($0F, $01) = $01) Then
+                                local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = 1000.0
                             Else
-                                local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = (Float rand($00, $06))
                             EndIf
-                        Case $01
-                            If (rand($00, ($90 - ((local32 - $01) * $03))) = $00) Then
-                                local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        Case $5F
+                            If (rand(((selecteddifficulty\Field4 * $03) + $06), $01) = $01) Then
+                                local1 = createitem("Key Card Omni", $60, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            ElseIf (rand($05, $01) = $01) Then
+                                local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = 1000.0
                             Else
-                                local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            EndIf
-                        Case $02
-                            If (rand($00, ($B4 - ((local32 - $01) * $03))) = $00) Then
-                                local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            Else
-                                local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                                local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                                local1\Field12 = (Float rand($00, $06))
                             EndIf
                     End Select
-            End Select
-            removeitem(arg0, $01)
-        Case "Key Card Omni"
-            Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.07
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    If (rand($02, $01) = $01) Then
-                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $02
+                    local38 = (Int max((Float ((((s2imapsize(achievementsindex) - $03) - (s2imapsize(unlockedachievements) - $01)) - s2imapcontains(unlockedachievements, "apollyon")) * (selecteddifficulty\Field4 + $04))), 0.0))
+                    If (rand($00, local38) = $00) Then
+                        local1 = createitem("Key Card Omni", $60, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    ElseIf (rand(((selecteddifficulty\Field4 * $06) + $18), $01) = $01) Then
+                        local1 = createitem("Level 6 Key Card", $5F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        local1 = createitem("Mastercard", $61, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = (Float rand($00, $06))
                     EndIf
-                Case "fine","very fine"
-                    local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
             End Select
-            removeitem(arg0, $01)
-        Case "Playing Card","Coin","Quarter"
+        Case $60
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.07
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("Level 1 Key Card", "key1", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine","very fine"
-                    local0 = createitem("Level 2 Key Card", "key2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    If (rand($02, $01) = $01) Then
+                        local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = 1000.0
+                    Else
+                        local1 = createitem("Playing Card", $63, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01,$02
+                    If (rand(((selecteddifficulty\Field4 Shl $01) + $04), $01) = $01) Then
+                        local1 = createitem("Level 6 Key Card", $5F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = 1000.0
+                    EndIf
             End Select
-            removeitem(arg0, $01)
-        Case "Mastercard"
+        Case $63,$6B,$6A
             Select arg1
-                Case "rough"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.07
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "coarse"
-                    local0 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local39 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local40 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local41 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    entitytype(local39\Field1, $03, $00)
-                    entitytype(local40\Field1, $03, $00)
-                    entitytype(local41\Field1, $03, $00)
-                Case "1:1"
-                    local0 = createitem("Level 1 Key Card", "key1", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine","very fine"
-                    local0 = createitem("Level 2 Key Card", "key2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Level 0 Key Card", $59, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
             End Select
-            removeitem(arg0, $01)
-        Case "S-NAV 300 Navigator","S-NAV 310 Navigator","S-NAV Navigator","S-NAV Navigator Ultimate"
+        Case $61
             Select arg1
-                Case "rough","coarse"
-                    local0 = createitem("Electronical components", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "1:1"
-                    local0 = createitem("S-NAV Navigator", "nav", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 100.0
-                Case "fine"
-                    local0 = createitem("S-NAV 310 Navigator", "nav", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 100.0
-                Case "very fine"
-                    local0 = createitem("S-NAV Navigator Ultimate", "nav", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 101.0
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Quarter", $6A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    If (rand($02, $01) = $01) Then
+                        local2 = createitem("Quarter", $6A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($03, $01) = $01) Then
+                        local2 = createitem("Quarter", $6A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($04, $01) = $01) Then
+                        local2 = createitem("Quarter", $6A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                Case $00
+                    local1 = createitem("Level 0 Key Card", $59, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    If (rand($23, $01) = $01) Then
+                        local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = 1000.0
+                    Else
+                        local1 = createitem("Level 1 Key Card", $5A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $02
+                    If (rand($32, $01) = $01) Then
+                        local1 = createitem("Mastercard", $62, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field12 = 1000.0
+                    Else
+                        local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
             End Select
-            removeitem(arg0, $01)
-        Case "Radio Transceiver"
+        Case $62
             Select arg1
-                Case "rough","coarse"
-                    local0 = createitem("Electronical components", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "1:1"
-                    local0 = createitem("Radio Transceiver", "18vradio", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 100.0
-                Case "fine"
-                    local0 = createitem("Radio Transceiver", "fineradio", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 101.0
-                Case "very fine"
-                    local0 = createitem("Radio Transceiver", "veryfineradio", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local0\Field13 = 101.0
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    For local7 = $00 To $14 Step $01
+                        local1 = createitem("Quarter", $6A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Next
+                Case $00
+                    local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    If (rand($23, $01) = $01) Then
+                        local1 = createitem("Level 4 Key Card", $5D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $02
+                    If (rand($2D, $01) = $01) Then
+                        local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
             End Select
-            removeitem(arg0, $01)
-        Case "SCP-513"
+        Case $08,$09,$0A
             Select arg1
-                Case "rough","coarse"
-                    playsound_strict(loadtempsound("SFX\SCP\513\914Refine.ogg"))
-                    For local16 = Each npcs
-                        If (local16\Field5 = $0C) Then
-                            removenpc(local16, $01)
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Coarse SCP-005", $09, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    If (rand($08, $01) = $01) Then
+                        local1 = createitem("Level 5 Key Card", $5E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local2 = createitem("White Severed Hand", $64, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                        local2 = createitem("Black Severed Hand", $65, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                        local2 = createitem("Yellow Severed Hand", $66, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                        local2 = createitem("White Key", $68, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                        local2 = createitem("Yellow Key", $67, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    Else
+                        local1 = createitem("SCP-005", $08, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01,$02
+                    local1 = createitem("Fine SCP-005", $0A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $1E,$1F
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    If (arg0\Field4\Field2 <> $1E) Then
+                        local1 = createitem("SCP-860", $1E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("White Key", $68, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01
+                    If (rand(((selecteddifficulty\Field4 Shl $02) + $08), $01) = $01) Then
+                        local1 = createitem("Fine SCP-860", $1F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local6 = $00
+                    EndIf
+                Case $02
+                    If (rand(((selecteddifficulty\Field4 * $06) + $0C), $01) = $01) Then
+                        local1 = createitem("Fine SCP-860", $1F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local6 = $00
+                    EndIf
+            End Select
+        Case $69,$68,$67
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    If (arg0\Field4\Field2 = $68) Then
+                        local1 = createitem("Yellow Key", $67, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("White Key", $68, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01
+                    If (rand($03, $01) = $01) Then
+                        local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    ElseIf (arg0\Field4\Field2 = $68) Then
+                        local1 = createitem("Yellow Key", $67, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("White Key", $68, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $02
+                    If (rand($06, $01) = $01) Then
+                        local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    ElseIf (arg0\Field4\Field2 = $68) Then
+                        local1 = createitem("Yellow Key", $67, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("White Key", $68, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $45,$46,$47,$48
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Electronical Components", $2F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("18V Radio Transceiver", $46, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 100.0)
+                Case $01
+                    local1 = createitem("Fine Radio Transceiver", $47, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Very Fine Radio Transceiver", $48, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $49,$4A,$4B,$4C
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Electronical Components", $2F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("S-NAV Navigator", $49, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 100.0)
+                Case $01
+                    local1 = createitem("S-NAV 310 Navigator", $4B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    local1\Field12 = rnd(0.0, 100.0)
+                Case $02
+                    local48 = $00
+                    local49 = $00
+                    For local5 = Each rooms
+                        local50 = local5\Field7\Field6
+                        If ((((((local50 <> $04) And (local50 <> $47)) And (local50 <> $49)) And (local50 <> $69)) And (local50 <> $6A)) <> 0) Then
+                            local48 = (local48 + $01)
+                            local49 = (local49 + local5\Field1)
                         EndIf
                     Next
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1","fine","very fine"
-                    local0 = createitem("SCP-513", "scp513", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    If (rand((Int max((Float ((local48 - (local49 Shl $01)) * (selecteddifficulty\Field4 + $01))), 1.0)), $01) = $01) Then
+                        local1 = createitem("S-NAV Navigator Ultimate", $4C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("S-NAV 300 Navigator", $4A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
             End Select
-            removeitem(arg0, $01)
-        Case "Some SCP-420-J","Cigarette"
+        Case $19
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("Cigarette", "cigarette", (arg2 + 1.5), (arg3 + 0.5), (arg4 + 1.0), $00, $00, $00, 1.0, $00, $01)
-                Case "fine"
-                    local0 = createitem("Joint", "420s", (arg2 + 1.5), (arg3 + 0.5), (arg4 + 1.0), $00, $00, $00, 1.0, $00, $01)
-                Case "very fine"
-                    local0 = createitem("Smelly Joint", "420s", (arg2 + 1.5), (arg3 + 0.5), (arg4 + 1.0), $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    playsound_strict(loadtempsound("SFX\SCP\513\914Refine.ogg"), $00)
+                    For local4 = Each npcs
+                        If (local4\Field4 = $09) Then
+                            removenpc(local4)
+                        EndIf
+                    Next
+                    local8 = $01
+                Case $00,$01,$02
+                    local1 = createitem("SCP-513", $19, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
             End Select
-            removeitem(arg0, $01)
-        Case "9V Battery","18V Battery","Strange Battery"
+        Case $10,$11,$12,$13
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("18V Battery", "18vbat", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine"
-                    local0 = createitem("Strange Battery", "killbat", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "very fine"
-                    local0 = createitem("Strange Battery", "killbat", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Cigarette", $11, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Joint", $12, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Smelly Joint", $13, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
             End Select
-            removeitem(arg0, $01)
-        Case "ReVision Eyedrops","RedVision Eyedrops","Eyedrops"
+        Case $1B,$1A,$1C,$1D
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("RedVision Eyedrops", "eyedrops", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine"
-                    local0 = createitem("Eyedrops", "fineeyedrops", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "very fine"
-                    local0 = createitem("Eyedrops", "supereyedrops", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Coarse SCP-714", $1A, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    If (arg0\Field4\Field2 = $1B) Then
+                        local1 = createitem("Green Jade Ring", $1D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("SCP-714", $1B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01,$02
+                    local1 = createitem("Fine SCP-714", $1C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
             End Select
-            removeitem(arg0, $01)
-        Case "Hazmat Suit"
+        Case $51
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("Hazmat Suit", "hazmatsuit", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "fine"
-                    local0 = createitem("Hazmat Suit", "hazmatsuit2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                Case "very fine"
-                    local0 = createitem("Hazmat Suit", "hazmatsuit2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local6 = $00
+                Case $01
+                    local1 = createitem("9V Battery", $50, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("18V Battery", $52, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
             End Select
-            removeitem(arg0, $01)
-        Case "Syringe"
-            Select arg0\Field3\Field2
-                Case "syringe"
-                    Select arg1
-                        Case "rough","coarse"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                            local4\Field2 = 0.07
-                            scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                        Case "1:1"
-                            local0 = createitem("Small First Aid Kit", "finefirstaid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        Case "fine"
-                            local0 = createitem("Syringe", "finesyringe", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        Case "very fine"
-                            local0 = createitem("Syringe", "veryfinesyringe", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    End Select
-                Case "finesyringe"
-                    Select arg1
-                        Case "rough"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                            local4\Field2 = 0.07
-                            scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                        Case "coarse"
-                            local0 = createitem("First Aid Kit", "firstaid", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        Case "1:1"
-                            local0 = createitem("Blue First Aid Kit", "firstaid2", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        Case "fine","very fine"
-                            local0 = createitem("Syringe", "veryfinesyringe", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    End Select
-                Case "veryfinesyringe"
-                    Select arg1
-                        Case "rough","coarse","1:1","fine"
-                            local0 = createitem("Electronical components", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                        Case "very fine"
-                            If (networkserver\Field15 = $00) Then
-                                local16 = createnpc($15, arg2, arg3, arg4)
-                                local16\Field78 = $01
-                                local16\Field9 = 2.0
-                            EndIf
-                    End Select
-            End Select
-            removeitem(arg0, $01)
-        Case "SCP-500-01","Upgraded pill","Pill"
+        Case $50
             Select arg1
-                Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                    local4\Field2 = 0.2
-                    entityalpha(local4\Field0, 0.8)
-                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                Case "1:1"
-                    local0 = createitem("Pill", "pill", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
-                Case "fine"
-                    local54 = $00
-                    For local39 = Each items
-                        If (local39\Field3\Field2 = "scp427") Then
-                            local54 = $01
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("4.5V Battery", $51, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local6 = $00
+                Case $01
+                    local1 = createitem("18V Battery", $52, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    If (rand($05, $01) = $01) Then
+                        local1 = createitem("999V Battery", $53, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Strange Battery", $54, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $52
+            Select arg1
+                Case $FFFFFFFE
+                    local1 = createitem("4.5V Battery", $51, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $FFFFFFFF
+                    local1 = createitem("9V Battery", $50, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local6 = $00
+                Case $01
+                    local1 = createitem("18V Battery", $52, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    If (rand($03, $01) = $01) Then
+                        local1 = createitem("999V Battery", $53, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Strange Battery", $54, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $53
+            Select arg1
+                Case $FFFFFFFE
+                    local1 = createitem("4.5V Battery", $51, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $FFFFFFFF
+                    local1 = createitem("9V Battery", $50, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00,$01,$02
+                    local1 = createitem("Strange Battery", $54, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $30,$31,$32,$33
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    If (rand($02, $01) = $01) Then
+                        local1 = createitem("ReVision Eyedrops", $30, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("RedVision Eyedrops", $31, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01
+                    local1 = createitem("Fine Eyedrops", $32, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    local1 = createitem("Very Fine Eyedrops", $33, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $55
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Compact First Aid Kit", $36, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Fine Syringe", $56, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    If (rand($03, $01) = $01) Then
+                        local1 = createitem("Very Fine Syringe", $57, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Infected Syringe", $58, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $56
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("First Aid Kit", $34, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem("Blue First Aid Kit", $35, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01,$02
+                    If (rand($03, $01) = $01) Then
+                        local1 = createitem("Very Fine Syringe", $57, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Infected Syringe", $58, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $57
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF,$00
+                    local1 = createitem("Electronical Components", $2F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local1 = createitem("Infected Syringe", $58, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    If (rand($02, $01) = $01) Then
+                        local4 = createnpc($00, arg2, arg3, arg4)
+                        local4\Field10 = 2.0
+                    Else
+                        local1 = createitem("Infected Syringe", $58, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $58
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local4 = createnpc($00, arg2, arg3, arg4)
+                    local4\Field10 = 2.0
+                Case $01
+                    local1 = createitem("Syringe", $55, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $02
+                    If (rand($04, $01) = $01) Then
+                        local1 = createitem("Blue First Aid Kit", $35, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Fine Syringe", $56, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $16,$17,$18
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Pill", $18, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    local64 = $00
+                    For local2 = Each items
+                        If (local2\Field4\Field2 = $14) Then
+                            local64 = $01
                             Exit
                         EndIf
                     Next
-                    If (local54 = $00) Then
-                        local0 = createitem("SCP-427", "scp427", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    If (local64 <> 0) Then
+                        local1 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     Else
-                        local0 = createitem("Upgraded pill", "scp500death", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        local1 = createitem("SCP-427", $14, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
                     EndIf
-                    removeitem(arg0, $01)
-                Case "very fine"
-                    local0 = createitem("Upgraded pill", "scp500death", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
+                Case $02
+                    If (rand($0A, $01) = $01) Then
+                        local1 = createitem("SCP-500", $15, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $15
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("SCP-500-01", $16, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    If (rand($02, $01) = $01) Then
+                        local2 = createitem("SCP-500-01", $16, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($03, $01) = $01) Then
+                        local2 = createitem("SCP-500-01", $16, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($04, $01) = $01) Then
+                        local2 = createitem("SCP-500-01", $16, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                Case $01
+                    local64 = $00
+                    For local2 = Each items
+                        If (local2\Field4\Field2 = $14) Then
+                            local64 = $01
+                            Exit
+                        EndIf
+                    Next
+                    If (local64 = $00) Then
+                        local1 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        If (rand($02, $01) = $01) Then
+                            local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            entitytype(local2\Field2, $03, $00)
+                        EndIf
+                        If (rand($03, $01) = $01) Then
+                            local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            entitytype(local2\Field2, $03, $00)
+                        EndIf
+                        If (rand($04, $01) = $01) Then
+                            local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                            entitytype(local2\Field2, $03, $00)
+                        EndIf
+                    Else
+                        local1 = createitem("SCP-427", $14, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $02
+                    local1 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    If (rand($02, $01) = $01) Then
+                        local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($03, $01) = $01) Then
+                        local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+                    If (rand($04, $01) = $01) Then
+                        local2 = createitem("Upgraded Pill", $17, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        entitytype(local2\Field2, $03, $00)
+                    EndIf
+            End Select
+        Case $2B
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00
+                    local1 = createitem("Cup", $2B, arg2, arg3, arg4, (Int (255.0 - (Float arg0\Field6))), (Int (255.0 - (Float arg0\Field7))), (Int (255.0 - (Float arg0\Field8))), 1.0, $00)
+                    local1\Field1 = arg0\Field1
+                    local1\Field0 = arg0\Field0
+                    local1\Field12 = arg0\Field12
+                Case $01
+                    local1 = createitem("Cup", $2B, arg2, arg3, arg4, (Int min(((Float arg0\Field6) * rnd(0.9, 1.1)), 255.0)), (Int min(((Float arg0\Field7) * rnd(0.9, 1.1)), 255.0)), (Int min(((Float arg0\Field8) * rnd(0.9, 1.1)), 255.0)), 1.0, $00)
+                    local1\Field1 = arg0\Field1
+                    local1\Field0 = arg0\Field0
+                    local1\Field12 = 2.0
+                Case $02
+                    local1 = createitem("Cup", $2B, arg2, arg3, arg4, (Int min(((Float arg0\Field6) * rnd(0.5, 1.5)), 255.0)), (Int min(((Float arg0\Field7) * rnd(0.5, 1.5)), 255.0)), (Int min(((Float arg0\Field8) * rnd(0.5, 1.5)), 255.0)), 1.0, $00)
+                    local1\Field1 = arg0\Field1
+                    local1\Field0 = arg0\Field0
+                    local1\Field12 = 5.0
+                    If (rand($05, $01) = $01) Then
+                        me\Field58 = 135.0
+                    EndIf
+            End Select
+        Case $02
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Blank Paper", $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem(("Document SCP-" + getranddocument()), $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01,$02
+                    If (rand($0A, $01) = $01) Then
+                        local1 = createitem("SCP-085", $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem(("Document SCP-" + getranddocument()), $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $00,$01
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Blank Paper", $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem(("Document SCP-" + getranddocument()), $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01,$02
+                    local1 = createitem("Origami", $02, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $20,$21,$22
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Blank Paper", $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    If (arg0\Field4\Field2 <> $20) Then
+                        local1 = createitem("SCP-1025", $20, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Book", $22, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $01,$02
+                    local1 = createitem("Fine SCP-1025", $21, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $23
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    playsound_strict(loadtempsound("SFX\SCP\1123\Horror.ogg"), $00)
+                    local3 = createdecal($03, arg2, 0.03625, arg4, 90.0, rnd(360.0, 0.0), 0.0, rnd(0.3, 0.4), rnd(0.8, 1.0), $01, $01, $00, $00, $00)
+                    entityparent(local3\Field0, playerroom\Field2, $01)
+                Case $00
+                    local6 = $00
+                Case $01,$02
+                    If (rand($02, $01) = $01) Then
+                        local1 = createitem("Yellow Severed Hand", $66, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    ElseIf (rand($02, $01) = $01) Then
+                        local1 = createitem("Black Severed Hand", $65, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("White Severed Hand", $64, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+            End Select
+        Case $03,$04,$06,$05
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Blank Paper", $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local1 = createitem(("Document SCP-" + getranddocument()), $00, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $01
+                    If (rand($08, $01) = $01) Then
+                        If (arg0\Field4\Field2 = $03) Then
+                            local1 = createitem("Level 2 Key Card", $5B, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        ElseIf (arg0\Field4\Field2 = $05) Then
+                            local1 = createitem("Level 3 Key Card", $5C, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        Else
+                            local1 = createitem("Level 4 Key Card", $5D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        EndIf
+                    Else
+                        local1 = createitem("Wallet", $2E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    EndIf
+                Case $02
+                    local1 = createitem("Clipboard", $2D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+            End Select
+        Case $4D,$4E,$4F
+            Select arg1
+                Case $FFFFFFFE
+                    local8 = $01
+                Case $FFFFFFFF
+                    local1 = createitem("Clipboard", $2D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                Case $00
+                    local6 = $00
+                Case $01
+                    If (rand($05, $01) = $01) Then
+                        local1 = createitem("E-Reader 20", $4E, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Clipboard", $2D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field20 = $0F
+                    EndIf
+                Case $02
+                    If (rand($0F, $01) = $01) Then
+                        local1 = createitem("E-Reader 30", $4F, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                    Else
+                        local1 = createitem("Clipboard", $2D, arg2, arg3, arg4, $00, $00, $00, 1.0, $00)
+                        local1\Field20 = $14
+                    EndIf
             End Select
         Default
-            Select arg0\Field3\Field2
-                Case "cup"
-                    Select arg1
-                        Case "rough","coarse"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                            local4\Field2 = 0.2
-                            entityalpha(local4\Field0, 0.8)
-                            scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                        Case "1:1"
-                            local0 = createitem("cup", "cup", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            local0\Field0 = arg0\Field0
-                            local0\Field5 = ($FF - arg0\Field5)
-                            local0\Field6 = ($FF - arg0\Field6)
-                            local0\Field7 = ($FF - arg0\Field7)
-                        Case "fine"
-                            local0 = createitem("cup", "cup", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            local0\Field0 = arg0\Field0
-                            local0\Field13 = 1.0
-                            local0\Field5 = (Int min(((Float arg0\Field5) * rnd(0.9, 1.1)), 255.0))
-                            local0\Field6 = (Int min(((Float arg0\Field6) * rnd(0.9, 1.1)), 255.0))
-                            local0\Field7 = (Int min(((Float arg0\Field7) * rnd(0.9, 1.1)), 255.0))
-                        Case "very fine"
-                            local0 = createitem("cup", "cup", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            local0\Field0 = arg0\Field0
-                            local0\Field13 = max((local0\Field13 * 2.0), 2.0)
-                            local0\Field5 = (Int min(((Float arg0\Field5) * rnd(0.5, 1.5)), 255.0))
-                            local0\Field6 = (Int min(((Float arg0\Field6) * rnd(0.5, 1.5)), 255.0))
-                            local0\Field7 = (Int min(((Float arg0\Field7) * rnd(0.5, 1.5)), 255.0))
-                            If (rand($05, $01) = $01) Then
-                                explosiontimer = 135.0
-                            EndIf
-                    End Select
-                    removeitem(arg0, $01)
-                Case "paper"
-                    Select arg1
-                        Case "rough","coarse"
-                            local4 = createdecal($07, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                            local4\Field2 = 0.12
-                            scalesprite(local4\Field0, local4\Field2, local4\Field2)
-                        Case "1:1"
-                            Select rand($06, $01)
-                                Case $01
-                                    local0 = createitem("Document SCP-106", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $02
-                                    local0 = createitem("Document SCP-079", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $03
-                                    local0 = createitem("Document SCP-173", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $04
-                                    local0 = createitem("Document SCP-895", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $05
-                                    local0 = createitem("Document SCP-682", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                Case $06
-                                    local0 = createitem("Document SCP-860", "paper", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                            End Select
-                        Case "fine","very fine"
-                            local0 = createitem("Origami", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    End Select
-                    removeitem(arg0, $01)
-                Default
-                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
-                    resetentity(arg0\Field1)
+            Select arg1
+                Case $FFFFFFFE,$FFFFFFFF
+                    local8 = $01
+                Case $00,$01,$02
+                    local6 = $00
             End Select
     End Select
-    If (arg0 <> Null) Then
-        arg0\Field22 = $00
-        arg0\Field15 = $00
+    If (local8 <> 0) Then
+        local3 = createdecal($00, arg2, 0.03625, arg4, 90.0, rnd(360.0, 0.0), 0.0, rnd(0.3, 0.8), rnd(0.8, 1.0), $01, $01, $00, $00, $00)
+        entityparent(local3\Field0, playerroom\Field2, $01)
     EndIf
-    If (local0 <> Null) Then
-        local0\Field22 = $00
-        local0\Field15 = $00
-        entitytype(local0\Field1, $03, $00)
+    If (local6 <> 0) Then
+        removeitem(arg0)
+    Else
+        positionentity(arg0\Field2, arg2, arg3, arg4, $00)
+        resetentity(arg0\Field2)
     EndIf
-    If (local4 <> Null) Then
-        multiplayer_writedecal(local4, $01, $01)
+    If (local1 <> Null) Then
+        entitytype(local1\Field2, $03, $00)
     EndIf
     Return $00
 End Function

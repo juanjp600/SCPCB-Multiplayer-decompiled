@@ -4,3117 +4,3329 @@ Function fillroom%(arg0.rooms)
     Local local2.securitycams
     Local local3.decals
     Local local4.rooms
-    Local local5%
-    Local local6.items
-    Local local7%
-    Local local8%
+    Local local5.forest
+    Local local6.emitter
+    Local local7.items
+    Local local8.items
     Local local9%
     Local local10%
-    Local local11%
-    Local local13.forest
-    Local local14.emitters
+    Local local11.lights
+    Local local12#
+    Local local13#
+    Local local14#
     Local local15%
     Local local16%
     Local local17%
     Local local18%
     Local local19%
-    Local local21#
-    Local local22#
-    Local local24%
-    Local local26.waypoints
-    Local local27.waypoints
-    Local local28#
-    Local local29%
-    Local local31#
-    Local local32$
-    Local local33$
-    Local local34%
-    Local local37%
-    Local local39#
-    Local local47%
+    Local local20$
+    Local local21%
+    Local local22%
+    Local local23%
+    Local local24#
+    Local local25%
+    Local local26%
+    Local local27%
+    Local local28%
+    Local local29#
+    Local local30$
+    Local local31%
+    Local local32#
+    Local local33#
+    Local local38%
     Local local48%
-    Local local49%
-    Local local50%
-    Local local51%
-    Local local52$
-    Local local53%
-    Local local54%
-    Local local56%
-    Local local57#
-    Local local59%
-    Local local60%
-    Local local61#
-    Local local62%
-    Local local64.lighttemplates
-    Local local65%
-    Local local66.tempscreens
-    Local local67.tempwaypoints
-    allowroomsdoorsinit = $01
-    Select arg0\Field7\Field11
-        Case "room860"
-            arg0\Field25[$02] = loadmesh_strict("GFX\map\forest\door_frame.b3d", $00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (184.0 * roomscale)), 0.0, arg0\Field5, $01)
-            scaleentity(arg0\Field25[$02], (45.0 * roomscale), (45.0 * roomscale), (80.0 * roomscale), $01)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            arg0\Field25[$03] = loadmesh_strict("GFX\map\forest\door.b3d", $00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (112.0 * roomscale)), 0.0, (arg0\Field5 + 0.05), $01)
-            entitytype(arg0\Field25[$03], $01, $00)
-            scaleentity(arg0\Field25[$03], (46.0 * roomscale), (45.0 * roomscale), (46.0 * roomscale), $01)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            arg0\Field25[$04] = copyentity(arg0\Field25[$03], $00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (256.0 * roomscale)), 0.0, (arg0\Field5 - 0.05), $01)
-            rotateentity(arg0\Field25[$04], 0.0, 180.0, 0.0, $00)
-            scaleentity(arg0\Field25[$04], (46.0 * roomscale), (45.0 * roomscale), (46.0 * roomscale), $01)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$02])
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            addentitytoroomprops(arg0, arg0\Field25[$04])
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (928.0 * roomscale)), 0.0, (arg0\Field5 + (640.0 * roomscale)), 0.0, arg0, networkserver\Field15, $00, $00, "ABCD", $00)
-            local0\Field21 = (networkserver\Field15 = $00)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (928.0 * roomscale)), 0.0, (arg0\Field5 - (640.0 * roomscale)), 0.0, arg0, $01, $00, $00, "ABCD", $00)
-            local0\Field21 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (416.0 * roomscale)), 0.0, (arg0\Field5 - (640.0 * roomscale)), 0.0, arg0, $00, $00, $01, "", $00)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (416.0 * roomscale)), 0.0, (arg0\Field5 + (640.0 * roomscale)), 0.0, arg0, $00, $00, $01, "", $00)
-            If (i_zone\Field1 = $00) Then
-                local13 = (New forest)
-                arg0\Field11 = local13
-                genforestgrid(local13)
-                placeforest(local13, arg0\Field3, (arg0\Field4 + 30.0), arg0\Field5, arg0)
+    Local local50.tempscreens
+    Local local51.tempwaypoints
+    Local local52.templights
+    Local local53.tempprops
+    Local local54.tempsoundemitters
+    catcherrors("FillRoom()")
+    Select arg0\Field7\Field6
+        Case $00
+            createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 2.0), 0.0, $00, $00, $03, $00, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.0), (arg0\Field4 + 1.5), (arg0\Field5 + 2.5), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 180.0
+            local2\Field9 = 45.0
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\Props\watches.b3d", $00)
+            scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            rotateentity(arg0\Field11[$00], 0.0, 128.0, 270.0, $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 2.574219), (arg0\Field4 + (1.0 / 1.924812)), (arg0\Field5 + (1.0 / 1.236715)), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = loadmesh_strict("GFX\Map\Props\rubber_duck.b3d", $00)
+            scaleentity(arg0\Field11[$01], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            rotateentity(arg0\Field11[$01], 0.0, 260.0, 0.0, $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 2.574219), (arg0\Field4 + (1.0 / 1.924812)), (arg0\Field5 + 1.742188), $00)
+            entityradius(arg0\Field11[$01], 0.2, 0.0)
+            entitypickmode(arg0\Field11[$01], $01, $01)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = loadanimmesh_strict("GFX\Map\Props\penny.b3d", $00)
+            scaleentity(arg0\Field11[$02], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 2.402344), (arg0\Field4 + (1.0 / 1.924812)), (arg0\Field5 - (1.0 / 1.753425)), $00)
+            entityradius(arg0\Field11[$02], 0.2, 0.0)
+            entitypickmode(arg0\Field11[$02], $01, $01)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            If (key2_spawnrate = $06) Then
+                local7 = createitem("White Key", $68, (arg0\Field3 - 2.066406), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 2.285156), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
             EndIf
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-860-1", "paper", (arg0\Field3 + (672.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (335.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + $0A)), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Document SCP-860", "paper", (arg0\Field3 + (1152.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (384.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + $AA)), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 + (672.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (335.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + $0A)), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Rocket Launcher", "rpg", (arg0\Field3 + (1152.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (384.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + $AA)), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-        Case "lockroom"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (736.0 * roomscale)), 0.0, (arg0\Field5 - (104.0 * roomscale)), 0.0, arg0, $01, $00, $00, "", $00)
-            local0\Field10 = (((networkserver\Field15 * $05) + $05) * $46)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            entityparent(local0\Field3[$00], $00, $01)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (288.0 * roomscale)), 0.7, (arg0\Field5 - (640.0 * roomscale)), $00)
-            entityparent(local0\Field3[$00], arg0\Field2, $01)
-            freeentity(local0\Field3[$01])
-            local0\Field3[$01] = $00
-            local1 = createdoor(arg0\Field0, (arg0\Field3 + (104.0 * roomscale)), 0.0, (arg0\Field5 + (736.0 * roomscale)), 270.0, arg0, $01, $00, $00, "", $00)
-            local1\Field10 = (((networkserver\Field15 * $05) + $05) * $46)
-            local1\Field21 = $00
-            local1\Field5 = $00
-            entityparent(local1\Field3[$00], $00, $01)
-            positionentity(local1\Field3[$00], (arg0\Field3 + (640.0 * roomscale)), 0.7, (arg0\Field5 + (288.0 * roomscale)), $00)
-            rotateentity(local1\Field3[$00], 0.0, 90.0, 0.0, $00)
-            entityparent(local1\Field3[$00], arg0\Field2, $01)
-            freeentity(local1\Field3[$01])
-            local1\Field3[$01] = $00
-            local0\Field22 = local1
-            local1\Field22 = local0
-            local2 = createsecuritycam((arg0\Field3 - (688.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 + (688.0 * roomscale)), arg0, $01)
-            local2\Field11 = 225.0
-            local2\Field12 = 45.0
-            local2\Field9 = $01
-            entitytexture(local2\Field4, screentexs[local2\Field9], $00, $00)
-            turnentity(local2\Field3, 40.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 + (668.0 * roomscale)), 1.1, (arg0\Field5 - (96.0 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 - (112.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 + (112.0 * roomscale)), arg0, $01)
-            local2\Field11 = 45.0
-            local2\Field12 = 45.0
-            local2\Field9 = $01
-            entitytexture(local2\Field4, screentexs[local2\Field9], $00, $00)
-            turnentity(local2\Field3, 40.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 + (96.0 * roomscale)), 1.1, (arg0\Field5 - (668.0 * roomscale)), $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            local14 = createemitter((arg0\Field3 - (175.0 * roomscale)), (370.0 * roomscale), (arg0\Field5 + (656.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, 90.0, 0.0, 0.0, $01)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field10 = 20.0
-            local14\Field9 = 0.05
-            local14\Field11 = 0.007
-            local14\Field12 = -0.006
-            local14\Field4 = -0.24
-            local14 = createemitter((arg0\Field3 - (655.0 * roomscale)), (370.0 * roomscale), (arg0\Field5 + (240.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, 90.0, 0.0, 0.0, $01)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field10 = 20.0
-            local14\Field9 = 0.05
-            local14\Field11 = 0.007
-            local14\Field12 = -0.006
-            local14\Field4 = -0.24
-        Case "lockroom2"
-            For local7 = $00 To $05 Step $01
-                local3 = createdecal(rand($02, $03), (arg0\Field3 + (rnd(-392.0, 520.0) * roomscale)), ((3.0 * roomscale) + rnd(0.0, 0.001)), (arg0\Field5 + (rnd(-392.0, 520.0) * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-                local3\Field2 = rnd(0.3, 0.6)
-                scalesprite(local3\Field0, local3\Field2, local3\Field2)
-                createdecal(rand($0F, $10), (arg0\Field3 + (rnd(-392.0, 520.0) * roomscale)), ((3.0 * roomscale) + rnd(0.0, 0.001)), (arg0\Field5 + (rnd(-392.0, 520.0) * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-                local3\Field2 = rnd(0.1, 0.6)
-                scalesprite(local3\Field0, local3\Field2, local3\Field2)
-                createdecal(rand($0F, $10), (arg0\Field3 + rnd(-0.5, 0.5)), ((3.0 * roomscale) + rnd(0.0, 0.001)), (arg0\Field5 + rnd(-0.5, 0.5)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-                local3\Field2 = rnd(0.1, 0.6)
-                scalesprite(local3\Field0, local3\Field2, local3\Field2)
+            local7 = createitem("Log of Anomalous Items", $00, (arg0\Field3 + 0.75), (arg0\Field4 + 0.375), (arg0\Field5 + 1.800781), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 + 0.75), (arg0\Field4 + 0.375), (arg0\Field5 - 0.875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Playing Card", $63, (arg0\Field3 + 0.75), (arg0\Field4 + 1.125), (arg0\Field5 + 1.679688), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 0.75), (arg0\Field4 + 0.75), (arg0\Field5 - 1.015625))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Clipboard", $2D, (arg0\Field3 + 0.75), (arg0\Field4 + 0.75), (arg0\Field5 + (1.0 / 2.327273)), $00, $00, $00, 1.0, $00)
+            local7\Field17 = local7\Field4\Field7
+            setanimtime(local7\Field3, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local8 = createitem("Document SCP-966", $00, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $00
+            local8\Field16 = $FFFFFFFF
+            local7\Field18[$00] = local8
+            hideentity(local8\Field2)
+            local8 = createitem("Document SCP-1025", $00, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $00
+            local8\Field16 = $FFFFFFFF
+            local7\Field18[$01] = local8
+            hideentity(local8\Field2)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 3.0))
+        Case $01
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 3.070312), arg0\Field4, $00, $03, $00, $00, $00)
+            local0\Field23 = $00
+            local0\Field16 = $01
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            local2 = createsecuritycam((arg0\Field3 + (512.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 + (384.0 * roomscale)), arg0, $01)
-            local2\Field11 = 135.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 40.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 + (668.0 * roomscale)), 1.1, (arg0\Field5 - (96.0 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 - (384.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 - (512.0 * roomscale)), arg0, $01)
-            local2\Field11 = 315.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 40.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 + (96.0 * roomscale)), 1.1, (arg0\Field5 - (668.0 * roomscale)), $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-        Case "gatea"
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (4064.0 * roomscale)), (arg0\Field4 - (1280.0 * roomscale)), (arg0\Field5 + (3952.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            local1 = createdoor(arg0\Field0, arg0\Field3, arg0\Field4, (arg0\Field5 - (1024.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local1\Field21 = $00
-            local1\Field5 = $00
-            local1\Field4 = $01
-            local1 = createdoor(arg0\Field0, (arg0\Field3 - (1440.0 * roomscale)), (arg0\Field4 - (480.0 * roomscale)), (arg0\Field5 + (2328.0 * roomscale)), 0.0, arg0, $00, $00, $02, "", $00)
-            If (selectedending = "A2") Then
-                local1\Field21 = $00
-                local1\Field5 = $01
-                local1\Field4 = $01
-            Else
-                local1\Field21 = $00
-                local1\Field5 = $00
-                local1\Field4 = $00
-            EndIf
-            positionentity(local1\Field3[$00], (arg0\Field3 - (1320.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 + (2288.0 * roomscale)), $01)
-            positionentity(local1\Field3[$01], (arg0\Field3 - (1584.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 + (2488.0 * roomscale)), $01)
-            rotateentity(local1\Field3[$01], 0.0, 90.0, 0.0, $01)
-            local1 = createdoor(arg0\Field0, (arg0\Field3 - (1440.0 * roomscale)), (arg0\Field4 - (480.0 * roomscale)), (arg0\Field5 + (4352.0 * roomscale)), 0.0, arg0, $00, $00, $02, "", $00)
-            If (selectedending = "A2") Then
-                local1\Field21 = $00
-                local1\Field5 = $01
-                local1\Field4 = $01
-            Else
-                local1\Field21 = $00
-                local1\Field5 = $00
-                local1\Field4 = $00
-            EndIf
-            positionentity(local1\Field3[$00], (arg0\Field3 - (1320.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 + (4384.0 * roomscale)), $01)
-            rotateentity(local1\Field3[$00], 0.0, 180.0, 0.0, $01)
-            positionentity(local1\Field3[$01], (arg0\Field3 - (1584.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 + (4232.0 * roomscale)), $01)
-            rotateentity(local1\Field3[$01], 0.0, 90.0, 0.0, $01)
-            For local4 = Each rooms
-                If (local4\Field7\Field11 = "exit1") Then
-                    arg0\Field25[$01] = local4\Field25[$01]
-                    arg0\Field25[$02] = local4\Field25[$02]
-                ElseIf (local4\Field7\Field11 = "gateaentrance") Then
-                    arg0\Field29[$01] = createdoor($00, (arg0\Field3 + (1544.0 * roomscale)), arg0\Field4, (arg0\Field5 - (64.0 * roomscale)), 90.0, arg0, $00, $03, $00, "", $00)
-                    arg0\Field29[$01]\Field21 = $00
-                    arg0\Field29[$01]\Field5 = $00
-                    positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 + (1584.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), (arg0\Field5 + (80.0 * roomscale)), $01)
-                    positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (1456.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$01], $01), (arg0\Field5 - (208.0 * roomscale)), $01)
-                    local4\Field25[$01] = createpivot($00)
-                    positionentity(local4\Field25[$01], (arg0\Field3 + (1848.0 * roomscale)), (arg0\Field4 + (240.0 * roomscale)), (arg0\Field5 - (64.0 * roomscale)), $01)
-                    entityparent(local4\Field25[$01], arg0\Field2, $01)
-                EndIf
+            arg0\Field14[$00] = local0
+        Case $4A
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 4.695312), arg0\Field4, $00, $03, $00, $00, $00)
+            local0\Field23 = $00
+            local0\Field16 = $01
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            arg0\Field25[$03] = createpivot($00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (1216.0 * roomscale)), arg0\Field4, (arg0\Field5 + (2112.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], arg0\Field3, (arg0\Field4 + (96.0 * roomscale)), (arg0\Field5 + (6400.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (1784.0 * roomscale)), (arg0\Field4 + (2124.0 * roomscale)), (arg0\Field5 + (4512.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 - (5048.0 * roomscale)), (arg0\Field4 + (1912.0 * roomscale)), (arg0\Field5 + (4656.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-            arg0\Field25[$07] = createpivot($00)
-            positionentity(arg0\Field25[$07], (arg0\Field3 + (1824.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 + (7056.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$07], arg0\Field2, $01)
-            arg0\Field25[$08] = createpivot($00)
-            positionentity(arg0\Field25[$08], (arg0\Field3 - (1824.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 + (7056.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$08], arg0\Field2, $01)
-            arg0\Field25[$09] = createpivot($00)
-            positionentity(arg0\Field25[$09], (arg0\Field3 + (2624.0 * roomscale)), (arg0\Field4 + (992.0 * roomscale)), (arg0\Field5 + (6157.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$09], arg0\Field2, $01)
-            arg0\Field25[$0B] = createpivot($00)
-            positionentity(arg0\Field25[$0B], (arg0\Field3 - (4064.0 * roomscale)), (arg0\Field4 - (1248.0 * roomscale)), (arg0\Field5 - (1696.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0B], arg0\Field2, $01)
-            local15 = createcube($00)
-            entityalpha(local15, 0.0)
-            positionentity(local15, (arg0\Field3 - (4160.0 * roomscale)), (arg0\Field4 - (1045.0 * roomscale)), (arg0\Field5 - (1920.0 * roomscale)), $00)
-            moveentity(local15, 0.3, 0.0, -0.3)
-            scaleentity(local15, 0.55, 0.55, 0.55, $00)
-            entitytype(local15, $01, $00)
-            entityparent(local15, arg0\Field2, $01)
-            arg0\Field25[$1B] = createpivot($00)
-            positionentity(arg0\Field25[$1B], (arg0\Field3 - (4160.0 * roomscale)), (arg0\Field4 - (1045.0 * roomscale)), (arg0\Field5 - (1920.0 * roomscale)), $00)
-            moveentity(arg0\Field25[$1B], 0.3, 0.1, 30.0)
-            entityparent(arg0\Field25[$1B], arg0\Field2, $01)
-            arg0\Field25[$0D] = loadmesh_strict("GFX\map\gateawall1.b3d", arg0\Field2)
-            positionentity(arg0\Field25[$0D], (arg0\Field3 - (4308.0 * roomscale)), (arg0\Field4 - (1045.0 * roomscale)), (arg0\Field5 + (544.0 * roomscale)), $01)
-            entitycolor(arg0\Field25[$0D], 25.0, 25.0, 25.0)
-            entitytype(arg0\Field25[$0D], $01, $00)
-            addentitytoroomprops(arg0, arg0\Field25[$0D])
-            arg0\Field25[$0E] = loadmesh_strict("GFX\map\gateawall2.b3d", arg0\Field2)
-            positionentity(arg0\Field25[$0E], (arg0\Field3 - (3820.0 * roomscale)), (arg0\Field4 - (1045.0 * roomscale)), (arg0\Field5 + (544.0 * roomscale)), $01)
-            entitycolor(arg0\Field25[$0E], 25.0, 25.0, 25.0)
-            entitytype(arg0\Field25[$0E], $01, $00)
-            addentitytoroomprops(arg0, arg0\Field25[$0E])
-            arg0\Field25[$0F] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0F], (arg0\Field3 - (3568.0 * roomscale)), (arg0\Field4 - (1089.0 * roomscale)), (arg0\Field5 + (4944.0 * roomscale)), $01)
-            arg0\Field25[$10] = loadmesh_strict("GFX\map\gatea_hitbox1.b3d", arg0\Field2)
-            entitypickmode(arg0\Field25[$10], $02, $01)
-            entitytype(arg0\Field25[$10], $01, $00)
-            entityalpha(arg0\Field25[$10], 0.0)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 - (1366.82 * roomscale)), (arg0\Field4 + (77.3125 * roomscale)), (arg0\Field5 - (272.784 * roomscale)), -45.0)
-            local16 = createcube($00)
-            scaleentity(local16, 2.12, 6.0, 2.59, $00)
-            positionentity(local16, (arg0\Field3 + (911.5613 * roomscale)), (arg0\Field4 - (767.0 * roomscale)), (arg0\Field5 + (1062.061 * roomscale)), $00)
-            moveentity(local16, 0.5, 0.0, 0.1)
-            entitytype(local16, $09, $00)
-            entityalpha(local16, 0.0)
-            entityparent(local16, arg0\Field2, $01)
-            local16 = createcube($00)
-            scaleentity(local16, 2.12, 6.0, 2.59, $00)
-            positionentity(local16, (arg0\Field3 - (905.7939 * roomscale)), (arg0\Field4 - (767.0 * roomscale)), (arg0\Field5 + (1081.676 * roomscale)), $00)
-            moveentity(local16, -0.5, 0.0, 0.0)
-            entitytype(local16, $09, $00)
-            entityalpha(local16, 0.0)
-            entityparent(local16, arg0\Field2, $01)
-        Case "gateaentrance"
-            arg0\Field29[$00] = createdoor($00, (arg0\Field3 + (744.0 * roomscale)), 0.0, (arg0\Field5 + (512.0 * roomscale)), 90.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (688.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 + (368.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (784.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 + (656.0 * roomscale)), $01)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1048.0 * roomscale)), 0.0, (arg0\Field5 + (512.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field29[$01] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (360.0 * roomscale)), 0.0, arg0, $00, $01, $05, "", $00)
-            arg0\Field29[$01]\Field9 = $01
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (422.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 - (576.0 * roomscale)), $01)
-            rotateentity(arg0\Field29[$01]\Field3[$01], 0.0, ((Float arg0\Field6) - 90.0), 0.0, $01)
-            positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 - (522.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), entityz(arg0\Field29[$01]\Field3[$00], $01), $01)
-            rotateentity(arg0\Field29[$01]\Field3[$00], 0.0, ((Float arg0\Field6) - 225.0), 0.0, $01)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (413.094 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 + (804.36 * roomscale)), -179.0)
-        Case "exit1"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (4356.0 * roomscale)), (9767.0 * roomscale), (arg0\Field5 + (2588.0 * roomscale)), $01)
-            arg0\Field29[$04] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (320.0 * roomscale)), 0.0, arg0, $00, $01, $05, "", $00)
-            arg0\Field29[$04]\Field9 = $01
-            arg0\Field29[$04]\Field21 = $00
-            arg0\Field29[$04]\Field5 = $00
-            positionentity(arg0\Field29[$04]\Field3[$01], (arg0\Field3 + (358.0 * roomscale)), entityy(arg0\Field29[$04]\Field3[$01], $01), (arg0\Field5 - (528.0 * roomscale)), $01)
-            rotateentity(arg0\Field29[$04]\Field3[$01], 0.0, ((Float arg0\Field6) - 90.0), 0.0, $01)
-            positionentity(arg0\Field29[$04]\Field3[$00], entityx(arg0\Field29[$04]\Field3[$00], $01), entityy(arg0\Field29[$04]\Field3[$00], $01), (arg0\Field5 - (198.0 * roomscale)), $01)
-            rotateentity(arg0\Field29[$04]\Field3[$00], 0.0, ((Float arg0\Field6) - 180.0), 0.0, $01)
-            arg0\Field25[$03] = createpivot($00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (7680.0 * roomscale)), (10992.0 * roomscale), (arg0\Field5 - (27048.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (5203.36 * roomscale)), (12128.0 * roomscale), (arg0\Field5 - (1739.19 * roomscale)), $01)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (4363.02 * roomscale)), (10536.0 * roomscale), (arg0\Field5 + (2766.16 * roomscale)), $01)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (5192.0 * roomscale)), (12192.0 * roomscale), (arg0\Field5 - (1760.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-            arg0\Field25[$07] = createpivot($00)
-            positionentity(arg0\Field25[$07], (arg0\Field3 + (5192.0 * roomscale)), (12192.0 * roomscale), (arg0\Field5 - (4352.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$07], arg0\Field2, $01)
-            arg0\Field29[$00] = createdoor($00, (arg0\Field3 + (720.0 * roomscale)), 0.0, (arg0\Field5 + (1432.0 * roomscale)), 0.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            moveentity(arg0\Field29[$00]\Field3[$00], 0.0, 0.0, (22.0 * roomscale))
-            moveentity(arg0\Field29[$00]\Field3[$01], 0.0, 0.0, (22.0 * roomscale))
-            arg0\Field25[$08] = createpivot($00)
-            positionentity(arg0\Field25[$08], (arg0\Field3 + (720.0 * roomscale)), 0.0, (arg0\Field5 + (1744.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$08], arg0\Field2, $01)
-            arg0\Field29[$01] = createdoor($00, (arg0\Field3 - (5424.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 - (1380.0 * roomscale)), 0.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            moveentity(arg0\Field29[$01]\Field3[$00], 0.0, 0.0, (22.0 * roomscale))
-            moveentity(arg0\Field29[$01]\Field3[$01], 0.0, 0.0, (22.0 * roomscale))
-            arg0\Field25[$09] = createpivot($00)
-            positionentity(arg0\Field25[$09], (arg0\Field3 - (5424.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 - (1068.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$09], arg0\Field2, $01)
-            arg0\Field29[$02] = createdoor($00, (arg0\Field3 + (4352.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 - (492.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            arg0\Field29[$03] = createdoor($00, (arg0\Field3 + (4352.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 + (500.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$03]\Field21 = $00
-            arg0\Field29[$03]\Field5 = $00
-            arg0\Field25[$0A] = createpivot($00)
-            positionentity(arg0\Field25[$0A], (arg0\Field3 + (4352.0 * roomscale)), (10778.0 * roomscale), (arg0\Field5 + (1344.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0A], arg0\Field2, $01)
-            arg0\Field25[$0B] = createpivot($00)
-            positionentity(arg0\Field25[$0B], (arg0\Field3 + (2816.0 * roomscale)), (11024.0 * roomscale), (arg0\Field5 - (2816.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0B], arg0\Field2, $01)
-            arg0\Field29[$05] = createdoor($00, (arg0\Field3 + (3248.0 * roomscale)), (9856.0 * roomscale), (arg0\Field5 + (6400.0 * roomscale)), 0.0, arg0, $00, $00, $00, "28084020", $00)
-            arg0\Field29[$05]\Field21 = $00
-            arg0\Field29[$05]\Field5 = $00
-            local0 = createdoor($00, (arg0\Field3 + (3072.0 * roomscale)), (9856.0 * roomscale), (arg0\Field5 + (5800.0 * roomscale)), 90.0, arg0, $00, $00, $03, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            arg0\Field25[$0E] = createpivot($00)
-            positionentity(arg0\Field25[$0E], (arg0\Field3 + (3536.0 * roomscale)), (10256.0 * roomscale), (arg0\Field5 + (5512.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0E], arg0\Field2, $01)
-            arg0\Field25[$0F] = createpivot($00)
-            positionentity(arg0\Field25[$0F], (arg0\Field3 + (3536.0 * roomscale)), (10256.0 * roomscale), (arg0\Field5 + (5824.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0F], arg0\Field2, $01)
-            arg0\Field25[$10] = createpivot($00)
-            positionentity(arg0\Field25[$10], (arg0\Field3 + (3856.0 * roomscale)), (10256.0 * roomscale), (arg0\Field5 + (5512.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$10], arg0\Field2, $01)
-            arg0\Field25[$11] = createpivot($00)
-            positionentity(arg0\Field25[$11], (arg0\Field3 + (3856.0 * roomscale)), (10256.0 * roomscale), (arg0\Field5 + (5824.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$11], arg0\Field2, $01)
-            arg0\Field25[$12] = createpivot($00)
-            positionentity(arg0\Field25[$12], (arg0\Field3 + (3250.0 * roomscale)), (9896.0 * roomscale), (arg0\Field5 + (6623.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$12], arg0\Field2, $01)
-            arg0\Field25[$13] = createpivot($00)
-            positionentity(arg0\Field25[$13], (arg0\Field3 + (3808.0 * roomscale)), (12320.0 * roomscale), (arg0\Field5 - (13568.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$13], arg0\Field2, $01)
-            arg0\Field25[$1A] = createpivot($00)
-            positionentity(arg0\Field25[$1A], (arg0\Field3 + (4352.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 + (500.0 * roomscale)), $00)
-            moveentity(arg0\Field25[$1A], 0.0, 0.3, -8.0)
-            entityparent(arg0\Field25[$1A], arg0\Field2, $01)
-            arg0\Field25[$1B] = createpivot($00)
-            positionentity(arg0\Field25[$1B], (arg0\Field3 + (3072.0 * roomscale)), (9856.0 * roomscale), (arg0\Field5 + (5800.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$1B], arg0\Field2, $01)
-            If (networkserver\Field15 <> 0) Then
-                arg0\Field25[$16] = createbutton((arg0\Field3 + (3969.687 * roomscale)), (arg0\Field4 + (9974.927 * roomscale)), (arg0\Field5 + (5827.879 * roomscale)), 80.0, -90.0, 0.0)
-                entityparent(arg0\Field25[$16], arg0\Field2, $01)
-            EndIf
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (872.8707 * roomscale)), 0.0, (arg0\Field5 - (65.66945 * roomscale)), 115.0)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (-5499.11 * roomscale)), (arg0\Field4 + (10254.04 * roomscale)), (arg0\Field5 - (3793.333 * roomscale)), 0.0)
-        Case "roompj"
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-372", "paper", (arg0\Field3 + (800.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (1108.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float arg0\Field6), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("Strange Bottle", "veryfinefirstaid", (arg0\Field3 + (800.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (1108.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float arg0\Field6), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Radio Transceiver", "radio", (arg0\Field3 + (800.0 * roomscale)), (arg0\Field4 + (112.0 * roomscale)), (arg0\Field5 + (944.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local6\Field13 = 80.0
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$03] = loadmesh_strict("GFX\map\372_hb.b3d", arg0\Field2)
-            entitypickmode(arg0\Field25[$03], $02, $01)
-            entitytype(arg0\Field25[$03], $01, $00)
-            entityalpha(arg0\Field25[$03], 0.0)
-            local0 = createdoor(arg0\Field0, arg0\Field3, arg0\Field4, (arg0\Field5 - (368.0 * roomscale)), 0.0, arg0, $01, $01, $02, "", $00)
-            local0\Field21 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 - (496.0 * roomscale)), 0.7, (arg0\Field5 - (272.0 * roomscale)), $01)
-            turnentity(local0\Field3[$00], 0.0, 90.0, 0.0, $00)
-        Case "room079"
-            local0 = createdoor(arg0\Field0, arg0\Field3, (-448.0 * roomscale), (arg0\Field5 + (1136.0 * roomscale)), 0.0, arg0, $00, $01, $04, "", $00)
-            local0\Field9 = $01
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$01], (arg0\Field3 + (224.0 * roomscale)), (-250.0 * roomscale), (arg0\Field5 + (918.0 * roomscale)), $01)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (240.0 * roomscale)), (-250.0 * roomscale), (arg0\Field5 + (1366.0 * roomscale)), $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (1456.0 * roomscale)), (-448.0 * roomscale), (arg0\Field5 + (976.0 * roomscale)), 0.0, arg0, $00, $01, $03, "", $00)
-            arg0\Field29[$00]\Field9 = $01
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (1760.0 * roomscale)), (-250.0 * roomscale), (arg0\Field5 + (1236.0 * roomscale)), $01)
-            turnentity(arg0\Field29[$00]\Field3[$00], 0.0, -180.0, 0.0, $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (1760.0 * roomscale)), (-240.0 * roomscale), (arg0\Field5 + (740.0 * roomscale)), $01)
-            turnentity(arg0\Field29[$00]\Field3[$01], 0.0, 0.0, 0.0, $01)
-            createdoor($00, (arg0\Field3 + (1144.0 * roomscale)), (-448.0 * roomscale), (arg0\Field5 + (704.0 * roomscale)), 90.0, arg0, $00, $00, $FFFFFFFF, "", $00)
-            arg0\Field25[$00] = loadanimmesh_strict("GFX\map\079.b3d", $00)
-            scaleentity(arg0\Field25[$00], 1.3, 1.3, 1.3, $01)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1856.0 * roomscale)), (-560.0 * roomscale), (arg0\Field5 - (672.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            turnentity(arg0\Field25[$00], 0.0, 180.0, 0.0, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            arg0\Field25[$01] = createsprite(arg0\Field25[$00])
-            spriteviewmode(arg0\Field25[$01], $02)
-            positionentity(arg0\Field25[$01], 0.082, 0.119, 0.01, $00)
-            scalesprite(arg0\Field25[$01], 0.09, 0.0725)
-            turnentity(arg0\Field25[$01], 0.0, 13.0, 0.0, $00)
-            moveentity(arg0\Field25[$01], 0.0, 0.0, -0.022)
-            entitytexture(arg0\Field25[$01], oldaipics($00), $00, $00)
-            hideentity(arg0\Field25[$01])
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (1184.0 * roomscale)), (-448.0 * roomscale), (arg0\Field5 + (1792.0 * roomscale)), $01)
-            local3 = createdecal($03, (arg0\Field3 + (1184.0 * roomscale)), ((-448.0 * roomscale) + 0.01), (arg0\Field5 + (1792.0 * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-            local3\Field2 = 0.5
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
-            entityparent(local3\Field0, arg0\Field2, $01)
-        Case "checkpoint1"
-            arg0\Field29[$00] = createdoor($00, (arg0\Field3 + (48.0 * roomscale)), 0.0, (arg0\Field5 - (128.0 * roomscale)), 0.0, arg0, $00, $00, ($03 - networkserver\Field15), "", $00)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 - (152.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 - (352.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 - (152.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 + (96.0 * roomscale)), $01)
-            arg0\Field29[$01] = createdoor($00, (arg0\Field3 - (352.0 * roomscale)), 0.0, (arg0\Field5 - (128.0 * roomscale)), 0.0, arg0, $00, $00, ($03 - networkserver\Field15), "", $00)
-            arg0\Field29[$01]\Field22 = arg0\Field29[$00]
-            arg0\Field29[$00]\Field22 = arg0\Field29[$01]
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (720.0 * roomscale)), (120.0 * roomscale), (arg0\Field5 + (333.0 * roomscale)), $01)
-            arg0\Field29[$00]\Field10 = $15E
-            arg0\Field29[$01]\Field10 = $15E
-            local2 = createsecuritycam((arg0\Field3 + (192.0 * roomscale)), (arg0\Field4 + (704.0 * roomscale)), (arg0\Field5 - (960.0 * roomscale)), arg0, $00)
-            local2\Field11 = 45.0
-            local2\Field12 = 0.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            arg0\Field25[$02] = copyentity(monitor2, arg0\Field2)
-            scaleentity(arg0\Field25[$02], 2.0, 2.0, 2.0, $00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (152.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (124.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$02], 0.0, 180.0, 0.0, $00)
-            entityfx(arg0\Field25[$02], $01)
-            addentitytoroomprops(arg0, arg0\Field25[$02])
-            arg0\Field25[$03] = copyentity(monitor2, arg0\Field2)
-            scaleentity(arg0\Field25[$03], 2.0, 2.0, 2.0, $00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (152.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 - (380.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$03], 0.0, 0.0, 0.0, $00)
-            entityfx(arg0\Field25[$03], $01)
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            If (maptemp((Int floor((arg0\Field3 / 8.0))), (Int (floor((arg0\Field5 / 8.0)) - 1.0))) = $00) Then
-                createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - 4.0), 0.0, arg0, $00, $02, $00, "GEAR", $00)
-            EndIf
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 - (805.322 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 + (338.207 * roomscale)), -80.0)
-        Case "checkpoint2"
-            arg0\Field29[$00] = createdoor($00, (arg0\Field3 - (48.0 * roomscale)), 0.0, (arg0\Field5 + (128.0 * roomscale)), 0.0, arg0, $00, $00, ($05 - (networkserver\Field15 Shl $01)), "", $00)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (152.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 - (96.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (152.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 + (352.0 * roomscale)), $01)
-            arg0\Field29[$01] = createdoor($00, (arg0\Field3 + (352.0 * roomscale)), 0.0, (arg0\Field5 + (128.0 * roomscale)), 0.0, arg0, $00, $00, ($05 - (networkserver\Field15 Shl $01)), "", $00)
-            arg0\Field29[$01]\Field22 = arg0\Field29[$00]
-            arg0\Field29[$00]\Field22 = arg0\Field29[$01]
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (720.0 * roomscale)), (120.0 * roomscale), (arg0\Field5 + (464.0 * roomscale)), $01)
-            arg0\Field25[$02] = copyentity(monitor3, arg0\Field2)
-            scaleentity(arg0\Field25[$02], 2.0, 2.0, 2.0, $00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (152.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (380.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$02], 0.0, 180.0, 0.0, $00)
-            entityfx(arg0\Field25[$02], $01)
-            addentitytoroomprops(arg0, arg0\Field25[$02])
-            arg0\Field25[$03] = copyentity(monitor3, arg0\Field2)
-            scaleentity(arg0\Field25[$03], 2.0, 2.0, 2.0, $00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (152.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 - (124.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$03], 0.0, 0.0, 0.0, $00)
-            entityfx(arg0\Field25[$03], $01)
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            arg0\Field29[$00]\Field10 = $15E
-            arg0\Field29[$01]\Field10 = $15E
-            If (maptemp((Int floor((arg0\Field3 / 8.0))), (Int (floor((arg0\Field5 / 8.0)) - 1.0))) = $00) Then
-                createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - 4.0), 0.0, arg0, $00, $00, $00, "GEAR", $00)
-            EndIf
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (755.494 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 - (446.897 * roomscale)), 72.0)
-        Case "room2pit"
-            local7 = $00
-            For local8 = $FFFFFFFF To $01 Step $02
-                For local10 = $FFFFFFFF To $01 Step $01
-                    local14 = createemitter((arg0\Field3 + ((202.0 * roomscale) * (Float local8))), (8.0 * roomscale), (arg0\Field5 + ((256.0 * roomscale) * (Float local10))), $00, 0.0)
-                    local14\Field10 = 30.0
-                    local14\Field9 = 0.0045
-                    local14\Field11 = 0.007
-                    local14\Field12 = -0.016
-                    arg0\Field25[local7] = local14\Field0
-                    If (local7 < $03) Then
-                        turnentity(local14\Field0, 0.0, -90.0, 0.0, $01)
-                    Else
-                        turnentity(local14\Field0, 0.0, 90.0, 0.0, $01)
-                    EndIf
-                    turnentity(local14\Field0, -45.0, 0.0, 0.0, $01)
-                    entityparent(local14\Field0, arg0\Field2, $01)
-                    local7 = (local7 + $01)
-                Next
+            local0 = createdoor(arg0, (arg0\Field3 - 3.6875), (arg0\Field4 + 1.25), (arg0\Field5 + 3.609375), 180.0, $00, $00, $00, $00, $00)
+            local0\Field23 = $00
+            local0\Field16 = $01
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (640.0 * roomscale)), (8.0 * roomscale), (arg0\Field5 - (896.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-            arg0\Field25[$07] = createpivot($00)
-            positionentity(arg0\Field25[$07], (arg0\Field3 - (864.0 * roomscale)), (-400.0 * roomscale), (arg0\Field5 - (632.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$07], arg0\Field2, $01)
-        Case "room2testroom2"
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (640.0 * roomscale)), 0.5, (arg0\Field5 - (912.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (669.0 * roomscale)), 0.5, (arg0\Field5 - (16.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            local17 = loadtexture_strict("GFX\map\glass.png", $03)
-            arg0\Field25[$02] = createsprite($00)
-            entitytexture(arg0\Field25[$02], local17, $00, $00)
-            spriteviewmode(arg0\Field25[$02], $02)
-            scalesprite(arg0\Field25[$02], ((182.0 * roomscale) * 0.5), ((192.0 * roomscale) * 0.5))
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (632.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 - (208.0 * roomscale)), $00)
-            turnentity(arg0\Field25[$02], 0.0, 180.0, 0.0, $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            hideentity(arg0\Field25[$02])
-            freetexture(local17)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (240.0 * roomscale)), 0.0, (arg0\Field5 + (640.0 * roomscale)), 90.0, arg0, $00, $00, $01, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (512.0 * roomscale)), 0.0, (arg0\Field5 + (384.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local6 = createitem("Level 2 Key Card", "key2", (arg0\Field3 - (914.0 * roomscale)), (arg0\Field4 + (137.0 * roomscale)), (arg0\Field5 + (61.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("S-NAV 300 Navigator", "nav", (arg0\Field3 - (312.0 * roomscale)), (arg0\Field4 + (264.0 * roomscale)), (arg0\Field5 + (176.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                local6\Field13 = 20.0
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 - (312.0 * roomscale)), (arg0\Field4 + (264.0 * roomscale)), (arg0\Field5 + (176.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Level 2 Key Card", "key2", (arg0\Field3 - (910.0 * roomscale)), (arg0\Field4 + (137.0 * roomscale)), (arg0\Field5 + (61.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
+            arg0\Field14[$00] = local0
+        Case $02
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 2.5), 0.0, (i_005\Field0 = $02), $00, $06, $00, $00)
+            arg0\Field14[$00] = local0
+            local2 = createsecuritycam(arg0, arg0\Field3, (arg0\Field4 + 1.621094), (arg0\Field5 + 1.65625), 30.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 180.0
+            local2\Field9 = 30.0
+            local7 = createitem("Document SCP-005", $00, (arg0\Field3 + 1.96875), (arg0\Field4 + 0.59375), (arg0\Field5 - (1.0 / 0.512)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (i_005\Field0 = $01) Then
+                local7 = createitem("SCP-005", $08, arg0\Field3, (arg0\Field4 + (1.0 / 1.003922)), (arg0\Field5 + (1.0 / 1.07563)), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local22 = loadtexture_strict("GFX\Map\Textures\Door01_Corrosive.png", $01, $00, $01)
+                entitytexture(arg0\Field14[$00]\Field0, local22, $00, $00)
+                entitytexture(arg0\Field14[$00]\Field1, local22, $00, $00)
+                entitytexture(arg0\Field14[$00]\Field2, local22, $00, $00)
+                deletesingletextureentryfromcache(local22, $00)
+                local22 = $00
+                arg0\Field14[$00]\Field27 = $01
+                local3 = createdecal($00, (arg0\Field3 - 1.414062), (arg0\Field4 + 0.005), (arg0\Field5 - 1.640625), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            ElseIf (i_005\Field0 = $03) Then
+                local7 = createitem("Note from Maynard", $00, arg0\Field3, (arg0\Field4 + (1.0 / 1.003922)), (arg0\Field5 + (1.0 / 1.07563)), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
             EndIf
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 - (874.8817 * roomscale)), 0.0, (arg0\Field5 + (639.0461 * roomscale)), -90.0)
-        Case "room3tunnel"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (190.0 * roomscale)), (4.0 * roomscale), (arg0\Field5 + (190.0 * roomscale)), $01)
-        Case "room2toilets"
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1040.0 * roomscale)), (192.0 * roomscale), arg0\Field5, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (1530.0 * roomscale)), 0.5, (arg0\Field5 + (512.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            arg0\Field25[$02] = createpivot($00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (1535.0 * roomscale)), (arg0\Field4 + (150.0 * roomscale)), (arg0\Field5 + (512.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-        Case "room2storage"
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (1288.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 - (760.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$04] = createdoor(arg0\Field0, (arg0\Field3 + (760.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$05] = createdoor(arg0\Field0, (arg0\Field3 + (1288.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $00, $00, $00, "", $00)
-            For local7 = $00 To $05 Step $01
-                moveentity(arg0\Field29[local7]\Field3[$00], 0.0, 0.0, -8.0)
-                moveentity(arg0\Field29[local7]\Field3[$01], 0.0, 0.0, -8.0)
-                arg0\Field29[local7]\Field21 = $00
-                arg0\Field29[local7]\Field5 = $00
-            Next
-            local6 = createitem("Document SCP-939", "paper", (arg0\Field3 + (352.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (256.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + $04)), 0.0, $00)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 + (352.0 * roomscale)), (arg0\Field4 + (112.0 * roomscale)), (arg0\Field5 + (448.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Empty Cup", "emptycup", (arg0\Field3 - (672.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 + (288.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 - (672.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 + (288.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem((("Level " + (Str (networkserver\Field15 + $01))) + " Key Card"), ("key" + (Str (networkserver\Field15 + $01))), (arg0\Field3 - (672.0 * roomscale)), (arg0\Field4 + (240.0 * roomscale)), (arg0\Field5 + (224.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2sroom"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1440.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 + (32.0 * roomscale)), 90.0, arg0, $00, $00, $04, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local6 = createitem("Some SCP-420-J", "420", (arg0\Field3 + (1776.0 * roomscale)), (arg0\Field4 + (400.0 * roomscale)), (arg0\Field5 + (427.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Some SCP-420-J", "420", (arg0\Field3 + (1808.0 * roomscale)), (arg0\Field4 + (400.0 * roomscale)), (arg0\Field5 + (435.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Level 5 Key Card", "key5", (arg0\Field3 + (2232.0 * roomscale)), (arg0\Field4 + (392.0 * roomscale)), (arg0\Field5 + (387.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            rotateentity(local6\Field1, 0.0, (Float arg0\Field6), 0.0, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Nuclear Device Document", "paper", (arg0\Field3 + (2248.0 * roomscale)), (arg0\Field4 + (440.0 * roomscale)), (arg0\Field5 + (372.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Radio Transceiver", "radio", (arg0\Field3 + (2240.0 * roomscale)), (arg0\Field4 + (320.0 * roomscale)), (arg0\Field5 + (128.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2shaft"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1552.0 * roomscale)), arg0\Field4, (arg0\Field5 + (552.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (arg0\Field5 + (518.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (arg0\Field5 + (575.0 * roomscale)), $01)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (256.0 * roomscale)), arg0\Field4, (arg0\Field5 + (744.0 * roomscale)), 90.0, arg0, $00, $00, $02, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local6 = createitem("Level 3 Key Card", "key3", (arg0\Field3 + (1119.0 * roomscale)), (arg0\Field4 + (233.0 * roomscale)), (arg0\Field5 + (494.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("First Aid Kit", "firstaid", (arg0\Field3 + (1035.0 * roomscale)), (arg0\Field4 + (145.0 * roomscale)), (arg0\Field5 + (56.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, 90.0, 0.0, $00)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 + (1930.0 * roomscale)), (arg0\Field4 + (97.0 * roomscale)), (arg0\Field5 + (256.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 + (1061.0 * roomscale)), (arg0\Field4 + (161.0 * roomscale)), (arg0\Field5 + (494.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("ReVision Eyedrops", "eyedrops", (arg0\Field3 + (1930.0 * roomscale)), (arg0\Field4 + (225.0 * roomscale)), (arg0\Field5 + (128.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1560.0 * roomscale)), arg0\Field4, (arg0\Field5 + (250.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (1344.0 * roomscale)), (-752.0 * roomscale), (arg0\Field5 - (384.0 * roomscale)), $01)
-            local3 = createdecal($03, (arg0\Field3 + (1334.0 * roomscale)), ((-796.0 * roomscale) + 0.01), (arg0\Field5 - (220.0 * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-            local3\Field2 = 0.25
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            arg0\Field25[$02] = createbutton((arg0\Field3 + (1181.0 * roomscale)), (arg0\Field4 + (180.0 * roomscale)), (arg0\Field5 - (512.0 * roomscale)), 0.0, 270.0, 0.0)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (828.25 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 - (608.083 * roomscale)), 90.0)
-        Case "room2poffices"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (240.0 * roomscale)), 0.0, (arg0\Field5 + (448.0 * roomscale)), 90.0, arg0, $00, $00, $00, (Str accesscode), $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (248.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (232.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (496.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "ABCD", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (488.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (504.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field21 = $00
-            local0\Field5 = $00
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 3.242188))
+        Case $03
+            local0 = createdoor(arg0, (arg0\Field3 - 2.5), (arg0\Field4 + 1.5), (arg0\Field5 + 8.371094), -90.0, $00, $00, $00, $00, $00)
             local0\Field4 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (240.0 * roomscale)), 0.0, (arg0\Field5 - (576.0 * roomscale)), 90.0, arg0, $00, $00, $00, "7816", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (248.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (232.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local6 = createitem("Mysterious Note", "paper", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 + (544.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Ballistic Vest", "vest", (arg0\Field3 + (608.0 * roomscale)), (arg0\Field4 + (112.0 * roomscale)), (arg0\Field5 + (32.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, 90.0, 0.0, $00)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Incident Report SCP-106-0204", "paper", (arg0\Field3 + (704.0 * roomscale)), (arg0\Field4 + (183.0 * roomscale)), (arg0\Field5 - (576.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Journal Page", "paper", (arg0\Field3 + (912.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (160.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("FN P90", "p90", (arg0\Field3 + (704.0 * roomscale)), (arg0\Field4 + (183.0 * roomscale)), (arg0\Field5 - (576.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Rocket Launcher", "rpg", (arg0\Field3 + (912.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (160.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("First Aid Kit", "firstaid", (arg0\Field3 + (912.0 * roomscale)), (arg0\Field4 + (112.0 * roomscale)), (arg0\Field5 - (336.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, 90.0, 0.0, $00)
-        Case "room2poffices2"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (240.0 * roomscale)), 0.0, (arg0\Field5 + (48.0 * roomscale)), 270.0, arg0, $00, $00, $03, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (224.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (176.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (256.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (432.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "1234", $00)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 - (416.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 + (176.0 * roomscale)), $01)
-            freeentity(arg0\Field29[$00]\Field3[$01])
-            arg0\Field29[$00]\Field3[$01] = $00
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            arg0\Field29[$00]\Field4 = $01
-            local3 = createdecal($00, (arg0\Field3 - (808.0 * roomscale)), 0.005, (arg0\Field5 - (72.0 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            local3 = createdecal($02, (arg0\Field3 - (808.0 * roomscale)), 0.01, (arg0\Field5 - (72.0 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            local3\Field2 = 0.3
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            local3 = createdecal($00, (arg0\Field3 - (432.0 * roomscale)), 0.01, arg0\Field5, 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (808.0 * roomscale)), 1.0, (arg0\Field5 - (72.0 * roomscale)), $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Dr. L's Burnt Note", "paper", (arg0\Field3 - (688.0 * roomscale)), 1.0, (arg0\Field5 - (16.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Dr L's Burnt Note", "paper", (arg0\Field3 - (808.0 * roomscale)), 1.0, (arg0\Field5 - (72.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("FN P90", "p90", (arg0\Field3 - (688.0 * roomscale)), 1.0, (arg0\Field5 - (16.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Rocket Launcher", "rpg", (arg0\Field3 - (808.0 * roomscale)), 1.0, (arg0\Field5 - (72.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("The Modular Site Project", "paper", (arg0\Field3 + (622.0 * roomscale)), (arg0\Field4 + (125.0 * roomscale)), (arg0\Field5 - (73.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2elevator"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (888.0 * roomscale)), (240.0 * roomscale), arg0\Field5, $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], ((arg0\Field3 + (1024.0 * roomscale)) - 0.01), (120.0 * roomscale), arg0\Field5, $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (448.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $03, $00, "", $00)
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (416.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 - (208.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (480.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 + (184.0 * roomscale)), $01)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            arg0\Field29[$00]\Field4 = $01
-        Case "room2cafeteria"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1847.0 * roomscale)), (-240.0 * roomscale), (arg0\Field5 - (321.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (1780.0 * roomscale)), (-248.0 * roomscale), (arg0\Field5 - (276.0 * roomscale)), $01)
-            local6 = createitem("cup", "cup", (arg0\Field3 - (508.0 * roomscale)), (-187.0 * roomscale), (arg0\Field5 + (284.0 * roomscale)), $F0, $AF, $46, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6\Field0 = "Cup of Orange Juice"
-            local6 = createitem("cup", "cup", (arg0\Field3 + (1412.0 * roomscale)), (-187.0 * roomscale), (arg0\Field5 - (716.0 * roomscale)), $57, $3E, $2D, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6\Field0 = "Cup of Coffee"
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Empty Cup", "emptycup", (arg0\Field3 - (540.0 * roomscale)), (-187.0 * roomscale), (arg0\Field5 + (124.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 - (540.0 * roomscale)), (-187.0 * roomscale), (arg0\Field5 + (124.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Quarter", "25ct", (arg0\Field3 - (447.0 * roomscale)), (arg0\Field4 - (334.0 * roomscale)), (arg0\Field5 + (36.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Quarter", "25ct", (arg0\Field3 + (1409.0 * roomscale)), (arg0\Field4 - (334.0 * roomscale)), (arg0\Field5 - (732.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 - (577.366 * roomscale)), (arg0\Field4 - (384.0 * roomscale)), (arg0\Field5 - (807.134 * roomscale)), -25.0)
-        Case "room2nuke"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (576.0 * roomscale)), 0.0, (arg0\Field5 + (152.0 * roomscale)), 90.0, arg0, $00, $00, $05, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 + (602.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (20.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (550.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (20.0 * roomscale)), $01)
-            freeentity(local0\Field1)
-            local0\Field1 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (544.0 * roomscale)), (1504.0 * roomscale), (arg0\Field5 + (738.0 * roomscale)), 90.0, arg0, $00, $00, $05, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (arg0\Field5 + (608.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (arg0\Field5 + (608.0 * roomscale)), $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (1192.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (1496.0 * roomscale)), (240.0 * roomscale), arg0\Field5, $00)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (680.0 * roomscale)), (1504.0 * roomscale), arg0\Field5, 90.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (984.0 * roomscale)), (1744.0 * roomscale), arg0\Field5, $00)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            For local18 = $00 To $01 Step $01
-                arg0\Field25[(local18 Shl $01)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local18 Shl $01) + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[local18] = arg0\Field25[((local18 Shl $01) + $01)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[((local18 Shl $01) + local7)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 - (975.0 * roomscale)), (arg0\Field4 + (1712.0 * roomscale)), (arg0\Field5 - ((502.0 - (132.0 * (Float local18))) * roomscale)), $01)
-                    entityparent(arg0\Field25[((local18 Shl $01) + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[(local18 Shl $01)], 0.0, -270.0, 0.0, $00)
-                rotateentity(arg0\Field25[((local18 Shl $01) + $01)], 10.0, -450.0, 0.0, $00)
-                entityradius(arg0\Field25[((local18 Shl $01) + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[(local18 Shl $01)])
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $01)])
-            Next
-            local6 = createitem("Nuclear Device Document", "paper", (arg0\Field3 - (768.0 * roomscale)), (arg0\Field4 + (1684.0 * roomscale)), (arg0\Field5 - (768.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Ballistic Vest", "vest", (arg0\Field3 - (944.0 * roomscale)), (arg0\Field4 + (1652.0 * roomscale)), (arg0\Field5 - (656.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, -90.0, 0.0, $00)
-            local2 = createsecuritycam((arg0\Field3 + (624.0 * roomscale)), (arg0\Field4 + (1888.0 * roomscale)), (arg0\Field5 - (312.0 * roomscale)), arg0, $00)
-            local2\Field11 = 90.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (1110.0 * roomscale)), (arg0\Field4 + (36.0 * roomscale)), (arg0\Field5 - (208.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-        Case "room2tunnel"
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (2640.0 * roomscale)), (-2496.0 * roomscale), (arg0\Field5 + (400.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (4336.0 * roomscale)), (-2496.0 * roomscale), (arg0\Field5 - (2512.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            arg0\Field25[$02] = createpivot($00)
-            rotateentity(arg0\Field25[$02], 0.0, 180.0, 0.0, $01)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (552.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 + (656.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (552.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 - (656.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), 0.0, (arg0\Field5 + (656.0 * roomscale)), 90.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (224.0 * roomscale)), 0.7, (arg0\Field5 + (480.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (304.0 * roomscale)), 0.7, (arg0\Field5 + (832.0 * roomscale)), $01)
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), 0.0, (arg0\Field5 - (656.0 * roomscale)), 90.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $01
-            positionentity(arg0\Field29[$02]\Field3[$00], (arg0\Field3 - (224.0 * roomscale)), 0.7, (arg0\Field5 - (480.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$02]\Field3[$01], (arg0\Field3 - (304.0 * roomscale)), 0.7, (arg0\Field5 - (832.0 * roomscale)), $01)
-            local19 = ((accesscode * $03) Mod $2710)
-            If (local19 < $3E8) Then
-                local19 = (local19 + $3E8)
-            EndIf
-            local0 = createdoor($00, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, arg0, $00, $01, $00, (Str local19), $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (224.0 * roomscale)), (arg0\Field4 + 0.7), (arg0\Field5 - (384.0 * roomscale)), $01)
-            rotateentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), (arg0\Field4 + 0.7), (arg0\Field5 + (384.0 * roomscale)), $01)
-            rotateentity(local0\Field3[$01], 0.0, 90.0, 0.0, $01)
-            local3 = createdecal($00, (arg0\Field3 + (64.0 * roomscale)), 0.005, (arg0\Field5 + (144.0 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            local6 = createitem("Scorched Note", "paper", (arg0\Field3 + (64.0 * roomscale)), (arg0\Field4 + (144.0 * roomscale)), (arg0\Field5 - (384.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "008"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (292.0 * roomscale)), (130.0 * roomscale), (arg0\Field5 + (516.0 * roomscale)), $01)
-            arg0\Field25[$01] = loadmesh_strict("GFX\map\008_2.b3d", $00)
-            scaleentity(arg0\Field25[$01], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (292.0 * roomscale)), (151.0 * roomscale), (arg0\Field5 + (576.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$01])
-            rotateentity(arg0\Field25[$01], 89.0, 0.0, 0.0, $01)
-            arg0\Field28[$00] = arg0\Field25[$01]
-            local17 = loadtexture_strict("GFX\map\glass.png", $03)
-            arg0\Field25[$02] = createsprite($00)
-            entitytexture(arg0\Field25[$02], local17, $00, $00)
-            spriteviewmode(arg0\Field25[$02], $02)
-            scalesprite(arg0\Field25[$02], ((256.0 * roomscale) * 0.5), ((194.0 * roomscale) * 0.5))
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (176.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 + (448.0 * roomscale)), $00)
-            turnentity(arg0\Field25[$02], 0.0, 90.0, 0.0, $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            freetexture(local17)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (445.0 * roomscale)), (120.0 * roomscale), (arg0\Field5 + (544.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (67.0 * roomscale)), (120.0 * roomscale), (arg0\Field5 + (464.0 * roomscale)), $01)
-            arg0\Field25[$05] = createsprite($00)
-            positionentity(arg0\Field25[$05], (arg0\Field3 - (158.0 * roomscale)), (368.0 * roomscale), (arg0\Field5 + (298.0 * roomscale)), $00)
-            scalesprite(arg0\Field25[$05], 0.02, 0.02)
-            entitytexture(arg0\Field25[$05], lightspritetex($01), $00, $00)
-            entityblend(arg0\Field25[$05], $03)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            hideentity(arg0\Field25[$05])
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (296.0 * roomscale)), 0.0, (arg0\Field5 - (672.0 * roomscale)), 180.0, arg0, $01, $00, $04, "", $00)
-            local0\Field21 = $00
-            positionentity(local0\Field3[$01], (arg0\Field3 + (164.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0\Field16 = $01
+            local0\Field23 = $00
             freeentity(local0\Field3[$00])
             local0\Field3[$00] = $00
             freeentity(local0\Field1)
             local0\Field1 = $00
-            arg0\Field29[$00] = local0
-            local1 = createdoor(arg0\Field0, (arg0\Field3 + (296.0 * roomscale)), 0.0, (arg0\Field5 - (144.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local1\Field21 = $00
-            positionentity(local1\Field3[$00], (arg0\Field3 + (432.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 - (480.0 * roomscale)), $01)
-            rotateentity(local1\Field3[$00], 0.0, -90.0, 0.0, $01)
-            positionentity(local1\Field3[$01], (arg0\Field3 + (164.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 - (128.0 * roomscale)), $01)
-            freeentity(local1\Field1)
-            local1\Field1 = $00
-            arg0\Field29[$01] = local1
-            local0\Field22 = local1
-            local1\Field22 = local0
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (384.0 * roomscale)), 0.0, (arg0\Field5 - (672.0 * roomscale)), 0.0, arg0, $00, $00, $04, "", $00)
-            local0\Field21 = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 4.554688), (arg0\Field4 + 1.499609), (arg0\Field5 + 9.324219), 180.0, $01, $06, $00, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.048), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.048), $01)
+            createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 12.74219), 180.0, $01, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 8.5), (arg0\Field4 + 3.0), (arg0\Field5 + 16.24219), 90.0, $01, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 8.3125), (arg0\Field4 + 1.5), (arg0\Field5 + 6.367188), 0.0, $01, $00, $02, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0625), arg0\Field4, arg0\Field5, 90.0, $00, $04, $FFFFFFFB, $00, $00)
             local0\Field4 = $01
-            arg0\Field29[$02] = local0
-            local6 = createitem("Hazmat Suit", "hazmatsuit", (arg0\Field3 - (76.0 * roomscale)), 0.5, (arg0\Field5 - (396.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, 90.0, 0.0, $00)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-008", "paper", (arg0\Field3 - (245.0 * roomscale)), (arg0\Field4 + (192.0 * roomscale)), (arg0\Field5 + (368.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 - (245.0 * roomscale)), (arg0\Field4 + (192.0 * roomscale)), (arg0\Field5 + (368.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            arg0\Field25[$06] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (160.0 * roomscale)), (672.0 * roomscale), (arg0\Field5 - (384.0 * roomscale)), $01)
-            arg0\Field25[$07] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$07], arg0\Field3, (672.0 * roomscale), (arg0\Field5 + (352.0 * roomscale)), $01)
-            local2 = createsecuritycam((arg0\Field3 + (578.956 * roomscale)), (arg0\Field4 + (444.956 * roomscale)), (arg0\Field5 + (772.0 * roomscale)), arg0, $00)
-            local2\Field11 = 135.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room035"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (296.0 * roomscale)), 0.0, (arg0\Field5 - (672.0 * roomscale)), 180.0, arg0, $01, $00, $05, "", $00)
-            local0\Field21 = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 15.625), (arg0\Field4 + 1.5), (arg0\Field5 + 14.74219), 90.0, $01, $03, $00, $00, $00)
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 10.5625), (arg0\Field4 + 1.5), (arg0\Field5 + 10.55469), 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 5.4375), (arg0\Field4 + 1.5), (arg0\Field5 + 8.371094), 90.0, $01, $00, $00, $00, $00)
             local0\Field4 = $01
-            arg0\Field29[$00] = local0
-            positionentity(local0\Field3[$01], (arg0\Field3 - (164.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            freeentity(local0\Field3[$00])
-            local0\Field3[$00] = $00
-            freeentity(local0\Field1)
-            local0\Field1 = $00
-            local1 = createdoor(arg0\Field0, (arg0\Field3 - (296.0 * roomscale)), 0.0, (arg0\Field5 - (144.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local1\Field21 = $00
-            local1\Field4 = $01
-            arg0\Field29[$01] = local1
-            positionentity(local1\Field3[$00], (arg0\Field3 - (432.0 * roomscale)), entityy(local1\Field3[$00], $01), (arg0\Field5 - (480.0 * roomscale)), $01)
-            rotateentity(local1\Field3[$00], 0.0, 90.0, 0.0, $01)
-            freeentity(local1\Field3[$01])
-            local1\Field3[$01] = $00
-            freeentity(local1\Field1)
-            local1\Field1 = $00
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 + (384.0 * roomscale)), 0.0, (arg0\Field5 - (672.0 * roomscale)), 180.0, arg0, $00, $00, $05, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$03] = createdoor($00, (arg0\Field3 + (768.0 * roomscale)), 0.0, (arg0\Field5 + (512.0 * roomscale)), 90.0, arg0, $00, $00, $00, "5731", $00)
-            arg0\Field29[$03]\Field21 = $00
-            local0\Field22 = local1
-            local1\Field22 = local0
-            For local7 = $00 To $01 Step $01
-                arg0\Field25[(local7 Shl $01)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local7 Shl $01) + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[local7] = arg0\Field25[((local7 Shl $01) + $01)]
-                For local18 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[((local7 Shl $01) + local18)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field25[((local7 Shl $01) + local18)], (arg0\Field3 + (210.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 - ((Float ($D0 - (local7 * $4C))) * roomscale)), $01)
-                    entityparent(arg0\Field25[((local7 Shl $01) + local18)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[(local7 Shl $01)], 0.0, -270.0, 0.0, $00)
-                rotateentity(arg0\Field25[((local7 Shl $01) + $01)], -80.0, -90.0, 0.0, $00)
-                entityradius(arg0\Field25[((local7 Shl $01) + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[(local7 Shl $01)])
-                addentitytoroomprops(arg0, arg0\Field25[((local7 Shl $01) + $01)])
-            Next
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (456.0 * roomscale)), 0.5, (arg0\Field5 + (400.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (576.0 * roomscale)), 0.5, (arg0\Field5 + (640.0 * roomscale)), $01)
-            For local7 = $00 To $01 Step $01
-                local14 = createemitter((arg0\Field3 - (272.0 * roomscale)), 10.0, (arg0\Field5 + ((624.0 - (Float (local7 Shl $09))) * roomscale)), $00, 0.0)
-                turnentity(local14\Field0, 90.0, 0.0, 0.0, $01)
-                entityparent(local14\Field0, arg0\Field2, $01)
-                local14\Field10 = 15.0
-                local14\Field9 = 0.05
-                local14\Field11 = 0.007
-                local14\Field12 = -0.006
-                local14\Field4 = -0.24
-                arg0\Field25[($05 + local7)] = local14\Field0
-            Next
-            arg0\Field25[$07] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$07], (arg0\Field3 - (720.0 * roomscale)), 0.5, (arg0\Field5 + (880.0 * roomscale)), $01)
-            arg0\Field25[$08] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$08], (arg0\Field3 + (176.0 * roomscale)), 0.5, (arg0\Field5 - (144.0 * roomscale)), $01)
-            local6 = createitem("SCP-035 Addendum", "paper", (arg0\Field3 + (248.0 * roomscale)), (arg0\Field4 + (220.0 * roomscale)), (arg0\Field5 + (576.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Radio Transceiver", "radio", (arg0\Field3 - (544.0 * roomscale)), 0.5, (arg0\Field5 + (704.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 - (544.0 * roomscale)), 0.5, (arg0\Field5 + (704.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("SCP-500-01", "scp500", (arg0\Field3 + (1168.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 + (576.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Metal Panel", "scp148", (arg0\Field3 - (360.0 * roomscale)), 0.5, (arg0\Field5 + (644.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document SCP-035", "paper", (arg0\Field3 + (1168.0 * roomscale)), (104.0 * roomscale), (arg0\Field5 + (608.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room513"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (704.0 * roomscale)), 0.0, (arg0\Field5 + (304.0 * roomscale)), 0.0, arg0, $00, $00, $02, "", $00)
-            local0\Field21 = $00
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (arg0\Field5 + (288.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (arg0\Field5 + (320.0 * roomscale)), $01)
-            local2 = createsecuritycam((arg0\Field3 - (312.0 * roomscale)), (arg0\Field4 + (414.0 * roomscale)), (arg0\Field5 + (656.0 * roomscale)), arg0, $00)
-            local2\Field21 = $01
-            local6 = createitem("SCP-513", "scp513", (arg0\Field3 - (60.0 * roomscale)), (arg0\Field4 + (196.0 * roomscale)), (arg0\Field5 + (688.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Blood-stained Note", "paper", (arg0\Field3 + (736.0 * roomscale)), 1.0, (arg0\Field5 + (48.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document SCP-513", "paper", (arg0\Field3 - (480.0 * roomscale)), (104.0 * roomscale), (arg0\Field5 - (176.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If ((rand($00, $01) And networkserver\Field15) <> 0) Then
-                local6 = createitem("SCP-035", "scp035", (arg0\Field3 - (600.0 * roomscale)), (arg0\Field4 + (196.0 * roomscale)), (arg0\Field5 + (688.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-        Case "room966"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (400.0 * roomscale)), 0.0, arg0\Field5, -90.0, arg0, $00, $00, $03, "", $00)
-            local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (480.0 * roomscale)), 180.0, arg0, $00, $00, $03, "", $00)
-            local2 = createsecuritycam((arg0\Field3 - (312.0 * roomscale)), (arg0\Field4 + (414.0 * roomscale)), (arg0\Field5 + (656.0 * roomscale)), arg0, $00)
-            local2\Field11 = 225.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], arg0\Field3, 0.5, (arg0\Field5 + (512.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (64.0 * roomscale)), 0.5, (arg0\Field5 - (640.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], arg0\Field3, 0.5, arg0\Field5, $01)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (320.0 * roomscale)), 0.5, (arg0\Field5 + (704.0 * roomscale)), $01)
-            local6 = createitem("Night Vision Goggles", "nvgoggles", (arg0\Field3 + (320.0 * roomscale)), 0.5, (arg0\Field5 + (704.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6\Field13 = 300.0
-        Case "room3storage"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], arg0\Field3, (240.0 * roomscale), (arg0\Field5 + (752.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (5840.0 * roomscale)), (-5392.0 * roomscale), (arg0\Field5 + (1360.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (608.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 - (624.0 * roomscale)), $01)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (456.0 * roomscale)), (-5392.0 * roomscale), (arg0\Field5 - (1136.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (2128.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (2048.0 * roomscale)), $01)
-            arg0\Field25[$05] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (2128.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 - (1136.0 * roomscale)), $01)
-            arg0\Field25[$06] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (3824.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 - (1168.0 * roomscale)), $01)
-            arg0\Field25[$07] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$07], (arg0\Field3 + (3760.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (2048.0 * roomscale)), $01)
-            arg0\Field25[$08] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$08], (arg0\Field3 + (4848.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (112.0 * roomscale)), $01)
-            arg0\Field25[$09] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$09], (arg0\Field3 + (592.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (6352.0 * roomscale)), $01)
-            arg0\Field25[$0A] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0A], (arg0\Field3 + (2928.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (6352.0 * roomscale)), $01)
-            arg0\Field25[$0B] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0B], (arg0\Field3 + (2928.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (5200.0 * roomscale)), $01)
-            arg0\Field25[$0C] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0C], (arg0\Field3 + (592.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (5200.0 * roomscale)), $01)
-            arg0\Field25[$0D] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0D], (arg0\Field3 + (1136.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (2944.0 * roomscale)), $01)
-            arg0\Field25[$0E] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0E], (arg0\Field3 + (1104.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (1184.0 * roomscale)), $01)
-            arg0\Field25[$0F] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0F], (arg0\Field3 - (464.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (1216.0 * roomscale)), $01)
-            arg0\Field25[$10] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$10], (arg0\Field3 - (432.0 * roomscale)), (-5550.0 * roomscale), (arg0\Field5 + (2976.0 * roomscale)), $01)
-            arg0\Field25[$14] = loadmesh_strict("GFX\map\room3storage_hb.b3d", arg0\Field2)
-            entitypickmode(arg0\Field25[$14], $02, $01)
-            entitytype(arg0\Field25[$14], $01, $00)
-            entityalpha(arg0\Field25[$14], 0.0)
-            arg0\Field29[$00] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 + (448.0 * roomscale)), 0.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 - (160.0 * roomscale)), 0.7, (arg0\Field5 + (480.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (160.0 * roomscale)), 0.7, (arg0\Field5 + (416.0 * roomscale)), $01)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (5840.0 * roomscale)), (-5632.0 * roomscale), (arg0\Field5 + (1048.0 * roomscale)), 0.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 + (6000.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), (arg0\Field5 + (1008.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (5680.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$01], $01), (arg0\Field5 + (1088.0 * roomscale)), $01)
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 + (608.0 * roomscale)), 0.0, (arg0\Field5 - (312.0 * roomscale)), 0.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $01
-            positionentity(arg0\Field29[$02]\Field3[$01], (arg0\Field3 + (448.0 * roomscale)), 0.7, (arg0\Field5 - (272.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$02]\Field3[$00], (arg0\Field3 + (768.0 * roomscale)), 0.7, (arg0\Field5 - (352.0 * roomscale)), $01)
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 - (456.0 * roomscale)), (-5632.0 * roomscale), (arg0\Field5 - (824.0 * roomscale)), 0.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$03]\Field21 = $00
-            arg0\Field29[$03]\Field5 = $00
-            positionentity(arg0\Field29[$03]\Field3[$00], (arg0\Field3 - (280.0 * roomscale)), entityy(arg0\Field29[$03]\Field3[$00], $01), (arg0\Field5 - (864.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$03]\Field3[$01], (arg0\Field3 - (632.0 * roomscale)), entityy(arg0\Field29[$03]\Field3[$01], $01), (arg0\Field5 - (784.0 * roomscale)), $01)
-            local14 = createemitter((arg0\Field3 + (5218.0 * roomscale)), (-5584.0 * roomscale), (arg0\Field5 - (600.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, 20.0, -100.0, 0.0, $01)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field7 = arg0
-            local14\Field10 = 15.0
-            local14\Field9 = 0.03
-            local14\Field11 = 0.01
-            local14\Field12 = -0.006
-            local14\Field4 = -0.2
-            Select rand($03, $01)
-                Case $01
-                    local21 = 2312.0
-                    local22 = -952.0
-                Case $02
-                    local21 = 3032.0
-                    local22 = 1288.0
-                Case $03
-                    local21 = 2824.0
-                    local22 = 2808.0
-            End Select
-            local6 = createitem("Black Severed Hand", "hand2", (arg0\Field3 + (local21 * roomscale)), ((-5596.0 * roomscale) + 1.0), (arg0\Field5 + (local22 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Night Vision Goggles", "nvgoggles", (arg0\Field3 + (1936.0 * roomscale)), (arg0\Field4 - (5496.0 * roomscale)), (arg0\Field5 - (944.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6\Field13 = 450.0
-            local3 = createdecal($03, (arg0\Field3 + (local21 * roomscale)), ((-5632.0 * roomscale) + 0.01), (arg0\Field5 + (local22 * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-            local3\Field2 = 0.5
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
+            local0\Field23 = $00
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 4.0), 0.0, $01, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$03] = local0
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\Props\table_a.b3d", $00)
+            scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            rotateentity(arg0\Field11[$00], 90.0, 45.0, 0.0, $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 1.0625), (arg0\Field4 + (1.0 / 25.6)), (arg0\Field5 + 8.804688), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = loadmesh_strict("GFX\Map\Props\cabinet_c.b3d", $00)
+            scaleentity(arg0\Field11[$01], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            rotateentity(arg0\Field11[$01], 0.0, 225.0, 90.0, $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 1.75), (arg0\Field4 + (1.0 / 25.6)), (arg0\Field5 + 8.398438), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = loadmesh_strict("GFX\Map\Props\ventilation_grate.b3d", $00)
+            scaleentity(arg0\Field11[$02], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            entitytype(arg0\Field11[$02], $01, $00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 11.5), (arg0\Field4 + 4.5), (arg0\Field5 + 10.24219), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 2.015625), (arg0\Field4 + 1.375), (arg0\Field5 + 8.371094), 20.0, $01, (arg0\Field3 + 5.679688), (arg0\Field4 + 2.375), (arg0\Field5 + 9.617188), 0.0, 90.0, 0.0)
+            showentity(local2\Field0)
+            showentity(local2\Field1)
+            local2\Field8 = 270.0
+            local2\Field9 = 45.0
+            local3 = createdecal($00, (arg0\Field3 + 1.0625), (arg0\Field4 + 0.005), (arg0\Field5 + 9.023438), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
             entityparent(local3\Field0, arg0\Field2, $01)
-            For local18 = $0A To $0B Step $01
-                arg0\Field25[(local18 Shl $01)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local18 Shl $01) + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[(local18 - $0A)] = arg0\Field25[((local18 Shl $01) + $01)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[((local18 Shl $01) + local7)], 0.04, 0.04, 0.04, $00)
-                    If (local18 = $0A) Then
-                        positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 + (3101.0 * roomscale)), (arg0\Field4 - (5461.0 * roomscale)), (arg0\Field5 + (6568.0 * roomscale)), $01)
-                    Else
-                        positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 + (1209.0 * roomscale)), (arg0\Field4 - (5461.0 * roomscale)), (arg0\Field5 + (3164.0 * roomscale)), $01)
-                    EndIf
-                    entityparent(arg0\Field25[((local18 Shl $01) + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[(local18 Shl $01)], 0.0, 0.0, 0.0, $00)
-                rotateentity(arg0\Field25[((local18 Shl $01) + $01)], -10.0, -180.0, 0.0, $00)
-                entityradius(arg0\Field25[((local18 Shl $01) + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[(local18 Shl $01)])
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $01)])
-            Next
-            arg0\Field29[$04] = createdoor(arg0\Field0, (arg0\Field3 + (56.0 * roomscale)), (arg0\Field4 - (5632.0 * roomscale)), (arg0\Field5 + (6344.0 * roomscale)), 90.0, arg0, $00, $02, $00, "", $00)
-            arg0\Field29[$04]\Field21 = $00
-            arg0\Field29[$04]\Field5 = $00
-            For local7 = $00 To $01 Step $01
-                freeentity(arg0\Field29[$04]\Field3[local7])
-                arg0\Field29[$04]\Field3[local7] = $00
-            Next
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1157.0 * roomscale)), (arg0\Field4 - (5632.0 * roomscale)), (arg0\Field5 + (660.0 * roomscale)), 0.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field5 = $00
-            local0\Field21 = $00
-            For local7 = $00 To $01 Step $01
-                freeentity(local0\Field3[local7])
-                local0\Field3[local7] = $00
-            Next
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (234.0 * roomscale)), (arg0\Field4 - (5632.0 * roomscale)), (arg0\Field5 + (5239.0 * roomscale)), 90.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field5 = $00
-            local0\Field21 = $00
-            For local7 = $00 To $01 Step $01
-                freeentity(local0\Field3[local7])
-                local0\Field3[local7] = $00
-            Next
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (3446.0 * roomscale)), (arg0\Field4 - (5632.0 * roomscale)), (arg0\Field5 + (6369.0 * roomscale)), 90.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field5 = $00
-            local0\Field21 = $00
-            For local7 = $00 To $01 Step $01
-                freeentity(local0\Field3[local7])
-                local0\Field3[local7] = $00
-            Next
-        Case "room049"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (640.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 + (656.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (3211.0 * roomscale)), (-3280.0 * roomscale), (arg0\Field5 + (1824.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (672.0 * roomscale)), (240.0 * roomscale), (arg0\Field5 - (93.0 * roomscale)), $01)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (2766.0 * roomscale)), (-3280.0 * roomscale), (arg0\Field5 - (1277.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 + (528.0 * roomscale)), (-3440.0 * roomscale), (arg0\Field5 + (96.0 * roomscale)), $01)
-            arg0\Field25[$05] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (64.0 * roomscale)), (-3440.0 * roomscale), (arg0\Field5 - (1000.0 * roomscale)), $01)
-            For local18 = $00 To $01 Step $01
-                arg0\Field25[((local18 Shl $01) + $06)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local18 Shl $01) + $07)] = copyentity(leverobj, $00)
-                arg0\Field28[local18] = arg0\Field25[((local18 Shl $01) + $07)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[(((local18 Shl $01) + $06) + local7)], 0.03, 0.03, 0.03, $00)
-                    Select local18
-                        Case $00
-                            positionentity(arg0\Field25[(((local18 Shl $01) + $06) + local7)], (arg0\Field3 + (852.0 * roomscale)), (arg0\Field4 - (3374.0 * roomscale)), (arg0\Field5 - (854.0 * roomscale)), $01)
-                        Case $01
-                            positionentity(arg0\Field25[(((local18 Shl $01) + $06) + local7)], (arg0\Field3 - (834.0 * roomscale)), (arg0\Field4 - (3400.0 * roomscale)), (arg0\Field5 + (1093.0 * roomscale)), $01)
-                    End Select
-                    entityparent(arg0\Field25[(((local18 Shl $01) + $06) + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[((local18 Shl $01) + $06)], 0.0, (Float (((local18 = $00) * $5A) + $B4)), 0.0, $00)
-                rotateentity(arg0\Field25[((local18 Shl $01) + $07)], (Float ($51 - ($5C * local18))), (Float ((local18 = $00) * $5A)), 0.0, $00)
-                entityradius(arg0\Field25[((local18 Shl $01) + $07)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $06)])
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $07)])
-            Next
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (330.0 * roomscale)), 0.0, (arg0\Field5 + (656.0 * roomscale)), 90.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (288.0 * roomscale)), 0.7, (arg0\Field5 + (512.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (368.0 * roomscale)), 0.7, (arg0\Field5 + (840.0 * roomscale)), $01)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (2898.0 * roomscale)), (-3520.0 * roomscale), (arg0\Field5 + (1824.0 * roomscale)), 90.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (2881.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$01], $01), (arg0\Field5 + (1663.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 + (2936.0 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), (arg0\Field5 + (2009.0 * roomscale)), $01)
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (672.0 * roomscale)), 0.0, (arg0\Field5 - (408.0 * roomscale)), 0.0, arg0, $01, $03, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $01
-            positionentity(arg0\Field29[$02]\Field3[$00], (arg0\Field3 - (487.0 * roomscale)), 0.7, (arg0\Field5 - (447.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$02]\Field3[$01], (arg0\Field3 - (857.0 * roomscale)), 0.7, (arg0\Field5 - (369.0 * roomscale)), $01)
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 - (2766.0 * roomscale)), (-3520.0 * roomscale), (arg0\Field5 - (1592.0 * roomscale)), 0.0, arg0, $00, $03, $00, "", $00)
-            arg0\Field29[$03]\Field21 = $00
-            arg0\Field29[$03]\Field5 = $00
-            positionentity(arg0\Field29[$03]\Field3[$00], (arg0\Field3 - (2581.0 * roomscale)), entityy(arg0\Field29[$03]\Field3[$00], $01), (arg0\Field5 - (1631.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$03]\Field3[$01], (arg0\Field3 - (2951.0 * roomscale)), entityy(arg0\Field29[$03]\Field3[$01], $01), (arg0\Field5 - (1553.0 * roomscale)), $01)
-            arg0\Field29[$04] = createdoor(arg0\Field0, (arg0\Field3 + (272.0 * roomscale)), (-3552.0 * roomscale), (arg0\Field5 + (104.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$04]\Field21 = $00
-            arg0\Field29[$04]\Field5 = $01
-            arg0\Field29[$04]\Field4 = $01
-            arg0\Field29[$05] = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), (-3520.0 * roomscale), (arg0\Field5 - (1824.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$05]\Field21 = $00
-            arg0\Field29[$05]\Field5 = $01
-            arg0\Field29[$05]\Field4 = $01
-            arg0\Field29[$06] = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), (-3520.0 * roomscale), (arg0\Field5 + (1824.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$06]\Field21 = $00
-            arg0\Field29[$06]\Field5 = $01
-            arg0\Field29[$06]\Field4 = $01
-            local0 = createdoor($00, arg0\Field3, 0.0, arg0\Field5, 0.0, arg0, $00, $02, $FFFFFFFE, "", $00)
-            local6 = createitem("Document SCP-049", "paper", (arg0\Field3 - (608.0 * roomscale)), (arg0\Field4 - (3332.0 * roomscale)), (arg0\Field5 + (876.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Level 4 Key Card", "key4", (arg0\Field3 - (512.0 * roomscale)), (arg0\Field4 - (3412.0 * roomscale)), (arg0\Field5 + (864.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("First Aid Kit", "firstaid", (arg0\Field3 + (385.0 * roomscale)), (arg0\Field4 - (3412.0 * roomscale)), (arg0\Field5 + (271.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (272.0 * roomscale)), (arg0\Field4 - (3552.0 * roomscale)), (arg0\Field5 + (98.0 * roomscale)), 90.0, arg0, $01, $01, $00, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $01
-            local0\Field24 = $00
-            local0\Field4 = $01
-            For local7 = $00 To $01 Step $01
-                freeentity(local0\Field3[local7])
-                local0\Field3[local7] = $00
-            Next
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (2990.0 * roomscale)), (arg0\Field4 - (3520.0 * roomscale)), (arg0\Field5 - (1824.0 * roomscale)), 90.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field14 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (896.0 * roomscale)), arg0\Field4, (arg0\Field5 - (640.0 * roomscale)), 90.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field14 = $01
-            arg0\Field25[$0A] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0A], (arg0\Field3 - (832.0 * roomscale)), (arg0\Field4 - (3484.0 * roomscale)), (arg0\Field5 + (1572.0 * roomscale)), $01)
-            arg0\Field25[$0B] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0B], (arg0\Field3 + (2642.0 * roomscale)), (arg0\Field4 - (3516.0 * roomscale)), (arg0\Field5 + (1822.0 * roomscale)), $01)
-            arg0\Field25[$0C] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0C], (arg0\Field3 - (2666.0 * roomscale)), (arg0\Field4 - (3516.0 * roomscale)), (arg0\Field5 - (1792.0 * roomscale)), $01)
-        Case "room2_2"
-            For local4 = Each rooms
-                If (local4 <> arg0) Then
-                    If (local4\Field7\Field11 = "room2_2") Then
-                        arg0\Field25[$00] = copyentity(local4\Field25[$00], $00)
-                        Exit
-                    EndIf
-                EndIf
-            Next
-            If (arg0\Field25[$00] = $00) Then
-                arg0\Field25[$00] = loadmesh_strict("GFX\map\fan.b3d", $00)
-            EndIf
-            scaleentity(arg0\Field25[$00], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (248.0 * roomscale)), (528.0 * roomscale), arg0\Field5, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-        Case "room012"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), 0.0, (arg0\Field5 + (672.0 * roomscale)), 270.0, arg0, $00, $00, $03, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (224.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (540.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (304.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (840.0 * roomscale)), $01)
-            turnentity(local0\Field3[$01], 0.0, 0.0, 0.0, $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (512.0 * roomscale)), (-768.0 * roomscale), (arg0\Field5 - (336.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            arg0\Field29[$00]\Field4 = $01
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (176.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 - (364.0 * roomscale)), $01)
-            freeentity(arg0\Field29[$00]\Field3[$01])
-            arg0\Field29[$00]\Field3[$01] = $00
-            arg0\Field25[$00] = copyentity(leverbaseobj, $00)
-            arg0\Field25[$01] = copyentity(leverobj, $00)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            addentitytoroomprops(arg0, arg0\Field25[$01])
-            arg0\Field28[$00] = arg0\Field25[$01]
-            For local7 = $00 To $01 Step $01
-                scaleentity(arg0\Field25[local7], 0.04, 0.04, 0.04, $00)
-                positionentity(arg0\Field25[local7], (arg0\Field3 + (240.0 * roomscale)), (arg0\Field4 - (512.0 * roomscale)), (arg0\Field5 - (364.0 * roomscale)), $01)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-            Next
-            rotateentity(arg0\Field25[$01], 10.0, -180.0, 0.0, $00)
-            entitypickmode(arg0\Field25[$01], $01, $00)
-            entityradius(arg0\Field25[$01], 0.1, 0.0)
-            arg0\Field25[$02] = loadmesh_strict("GFX\map\room012_2.b3d", $00)
-            scaleentity(arg0\Field25[$02], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (360.0 * roomscale)), (-130.0 * roomscale), (arg0\Field5 + (456.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$02])
-            arg0\Field25[$03] = createsprite($00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (43.5 * roomscale)), (-574.0 * roomscale), (arg0\Field5 - (362.0 * roomscale)), $00)
-            scalesprite(arg0\Field25[$03], 0.015, 0.015)
-            entitytexture(arg0\Field25[$03], lightspritetex($01), $00, $00)
-            entityblend(arg0\Field25[$03], $03)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            hideentity(arg0\Field25[$03])
-            arg0\Field25[$04] = loadmesh_strict("GFX\map\room012_3.b3d", $00)
-            local24 = loadtexture_strict("GFX\map\scp-012_0.jpg", $01)
-            entitytexture(arg0\Field25[$04], local24, $00, $01)
-            scaleentity(arg0\Field25[$04], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (360.0 * roomscale)), (-130.0 * roomscale), (arg0\Field5 + (456.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$04], arg0\Field25[$02], $01)
-            freetexture(local24)
-            addentitytoroomprops(arg0, arg0\Field25[$04])
-            local6 = createitem("Document SCP-012", "paper", (arg0\Field3 - (56.0 * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 - (408.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Severed Hand", "hand", (arg0\Field3 - (784.0 * roomscale)), ((-576.0 * roomscale) + 0.3), (arg0\Field5 + (640.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local3 = createdecal($03, (arg0\Field3 - (784.0 * roomscale)), ((-768.0 * roomscale) + 0.01), (arg0\Field5 + (640.0 * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-            local3\Field2 = 0.5
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
+            local3 = createdecal($00, (arg0\Field3 + 1.78125), (arg0\Field4 + 0.005), (arg0\Field5 + 8.527344), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
             entityparent(local3\Field0, arg0\Field2, $01)
-        Case "tunnel2"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], arg0\Field3, (544.0 * roomscale), (arg0\Field5 + (512.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], arg0\Field3, (544.0 * roomscale), (arg0\Field5 - (512.0 * roomscale)), $01)
-        Case "room2pipes"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (368.0 * roomscale)), 0.0, arg0\Field5, $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (368.0 * roomscale)), 0.0, arg0\Field5, $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], ((arg0\Field3 + (224.0 * roomscale)) - 0.005), (192.0 * roomscale), arg0\Field5, $01)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], ((arg0\Field3 - (224.0 * roomscale)) + 0.005), (192.0 * roomscale), arg0\Field5, $01)
-        Case "room3pit"
-            local14 = createemitter((arg0\Field3 + (512.0 * roomscale)), (-76.0 * roomscale), (arg0\Field5 - (688.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, -90.0, 0.0, 0.0, $00)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field10 = 55.0
-            local14\Field9 = 0.0005
-            local14\Field12 = -0.015
-            local14\Field11 = 0.007
-            local14 = createemitter((arg0\Field3 - (512.0 * roomscale)), (-76.0 * roomscale), (arg0\Field5 - (688.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, -90.0, 0.0, 0.0, $00)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field10 = 55.0
-            local14\Field9 = 0.0005
-            local14\Field12 = -0.015
-            local14\Field11 = 0.007
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (704.0 * roomscale)), (112.0 * roomscale), (arg0\Field5 - (416.0 * roomscale)), $01)
-        Case "room2servers"
-            local0 = createdoor($00, arg0\Field3, 0.0, arg0\Field5, 0.0, arg0, $00, $02, $00, "", $00)
-            local0\Field4 = $01
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (208.0 * roomscale)), 0.0, (arg0\Field5 - (736.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $01)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 - (208.0 * roomscale)), 0.0, (arg0\Field5 + (736.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $01)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (672.0 * roomscale)), 0.0, (arg0\Field5 - (1024.0 * roomscale)), 0.0, arg0, $00, $00, $00, "GEAR", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field14 = $01
-            freeentity(arg0\Field29[$02]\Field3[$00])
-            arg0\Field29[$02]\Field3[$00] = $00
-            freeentity(arg0\Field29[$02]\Field3[$01])
-            arg0\Field29[$02]\Field3[$01] = $00
-            For local18 = $00 To $02 Step $01
-                arg0\Field25[(local18 Shl $01)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local18 Shl $01) + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[local18] = arg0\Field25[((local18 Shl $01) + $01)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[((local18 Shl $01) + local7)], 0.03, 0.03, 0.03, $00)
-                    Select local18
-                        Case $00
-                            positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 - (1260.0 * roomscale)), (arg0\Field4 + (234.0 * roomscale)), (arg0\Field5 + (750.0 * roomscale)), $01)
-                        Case $01
-                            positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 - (920.0 * roomscale)), (arg0\Field4 + (164.0 * roomscale)), (arg0\Field5 + (898.0 * roomscale)), $01)
-                        Case $02
-                            positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 - (837.0 * roomscale)), (arg0\Field4 + (152.0 * roomscale)), (arg0\Field5 + (886.0 * roomscale)), $01)
-                    End Select
-                    entityparent(arg0\Field25[((local18 Shl $01) + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[((local18 Shl $01) + $01)], 81.0, -180.0, 0.0, $00)
-                entityradius(arg0\Field25[((local18 Shl $01) + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[(local18 Shl $01)])
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $01)])
-            Next
-            rotateentity(arg0\Field25[$03], -81.0, -180.0, 0.0, $00)
-            rotateentity(arg0\Field25[$05], -81.0, -180.0, 0.0, $00)
-            arg0\Field25[$06] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$06], (arg0\Field3 - (320.0 * roomscale)), 0.5, arg0\Field5, $01)
-            arg0\Field25[$07] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$07], (arg0\Field3 - (1328.0 * roomscale)), 0.5, (arg0\Field5 + (528.0 * roomscale)), $01)
-            arg0\Field25[$08] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$08], (arg0\Field3 - (1376.0 * roomscale)), 0.5, (arg0\Field5 + (32.0 * roomscale)), $01)
-            arg0\Field25[$09] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$09], (arg0\Field3 - (848.0 * roomscale)), 0.5, (arg0\Field5 + (576.0 * roomscale)), $01)
-        Case "room3servers"
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 - (132.0 * roomscale)), (arg0\Field4 - (368.0 * roomscale)), (arg0\Field5 - (648.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 - (76.0 * roomscale)), (arg0\Field4 - (368.0 * roomscale)), (arg0\Field5 - (648.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("S-NAV 300 Navigator", "nav", (arg0\Field3 + (124.0 * roomscale)), (arg0\Field4 - (368.0 * roomscale)), (arg0\Field5 - (648.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local6\Field13 = 20.0
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (736.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 - (400.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (552.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 - (528.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 + (736.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 + (272.0 * roomscale)), $01)
-            arg0\Field25[$03] = loadmesh_strict("GFX\npcs\duck_low_res.b3d", $00)
-            scaleentity(arg0\Field25[$03], 0.07, 0.07, 0.07, $00)
-            local24 = loadtexture_strict("GFX\npcs\duck2.png", $01)
-            entitytexture(arg0\Field25[$03], local24, $00, $00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (928.0 * roomscale)), (-640.0 * roomscale), (arg0\Field5 + (704.0 * roomscale)), $00)
-            freetexture(local24)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-        Case "room3servers2"
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (504.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 + (271.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (628.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 + (271.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (532.0 * roomscale)), (-512.0 * roomscale), (arg0\Field5 - (877.0 * roomscale)), $01)
-            local6 = createitem("Document SCP-970", "paper", (arg0\Field3 + (960.0 * roomscale)), (arg0\Field4 - (448.0 * roomscale)), (arg0\Field5 + (251.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            rotateentity(local6\Field1, 0.0, (Float arg0\Field6), 0.0, $00)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Gas Mask", "gasmask", (arg0\Field3 + (954.0 * roomscale)), (arg0\Field4 - (504.0 * roomscale)), (arg0\Field5 + (235.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "testroom"
-            For local8 = $00 To $01 Step $01
-                For local10 = $FFFFFFFF To $01 Step $01
-                    arg0\Field25[((local8 * $03) + (local10 + $01))] = createpivot($00)
-                    positionentity(arg0\Field25[((local8 * $03) + (local10 + $01))], (arg0\Field3 + (((280.0 * (Float local8)) + -236.0) * roomscale)), (-700.0 * roomscale), (arg0\Field5 + ((384.0 * (Float local10)) * roomscale)), $00)
-                    entityparent(arg0\Field25[((local8 * $03) + (local10 + $01))], arg0\Field2, $01)
-                Next
-            Next
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (754.0 * roomscale)), (arg0\Field4 - (1248.0 * roomscale)), arg0\Field5, $00)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (744.0 * roomscale)), (arg0\Field4 - (856.0 * roomscale)), (arg0\Field5 + (236.0 * roomscale)), arg0, $00)
-            local2\Field21 = $01
-            createdoor($00, (arg0\Field3 + (720.0 * roomscale)), 0.0, arg0\Field5, 0.0, arg0, $00, $02, $FFFFFFFF, "", $00)
-            createdoor($00, (arg0\Field3 - (624.0 * roomscale)), (-1280.0 * roomscale), arg0\Field5, 90.0, arg0, $01, $00, $00, "", $00)
-            local6 = createitem("Document SCP-682", "paper", (arg0\Field3 + (656.0 * roomscale)), (arg0\Field4 - (1200.0 * roomscale)), (arg0\Field5 - (16.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2closets"
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-1048", "paper", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (736.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (736.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Gas Mask", "gasmask", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 + (544.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("9V Battery", "bat", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (448.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("9V Battery", "bat", (arg0\Field3 + (730.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (496.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("Strange Bottle", "veryfinefirstaid", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (448.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Strange Bottle", "veryfinefirstaid", (arg0\Field3 + (730.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (496.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Level 1 Key Card", "key1", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (240.0 * roomscale)), (arg0\Field5 + (752.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Clipboard", "clipboard", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 - (480.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Incident Report SCP-1048-A", "paper", (arg0\Field3 + (736.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 - (480.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (1120.0 * roomscale)), (-256.0 * roomscale), (arg0\Field5 + (896.0 * roomscale)), $01)
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (1232.0 * roomscale)), (-256.0 * roomscale), (arg0\Field5 - (160.0 * roomscale)), $01)
-            local0 = createdoor($00, (arg0\Field3 - (240.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (230.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (250.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field5 = $00
-            local0\Field21 = $00
-            local2 = createsecuritycam(arg0\Field3, (arg0\Field4 + (704.0 * roomscale)), (arg0\Field5 + (863.0 * roomscale)), arg0, $00)
-            local2\Field11 = 180.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room2offices"
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-106", "paper", (arg0\Field3 + (404.0 * roomscale)), (arg0\Field4 + (145.0 * roomscale)), (arg0\Field5 + (559.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 + (404.0 * roomscale)), (arg0\Field4 + (145.0 * roomscale)), (arg0\Field5 + (559.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Level 2 Key Card", "key2", (arg0\Field3 - (156.0 * roomscale)), (arg0\Field4 + (151.0 * roomscale)), (arg0\Field5 + (72.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("S-NAV 300 Navigator", "nav", (arg0\Field3 + (305.0 * roomscale)), (arg0\Field4 + (153.0 * roomscale)), (arg0\Field5 + (944.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local6\Field13 = 20.0
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Notification", "paper", (arg0\Field3 - (137.0 * roomscale)), (arg0\Field4 + (153.0 * roomscale)), (arg0\Field5 + (464.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local26 = createwaypoint((arg0\Field3 - (32.0 * roomscale)), (arg0\Field4 + (66.0 * roomscale)), (arg0\Field5 + (288.0 * roomscale)), Null, arg0)
-            local27 = createwaypoint(arg0\Field3, (arg0\Field4 + (66.0 * roomscale)), (arg0\Field5 - (448.0 * roomscale)), Null, arg0)
-            local26\Field4[$00] = local27
-            local26\Field5[$00] = entitydistance(local26\Field0, local27\Field0)
-            local27\Field4[$00] = local26
-            local27\Field5[$00] = local26\Field5[$00]
-        Case "room2offices2"
-            local6 = createitem("Level 1 Key Card", "key1", (arg0\Field3 - (368.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), (arg0\Field5 + (80.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document SCP-895", "paper", (arg0\Field3 - (800.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), (arg0\Field5 + (368.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document SCP-860", "paper", (arg0\Field3 - (800.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), (arg0\Field5 - (464.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("S-NAV 300 Navigator", "nav", (arg0\Field3 - (336.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), (arg0\Field5 - (480.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local6\Field13 = 28.0
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$00] = loadmesh_strict("GFX\npcs\duck_low_res.b3d", $00)
-            scaleentity(arg0\Field25[$00], 0.07, 0.07, 0.07, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (808.0 * roomscale)), (-72.0 * roomscale), (arg0\Field5 - (40.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (488.0 * roomscale)), (160.0 * roomscale), (arg0\Field5 + (700.0 * roomscale)), $01)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (488.0 * roomscale)), (160.0 * roomscale), (arg0\Field5 - (668.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (572.0 * roomscale)), (350.0 * roomscale), (arg0\Field5 - (4.0 * roomscale)), $01)
-            local19 = rand($01, $04)
-            positionentity(arg0\Field25[$00], entityx(arg0\Field25[local19], $01), entityy(arg0\Field25[local19], $01), entityz(arg0\Field25[local19], $01), $01)
-        Case "room2offices3"
-            local6 = createitem("Mobile Task Forces", "paper", (arg0\Field3 + (744.0 * roomscale)), (arg0\Field4 + (240.0 * roomscale)), (arg0\Field5 + (944.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Object Classes", "paper", (arg0\Field3 + (160.0 * roomscale)), (arg0\Field4 + (240.0 * roomscale)), (arg0\Field5 + (568.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document", "paper", (arg0\Field3 - (1440.0 * roomscale)), (arg0\Field4 + (624.0 * roomscale)), (arg0\Field5 + (152.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Radio Transceiver", "radio", (arg0\Field3 - (1184.0 * roomscale)), (arg0\Field4 + (480.0 * roomscale)), (arg0\Field5 - (800.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("ReVision Eyedrops", "eyedrops", (arg0\Field3 - (1529.0 * roomscale)), (arg0\Field4 + (563.0 * roomscale)), ((arg0\Field5 - (572.0 * roomscale)) + 0.0), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 - (1545.0 * roomscale)), (arg0\Field4 + (603.0 * roomscale)), (arg0\Field5 - (372.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("9V Battery", "bat", (arg0\Field3 - (1540.0 * roomscale)), (arg0\Field4 + (603.0 * roomscale)), (arg0\Field5 - (340.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (1056.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (290.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            positionentity(arg0\Field29[$00]\Field3[$00], entityx(arg0\Field29[$00]\Field3[$00], $01), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 + (161.0 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$01], entityx(arg0\Field29[$00]\Field3[$01], $01), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 + (161.0 * roomscale)), $01)
-        Case "room3"
-            If (rand($00, $01) = $01) Then
-                placehalloweenscene(arg0, $17, rand($00, ($03 - newyearindex)), (arg0\Field3 - (12.3613 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 + (433.168 * roomscale)), -180.0)
-            EndIf
-        Case "start"
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (4000.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (1696.0 * roomscale)), 90.0, arg0, $01, $01, $00, "", $00)
-            arg0\Field29[$01]\Field4 = $00
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field9 = $01
-            arg0\Field29[$01]\Field5 = $01
-            freeentity(arg0\Field29[$01]\Field3[$00])
-            arg0\Field29[$01]\Field3[$00] = $00
-            freeentity(arg0\Field29[$01]\Field3[$01])
-            arg0\Field29[$01]\Field3[$01] = $00
-            arg0\Field29[$01]\Field24 = $00
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 + (2704.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (624.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            freeentity(arg0\Field29[$02]\Field3[$00])
-            arg0\Field29[$02]\Field3[$00] = $00
-            freeentity(arg0\Field29[$02]\Field3[$01])
-            arg0\Field29[$02]\Field3[$01] = $00
-            arg0\Field29[$02]\Field24 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1392.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (64.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $00)
-            local0\Field21 = $00
-            local0\Field24 = $00
-            local0\Field4 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (640.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (64.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field21 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1280.0 * roomscale)), (384.0 * roomscale), (arg0\Field5 + (312.0 * roomscale)), 180.0, arg0, $01, $00, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field21 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 + (1120.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (328.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (1120.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (296.0 * roomscale)), $01)
-            freeentity(local0\Field1)
-            local0\Field1 = $00
-            local0\Field24 = $00
-            local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 + (1184.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local0\Field4 = $01
-            arg0\Field25[$00] = loadmesh_strict("GFX\map\IntroDesk.b3d", $00)
-            scaleentity(arg0\Field25[$00], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (272.0 * roomscale)), 0.0, (arg0\Field5 + (400.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            local3 = createdecal($00, (arg0\Field3 + (272.0 * roomscale)), 0.005, (arg0\Field5 + (262.0 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            arg0\Field25[$01] = loadmesh_strict("GFX\map\IntroDrawer.b3d", $00)
-            scaleentity(arg0\Field25[$01], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (448.0 * roomscale)), 0.0, (arg0\Field5 + (192.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$01])
-            local3 = createdecal($00, (arg0\Field3 + (456.0 * roomscale)), 0.005, (arg0\Field5 + (135.0 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-            entityparent(local3\Field0, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 - (336.0 * roomscale)), (arg0\Field4 + (352.0 * roomscale)), (arg0\Field5 + (48.0 * roomscale)), arg0, $01)
-            local2\Field11 = 270.0
-            local2\Field12 = 45.0
-            local2\Field20 = arg0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (1689.43 * roomscale)), (arg0\Field4 + (385.312 * roomscale)), (arg0\Field5 - (273.563 * roomscale)), 0.0)
-            placehalloweenscene(arg0, $17, rand($00, ($03 - newyearindex)), (arg0\Field3 - (447.691 * roomscale)), (arg0\Field4 + (77.312 * roomscale)), (arg0\Field5 + (973.848 * roomscale)), -115.0)
-            positionentity(local2\Field4, (arg0\Field3 + (1456.0 * roomscale)), (608.0 * roomscale), (arg0\Field5 + (352.0 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            arg0\Field25[$02] = createpivot($00)
-            positionentity(arg0\Field25[$02], (entityx(arg0\Field2, $00) + (40.0 * roomscale)), (460.0 * roomscale), (entityz(arg0\Field2, $00) + (1072.0 * roomscale)), $00)
-            arg0\Field25[$03] = createpivot($00)
-            positionentity(arg0\Field25[$03], (entityx(arg0\Field2, $00) - (80.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (526.0 * roomscale)), $00)
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], (entityx(arg0\Field2, $00) - (128.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (320.0 * roomscale)), $00)
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], (entityx(arg0\Field2, $00) + (660.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (526.0 * roomscale)), $00)
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (entityx(arg0\Field2, $00) + (700.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (320.0 * roomscale)), $00)
-            arg0\Field25[$07] = createpivot($00)
-            positionentity(arg0\Field25[$07], (entityx(arg0\Field2, $00) + (1472.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (912.0 * roomscale)), $00)
-            For local7 = $02 To $07 Step $01
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-            Next
-            createdevilemitter((arg0\Field3 + (3384.0 * roomscale)), (arg0\Field4 + (510.0 * roomscale)), (arg0\Field5 + (2400.0 * roomscale)), arg0, $01, 4.0)
-        Case "room2scps"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $01, $00, $03, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 + (320.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (224.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), 0.0, arg0\Field5, 270.0, arg0, $01, $00, $03, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 - (320.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 - (560.0 * roomscale)), 0.0, (arg0\Field5 - (272.0 * roomscale)), 0.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 + (560.0 * roomscale)), 0.0, (arg0\Field5 - (272.0 * roomscale)), 180.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 + (560.0 * roomscale)), 0.0, (arg0\Field5 + (272.0 * roomscale)), 180.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$03]\Field21 = $00
-            arg0\Field29[$03]\Field5 = $00
-            arg0\Field29[$04] = createdoor(arg0\Field0, (arg0\Field3 - (560.0 * roomscale)), 0.0, (arg0\Field5 + (272.0 * roomscale)), 0.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$04]\Field21 = $00
-            arg0\Field29[$04]\Field5 = $00
-            local6 = createitem("SCP-714", "scp714", (arg0\Field3 - (552.0 * roomscale)), (arg0\Field4 + (220.0 * roomscale)), (arg0\Field5 - (760.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("SCP-1025", "scp1025", (arg0\Field3 + (552.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 - (758.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("SCP-860", "scp860", (arg0\Field3 + (568.0 * roomscale)), (arg0\Field4 + (178.0 * roomscale)), (arg0\Field5 + (760.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local2 = createsecuritycam((arg0\Field3 + (560.0 * roomscale)), (arg0\Field4 + (386.0 * roomscale)), (arg0\Field5 - (416.0 * roomscale)), arg0, $00)
-            local2\Field11 = 180.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 - (560.0 * roomscale)), (arg0\Field4 + (386.0 * roomscale)), (arg0\Field5 - (416.0 * roomscale)), arg0, $00)
-            local2\Field11 = 180.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (560.0 * roomscale)), (arg0\Field4 + (386.0 * roomscale)), (arg0\Field5 + (480.0 * roomscale)), arg0, $00)
-            local2\Field11 = 0.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 - (560.0 * roomscale)), (arg0\Field4 + (386.0 * roomscale)), (arg0\Field5 + (480.0 * roomscale)), arg0, $00)
-            local2\Field11 = 0.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local6 = createitem("Document SCP-714", "paper", (arg0\Field3 - (728.0 * roomscale)), (arg0\Field4 + (288.0 * roomscale)), (arg0\Field5 - (360.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Document SCP-427", "paper", (arg0\Field3 - (608.0 * roomscale)), (arg0\Field4 + (66.0 * roomscale)), (arg0\Field5 + (636.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            For local7 = $00 To $0E Step $01
-                Select local7
+            For local25 = $00 To $04 Step $01
+                Select local25
                     Case $00
-                        local28 = -64.0
-                        local31 = -516.0
+                        local12 = 4299.0
+                        local14 = 3316.0
+                        local27 = $04
                     Case $01
-                        local28 = -96.0
-                        local31 = -388.0
+                        local12 = 5184.0
+                        local14 = 4302.0
+                        local27 = $04
                     Case $02
-                        local28 = -128.0
-                        local31 = -292.0
+                        local12 = 5216.0
+                        local14 = 3310.0
+                        local27 = $04
                     Case $03
-                        local28 = -128.0
-                        local31 = -132.0
+                        local12 = 4314.0
+                        local14 = 4033.0
+                        local27 = $04
                     Case $04
-                        local28 = -160.0
-                        local31 = -36.0
-                    Case $05
-                        local28 = -192.0
-                        local31 = 28.0
-                    Case $06
-                        local28 = -384.0
-                        local31 = 28.0
-                    Case $07
-                        local28 = -448.0
-                        local31 = 92.0
-                    Case $08
-                        local28 = -480.0
-                        local31 = 124.0
-                    Case $09
-                        local28 = -512.0
-                        local31 = 156.0
-                    Case $0A
-                        local28 = -544.0
-                        local31 = 220.0
-                    Case $0B
-                        local28 = -544.0
-                        local31 = 380.0
-                    Case $0C
-                        local28 = -544.0
-                        local31 = 476.0
-                    Case $0D
-                        local28 = -544.0
-                        local31 = 572.0
-                    Case $0E
-                        local28 = -544.0
-                        local31 = 636.0
+                        local12 = 4972.0
+                        local14 = 4017.0
+                        local27 = $06
                 End Select
-                local3 = createdecal(rand($0F, $10), (arg0\Field3 + (local28 * roomscale)), 0.005, (arg0\Field5 + (local31 * roomscale)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
-                If (local7 > $0A) Then
-                    local3\Field2 = rnd(0.2, 0.25)
-                Else
-                    local3\Field2 = rnd(0.1, 0.17)
-                EndIf
-                entityalpha(local3\Field0, 1.0)
-                scalesprite(local3\Field0, local3\Field2, local3\Field2)
+                local3 = createdecal(local27, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + 1.507812), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, 45.0, 0.0, ((((Float (local25 = $00)) * 0.44) + ((Float (local25 = $01)) * 1.2)) + ((Float (local25 > $01)) * 0.54)), rnd(0.8, 1.0), $00, $01, $00, $00, $00)
                 entityparent(local3\Field0, arg0\Field2, $01)
             Next
-        Case "room205"
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (128.0 * roomscale)), 0.0, (arg0\Field5 + (640.0 * roomscale)), 90.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $00
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (1392.0 * roomscale)), (-128.0 * roomscale), (arg0\Field5 - (384.0 * roomscale)), 0.0, arg0, $01, $00, $03, "", $01)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            freeentity(arg0\Field29[$00]\Field3[$00])
-            arg0\Field29[$00]\Field3[$00] = $00
-            freeentity(arg0\Field29[$00]\Field3[$01])
-            arg0\Field29[$00]\Field3[$01] = $00
-            local2 = createsecuritycam((arg0\Field3 - (1152.0 * roomscale)), (arg0\Field4 + (900.0 * roomscale)), (arg0\Field5 + (176.0 * roomscale)), arg0, $01)
-            local2\Field11 = 90.0
-            local2\Field12 = 0.0
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local2\Field23 = $00
-            local2\Field19 = 0.0
-            entityparent(local2\Field4, $00, $01)
-            positionentity(local2\Field4, (arg0\Field3 - (1716.0 * roomscale)), (arg0\Field4 + (160.0 * roomscale)), (arg0\Field5 + (176.0 * roomscale)), $01)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            scalesprite(local2\Field4, (448.0 * roomscale), (448.0 * roomscale))
-            entityparent(local2\Field4, arg0\Field2, $01)
-            camerazoom(local2\Field8, 1.5)
-            hideentity(local2\Field10)
-            hideentity(local2\Field1)
-            arg0\Field25[$00] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (1536.0 * roomscale)), (arg0\Field4 + (730.0 * roomscale)), (arg0\Field5 + (192.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$00], 0.0, -90.0, 0.0, $01)
-            arg0\Field25[$01] = local2\Field4
-        Case "endroom"
-            arg0\Field29[$00] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 + (1136.0 * roomscale)), 0.0, arg0, $00, $01, $06, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $00
-            arg0\Field29[$00]\Field4 = $01
-            freeentity(arg0\Field29[$00]\Field3[$00])
-            arg0\Field29[$00]\Field3[$00] = $00
-            freeentity(arg0\Field29[$00]\Field3[$01])
-            arg0\Field29[$00]\Field3[$01] = $00
-        Case "endroomc"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1024.0 * roomscale)), 0.0, arg0\Field5, 0.0, arg0, $00, $02, $00, "", $00)
-            local0\Field5 = $00
-            local0\Field21 = $00
+            If (s2imapcontains(unlockedachievements, "keter") <> 0) Then
+                local3 = createdecal($16, (arg0\Field3 + 2.007812), (arg0\Field4 + (1.0 / 1.610063)), ((arg0\Field5 - (1.0 / 1.04065)) - 0.005), 0.0, 180.0, 0.0, 0.1, 1.0, $00, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            EndIf
+            If (s2imapcontains(unlockedachievements, "apollyon") <> 0) Then
+                local3 = createdecal($17, (arg0\Field3 + 1.4375), (arg0\Field4 + (1.0 / 1.855072)), (arg0\Field5 + 0.71875), 0.0, 0.0, 0.0, 0.1, 1.0, $00, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("Document SCP-173", $00, (arg0\Field3 + 3.277539), (arg0\Field4 + (1.0 / 1.479769)), (arg0\Field5 + 9.683946), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 7.226562), (arg0\Field4 + 1.972656), (arg0\Field5 + 4.246094), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($03, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 7.5), (arg0\Field4 + 1.972656), (arg0\Field5 + 4.246094), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("Compact First Aid Kit", $36, (arg0\Field3 + 2.632812), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + (1.0 / 1.376344)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (key2_spawnrate = $01) Then
+                Select rand($04, $01)
+                    Case $01
+                        local12 = 2255.0
+                        local13 = 1015.0
+                        local14 = 4618.0
+                    Case $02
+                        local12 = 339.0
+                        local13 = 150.0
+                        local14 = 2630.0
+                    Case $03
+                        local12 = 410.0
+                        local13 = 150.0
+                        local14 = 1120.0
+                    Case $04
+                        local12 = -124.0
+                        local13 = 250.0
+                        local14 = 3810.0
+                End Select
+                local7 = createitem("White Key", $68, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + (local13 * (1.0 / 256.0))), (arg0\Field5 + (local14 * (1.0 / 256.0))), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (snavunlocked <> 0) Then
+                local7 = createitem("S-NAV Navigator Ultimate", $4C, (arg0\Field3 + 1.59375), (arg0\Field4 + (1.0 / 1.706667)), (arg0\Field5 - (1.0 / 1.080169)), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (ereaderunlocked <> 0) Then
+                local7 = createitem("E-Reader 30", $4F, (arg0\Field3 + 1.453125), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 + (1.0 / 1.089362)), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local6 = setemitter(arg0, (arg0\Field3 + 13.21875), (arg0\Field4 + (1.0 / 0.512)), (arg0\Field5 + 17.57812), $07)
+            local6\Field11 = $02
+        Case $04
+            local0 = createdoor(arg0, (arg0\Field3 - 22.5), arg0\Field4, (arg0\Field5 + 4.75), 180.0, $00, $00, $00, $00, $00)
             local0\Field4 = $01
-        Case "coffin"
-            local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (448.0 * roomscale)), 0.0, arg0, $00, $01, $02, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 - (384.0 * roomscale)), 0.7, (arg0\Field5 - (280.0 * roomscale)), $01)
-            local2 = createsecuritycam((arg0\Field3 - (320.0 * roomscale)), (arg0\Field4 + (704.0 * roomscale)), (arg0\Field5 + (288.0 * roomscale)), arg0, $01)
-            local2\Field11 = 225.0
-            local2\Field12 = 45.0
-            local2\Field22 = $01
-            turnentity(local2\Field3, 120.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            coffincam = local2
-            positionentity(local2\Field4, (arg0\Field3 - (800.0 * roomscale)), (288.0 * roomscale), (arg0\Field5 - (340.0 * roomscale)), $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            turnentity(local2\Field4, 0.0, 180.0, 0.0, $00)
-            arg0\Field25[$02] = copyentity(leverbaseobj, $00)
-            arg0\Field25[$03] = copyentity(leverobj, $00)
-            addentitytoroomprops(arg0, arg0\Field25[$02])
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            arg0\Field28[$00] = arg0\Field25[$03]
-            For local7 = $00 To $01 Step $01
-                scaleentity(arg0\Field25[($02 + local7)], 0.04, 0.04, 0.04, $00)
-                positionentity(arg0\Field25[($02 + local7)], (arg0\Field3 - (800.0 * roomscale)), (arg0\Field4 + (180.0 * roomscale)), (arg0\Field5 - (336.0 * roomscale)), $01)
-                entityparent(arg0\Field25[($02 + local7)], arg0\Field2, $01)
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 22.5), arg0\Field4, (arg0\Field5 + 1.25), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 31.5), arg0\Field4, (arg0\Field5 + 4.75), 180.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 34.125), arg0\Field4, (arg0\Field5 + 3.0), 270.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 31.5), arg0\Field4, (arg0\Field5 - 11.0), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 13.375), (arg0\Field4 - 1.5), (arg0\Field5 - 9.246094), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 5.0625), arg0\Field4, (arg0\Field5 - 6.878906), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 31.5), arg0\Field4, (arg0\Field5 + 1.25), 0.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 25.375), arg0\Field4, (arg0\Field5 - 4.875), 90.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 15.875), arg0\Field4, (arg0\Field5 - 4.875), 90.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 8.820312), arg0\Field4, (arg0\Field5 - 3.921875), 180.0, $00, $06, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.048), $01)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 2.25), arg0\Field4, (arg0\Field5 + 1.496094), 90.0, $00, $03, $00, $00, $00)
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            rotateentity(arg0\Field25[$02], 0.0, 180.0, 0.0, $00)
-            rotateentity(arg0\Field25[$03], 10.0, 0.0, 0.0, $00)
-            entityradius(arg0\Field25[$03], 0.1, 0.0)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], arg0\Field3, (-1320.0 * roomscale), (arg0\Field5 + (2304.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            local6 = createitem("Document SCP-895", "paper", (arg0\Field3 - (688.0 * roomscale)), (arg0\Field4 + (133.0 * roomscale)), (arg0\Field5 - (304.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Level 3 Key Card", "key3", (arg0\Field3 + (240.0 * roomscale)), (arg0\Field4 - (1456.0 * roomscale)), (arg0\Field5 + (2064.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Night Vision Goggles", "nvgoggles", (arg0\Field3 + (280.0 * roomscale)), (arg0\Field4 - (1456.0 * roomscale)), (arg0\Field5 + (2164.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6\Field13 = 400.0
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (96.0 * roomscale)), (-1532.0 * roomscale), (arg0\Field5 + (2016.0 * roomscale)), $01)
-        Case "room2tesla","room2tesla_lcz","room2tesla_hcz"
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (114.0 * roomscale)), 0.0, arg0\Field5, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (114.0 * roomscale)), 0.0, arg0\Field5, $00)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            arg0\Field25[$02] = createpivot($00)
-            positionentity(arg0\Field25[$02], arg0\Field3, 0.0, arg0\Field5, $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            arg0\Field25[$03] = createsprite($00)
-            entitytexture(arg0\Field25[$03], teslatexture, $00, $00)
-            spriteviewmode(arg0\Field25[$03], $02)
-            entityblend(arg0\Field25[$03], $03)
-            entityfx(arg0\Field25[$03], $19)
-            positionentity(arg0\Field25[$03], arg0\Field3, 0.8, arg0\Field5, $00)
-            hideentity(arg0\Field25[$03])
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            local26 = createwaypoint(arg0\Field3, (arg0\Field4 + (66.0 * roomscale)), (arg0\Field5 + (292.0 * roomscale)), Null, arg0)
-            local27 = createwaypoint(arg0\Field3, (arg0\Field4 + (66.0 * roomscale)), (arg0\Field5 - (284.0 * roomscale)), Null, arg0)
-            local26\Field4[$00] = local27
-            local26\Field5[$00] = entitydistance(local26\Field0, local27\Field0)
-            local27\Field4[$00] = local26
-            local27\Field5[$00] = local26\Field5[$00]
-            arg0\Field25[$04] = createsprite($00)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (32.0 * roomscale)), (568.0 * roomscale), arg0\Field5, $00)
-            scalesprite(arg0\Field25[$04], 0.03, 0.03)
-            entitytexture(arg0\Field25[$04], lightspritetex($01), $00, $00)
-            entityblend(arg0\Field25[$04], $03)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            hideentity(arg0\Field25[$04])
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], arg0\Field3, 0.0, (arg0\Field5 - (800.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], arg0\Field3, 0.0, (arg0\Field5 + (800.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.8125), arg0\Field4, (arg0\Field5 - 2.691406), 90.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 7.9375), arg0\Field4, (arg0\Field5 - 4.875), 90.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 16.0), arg0\Field4, (arg0\Field5 + 2.0), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            local22 = loadtexture_strict("GFX\Map\Textures\Door02.jpg", $01, $00, $01)
+            entitytexture(local0\Field0, local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$04] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 13.375), (arg0\Field4 - 1.5), (arg0\Field5 - (1.0 / 1.984496)), 0.0, $01, $00, $05, $00, $00)
+            local0\Field23 = $00
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field14[$05] = local0
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 3.703125), (arg0\Field4 + 0.3), (arg0\Field5 + 2.054688), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 3.828125), (arg0\Field4 + 0.3), (arg0\Field5 + 1.25), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 6.875), (arg0\Field4 + 0.4), (arg0\Field5 + 3.5625), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = loadrmesh("GFX\Map\cont1_173_intro_player_cell.rmesh", Null, $01)
+            scaleentity(arg0\Field11[$03], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$03], arg0\Field3, arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = loadrmesh("GFX\Map\cont1_173_intro_cells.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$04], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$04], arg0\Field3, arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            hideentity(arg0\Field11[$04])
+            For local25 = $00 To $04 Step $01
+                Select local25
+                    Case $00
+                        local12 = 875.0
+                        local14 = -70.0
+                        local27 = $04
+                    Case $01
+                        local12 = 1760.0
+                        local14 = 912.0
+                        local27 = $04
+                    Case $02
+                        local12 = 1792.0
+                        local14 = -80.0
+                        local27 = $04
+                    Case $03
+                        local12 = 890.0
+                        local14 = 642.0
+                        local27 = $04
+                    Case $04
+                        local12 = 1548.0
+                        local14 = 627.0
+                        local27 = $06
+                End Select
+                local3 = createdecal(local27, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + (1.0 / 128.0)), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, 45.0, 0.0, ((((Float (local25 = $00)) * 0.44) + ((Float (local25 = $01)) * 1.2)) + ((Float (local25 > $01)) * 0.54)), rnd(0.8, 1.0), $00, $01, $00, $00, $00)
+            Next
+            local3 = createdecal($15, (arg0\Field3 - 19.77344), ((arg0\Field4 - 4.253906) + 0.05), (arg0\Field5 - 14.11719), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.5, 0.7), rnd(0.6, 1.0), $00, $01, $00, $00, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 15.39062), (arg0\Field4 - 0.125), (arg0\Field5 - 4.875), 20.0, $01, (arg0\Field3 - 7.695312), (arg0\Field4 + 0.875), (arg0\Field5 - 3.625), 0.0, 90.0, 0.0)
+            local2\Field8 = 270.0
+            local2\Field9 = 45.0
+            local7 = createitem("Class D Orientation Leaflet", $00, (arg0\Field3 - 15.36719), (arg0\Field4 + (1.0 / 1.505882)), (arg0\Field5 + (1.0 / 32.0)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $05
+            local0 = createdoor(arg0, (arg0\Field3 - 5.46875), (arg0\Field4 - 0.5), (arg0\Field5 - 1.5), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 0.5), arg0\Field4, (arg0\Field5 + 2.5), 90.0, $00, $00, $04, $00, $00)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 0.375), arg0\Field4, (arg0\Field5 - 1.5), 0.0, $00, $00, $04, $00, $00)
+            arg0\Field14[$02] = local0
+            createdoor(arg0, (arg0\Field3 + 1.84375), arg0\Field4, (arg0\Field5 - 1.5), 0.0, $00, $00, $03, $00, $00)
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + (1.0 / 3.2)), (arg0\Field4 + 0.75), (arg0\Field5 - (1.0 / 1.570552)), 270.0, $01)
+            rotateentity(arg0\Field13[$00]\Field0, 80.0, entityyaw(arg0\Field13[$00]\Field0, $00), 0.0, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 4.5), (arg0\Field4 + 3.515625), (arg0\Field5 + 0.6875), 0.0, $01, (arg0\Field3 - 6.703125), (arg0\Field4 + 0.625), (arg0\Field5 + 0.6875), 0.0, 90.0, 0.0)
+            local2\Field8 = 90.0
+            local2\Field9 = 0.0
+            local2\Field19 = $00
+            local2\Field15 = 0.0
+            local2\Field22 = $01
+            local2\Field21 = $01
+            scalesprite(local2\Field4, 1.75, 1.75)
+            camerazoom(local2\Field6, 1.5)
+            hideentity(local2\Field2)
+            arg0\Field16[$00] = local2
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 6.0), (arg0\Field4 + 2.851562), (arg0\Field5 + 0.75), $00)
+            rotateentity(arg0\Field11[$00], 0.0, -90.0, 0.0, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 5.46875), arg0\Field4, (arg0\Field5 + 0.75), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            local7 = createitem("Document SCP-205", $00, (arg0\Field3 - 1.394531), (arg0\Field4 + (1.0 / 3.657143)), (arg0\Field5 + (1.0 / 1.706667)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Ballistic Helmet", $26, (arg0\Field3 + (1.0 / 1.242718)), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - (1.0 / 3.2)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + (1.0 / 1.242718)), (arg0\Field4 + (1.0 / 1.347368)), (arg0\Field5 + 0.703125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 2.910156), (arg0\Field4 + 0.9375), (arg0\Field5 - 0.234375))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Bloody Level 3 Key Card", $5C, (arg0\Field3 - 3.808594), (arg0\Field4 - (1.0 / 17.06667)), (arg0\Field5 + 2.539062), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 + 0.734375), (arg0\Field5 - 2.828125))
+        Case $23
+            local0 = createdoor(arg0, (arg0\Field3 + 2.25), arg0\Field4, (arg0\Field5 + 0.6875), 90.0, $00, $03, $04, $00, $00)
+            positionentity(local0\Field3[$00], (arg0\Field3 + 1.898438), entityy(local0\Field3[$00], $01), (arg0\Field5 - 1.15625), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.025), $01)
+            turnentity(local0\Field3[$00], 0.0, 90.0, 0.0, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 2.534653)), arg0\Field4, (arg0\Field5 + 1.484375), 90.0, $01, $00, $04, $00, $00)
+            local0\Field23 = $00
+            local0\Field20 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 3.28125), arg0\Field4, (arg0\Field5 + 1.007812), 180.0, $00, $00, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.08), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local7 = createitem("Document SCP-372", $00, (arg0\Field3 + 1.367188), (arg0\Field4 + 0.6875), (arg0\Field5 + 2.203125), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Radio Transceiver", $45, (arg0\Field3 + (1.0 / 1.376344)), (arg0\Field4 + 0.4375), (arg0\Field5 - 1.667969), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(100.0, 0.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 + 2.75), arg0\Field5)
+        Case $06
+            local22 = loadtexture_strict("GFX\Map\Textures\Door01_914.png", $01, $00, $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 4.050781), arg0\Field4, (arg0\Field5 + 2.0625), 180.0, $01, $07, $00, $00, $00)
+            local0\Field4 = $01
+            entitytexture(local0\Field0, local22, $00, $00)
+            entitytexture(local0\Field1, local22, $00, $00)
+            entitytexture(local0\Field2, local22, $00, $00)
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.578125), arg0\Field4, (arg0\Field5 + 2.0625), 180.0, $01, $07, $00, $00, $00)
+            local0\Field4 = $01
+            entitytexture(local0\Field0, local22, $00, $00)
+            entitytexture(local0\Field1, local22, $00, $00)
+            entitytexture(local0\Field2, local22, $00, $00)
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$01] = local0
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.4375), 0.0, $00, $03, $04, $00, $00)
+            local0\Field4 = $01
+            positionentity(local0\Field3[$00], (arg0\Field3 - 1.9375), entityy(local0\Field3[$00], $01), (arg0\Field5 - 1.085938), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.025), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            turnentity(local0\Field3[$00], 0.0, 90.0, 0.0, $00)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.753906), arg0\Field4, (arg0\Field5 - 2.75), 90.0, $00, $00, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.057), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.057), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 3.953125), (arg0\Field4 + 0.75), (arg0\Field5 - 3.8125), 180.0, $00)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 5.078125), (arg0\Field4 + 0.75), (arg0\Field5 - 3.8125), 180.0, $00)
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\Props\scp_914_key.b3d", $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 1.625), (arg0\Field4 + (1.0 / 1.347368)), (arg0\Field5 + 1.460938), $01)
+            arg0\Field11[$01] = loadmesh_strict("GFX\Map\Props\scp_914_knob.b3d", $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 1.625), (arg0\Field4 + (1.0 / 1.113043)), (arg0\Field5 + 1.460938), $01)
+            For local25 = $00 To $01 Step $01
+                scaleentity(arg0\Field11[local25], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $01)
+                entitypickmode(arg0\Field11[local25], $02, $01)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
+            Next
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 4.40625), (arg0\Field4 + 0.5), (arg0\Field5 + 2.5), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 1.203125), (arg0\Field4 + 0.5), (arg0\Field5 + 2.5), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createbutton($00, (arg0\Field3 - 4.78125), (arg0\Field4 + 0.6875), (arg0\Field5 - 3.867188), 0.0, 180.0, 0.0, arg0\Field2, $01)
+            arg0\Field11[$05] = loadrmesh("GFX\Map\cont1_914_blinds.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$05], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 - 3.65625), (arg0\Field4 + 0.515625), (arg0\Field5 - 1.15625), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = loadanimmesh_strict("GFX\Map\Props\scp_914_gears.b3d", $00)
+            local24 = (1.0 / 191.0448)
+            scaleentity(arg0\Field11[$07], local24, local24, local24, $00)
+            positionentity(arg0\Field11[$07], (arg0\Field3 - 1.59375), (arg0\Field4 + (1.0 / 32.0)), (arg0\Field5 + 2.5), $00)
+            rotateentity(arg0\Field11[$07], 0.0, 270.0, 0.0, $00)
+            entityparent(arg0\Field11[$07], arg0\Field2, $01)
+            local7 = createitem("Addendum: 5/14 Test Log", $00, (arg0\Field3 + 2.101562), (arg0\Field4 + (1.0 / 1.438202)), (arg0\Field5 + (1.0 / 2.015748)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 - 5.375), (arg0\Field4 + 0.4375), (arg0\Field5 - 2.679688), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 270.0, 0.0, $00)
+            local7 = createitem("Dr. L's Note #1", $00, (arg0\Field3 - 2.101562), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 - 1.425781), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.75))
+        Case $08
             For local4 = Each rooms
                 If (local4 <> arg0) Then
-                    If ((((local4\Field7\Field11 = "room2tesla") Or (local4\Field7\Field11 = "room2tesla_lcz")) Or (local4\Field7\Field11 = "room2tesla_hcz")) <> 0) Then
-                        arg0\Field25[$07] = copyentity(local4\Field25[$07], arg0\Field2)
+                    If (local4\Field7\Field6 = $08) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], $00)
                         Exit
                     EndIf
                 EndIf
             Next
-            If (arg0\Field25[$07] = $00) Then
-                arg0\Field25[$07] = loadmesh_strict("GFX\map\room2tesla_caution.b3d", arg0\Field2)
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadrmesh("GFX\Map\ventilation_fan.rmesh", Null, $00)
             EndIf
-        Case "room2doors"
-            local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 + (528.0 * roomscale)), 0.0, arg0, $01, $00, $00, "", $00)
-            local0\Field21 = $00
-            positionentity(local0\Field3[$00], (arg0\Field3 - (832.0 * roomscale)), 0.7, (arg0\Field5 + (160.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (160.0 * roomscale)), 0.7, (arg0\Field5 + (536.0 * roomscale)), $01)
-            local1 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (528.0 * roomscale)), 180.0, arg0, $01, $00, $00, "", $00)
-            local1\Field21 = $00
+            scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 1.054688), (arg0\Field4 + 2.0625), arg0\Field5, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            hideentity(arg0\Field11[$00])
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 1.378906), (arg0\Field4 + 0.5), (arg0\Field5 - 1.0), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("Empty Cup", $2C, (arg0\Field3 + 1.914062), (arg0\Field4 + 0.625), (arg0\Field5 + -0.90625), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $0A
+            local0 = createdoor(arg0, (arg0\Field3 + 3.0), arg0\Field4, (arg0\Field5 - 3.232422), 90.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.1), $01)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+        Case $0C
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 2.066406), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            positionentity(local0\Field3[$00], (arg0\Field3 - 3.898438), entityy(local0\Field3[$00], $01), arg0\Field5, $01)
+            rotateentity(local0\Field3[$00], 0.0, 90.0, 0.0, $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.057), $01)
+            local1 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 2.066406), 180.0, $01, $00, $00, $00, $00)
+            local1\Field20 = $00
             freeentity(local1\Field3[$00])
             local1\Field3[$00] = $00
-            positionentity(local1\Field3[$01], (arg0\Field3 + (160.0 * roomscale)), 0.7, (arg0\Field5 - (536.0 * roomscale)), $01)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (832.0 * roomscale)), 0.5, arg0\Field5, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            local1\Field22 = local0
-            local0\Field22 = local1
-            local0\Field5 = $00
-            local1\Field5 = $01
-        Case "room4"
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 + (365.5559 * roomscale)), (arg0\Field4 + (416.0 * roomscale)), (arg0\Field5 + (19.29553 * roomscale)), 90.0)
-        Case "914"
-            arg0\Field29[$02] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (368.0 * roomscale)), 0.0, arg0, $00, $01, $02, "", $00)
-            arg0\Field29[$02]\Field9 = $01
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            positionentity(arg0\Field29[$02]\Field3[$00], (arg0\Field3 - (496.0 * roomscale)), 0.7, (arg0\Field5 - (272.0 * roomscale)), $01)
-            turnentity(arg0\Field29[$02]\Field3[$00], 0.0, 90.0, 0.0, $00)
-            arg0\Field25[$00] = loadmesh_strict("GFX\map\914key.x", $00)
-            arg0\Field25[$01] = loadmesh_strict("GFX\map\914knob.x", $00)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            addentitytoroomprops(arg0, arg0\Field25[$01])
-            For local7 = $00 To $01 Step $01
-                scaleentity(arg0\Field25[local7], roomscale, roomscale, roomscale, $00)
-                entitypickmode(arg0\Field25[local7], $02, $01)
-            Next
-            positionentity(arg0\Field25[$00], arg0\Field3, (arg0\Field4 + (190.0 * roomscale)), (arg0\Field5 + (374.0 * roomscale)), $00)
-            positionentity(arg0\Field25[$01], arg0\Field3, (arg0\Field4 + (230.0 * roomscale)), (arg0\Field5 + (374.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (624.0 * roomscale)), 0.0, (arg0\Field5 + (528.0 * roomscale)), 180.0, arg0, $01, $00, $00, "", $00)
-            freeentity(local0\Field1)
-            local0\Field1 = $00
+            positionentity(local1\Field3[$01], entityx(local1\Field3[$01], $01), entityy(local1\Field3[$01], $01), (entityz(local1\Field3[$01], $01) + 0.057), $01)
+            local0\Field21 = local1
+            local1\Field21 = local0
+        Case $0D
+            createdoor(arg0, (arg0\Field3 + 1.089844), arg0\Field4, (arg0\Field5 + 2.25), 90.0, $00, $04, $00, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 1.089844), arg0\Field4, (arg0\Field5 - 2.25), 90.0, $01, $04, $00, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.04918)), arg0\Field4, arg0\Field5, 90.0, $00, $00, $00, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.048), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.048), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 4.75), (arg0\Field4 - 1.5), (arg0\Field5 - 4.0), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
             freeentity(local0\Field3[$00])
             local0\Field3[$00] = $00
-            freeentity(local0\Field3[$01])
-            local0\Field3[$01] = $00
-            local0\Field9 = $04
-            arg0\Field29[$00] = local0
-            local0\Field21 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (816.0 * roomscale)), 0.0, (arg0\Field5 + (528.0 * roomscale)), 180.0, arg0, $01, $00, $00, "", $00)
             freeentity(local0\Field1)
             local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 4.75), (arg0\Field4 - 1.5), (arg0\Field5 + 4.0), 180.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
             freeentity(local0\Field3[$00])
             local0\Field3[$00] = $00
-            freeentity(local0\Field3[$01])
-            local0\Field3[$01] = $00
-            local0\Field9 = $04
-            arg0\Field29[$01] = local0
-            local0\Field21 = $00
-            arg0\Field25[$02] = createpivot($00)
-            arg0\Field25[$03] = createpivot($00)
-            positionentity(arg0\Field25[$02], (arg0\Field3 - (712.0 * roomscale)), 0.5, (arg0\Field5 + (640.0 * roomscale)), $00)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (728.0 * roomscale)), 0.5, (arg0\Field5 + (640.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$02], arg0\Field2, $01)
-            entityparent(arg0\Field25[$03], arg0\Field2, $01)
-            local6 = createitem("Addendum: 5/14 Test Log", "paper", (arg0\Field3 + (954.0 * roomscale)), (arg0\Field4 + (228.0 * roomscale)), (arg0\Field5 + (127.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("First Aid Kit", "firstaid", (arg0\Field3 + (960.0 * roomscale)), (arg0\Field4 + (112.0 * roomscale)), (arg0\Field5 - (40.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            rotateentity(local6\Field1, 0.0, 90.0, 0.0, $00)
-            local6 = createitem("Dr. L's Note", "paper", (arg0\Field3 - (928.0 * roomscale)), (160.0 * roomscale), (arg0\Field5 - (160.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            placehalloweenscene(arg0, $16, rand($00, ($03 - newyearindex)), (arg0\Field3 - (866.6299 * roomscale)), 0.0, (arg0\Field5 + (148.122 * roomscale)), -90.0)
-            local15 = createcube($00)
-            entityalpha(local15, 0.0)
-            positionentity(local15, arg0\Field3, arg0\Field4, (arg0\Field5 + (374.0 * roomscale)), $00)
-            moveentity(local15, 0.0, 2.5, 0.0)
-            scaleentity(local15, 2.92, 1.0, 3.39, $00)
-            entitytype(local15, $09, $00)
-            entityparent(local15, arg0\Field2, $01)
-        Case "173"
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (entityx(arg0\Field2, $00) + (40.0 * roomscale)), (460.0 * roomscale), (entityz(arg0\Field2, $00) + (1072.0 * roomscale)), $00)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (entityx(arg0\Field2, $00) - (80.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (526.0 * roomscale)), $00)
-            arg0\Field25[$02] = createpivot($00)
-            positionentity(arg0\Field25[$02], (entityx(arg0\Field2, $00) - (128.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (320.0 * roomscale)), $00)
-            arg0\Field25[$03] = createpivot($00)
-            positionentity(arg0\Field25[$03], (entityx(arg0\Field2, $00) + (660.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (526.0 * roomscale)), $00)
-            arg0\Field25[$04] = createpivot($00)
-            positionentity(arg0\Field25[$04], (entityx(arg0\Field2, $00) + (700.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (320.0 * roomscale)), $00)
-            arg0\Field25[$05] = createpivot($00)
-            positionentity(arg0\Field25[$05], (entityx(arg0\Field2, $00) + (1472.0 * roomscale)), (100.0 * roomscale), (entityz(arg0\Field2, $00) + (912.0 * roomscale)), $00)
-            For local7 = $00 To $05 Step $01
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-            Next
-            arg0\Field29[$01] = createdoor(arg0\Field0, (entityx(arg0\Field2, $00) + (288.0 * roomscale)), 0.0, (entityz(arg0\Field2, $00) + (384.0 * roomscale)), 90.0, arg0, $00, $01, $00, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field9 = $01
-            arg0\Field29[$01]\Field5 = $00
-            freeentity(arg0\Field29[$01]\Field3[$00])
-            arg0\Field29[$01]\Field3[$00] = $00
-            freeentity(arg0\Field29[$01]\Field3[$01])
-            arg0\Field29[$01]\Field3[$01] = $00
-            local3 = createdecal(rand($04, $05), entityx(arg0\Field25[$05], $01), 0.002, entityz(arg0\Field25[$05], $01), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-            local3\Field2 = 1.2
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
-            For local8 = $00 To $01 Step $01
-                For local10 = $00 To $01 Step $01
-                    local3 = createdecal(rand($04, $06), (((arg0\Field3 + (700.0 * roomscale)) + (((Float local8) * 700.0) * roomscale)) + rnd(-0.5, 0.5)), rnd(0.001, 0.0018), ((arg0\Field5 + ((Float ($258 * local10)) * roomscale)) + rnd(-0.5, 0.5)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-                    local3\Field2 = rnd(0.5, 0.8)
-                    local3\Field5 = rnd(0.8, 1.0)
-                    scalesprite(local3\Field0, local3\Field2, local3\Field2)
-                Next
-            Next
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 - (1008.0 * roomscale)), 0.0, (arg0\Field5 - (688.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $01)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$02]\Field5 = $00
-            arg0\Field29[$02]\Field4 = $01
-            freeentity(arg0\Field29[$02]\Field3[$00])
-            arg0\Field29[$02]\Field3[$00] = $00
-            freeentity(arg0\Field29[$02]\Field3[$01])
-            arg0\Field29[$02]\Field3[$01] = $00
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 - (2320.0 * roomscale)), 0.0, (arg0\Field5 - (1248.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $00)
-            arg0\Field29[$03]\Field21 = $00
-            arg0\Field29[$03]\Field5 = $01
-            arg0\Field29[$03]\Field4 = $01
-            arg0\Field29[$04] = createdoor(arg0\Field0, (arg0\Field3 - (4352.0 * roomscale)), 0.0, (arg0\Field5 - (1248.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $00)
-            arg0\Field29[$04]\Field21 = $00
-            arg0\Field29[$04]\Field5 = $01
-            arg0\Field29[$04]\Field4 = $01
-            arg0\Field29[$07] = createdoor(arg0\Field0, (arg0\Field3 - (3712.0 * roomscale)), (-385.0 * roomscale), (arg0\Field5 - (128.0 * roomscale)), 0.0, arg0, $01, $00, $00, "", $00)
-            arg0\Field29[$07]\Field21 = $00
-            arg0\Field29[$07]\Field5 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (3712.0 * roomscale)), (-385.0 * roomscale), (arg0\Field5 - (2336.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 0.90625), (arg0\Field4 - 1.5), (arg0\Field5 - 2.515625), 90.0, $00, $00, $03, $00, $00)
             local0\Field4 = $01
-            local0\Field14 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (6864.0 * roomscale)), 0.0, (arg0\Field5 - (1248.0 * roomscale)), 90.0, arg0, $01, $00, $00, "", $00)
-            local0\Field21 = $00
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 0.90625), (arg0\Field4 - 1.5), (arg0\Field5 + 2.515625), 90.0, $00, $00, $03, $00, $00)
             local0\Field4 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (5856.0 * roomscale)), 0.0, (arg0\Field5 - (1504.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local0\Field4 = $01
-            local0\Field14 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (2432.0 * roomscale)), 0.0, (arg0\Field5 - (1000.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (2592.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 - (1016.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (2592.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 - (984.0 * roomscale)), $01)
-            local0\Field4 = $01
-            local0\Field14 = $01
-            local24 = loadtexture_strict("GFX\map\Door02.jpg", $01)
-            For local10 = $00 To $01 Step $01
-                local0 = createdoor(arg0\Field0, (arg0\Field3 - (5760.0 * roomscale)), 0.0, (arg0\Field5 + ((Float (($380 * local10) + $140)) * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-                local0\Field4 = $01
-                local0\Field14 = $01
-                local0 = createdoor(arg0\Field0, (arg0\Field3 - (8288.0 * roomscale)), 0.0, (arg0\Field5 + ((Float (($380 * local10) + $140)) * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-                local0\Field4 = $01
-                If (local10 = $00) Then
-                    local0\Field5 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 0.71875), (arg0\Field4 + 2.75), (arg0\Field5 + 3.71875), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 130.0
+            local2\Field9 = 40.0
+            local7 = createitem("Level 0 Key Card", $59, (arg0\Field3 + 2.875), (arg0\Field4 + 0.9375), (arg0\Field5 + 2.9375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 2.875), (arg0\Field4 + 0.6875), (arg0\Field5 + 2.125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 2.875), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 - 1.75))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 + 2.851562), (arg0\Field4 + 0.6875), (arg0\Field5 - 2.265625))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 + 2.890625), (arg0\Field4 + 0.9375), (arg0\Field5 - 2.929688))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("Incident Report SCP-1048-A", $00, (arg0\Field3 + 2.875), (arg0\Field4 + 0.875), (arg0\Field5 - 1.875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Gas Mask", $38, (arg0\Field3 - 3.5), (arg0\Field4 - 0.96875), (arg0\Field5 + 3.507812), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (key2_spawnrate = $03) Then
+                If (rand($02, $01) <> 0) Then
+                    local7 = createitem("White Key", $68, (arg0\Field3 - (1.0 / 0.4096)), (arg0\Field4 - 1.078125), (arg0\Field5 - 1.296875), $00, $00, $00, 1.0, $00)
                 Else
-                    local0\Field14 = $01
+                    local7 = createitem("White Key", $68, (arg0\Field3 - (1.0 / 0.4096)), (arg0\Field4 - 1.078125), (arg0\Field5 + 1.296875), $00, $00, $00, 1.0, $00)
                 EndIf
-                For local8 = $00 To $02 Step $01
-                    local0 = createdoor(arg0\Field0, (arg0\Field3 - ((7424.0 - (512.0 * (Float local8))) * roomscale)), 0.0, (arg0\Field5 + ((1008.0 - (480.0 * (Float local10))) * roomscale)), (Float ((local10 = $00) * $B4)), arg0, $00, $00, $00, "", $00)
-                    entitytexture(local0\Field0, local24, $00, $00)
-                    local0\Field4 = $01
-                    freeentity(local0\Field1)
-                    local0\Field1 = $00
-                    freeentity(local0\Field3[$00])
-                    local0\Field3[$00] = $00
-                    freeentity(local0\Field3[$01])
-                    local0\Field3[$01] = $00
-                    local0\Field14 = $01
-                Next
-                For local8 = $00 To $04 Step $01
-                    local0 = createdoor(arg0\Field0, (arg0\Field3 - ((5120.0 - (512.0 * (Float local8))) * roomscale)), 0.0, (arg0\Field5 + ((1008.0 - (480.0 * (Float local10))) * roomscale)), (Float ((local10 = $00) * $B4)), arg0, $00, $00, $00, "", $00)
-                    entitytexture(local0\Field0, local24, $00, $00)
-                    local0\Field4 = $01
-                    freeentity(local0\Field1)
-                    local0\Field1 = $00
-                    freeentity(local0\Field3[$00])
-                    local0\Field3[$00] = $00
-                    freeentity(local0\Field3[$01])
-                    local0\Field3[$01] = $00
-                    local0\Field14 = $01
-                    If (((local8 = $02) And (local10 = $01)) <> 0) Then
-                        arg0\Field29[$06] = local0
-                    EndIf
-                Next
-            Next
-            createitem("Class D Orientation Leaflet", "paper", (arg0\Field3 - (3938.0 * roomscale)), (170.0 * roomscale), (arg0\Field5 + (40.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local2 = createsecuritycam((arg0\Field3 - (4048.0 * roomscale)), (arg0\Field4 - (32.0 * roomscale)), (arg0\Field5 - (1232.0 * roomscale)), arg0, $01)
-            local2\Field11 = 270.0
-            local2\Field12 = 45.0
-            local2\Field20 = arg0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 - (2256.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 - (928.0 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            arg0\Field25[$09] = loadmesh_strict("GFX\map\173_2.b3d", arg0\Field2)
-            entitytype(arg0\Field25[$09], $01, $00)
-            entitypickmode(arg0\Field25[$09], $02, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$09])
-            arg0\Field25[$0A] = loadmesh_strict("GFX\map\intro_labels.b3d", arg0\Field2)
-            addentitytoroomprops(arg0, arg0\Field25[$0A])
-            freetexture(local24)
-        Case "room2ccont"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (64.0 * roomscale)), 0.0, (arg0\Field5 + (368.0 * roomscale)), 180.0, arg0, $00, $00, $02, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Note from Daniel", "paper", (arg0\Field3 - (400.0 * roomscale)), (1040.0 * roomscale), (arg0\Field5 + (115.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("FN P90", "p90", (arg0\Field3 - (400.0 * roomscale)), (1040.0 * roomscale), (arg0\Field5 + (115.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
+                entityparent(local7\Field2, arg0\Field2, $01)
             EndIf
-            For local18 = $00 To $02 Step $01
-                arg0\Field25[(local18 Shl $01)] = copyentity(leverbaseobj, $00)
-                arg0\Field25[((local18 Shl $01) + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[local18] = arg0\Field25[((local18 Shl $01) + $01)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[((local18 Shl $01) + local7)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field25[((local18 Shl $01) + local7)], (arg0\Field3 - (240.0 * roomscale)), (arg0\Field4 + (1104.0 * roomscale)), (arg0\Field5 + ((632.0 - (64.0 * (Float local18))) * roomscale)), $01)
-                    entityparent(arg0\Field25[((local18 Shl $01) + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[(local18 Shl $01)], 0.0, -90.0, 0.0, $00)
-                rotateentity(arg0\Field25[((local18 Shl $01) + $01)], 10.0, -270.0, 0.0, $00)
-                entityradius(arg0\Field25[((local18 Shl $01) + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[(local18 Shl $01)])
-                addentitytoroomprops(arg0, arg0\Field25[((local18 Shl $01) + $01)])
+        Case $0E
+            local0 = createdoor(arg0, (arg0\Field3 + 1.75), arg0\Field4, arg0\Field5, -90.0, $01, $01, $00, $00, $00)
+            local0\Field23 = $00
+            arg0\Field14[$00] = local0
+        Case $0F,$10
+            local0 = createdoor(arg0, (arg0\Field3 + 1.324219), arg0\Field4, (arg0\Field5 - 1.800781), 0.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            local2 = createsecuritycam((arg0\Field3 - (265.0 * roomscale)), (arg0\Field4 + (1280.0 * roomscale)), (arg0\Field5 + (105.0 * roomscale)), arg0, $00)
-            local2\Field11 = 45.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room106"
-            local6 = createitem("Level 5 Key Card", "key5", (arg0\Field3 - (752.0 * roomscale)), (arg0\Field4 - (592.0 * roomscale)), (arg0\Field5 + (3026.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Dr. Allok's Note", "paper", (arg0\Field3 - (416.0 * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 + (2492.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Recall Protocol RP-106-N", "paper", (arg0\Field3 + (268.0 * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 + (2593.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (968.0 * roomscale)), (-764.0 * roomscale), (arg0\Field5 + (1392.0 * roomscale)), 0.0, arg0, $00, $00, $04, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (464.0 * roomscale)), 0.0, arg0, $00, $00, $04, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (624.0 * roomscale)), (-1280.0 * roomscale), arg0\Field5, 90.0, arg0, $00, $00, $04, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            If (networkserver\Field15 <> 0) Then
-                local6 = createitem("Micro-HID", "microhid", (arg0\Field3 - (237.3699 * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 + (2483.665 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            arg0\Field25[$06] = loadmesh_strict("GFX\map\room1062.b3d", $00)
-            scaleentity(arg0\Field25[$06], roomscale, roomscale, roomscale, $00)
-            entitytype(arg0\Field25[$06], $01, $00)
-            entitypickmode(arg0\Field25[$06], $03, $01)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (784.0 * roomscale)), (-980.0 * roomscale), (arg0\Field5 + (720.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$06])
-            For local18 = $00 To $02 Step $02
-                arg0\Field25[local18] = copyentity(leverbaseobj, $00)
-                arg0\Field25[(local18 + $01)] = copyentity(leverobj, $00)
-                arg0\Field28[(local18 Sar $01)] = arg0\Field25[(local18 + $01)]
-                For local7 = $00 To $01 Step $01
-                    scaleentity(arg0\Field25[(local18 + local7)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field25[(local18 + local7)], (arg0\Field3 - ((555.0 - (81.0 * (Float (local18 Sar $01)))) * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 + (3040.0 * roomscale)), $01)
-                    entityparent(arg0\Field25[(local18 + local7)], arg0\Field2, $01)
-                Next
-                rotateentity(arg0\Field25[local18], 0.0, 0.0, 0.0, $00)
-                rotateentity(arg0\Field25[(local18 + $01)], 10.0, -180.0, 0.0, $00)
-                entitypickmode(arg0\Field25[(local18 + $01)], $01, $00)
-                entityradius(arg0\Field25[(local18 + $01)], 0.1, 0.0)
-                addentitytoroomprops(arg0, arg0\Field25[local18])
-                addentitytoroomprops(arg0, arg0\Field25[(local18 + $01)])
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.324219), arg0\Field4, (arg0\Field5 + 1.800781), 180.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
             Next
-            rotateentity(arg0\Field25[$01], 81.0, -180.0, 0.0, $00)
-            rotateentity(arg0\Field25[$03], -81.0, -180.0, 0.0, $00)
-            arg0\Field25[$04] = createbutton((arg0\Field3 - (146.0 * roomscale)), (arg0\Field4 - (576.0 * roomscale)), (arg0\Field5 + (3045.0 * roomscale)), 0.0, 0.0, 0.0)
-            entityparent(arg0\Field25[$04], arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (768.0 * roomscale)), (arg0\Field4 + (1392.0 * roomscale)), (arg0\Field5 + (1696.0 * roomscale)), arg0, $01)
-            local2\Field11 = 315.0
-            local2\Field12 = 20.0
-            turnentity(local2\Field3, 45.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            arg0\Field25[$07] = local2\Field3
-            arg0\Field25[$08] = local2\Field0
-            positionentity(local2\Field4, (arg0\Field3 - (272.0 * roomscale)), (-544.0 * roomscale), (arg0\Field5 + (3020.0 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, -10.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-            local2\Field22 = $00
-            arg0\Field25[$05] = createpivot($00)
-            turnentity(arg0\Field25[$05], 0.0, 180.0, 0.0, $00)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (1088.0 * roomscale)), (1104.0 * roomscale), (arg0\Field5 + (1888.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$05], arg0\Field2, $01)
-            arg0\Field25[$09] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$09], (arg0\Field3 - (272.0 * roomscale)), (arg0\Field4 - (672.0 * roomscale)), (arg0\Field5 + (2736.0 * roomscale)), $01)
-            arg0\Field25[$0A] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$0A], arg0\Field3, arg0\Field4, (arg0\Field5 - (720.0 * roomscale)), $01)
-        Case "room1archive"
-            If (networkserver\Field15 = $00) Then
-                For local8 = $00 To $01 Step $01
-                    For local9 = $00 To $02 Step $01
-                        For local10 = $00 To $02 Step $01
-                            local32 = "9V Battery"
-                            local33 = "bat"
-                            local34 = rand($FFFFFFF6, $64)
-                            Select $01
-                                Case (local34 < $00)
-                                    Exit
-                                Case (local34 < $28)
-                                    local32 = "Document SCP-"
-                                    Select rand($01, $06)
-                                        Case $01
-                                            local32 = (local32 + "1123")
-                                        Case $02
-                                            local32 = (local32 + "1048")
-                                        Case $03
-                                            local32 = (local32 + "939")
-                                        Case $04
-                                            local32 = (local32 + "682")
-                                        Case $05
-                                            local32 = (local32 + "079")
-                                        Case $06
-                                            local32 = (local32 + "096")
-                                        Case $06
-                                            local32 = (local32 + "966")
-                                    End Select
-                                    local33 = "paper"
-                                Case ((local34 >= $28) And (local34 < $2D))
-                                    local37 = rand($01, $02)
-                                    local32 = (("Level " + (Str local37)) + " Key Card")
-                                    local33 = ("key" + (Str local37))
-                                Case ((local34 >= $2D) And (local34 < $32))
-                                    local32 = "First Aid Kit"
-                                    local33 = "firstaid"
-                                Case ((local34 >= $32) And (local34 < $3C))
-                                    local32 = "9V Battery"
-                                    local33 = "bat"
-                                Case ((local34 >= $3C) And (local34 < $46))
-                                    local32 = "S-NAV 300 Navigator"
-                                    local33 = "nav"
-                                Case ((local34 >= $46) And (local34 < $55))
-                                    local32 = "Radio Transceiver"
-                                    local33 = "radio"
-                                Case ((local34 >= $55) And (local34 < $5F))
-                                    local32 = "Clipboard"
-                                    local33 = "clipboard"
-                                Case ((local34 >= $5F) And (local34 <= $64))
-                                    local37 = rand($01, $03)
-                                    Select local37
-                                        Case $01
-                                            local32 = "Playing Card"
-                                        Case $02
-                                            local32 = "Mastercard"
-                                        Case $03
-                                            local32 = "Origami"
-                                    End Select
-                                    local33 = "misc"
-                            End Select
-                            local21 = (((864.0 * (Float local8)) + -672.0) * roomscale)
-                            local39 = (((96.0 * (Float local9)) + 96.0) * roomscale)
-                            local22 = (((480.0 - (352.0 * (Float local10))) + rnd(-96.0, 96.0)) * roomscale)
-                            local6 = createitem(local32, local33, (arg0\Field3 + local21), local39, (arg0\Field5 + local22), $00, $00, $00, 1.0, $00, $01)
-                            If (local6 <> Null) Then
-                                entityparent(local6\Field1, arg0\Field2, $01)
-                            EndIf
-                        Next
-                    Next
-                Next
-            Else
-                For local8 = $00 To $01 Step $01
-                    For local9 = $00 To $02 Step $01
-                        For local10 = $00 To $02 Step $01
-                            local32 = "9V Battery"
-                            local33 = "bat"
-                            local34 = rand($FFFFFFF6, $64)
-                            Select $01
-                                Case (local34 < $00)
-                                    Exit
-                                Case (local34 < $28)
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "MP5-SD"
-                                            local33 = "mp5sd"
-                                        Case $02
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $03
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                                Case ((local34 >= $28) And (local34 < $2D))
-                                    local37 = rand($01, $03)
-                                    local32 = (("Level " + (Str local37)) + " Key Card")
-                                    local33 = ("key" + (Str local37))
-                                Case ((local34 >= $2D) And (local34 < $32))
-                                    local32 = "First Aid Kit"
-                                    local33 = "firstaid"
-                                Case ((local34 >= $32) And (local34 < $3C))
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "MP5-SD"
-                                            local33 = "mp5sd"
-                                        Case $02
-                                            local32 = "Rocket Launcher"
-                                            local33 = "rpg"
-                                        Case $03
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                                Case ((local34 >= $3C) And (local34 < $46))
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "MP5-SD"
-                                            local33 = "mp5sd"
-                                        Case $02
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $03
-                                            local32 = "Minigun"
-                                            local33 = "minigun"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                                Case ((local34 >= $46) And (local34 < $55))
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "MP5-SD"
-                                            local33 = "mp5sd"
-                                        Case $02
-                                            local32 = "Rocket Launcher"
-                                            local33 = "rpg"
-                                        Case $03
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                                Case ((local34 >= $55) And (local34 < $5F))
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $02
-                                            local32 = "Rocket Launcher"
-                                            local33 = "rpg"
-                                        Case $03
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                                Case ((local34 >= $5F) And (local34 <= $64))
-                                    local37 = rand($01, $05)
-                                    Select local37
-                                        Case $01
-                                            local32 = "MP5-SD"
-                                            local33 = "mp5sd"
-                                        Case $02
-                                            local32 = "Strange Bottle"
-                                            local33 = "veryfinefirstaid"
-                                        Case $03
-                                            local32 = "Minigun"
-                                            local33 = "minigun"
-                                        Case $04
-                                            local32 = "FN P90"
-                                            local33 = "p90"
-                                        Case $05
-                                            local32 = "USP Tactical"
-                                            local33 = "usp"
-                                    End Select
-                            End Select
-                            local21 = (((864.0 * (Float local8)) + -672.0) * roomscale)
-                            local39 = (((96.0 * (Float local9)) + 96.0) * roomscale)
-                            local22 = (((480.0 - (352.0 * (Float local10))) + rnd(-96.0, 96.0)) * roomscale)
-                            local6 = createitem(local32, local33, (arg0\Field3 + local21), local39, (arg0\Field5 + local22), $00, $00, $00, 1.0, $00, $01)
-                            entityparent(local6\Field1, arg0\Field2, $01)
-                        Next
-                    Next
-                Next
-            EndIf
-            arg0\Field29[$00] = createdoor(arg0\Field0, arg0\Field3, arg0\Field4, (arg0\Field5 - (528.0 * roomscale)), 0.0, arg0, $00, $00, $06, "", $00)
-            local2 = createsecuritycam((arg0\Field3 - (256.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 + (640.0 * roomscale)), arg0, $00)
-            local2\Field11 = 180.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room2test1074"
-            arg0\Field29[$00] = createdoor(arg0\Field0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$00]\Field4 = $01
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (336.0 * roomscale)), arg0\Field4, (arg0\Field5 + (671.0 * roomscale)), 90.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$02] = createdoor(arg0\Field0, (arg0\Field3 + (336.0 * roomscale)), arg0\Field4, (arg0\Field5 - (800.0 * roomscale)), 90.0, arg0, $01, $00, $03, "", $00)
-            arg0\Field29[$02]\Field21 = $00
-            arg0\Field29[$03] = createdoor(arg0\Field0, (arg0\Field3 + (672.0 * roomscale)), arg0\Field4, arg0\Field5, 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field37[$00] = loadtexture("GFX\map\1074tex0.jpg", $01)
-            arg0\Field37[$01] = loadtexture("GFX\map\1074tex1.jpg", $01)
-            textureblend(arg0\Field37[$00], $05)
-            textureblend(arg0\Field37[$01], $05)
-            local6 = createitem("Document SCP-1074", "paper", (arg0\Field3 + (300.0 * roomscale)), (arg0\Field4 + (20.0 * roomscale)), (arg0\Field5 + (671.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (835.0 * roomscale)), (arg0\Field4 + (165.0 * roomscale)), (arg0\Field5 + (540.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createpivot($00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (835.0 * roomscale)), (arg0\Field4 + (10.0 * roomscale)), (arg0\Field5 + (300.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            local47 = getchild(arg0\Field2, $02)
-            arg0\Field36[$00] = getsurface(local47, $01)
-            For local48 = $01 To countsurfaces(local47) Step $01
-                local49 = getsurface(local47, local48)
-                local50 = getsurfacebrush(local49)
-                local51 = getbrushtexture(local50, $01)
-                local52 = strippath(texturename(local51))
-                debuglog(("texname: " + local52))
-                If (lower(local52) = "1074tex1.jpg") Then
-                    arg0\Field36[$00] = local49
-                    freetexture(local51)
-                    freebrush(local50)
-                    Exit
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.789062), arg0\Field4, (arg0\Field5 + 2.875), 90.0, $00, $00, $00, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.04), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.04), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            If (arg0\Field7\Field6 = $10) Then
+                arg0\Field11[$00] = createbutton($01, (arg0\Field3 - 1.847656), (arg0\Field4 + 0.6875), (arg0\Field5 - (1.0 / 1.896296)), 0.0, 270.0, 25.0, arg0\Field2, $01)
+                local6 = setemitter(arg0, (arg0\Field3 + 1.023438), (arg0\Field4 + 1.28125), (arg0\Field5 - 1.613281), $01)
+                local6\Field11 = $02
+                If (key2_spawnrate = $02) Then
+                    local7 = createitem("White Key", $68, (arg0\Field3 - 3.59375), (arg0\Field4 + 1.09375), (arg0\Field5 + (1.0 / 1.620253)), $00, $00, $00, 1.0, $00)
+                    entityparent(local7\Field2, arg0\Field2, $01)
                 EndIf
-                If (local52 <> "") Then
-                    freetexture(local51)
-                EndIf
-                freebrush(local50)
-            Next
-        Case "room1123"
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-1123", "paper", (arg0\Field3 + (511.0 * roomscale)), (arg0\Field4 + (125.0 * roomscale)), (arg0\Field5 - (936.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
             Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 + (511.0 * roomscale)), (arg0\Field4 + (125.0 * roomscale)), (arg0\Field5 - (936.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
+                local0 = createdoor(arg0, (arg0\Field3 - 1.789062), arg0\Field4, arg0\Field5, 90.0, $00, $00, $04, $00, $00)
+                positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.04), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 1.12), $01)
+                positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.04), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.07), $01)
+                arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + (1.0 / 1.580247)), (arg0\Field4 + 0.75), (arg0\Field5 - 1.089844), 270.0, $01)
+                arg0\Field11[$00] = createpivot($00)
+                positionentity(arg0\Field11[$00], (arg0\Field3 + 1.3125), (arg0\Field4 + 0.5), arg0\Field5, $00)
+                entityparent(arg0\Field11[$00], arg0\Field2, $01)
+                If (bk\Field0 <> 0) Then
+                    local38 = ((arg0\Field3 = bk\Field1) And (arg0\Field5 = bk\Field2))
+                EndIf
+                If ((((bk\Field0 = $00) And (rand($02, $01) = $01)) Lor local38) <> 0) Then
+                    arg0\Field11[$01] = copyentity(d_i\Field0[$00], $00)
+                    scaleentity(arg0\Field11[$01], (0.796875 / meshwidth(arg0\Field11[$01])), (1.222656 / meshheight(arg0\Field11[$01])), ((1.0 / 16.0) / meshdepth(arg0\Field11[$01])), $00)
+                    entitytype(arg0\Field11[$01], $01, $00)
+                    positionentity(arg0\Field11[$01], (arg0\Field3 + 1.3125), arg0\Field4, (arg0\Field5 + 1.800781), $00)
+                    rotateentity(arg0\Field11[$01], 0.0, 0.0, 0.0, $00)
+                    entityparent(arg0\Field11[$01], arg0\Field2, $01)
+                    moveentity(arg0\Field11[$01], 120.0, 0.0, 5.0)
+                    bk\Field0 = $01
+                    bk\Field1 = arg0\Field3
+                    bk\Field2 = arg0\Field5
+                    freeentity(arg0\Field14[$01]\Field1)
+                    arg0\Field14[$01]\Field1 = $00
+                EndIf
             EndIf
-            local6 = createitem("SCP-1123", "1123", (arg0\Field3 + (832.0 * roomscale)), (arg0\Field4 + (166.0 * roomscale)), (arg0\Field5 + (784.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Leaflet", "paper", (arg0\Field3 - (816.0 * roomscale)), (arg0\Field4 + (704.0 * roomscale)), (arg0\Field5 + (888.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Gas Mask", "gasmask", (arg0\Field3 + (457.0 * roomscale)), (arg0\Field4 + (150.0 * roomscale)), (arg0\Field5 + (960.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (832.0 * roomscale)), 0.0, (arg0\Field5 + (367.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (956.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (352.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (713.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (384.0 * roomscale)), $01)
-            freeentity(local0\Field1)
-            local0\Field1 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (280.0 * roomscale)), 0.0, (arg0\Field5 - (607.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (280.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 - (607.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            freeentity(local0\Field3[$01])
-            local0\Field3[$01] = $00
-            arg0\Field29[$00] = local0
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 + (832.0 * roomscale)), (arg0\Field4 + (166.0 * roomscale)), (arg0\Field5 + (784.0 * roomscale)), $01)
-            arg0\Field25[$04] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$04], (arg0\Field3 - (648.0 * roomscale)), (arg0\Field4 + (592.0 * roomscale)), (arg0\Field5 + (692.0 * roomscale)), $01)
-            arg0\Field25[$05] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$05], (arg0\Field3 + (828.0 * roomscale)), (arg0\Field4 + (592.0 * roomscale)), (arg0\Field5 + (592.0 * roomscale)), $01)
-            arg0\Field25[$06] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$06], (arg0\Field3 - (76.0 * roomscale)), (arg0\Field4 + (620.0 * roomscale)), (arg0\Field5 + (744.0 * roomscale)), $01)
-            arg0\Field25[$07] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$07], (arg0\Field3 - (640.0 * roomscale)), (arg0\Field4 + (620.0 * roomscale)), (arg0\Field5 - (864.0 * roomscale)), $01)
-            arg0\Field25[$08] = loadmesh_strict("GFX\map\forest\door_frame.b3d", $00)
-            positionentity(arg0\Field25[$08], (arg0\Field3 - (272.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 + (288.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$08], 0.0, 90.0, 0.0, $01)
-            scaleentity(arg0\Field25[$08], (45.0 * roomscale), (45.0 * roomscale), (80.0 * roomscale), $01)
-            entityparent(arg0\Field25[$08], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$08])
-            arg0\Field25[$09] = loadmesh_strict("GFX\map\forest\door.b3d", $00)
-            positionentity(arg0\Field25[$09], (arg0\Field3 - (272.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 + (218.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$09], 0.0, 10.0, 0.0, $01)
-            entitytype(arg0\Field25[$09], $01, $00)
-            scaleentity(arg0\Field25[$09], (46.0 * roomscale), (45.0 * roomscale), (46.0 * roomscale), $01)
-            entityparent(arg0\Field25[$09], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$09])
-            arg0\Field25[$0A] = copyentity(arg0\Field25[$08], $00)
-            positionentity(arg0\Field25[$0A], (arg0\Field3 - (272.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 + (736.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$0A], 0.0, 90.0, 0.0, $01)
-            scaleentity(arg0\Field25[$0A], (45.0 * roomscale), (45.0 * roomscale), (80.0 * roomscale), $01)
-            entityparent(arg0\Field25[$0A], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$0A])
-            arg0\Field25[$0B] = copyentity(arg0\Field25[$09], $00)
-            positionentity(arg0\Field25[$0B], (arg0\Field3 - (272.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 + (666.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$0B], 0.0, 90.0, 0.0, $01)
-            entitytype(arg0\Field25[$0B], $01, $00)
-            scaleentity(arg0\Field25[$0B], (46.0 * roomscale), (45.0 * roomscale), (46.0 * roomscale), $01)
-            entityparent(arg0\Field25[$0B], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$0B])
-            arg0\Field25[$0C] = copyentity(arg0\Field25[$08], $00)
-            positionentity(arg0\Field25[$0C], (arg0\Field3 - (592.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 - (704.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$0C], 0.0, 0.0, 0.0, $01)
-            scaleentity(arg0\Field25[$0C], (45.0 * roomscale), (45.0 * roomscale), (80.0 * roomscale), $01)
-            entityparent(arg0\Field25[$0C], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$0C])
-            arg0\Field25[$0D] = copyentity(arg0\Field25[$09], $00)
-            positionentity(arg0\Field25[$0D], (arg0\Field3 - (662.0 * roomscale)), (512.0 * roomscale), (arg0\Field5 - (704.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$0D], 0.0, 0.0, 0.0, $01)
-            entitytype(arg0\Field25[$0D], $01, $00)
-            scaleentity(arg0\Field25[$0D], (46.0 * roomscale), (45.0 * roomscale), (46.0 * roomscale), $01)
-            entityparent(arg0\Field25[$0D], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$0D])
-            arg0\Field25[$0E] = loadmesh_strict("GFX\map\1123_hb.b3d", arg0\Field2)
-            entitypickmode(arg0\Field25[$0E], $02, $01)
-            entitytype(arg0\Field25[$0E], $01, $00)
-            entityalpha(arg0\Field25[$0E], 0.0)
-        Case "pocketdimension"
-            local53 = loadmesh_strict("GFX\map\pocketdimension2.b3d", $00)
-            arg0\Field25[$08] = loadmesh_strict("GFX\map\pocketdimension3.b3d", $00)
-            arg0\Field25[$09] = loadmesh_strict("GFX\map\pocketdimension4.b3d", $00)
-            arg0\Field25[$0A] = copyentity(arg0\Field25[$09], $00)
-            arg0\Field25[$0B] = loadmesh_strict("GFX\map\pocketdimension5.b3d", $00)
-            addentitytoroomprops(arg0, arg0\Field25[$08])
-            addentitytoroomprops(arg0, arg0\Field25[$09])
-            addentitytoroomprops(arg0, arg0\Field25[$0A])
-            addentitytoroomprops(arg0, arg0\Field25[$0B])
-            local54 = loadmesh_strict("GFX\map\pocketdimensionterrain.b3d", $00)
-            scaleentity(local54, roomscale, roomscale, roomscale, $01)
-            positionentity(local54, 0.0, 2944.0, 0.0, $01)
-            createitem("Burnt Note", "paper", entityx(arg0\Field2, $00), 0.5, (entityz(arg0\Field2, $00) + 3.5), $00, $00, $00, 1.0, $00, $01)
-            For local18 = $00 To $FFFFFFFF Step $01
-                Select local18
-                    Case $00
-                        local56 = local53
-                    Case $01
-                        local56 = arg0\Field25[$08]
-                    Case $02
-                        local56 = arg0\Field25[$09]
-                    Case $03
-                        local56 = arg0\Field25[$0A]
-                    Case $04
-                        local56 = arg0\Field25[$0B]
-                End Select
-            Next
-            For local7 = $08 To $0B Step $01
-                scaleentity(arg0\Field25[local7], roomscale, roomscale, roomscale, $00)
-                entitytype(arg0\Field25[local7], $01, $00)
-                entitypickmode(arg0\Field25[local7], $02, $01)
-                positionentity(arg0\Field25[local7], arg0\Field3, arg0\Field4, (arg0\Field5 + 32.0), $01)
-            Next
-            scaleentity(local54, roomscale, roomscale, roomscale, $00)
-            entitytype(local54, $01, $00)
-            entitypickmode(local54, $03, $01)
-            positionentity(local54, arg0\Field3, (arg0\Field4 + (2944.0 * roomscale)), (arg0\Field5 + 32.0), $01)
-            arg0\Field29[$00] = createdoor($00, arg0\Field3, (2048.0 * roomscale), ((arg0\Field5 + 32.0) - (1024.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            arg0\Field29[$01] = createdoor($00, arg0\Field3, (2048.0 * roomscale), ((arg0\Field5 + 32.0) + (1024.0 * roomscale)), 180.0, arg0, $00, $00, $00, "", $00)
-            local3 = createdecal($12, (arg0\Field3 - (1536.0 * roomscale)), 0.02, ((arg0\Field5 + (608.0 * roomscale)) + 32.0), 90.0, 0.0, 0.0, 1.0, 1.0)
+            createcustomcenter(arg0, (arg0\Field3 + 1.3125), (arg0\Field5 + 0.125))
+        Case $11
+            createdoor(arg0, (arg0\Field3 + 1.125), arg0\Field4, (arg0\Field5 + 2.25), 90.0, $00, $00, $02, $00, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 6.429688), (arg0\Field4 + 1.699219), (arg0\Field5 + (1.0 / 1.326425)), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 30.0
+            local2\Field9 = 30.0
+            local3 = createdecal($15, (arg0\Field3 + (1.0 / 2.485437)), (arg0\Field4 + 0.005), (arg0\Field5 + (1.0 / 1.590062)), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.7, 0.8), 1.0, $00, $01, $00, $00, $00)
+            local3\Field4 = 0.00005
+            local3\Field5 = 5.5
             entityparent(local3\Field0, arg0\Field2, $01)
-            local3\Field2 = rnd(0.8, 0.8)
-            local3\Field6 = $02
-            local3\Field7 = $09
-            scalesprite(local3\Field0, local3\Field2, local3\Field2)
-            entityfx(local3\Field0, $09)
-            entityblend(local3\Field0, $02)
-            scaleentity(arg0\Field25[$0A], (roomscale * 1.5), (roomscale * 2.0), (roomscale * 1.5), $01)
-            positionentity(arg0\Field25[$0B], arg0\Field3, arg0\Field4, (arg0\Field5 + 64.0), $01)
-            For local7 = $01 To $08 Step $01
-                arg0\Field25[(local7 - $01)] = copyentity(local53, $00)
-                scaleentity(arg0\Field25[(local7 - $01)], roomscale, roomscale, roomscale, $00)
-                local57 = ((Float (local7 - $01)) * 45.0)
-                entitytype(arg0\Field25[(local7 - $01)], $01, $00)
-                entitypickmode(arg0\Field25[(local7 - $01)], $02, $01)
-                rotateentity(arg0\Field25[(local7 - $01)], 0.0, (local57 - 90.0), 0.0, $00)
-                positionentity(arg0\Field25[(local7 - $01)], (arg0\Field3 + ((512.0 * roomscale) * cos(local57))), 0.0, (arg0\Field5 + ((512.0 * roomscale) * sin(local57))), $00)
-                entityparent(arg0\Field25[(local7 - $01)], arg0\Field2, $01)
-                If (local7 < $06) Then
-                    local3 = createdecal((local7 + $07), (arg0\Field3 + (((512.0 * roomscale) * cos(local57)) * 3.0)), 0.02, (arg0\Field5 + (((512.0 * roomscale) * sin(local57)) * 3.0)), 90.0, (local57 - 90.0), 0.0, 1.0, 1.0)
-                    local3\Field2 = rnd(0.5, 0.5)
-                    local3\Field6 = $02
-                    local3\Field7 = $09
-                    scalesprite(local3\Field0, local3\Field2, local3\Field2)
-                    entityfx(local3\Field0, $09)
-                    entityblend(local3\Field0, $02)
-                EndIf
-                addentitytoroomprops(arg0, arg0\Field25[(local7 - $01)])
-            Next
-            For local7 = $0C To $10 Step $01
-                arg0\Field25[local7] = createpivot(arg0\Field25[$0B])
-                Select local7
-                    Case $0C
-                        positionentity(arg0\Field25[local7], arg0\Field3, (arg0\Field4 + (200.0 * roomscale)), (arg0\Field5 + 64.0), $01)
-                    Case $0D
-                        positionentity(arg0\Field25[local7], (arg0\Field3 + (390.0 * roomscale)), (arg0\Field4 + (200.0 * roomscale)), ((arg0\Field5 + 64.0) + (272.0 * roomscale)), $01)
-                    Case $0E
-                        positionentity(arg0\Field25[local7], (arg0\Field3 + (838.0 * roomscale)), (arg0\Field4 + (200.0 * roomscale)), ((arg0\Field5 + 64.0) - (551.0 * roomscale)), $01)
-                    Case $0F
-                        positionentity(arg0\Field25[local7], (arg0\Field3 - (139.0 * roomscale)), (arg0\Field4 + (200.0 * roomscale)), ((arg0\Field5 + 64.0) + (1201.0 * roomscale)), $01)
-                    Case $10
-                        positionentity(arg0\Field25[local7], (arg0\Field3 - (1238.0 * roomscale)), (arg0\Field4 - (1664.0 * roomscale)), ((arg0\Field5 + 64.0) + (381.0 * roomscale)), $01)
-                End Select
-            Next
-            local59 = loadtexture_strict("GFX\npcs\oldmaneyes.jpg", $01)
-            arg0\Field25[$11] = createsprite($00)
-            scalesprite(arg0\Field25[$11], 0.03, 0.03)
-            entitytexture(arg0\Field25[$11], local59, $00, $00)
-            entityblend(arg0\Field25[$11], $03)
-            entityfx(arg0\Field25[$11], $09)
-            spriteviewmode(arg0\Field25[$11], $02)
-            arg0\Field27[$12] = loadtexture_strict("GFX\npcs\pdplane.png", $03)
-            arg0\Field27[$13] = loadtexture_strict("GFX\npcs\pdplaneeye.png", $03)
-            arg0\Field25[$14] = createsprite($00)
-            scalesprite(arg0\Field25[$14], 8.0, 8.0)
-            entitytexture(arg0\Field25[$14], arg0\Field27[$12], $00, $00)
-            entityorder(arg0\Field25[$14], $64)
-            entityblend(arg0\Field25[$14], $02)
-            entityfx(arg0\Field25[$14], $09)
-            spriteviewmode(arg0\Field25[$14], $02)
-            freetexture(local51)
-            freeentity(local53)
-            freetexture(local59)
-        Case "room3z3"
-            local2 = createsecuritycam((arg0\Field3 - (320.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 + (512.25 * roomscale)), arg0, $00)
-            local2\Field11 = 225.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room2_3","room3_3"
-            local26 = createwaypoint(arg0\Field3, (arg0\Field4 + (66.0 * roomscale)), arg0\Field5, Null, arg0)
-        Case "room1lifts"
-            arg0\Field25[$00] = createbutton((arg0\Field3 + (96.0 * roomscale)), (arg0\Field4 + (160.0 * roomscale)), (arg0\Field5 + (64.0 * roomscale)), 0.0, 0.0, 0.0)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = createbutton((arg0\Field3 - (96.0 * roomscale)), (arg0\Field4 + (160.0 * roomscale)), (arg0\Field5 + (64.0 * roomscale)), 0.0, 0.0, 0.0)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (384.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 - (960.0 * roomscale)), arg0, $00)
-            local2\Field11 = 45.0
-            local2\Field12 = 45.0
-            local2\Field20 = arg0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local26 = createwaypoint(arg0\Field3, (arg0\Field4 + (66.0 * roomscale)), arg0\Field5, Null, arg0)
-        Case "room2servers2"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (264.0 * roomscale)), 0.0, (arg0\Field5 + (672.0 * roomscale)), 270.0, arg0, $00, $00, $03, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (224.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (510.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (304.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (840.0 * roomscale)), $01)
-            turnentity(local0\Field3[$01], 0.0, 0.0, 0.0, $01)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (512.0 * roomscale)), (-768.0 * roomscale), (arg0\Field5 - (336.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (509.0 * roomscale)), (-768.0 * roomscale), (arg0\Field5 - (1037.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
+            local3 = createdecal($15, (arg0\Field3 + (1.0 / 2.485437)), ((arg0\Field4 + 2.75) - 0.005), (arg0\Field5 + (1.0 / 1.590062)), -90.0, rnd(360.0, 0.0), 0.0, rnd(0.7, 0.8), 1.0, $00, $01, $00, $00, $00)
+            local3\Field4 = 0.00005
+            local3\Field5 = 5.5
+            entityparent(local3\Field0, arg0\Field2, $01)
+            setemitter(arg0, (arg0\Field3 + (1.0 / 2.485437)), (arg0\Field4 + 2.75), (arg0\Field5 + (1.0 / 1.590062)), $16)
+            setemitter(arg0, (arg0\Field3 + (1.0 / 2.485437)), (arg0\Field4 + 0.01), (arg0\Field5 + (1.0 / 1.590062)), $17)
+            local7 = createitem("Level 1 Key Card", $5A, (arg0\Field3 + 6.699219), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 2.804688), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Origami", $02, (arg0\Field3 + 5.730469), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 3.753906), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 6.695312), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 3.65625))
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $12
+            local0 = createdoor(arg0, (arg0\Field3 + 1.875), arg0\Field4, (arg0\Field5 - 2.5), 90.0, $00, $00, $05, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], (arg0\Field3 + 2.25), entityy(local0\Field3[$00], $01), (arg0\Field5 - 1.851562), $01)
+            rotateentity(local0\Field3[$00], 0.0, 270.0, 0.0, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 2.125), (arg0\Field4 + 1.875), (arg0\Field5 + 1.0), 270.0, $00, $06, $05, $00, $00)
+            local0\Field23 = $00
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 5.875), (arg0\Field4 + 1.875), (arg0\Field5 + 3.75), 180.0, $00, $00, $00, $00, $00)
             local0\Field4 = $01
-            local0\Field14 = $01
-            local6 = createitem("Night Vision Goggles", "nvgoggles", (arg0\Field3 + (56.0154 * roomscale)), (arg0\Field4 - (648.0 * roomscale)), (arg0\Field5 + (749.638 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            local6\Field13 = 200.0
-            rotateentity(local6\Field1, 0.0, (Float (arg0\Field6 + rand($F5, $01))), 0.0, $00)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2gw","room2gw_b"
-            If (arg0\Field7\Field11 = "room2gw_b") Then
-                arg0\Field25[$02] = createpivot(arg0\Field2)
-                positionentity(arg0\Field25[$02], (arg0\Field3 - (156.825 * roomscale)), (-37.3458 * roomscale), (arg0\Field5 + (121.364 * roomscale)), $01)
-                local3 = createdecal($03, (arg0\Field3 - (156.825 * roomscale)), (-37.3458 * roomscale), (arg0\Field5 + (121.364 * roomscale)), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0)
-                local3\Field2 = 0.5
-                scalesprite(local3\Field0, local3\Field2, local3\Field2)
-                entityparent(local3\Field0, arg0\Field2, $01)
-                arg0\Field25[$00] = createpivot($00)
-                positionentity(arg0\Field25[$00], (arg0\Field3 + (280.0 * roomscale)), (arg0\Field4 + (345.0 * roomscale)), (arg0\Field5 - (340.0 * roomscale)), $01)
-                entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            EndIf
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (336.0 * roomscale)), 0.0, (arg0\Field5 - (382.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            arg0\Field29[$00]\Field9 = $00
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            arg0\Field29[$00]\Field4 = $01
-            arg0\Field29[$00]\Field24 = $00
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (336.0 * roomscale)), 0.0, (arg0\Field5 + (462.0 * roomscale)), 180.0, arg0, $00, $00, $00, "", $00)
-            positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$01]\Field3[$01], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            arg0\Field29[$01]\Field9 = $00
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $01
-            arg0\Field29[$01]\Field4 = $01
-            arg0\Field29[$01]\Field24 = $00
-            For local4 = Each rooms
-                If (local4 <> arg0) Then
-                    If (((local4\Field7\Field11 = "room2gw") Or (local4\Field7\Field11 = "room2gw_b")) <> 0) Then
-                        arg0\Field25[$03] = copyentity(local4\Field25[$03], arg0\Field2)
-                        Exit
-                    EndIf
-                EndIf
-            Next
-            If (arg0\Field25[$03] = $00) Then
-                arg0\Field25[$03] = loadmesh_strict("GFX\map\room2gw_pipes.b3d", arg0\Field2)
-            EndIf
-            entitypickmode(arg0\Field25[$03], $02, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            If (arg0\Field7\Field11 = "room2gw") Then
-                arg0\Field25[$00] = createpivot($00)
-                positionentity(arg0\Field25[$00], (arg0\Field3 + (344.0 * roomscale)), (128.0 * roomscale), arg0\Field5, $00)
-                entityparent(arg0\Field25[$00], arg0\Field2, $01)
-                local60 = $00
-                If (room2gw_brokendoor <> 0) Then
-                    If (room2gw_x = arg0\Field3) Then
-                        If (room2gw_z = arg0\Field5) Then
-                            local60 = $01
-                        EndIf
-                    EndIf
-                EndIf
-                If ((((room2gw_brokendoor = $00) And (rand($01, $02) = $01)) Or local60) <> 0) Then
-                    arg0\Field25[$01] = copyentity(doorobj, $00)
-                    scaleentity(arg0\Field25[$01], ((204.0 * roomscale) / meshwidth(arg0\Field25[$01])), ((312.0 * roomscale) / meshheight(arg0\Field25[$01])), ((16.0 * roomscale) / meshdepth(arg0\Field25[$01])), $00)
-                    entitytype(arg0\Field25[$01], $01, $00)
-                    positionentity(arg0\Field25[$01], (arg0\Field3 + (336.0 * roomscale)), 0.0, (arg0\Field5 + (462.0 * roomscale)), $00)
-                    rotateentity(arg0\Field25[$01], 0.0, 360.0, 0.0, $00)
-                    entityparent(arg0\Field25[$01], arg0\Field2, $01)
-                    moveentity(arg0\Field25[$01], 120.0, 0.0, 5.0)
-                    room2gw_brokendoor = $01
-                    room2gw_x = arg0\Field3
-                    room2gw_z = arg0\Field5
-                    freeentity(arg0\Field29[$01]\Field1)
-                    arg0\Field29[$01]\Field1 = $00
-                    addentitytoroomprops(arg0, arg0\Field25[$01])
-                EndIf
-            EndIf
-        Case "room3gw"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (728.0 * roomscale)), 0.0, (arg0\Field5 - (458.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0\Field4 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (223.0 * roomscale)), 0.0, (arg0\Field5 - (736.0 * roomscale)), -90.0, arg0, $00, $00, $03, "", $00)
-            local0\Field21 = $00
-            local0\Field5 = $00
-            local0\Field4 = $00
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (459.0 * roomscale)), 0.0, (arg0\Field5 + (339.0 * roomscale)), 90.0, arg0, $00, $00, $00, "", $00)
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            positionentity(arg0\Field29[$00]\Field3[$01], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$00]\Field3[$01], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            arg0\Field29[$00]\Field9 = $00
-            arg0\Field29[$00]\Field21 = $00
-            arg0\Field29[$00]\Field5 = $01
-            arg0\Field29[$00]\Field4 = $01
-            arg0\Field29[$00]\Field24 = $00
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (385.0 * roomscale)), 0.0, (arg0\Field5 + (339.0 * roomscale)), 270.0, arg0, $00, $00, $00, "", $00)
-            positionentity(arg0\Field29[$01]\Field3[$00], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$01]\Field3[$00], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            positionentity(arg0\Field29[$01]\Field3[$01], (arg0\Field3 + (580.822 * roomscale)), entityy(arg0\Field29[$01]\Field3[$01], $01), (arg0\Field5 - (606.679 * roomscale)), $01)
-            arg0\Field29[$01]\Field9 = $00
-            arg0\Field29[$01]\Field21 = $00
-            arg0\Field29[$01]\Field5 = $01
-            arg0\Field29[$01]\Field4 = $01
-            arg0\Field29[$01]\Field24 = $00
-            freeentity(arg0\Field29[$01]\Field1)
-            arg0\Field29[$01]\Field1 = $00
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 - (48.0 * roomscale)), (128.0 * roomscale), (arg0\Field5 + (320.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            For local4 = Each rooms
-                If (local4 <> arg0) Then
-                    If (local4\Field7\Field11 = "room3gw") Then
-                        arg0\Field25[$03] = copyentity(local4\Field25[$03], arg0\Field2)
-                        Exit
-                    EndIf
-                EndIf
-            Next
-            If (arg0\Field25[$03] = $00) Then
-                arg0\Field25[$03] = loadmesh_strict("GFX\map\room3gw_pipes.b3d", arg0\Field2)
-            EndIf
-            addentitytoroomprops(arg0, arg0\Field25[$03])
-            entitypickmode(arg0\Field25[$03], $02, $01)
-        Case "room1162"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (248.0 * roomscale)), 0.0, (arg0\Field5 - (736.0 * roomscale)), 90.0, arg0, $00, $00, ($02 - networkserver\Field15), "", $00)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (1012.0 * roomscale)), (arg0\Field4 + (128.0 * roomscale)), (arg0\Field5 - (640.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-1162", "paper", (arg0\Field3 + (863.227 * roomscale)), (arg0\Field4 + (152.0 * roomscale)), (arg0\Field5 - (953.231 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("USP Tactical", "usp", (arg0\Field3 + (863.227 * roomscale)), (arg0\Field4 + (152.0 * roomscale)), (arg0\Field5 - (953.231 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-                local6 = createitem("Level 2 Key Card", "key2", (arg0\Field3 + (866.227 * roomscale)), (arg0\Field4 + (152.0 * roomscale)), (arg0\Field5 - (953.231 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local2 = createsecuritycam((arg0\Field3 - (192.0 * roomscale)), (arg0\Field4 + (704.0 * roomscale)), (arg0\Field5 + (192.0 * roomscale)), arg0, $00)
-            local2\Field11 = 225.0
-            local2\Field12 = 45.0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-        Case "room2scps2"
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (288.0 * roomscale)), arg0\Field4, (arg0\Field5 + (576.0 * roomscale)), 90.0, arg0, $00, $00, $03, "", $00)
-            arg0\Field29[$00]\Field5 = $00
-            arg0\Field29[$00]\Field4 = $01
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (777.0 * roomscale)), arg0\Field4, (arg0\Field5 + (671.0 * roomscale)), 90.0, arg0, $00, $00, $04, "", $00)
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (556.0 * roomscale)), arg0\Field4, (arg0\Field5 + (296.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
-            arg0\Field25[$00] = createpivot($00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (576.0 * roomscale)), (arg0\Field4 + (160.0 * roomscale)), (arg0\Field5 + (632.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("SCP-1499", "scp1499", (arg0\Field3 + (600.0 * roomscale)), (arg0\Field4 + (176.0 * roomscale)), (arg0\Field5 - (228.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                rotateentity(local6\Field1, 0.0, (Float arg0\Field6), 0.0, $00)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Document SCP-1499", "paper", (arg0\Field3 + (840.0 * roomscale)), (arg0\Field4 + (260.0 * roomscale)), (arg0\Field5 + (224.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            If (networkserver\Field15 = $00) Then
-                local6 = createitem("Document SCP-500", "paper", (arg0\Field3 + (1152.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 + (336.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            Else
-                local6 = createitem("FN P90", "p90", (arg0\Field3 + (1152.0 * roomscale)), (arg0\Field4 + (224.0 * roomscale)), (arg0\Field5 + (336.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-                entityparent(local6\Field1, arg0\Field2, $01)
-            EndIf
-            local6 = createitem("Emily Ross' Badge", "badge", (arg0\Field3 + (364.0 * roomscale)), (arg0\Field4 + (5.0 * roomscale)), (arg0\Field5 + (716.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (850.0 * roomscale)), (arg0\Field4 + (350.0 * roomscale)), (arg0\Field5 + (876.0 * roomscale)), arg0, $00)
-            local2\Field11 = 220.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            local2 = createsecuritycam((arg0\Field3 + (600.0 * roomscale)), (arg0\Field4 + (514.0 * roomscale)), (arg0\Field5 + (150.0 * roomscale)), arg0, $00)
-            local2\Field11 = 180.0
-            local2\Field12 = 30.0
-            turnentity(local2\Field3, 30.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-        Case "room3offices"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (736.0 * roomscale)), 0.0, (arg0\Field5 + (240.0 * roomscale)), 0.0, arg0, $00, $00, $03, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 + (892.0 * roomscale)), entityy(local0\Field3[$00], $01), (arg0\Field5 + (224.0 * roomscale)), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 + (892.0 * roomscale)), entityy(local0\Field3[$01], $01), (arg0\Field5 + (255.0 * roomscale)), $01)
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
             freeentity(local0\Field1)
             local0\Field1 = $00
-            arg0\Field25[$00] = loadmesh_strict("GFX\map\room3offices_hb.b3d", arg0\Field2)
-            entitypickmode(arg0\Field25[$00], $02, $01)
-            entitytype(arg0\Field25[$00], $01, $00)
-            entityalpha(arg0\Field25[$00], 0.0)
-        Case "room2offices4"
-            local0 = createdoor($00, (arg0\Field3 - (240.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "", $00)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (230.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            positionentity(local0\Field3[$01], (arg0\Field3 - (250.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
-            local0\Field5 = $00
-            local0\Field21 = $00
-            local6 = createitem("Sticky Note", "paper", (arg0\Field3 - (991.0 * roomscale)), (arg0\Field4 - (242.0 * roomscale)), (arg0\Field5 + (904.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "room2sl"
-            local61 = ((roomscale * 4.5) * 0.4)
-            arg0\Field37[$00] = loadanimtexture("GFX\SL_monitors_checkpoint.jpg", $01, $200, $200, $00, $04)
-            arg0\Field37[$01] = loadanimtexture("GFX\Sl_monitors.jpg", $01, $100, $100, $00, $08)
-            For local7 = $00 To $0E Step $01
-                If (local7 <> $07) Then
-                    arg0\Field25[local7] = copyentity(monitor, $00)
-                    scaleentity(arg0\Field25[local7], local61, local61, local61, $00)
-                    If (((local7 <> $04) And (local7 <> $0D)) <> 0) Then
-                        local62 = createsprite($00)
-                        entityfx(local62, $11)
-                        spriteviewmode(local62, $02)
-                        scalesprite(local62, (((meshwidth(monitor) * local61) * 0.95) * 0.5), (((meshheight(monitor) * local61) * 0.95) * 0.5))
-                        Select local7
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - (1.0 / 5.22449)), (arg0\Field4 + 2.691406), (arg0\Field5 + 3.566406), 0.0, $01)
+            local24 = (1.0 / 142.2222)
+            arg0\Field21[$00] = loadanimtexture_strict("GFX\Overlays\SL_monitors_checkpoint.png", $01, $200, $200, $00, $04, $01)
+            arg0\Field21[$01] = loadanimtexture_strict("GFX\Overlays\SL_monitors.png", $01, $200, $200, $00, $0B, $01)
+            For local25 = $00 To $0E Step $01
+                If (local25 <> $07) Then
+                    arg0\Field11[local25] = copyentity(mon_i\Field0[$00], $00)
+                    scaleentity(arg0\Field11[local25], local24, local24, local24, $00)
+                    If (((local25 <> $04) And (local25 <> $0D)) <> 0) Then
+                        local23 = createsprite($00)
+                        entityfx(local23, $11)
+                        spriteviewmode(local23, $02)
+                        scalesprite(local23, ((meshwidth(mon_i\Field0[$00]) * local24) * 0.475), ((meshheight(mon_i\Field0[$00]) * local24) * 0.475))
+                        Select local25
                             Case $00
-                                entitytexture(local62, arg0\Field37[$01], $00, $00)
+                                entitytexture(local23, arg0\Field21[$01], $00, $00)
+                            Case $01
+                                entitytexture(local23, arg0\Field21[$01], $0A, $00)
                             Case $02
-                                entitytexture(local62, arg0\Field37[$01], $02, $00)
+                                entitytexture(local23, arg0\Field21[$01], $02, $00)
                             Case $03
-                                entitytexture(local62, arg0\Field37[$01], $01, $00)
+                                entitytexture(local23, arg0\Field21[$01], $01, $00)
+                            Case $05
+                                entitytexture(local23, arg0\Field21[$01], $09, $00)
                             Case $08
-                                entitytexture(local62, arg0\Field37[$01], $04, $00)
+                                entitytexture(local23, arg0\Field21[$01], $04, $00)
                             Case $09
-                                entitytexture(local62, arg0\Field37[$01], $05, $00)
+                                entitytexture(local23, arg0\Field21[$01], $05, $00)
                             Case $0A
-                                entitytexture(local62, arg0\Field37[$01], $03, $00)
+                                entitytexture(local23, arg0\Field21[$01], $03, $00)
                             Case $0B
-                                entitytexture(local62, arg0\Field37[$01], $07, $00)
+                                entitytexture(local23, arg0\Field21[$01], $08, $00)
                             Default
-                                entitytexture(local62, arg0\Field37[$00], $03, $00)
+                                entitytexture(local23, arg0\Field21[$00], $03, $00)
                         End Select
-                        entityparent(local62, arg0\Field25[local7], $01)
-                    ElseIf (local7 = $04) Then
-                        arg0\Field25[$14] = createsprite($00)
-                        entityfx(arg0\Field25[$14], $11)
-                        spriteviewmode(arg0\Field25[$14], $02)
-                        scalesprite(arg0\Field25[$14], (((meshwidth(monitor) * local61) * 0.95) * 0.5), (((meshheight(monitor) * local61) * 0.95) * 0.5))
-                        entitytexture(arg0\Field25[$14], arg0\Field37[$00], $02, $00)
-                        entityparent(arg0\Field25[$14], arg0\Field25[local7], $01)
+                        entityparent(local23, arg0\Field11[local25], $01)
+                    ElseIf (local25 = $04) Then
+                        arg0\Field11[$12] = createsprite($00)
+                        entityfx(arg0\Field11[$12], $11)
+                        spriteviewmode(arg0\Field11[$12], $02)
+                        scalesprite(arg0\Field11[$12], ((meshwidth(mon_i\Field0[$00]) * local24) * 0.475), ((meshheight(mon_i\Field0[$00]) * local24) * 0.475))
+                        entitytexture(arg0\Field11[$12], arg0\Field21[$00], $02, $00)
+                        entityparent(arg0\Field11[$12], arg0\Field11[local25], $01)
                     Else
-                        arg0\Field25[$15] = createsprite($00)
-                        entityfx(arg0\Field25[$15], $11)
-                        spriteviewmode(arg0\Field25[$15], $02)
-                        scalesprite(arg0\Field25[$15], (((meshwidth(monitor) * local61) * 0.95) * 0.5), (((meshheight(monitor) * local61) * 0.95) * 0.5))
-                        entitytexture(arg0\Field25[$15], arg0\Field37[$01], $06, $00)
-                        entityparent(arg0\Field25[$15], arg0\Field25[local7], $01)
+                        arg0\Field11[$13] = createsprite($00)
+                        entityfx(arg0\Field11[$13], $11)
+                        spriteviewmode(arg0\Field11[$13], $02)
+                        scalesprite(arg0\Field11[$13], ((meshwidth(mon_i\Field0[$00]) * local24) * 0.475), ((meshheight(mon_i\Field0[$00]) * local24) * 0.475))
+                        entitytexture(arg0\Field11[$13], arg0\Field21[$01], $07, $00)
+                        entityparent(arg0\Field11[$13], arg0\Field11[local25], $01)
                     EndIf
-                    addentitytoroomprops(arg0, arg0\Field25[local7])
+                    hideentity(arg0\Field11[local25])
+                Else
+                    arg0\Field11[$07] = createpivot($00)
+                    positionentity(arg0\Field11[$07], arg0\Field3, (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 - 3.125), $01)
+                    entityparent(arg0\Field11[$07], arg0\Field2, $01)
                 EndIf
             Next
-            For local7 = $00 To $02 Step $01
-                positionentity(arg0\Field25[local7], (arg0\Field3 - (207.94 * roomscale)), (arg0\Field4 + ((648.0 + (Float ($70 * local7))) * roomscale)), (arg0\Field5 - (60.0686 * roomscale)), $00)
-                rotateentity(arg0\Field25[local7], 0.0, (Float (arg0\Field6 + $69)), 0.0, $00)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-                debuglog((Str local7))
+            For local25 = $00 To $02 Step $01
+                positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.231124)), (arg0\Field4 + (((112.0 * (Float local25)) + 648.0) * (1.0 / 256.0))), (arg0\Field5 - 0.234643), $00)
+                rotateentity(arg0\Field11[local25], 0.0, 105.0, 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
-            For local7 = $03 To $05 Step $01
-                positionentity(arg0\Field25[local7], (arg0\Field3 - (231.489 * roomscale)), (arg0\Field4 + ((648.0 + (Float ((local7 - $03) * $70))) * roomscale)), (arg0\Field5 + (95.7443 * roomscale)), $00)
-                rotateentity(arg0\Field25[local7], 0.0, (Float (arg0\Field6 + $5A)), 0.0, $00)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-                debuglog((Str local7))
+            For local25 = $03 To $05 Step $01
+                positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.105884)), (arg0\Field4 + (((112.0 * (Float (local25 - $03))) + 648.0) * (1.0 / 256.0))), (arg0\Field5 + (1.0 / 2.673788)), $00)
+                rotateentity(arg0\Field11[local25], 0.0, 90.0, 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
-            For local7 = $06 To $08 Step $02
-                positionentity(arg0\Field25[local7], (arg0\Field3 - (231.489 * roomscale)), (arg0\Field4 + ((648.0 + (Float ((local7 - $06) * $70))) * roomscale)), (arg0\Field5 + (255.744 * roomscale)), $00)
-                rotateentity(arg0\Field25[local7], 0.0, (Float (arg0\Field6 + $5A)), 0.0, $00)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-                debuglog((Str local7))
+            For local25 = $06 To $08 Step $02
+                positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.105884)), (arg0\Field4 + (((112.0 * (Float (local25 - $06))) + 648.0) * (1.0 / 256.0))), (arg0\Field5 + 0.999), $00)
+                rotateentity(arg0\Field11[local25], 0.0, 90.0, 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
-            For local7 = $09 To $0B Step $01
-                positionentity(arg0\Field25[local7], (arg0\Field3 - (231.489 * roomscale)), (arg0\Field4 + ((648.0 + (Float ((local7 - $09) * $70))) * roomscale)), (arg0\Field5 + (415.744 * roomscale)), $00)
-                rotateentity(arg0\Field25[local7], 0.0, (Float (arg0\Field6 + $5A)), 0.0, $00)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-                debuglog((Str local7))
+            For local25 = $09 To $0B Step $01
+                positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.105884)), (arg0\Field4 + (((112.0 * (Float (local25 - $09))) + 648.0) * (1.0 / 256.0))), (arg0\Field5 + 1.624), $00)
+                rotateentity(arg0\Field11[local25], 0.0, 90.0, 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
-            For local7 = $0C To $0E Step $01
-                positionentity(arg0\Field25[local7], (arg0\Field3 - (208.138 * roomscale)), (arg0\Field4 + ((648.0 + (Float ((local7 - $0C) * $70))) * roomscale)), (arg0\Field5 + (571.583 * roomscale)), $00)
-                rotateentity(arg0\Field25[local7], 0.0, (Float (arg0\Field6 + $4B)), 0.0, $00)
-                entityparent(arg0\Field25[local7], arg0\Field2, $01)
-                debuglog((Str local7))
+            For local25 = $0C To $0E Step $01
+                positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.229953)), (arg0\Field4 + (((112.0 * (Float (local25 - $0C))) + 648.0) * (1.0 / 256.0))), (arg0\Field5 + 2.232746), $00)
+                rotateentity(arg0\Field11[local25], 0.0, 75.0, 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 + (480.0 * roomscale)), arg0\Field4, (arg0\Field5 - (640.0 * roomscale)), 90.0, arg0, $00, $00, $03, "", $00)
-            arg0\Field29[$00]\Field21 = $00
-            positionentity(arg0\Field29[$00]\Field3[$00], (arg0\Field3 + (576.0 * roomscale)), entityy(arg0\Field29[$00]\Field3[$00], $01), (arg0\Field5 - (480.0 * roomscale)), $01)
-            rotateentity(arg0\Field29[$00]\Field3[$00], 0.0, 270.0, 0.0, $00)
-            arg0\Field29[$01] = createdoor(arg0\Field0, (arg0\Field3 + (544.0 * roomscale)), (arg0\Field4 + (480.0 * roomscale)), (arg0\Field5 + (256.0 * roomscale)), 270.0, arg0, $00, $00, $03, "", $00)
-            arg0\Field29[$01]\Field21 = $00
-            freeentity(arg0\Field29[$01]\Field1)
-            arg0\Field29[$01]\Field1 = $00
-            local0 = createdoor(arg0\Field0, (arg0\Field3 + (1504.0 * roomscale)), (arg0\Field4 + (480.0 * roomscale)), (arg0\Field5 + (960.0 * roomscale)), 0.0, arg0, $00, $00, $00, "", $00)
-            local0\Field21 = $00
-            local0\Field4 = $01
-            arg0\Field25[$07] = createpivot($00)
-            positionentity(arg0\Field25[$07], arg0\Field3, (arg0\Field4 + (100.0 * roomscale)), (arg0\Field5 - (800.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$07], arg0\Field2, $01)
-            arg0\Field25[$0F] = createpivot($00)
-            positionentity(arg0\Field25[$0F], (arg0\Field3 + (700.0 * roomscale)), (arg0\Field4 + (700.0 * roomscale)), (arg0\Field5 + (256.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$0F], arg0\Field2, $01)
-            arg0\Field25[$10] = createpivot($00)
-            positionentity(arg0\Field25[$10], (arg0\Field3 - (60.0 * roomscale)), (arg0\Field4 + (700.0 * roomscale)), (arg0\Field5 + (200.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$10], arg0\Field2, $01)
-            arg0\Field25[$11] = createpivot($00)
-            positionentity(arg0\Field25[$11], (arg0\Field3 - (48.0 * roomscale)), (arg0\Field4 + (540.0 * roomscale)), (arg0\Field5 + (656.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$11], arg0\Field2, $01)
-            arg0\Field25[$12] = copyentity(leverbaseobj, $00)
-            arg0\Field25[$13] = copyentity(leverobj, $00)
-            addentitytoroomprops(arg0, arg0\Field25[$12])
-            addentitytoroomprops(arg0, arg0\Field25[$13])
-            arg0\Field28[$00] = arg0\Field25[$13]
-            For local7 = $00 To $01 Step $01
-                scaleentity(arg0\Field25[($12 + local7)], 0.04, 0.04, 0.04, $00)
-                positionentity(arg0\Field25[($12 + local7)], (arg0\Field3 - (49.0 * roomscale)), (arg0\Field4 + (689.0 * roomscale)), (arg0\Field5 + (912.0 * roomscale)), $01)
-                entityparent(arg0\Field25[($12 + local7)], arg0\Field2, $01)
-            Next
-            rotateentity(arg0\Field25[$12], 0.0, 0.0, 0.0, $00)
-            rotateentity(arg0\Field25[$13], 10.0, -180.0, 0.0, $00)
-            entityradius(arg0\Field25[$13], 0.1, 0.0)
-            local2 = createsecuritycam((arg0\Field3 - (159.0 * roomscale)), (arg0\Field4 + (384.0 * roomscale)), (arg0\Field5 - (929.0 * roomscale)), arg0, $01)
-            local2\Field11 = 315.0
-            local2\Field20 = arg0
-            turnentity(local2\Field3, 20.0, 0.0, 0.0, $00)
-            entityparent(local2\Field0, arg0\Field2, $01)
-            positionentity(local2\Field4, (arg0\Field3 - (231.489 * roomscale)), (arg0\Field4 + (760.0 * roomscale)), (arg0\Field5 + (255.744 * roomscale)), $00)
-            turnentity(local2\Field4, 0.0, 90.0, 0.0, $00)
-            entityparent(local2\Field4, arg0\Field2, $01)
-        Case "room2_4"
-            arg0\Field25[$06] = createpivot($00)
-            positionentity(arg0\Field25[$06], (arg0\Field3 + (640.0 * roomscale)), (8.0 * roomscale), (arg0\Field5 - (896.0 * roomscale)), $00)
-            entityparent(arg0\Field25[$06], arg0\Field2, $01)
-        Case "room3z2"
+            arg0\Field11[$0F] = createpivot($00)
+            positionentity(arg0\Field11[$0F], (arg0\Field3 + 2.734375), (arg0\Field4 + 2.734375), (arg0\Field5 + 1.0), $00)
+            entityparent(arg0\Field11[$0F], arg0\Field2, $01)
+            arg0\Field11[$10] = createpivot($00)
+            positionentity(arg0\Field11[$10], (arg0\Field3 - 0.234375), (arg0\Field4 + 2.734375), (arg0\Field5 + (1.0 / 1.28)), $00)
+            entityparent(arg0\Field11[$10], arg0\Field2, $01)
+            arg0\Field11[$11] = createpivot($00)
+            positionentity(arg0\Field11[$11], (arg0\Field3 - 0.1875), (arg0\Field4 + 2.109375), (arg0\Field5 + 2.5625), $00)
+            entityparent(arg0\Field11[$11], arg0\Field2, $01)
+            arg0\Field11[$14] = createredlight((arg0\Field3 + 3.744141), (arg0\Field4 + 2.978516), (arg0\Field5 + 2.613281))
+            arg0\Field12[$14] = $01
+            entityparent(arg0\Field11[$14], arg0\Field2, $01)
+            hideentity(arg0\Field11[$14])
+            local2 = createsecuritycam(arg0, (arg0\Field3 - (1.0 / 1.610063)), (arg0\Field4 + 1.5), (arg0\Field5 - 3.628906), 20.0, $01, (arg0\Field3 - (1.0 / 1.108225)), (arg0\Field4 + 2.96875), (arg0\Field5 + 1.0), 0.0, 90.0, 0.0)
+            local2\Field8 = 315.0
+        Case $13
+            local0 = createdoor(arg0, (arg0\Field3 - 5.03125), arg0\Field4, arg0\Field5, 270.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.96875), arg0\Field4, arg0\Field5, 270.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.03125), arg0\Field4, arg0\Field5, 270.0, $00, $00, $00, $00, $00)
+            moveentity(local0\Field3[$00], 0.0, 0.0, -8.0)
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            local0\Field20 = $00
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.03125), arg0\Field4, arg0\Field5, 270.0, $00, $00, $00, $00, $00)
+            moveentity(local0\Field3[$00], 0.0, 0.0, -8.0)
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            local0\Field20 = $00
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 2.96875), arg0\Field4, arg0\Field5, 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            arg0\Field14[$04] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 5.03125), arg0\Field4, arg0\Field5, 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            moveentity(local0\Field3[$01], 0.0, 0.0, -8.0)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field14[$05] = local0
+            arg0\Field11[$00] = loadrmesh("GFX\Map\room2_storage_fake_hall.rmesh", Null, $01)
+            scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 4.0), arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            hideentity(arg0\Field11[$00])
+            arg0\Field11[$01] = copyentity(arg0\Field11[$00], $00)
+            scaleentity(arg0\Field11[$01], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 4.0), arg0\Field4, arg0\Field5, $00)
+            rotateentity(arg0\Field11[$01], 0.0, 180.0, 0.0, $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            hideentity(arg0\Field11[$01])
+            arg0\Field11[$02] = loadrmesh("GFX\Map\room2_storage_posters.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$02], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$02], arg0\Field3, arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            hideentity(arg0\Field11[$02])
+            local7 = createitem("Document SCP-939", $00, (arg0\Field3 + 1.375), (arg0\Field4 + 0.6875), (arg0\Field5 + 1.0), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 4.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 1.375), (arg0\Field4 + 0.4375), (arg0\Field5 + 1.75))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Empty Cup", $2C, (arg0\Field3 - 2.625), (arg0\Field4 + 0.9375), (arg0\Field5 + 1.125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Level 0 Key Card", $59, (arg0\Field3 - 2.625), (arg0\Field4 + 0.9375), (arg0\Field5 + 0.875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $14,$37,$5C
+            local0 = createdoor(arg0, (arg0\Field3 - 1.125), arg0\Field4, (arg0\Field5 + 2.25), 90.0, $00, $00, $06, $00, $00)
+            arg0\Field14[$00] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 1.433594), (arg0\Field4 + 0.75), (arg0\Field5 - 0.828125), -90.0, $01)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 1.433594), (arg0\Field4 + 0.75), (arg0\Field5 - 0.515625), -90.0, $01)
+            local2 = createsecuritycam(arg0, arg0\Field3, (arg0\Field4 + 2.75), (arg0\Field5 - 3.722656), 30.0, $01, (arg0\Field3 - 1.523438), (arg0\Field4 + 0.796875), (arg0\Field5 + (1.0 / 7.529412)), 0.0, -90.0, 0.0)
+            local2\Field9 = 0.0
+            arg0\Field11[$00] = createsprite($00)
+            arg0\Field12[$00] = $01
+            entitytexture(arg0\Field11[$00], t\Field2[$03], $00, $00)
+            spriteviewmode(arg0\Field11[$00], $02)
+            entityblend(arg0\Field11[$00], $03)
+            entityfx(arg0\Field11[$00], $19)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 0.8), arg0\Field5, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            hideentity(arg0\Field11[$00])
+            arg0\Field11[$01] = createredlight((arg0\Field3 - 0.125), (arg0\Field4 + 2.21875), arg0\Field5)
+            arg0\Field12[$01] = $01
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            hideentity(arg0\Field11[$01])
             For local4 = Each rooms
-                If (((local4\Field7\Field11 = arg0\Field7\Field11) And (local4 <> arg0)) <> 0) Then
-                    arg0\Field25[$00] = copyentity(local4\Field25[$00], arg0\Field2)
+                If (local4 <> arg0) Then
+                    If ((((local4\Field7\Field6 = $14) Lor (local4\Field7\Field6 = $37)) Lor (local4\Field7\Field6 = $5C)) <> 0) Then
+                        arg0\Field11[$02] = copyentity(local4\Field11[$02], $00)
+                        Exit
+                    EndIf
+                EndIf
+            Next
+            If (arg0\Field11[$02] = $00) Then
+                arg0\Field11[$02] = loadrmesh("GFX\Map\room2_tesla_lcz_blinds.rmesh", Null, $00)
+            EndIf
+            scaleentity(arg0\Field11[$02], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            hideentity(arg0\Field11[$02])
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 - 1.273438), (arg0\Field4 + 0.515625), (arg0\Field5 - 2.25), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 1.0))
+        Case $15
+            local0 = createdoor(arg0, (arg0\Field3 - 1.0), arg0\Field4, (arg0\Field5 + 2.5), 90.0, $00, $00, $03, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 4.0), arg0\Field4, (arg0\Field5 + 2.5), 270.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            createdoor(arg0, (arg0\Field3 - 2.0), arg0\Field4, (arg0\Field5 + 1.46875), 0.0, $00, $00, $00, $00, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 2.5), (arg0\Field4 + 0.5), (arg0\Field5 - 3.5625), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 2.613281), (arg0\Field4 + 0.5), (arg0\Field5 - (1.0 / 16.0)), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createsprite($00)
+            arg0\Field12[$02] = $01
+            local22 = loadtexture_strict("GFX\Map\Textures\glass.png", $03, $00, $00)
+            textureblend(local22, $02)
+            entitytexture(arg0\Field11[$02], local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            spriteviewmode(arg0\Field11[$02], $02)
+            scalesprite(arg0\Field11[$02], (1.0 / 2.813187), (1.0 / 2.694737))
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 2.5), (arg0\Field4 + 0.875), (arg0\Field5 - 0.8125), $00)
+            turnentity(arg0\Field11[$02], 0.0, 180.0, 0.0, $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            hideentity(arg0\Field11[$02])
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 - 1.796875), (arg0\Field4 + (1.0 / 1.219048)), (arg0\Field5 - (1.0 / 2.37037)), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(100.0, 0.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Level 2 Key Card", $5B, (arg0\Field3 - 3.667969), (arg0\Field4 + (1.0 / 1.868613)), (arg0\Field5 + 0.453125), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 180.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $16
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 2.625), 270.0, $00, $00, $05, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 3.0), (arg0\Field5 - 1.25), 0.0, $00, $00, $00, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], (arg0\Field3 + 0.6875), (arg0\Field4 - 2.195312), (arg0\Field5 - 1.382812), $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field14[$00] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + 0.9375), (arg0\Field4 - 2.28125), (arg0\Field5 - 1.433594), 0.0, $00)
+            arg0\Field11[$00] = loadrmesh("GFX\Map\cont2_012_box.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 1.40625), (arg0\Field4 - (1.0 / 1.969231)), (arg0\Field5 + 1.78125), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            hideentity(arg0\Field11[$00])
+            arg0\Field11[$01] = createredlight((arg0\Field3 - (1.0 / 5.885057)), (arg0\Field4 - 2.242188), (arg0\Field5 - 1.414062))
+            arg0\Field12[$01] = $01
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            hideentity(arg0\Field11[$01])
+            arg0\Field11[$02] = loadrmesh("GFX\Map\ventilation_fan.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$02], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 1.757812), (arg0\Field4 + 2.0625), (arg0\Field5 - 1.492188), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            hideentity(arg0\Field11[$02])
+            arg0\Field11[$03] = loadmesh_strict("GFX\Map\Props\scp_012.b3d", $00)
+            scaleentity(arg0\Field11[$03], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 - 1.40625), (arg0\Field4 - 0.703125), (arg0\Field5 + 1.78125), $00)
+            entityparent(arg0\Field11[$03], arg0\Field11[$00], $01)
+            local7 = createitem("White Severed Hand", $64, (arg0\Field3 - 3.0625), ((arg0\Field4 - 2.25) + 0.3), (arg0\Field5 + 2.5), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-012", $00, (arg0\Field3 - 0.21875), (arg0\Field4 - 2.25), (arg0\Field5 - 1.59375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local3 = createdecal($03, (arg0\Field3 - 3.0625), ((arg0\Field4 - 3.0) + 0.01), (arg0\Field5 + 2.5), 90.0, rnd(360.0, 0.0), 0.0, 0.5, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+        Case $17
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0625), arg0\Field4, arg0\Field5, 90.0, $00, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) + 0.061), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.061), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 1.0625), arg0\Field4, arg0\Field5, 270.0, $01, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.061), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.061), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            createdoor(arg0, (arg0\Field3 - 2.1875), arg0\Field4, (arg0\Field5 - 1.0625), 0.0, $00, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.1875), arg0\Field4, (arg0\Field5 + 1.0625), 0.0, $01, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 2.1875), arg0\Field4, (arg0\Field5 - 1.0625), 180.0, $00, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 2.1875), arg0\Field4, (arg0\Field5 + 1.0625), 180.0, $00, $00, $05, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 3.1875), arg0\Field4, arg0\Field5, 270.0, $00, $00, $05, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 3.1875), arg0\Field4, arg0\Field5, 90.0, $00, $00, $05, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            For local25 = $00 To $03 Step $01
+                Select local25
+                    Case $00
+                        local12 = 560.0
+                        local14 = -416.0
+                    Case $01
+                        local12 = -560.0
+                        local14 = -416.0
+                    Case $02
+                        local12 = 560.0
+                        local14 = 416.0
+                    Case $03
+                        local12 = -560.0
+                        local14 = 416.0
+                End Select
+                local2 = createsecuritycam(arg0, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + 1.507812), (arg0\Field5 + (local14 * (1.0 / 256.0))), 30.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+                If (local25 < $02) Then
+                    local2\Field8 = 180.0
+                Else
+                    local2\Field8 = 0.0
+                EndIf
+                local2\Field9 = 30.0
+            Next
+            For local25 = $00 To $0E Step $01
+                Select local25
+                    Case $00
+                        local12 = -64.0
+                        local14 = -516.0
+                    Case $01
+                        local12 = -96.0
+                        local14 = -388.0
+                    Case $02
+                        local12 = -128.0
+                        local14 = -292.0
+                    Case $03
+                        local12 = -128.0
+                        local14 = -132.0
+                    Case $04
+                        local12 = -160.0
+                        local14 = -36.0
+                    Case $05
+                        local12 = -192.0
+                        local14 = 28.0
+                    Case $06
+                        local12 = -384.0
+                        local14 = 28.0
+                    Case $07
+                        local12 = -448.0
+                        local14 = 92.0
+                    Case $08
+                        local12 = -480.0
+                        local14 = 124.0
+                    Case $09
+                        local12 = -512.0
+                        local14 = 156.0
+                    Case $0A
+                        local12 = -544.0
+                        local14 = 220.0
+                    Case $0B
+                        local12 = -544.0
+                        local14 = 380.0
+                    Case $0C
+                        local12 = -544.0
+                        local14 = 476.0
+                    Case $0D
+                        local12 = -544.0
+                        local14 = 572.0
+                    Case $0E
+                        local12 = -544.0
+                        local14 = 636.0
+                End Select
+                local3 = createdecal(rand($10, $11), (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + 0.005), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, rnd(360.0, 0.0), 0.0, ((rnd(0.2, 0.25) * (Float (local25 <= $0A))) + (rnd(0.1, 0.17) * (Float (local25 > $0A)))), 1.0, $00, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            Next
+            local7 = createitem("SCP-714", $1B, (arg0\Field3 - 2.1875), (arg0\Field4 + (1.0 / 1.383784)), (arg0\Field5 - 2.96875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-1025", $20, (arg0\Field3 + 2.1875), (arg0\Field4 + (1.0 / 1.383784)), (arg0\Field5 - 2.96875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-860", $1E, (arg0\Field3 + 2.1875), (arg0\Field4 + (1.0 / 1.383784)), (arg0\Field5 + 2.988281), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-427", $00, (arg0\Field3 - 2.375), (arg0\Field4 + 0.125), (arg0\Field5 + 2.484375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-714", $00, (arg0\Field3 - 2.84375), (arg0\Field4 + 1.132812), (arg0\Field5 - 1.40625), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-860", $00, (arg0\Field3 + 2.84375), (arg0\Field4 + 1.132812), (arg0\Field5 + 1.40625), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $18
+            local0 = createdoor(arg0, (arg0\Field3 + 1.125), arg0\Field4, (arg0\Field5 + 2.25), 90.0, $00, $00, $06, $00, $00)
+            local0\Field4 = $01
+            arg0\Field14[$00] = local0
+            createdoor(arg0, (arg0\Field3 + 3.0625), arg0\Field4, (arg0\Field5 + 2.625), 90.0, $00, $00, $06, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 2.171875), arg0\Field4, (arg0\Field5 + 1.125), 0.0, $00, $00, $06, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 4.0), arg0\Field4, (arg0\Field5 - (1.0 / 0.64)), 270.0, $00, $00, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 2.25), (arg0\Field4 + 0.625), (arg0\Field5 + 2.46875), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            For local25 = $00 To $01 Step $01
+                Select local25
+                    Case $00
+                        local12 = 850.0
+                        local13 = 385.0
+                        local14 = 876.0
+                    Case $01
+                        local12 = 616.0
+                        local13 = 512.0
+                        local14 = 150.0
+                End Select
+                local2 = createsecuritycam(arg0, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + (local13 * (1.0 / 256.0))), (arg0\Field5 + (local14 * (1.0 / 256.0))), 30.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+                local2\Field8 = (220.0 - ((Float local25) * 40.0))
+                local2\Field9 = 30.0
+            Next
+            local7 = createitem("Syringe", $55, (arg0\Field3 - 2.847656), (arg0\Field4 + 0.53125), (arg0\Field5 + 2.921875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-914", $00, (arg0\Field3 - 2.617188), (arg0\Field4 + 0.53125), (arg0\Field5 - 2.898438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-1499", $24, (arg0\Field3 + 2.40625), (arg0\Field4 + 0.6875), (arg0\Field5 - (1.0 / 1.094017)), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-1499", $00, (arg0\Field3 + 3.269531), (arg0\Field4 + 1.015625), (arg0\Field5 + (1.0 / 1.21327)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Emily Ross' Badge", $03, (arg0\Field3 + 1.421875), (arg0\Field4 + (1.0 / 51.2)), (arg0\Field5 + 2.796875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-500", $00, (arg0\Field3 + 3.480469), (arg0\Field4 + 0.890625), (arg0\Field5 + 1.894531), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            If (rand($04, $01) = $01) Then
+                local7 = createitem("SCP-500", $15, (arg0\Field3 + 4.480469), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + 1.347656), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $19
+            local0 = createdoor(arg0, (arg0\Field3 + 1.375), (arg0\Field4 + 3.003906), (arg0\Field5 - 2.5), 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.3125), (arg0\Field4 + 3.003906), (arg0\Field5 + 2.78125), 90.0, $00, $05, $00, $00, $00)
+            local0\Field4 = $02
+            local0\Field23 = $00
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.3125), (arg0\Field4 + 3.003906), (arg0\Field5 + 0.65625), 270.0, $00, $05, $00, $00, $00)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.609375), (arg0\Field4 + 3.003906), (arg0\Field5 - 2.75), 0.0, $00, $05, $00, $00, $00)
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 3.5625), arg0\Field4, (arg0\Field5 + 1.40625), 0.0, $00, $06, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.06), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.031), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.12), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.031), $01)
+            createdoor(arg0, (arg0\Field3 + 1.375), arg0\Field4, (arg0\Field5 - 2.5), 90.0, $00, $00, $00, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 + 3.5625), (arg0\Field4 + 3.003906), (arg0\Field5 + 1.40625), 0.0, $01, $06, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field20 = $00
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.06), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.031), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.12), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.031), $01)
+            local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 3.003906), (arg0\Field5 + 1.625), 0.0, $00, $05, $00, $00, $00)
+            local0\Field4 = $02
+            local0\Field23 = $00
+            local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 3.003906), (arg0\Field5 - 3.691406), 0.0, $00, $05, $00, $00, $00)
+            local0\Field4 = $02
+            local0\Field23 = $00
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 3.5625), (arg0\Field4 + (1.0 / 1.505882)), (arg0\Field5 + 3.347656), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - (1.0 / 1.841727)), (arg0\Field4 + 3.554688), (arg0\Field5 + 2.558594), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 3.195312), (arg0\Field4 + 3.320312), (arg0\Field5 + 2.875), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 3.234375), (arg0\Field4 + 3.320312), (arg0\Field5 + 2.3125), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 - 2.757812), (arg0\Field4 + 3.554688), (arg0\Field5 - 3.300781), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createpivot($00)
+            positionentity(arg0\Field11[$05], (arg0\Field3 - 2.246094), (arg0\Field4 + 3.554688), (arg0\Field5 - 1.570312), $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 - 1.828125), (arg0\Field4 + 3.320312), (arg0\Field5 - 1.066406), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = loadrmesh("GFX\Map\cont2_1123_cell.rmesh", Null, $01)
+            scaleentity(arg0\Field11[$07], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$07], arg0\Field3, arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$07], arg0\Field2, $01)
+            hideentity(arg0\Field11[$07])
+            local3 = createdecal($06, (arg0\Field3 - 2.148438), ((arg0\Field4 + 3.003906) + 0.005), (arg0\Field5 + 2.21875), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.4, 0.5), rnd(0.8, 1.0), $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($04, (arg0\Field3 + 0.703125), ((arg0\Field4 + 3.003906) + 0.005), (arg0\Field5 + 3.113281), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.6, 0.7), rnd(0.8, 1.0), $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Document SCP-1123", $00, (arg0\Field3 + 2.117188), (arg0\Field4 + (1.0 / 2.048)), (arg0\Field5 - 3.65625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Gas Mask", $38, (arg0\Field3 + 2.378906), (arg0\Field4 + (1.0 / 1.706667)), (arg0\Field5 + 3.753906), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-1123", $23, (arg0\Field3 + 3.5625), (arg0\Field4 + (1.0 / 1.505882)), (arg0\Field5 + 3.347656), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Leaflet", $00, (arg0\Field3 - 2.953125), (arg0\Field4 + 3.59375), (arg0\Field5 + 2.035156), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $1B
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 - 2.25), 90.0, $00, $00, $05, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.165), $01)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+        Case $1C
+            local0 = createdoor(arg0, (arg0\Field3 + 3.183594), arg0\Field4, (arg0\Field5 - 1.375), 180.0, $00, $06, $FFFFFFFD, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) + 0.07), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.07), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 + 1.375), arg0\Field4, (arg0\Field5 - 3.183594), 90.0, $00, $06, $FFFFFFFD, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.07), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.07), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.875), arg0\Field4, (arg0\Field5 - (1.0 / 3.2)), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field12 = $15E
+            positionentity(local0\Field3[$00], (arg0\Field3 - 1.125), entityy(local0\Field3[$00], $01), (arg0\Field5 - 2.46875), $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 3.2)), arg0\Field4, (arg0\Field5 + 2.875), 270.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field12 = $15E
+            positionentity(local0\Field3[$00], (arg0\Field3 + 2.46875), entityy(local0\Field3[$00], $01), (arg0\Field5 + 1.125), $01)
+            rotateentity(local0\Field3[$00], 0.0, 90.0, 0.0, $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field14[$01] = local0
+            arg0\Field14[$00]\Field21 = arg0\Field14[$01]
+            arg0\Field14[$01]\Field21 = arg0\Field14[$00]
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 2.6875), (arg0\Field4 + 1.5), (arg0\Field5 + 2.6875), 40.0, $01, (arg0\Field3 + 2.617188), (arg0\Field4 + 1.09375), (arg0\Field5 - 0.375), 0.0, 90.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 0.4375), (arg0\Field4 + 1.5), (arg0\Field5 + 0.4375), 40.0, $01, (arg0\Field3 + 0.375), (arg0\Field4 + 1.09375), (arg0\Field5 - 2.617188), 0.0, 0.0, 0.0)
+            local2\Field8 = 45.0
+            local2\Field9 = 45.0
+            local6 = setemitter(arg0, (arg0\Field3 - (1.0 / 1.462857)), (arg0\Field4 + 1.328125), (arg0\Field5 + 2.558594), $00)
+            local6\Field11 = $01
+            local6 = setemitter(arg0, (arg0\Field3 - 2.558594), (arg0\Field4 + 1.328125), (arg0\Field5 + 0.9375), $00)
+            local6\Field11 = $01
+            createcustomcenter(arg0, (arg0\Field3 - 2.875), (arg0\Field5 - 1.375))
+        Case $1D
+            local0 = createdoor(arg0, (arg0\Field3 + 3.183594), arg0\Field4, (arg0\Field5 - 1.375), 180.0, $01, $06, $FFFFFFFD, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) + 0.07), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.07), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 + 1.375), arg0\Field4, (arg0\Field5 - 3.183594), 90.0, $01, $06, $FFFFFFFD, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.07), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.07), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.875), arg0\Field4, (arg0\Field5 - (1.0 / 3.2)), 0.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            positionentity(local0\Field3[$00], (arg0\Field3 - 1.125), entityy(local0\Field3[$00], $01), (arg0\Field5 - 2.46875), $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 3.2)), arg0\Field4, (arg0\Field5 + 2.875), 270.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            positionentity(local0\Field3[$00], (arg0\Field3 + 2.46875), entityy(local0\Field3[$00], $01), (arg0\Field5 + 1.125), $01)
+            rotateentity(local0\Field3[$00], 0.0, 90.0, 0.0, $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            createcustomcenter(arg0, (arg0\Field3 + 3.183594), (arg0\Field5 - 3.183594))
+        Case $1E
+            local0 = createdoor(arg0, (arg0\Field3 + 0.96875), arg0\Field4, (arg0\Field5 - 2.875), 90.0, $00, $00, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.031), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.031), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 1.125), 0.0, $01, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.132), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.375), arg0\Field4, (arg0\Field5 + 1.125), 0.0, $01, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.032), $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 3.925781), (arg0\Field4 + 0.5), (arg0\Field5 - 2.4375), $00)
+            entityradius(arg0\Field11[$00], 0.1, 0.0)
+            entitypickmode(arg0\Field11[$00], $01, $01)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 0.75), (arg0\Field4 + 2.75), (arg0\Field5 + 0.75), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            local7 = createitem("Document SCP-1162-ARC", $00, (arg0\Field3 + 2.938387), (arg0\Field4 + 0.59375), (arg0\Field5 - 1.167969), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-066", $00, (arg0\Field3 + 1.328125), (arg0\Field4 + 0.59375), (arg0\Field5 - (1.0 / 1.089362)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 240.0, 0.0, $00)
+            local7 = createitem("Incident Report SCP-066-2", $00, (arg0\Field3 - (1.0 / 12.19048)), (arg0\Field4 + 0.875), (arg0\Field5 + 3.230469), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 - (1.0 / 1.062241)), (arg0\Field4 + 0.59375), (arg0\Field5 + 3.148438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Gas Mask", $38, (arg0\Field3 + 2.304688), (arg0\Field4 + (1.0 / 5.12)), (arg0\Field5 - 1.222656), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 30.0, 0.0, $00)
+            local7 = createrandombattery((arg0\Field3 + 2.546875), (arg0\Field4 + (1.0 / 5.12)), (arg0\Field5 - 1.328125))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (key2_spawnrate = $04) Then
+                local7 = createitem("White Key", $68, (arg0\Field3 + 2.082031), (arg0\Field4 + (1.0 / 1.706667)), (arg0\Field5 + 1.460938), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $1F
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 1.75), 0.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 22.8125), (arg0\Field4 - 22.0), (arg0\Field5 + 4.0625), 0.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 2.375), arg0\Field4, (arg0\Field5 - 1.195312), 180.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.78125), (arg0\Field4 - 22.0), (arg0\Field5 - 3.1875), 180.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 0.21875), (arg0\Field4 - 22.0), (arg0\Field5 + 24.60938), 90.0, $00, $02, $00, $00, $00)
+            local0\Field20 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$04] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 4.230469), (arg0\Field4 - 22.0), (arg0\Field5 + 2.578125), 0.0, $00, $02, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            local0 = createdoor(arg0, (arg0\Field3 + 13.46094), (arg0\Field4 - 22.0), (arg0\Field5 + 24.60938), 90.0, $00, $02, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, arg0\Field5, 90.0, $00, $00, $FFFFFFFF, $00, $00)
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + 12.09375), (arg0\Field4 - 21.34375), (arg0\Field5 + 25.66016), 0.0, $00)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 + 4.75), (arg0\Field4 - 21.34375), (arg0\Field5 + 12.65625), 0.0, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 0.9375), (arg0\Field5 + 2.9375), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 22.8125), (arg0\Field4 - 21.0625), (arg0\Field5 + 5.25), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 2.375), (arg0\Field4 + 0.9375), (arg0\Field5 - 2.382812), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 - 1.78125), (arg0\Field4 - 21.0625), (arg0\Field5 - 4.375), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 + 8.417969), (arg0\Field4 - 21.67969), (arg0\Field5 + 7.679688), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createpivot($00)
+            positionentity(arg0\Field11[$05], (arg0\Field3 + 8.417969), (arg0\Field4 - 21.67969), (arg0\Field5 - 3.78125), $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 + 15.54688), (arg0\Field4 - 21.67969), (arg0\Field5 - 3.78125), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = createpivot($00)
+            positionentity(arg0\Field11[$07], (arg0\Field3 + 15.54688), (arg0\Field4 - 21.67969), (arg0\Field5 + 7.679688), $00)
+            entityparent(arg0\Field11[$07], arg0\Field2, $01)
+            arg0\Field11[$08] = createpivot($00)
+            positionentity(arg0\Field11[$08], (arg0\Field3 + 2.214844), (arg0\Field4 - 21.67969), (arg0\Field5 + 20.21875), $00)
+            entityparent(arg0\Field11[$08], arg0\Field2, $01)
+            arg0\Field11[$09] = createpivot($00)
+            positionentity(arg0\Field11[$09], (arg0\Field3 + 2.214844), (arg0\Field4 - 21.67969), (arg0\Field5 + 24.89453), $00)
+            entityparent(arg0\Field11[$09], arg0\Field2, $01)
+            arg0\Field11[$0A] = createpivot($00)
+            positionentity(arg0\Field11[$0A], (arg0\Field3 + 11.48438), (arg0\Field4 - 21.67969), (arg0\Field5 + 24.89453), $00)
+            entityparent(arg0\Field11[$0A], arg0\Field2, $01)
+            arg0\Field11[$0B] = createpivot($00)
+            positionentity(arg0\Field11[$0B], (arg0\Field3 + 11.48438), (arg0\Field4 - 21.67969), (arg0\Field5 + 20.21875), $00)
+            entityparent(arg0\Field11[$0B], arg0\Field2, $01)
+            arg0\Field11[$0C] = createpivot($00)
+            positionentity(arg0\Field11[$0C], (arg0\Field3 + 4.230469), (arg0\Field4 - 21.67969), (arg0\Field5 + 11.80859), $00)
+            entityparent(arg0\Field11[$0C], arg0\Field2, $01)
+            arg0\Field11[$0D] = createpivot($00)
+            positionentity(arg0\Field11[$0D], (arg0\Field3 + 4.230469), (arg0\Field4 - 21.67969), (arg0\Field5 + 4.609375), $00)
+            entityparent(arg0\Field11[$0D], arg0\Field2, $01)
+            arg0\Field11[$0E] = createpivot($00)
+            positionentity(arg0\Field11[$0E], (arg0\Field3 - 1.78125), (arg0\Field4 - 21.67969), (arg0\Field5 + 4.609375), $00)
+            entityparent(arg0\Field11[$0E], arg0\Field2, $01)
+            arg0\Field11[$0F] = createpivot($00)
+            positionentity(arg0\Field11[$0F], (arg0\Field3 - 1.78125), (arg0\Field4 - 21.67969), (arg0\Field5 + 11.80859), $00)
+            entityparent(arg0\Field11[$0F], arg0\Field2, $01)
+            local6 = setemitter(arg0, (arg0\Field3 + 20.48828), (arg0\Field4 - 21.8125), (arg0\Field5 - 2.246094), $06)
+            local6\Field11 = $01
+            Select rand($03, $01)
+                Case $01
+                    local12 = 4674.0
+                    local14 = 950.0
+                Case $02
+                    local12 = 3032.0
+                    local14 = 1288.0
+                Case $03
+                    local12 = 2938.0
+                    local14 = 2793.0
+            End Select
+            local7 = createitem("Black Severed Hand", $65, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 - 21.46875), (arg0\Field5 + (local14 * (1.0 / 256.0))), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Bloody Level 1 Key Card", $5A, (arg0\Field3 + 13.16406), (arg0\Field4 - 21.46875), (arg0\Field5 + 24.22266), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Night Vision Goggles", $40, (arg0\Field3 + 4.875), (arg0\Field4 - 21.46875), (arg0\Field5 + 3.832031), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(0.0, 1000.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local3 = createdecal($03, (arg0\Field3 + (local12 * (1.0 / 256.0))), ((arg0\Field4 - 22.0) + 0.005), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, rnd(360.0, 0.0), 0.0, 0.5, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($03, (arg0\Field3 + 13.42969), (arg0\Field4 - 21.52344), (arg0\Field5 + 24.58594), 0.0, 270.0, 0.0, 0.3, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($07, (arg0\Field3 + 4.230469), ((arg0\Field4 - 22.0) + 0.005), (arg0\Field5 + 3.476562), 90.0, 180.0, 0.0, 0.5, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+        Case $26
+            local0 = createdoor(arg0, (arg0\Field3 + 2.75), arg0\Field4, (arg0\Field5 - 1.3125), 0.0, $00, $04, $FFFFFFFA, $00, $00)
+            local0\Field4 = $01
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 1.25), (arg0\Field4 + 2.125), (arg0\Field5 - 1.25), 30.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field17 = $01
+            arg0\Field11[$00] = copyentity(mon_i\Field0[$01], arg0\Field2)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - 2.734375), (arg0\Field4 + 1.5), (arg0\Field5 + 1.132812), $01)
+            scaleentity(arg0\Field11[$00], 2.0, 2.0, 2.0, $00)
+            rotateentity(arg0\Field11[$00], 0.0, 0.0, 0.0, $00)
+            local7 = createitem("Clipboard", $2D, (arg0\Field3 + 3.589844), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.339844), $00, $00, $00, 1.0, $00)
+            local7\Field17 = local7\Field4\Field7
+            setanimtime(local7\Field3, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local8 = createitem("Document SCP-1048", $00, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $01
+            local8\Field16 = $FFFFFFFF
+            local7\Field18[$00] = local8
+            hideentity(local8\Field2)
+            local8 = createitem("Level 2 Key Card", $5B, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $01
+            local8\Field16 = $FFFFFFFF
+            local7\Field18[$01] = local8
+            hideentity(local8\Field2)
+        Case $27
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 1.28)), arg0\Field4, arg0\Field5, 0.0, $00, $00, $05, $00, $00)
+            local0\Field12 = $15E
+            positionentity(local0\Field3[$00], arg0\Field3, entityy(local0\Field3[$00], $01), (arg0\Field5 - (1.0 / 1.179724)), $01)
+            positionentity(local0\Field3[$01], arg0\Field3, entityy(local0\Field3[$01], $01), (arg0\Field5 + (1.0 / 1.179724)), $01)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.28)), arg0\Field4, arg0\Field5, 0.0, $00, $00, $05, $00, $00)
+            local0\Field12 = $15E
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$01] = local0
+            arg0\Field14[$00]\Field21 = arg0\Field14[$01]
+            arg0\Field14[$01]\Field21 = arg0\Field14[$00]
+            If (currmapgrid\Field0[(Int (floor((arg0\Field3 / 8.0)) + ((floor((arg0\Field5 / 8.0)) - 1.0) * 21.0)))] = $00) Then
+                local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 4.007812), 0.0, $00, $02, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+            EndIf
+            arg0\Field11[$00] = copyentity(mon_i\Field0[$01], arg0\Field2)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 1.5), (arg0\Field5 + 1.0), $01)
+            scaleentity(arg0\Field11[$00], 2.0, 2.0, 2.0, $00)
+            rotateentity(arg0\Field11[$00], 0.0, 180.0, 0.0, $00)
+            arg0\Field11[$01] = copyentity(mon_i\Field0[$01], arg0\Field2)
+            positionentity(arg0\Field11[$01], arg0\Field3, (arg0\Field4 + 1.5), (arg0\Field5 - 1.0), $01)
+            scaleentity(arg0\Field11[$01], 2.0, 2.0, 2.0, $00)
+            rotateentity(arg0\Field11[$01], 0.0, 0.0, 0.0, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 0.75), (arg0\Field4 + 2.75), (arg0\Field5 + 3.75), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 0.0
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - (1.0 / 0.512)))
+        Case $29
+            local0 = createdoor(arg0, (arg0\Field3 - 1.15625), arg0\Field4, (arg0\Field5 - 2.625), 180.0, $01, $06, $07, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], (arg0\Field3 - 0.640625), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            arg0\Field14[$00] = local0
+            local22 = loadtexture_strict("GFX\Map\Textures\Door01_Corrosive.png", $01, $00, $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 1.15625), arg0\Field4, (arg0\Field5 - 0.5625), 0.0, $00, $06, $07, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            local0\Field27 = $01
+            positionentity(local0\Field3[$00], (arg0\Field3 - 1.710938), entityy(local0\Field3[$00], $01), (arg0\Field5 - 1.875), $01)
+            rotateentity(local0\Field3[$00], 0.0, 90.0, 0.0, $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            entitytexture(local0\Field0, local22, $00, $00)
+            entitytexture(local0\Field1, local22, $00, $00)
+            entitytexture(local0\Field2, local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            arg0\Field14[$01] = local0
+            arg0\Field14[$00]\Field21 = arg0\Field14[$01]
+            arg0\Field14[$01]\Field21 = arg0\Field14[$00]
+            local0 = createdoor(arg0, (arg0\Field3 + 1.5), arg0\Field4, (arg0\Field5 - 2.625), 180.0, $00, $00, $07, $00, $00)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 3.0), arg0\Field4, (arg0\Field5 + 2.0), 90.0, $00, $00, $00, $1663, $00)
+            arg0\Field14[$03] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + (1.0 / 1.22488)), (arg0\Field4 + 0.875), (arg0\Field5 - (1.0 / 1.24878)), -270.0, $00)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 + (1.0 / 1.22488)), (arg0\Field4 + 0.875), (arg0\Field5 - 0.515625), -270.0, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 1.78125), (arg0\Field4 + 0.5), (arg0\Field5 + (1.0 / 0.64)), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 2.25), (arg0\Field4 + 0.5), (arg0\Field5 + 2.5), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 2.8125), (arg0\Field4 + 0.5), (arg0\Field5 + 3.4375), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 0.6875), (arg0\Field4 + 0.5), (arg0\Field5 - 0.5625), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = loadmesh_strict("GFX\Map\Props\cont1_035_label.b3d", $00)
+            update035label(arg0\Field11[$04])
+            scaleentity(arg0\Field11[$04], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 - (1.0 / 8.533334)), (arg0\Field4 + (1.0 / 1.113043)), (arg0\Field5 - 2.75), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            local7 = createitem("SCP-035 Addendum", $00, (arg0\Field3 + 2.683594), (arg0\Field4 + 0.9375), (arg0\Field5 + (1.0 / 2.015748)), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Radio Transceiver", $45, (arg0\Field3 - 2.125), (arg0\Field4 + 0.5), (arg0\Field5 + 2.75), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-500-01", $16, (arg0\Field3 + 4.5625), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 + 2.25), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Metal Panel", $0C, (arg0\Field3 - 1.40625), (arg0\Field4 + 0.5), (arg0\Field5 + 2.515625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-035", $00, (arg0\Field3 + 4.5625), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + 1.59375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 3.3125))
+        Case $2A
+            local0 = createdoor(arg0, (arg0\Field3 - 6.4375), (arg0\Field4 - 41.75), (arg0\Field5 + 4.804688), 90.0, $00, $03, $06, $00, $00)
+            positionentity(local0\Field3[$00], (arg0\Field3 - 7.398438), entityy(local0\Field3[$00], $01), (arg0\Field5 + 6.542969), $01)
+            rotateentity(local0\Field3[$00], 0.0, (entityyaw(local0\Field3[$00], $01) + 180.0), 0.0, $01)
+            positionentity(local0\Field3[$01], (arg0\Field3 - 5.539062), entityy(local0\Field3[$01], $01), (arg0\Field5 + 6.101562), $01)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 2.0), arg0\Field4, (arg0\Field5 - 1.0), -90.0, $01, $01, $00, $00, $00)
+            positionentity(local0\Field24[$01], entityx(local0\Field24[$01], $01), (entityy(local0\Field24[$01], $01) + 0.05), entityz(local0\Field24[$01], $01), $01)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 2.0), (arg0\Field4 - 40.0), (arg0\Field5 - 1.0), -90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$02] = local0
+            createdoor(arg0, (arg0\Field3 - 4.695312), (arg0\Field4 - 41.75), (arg0\Field5 + 3.40625), 0.0, $00, $00, $FFFFFFFF, $00, $00)
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 0.25), 0.0, $00, $02, $06, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            arg0\Field11[$00] = loadanimmesh_strict("GFX\Map\Props\scp_079.b3d", $00)
+            arg0\Field12[$00] = $01
+            positionentity(arg0\Field11[$00], (arg0\Field3 + (1.0 / 1.542169)), (arg0\Field4 - 42.1875), (arg0\Field5 + 6.273438), $00)
+            scaleentity(arg0\Field11[$00], 1.3, 1.3, 1.3, $00)
+            rotateentity(arg0\Field11[$00], 0.0, -90.0, 0.0, $01)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            hideentity(arg0\Field11[$00])
+            arg0\Field11[$01] = createsprite(arg0\Field11[$00])
+            arg0\Field12[$01] = $01
+            spriteviewmode(arg0\Field11[$01], $02)
+            positionentity(arg0\Field11[$01], 0.082, 0.119, 0.01, $00)
+            scalesprite(arg0\Field11[$01], 0.09, 0.0725)
+            turnentity(arg0\Field11[$01], 0.0, 13.0, 0.0, $00)
+            moveentity(arg0\Field11[$01], 0.0, 0.0, -0.022)
+            entitytexture(arg0\Field11[$01], mon_i\Field1[$05], $00, $00)
+            hideentity(arg0\Field11[$01])
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 3.1875), (arg0\Field4 + 0.9375), (arg0\Field5 - 1.0), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 3.1875), (arg0\Field4 - (1.0 / 0.0256)), (arg0\Field5 - 1.0), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 1.0))
+        Case $2B
+            local0 = createdoor(arg0, (arg0\Field3 - 2.75), arg0\Field4, (arg0\Field5 - 2.75), 90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.75), (arg0\Field4 - 28.62461), (arg0\Field5 - 2.75), 90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$01] = local0
+            createdoor(arg0, (arg0\Field3 - (1.0 / 1.438202)), (arg0\Field4 - 28.625), (arg0\Field5 - 1.648438), 0.0, $00, $00, $06, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 4.453125), (arg0\Field4 - 31.64062), (arg0\Field5 + 6.300781), 180.0, $00, $00, $06, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.976562), (arg0\Field4 - 33.625), (arg0\Field5 + (1.0 / 5.019608)), 90.0, $00, $00, $06, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 + 1.5), arg0\Field4, (arg0\Field5 - 2.75), 90.0, $00, $02, $06, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 1.125), (arg0\Field4 - 28.625), (arg0\Field5 - 6.257812), 0.0, $00, $02, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 2.90625), (arg0\Field4 - 30.89062), (arg0\Field5 + 12.19922), 0.0, $01)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 2.597656), (arg0\Field4 - 30.89062), (arg0\Field5 + 12.19922), 0.0, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 3.0), (arg0\Field4 - 23.1875), (arg0\Field5 + 6.375), 45.0, $01, (arg0\Field3 - 1.804688), (arg0\Field4 - 30.75), (arg0\Field5 + 12.12891), 0.0, -10.0, 0.0)
+            local2\Field8 = 315.0
+            local2\Field9 = 20.0
+            local2\Field22 = $01
+            hideentity(local2\Field0)
+            arg0\Field16[$00] = local2
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 5.621094), (arg0\Field4 - 29.9375), (arg0\Field5 + 6.675781), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 315.0
+            local2\Field9 = 30.0
+            arg0\Field11[$00] = createbutton($00, (arg0\Field3 - 1.316406), (arg0\Field4 - 30.875), (arg0\Field5 + 12.25), 0.0, 0.0, 0.0, arg0\Field2, $00)
+            arg0\Field11[$01] = loadrmesh("GFX\Map\cont1_106_box.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$01], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 2.703125), (arg0\Field4 - 32.45312), (arg0\Field5 + 4.03125), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 3.9375), (arg0\Field4 + 0.9375), (arg0\Field5 - 2.75), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 - 3.9375), (arg0\Field4 - 27.6875), (arg0\Field5 - 2.75), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = loadmesh_strict("GFX\Map\cont1_106_hb.b3d", arg0\Field2)
+            arg0\Field12[$04] = $01
+            entitypickmode(arg0\Field11[$04], $02, $01)
+            entityalpha(arg0\Field11[$04], 0.0)
+            arg0\Field11[$05] = loadanimmesh_strict("GFX\Map\Props\femur_breaker.b3d", $00)
+            local24 = (1.0 / 3938.462)
+            scaleentity(arg0\Field11[$05], local24, local24, local24, $00)
+            positionentity(arg0\Field11[$05], (arg0\Field3 + 4.238281), (arg0\Field4 - 25.0), (arg0\Field5 + 7.550781), $00)
+            rotateentity(arg0\Field11[$05], 0.0, 180.0, 0.0, $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            local7 = createitem("Level 5 Key Card", $5E, (arg0\Field3 - 4.980469), (arg0\Field4 - 30.89844), (arg0\Field5 + 12.13281), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Dr. Allok's Note", $00, (arg0\Field3 - (1.0 / 2.942529)), (arg0\Field4 - 30.875), (arg0\Field5 + 9.902344), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Recall Protocol RP-106-N", $00, (arg0\Field3 - 3.863281), (arg0\Field4 - 31.28125), (arg0\Field5 + 12.13672), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 - 0.515625), (arg0\Field5 - 2.75))
+        Case $2C
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.75), 0.0, $00, $03, $04, $00, $00)
+            positionentity(local0\Field3[$00], (arg0\Field3 - 1.523438), entityy(local0\Field3[local25], $01), (arg0\Field5 - 1.09375), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.025), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            arg0\Field14[$00] = local0
+            createdoor(arg0, (arg0\Field3 - 1.628906), arg0\Field4, arg0\Field5, 90.0, $01, $00, $04, $00, $00)
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 3.125), (arg0\Field4 + 0.703125), (arg0\Field5 - 1.324219), 180.0, $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 - 5.984375), (arg0\Field5 + 9.796875), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            For local25 = $00 To $05 Step $01
+                Select local25
+                    Case $00
+                        local12 = -667.0
+                        local14 = 105.0
+                        local24 = rnd(0.4, 0.5)
+                    Case $01
+                        local12 = -679.0
+                        local14 = 157.0
+                        local24 = rnd(0.4, 0.5)
+                    Case $02
+                        local12 = -542.0
+                        local14 = 138.0
+                        local24 = rnd(0.6, 0.7)
+                    Case $03
+                        local12 = -636.0
+                        local14 = 204.0
+                        local24 = rnd(0.1, 0.2)
+                    Case $04
+                        local12 = -819.0
+                        local14 = 261.0
+                        local24 = rnd(0.6, 0.7)
+                    Case $05
+                        local12 = -672.0
+                        local14 = 299.0
+                        local24 = rnd(0.7, 0.8)
+                End Select
+                local3 = createdecal($00, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + 0.005), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, rnd(360.0, 0.0), 0.0, local24, rnd(0.6, 0.8), $01, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            Next
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.25), (arg0\Field4 + 2.75), (arg0\Field5 + 1.125), 120.06, $01, (arg0\Field3 - 3.125), (arg0\Field4 + 1.125), (arg0\Field5 - 1.328125), 0.0, 180.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            local2\Field18 = $01
+            sc_i\Field4 = local2
+            local7 = createitem("Document SCP-895", $00, (arg0\Field3 - 2.316406), (arg0\Field4 + 0.125), (arg0\Field5 + (1.0 / 3.282051)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Night Vision Goggles", $40, (arg0\Field3 + (1.0 / 5.12)), (arg0\Field4 - 5.085938), (arg0\Field5 + 9.433594), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(0.0, 1000.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $2E
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 1.4375), arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 1.4375), arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], ((arg0\Field3 + 0.875) - 0.005), (arg0\Field4 + 0.75), arg0\Field5, $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], ((arg0\Field3 - 0.875) + 0.005), (arg0\Field4 + 0.75), arg0\Field5, $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+        Case $30
+            local0 = createdoor(arg0, (arg0\Field3 + 3.0), arg0\Field4, (arg0\Field5 - 3.232422), 90.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.1), $01)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local25 = $00
+            For local12 = -1.0 To 1.0 Step 2.0
+                For local14 = -1.0 To 1.0 Step 1.0
+                    local6 = setemitter(arg0, (arg0\Field3 + ((1.0 / 1.267327) * local12)), (arg0\Field4 + (1.0 / 32.0)), (arg0\Field5 + (1.0 * local14)), $03)
+                    local6\Field11 = $01
+                    local25 = (local25 + $01)
+                Next
+            Next
+        Case $33
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 2.5625), -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.0), arg0\Field4, (arg0\Field5 - 2.5625), 90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, $00, $03, $00, code_maintenance_tunnels, $00)
+            positionentity(local0\Field3[$00], (arg0\Field3 + (1.0 / 1.113043)), entityy(local0\Field3[$01], $01), (arg0\Field5 - 1.5), $01)
+            rotateentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
+            positionentity(local0\Field3[$01], (arg0\Field3 - (1.0 / 1.113043)), entityy(local0\Field3[$01], $01), (arg0\Field5 + 1.5), $01)
+            rotateentity(local0\Field3[$01], 0.0, 90.0, 0.0, $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 10.3125), (arg0\Field4 + 8.0), (arg0\Field5 + (1.0 / 0.64)), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 16.9375), (arg0\Field4 + 8.0), (arg0\Field5 - 9.8125), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 2.1875), (arg0\Field4 + 0.9375), (arg0\Field5 + 2.5625), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 - 2.1875), (arg0\Field4 + 0.9375), (arg0\Field5 - 2.5625), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            local3 = createdecal($00, (arg0\Field3 + 0.25), (arg0\Field4 + 0.005), (arg0\Field5 + 0.5625), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Scorched Note", $00, (arg0\Field3 + 0.25), (arg0\Field4 + 0.125), (arg0\Field5 - 1.5), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.5625))
+        Case $34
+            local0 = createdoor(arg0, (arg0\Field3 + 4.6875), arg0\Field4, arg0\Field5, -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 4.6875), (arg0\Field4 + 14.875), arg0\Field5, -90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$01] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 1.941406), (arg0\Field4 + 15.6875), (arg0\Field5 - 2.160156), -270.0, $01)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 1.941406), (arg0\Field4 + 15.6875), (arg0\Field5 - 1.644531), -270.0, $01)
+            local0 = createdoor(arg0, (arg0\Field3 + 2.25), arg0\Field4, (arg0\Field5 + 0.59375), 90.0, $00, $06, $07, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.09), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.09), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 0.125), (arg0\Field4 + 14.875), (arg0\Field5 + 2.703125), 90.0, $00, $00, $07, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.075), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.075), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 1.125), (arg0\Field4 + 14.875), (arg0\Field5 + 3.5), 180.0, $00, $00, $07, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 5.875), (arg0\Field4 + 0.9375), arg0\Field5, $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 5.875), (arg0\Field4 + 15.8125), arg0\Field5, $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            local7 = createitem("Nuclear Device Document", $00, (arg0\Field3 - 1.8125), (arg0\Field4 + 15.46094), (arg0\Field5 - 2.773438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Ballistic Vest", $27, (arg0\Field3 - 0.96875), (arg0\Field4 + 15.46094), (arg0\Field5 - 3.195312), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, -90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 4.378906), (arg0\Field4 + 16.37109), (arg0\Field5 - 1.195312), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 90.0
+            local2\Field9 = 45.0
+        Case $35
+            local0 = createdoor(arg0, (arg0\Field3 - 0.875), arg0\Field4, (arg0\Field5 - 2.875), 90.0, $01, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 0.875), arg0\Field4, (arg0\Field5 + 2.875), 90.0, $01, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$01] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - 4.921875), (arg0\Field4 + (1.0 / 1.094017)), (arg0\Field5 + 2.941406), 0.0, $00)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 3.582031), (arg0\Field4 + 0.640625), (arg0\Field5 + 3.511719), 0.0, $00)
+            arg0\Field13[$02] = createlever(arg0, (arg0\Field3 - 3.269531), (arg0\Field4 + 0.59375), (arg0\Field5 + 3.464844), 0.0, $00)
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, $00, $02, $00, $00, $00)
+            local0\Field4 = $01
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\room2_servers_hcz_hb.b3d", arg0\Field2)
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entityalpha(arg0\Field11[$00], 0.0)
+            hideentity(arg0\Field11[$00])
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.953125))
+        Case $36
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 2.90625), 90.0, $00, $00, $03, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 6.058594), arg0\Field4, (arg0\Field5 + 1.9375), 0.0, $00, $00, $00, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 + 7.75), arg0\Field4, (arg0\Field5 + 2.90625), 90.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 6.058594), arg0\Field4, (arg0\Field5 + (1.0 / 1.098712)), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createbutton($00, (arg0\Field3 + 4.609375), (arg0\Field4 + 0.703125), (arg0\Field5 - 2.15625), 0.0, 270.0, 0.0, arg0\Field2, $01)
+            local3 = createdecal($03, (arg0\Field3 + 5.210938), ((arg0\Field4 - 3.109375) + 0.01), (arg0\Field5 - 0.859375), 90.0, rnd(360.0, 0.0), 0.0, 0.25, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Level 2 Key Card", $5B, (arg0\Field3 + 3.867188), (arg0\Field4 + (1.0 / 1.098712)), (arg0\Field5 + 1.683594), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 + 4.042969), (arg0\Field4 + (1.0 / 1.765517)), (arg0\Field5 + 0.21875), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 7.539062), (arg0\Field4 + (1.0 / 2.639175)), (arg0\Field5 + 1.0))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 4.441406), (arg0\Field4 + (1.0 / 1.590062)), (arg0\Field5 + 1.6875))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 7.539062), (arg0\Field4 + (1.0 / 1.137778)), (arg0\Field5 + 0.5), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $38
+            local0 = createdoor(arg0, (arg0\Field3 + 2.8125), arg0\Field4, arg0\Field5, 0.0, $00, $02, $FFFFFFFD, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.4375), (arg0\Field4 - 5.0), arg0\Field5, 90.0, $01, $00, $00, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.031), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.031), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            For local12 = 0.0 To 1.0 Step 1.0
+                For local14 = -1.0 To 1.0 Step 1.0
+                    arg0\Field11[(Int ((local12 * 3.0) + (local14 + 1.0)))] = createpivot($00)
+                    positionentity(arg0\Field11[(Int ((local12 * 3.0) + (local14 + 1.0)))], (arg0\Field3 + (((280.0 * local12) + -236.0) * (1.0 / 256.0))), (arg0\Field4 - 2.734375), (arg0\Field5 + ((384.0 * local14) * (1.0 / 256.0))), $00)
+                    entityparent(arg0\Field11[(Int ((local12 * 3.0) + (local14 + 1.0)))], arg0\Field2, $01)
+                Next
+            Next
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 + 2.945312), (arg0\Field4 - 4.875), arg0\Field5, $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = loadmesh_strict("GFX\Map\room2_test_hcz_hb.b3d", arg0\Field2)
+            arg0\Field12[$07] = $01
+            entitypickmode(arg0\Field11[$07], $02, $01)
+            entityalpha(arg0\Field11[$07], 0.0)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 2.90625), (arg0\Field4 - 3.34375), (arg0\Field5 + 0.921875), 0.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field17 = $01
+            local7 = createitem("Document SCP-682", $00, (arg0\Field3 + 2.5625), (arg0\Field4 - 4.6875), (arg0\Field5 - (1.0 / 16.0)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 3.1875))
+        Case $39
+            local0 = createdoor(arg0, (arg0\Field3 - 0.375), (arg0\Field4 - 19.9375), (arg0\Field5 - 1.5), 180.0, $01, $06, $06, $00, $00)
+            local0\Field20 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.08), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 0.375), (arg0\Field4 - 19.9375), (arg0\Field5 + 1.0), 0.0, $00, $06, $06, $00, $00)
+            local0\Field20 = $00
+            positionentity(local0\Field3[$00], (arg0\Field3 + (1.0 / 3.657143)), entityy(local0\Field3[$00], $01), (arg0\Field5 - 0.09375), $01)
+            rotateentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
+            arg0\Field14[$01] = local0
+            arg0\Field14[$00]\Field21 = arg0\Field14[$01]
+            arg0\Field14[$01]\Field21 = arg0\Field14[$00]
+            local0 = createdoor(arg0, (arg0\Field3 - 1.78125), (arg0\Field4 - 19.9375), (arg0\Field5 - 3.0), 0.0, $00, $00, $06, $00, $00)
+            local0\Field4 = $01
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 3.1875), (arg0\Field4 - 19.9375), (arg0\Field5 - 1.5), 0.0, $00, $00, $06, $00, $00)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.08), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0\Field4 = $01
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.75), arg0\Field4, arg0\Field5, -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$04] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.75), (arg0\Field4 - 19.9375), arg0\Field5, -90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$05] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 0.375), (arg0\Field4 - 19.9375), (arg0\Field5 - 2.25), 90.0, $00, $00, $00, $00, $00)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.08), $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - (1.0 / 4.129032)), (arg0\Field4 - 19.47266), (arg0\Field5 + 3.472656), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = loadrmesh("GFX\Map\scp_008_lid.rmesh", Null, $00)
+            scaleentity(arg0\Field11[$01], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - (1.0 / 4.129032)), (arg0\Field4 - 19.34375), (arg0\Field5 + 3.691406), $00)
+            entityradius(arg0\Field11[$01], 0.4, 0.0)
+            entitypickmode(arg0\Field11[$01], $01, $00)
+            rotateentity(arg0\Field11[$01], 85.0, 0.0, 0.0, $01)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createsprite($00)
+            arg0\Field12[$02] = $01
+            local22 = loadtexture_strict("GFX\Map\Textures\glass.png", $03, $00, $00)
+            textureblend(local22, $02)
+            entitytexture(arg0\Field11[$02], local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            arg0\Field11[$03] = copyentity(arg0\Field11[$02], $00)
+            For local25 = $02 To $03 Step $01
+                spriteviewmode(arg0\Field11[local25], $02)
+                scalesprite(arg0\Field11[local25], (1.0 / 2.639175), (1.0 / 2.639175))
+                positionentity(arg0\Field11[local25], (arg0\Field3 - 2.5), (arg0\Field4 - 19.06641), (arg0\Field5 + 3.125), $00)
+                turnentity(arg0\Field11[local25], 0.0, (90.0 + (Float ((local25 = $03) * $B4))), 0.0, $00)
+                entityparent(arg0\Field11[local25], arg0\Field2, $01)
+                hideentity(arg0\Field11[local25])
+            Next
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 - 3.203125), (arg0\Field4 - 19.47266), (arg0\Field5 + 2.566406), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createredlight((arg0\Field3 - 2.429688), (arg0\Field4 - 18.49609), (arg0\Field5 + 2.626953))
+            arg0\Field12[$05] = $01
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            hideentity(arg0\Field11[$05])
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 + 0.625), (arg0\Field4 + 2.617188), (arg0\Field5 - 1.5), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = createpivot($00)
+            positionentity(arg0\Field11[$07], arg0\Field3, (arg0\Field4 + 2.625), (arg0\Field5 + 1.367188), $00)
+            entityparent(arg0\Field11[$07], arg0\Field2, $01)
+            arg0\Field11[$08] = createpivot($00)
+            positionentity(arg0\Field11[$08], (arg0\Field3 + 2.9375), (arg0\Field4 + 0.9375), arg0\Field5, $00)
+            entityparent(arg0\Field11[$08], arg0\Field2, $01)
+            arg0\Field11[$09] = createpivot($00)
+            positionentity(arg0\Field11[$09], (arg0\Field3 + 2.9375), (arg0\Field4 - 19.0), arg0\Field5, $00)
+            entityparent(arg0\Field11[$09], arg0\Field2, $01)
+            arg0\Field11[$0A] = loadrmesh("GFX\Map\cont2_008_mt_generator.rmesh", Null, $01)
+            scaleentity(arg0\Field11[$0A], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field11[$0A], arg0\Field3, arg0\Field4, arg0\Field5, $00)
+            entityparent(arg0\Field11[$0A], arg0\Field2, $01)
+            hideentity(arg0\Field11[$0A])
+            local7 = createitem("Hazmat Suit", $3C, (arg0\Field3 - 2.097656), (arg0\Field4 - 19.12109), (arg0\Field5 - (1.0 / 3.878788)), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-008", $00, (arg0\Field3 - 3.6875), (arg0\Field4 - 19.5625), (arg0\Field5 + 2.625), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 - 3.671875), (arg0\Field4 - 19.35156), (arg0\Field5 + 3.140625))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Infected Syringe", $58, (arg0\Field3 - 3.199219), (arg0\Field4 - 19.375), (arg0\Field5 - 5.671875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 - (1.0 / 4.491228)), (arg0\Field4 - 19.03516), (arg0\Field5 - 3.652344), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 1.5), (arg0\Field4 - 18.17969), (arg0\Field5 + 4.5625), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 135.0
+            local2\Field9 = 45.0
+        Case $3A
+            local0 = createdoor(arg0, (arg0\Field3 + 1.25), arg0\Field4, (arg0\Field5 + 2.5), -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 11.8125), (arg0\Field4 - 13.75), (arg0\Field5 + 7.125), -90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$01] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 2.625), arg0\Field4, (arg0\Field5 - 1.625), 0.0, $01, $01, $00, $00, $00)
+            positionentity(local0\Field24[$01], entityx(local0\Field24[$01], $01), (entityy(local0\Field24[$01], $01) + 0.05), entityz(local0\Field24[$01], $01), $01)
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 10.80469), (arg0\Field4 - 13.75), (arg0\Field5 - 6.25), 0.0, $00, $01, $00, $00, $00)
+            positionentity(local0\Field24[$01], entityx(local0\Field24[$01], $01), (entityy(local0\Field24[$01], $01) + 0.05), entityz(local0\Field24[$01], $01), $01)
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0625), (arg0\Field4 - 13.875), (arg0\Field5 + 0.40625), 90.0, $01, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$04] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0625), (arg0\Field4 - 13.75), (arg0\Field5 - 7.125), 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$05] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.0625), (arg0\Field4 - 13.75), (arg0\Field5 + 7.125), 90.0, $01, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$06] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 1.0625), (arg0\Field4 - 13.875), (arg0\Field5 + (1.0 / 2.612245)), -90.0, $00, $03, $05, $00, $00)
+            local0\Field20 = $00
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.91), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.2), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.85), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.2), $01)
+            rotateentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
+            rotateentity(local0\Field3[$01], 0.0, 90.0, 0.0, $01)
+            arg0\Field14[$07] = local0
+            createdoor(arg0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, $00, $02, $FFFFFFFE, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 3.5), arg0\Field4, (arg0\Field5 - 2.5), 90.0, $00, $02, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 10.80469), (arg0\Field4 - 13.75), (arg0\Field5 - 8.0), 0.0, $00, $02, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 10.625), (arg0\Field4 - 13.75), (arg0\Field5 + 8.0), 180.0, $00, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + 3.378906), (arg0\Field4 - 13.17969), (arg0\Field5 - 3.335938), 270.0, $00)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - 3.183594), (arg0\Field4 - 13.28125), (arg0\Field5 + 4.285156), 180.0, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 2.4375), (arg0\Field4 + 0.9375), (arg0\Field5 + 2.5), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 + 13.0), (arg0\Field4 - 12.8125), (arg0\Field5 + 7.125), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 2.625), (arg0\Field4 + 0.9375), (arg0\Field5 - 0.4375), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 - 10.80469), (arg0\Field4 - 12.8125), (arg0\Field5 - 5.0625), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 - 3.25), (arg0\Field4 - 13.60938), (arg0\Field5 + 6.140625), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createbutton($00, (arg0\Field3 - 1.226562), (arg0\Field4 - 13.15625), (arg0\Field5 - 2.390625), 0.0, 270.0, 0.0, arg0\Field2, $00)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 - 1.921875), (arg0\Field4 - 12.8125), (arg0\Field5 - 3.199219), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            local7 = createitem("Document SCP-049", $00, (arg0\Field3 - 3.285156), (arg0\Field4 - 13.29688), (arg0\Field5 - 3.382812), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Level 4 Key Card", $5D, (arg0\Field3 - 2.203125), (arg0\Field4 - 13.32812), (arg0\Field5 + 2.726562), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 + 1.503906), (arg0\Field4 - 13.32812), (arg0\Field5 + 1.058594), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 - 2.625), (arg0\Field5 - 2.5))
+        Case $3B
+            local0 = createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 2.558594), -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - 9.125), (arg0\Field4 - 16.625), (arg0\Field5 - 2.53125), -90.0, $00, $01, $00, $00, $00)
+            arg0\Field14[$01] = local0
+            createdoor(arg0, (arg0\Field3 - 17.0), (arg0\Field4 - 16.625), (arg0\Field5 + 5.34375), 0.0, $00, $00, $06, $00, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 2.1875), (arg0\Field4 + 0.9375), (arg0\Field5 + 2.5625), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - 7.9375), (arg0\Field4 - 15.66797), (arg0\Field5 - 2.53125), $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 19.20703), (arg0\Field4 - 16.83594), (arg0\Field5 + 8.183594), $00)
+            entityradius(arg0\Field11[$02], 0.2, 0.0)
+            entitypickmode(arg0\Field11[$02], $01, $01)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createbutton($01, (arg0\Field3 - 17.66797), (arg0\Field4 - 15.89062), (arg0\Field5 - 8.183594), 0.0, 180.0, 25.0, arg0\Field2, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 14.19922), (arg0\Field4 - 15.0), (arg0\Field5 + 6.753906), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 100.0
+            local2\Field9 = 45.0
+        Case $3D
+            createdoor(arg0, (arg0\Field3 - 0.234375), (arg0\Field4 - 2.375), (arg0\Field5 + 3.726562), 90.0, $00, $00, $05, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 1.015625), (arg0\Field4 - 2.375), (arg0\Field5 + 4.96875), 0.0, $00, $00, $05, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 6.855469), (arg0\Field4 - 2.375), (arg0\Field5 + 3.726562), 270.0, $00, $00, $05, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local3 = createdecal($02, (arg0\Field3 - 4.734375), ((arg0\Field4 - 2.359375) + 0.005), (arg0\Field5 + 3.304688), 90.0, rnd(360.0, 0.0), 0.0, 0.8, 0.8, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($00, (arg0\Field3 - 4.859375), ((arg0\Field4 - 2.375) + 0.005), (arg0\Field5 + 2.226562), 90.0, rnd(360.0, 0.0), 0.0, 0.5, 0.5, $01, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Data Report", $00, (arg0\Field3 - 4.566406), (arg0\Field4 - 2.199219), (arg0\Field5 + 2.816406), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery(arg0\Field3, (arg0\Field4 - 1.738281), (arg0\Field5 + 5.957031))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-096", $00, (arg0\Field3 + (1.0 / 18.28572)), (arg0\Field4 - 1.523438), (arg0\Field5 + 5.613281), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCRAMBLE Gear", $43, (arg0\Field3 + (1.0 / 11.63636)), (arg0\Field4 - 1.875), (arg0\Field5 + 7.0625), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(0.0, 1000.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Dr. L's Note #2", $00, (arg0\Field3 - 0.625), (arg0\Field4 + 0.125), (arg0\Field5 - 1.378906), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local6 = setemitter(arg0, (arg0\Field3 + 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 - 2.6875), $03)
+            local6\Field11 = $01
+            createcustomcenter(arg0, (arg0\Field3 + 1.328125), (arg0\Field5 - 1.328125))
+        Case $3E
+            local6 = setemitter(arg0, (arg0\Field3 + 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 - 2.6875), $03)
+            local6\Field11 = $01
+            local6 = setemitter(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 - 2.6875), $03)
+            local6\Field11 = $01
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 1.660156))
+        Case $41
+            local0 = createdoor(arg0, (arg0\Field3 - 2.75), (arg0\Field4 + 0.25), (arg0\Field5 + 1.1875), 0.0, $00, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.061), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.061), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.0), (arg0\Field4 + 0.25), (arg0\Field5 + 2.554688), 90.0, $01, $00, $05, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) + 0.031), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            For local25 = $00 To $0B Step $01
+                Select local25
+                    Case $00
+                        local12 = 0.0
+                        local14 = 300.0
+                        local24 = rnd(0.8, 1.0)
+                    Case $01
+                        local12 = -87.0
+                        local14 = 466.0
+                        local24 = rnd(0.1, 0.2)
+                    Case $02
+                        local12 = -177.0
+                        local14 = 467.0
+                        local24 = rnd(0.2, 0.3)
+                    Case $03
+                        local12 = -104.0
+                        local14 = 185.0
+                        local24 = rnd(0.3, 0.4)
+                    Case $04
+                        local12 = -13.0
+                        local14 = 201.0
+                        local24 = rnd(0.1, 0.15)
+                    Case $05
+                        local12 = 85.0
+                        local14 = 97.0
+                        local24 = rnd(0.2, 0.3)
+                    Case $06
+                        local12 = 205.0
+                        local14 = 180.0
+                        local24 = rnd(0.1, 0.2)
+                    Case $07
+                        local12 = 235.0
+                        local14 = 114.0
+                        local24 = rnd(0.1, 0.2)
+                    Case $08
+                        local12 = 182.0
+                        local14 = 47.0
+                        local24 = rnd(0.1, 0.2)
+                    Case $09
+                        local12 = 52.0
+                        local14 = 200.0
+                        local24 = rnd(0.2, 0.3)
+                    Case $0A
+                        local12 = 26.0
+                        local14 = 86.0
+                        local24 = rnd(0.8, 1.0)
+                    Case $0B
+                        local12 = -193.0
+                        local14 = 138.0
+                        local24 = rnd(0.3, 0.4)
+                End Select
+                local13 = (3.0 * (Float (local25 > $02)))
+                local3 = createdecal($00, (arg0\Field3 + (local12 * (1.0 / 256.0))), ((arg0\Field4 + (local13 * (1.0 / 256.0))) + 0.005), (arg0\Field5 + (local14 * (1.0 / 256.0))), 90.0, rnd(360.0, 0.0), 0.0, local24, rnd(0.6, 0.8), $01, $01, $00, $00, $00)
+                entityparent(local3\Field0, arg0\Field2, $01)
+            Next
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.757812), (arg0\Field4 + 1.75), (arg0\Field5 + (1.0 / 1.024)), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 135.0
+            local2\Field9 = 0.0
+            local7 = createitem("SCP-513", $19, arg0\Field3, (arg0\Field4 + 0.765625), (arg0\Field5 + 2.558594), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Blood-stained Note", $00, (arg0\Field3 + 2.875), (arg0\Field4 + 1.0), (arg0\Field5 + 0.1875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-513", $00, (arg0\Field3 - 1.835938), (arg0\Field4 + 0.40625), (arg0\Field5 - (1.0 / 3.413333)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Wallet", $2E, (arg0\Field3 - 1.648438), (arg0\Field4 + (1.0 / 1.706667)), (arg0\Field5 - 3.703125), $00, $00, $00, 1.0, $00)
+            local7\Field17 = local7\Field4\Field7
+            setanimtime(local7\Field3, 4.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local8 = createitem("Mastercard", $61, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $01
+            local8\Field16 = $FFFFFFFF
+            local8\Field12 = (Float rand($00, $06))
+            local7\Field18[$00] = local8
+            hideentity(local8\Field2)
+            local8 = createitem("Asav Harn's Badge", $05, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
+            local8\Field26 = local7\Field19
+            local8\Field15 = $01
+            local8\Field16 = $FFFFFFFF
+            local7\Field18[$01] = local8
+            hideentity(local8\Field2)
+        Case $42
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 0.64)), arg0\Field4, arg0\Field5, 90.0, $00, $00, $05, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.875), 0.0, $00, $00, $05, $00, $00)
+            arg0\Field14[$01] = local0
+            createdoor(arg0, (arg0\Field3 - 2.78125), arg0\Field4, (arg0\Field5 - 1.125), 0.0, $00, $02, $FFFFFFFE, $00, $00)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 0.4), (arg0\Field5 + 2.0), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], arg0\Field3, (arg0\Field4 + 0.4), arg0\Field5, $00)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.367188), (arg0\Field4 + 1.757812), (arg0\Field5 + 1.289062), 30.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = -45.0
+            local2\Field9 = 0.0
+            local7 = createitem("Night Vision Goggles", $40, (arg0\Field3 - 1.109375), (arg0\Field4 + 0.5), (arg0\Field5 + (1.0 / 1.292929)), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(0.0, 1000.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 + 1.914062), (arg0\Field5 - 1.914062))
+        Case $43
+            local6 = setemitter(arg0, (arg0\Field3 + 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 - 2.6875), $03)
+            local6\Field11 = $01
+            local6 = setemitter(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 - 2.6875), $03)
+            local6\Field11 = $01
+            local6 = setemitter(arg0, (arg0\Field3 + 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 + 2.6875), $03)
+            local6\Field11 = $01
+            local6 = setemitter(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 0.296875), (arg0\Field5 + 2.6875), $03)
+            local6\Field11 = $01
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 1.660156))
+        Case $45
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 1.28)), arg0\Field4, arg0\Field5, 0.0, $00, $00, $07, $00, $00)
+            local0\Field12 = $15E
+            positionentity(local0\Field3[$00], arg0\Field3, entityy(local0\Field3[$00], $01), (arg0\Field5 - (1.0 / 1.179724)), $01)
+            positionentity(local0\Field3[$01], arg0\Field3, entityy(local0\Field3[$01], $01), (arg0\Field5 + (1.0 / 1.179724)), $01)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.28)), arg0\Field4, arg0\Field5, 0.0, $00, $00, $07, $00, $00)
+            local0\Field12 = $15E
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$01] = local0
+            arg0\Field14[$00]\Field21 = arg0\Field14[$01]
+            arg0\Field14[$01]\Field21 = arg0\Field14[$00]
+            If (currmapgrid\Field0[(Int (floor((arg0\Field3 / 8.0)) + ((floor((arg0\Field5 / 8.0)) - 1.0) * 21.0)))] = $00) Then
+                local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 4.007812), 0.0, $00, $00, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                freeentity(local0\Field1)
+                local0\Field1 = $00
+            EndIf
+            arg0\Field11[$00] = copyentity(mon_i\Field0[$01], arg0\Field2)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 1.5), (arg0\Field5 + 1.0), $01)
+            scaleentity(arg0\Field11[$00], 2.0, 2.0, 2.0, $00)
+            rotateentity(arg0\Field11[$00], 0.0, 180.0, 0.0, $00)
+            arg0\Field11[$01] = copyentity(mon_i\Field0[$01], arg0\Field2)
+            positionentity(arg0\Field11[$01], arg0\Field3, (arg0\Field4 + 1.5), (arg0\Field5 - 1.0), $01)
+            scaleentity(arg0\Field11[$01], 2.0, 2.0, 2.0, $00)
+            rotateentity(arg0\Field11[$01], 0.0, 0.0, 0.0, $00)
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 0.75), (arg0\Field4 + 2.75), (arg0\Field5 - 3.75), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 45.0
+            local2\Field9 = 0.0
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - (1.0 / 0.512)))
+        Case $46
+            local0 = createdoor(arg0, (arg0\Field3 + 2.8125), arg0\Field4, (arg0\Field5 + 2.0), -90.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.40625), 0.0, $00, $03, $07, $00, $00)
+            local0\Field16 = $01
+            local0\Field23 = $00
+            positionentity(local0\Field3[$01], (arg0\Field3 + 1.648438), entityy(local0\Field3[$01], $01), (arg0\Field5 - 2.25), $01)
+            rotateentity(local0\Field3[$01], 0.0, -90.0, 0.0, $01)
+            positionentity(local0\Field3[$00], (arg0\Field3 - 2.113281), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            rotateentity(local0\Field3[$00], 0.0, -220.0, 0.0, $01)
+            arg0\Field14[$01] = local0
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 4.0), arg0\Field4, (arg0\Field5 + 2.0), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.8125))
+        Case $47
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 4.0), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 2.460938), arg0\Field4, (arg0\Field5 - 1.875), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 4.257812), arg0\Field4, (arg0\Field5 - 1.875), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 9.125), 0.0, $01, $03, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            local0 = createdoor(arg0, (arg0\Field3 + 22.3125), (arg0\Field4 - 4.875), (arg0\Field5 + 19.40625), 90.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.08), $01)
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 15.875), (arg0\Field4 - 4.875), (arg0\Field5 + 15.4375), 0.0, $00, $00, $04, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$00] = local0
+            For local4 = Each rooms
+                If (local4\Field7\Field6 = $46) Then
+                    local0 = createdoor(arg0, (arg0\Field3 + 5.96875), arg0\Field4, (arg0\Field5 - 0.25), -90.0, $00, $01, $00, $00, $00)
+                    arg0\Field14[$01] = local0
+                    local4\Field11[$01] = createpivot($00)
+                    positionentity(local4\Field11[$01], (arg0\Field3 + 7.15625), arg0\Field4, (arg0\Field5 - 0.25), $00)
+                    entityparent(local4\Field11[$01], arg0\Field2, $01)
                     Exit
                 EndIf
             Next
-            If (arg0\Field25[$00] = $00) Then
-                arg0\Field25[$00] = loadmesh_strict("GFX\map\room3z2_hb.b3d", arg0\Field2)
-            EndIf
-            entitypickmode(arg0\Field25[$00], $02, $01)
-            entitytype(arg0\Field25[$00], $01, $00)
-            entityalpha(arg0\Field25[$00], 0.0)
-        Case "lockroom3"
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (736.0 * roomscale)), 0.0, (arg0\Field5 - (104.0 * roomscale)), 0.0, arg0, $01, $00, $00, "", $00)
-            local0\Field10 = (((networkserver\Field15 * $05) + $05) * $46)
-            local0\Field21 = $00
-            local0\Field5 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 5.46875), (arg0\Field4 - 1.875), (arg0\Field5 + 9.0625), 0.0, (me\Field43 = $01), $00, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.12), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.12), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 5.46875), (arg0\Field4 - 1.875), (arg0\Field5 + 17.0), 0.0, (me\Field43 = $01), $00, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.12), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.12), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 4.640625), arg0\Field4, (arg0\Field5 + 7.65625), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], arg0\Field3, (arg0\Field4 + 0.375), (arg0\Field5 + 25.0), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createpivot($00)
+            positionentity(arg0\Field11[$05], (arg0\Field3 + 6.96875), (arg0\Field4 + 8.296875), (arg0\Field5 + 17.625), $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 - 19.71875), (arg0\Field4 + 7.46875), (arg0\Field5 + 18.1875), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$07] = createpivot($00)
+            positionentity(arg0\Field11[$07], (arg0\Field3 + 7.125), (arg0\Field4 + 0.22), (arg0\Field5 + 27.5625), $00)
+            entityparent(arg0\Field11[$07], arg0\Field2, $01)
+            arg0\Field11[$08] = createpivot($00)
+            positionentity(arg0\Field11[$08], (arg0\Field3 - 7.125), (arg0\Field4 + 0.22), (arg0\Field5 + 27.5625), $00)
+            entityparent(arg0\Field11[$08], arg0\Field2, $01)
+            arg0\Field11[$0B] = createpivot($00)
+            positionentity(arg0\Field11[$0B], (arg0\Field3 - 15.875), (arg0\Field4 - 4.875), (arg0\Field5 - 6.625), $00)
+            entityparent(arg0\Field11[$0B], arg0\Field2, $01)
+            arg0\Field11[$0D] = loadmesh_strict("GFX\Map\gateawall1.b3d", arg0\Field2)
+            positionentity(arg0\Field11[$0D], (arg0\Field3 - 16.82812), (arg0\Field4 - 4.082031), (arg0\Field5 + 2.125), $01)
+            entitycolor(arg0\Field11[$0D], 25.0, 25.0, 25.0)
+            entitytype(arg0\Field11[$0D], $01, $00)
+            arg0\Field11[$0E] = loadmesh_strict("GFX\Map\gateawall2.b3d", arg0\Field2)
+            positionentity(arg0\Field11[$0E], (arg0\Field3 - 14.92188), (arg0\Field4 - 4.082031), (arg0\Field5 + 2.125), $01)
+            entitycolor(arg0\Field11[$0E], 25.0, 25.0, 25.5)
+            entitytype(arg0\Field11[$0E], $01, $00)
+            arg0\Field11[$0F] = createpivot($00)
+            positionentity(arg0\Field11[$0F], (arg0\Field3 - 13.9375), (arg0\Field4 - 4.253906), (arg0\Field5 + 19.3125), $00)
+            entityparent(arg0\Field11[$0F], arg0\Field2, $01)
+            arg0\Field11[$10] = loadmesh_strict("GFX\Map\gatea_hitbox1.b3d", arg0\Field2)
+            arg0\Field12[$10] = $01
+            entitypickmode(arg0\Field11[$10], $02, $01)
+            entitytype(arg0\Field11[$10], $01, $00)
+            entityalpha(arg0\Field11[$10], 0.0)
+        Case $48
+            local0 = createdoor(arg0, (arg0\Field3 + 2.8125), arg0\Field4, (arg0\Field5 + 5.625), 0.0, $01, $01, $00, $00, $00)
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.25), 0.0, $00, $03, $07, $00, $00)
+            local0\Field16 = $01
+            local0\Field23 = $00
+            positionentity(local0\Field3[$01], (arg0\Field3 + 1.523438), entityy(local0\Field3[$01], $01), (arg0\Field5 - 2.0625), $01)
+            rotateentity(local0\Field3[$01], 0.0, -90.0, 0.0, $01)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (arg0\Field5 - (1.0 / 1.292929)), $01)
+            rotateentity(local0\Field3[$00], 0.0, -180.0, 0.0, $01)
+            arg0\Field14[$01] = local0
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 2.8125), arg0\Field4, (arg0\Field5 + 6.8125), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.8125))
+        Case $49
+            For local4 = Each rooms
+                If (local4\Field7\Field6 = $48) Then
+                    local0 = createdoor(arg0, (arg0\Field3 - 21.1875), arg0\Field4, (arg0\Field5 - 5.359375), 0.0, $00, $01, $00, $00, $00)
+                    arg0\Field14[$01] = local0
+                    local4\Field11[$01] = createpivot($00)
+                    positionentity(local4\Field11[$01], (arg0\Field3 - 21.1875), arg0\Field4, (arg0\Field5 - 4.171875), $00)
+                    entityparent(local4\Field11[$01], arg0\Field2, $01)
+                    Exit
+                EndIf
+            Next
+            local0 = createdoor(arg0, (arg0\Field3 + 17.0), arg0\Field4, (arg0\Field5 - 1.921875), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$02] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 17.0), arg0\Field4, (arg0\Field5 + 1.945312), 0.0, $00, $00, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 12.6875), (arg0\Field4 - 3.625), (arg0\Field5 + 25.0), 0.0, $00, $06, $00, $FFFFFFFF, $00)
             local0\Field4 = $01
-            entityparent(local0\Field3[$00], $00, $01)
-            positionentity(local0\Field3[$00], (arg0\Field3 - (288.0 * roomscale)), 0.7, (arg0\Field5 - (640.0 * roomscale)), $00)
-            entityparent(local0\Field3[$00], arg0\Field2, $01)
             freeentity(local0\Field3[$01])
             local0\Field3[$01] = $00
-            local1 = createdoor(arg0\Field0, (arg0\Field3 + (104.0 * roomscale)), 0.0, (arg0\Field5 + (736.0 * roomscale)), 270.0, arg0, $01, $00, $00, "", $00)
-            local1\Field10 = (((networkserver\Field15 * $05) + $05) * $46)
-            local1\Field21 = $00
-            local1\Field5 = $00
-            local1\Field4 = $01
-            entityparent(local1\Field3[$00], $00, $01)
-            positionentity(local1\Field3[$00], (arg0\Field3 + (640.0 * roomscale)), 0.7, (arg0\Field5 + (288.0 * roomscale)), $00)
-            rotateentity(local1\Field3[$00], 0.0, 90.0, 0.0, $00)
-            entityparent(local1\Field3[$00], arg0\Field2, $01)
-            freeentity(local1\Field3[$01])
-            local1\Field3[$01] = $00
-            local0\Field22 = local1
-            local1\Field22 = local0
-            local61 = ((roomscale * 4.5) * 0.4)
-            arg0\Field25[$00] = copyentity(monitor, $00)
-            scaleentity(arg0\Field25[$00], local61, local61, local61, $00)
-            positionentity(arg0\Field25[$00], (arg0\Field3 + (668.0 * roomscale)), 1.1, (arg0\Field5 - (96.0 * roomscale)), $01)
-            rotateentity(arg0\Field25[$00], 0.0, 90.0, 0.0, $00)
-            entityparent(arg0\Field25[$00], arg0\Field2, $01)
-            arg0\Field25[$01] = copyentity(monitor, $00)
-            scaleentity(arg0\Field25[$01], local61, local61, local61, $00)
-            positionentity(arg0\Field25[$01], (arg0\Field3 + (96.0 * roomscale)), 1.1, (arg0\Field5 - (668.0 * roomscale)), $01)
-            entityparent(arg0\Field25[$01], arg0\Field2, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            addentitytoroomprops(arg0, arg0\Field25[$01])
-        Case "medibay"
-            arg0\Field25[$00] = loadmesh_strict("GFX\map\medibay_props.b3d", arg0\Field2)
-            entitytype(arg0\Field25[$00], $01, $00)
-            entitypickmode(arg0\Field25[$00], $02, $01)
-            addentitytoroomprops(arg0, arg0\Field25[$00])
-            arg0\Field25[$01] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$01], (arg0\Field3 - (762.0 * roomscale)), (arg0\Field4 + (0.0 * roomscale)), (arg0\Field5 - (346.0 * roomscale)), $01)
-            arg0\Field25[$02] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$02], (entityx(arg0\Field25[$01], $01) + (126.0 * roomscale)), entityy(arg0\Field25[$01], $01), entityz(arg0\Field25[$01], $01), $01)
-            local6 = createitem("First Aid Kit", "firstaid", (arg0\Field3 - (506.0 * roomscale)), (arg0\Field4 + (192.0 * roomscale)), (arg0\Field5 - (322.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Syringe", "syringe", (arg0\Field3 - (333.0 * roomscale)), (arg0\Field4 + (100.0 * roomscale)), (arg0\Field5 + (97.3 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            local6 = createitem("Syringe", "syringe", (arg0\Field3 - (340.0 * roomscale)), (arg0\Field4 + (100.0 * roomscale)), (arg0\Field5 + (52.3 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-            arg0\Field29[$00] = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), (arg0\Field4 - (0.0 * roomscale)), (arg0\Field5 + (640.0 * roomscale)), 90.0, arg0, $00, $00, $03, "", $00)
-            arg0\Field25[$03] = createpivot(arg0\Field2)
-            positionentity(arg0\Field25[$03], (arg0\Field3 - (820.0 * roomscale)), arg0\Field4, (arg0\Field5 - (318.399 * roomscale)), $01)
-        Case "room2cpit"
-            local14 = createemitter((arg0\Field3 + (512.0 * roomscale)), (-76.0 * roomscale), (arg0\Field5 - (688.0 * roomscale)), $00, 0.0)
-            turnentity(local14\Field0, -90.0, 0.0, 0.0, $00)
-            entityparent(local14\Field0, arg0\Field2, $01)
-            local14\Field10 = 55.0
-            local14\Field9 = 0.0005
-            local14\Field12 = -0.015
-            local14\Field11 = 0.007
-            local0 = createdoor(arg0\Field0, (arg0\Field3 - (256.0 * roomscale)), 0.0, (arg0\Field5 - (752.0 * roomscale)), 90.0, arg0, $00, $02, $03, "", $00)
+            arg0\Field14[$04] = local0
+            createdoor(arg0, (arg0\Field3 + 12.0), (arg0\Field4 - 3.625), (arg0\Field5 + 22.65625), 90.0, $00, $00, $05, $00, $00)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 20.32422), (arg0\Field4 + 5.640625), (arg0\Field5 - 6.792969), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            arg0\Field11[$03] = createpivot($00)
+            positionentity(arg0\Field11[$03], (arg0\Field3 + 17.04297), (arg0\Field4 - 0.96875), (arg0\Field5 + 10.80469), $00)
+            entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            arg0\Field11[$04] = createpivot($00)
+            positionentity(arg0\Field11[$04], (arg0\Field3 + 20.28125), (arg0\Field4 + 5.5), (arg0\Field5 - 17.0), $00)
+            entityparent(arg0\Field11[$04], arg0\Field2, $01)
+            arg0\Field11[$05] = createpivot($00)
+            positionentity(arg0\Field11[$05], (arg0\Field3 + 17.0), arg0\Field4, (arg0\Field5 + 5.25), $00)
+            entityparent(arg0\Field11[$05], arg0\Field2, $01)
+            arg0\Field11[$06] = createpivot($00)
+            positionentity(arg0\Field11[$06], (arg0\Field3 + 11.0), (arg0\Field4 + 0.9375), (arg0\Field5 - 11.0), $00)
+            entityparent(arg0\Field11[$06], arg0\Field2, $01)
+            arg0\Field11[$08] = createpivot($00)
+            positionentity(arg0\Field11[$08], (arg0\Field3 + 14.0625), (arg0\Field4 - 3.46875), (arg0\Field5 + 25.87109), $00)
+            entityparent(arg0\Field11[$08], arg0\Field2, $01)
+            arg0\Field11[$09] = createpivot($00)
+            positionentity(arg0\Field11[$09], (arg0\Field3 + 14.875), (arg0\Field4 + 6.0), (arg0\Field5 - 53.0), $00)
+            entityparent(arg0\Field11[$09], arg0\Field2, $01)
+            arg0\Field11[$0A] = createpivot($00)
+            positionentity(arg0\Field11[$0A], (arg0\Field3 - 30.0), (arg0\Field4 + 0.8125), (arg0\Field5 - 105.6562), $00)
+            entityparent(arg0\Field11[$0A], arg0\Field2, $01)
+            arg0\Field11[$0B] = createpivot($00)
+            positionentity(arg0\Field11[$0B], (arg0\Field3 - 21.1875), arg0\Field4, (arg0\Field5 - 4.171875), $00)
+            entityparent(arg0\Field11[$0B], arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 - 21.1875), (arg0\Field5 - 6.640625))
+        Case $4B
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.07113)), arg0\Field4, (arg0\Field5 + 0.375), 0.0, $00, $01, $00, $00, $00)
             local0\Field4 = $01
-            local0\Field5 = $00
-            local0\Field21 = $00
-            local0\Field24 = $00
-            local0\Field14 = $01
-            positionentity(local0\Field3[$00], (arg0\Field3 - (240.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
-            local6 = createitem("Dr L's Note", "paper", (arg0\Field3 - (160.0 * roomscale)), (32.0 * roomscale), (arg0\Field5 - (353.0 * roomscale)), $00, $00, $00, 1.0, $00, $01)
-            entityparent(local6\Field1, arg0\Field2, $01)
-        Case "dimension1499"
-            arg0\Field28[$01] = loadmesh_strict("GFX\map\dimension1499\1499object0_cull.b3d", arg0\Field2)
-            entitytype(arg0\Field28[$01], $01, $00)
-            entityalpha(arg0\Field28[$01], 0.0)
-            arg0\Field28[$00] = createpivot($00)
-            positionentity(arg0\Field28[$00], (arg0\Field3 + (205.0 * roomscale)), (arg0\Field4 + (200.0 * roomscale)), (arg0\Field5 + (2287.0 * roomscale)), $00)
-            entityparent(arg0\Field28[$00], arg0\Field2, $01)
-    End Select
-    For local64 = Each lighttemplates
-        If (local64\Field0 = arg0\Field7) Then
-            local65 = addlight(arg0, (arg0\Field3 + local64\Field2), (arg0\Field4 + local64\Field3), (arg0\Field5 + local64\Field4), local64\Field1, local64\Field5, local64\Field6, local64\Field7, local64\Field8)
-            If (local65 <> $00) Then
-                If (local64\Field1 = $03) Then
-                    lightconeangles(local65, (Float local64\Field11), local64\Field12)
-                    rotateentity(local65, local64\Field9, local64\Field10, 0.0, $00)
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            freeentity(local0\Field24[$00])
+            local0\Field24[$00] = $00
+            local0 = createdoor(arg0, (arg0\Field3 + (1.0 / 1.07113)), arg0\Field4, (arg0\Field5 + 0.375), 0.0, $00, $01, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 1.2), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            freeentity(local0\Field24[$00])
+            local0\Field24[$00] = $00
+            local2 = createsecuritycam(arg0, (arg0\Field3 + 1.5), (arg0\Field4 + 1.5), (arg0\Field5 - 3.75), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 45.0
+            local2\Field9 = 45.0
+        Case $4C
+            createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 0.9375), 0.0, $00, $00, $00, code_o5_council, $00)
+            local7 = createitem("Field Agent Log #235-001-CO5", $00, arg0\Field3, (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 3.398438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Groups of Interest Log", $00, (arg0\Field3 + (1.0 / 2.56)), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + (1.0 / 2.56)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 + 2.65625), (arg0\Field4 + 1.015625), (arg0\Field5 + 3.486328), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 - 2.734375), (arg0\Field4 + (1.0 / 1.219048)), (arg0\Field5 + 3.59375))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Ballistic Helmet", $26, (arg0\Field3 + 1.34375), (arg0\Field4 + (1.0 / 1.219048)), (arg0\Field5 - 3.515625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-268", $0E, (arg0\Field3 + 1.132812), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + (1.0 / 1.505882)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.496094))
+        Case $4D
+            local7 = createitem("Document SCP-106", $00, (arg0\Field3 + 1.578125), (arg0\Field4 + (1.0 / 1.765517)), (arg0\Field5 + 2.183594), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Level 2 Key Card", $5B, (arg0\Field3 - 0.609375), (arg0\Field4 + (1.0 / 1.695364)), (arg0\Field5 + 0.28125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 + 1.191406), (arg0\Field4 + (1.0 / 1.673203)), (arg0\Field5 + 3.6875), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(100.0, 0.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Notification", $00, (arg0\Field3 - (1.0 / 1.868613)), (arg0\Field4 + (1.0 / 1.673203)), (arg0\Field5 + 1.8125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $4E
+            local7 = createitem("Level 1 Key Card", $5A, (arg0\Field3 - 1.4375), (arg0\Field4 - 0.1875), (arg0\Field5 + (1.0 / 3.2)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-895", $00, (arg0\Field3 - 3.125), (arg0\Field4 - 0.1875), (arg0\Field5 + 1.4375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("Document SCP-860", $00, (arg0\Field3 - 3.125), (arg0\Field4 - 0.1875), (arg0\Field5 - 1.8125), $00, $00, $00, 1.0, $00)
+            Else
+                local7 = createitem("SCP-093 Recovered Materials", $00, (arg0\Field3 - 3.125), (arg0\Field4 - 0.1875), (arg0\Field5 - 1.8125), $00, $00, $00, 1.0, $00)
+            EndIf
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 - 1.3125), (arg0\Field4 - 0.1875), (arg0\Field5 - 1.875), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(100.0, 0.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $4F
+            createdoor(arg0, (arg0\Field3 - 4.125), (arg0\Field4 + 1.5), (arg0\Field5 + 1.132812), 90.0, $00, $00, $05, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 4.125), (arg0\Field4 + 1.5), (arg0\Field5 - 2.875), 270.0, $01, $06, $03, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 1.2), $01)
+            For local4 = Each rooms
+                If (local4 <> arg0) Then
+                    If (local4\Field7\Field6 = $4F) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], arg0\Field2)
+                        Exit
+                    EndIf
                 EndIf
+            Next
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadmesh_strict("GFX\Map\room2_3_ez_hb.b3d", arg0\Field2)
+            EndIf
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("Mobile Task Forces", $00, (arg0\Field3 + 2.90625), (arg0\Field4 + 0.9375), (arg0\Field5 - 3.6875), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            Else
+                local7 = createitem("Security Clearance Levels", $00, (arg0\Field3 + 2.65625), (arg0\Field4 + 0.9375), (arg0\Field5 - 3.6875), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("Object Classes", $00, (arg0\Field3 + 0.625), (arg0\Field4 + 0.9375), (arg0\Field5 + 2.21875), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document", $00, (arg0\Field3 - 5.625), (arg0\Field4 + 2.4375), (arg0\Field5 + 1.023438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Radio Transceiver", $45, (arg0\Field3 - 4.625), (arg0\Field4 + 1.875), (arg0\Field5 - 3.125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 5.976562), (arg0\Field4 + 2.199219), (arg0\Field5 - 2.050781), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($03, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 5.976562), (arg0\Field4 + 2.199219), (arg0\Field5 - (1.0 / 0.4096)), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createrandombattery((arg0\Field3 - 6.035156), (arg0\Field4 + 2.363281), (arg0\Field5 - 1.53125))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 - 6.015625), (arg0\Field4 + 1.933594), (arg0\Field5 - 1.25))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 - 5.972656), (arg0\Field4 + 2.363281), (arg0\Field5 - 1.203125))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $52
+            For local4 = Each rooms
+                If (local4 <> arg0) Then
+                    If (local4\Field7\Field6 = $52) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], $00)
+                        Exit
+                    EndIf
+                EndIf
+            Next
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadanimmesh_strict("GFX\Map\Props\scp_789_j.b3d", $00)
+            EndIf
+            local24 = (1.0 / 102.4)
+            scaleentity(arg0\Field11[$00], local24, local24, local24, $00)
+            entitytype(arg0\Field11[$00], $01, $00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 4.890625), arg0\Field4, (arg0\Field5 + (1.0 / 2.534653)), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            If (rand($03, $01) = $01) Then
+                Select rand($04, $01)
+                    Case $01
+                        local12 = 925.0
+                        local14 = 735.0
+                    Case $02
+                        local12 = 1109.0
+                        local14 = 735.0
+                    Case $03
+                        local12 = 925.0
+                        local14 = -735.0
+                    Case $04
+                        local12 = 1109.0
+                        local14 = -735.0
+                End Select
+                local6 = setemitter(arg0, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + (1.0 / 1.815603)), (arg0\Field5 + (local14 * (1.0 / 256.0))), $11)
+                local6\Field11 = $03
+            EndIf
+        Case $53
+            local0 = createdoor(arg0, (arg0\Field3 + 6.6875), (arg0\Field4 - 1.5), (arg0\Field5 - 4.0), 0.0, $00, $00, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 1.8125), (arg0\Field4 - 1.5), (arg0\Field5 - 4.0), 0.0, $00, $00, $03, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local0\Field16 = $01
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 + 0.90625), (arg0\Field4 - 1.5), (arg0\Field5 + 2.390625), 90.0, $00, $06, $03, $00, $00)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.08), $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], (arg0\Field3 + 6.949219), (arg0\Field4 - (1.0 / 1.551515)), (arg0\Field5 - 1.203125), $00)
+            entityradius(arg0\Field11[$00], 0.1, 0.0)
+            entitypickmode(arg0\Field11[$00], $01, $01)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            arg0\Field11[$01] = createpivot($00)
+            positionentity(arg0\Field11[$01], arg0\Field3, (arg0\Field4 - 0.75), (arg0\Field5 + 3.253906), $00)
+            entityradius(arg0\Field11[$01], 0.2, 0.0)
+            entitypickmode(arg0\Field11[$01], $01, $01)
+            entityparent(arg0\Field11[$01], arg0\Field2, $01)
+            arg0\Field11[$02] = createpivot($00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 + 6.953125), (arg0\Field4 - 0.96875), (arg0\Field5 - 1.078125), $00)
+            entityparent(arg0\Field11[$02], arg0\Field2, $01)
+            local7 = createitem("Cup", $2B, (arg0\Field3 - 1.984375), (arg0\Field4 - (1.0 / 1.368984)), (arg0\Field5 + 1.109375), $F0, $AF, $46, 1.0, $00)
+            local7\Field1 = "ORANGE JUICE"
+            local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "orange"), "%s")
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Cup", $2B, (arg0\Field3 + 5.515625), (arg0\Field4 - (1.0 / 1.368984)), (arg0\Field5 - 2.796875), $57, $3E, $2D, 1.0, $00)
+            local7\Field1 = "COFFEE"
+            local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "coffee"), "%s")
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Pizza Slice", $6C, (arg0\Field3 - 2.1875), (arg0\Field4 - (1.0 / 1.132743)), (arg0\Field5 + 1.019531), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Pizza Slice", $6C, (arg0\Field3 + 4.136719), (arg0\Field4 - (1.0 / 1.132743)), (arg0\Field5 + 2.820312), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Pizza Slice", $6C, (arg0\Field3 + 4.457031), (arg0\Field4 - (1.0 / 1.132743)), (arg0\Field5 + 3.460938), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Pizza Slice", $6C, (arg0\Field3 + (1.0 / 0.15822)), (arg0\Field4 - (1.0 / 1.132743)), (arg0\Field5 + 3.429688), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Empty Cup", $2C, (arg0\Field3 - 2.109375), (arg0\Field4 - (1.0 / 1.368984)), (arg0\Field5 + 0.484375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Quarter", $6A, (arg0\Field3 - 1.746094), (arg0\Field4 - 1.304688), (arg0\Field5 + 0.140625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Quarter", $6A, (arg0\Field3 + 5.503906), (arg0\Field4 - 1.304688), (arg0\Field5 - 2.859375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $54
+            local0 = createdoor(arg0, (arg0\Field3 - 3.5), arg0\Field4, arg0\Field5, 90.0, $01, $01, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            local3 = createdecal($15, (arg0\Field3 - 2.777344), (arg0\Field4 + 0.005), (arg0\Field5 + 0.546875), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.8, 1.0), 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Bloody Level 0 Key Card", $59, (arg0\Field3 - 5.078125), (arg0\Field4 + 0.546875), (arg0\Field5 + (1.0 / 10.24)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Cup", $2B, (arg0\Field3 - (1.0 / 3.413333)), (arg0\Field4 + (1.0 / 1.113043)), (arg0\Field5 - 0.09375), $C8, $C8, $C8, 1.0, $00)
+            local7\Field1 = "WATER"
+            local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "water"), "%s")
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Empty Cup", $2C, (arg0\Field3 + (1.0 / 1.79021)), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + 3.773438), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 - (1.0 / 0.64)), arg0\Field5)
+        Case $55
+            createdoor(arg0, (arg0\Field3 - 1.0), arg0\Field4, (arg0\Field5 + 2.5), 90.0, $00, $00, $04, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.0), arg0\Field4, (arg0\Field5 + 1.476562), 0.0, $00, $04, $00, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 4.3125), arg0\Field4, (arg0\Field5 + 2.5), 270.0, $00, $00, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            If (rand($02, $01) = $01) Then
+                local31 = $55
+                local30 = "Syringe"
+            Else
+                local31 = $58
+                local30 = "Infected Syringe"
+            EndIf
+            local7 = createitem(local30, local31, (arg0\Field3 - 3.605469), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + 0.375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local31 = $55
+                local30 = "Syringe"
+            Else
+                local31 = $58
+                local30 = "Infected Syringe"
+            EndIf
+            local7 = createitem(local30, local31, (arg0\Field3 - 3.542969), (arg0\Field4 + (1.0 / 2.56)), (arg0\Field5 + (1.0 / 1.610063)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Compact First Aid Kit", $36, (arg0\Field3 - 1.300781), (arg0\Field4 + 0.75), (arg0\Field5 - (1.0 / 2.081301)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $56
+            createdoor(arg0, (arg0\Field3 - 0.90625), (arg0\Field4 - 1.5), (arg0\Field5 - 2.515625), 90.0, $00, $00, $03, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 0.90625), (arg0\Field4 - 1.5), (arg0\Field5 + 2.515625), 90.0, $00, $00, $03, $00, $00)
+            local7 = createitem("Sticky Note", $00, (arg0\Field3 - 3.871094), (arg0\Field4 - (1.0 / 1.057851)), (arg0\Field5 + 3.53125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Document SCP-999", $00, (arg0\Field3 - 3.035156), (arg0\Field4 - 0.71875), (arg0\Field5 + 1.363281), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 - 5.886719), (arg0\Field4 - (1.0 / 1.158371)), (arg0\Field5 - 1.984375))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Quarter", $6A, (arg0\Field3 - 2.070312), (arg0\Field4 - (1.0 / 1.158371)), (arg0\Field5 + 3.683594), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $57
+            createdoor(arg0, (arg0\Field3 + (1.0 / 1.094017)), arg0\Field4, arg0\Field5, 90.0, (rand($05, $01) = $01), $04, $00, $00, $00)
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\room2_office_2_hb.b3d", arg0\Field2)
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.855469), (arg0\Field4 + 1.503906), (arg0\Field5 + 1.191406), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 30.0
+            local7 = createrandombattery((arg0\Field3 + 2.242188), (arg0\Field4 + (1.0 / 1.113043)), (arg0\Field5 + 3.75))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 + 1.65625), (arg0\Field4 + (1.0 / 1.113043)), (arg0\Field5 + 3.75))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($03, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 2.132812), (arg0\Field4 + (1.0 / 1.580247)), (arg0\Field5 - 3.746094), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $58
+            local0 = createdoor(arg0, (arg0\Field3 + 5.015625), (arg0\Field4 + 0.875), arg0\Field5, 90.0, $00, $00, $07, $00, $00)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.1), $01)
+            local0 = createdoor(arg0, (arg0\Field3 + 1.25), arg0\Field4, arg0\Field5, 90.0, $00, $00, $07, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.1), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.094017)), arg0\Field4, (arg0\Field5 + 3.0), 270.0, $00, $04, $00, $00, $00)
+            local0\Field4 = $02
+            local0\Field23 = $00
+            local7 = createitem("Some SCP-420-J", $10, (arg0\Field3 + 7.007812), (arg0\Field4 + (1.0 / 0.64)), (arg0\Field5 + 1.667969), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Some SCP-420-J", $10, (arg0\Field3 + 6.601562), (arg0\Field4 + (1.0 / 0.64)), (arg0\Field5 + 1.691406), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Level 5 Key Card", $5E, (arg0\Field3 + 8.203125), (arg0\Field4 + 1.53125), (arg0\Field5 + 1.511719), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Storage Transfers", $00, (arg0\Field3 + 8.203125), (arg0\Field4 + 1.71875), (arg0\Field5 + 1.453125), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Radio Transceiver", $45, (arg0\Field3 + 8.203125), (arg0\Field4 + 1.25), (arg0\Field5 + 0.5), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $59
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 2.625), 270.0, $00, $00, $06, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 3.0), (arg0\Field5 - 1.25), 180.0, $00, $06, $06, $00, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.0), (arg0\Field4 - 3.0), (arg0\Field5 - 4.0625), 0.0, $00, $00, $06, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local7 = createitem("Fine Night Vision Goggles", $42, (arg0\Field3 + 0.1875), (arg0\Field4 - 2.53125), (arg0\Field5 + 3.0625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $5A
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 + 1.75), 270.0, $00, $00, $00, code_dr_maynard, $00)
+            local0 = createdoor(arg0, (arg0\Field3 - 1.375), arg0\Field4, arg0\Field5, 270.0, $00, $00, $00, code_dr_gears, $00)
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, (arg0\Field5 - 2.25), 270.0, $00, $00, $00, $1E88, $00)
+            local7 = createitem("Mysterious Note", $00, (arg0\Field3 + 2.875), (arg0\Field4 + 0.875), (arg0\Field5 + 2.125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Ballistic Vest", $27, (arg0\Field3 + 2.375), (arg0\Field4 + 0.4375), (arg0\Field5 + 0.125), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Incident Report SCP-106-0204", $00, (arg0\Field3 + 2.75), (arg0\Field4 + (1.0 / 1.398907)), (arg0\Field5 - 2.25), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Journal Page", $00, (arg0\Field3 + 3.5625), (arg0\Field4 + 0.6875), (arg0\Field5 - 0.625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("First Aid Kit", $34, (arg0\Field3 + 3.5625), (arg0\Field4 + 0.4375), (arg0\Field5 - 1.3125), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("SCP-085", $00, (arg0\Field3 - 1.945312), (arg0\Field4 + (1.0 / 1.398907)), (arg0\Field5 + 1.679688), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Syringe", $55, (arg0\Field3 - 3.890625), (arg0\Field4 + (1.0 / 1.505882)), (arg0\Field5 + 0.515625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Pizza Slice", $6C, (arg0\Field3 - 3.144531), (arg0\Field4 + (1.0 / 1.505882)), (arg0\Field5 + 1.015625), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (i_005\Field0 = $03) Then
+                local7 = createitem("SCP-005", $08, (arg0\Field3 + 2.875), (arg0\Field4 + 0.875), (arg0\Field5 + 2.949219), $00, $00, $00, 1.0, $00)
+            Else
+                local7 = createitem("Level 4 Key Card", $5D, (arg0\Field3 + 2.875), (arg0\Field4 + 0.875), (arg0\Field5 + 2.949219), $00, $00, $00, 1.0, $00)
+            EndIf
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $5B
+            local22 = loadtexture_strict("GFX\Map\Textures\Door01_Corrosive.png", $01, $00, $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 1.375), arg0\Field4, arg0\Field5, 90.0, $00, $00, $00, $96B, $00)
+            local0\Field23 = $00
+            local0\Field16 = $01
+            local0\Field27 = $01
+            freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
+            entitytexture(local0\Field0, local22, $00, $00)
+            entitytexture(local0\Field1, local22, $00, $00)
+            entitytexture(local0\Field2, local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            arg0\Field14[$00] = local0
+            createdoor(arg0, (arg0\Field3 + 1.0), arg0\Field4, arg0\Field5, 270.0, $00, $00, $07, $00, $00)
+            local3 = createdecal($00, (arg0\Field3 - 2.78125), (arg0\Field4 + 0.005), (arg0\Field5 - 0.28125), 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($02, (arg0\Field3 - 2.78125), (arg0\Field4 + 0.01), (arg0\Field5 - 0.28125), 90.0, rnd(360.0, 0.0), 0.0, 0.3, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($00, (arg0\Field3 - 1.3125), (arg0\Field4 + 0.01), arg0\Field5, 90.0, rnd(360.0, 0.0), 0.0, 1.0, 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+            local7 = createitem("Dr. L's Burnt Note #1", $00, (arg0\Field3 - 2.3125), (arg0\Field4 + 1.0), (arg0\Field5 - (1.0 / 16.0)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Dr. L's Burnt Note #2", $00, (arg0\Field3 - 2.78125), (arg0\Field4 + 1.0), (arg0\Field5 - 0.28125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("The Modular Site Project", $00, (arg0\Field3 + 2.429688), (arg0\Field4 + (1.0 / 2.048)), (arg0\Field5 - (1.0 / 3.506849)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $5D
+            createdoor(arg0, (arg0\Field3 + 2.90625), arg0\Field4, (arg0\Field5 + 2.5), 0.0, $00, $00, $FFFFFFFD, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 2.90625), arg0\Field4, (arg0\Field5 - 2.5), 0.0, $00, $00, $FFFFFFFD, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 0.90625), arg0\Field4, (arg0\Field5 - 2.5), 0.0, $00, $00, $06, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 0.90625), arg0\Field4, (arg0\Field5 + 2.5), 0.0, $00, $00, $06, $00, $00)
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, $00, $05, $FFFFFFFC, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            arg0\Field14[$00] = local0
+            If (i_zone\Field1 = $00) Then
+                local5 = (New forest)
+                arg0\Field10 = local5
+                genforestgrid(local5)
+                placeforest(local5, arg0\Field3, (arg0\Field4 + 30.0), arg0\Field5, arg0)
+            EndIf
+            local7 = createitem("Document SCP-860-1", $00, (arg0\Field3 + 3.804688), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 - (1.0 / 15.05882)), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            createcustomcenter(arg0, (arg0\Field3 + 2.902344), arg0\Field5)
+        Case $5E
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.125), (arg0\Field4 + 1.5), (arg0\Field5 + 1.125), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+        Case $5F
+            createdoor(arg0, (arg0\Field3 + 2.363281), arg0\Field4, (arg0\Field5 - (1.0 / 1.094017)), 0.0, (rand($04, $01) = $01), $04, $00, $00, $00)
+            For local4 = Each rooms
+                If (local4 <> arg0) Then
+                    If (local4\Field7\Field6 = $5F) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], arg0\Field2)
+                        Exit
+                    EndIf
+                EndIf
+            Next
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadmesh_strict("GFX\Map\room2C_2_ez_hb.b3d", arg0\Field2)
+            EndIf
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.125), (arg0\Field4 + 1.5), (arg0\Field5 + 1.125), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            If (rand($03, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 1.570312), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.601562), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            Else
+                local7 = createitem("Syringe", $55, (arg0\Field3 + 1.570312), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.601562), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("Cup", $2B, (arg0\Field3 + 2.078125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 2.179688), $57, $3E, $2D, 1.0, $00)
+            local7\Field1 = "COFFEE"
+            local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "coffee"), "%s")
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createrandombattery((arg0\Field3 + 3.4375), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 1.171875))
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $60
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 1.5), 0.0, $00, $00, $06, $00, $00)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.1), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            createdoor(arg0, (arg0\Field3 - 2.75), (arg0\Field4 + 3.5), (arg0\Field5 + 2.875), 90.0, $00, $06, $06, $00, $00)
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - (1.0 / 1.07113)), (arg0\Field4 + 4.3125), (arg0\Field5 + 2.46875), -90.0, $01)
+            arg0\Field13[$01] = createlever(arg0, (arg0\Field3 - (1.0 / 1.07113)), (arg0\Field4 + 4.3125), (arg0\Field5 + 2.21875), -90.0, $01)
+            arg0\Field13[$02] = createlever(arg0, (arg0\Field3 - (1.0 / 1.07113)), (arg0\Field4 + 4.3125), (arg0\Field5 + 1.96875), -90.0, $01)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.035156), (arg0\Field4 + 5.0), (arg0\Field5 + (1.0 / 2.438095)), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 45.0
+            local2\Field9 = 45.0
+            local7 = createitem("Note from Daniel", $00, (arg0\Field3 - (1.0 / 0.64)), (arg0\Field4 + 4.0625), (arg0\Field5 + (1.0 / 2.226087)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $63
+            createdoor(arg0, (arg0\Field3 + 2.363281), arg0\Field4, (arg0\Field5 - (1.0 / 1.094017)), 0.0, (rand($06, $01) = $01), $04, $00, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.363281), arg0\Field4, (arg0\Field5 - (1.0 / 1.094017)), 0.0, $00, $04, $00, $00, $00)
+            For local4 = Each rooms
+                If (local4 <> arg0) Then
+                    If (local4\Field7\Field6 = $63) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], arg0\Field2)
+                        Exit
+                    EndIf
+                EndIf
+            Next
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadmesh_strict("GFX\Map\room3_ez_hb.b3d", arg0\Field2)
+            EndIf
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.25), (arg0\Field4 + 1.5), (arg0\Field5 + 2.0), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            local7 = createrandombattery((arg0\Field3 - 3.660156), (arg0\Field4 + 1.015625), (arg0\Field5 - 3.660156))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local27 = rand($05, $01)
+            If (local27 > $03) Then
+                local7 = createitem("Radio Transceiver", $45, (arg0\Field3 + 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281), $00, $00, $00, 1.0, $00)
+                local7\Field12 = rnd(0.0, 100.0)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("Cup", $2B, (arg0\Field3 + 3.4375), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 1.171875), $C8, $C8, $C8, 1.0, $00)
+                local7\Field1 = "COFFEE"
+                local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "coffee"), "%s")
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createrandombattery((arg0\Field3 + 3.683594), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 - 3.648438))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            ElseIf (local27 > $01) Then
+                local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 + 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281), $00, $00, $00, 1.0, $00)
+                local7\Field12 = rnd(0.0, 100.0)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createrandombattery((arg0\Field3 + 3.4375), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 1.171875))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("Quarter", $6A, (arg0\Field3 - (1.0 / 1.094017)), (arg0\Field4 + (1.0 / 8.533334)), (arg0\Field5 + 1.972656), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $64
+            local7 = createrandombattery((arg0\Field3 - 0.515625), (arg0\Field4 - 1.4375), (arg0\Field5 - 2.570312))
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 - 0.296875), (arg0\Field4 - 1.4375), (arg0\Field5 - 2.570312))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createrandombattery((arg0\Field3 - 0.765625), (arg0\Field4 - 1.4375), (arg0\Field5 - 2.570312))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 + (1.0 / 4.413793)), (arg0\Field4 - 1.96875), (arg0\Field5 - 2.570312), $00, $00, $00, 1.0, $00)
+            local7\Field12 = rnd(100.0, 0.0)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $65
+            local7 = createitem("Document SCP-970", $00, (arg0\Field3 + 3.75), (arg0\Field4 - 1.75), (arg0\Field5 + (1.0 / 1.01992)), $00, $00, $00, 1.0, $00)
+            rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Gas Mask", $38, (arg0\Field3 + 3.726562), (arg0\Field4 - 1.96875), (arg0\Field5 + (1.0 / 1.089362)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+        Case $66
+            local2 = createsecuritycam(arg0, (arg0\Field3 - 1.25), (arg0\Field4 + 1.5), (arg0\Field5 + 2.0), 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+        Case $61
+            local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 - 1.789062), 0.0, $00, $00, $04, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.07), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.04), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 1.12), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.04), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - 2.875), arg0\Field4, (arg0\Field5 - 1.789062), 0.0, $00, $00, $00, $00, $00)
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.04), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.04), $01)
+            local0 = createdoor(arg0, (arg0\Field3 - (1.0 / 1.07563)), arg0\Field4, (arg0\Field5 - 2.875), -90.0, $00, $00, $00, $00, $00)
+            positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) + 0.04), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) - 0.04), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
+            local0 = createdoor(arg0, (arg0\Field3 + 0.96875), arg0\Field4, (arg0\Field5 - 2.875), 90.0, $00, $00, $04, $00, $00)
+            local0\Field4 = $01
+            local0\Field16 = $01
+            local0\Field23 = $00
+            freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
+            freeentity(local0\Field1)
+            local0\Field1 = $00
+            local0 = createdoor(arg0, (arg0\Field3 - 1.800781), arg0\Field4, (arg0\Field5 + 1.324219), 90.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 1.800781), arg0\Field4, (arg0\Field5 + 1.324219), 270.0, $01, $00, $00, $00, $00)
+            local0\Field4 = $01
+            local0\Field23 = $00
+            For local25 = $00 To $01 Step $01
+                freeentity(local0\Field3[local25])
+                local0\Field3[local25] = $00
+            Next
+            arg0\Field14[$01] = local0
+            arg0\Field13[$00] = createlever(arg0, (arg0\Field3 + 1.089844), (arg0\Field4 + 0.75), (arg0\Field5 + 0.640625), 0.0, $01)
+            arg0\Field11[$00] = createpivot($00)
+            positionentity(arg0\Field11[$00], arg0\Field3, (arg0\Field4 + 0.5), (arg0\Field5 + 1.3125), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 2.875))
+        Case $62
+            createdoor(arg0, (arg0\Field3 + 3.0), arg0\Field4, (arg0\Field5 + (1.0 / 1.094017)), 180.0, $01, $04, $00, $00, $00)
+            arg0\Field11[$00] = loadmesh_strict("GFX\Map\room3_office_hb.b3d", arg0\Field2)
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 3.738281), (arg0\Field4 + 0.859375), (arg0\Field5 + 2.574219), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 3.738281), (arg0\Field4 + (1.0 / 1.630573)), (arg0\Field5 + 3.457031), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 1.199219), (arg0\Field4 + 0.546875), (arg0\Field5 + 3.167969), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            local3 = createdecal($15, (arg0\Field3 + 0.921875), (arg0\Field4 + 0.005), (arg0\Field5 - 0.265625), 90.0, rnd(360.0, 0.0), 0.0, rnd(0.5, 0.7), 1.0, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
+        Case $68
+            createdoor(arg0, (arg0\Field3 + 2.363281), arg0\Field4, (arg0\Field5 - (1.0 / 1.094017)), 0.0, (rand($05, $01) = $01), $04, $00, $00, $00)
+            createdoor(arg0, (arg0\Field3 + 2.363281), arg0\Field4, (arg0\Field5 + (1.0 / 1.094017)), 180.0, $00, $04, $00, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.363281), arg0\Field4, (arg0\Field5 - (1.0 / 1.094017)), 0.0, $00, $04, $00, $00, $00)
+            createdoor(arg0, (arg0\Field3 - 2.363281), arg0\Field4, (arg0\Field5 + (1.0 / 1.094017)), 180.0, (rand($03, $01) = $01), $04, $00, $00, $00)
+            For local4 = Each rooms
+                If (local4 <> arg0) Then
+                    If (local4\Field7\Field6 = $68) Then
+                        arg0\Field11[$00] = copyentity(local4\Field11[$00], arg0\Field2)
+                        Exit
+                    EndIf
+                EndIf
+            Next
+            If (arg0\Field11[$00] = $00) Then
+                arg0\Field11[$00] = loadmesh_strict("GFX\Map\room4_2_ez_hb.b3d", arg0\Field2)
+            EndIf
+            arg0\Field12[$00] = $01
+            entitypickmode(arg0\Field11[$00], $02, $01)
+            entitytype(arg0\Field11[$00], $01, $00)
+            entityalpha(arg0\Field11[$00], 0.0)
+            local2 = createsecuritycam(arg0, arg0\Field3, (arg0\Field4 + 1.5), arg0\Field5, 20.0, $00, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            local2\Field8 = 225.0
+            local2\Field9 = 45.0
+            local2\Field17 = $01
+            local27 = rand($05, $01)
+            If (local27 > $03) Then
+                local7 = createitem("Radio Transceiver", $45, (arg0\Field3 + 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281), $00, $00, $00, 1.0, $00)
+                local7\Field12 = rnd(0.0, 100.0)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("Cup", $2B, (arg0\Field3 + 3.4375), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 1.171875), $C8, $C8, $C8, 1.0, $00)
+                local7\Field1 = "COFFEE"
+                local7\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "coffee"), "%s")
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createrandombattery((arg0\Field3 + 3.683594), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 - 3.648438))
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem(("Document SCP-" + getranddocument()), $00, (arg0\Field3 - 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 2.007812), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 2.234375), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createrandombattery((arg0\Field3 - 3.660156), (arg0\Field4 + 1.015625), (arg0\Field5 - 3.660156))
+                entityparent(local7\Field2, arg0\Field2, $01)
+            ElseIf (local27 > $01) Then
+                local7 = createitem("S-NAV Navigator", $49, (arg0\Field3 + 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281), $00, $00, $00, 1.0, $00)
+                local7\Field12 = rnd(0.0, 100.0)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("Empty Cup", $2C, (arg0\Field3 + 3.4375), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 1.171875), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createrandombattery((arg0\Field3 - 2.78125), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.113281))
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("Quarter", $6A, (arg0\Field3 - 2.007812), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 2.234375), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+                local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 - 3.660156), (arg0\Field4 + 1.015625), (arg0\Field5 - 3.660156), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+            If (rand($02, $01) = $01) Then
+                local7 = createitem("Quarter", $6A, (arg0\Field3 - 2.289062), (arg0\Field4 + (1.0 / 8.533334)), (arg0\Field5 + 2.84375), $00, $00, $00, 1.0, $00)
+                entityparent(local7\Field2, arg0\Field2, $01)
+            EndIf
+        Case $69
+            local22 = loadtexture_strict("GFX\Map\Textures\rockmoss.jpg", $01, $00, $01)
+            For local25 = $00 To $09 Step $01
+                Select local25
+                    Case $00
+                        local12 = 5187.0
+                        local14 = 2523.0
+                        local29 = 180.0
+                    Case $01
+                        local12 = 5521.0
+                        local14 = 1641.0
+                        local29 = 180.0
+                    Case $02
+                        local12 = 9128.0
+                        local14 = 2160.0
+                        local29 = 180.0
+                    Case $03
+                        local12 = 8523.0
+                        local14 = 1728.0
+                        local29 = 180.0
+                    Case $04
+                        local12 = 9880.0
+                        local14 = 1212.0
+                        local29 = 180.0
+                    Case $05
+                        local12 = 5299.0
+                        local14 = 360.0
+                        local29 = 90.0
+                    Case $06
+                        local12 = 7807.0
+                        local14 = 1259.0
+                        local29 = 90.0
+                    Case $07
+                        local12 = 8196.0
+                        local14 = 1404.0
+                        local29 = 90.0
+                    Case $08
+                        local12 = 8143.0
+                        local14 = 360.0
+                        local29 = 90.0
+                    Case $09
+                        local12 = 9709.0
+                        local14 = 888.0
+                        local29 = 90.0
+                End Select
+                local3 = createdecal($00, (arg0\Field3 + (local12 * (1.0 / 256.0))), ((arg0\Field4 + 10.05469) + 0.05), ((arg0\Field5 + 32.0) + (local14 * (1.0 / 256.0))), 90.0, 0.0, 0.0, rnd(0.8, 1.0), 1.0, $00, $01, $00, $00, $00)
+                local0 = createdoor(arg0, (arg0\Field3 + (local12 * (1.0 / 256.0))), (arg0\Field4 + 10.05469), ((arg0\Field5 + 32.0) + (local14 * (1.0 / 256.0))), local29, $00, $00, $09, $00, $00)
+                entitytexture(local0\Field0, local22, $00, $00)
+                If (local0\Field1 <> $00) Then
+                    entitytexture(local0\Field1, local22, $00, $00)
+                EndIf
+                entitytexture(local0\Field2, local22, $00, $00)
+            Next
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 8.046875), ((arg0\Field5 + 32.0) - 4.0), 0.0, $00, $02, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$00] = local0
+            local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 8.0), ((arg0\Field5 + 32.0) + 4.0), 180.0, $00, $02, $00, $00, $00)
+            local0\Field20 = $00
+            arg0\Field14[$01] = local0
+            local3 = createdecal($0D, (arg0\Field3 - 6.0), (arg0\Field4 + 0.02), ((arg0\Field5 + 2.375) + 32.0), 90.0, 0.0, 0.0, 0.8, 1.0, $01, $02, $00, $00, $00)
+            local48 = loadrmesh("GFX\Map\dimension_106_2.rmesh", Null, $01)
+            For local25 = $01 To $08 Step $01
+                arg0\Field11[(local25 - $01)] = copyentity(local48, $00)
+                local29 = ((Float (local25 - $01)) * 45.0)
+                local32 = (sin(local29) * 2.0)
+                local33 = (cos(local29) * 2.0)
+                scaleentity(arg0\Field11[(local25 - $01)], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+                entitytype(arg0\Field11[(local25 - $01)], $01, $00)
+                entitypickmode(arg0\Field11[(local25 - $01)], $02, $01)
+                rotateentity(arg0\Field11[(local25 - $01)], 0.0, (local29 - 90.0), 0.0, $00)
+                positionentity(arg0\Field11[(local25 - $01)], (arg0\Field3 + local33), arg0\Field4, (arg0\Field5 + local32), $00)
+                entityparent(arg0\Field11[(local25 - $01)], arg0\Field2, $01)
+                If (local25 < $06) Then
+                    local3 = createdecal((local25 + $07), (arg0\Field3 + (local33 * 2.0)), (arg0\Field4 + 0.02), (arg0\Field5 + (local32 * 2.0)), 90.0, (local29 - 90.0), 0.0, 0.5, 1.0, $01, $02, $00, $00, $00)
+                EndIf
+            Next
+            freeentity(local48)
+            local48 = $00
+            arg0\Field11[$08] = loadrmesh("GFX\Map\dimension_106_3.rmesh", Null, $01)
+            arg0\Field11[$09] = loadmesh_strict("GFX\Map\Props\dimension_106_pillar.b3d", $00)
+            arg0\Field11[$0A] = copyentity(arg0\Field11[$09], $00)
+            arg0\Field11[$0B] = loadrmesh("GFX\Map\dimension_106_4.rmesh", Null, $01)
+            For local25 = $08 To $0B Step $01
+                scaleentity(arg0\Field11[local25], ((((Float (local25 = $0A)) * 1.5) + (Float (local25 <> $0A))) * (1.0 / 256.0)), ((((Float (local25 = $0A)) * 2.0) + (Float (local25 <> $0A))) * (1.0 / 256.0)), ((((Float (local25 = $0A)) * 1.5) + (Float (local25 <> $0A))) * (1.0 / 256.0)), $00)
+                entitytype(arg0\Field11[local25], $01, $00)
+                entitypickmode(arg0\Field11[local25], $02, $01)
+                positionentity(arg0\Field11[local25], arg0\Field3, arg0\Field4, ((arg0\Field5 + 32.0) + (32.0 * (Float (local25 = $0B)))), $01)
+            Next
+            For local25 = $0C To $10 Step $01
+                arg0\Field11[local25] = createpivot(arg0\Field11[$0B])
+                Select local25
+                    Case $0C
+                        positionentity(arg0\Field11[local25], arg0\Field3, (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 64.0), $01)
+                    Case $0D
+                        positionentity(arg0\Field11[local25], (arg0\Field3 + 1.523438), (arg0\Field4 + (1.0 / 1.28)), ((arg0\Field5 + 64.0) + 1.0625), $01)
+                    Case $0E
+                        positionentity(arg0\Field11[local25], (arg0\Field3 + 3.273438), (arg0\Field4 + (1.0 / 1.28)), ((arg0\Field5 + 64.0) - 2.152344), $01)
+                    Case $0F
+                        positionentity(arg0\Field11[local25], (arg0\Field3 - (1.0 / 1.841727)), (arg0\Field4 + (1.0 / 1.28)), ((arg0\Field5 + 64.0) + 4.691406), $01)
+                    Case $10
+                        positionentity(arg0\Field11[local25], (arg0\Field3 - 4.835938), (arg0\Field4 - 6.5), ((arg0\Field5 + 64.0) + 1.488281), $01)
+                End Select
+            Next
+            arg0\Field21[$00] = loadtexture_strict("GFX\NPCs\pd_plane.png", $03, $01, $00)
+            arg0\Field21[$01] = loadtexture_strict("GFX\NPCs\pd_plane_eye.png", $03, $01, $00)
+            arg0\Field11[$11] = createsprite($00)
+            arg0\Field12[$11] = $01
+            local22 = loadtexture_strict("GFX\NPCs\scp_106_eyes.png", $01, $00, $00)
+            entitytexture(arg0\Field11[$11], local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            positionentity(arg0\Field11[$11], entityx(arg0\Field11[$08], $01), (arg0\Field4 + 5.375), (entityz(arg0\Field11[$08], $01) - 11.125), $00)
+            rotateentity(arg0\Field11[$11], 0.0, 180.0, 0.0, $00)
+            scalesprite(arg0\Field11[$11], 0.03, 0.03)
+            entityblend(arg0\Field11[$11], $03)
+            entityfx(arg0\Field11[$11], $09)
+            spriteviewmode(arg0\Field11[$11], $02)
+            arg0\Field11[$12] = loadmesh_strict("GFX\Map\Props\throne_wall.b3d", $00)
+            arg0\Field12[$12] = $01
+            positionentity(arg0\Field11[$12], entityx(arg0\Field11[$08], $01), arg0\Field4, (entityz(arg0\Field11[$08], $01) - 3.376953), $00)
+            scaleentity(arg0\Field11[$12], (1.0 / 522.24), (1.0 / 256.0), (1.0 / 256.0), $00)
+            entitypickmode(arg0\Field11[$12], $02, $01)
+            entitytype(arg0\Field11[$12], $01, $00)
+            entityparent(arg0\Field11[$12], arg0\Field2, $01)
+            arg0\Field11[$13] = createsprite($00)
+            arg0\Field12[$13] = $01
+            scalesprite(arg0\Field11[$13], 8.0, 8.0)
+            entitytexture(arg0\Field11[$13], arg0\Field21[$00], $00, $00)
+            entityorder(arg0\Field11[$13], $64)
+            entityblend(arg0\Field11[$13], $02)
+            entityfx(arg0\Field11[$13], $09)
+            spriteviewmode(arg0\Field11[$13], $02)
+            positionentity(arg0\Field11[$13], (entityx(arg0\Field11[$08], $01) - 1000.0), 16.0, 0.0, $01)
+            arg0\Field11[$14] = loadmesh_strict("GFX\Map\dimension_106_terrain.b3d", $00)
+            arg0\Field12[$14] = $01
+            local22 = loadtexture_strict("GFX\Map\Textures\rockmoss.jpg", $01, $00, $01)
+            entitytexture(arg0\Field11[$14], local22, $00, $00)
+            deletesingletextureentryfromcache(local22, $00)
+            local22 = $00
+            scaleentity(arg0\Field11[$14], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            entitytype(arg0\Field11[$14], $01, $00)
+            positionentity(arg0\Field11[$14], arg0\Field3, ((arg0\Field4 + 16.0) + 11.5), (arg0\Field5 + 32.0), $01)
+            For local25 = $11 To $14 Step $01
+                hideentity(arg0\Field11[local25])
+            Next
+            arg0\Field11[$15] = createpivot($00)
+            positionentity(arg0\Field11[$15], (arg0\Field3 + 28.16797), (arg0\Field4 + 10.35156), ((arg0\Field5 + 32.0) + 6.117188), $00)
+            entityparent(arg0\Field11[$15], arg0\Field2, $01)
+            arg0\Field11[$16] = createpivot($00)
+            positionentity(arg0\Field11[$16], (arg0\Field3 + 20.55078), (arg0\Field4 + 10.35156), ((arg0\Field5 + 32.0) + 10.54688), $00)
+            entityparent(arg0\Field11[$16], arg0\Field2, $01)
+            arg0\Field11[$17] = createpivot($00)
+            positionentity(arg0\Field11[$17], (arg0\Field3 + 26.69922), (arg0\Field4 + 10.35156), ((arg0\Field5 + 32.0) + 9.289062), $00)
+            entityparent(arg0\Field11[$17], arg0\Field2, $01)
+            arg0\Field11[$18] = createpivot($00)
+            positionentity(arg0\Field11[$18], (arg0\Field3 + 30.95703), (arg0\Field4 + 10.35156), ((arg0\Field5 + 32.0) + (1.0 / 1.273632)), $00)
+            entityparent(arg0\Field11[$18], arg0\Field2, $01)
+            arg0\Field11[$19] = createpivot($00)
+            positionentity(arg0\Field11[$19], (arg0\Field3 + 32.73438), (arg0\Field4 + 10.35156), ((arg0\Field5 + 32.0) + 8.988281), $00)
+            entityparent(arg0\Field11[$19], arg0\Field2, $01)
+            local7 = createitem("Burnt Note", $00, arg0\Field3, (arg0\Field4 + 0.5), (arg0\Field5 + 3.5), $00, $00, $00, 1.0, $00)
+            local7 = createitem("George Maynard's Badge", $04, (arg0\Field3 - 5.078125), (arg0\Field4 + 0.5), (arg0\Field5 + 33.98438), $00, $00, $00, 1.0, $00)
+        Case $6A
+            arg0\Field11[$10] = createpivot($00)
+            positionentity(arg0\Field11[$10], (arg0\Field3 + (1.0 / 1.24878)), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 8.933594), $00)
+            entityparent(arg0\Field11[$10], arg0\Field2, $01)
+            arg0\Field11[$11] = loadmesh_strict("GFX\Map\dimension1499\1499object0_cull.b3d", arg0\Field2)
+            arg0\Field12[$11] = $01
+            entitytype(arg0\Field11[$11], $01, $00)
+            entityalpha(arg0\Field11[$11], 0.0)
+    End Select
+    For local50 = Each tempscreens
+        If (local50\Field4 = arg0\Field7) Then
+            createscreen(arg0, (arg0\Field3 + local50\Field1), (arg0\Field4 + local50\Field2), (arg0\Field5 + local50\Field3), local50\Field0)
+        EndIf
+    Next
+    For local51 = Each tempwaypoints
+        If (local51\Field3 = arg0\Field7) Then
+            createwaypoint(Null, arg0, (arg0\Field3 + local51\Field0), (arg0\Field4 + local51\Field1), (arg0\Field5 + local51\Field2))
+        EndIf
+    Next
+    For local52 = Each templights
+        If (local52\Field0 = arg0\Field7) Then
+            local11 = addlight(arg0, (arg0\Field3 + local52\Field2), (arg0\Field4 + local52\Field3), (arg0\Field5 + local52\Field4), local52\Field1, local52\Field5, local52\Field6, local52\Field7, local52\Field8, local52\Field13)
+            If (local52\Field1 = $03) Then
+                rotateentity(local11\Field0, local52\Field9, local52\Field10, 0.0, $00)
             EndIf
         EndIf
     Next
-    For local66 = Each tempscreens
-        If (local66\Field4 = arg0\Field7) Then
-            createscreen((arg0\Field3 + local66\Field1), (arg0\Field4 + local66\Field2), (arg0\Field5 + local66\Field3), local66\Field0, arg0)
+    For local53 = Each tempprops
+        If (local53\Field13 = arg0\Field7) Then
+            createprop(arg0, local53\Field0, (arg0\Field3 + local53\Field1), (arg0\Field4 + local53\Field2), (arg0\Field5 + local53\Field3), local53\Field4, local53\Field5, local53\Field6, local53\Field7, local53\Field8, local53\Field9, local53\Field10, local53\Field11, local53\Field12)
         EndIf
     Next
-    For local67 = Each tempwaypoints
-        If (local67\Field3 = arg0\Field7) Then
-            createwaypoint((arg0\Field3 + local67\Field0), (arg0\Field4 + local67\Field1), (arg0\Field5 + local67\Field2), Null, arg0)
+    For local54 = Each tempsoundemitters
+        If (local54\Field5 = arg0\Field7) Then
+            createsoundemitter(arg0, local54\Field3, (arg0\Field3 + local54\Field0), (arg0\Field4 + local54\Field1), (arg0\Field5 + local54\Field2), local54\Field4)
         EndIf
     Next
-    If (arg0\Field7\Field15 > $00) Then
-        arg0\Field40 = arg0\Field7\Field15
-        For local7 = $00 To (arg0\Field40 - $01) Step $01
-            arg0\Field41[local7] = copyentity(arg0\Field7\Field16[local7], arg0\Field2)
-            arg0\Field42[local7] = arg0\Field7\Field17[local7]
-            debuglog(("Triggerbox found: " + (Str local7)))
-            debuglog(((("Triggerbox " + (Str local7)) + " name: ") + arg0\Field42[local7]))
-        Next
-    EndIf
-    For local7 = $00 To $07 Step $01
-        If (arg0\Field7\Field5[local7] <> $00) Then
-            arg0\Field13[local7] = createpivot(arg0\Field2)
-            positionentity(arg0\Field13[local7], (arg0\Field3 + arg0\Field7\Field6[local7]), (arg0\Field4 + arg0\Field7\Field7[local7]), (arg0\Field5 + arg0\Field7\Field8[local7]), $01)
-            entityparent(arg0\Field13[local7], arg0\Field2, $01)
-            arg0\Field12[local7] = arg0\Field7\Field5[local7]
-            arg0\Field14[local7] = arg0\Field7\Field9[local7]
-        EndIf
-    Next
-    initroomdoors(arg0, $00)
-    allowroomsdoorsinit = $00
+    catcherrors((("Uncaught: FillRoom(Room ID: " + (Str arg0\Field7\Field6)) + ")"))
     Return $00
 End Function

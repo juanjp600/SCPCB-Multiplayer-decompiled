@@ -7,7 +7,7 @@ Function piece$(arg0$, arg1%, arg2$)
     Wend
     For local0 = $01 To (arg1 - $01) Step $01
         local1 = instr(arg0, arg2, $01)
-        arg0 = right(arg0, (len(arg0) - local1))
+        arg0 = mid(arg0, (local1 + $01), $FFFFFFFF)
     Next
     local1 = instr(arg0, arg2, $01)
     If (local1 < $01) Then

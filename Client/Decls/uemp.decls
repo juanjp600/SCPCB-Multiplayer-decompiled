@@ -1,0 +1,11 @@
+.lib "uemp.dll"
+
+getmicroseconds%():"_GetMicroseconds@0"
+memory_peekconstchar$(arg0%):"_Memory_PeekConstChar@4"
+splitstring$(arg0$, arg1$, arg2%):"_SplitString@12"
+pushsortvalue_int%(arg0%, arg1%):"_PushSortValue_Int@8"
+pushsortvalue_string%(arg0%, arg1$):"_PushSortValue_String@8"
+sortstringvalues%(arg0%):"_SortStringValues@4"
+sortintvalues%(arg0%):"_SortIntValues@4"
+getsortidentifier%(arg0%):"_GetSortIdentifier@4"
+clearsortvalues%():"_ClearSortValues@0"

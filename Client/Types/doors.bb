@@ -6,36 +6,35 @@ Type doors
     Field Field4%
     Field Field5%
     Field Field6%
-    Field Field7#
-    Field Field8%
+    Field Field7%
+    Field Field8#
     Field Field9%
     Field Field10%
     Field Field11#
     Field Field12%
-    Field Field13.rooms
+    Field Field13#
     Field Field14%
-    Field Field15#
+    Field Field15.rooms
     Field Field16%
-    Field Field17$
+    Field Field17%
     Field Field18%
     Field Field19%
     Field Field20%
-    Field Field21%
-    Field Field22.doors
+    Field Field21.doors
+    Field Field22%
     Field Field23%
-    Field Field24%
+    Field Field24%[2]
     Field Field25%
-    Field Field26%
+    Field Field26#
     Field Field27%
-    Field Field28#
-    Field Field29#
-    Field Field30#
-    Field Field31#
+    Field Field28%
+    Field Field29.doors
+    Field Field30%
+    Field Field31%
     Field Field32%
     Field Field33%
     Field Field34%
     Field Field35%
-    Field Field36.doors
-    Field Field37%
-    Field Field38%
+    Field Field36%
+    Field Field37#
 End Type

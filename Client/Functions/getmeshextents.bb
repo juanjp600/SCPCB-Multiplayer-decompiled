@@ -2,8 +2,8 @@ Function getmeshextents%(arg0%)
     Local local0%
     Local local1%
     Local local2%
-    Local local3%
-    Local local4%
+    Local local3#
+    Local local4#
     Local local5#
     Local local6#
     Local local7#
@@ -11,50 +11,38 @@ Function getmeshextents%(arg0%)
     Local local9#
     Local local10#
     Local local11#
-    Local local12#
-    Local local13#
+    Local local12%
+    Local local13%
+    local6 = INFINITY
+    local7 = INFINITY
     local8 = INFINITY
-    local9 = INFINITY
-    local10 = INFINITY
+    local9 = (- INFINITY)
+    local10 = (- INFINITY)
     local11 = (- INFINITY)
-    local12 = (- INFINITY)
-    local13 = (- INFINITY)
-    local2 = countsurfaces(arg0)
-    For local0 = $01 To local2 Step $01
+    local12 = countsurfaces(arg0)
+    For local0 = $01 To local12 Step $01
         local1 = getsurface(arg0, local0)
-        local4 = countvertices(local1)
-        For local3 = $00 To (local4 - $01) Step $01
-            local5 = vertexx(local1, local3)
-            local6 = vertexy(local1, local3)
-            local7 = vertexz(local1, local3)
-            If (local8 > local5) Then
-                local8 = local5
-            EndIf
-            If (local11 < local5) Then
-                local11 = local5
-            EndIf
-            If (local9 > local6) Then
-                local9 = local6
-            EndIf
-            If (local12 < local6) Then
-                local12 = local6
-            EndIf
-            If (local10 > local7) Then
-                local10 = local7
-            EndIf
-            If (local13 < local7) Then
-                local13 = local7
-            EndIf
+        local13 = (countvertices(local1) - $01)
+        For local2 = $00 To local13 Step $01
+            local3 = vertexx(local1, local2)
+            local4 = vertexy(local1, local2)
+            local5 = vertexz(local1, local2)
+            local6 = min(local6, local3)
+            local9 = max(local9, local3)
+            local7 = min(local7, local4)
+            local10 = max(local10, local4)
+            local8 = min(local8, local5)
+            local11 = max(local11, local5)
         Next
     Next
-    mesh_minx = local8
-    mesh_miny = local9
-    mesh_minz = local10
-    mesh_maxx = local11
-    mesh_maxy = local12
-    mesh_maxz = local13
-    mesh_magx = (local11 - local8)
-    mesh_magy = (local12 - local9)
-    mesh_magz = (local13 - local10)
+    mesh_minx = local6
+    mesh_miny = local7
+    mesh_minz = local8
+    mesh_maxx = local9
+    mesh_maxy = local10
+    mesh_maxz = local11
+    mesh_magx = (local9 - local6)
+    mesh_magy = (local10 - local7)
+    mesh_magz = (local11 - local8)
     Return $00
 End Function

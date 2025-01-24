@@ -1,0 +1,12 @@
+Type mp_attachmodel
+    Field Field0%
+    Field Field1$[4]
+    Field Field2$[4]
+    Field Field3%[4]
+    Field Field4%[4]
+    Field Field5%
+    Field Field6%
+    Field Field7$[4]
+    Field Field8%[4]
+    Field Field9.mp_attachmodelpreset[64]
+End Type

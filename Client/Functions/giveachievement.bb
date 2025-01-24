@@ -1,13 +1,10 @@
-Function giveachievement%(arg0%, arg1%)
-    Local local0%
-    Local local1$
-    If (achievements(arg0) <> $01) Then
-        achievements(arg0) = $01
-        If ((achvmsgenabled And arg1) <> 0) Then
-            local0 = getinisectionlocation("Data\achievementstrings.ini", ("s" + (Str arg0)))
-            local1 = getinistring2("Data\achievementstrings.ini", local0, "string1", "")
-            steam_api_setachievement(getinistring2("Data\achievementstrings.ini", local0, "image", ""))
-        EndIf
+Function giveachievement%(arg0$, arg1%)
+    If (s2imapcontains(unlockedachievements, arg0) <> 0) Then
+        Return $00
+    EndIf
+    s2imapset(unlockedachievements, arg0, $01)
+    If ((opt\Field30 And arg1) <> 0) Then
+        createachievementmsg(arg0)
     EndIf
     Return $00
 End Function

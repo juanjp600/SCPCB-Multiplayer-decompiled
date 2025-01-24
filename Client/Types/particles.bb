@@ -1,7 +1,7 @@
 Type particles
     Field Field0%
     Field Field1%
-    Field Field2%
+    Field Field2#
     Field Field3#
     Field Field4#
     Field Field5#
@@ -13,9 +13,4 @@ Type particles
     Field Field11#
     Field Field12#
     Field Field13#
-    Field Field14#
-    Field Field15#
-    Field Field16#
-    Field Field17#
-    Field Field18%
 End Type

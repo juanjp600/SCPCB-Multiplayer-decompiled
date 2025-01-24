@@ -1,15 +1,20 @@
 Function loadimage_strict%(arg0$)
     Local local0%
-    Local local1%
-    If (filetype(arg0) <> $01) Then
-        runtimeerror((((("Image " + chr($22)) + arg0) + chr($22)) + " missing. "))
+    If (filetype((lang\Field1 + arg0)) = $01) Then
+        arg0 = (lang\Field1 + arg0)
     EndIf
-    local0 = loadimage(arg0)
-    Return local0
     If (local0 = $00) Then
-        local1 = loadimage(arg0)
+        If (filetype(arg0) <> $01) Then
+            runtimeerrorex(format(getlocalstring("runerr", "image.notfound"), arg0, "%s"))
+        EndIf
+        local0 = loadimage(arg0)
+        If (local0 = $00) Then
+            runtimeerrorex(format(getlocalstring("runerr", "image.failed.load"), arg0, "%s"))
+        EndIf
+        If (opt\Field48 = $00) Then
+            bufferdirty(imagebuffer(local0, $00))
+        EndIf
     EndIf
-    debuglog(("Attempting to load again: " + arg0))
-    Return local1
+    Return local0
     Return $00
 End Function
