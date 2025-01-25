@@ -23,7 +23,7 @@ Function mp_updatenpctypeapache%(arg0.npcs)
                     If (900.0 > distancesquared(entityx(me\Field60, $00), entityx(arg0\Field3, $00), entityz(me\Field60, $00), entityz(arg0\Field3, $00), 0.0, 0.0)) Then
                         If (20.0 > (Abs (entityy(me\Field60, $00) - entityy(arg0\Field3, $00)))) Then
                             If (entityvisible(me\Field60, arg0\Field3) <> 0) Then
-                                playsoundex(snd_i\Field50[$01], camera, arg0\Field3, 50.0, 1.0, $00)
+                                playsoundex(snd_i\Field50[$01], camera, arg0\Field3, 50.0, 1.0, $00, $00)
                                 arg0\Field10 = 2.0
                             EndIf
                         EndIf
@@ -67,7 +67,7 @@ Function mp_updatenpctypeapache%(arg0.npcs)
                                 moveentity(local5, 0.0, 0.023, 0.188)
                                 pointentity(local5, local1, 0.0)
                                 If (10.0 > wrapangle((entityyaw(local5, $00) - entityyaw(arg0\Field3, $00)), 360.0)) Then
-                                    playsoundex(snd_i\Field13[$01], camera, arg0\Field3, 20.0, 1.0, $00)
+                                    playsoundex(snd_i\Field13[$01], camera, arg0\Field3, 20.0, 1.0, $00, $00)
                                     local6 = sqr(local3)
                                     shoot(arg0, entityx(local5, $00), entityy(local5, $00), entityz(local5, $00), arg0\Field3, (((10.0 / local6) * (1.0 / local6)) * (Float (2.0 = arg0\Field10))), (2.0 = arg0\Field10), $00)
                                     If (((Int me\Field0) And (3.0 <> arg0\Field10)) <> 0) Then

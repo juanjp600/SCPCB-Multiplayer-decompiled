@@ -236,14 +236,13 @@ Function EntryPoint%()
     scrollmenuheight = 0.0
     renderloading($55, getlocalstring("loading", "core.multiplayer"))
     mp_inittimer()
-    createdebuglog("UERMP: Windows Console Debug Log")
     initnetwork()
     myplayerlogic = (New mp_myplayerlogic)
     mp_settings = (New mp_settingssystem)
     mp_setclientname(loadnicknamefromini())
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($04)
+    multiplayer_version = versiondots($08)
     senddebuglog(multiplayer_version)
     createserverinfo()
     mp_menuinit()
@@ -255,6 +254,7 @@ Function EntryPoint%()
     default_frame_size = $3C0
     bass_init($FFFFFFFF, $BB80, $04, api_getactivewindow(), local2)
     bass_pluginload("bassopus.dll", $00)
+    npcs_hasreceive = $00
     event_hasreceive = $00
     serverlist = (New mp_serverlist)
     loadservers()

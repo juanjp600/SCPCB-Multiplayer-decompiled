@@ -58,7 +58,7 @@ Function updategame%()
                     If (playerroom\Field7\Field6 = $04) Then
                         me\Field59 = $04
                     ElseIf (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                        If (1.0 = forest_event\Field2) Then
+                        If (20.0 < entityy(me\Field60, $00)) Then
                             me\Field59 = $05
                             positionentity(soundemitter, entityx(soundemitter, $00), 30.0, entityz(soundemitter, $00), $00)
                         EndIf
@@ -82,7 +82,7 @@ Function updategame%()
                                 ambientsfx(me\Field59, currambientsfx) = loadsound_strict((("SFX\Ambient\Forest\Ambient" + (Str currambientsfx)) + ".ogg"))
                             EndIf
                     End Select
-                    ambientsfxchn = playsoundex(ambientsfx(me\Field59, currambientsfx), camera, soundemitter, 10.0, 1.0, $00)
+                    ambientsfxchn = playsoundex(ambientsfx(me\Field59, currambientsfx), camera, soundemitter, 10.0, 1.0, $00, $00)
                 EndIf
                 updatesoundorigin(ambientsfxchn, camera, soundemitter, 10.0, 1.0, $00, $01)
                 If (playerinreachableroom($01, $00) <> 0) Then
@@ -101,6 +101,7 @@ Function updategame%()
             If (mp_getsocket() <> $00) Then
                 updateplayerspivot()
                 mp_clearmyplayerdata()
+                mp_updateroomobjects()
             EndIf
             updatedeaf()
             updatedecals()
@@ -383,7 +384,7 @@ Function updategame%()
             EndIf
         EndIf
         updateautosave()
-        If ((((keyhit(key\Field5) And opt\Field31) And ue_server\Field11) And (ismultiplayerhudenabled = $00)) <> 0) Then
+        If ((((keyhit(key\Field5) And opt\Field31) And (ue_server\Field11 Lor mp_ishoster())) And (ismultiplayerhudenabled = $00)) <> 0) Then
             If (consoleopen <> 0) Then
                 usedconsole = $01
                 resumesounds()
@@ -414,7 +415,6 @@ Function updategame%()
             mp_updategui($08)
             mp_updatecorpses()
             mp_updaterooms()
-            mp_updateroomobjects()
         EndIf
     Wend
     If (mainmenuopen <> 0) Then

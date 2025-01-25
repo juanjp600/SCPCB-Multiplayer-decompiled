@@ -29,7 +29,7 @@ Function mp_initializenpc%(arg0.npcs, arg1%)
         Case $04
             n_i\Field7 = arg0
         Case $08,$10
-            arg0\Field87 = $01
+            arg0\Field95 = $01
     End Select
     Return $00
 End Function

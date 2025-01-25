@@ -18,6 +18,7 @@ Function loadentities%()
     entityradius(me\Field60, 0.15, 0.3)
     entitypickmode(me\Field60, $01, $01)
     entitytype(me\Field60, $02, $00)
+    me\Field62 = me\Field60
     me\Field61 = createpivot($00)
     entityradius(me\Field61, 0.15, 0.0)
     entitytype(me\Field61, $02, $00)

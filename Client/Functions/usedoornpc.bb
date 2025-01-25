@@ -8,7 +8,7 @@ Function usedoornpc%(arg0.npcs, arg1%, arg2%)
                 If ((((arg0\Field39[arg0\Field42]\Field1\Field6 = $00) And (arg0\Field39[arg0\Field42]\Field1\Field10 <> $04)) And (arg0\Field39[arg0\Field42]\Field1\Field10 <> $01)) <> 0) Then
                     openclosedoor(arg0\Field39[arg0\Field42]\Field1, arg1, arg2)
                     If (arg1 <> 0) Then
-                        playsoundex(npcsound[$00], camera, arg0\Field0, 8.0, 1.0, $00)
+                        playsoundex(npcsound[$00], camera, arg0\Field0, 8.0, 1.0, $00, $00)
                     EndIf
                     If (arg0\Field39[arg0\Field42]\Field1\Field23 <> 0) Then
                         arg0\Field39[arg0\Field42]\Field1\Field13 = 350.0

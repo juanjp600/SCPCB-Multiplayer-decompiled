@@ -146,17 +146,46 @@ Function fillroom%(arg0.rooms)
             createcustomcenter(arg0, arg0\Field3, (arg0\Field5 - 3.242188))
         Case $03
             local0 = createdoor(arg0, (arg0\Field3 - 2.5), (arg0\Field4 + 1.5), (arg0\Field5 + 8.371094), -90.0, $00, $00, $00, $00, $00)
-            local0\Field4 = $01
-            local0\Field16 = $01
-            local0\Field23 = $00
-            freeentity(local0\Field3[$00])
-            local0\Field3[$00] = $00
-            freeentity(local0\Field1)
-            local0\Field1 = $00
-            local0 = createdoor(arg0, (arg0\Field3 + 4.554688), (arg0\Field4 + 1.499609), (arg0\Field5 + 9.324219), 180.0, $01, $06, $00, $00, $00)
-            local0\Field23 = $00
-            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.048), $01)
-            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.048), $01)
+            If (mp_menu_isconnection() = $00) Then
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                freeentity(local0\Field1)
+                local0\Field1 = $00
+            Else
+                local0 = createdoor(arg0, (arg0\Field3 - 6.900781), (arg0\Field4 + 1.484375), (arg0\Field5 + 17.08984), 90.0, $00, $00, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                local0 = createdoor(arg0, (arg0\Field3 - 10.35312), (arg0\Field4 + 1.484375), (arg0\Field5 + 17.08984), -90.0, $00, $00, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                local0 = createdoor(arg0, (arg0\Field3 - 10.35312), (arg0\Field4 + 1.484375), (arg0\Field5 + 26.0875), -90.0, $00, $00, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                freeentity(local0\Field1)
+                local0\Field1 = $00
+                local0 = createdoor(arg0, (arg0\Field3 - 8.617188), (arg0\Field4 + 1.484375), (arg0\Field5 + 2.238281), 0.0, $00, $00, $00, $00, $00)
+                local0\Field4 = $01
+                local0\Field16 = $01
+                local0\Field23 = $00
+                freeentity(local0\Field3[$00])
+                local0\Field3[$00] = $00
+                freeentity(local0\Field1)
+                local0\Field1 = $00
+                local0 = createdoor(arg0, (arg0\Field3 - 6.869531), (arg0\Field4 + 1.484375), (arg0\Field5 + 26.0875), -90.0, $00, $00, $00, $00, $00)
+                local0 = createdoor(arg0, (arg0\Field3 - 8.617188), (arg0\Field4 + 1.484375), (arg0\Field5 + 14.49375), 0.0, $00, $00, $00, $00, $00)
+            EndIf
             createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 12.74219), 180.0, $01, $00, $05, $00, $00)
             createdoor(arg0, (arg0\Field3 + 8.5), (arg0\Field4 + 3.0), (arg0\Field5 + 16.24219), 90.0, $01, $00, $05, $00, $00)
             createdoor(arg0, (arg0\Field3 + 8.3125), (arg0\Field4 + 1.5), (arg0\Field5 + 6.367188), 0.0, $01, $00, $02, $00, $00)
@@ -182,6 +211,11 @@ Function fillroom%(arg0.rooms)
             local0 = createdoor(arg0, arg0\Field3, arg0\Field4, (arg0\Field5 + 4.0), 0.0, $01, $00, $00, $00, $00)
             local0\Field20 = $00
             arg0\Field14[$03] = local0
+            local0 = createdoor(arg0, (arg0\Field3 + 4.554688), (arg0\Field4 + 1.499609), (arg0\Field5 + 9.324219), 180.0, $01, $06, $00, $00, $00)
+            local0\Field23 = $00
+            positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) - 0.048), $01)
+            positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) + 0.048), $01)
+            arg0\Field14[$04] = local0
             arg0\Field11[$00] = loadmesh_strict("GFX\Map\Props\table_a.b3d", $00)
             scaleentity(arg0\Field11[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
             rotateentity(arg0\Field11[$00], 90.0, 45.0, 0.0, $00)
@@ -558,7 +592,7 @@ Function fillroom%(arg0.rooms)
                 entityparent(arg0\Field11[local25], arg0\Field2, $01)
             Next
             arg0\Field11[$02] = createpivot($00)
-            positionentity(arg0\Field11[$02], (arg0\Field3 - 4.40625), (arg0\Field4 + 0.5), (arg0\Field5 + 2.5), $00)
+            positionentity(arg0\Field11[$02], (arg0\Field3 - 4.410156), (arg0\Field4 + 0.5), (arg0\Field5 + 2.480469), $00)
             entityparent(arg0\Field11[$02], arg0\Field2, $01)
             arg0\Field11[$03] = createpivot($00)
             positionentity(arg0\Field11[$03], (arg0\Field3 + 1.203125), (arg0\Field4 + 0.5), (arg0\Field5 + 2.5), $00)
@@ -1245,12 +1279,15 @@ Function fillroom%(arg0.rooms)
             local0\Field3[$01] = $00
             arg0\Field14[$00] = local0
             local0 = createdoor(arg0, (arg0\Field3 - 1.3125), (arg0\Field4 + 3.003906), (arg0\Field5 + 2.78125), 90.0, $00, $05, $00, $00, $00)
+            local0\Field38 = $01
             local0\Field4 = $02
             local0\Field23 = $00
             arg0\Field14[$01] = local0
             local0 = createdoor(arg0, (arg0\Field3 - 1.3125), (arg0\Field4 + 3.003906), (arg0\Field5 + 0.65625), 270.0, $00, $05, $00, $00, $00)
+            local0\Field38 = $01
             arg0\Field14[$02] = local0
             local0 = createdoor(arg0, (arg0\Field3 - 2.609375), (arg0\Field4 + 3.003906), (arg0\Field5 - 2.75), 0.0, $00, $05, $00, $00, $00)
+            local0\Field38 = $01
             arg0\Field14[$03] = local0
             local0 = createdoor(arg0, (arg0\Field3 + 3.5625), arg0\Field4, (arg0\Field5 + 1.40625), 0.0, $00, $06, $04, $00, $00)
             positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.06), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.031), $01)
@@ -1262,9 +1299,11 @@ Function fillroom%(arg0.rooms)
             positionentity(local0\Field3[$00], (entityx(local0\Field3[$00], $01) - 0.06), entityy(local0\Field3[$00], $01), (entityz(local0\Field3[$00], $01) + 0.031), $01)
             positionentity(local0\Field3[$01], (entityx(local0\Field3[$01], $01) + 0.12), entityy(local0\Field3[$01], $01), (entityz(local0\Field3[$01], $01) - 0.031), $01)
             local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 3.003906), (arg0\Field5 + 1.625), 0.0, $00, $05, $00, $00, $00)
+            local0\Field38 = $01
             local0\Field4 = $02
             local0\Field23 = $00
             local0 = createdoor(arg0, arg0\Field3, (arg0\Field4 + 3.003906), (arg0\Field5 - 3.691406), 0.0, $00, $05, $00, $00, $00)
+            local0\Field38 = $01
             local0\Field4 = $02
             local0\Field23 = $00
             arg0\Field11[$00] = createpivot($00)
@@ -2881,6 +2920,7 @@ Function fillroom%(arg0.rooms)
             local0 = createdoor(arg0, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, $00, $05, $FFFFFFFC, $00, $00)
             local0\Field4 = $01
             local0\Field16 = $01
+            local0\Field38 = $01
             arg0\Field14[$00] = local0
             If (i_zone\Field1 = $00) Then
                 local5 = (New forest)

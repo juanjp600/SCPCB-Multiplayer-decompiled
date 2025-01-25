@@ -77,14 +77,22 @@ Type npcs
     Field Field75#
     Field Field76#
     Field Field77#
-    Field Field78%
-    Field Field79%
+    Field Field78#
+    Field Field79#
     Field Field80#
     Field Field81#
-    Field Field82#
-    Field Field83#
+    Field Field82%
+    Field Field83%
     Field Field84#
     Field Field85#
-    Field Field86.mp_player
+    Field Field86#
     Field Field87%
+    Field Field88#
+    Field Field89#
+    Field Field90#
+    Field Field91#
+    Field Field92#
+    Field Field93#
+    Field Field94.mp_player
+    Field Field95%
 End Type

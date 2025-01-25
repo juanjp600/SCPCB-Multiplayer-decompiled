@@ -279,7 +279,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
-                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00)
+                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00, $00)
                             arg0\Field36 = entityx(n_i\Field4\Field3, $01)
                             arg0\Field37 = entityy(n_i\Field4\Field3, $01)
                             arg0\Field38 = entityz(n_i\Field4\Field3, $01)
@@ -420,7 +420,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         pointentity(arg0\Field3, me\Field60, 0.0)
                         If (0.0 >= arg0\Field28) Then
                             local21 = mp_getnpctargetdead(arg0)
-                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00, $00)
                             local10 = createpivot($00)
                             rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                             positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
@@ -458,14 +458,14 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 EndIf
                             Next
                             If (arg0\Field13 = $01) Then
-                                setnpcframe(arg0, 423.0)
+                                setnpcframe(arg0, 423.0, $01)
                                 arg0\Field13 = $02
                             ElseIf (arg0\Field13 = $02) Then
                                 arg0\Field24 = 0.0
                                 If (200.0 < arg0\Field14) Then
                                     animatenpc(arg0, 424.0, 463.0, 0.5, $00)
                                     If (462.9 < arg0\Field14) Then
-                                        setnpcframe(arg0, 78.0)
+                                        setnpcframe(arg0, 78.0, $01)
                                     EndIf
                                 Else
                                     animatenpc(arg0, 78.0, 193.0, 0.2, $00)
@@ -508,7 +508,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 finishwalking(arg0, 488.0, 522.0, (arg0\Field23 * 26.0))
                                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                             ElseIf (arg0\Field13 = $03) Then
-                                setnpcframe(arg0, 350.0)
+                                setnpcframe(arg0, 350.0, $01)
                                 arg0\Field13 = $04
                             ElseIf (arg0\Field13 = $04) Then
                                 animatenpc(arg0, 350.0, 423.0, 0.5, $00)
@@ -646,7 +646,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
-                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00)
+                            playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00, $00)
                             arg0\Field36 = entityx(n_i\Field4\Field3, $01)
                             arg0\Field37 = entityy(n_i\Field4\Field3, $01)
                             arg0\Field38 = entityz(n_i\Field4\Field3, $01)
@@ -854,7 +854,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                 local8 = entitydistancesquared(me\Field60, arg0\Field3)
                 If (0.0 >= arg0\Field28) Then
                     local21 = mp_getnpctargetdead(arg0)
-                    playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                    playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00, $00)
                     local10 = createpivot($00)
                     rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                     positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
@@ -891,7 +891,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     EndIf
                 Next
                 If (arg0\Field13 = $01) Then
-                    setnpcframe(arg0, 423.0)
+                    setnpcframe(arg0, 423.0, $01)
                     arg0\Field13 = $02
                 ElseIf (arg0\Field13 = $02) Then
                     arg0\Field24 = 0.0
@@ -900,7 +900,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         If (462.9 < arg0\Field14) Then
                             loadnpcsound(arg0, "SFX\Character\MTF\TeslaRequest.ogg", $00)
                             playmtfsound(arg0\Field17, arg0)
-                            setnpcframe(arg0, 1175.0)
+                            setnpcframe(arg0, 1175.0, $01)
                         EndIf
                     Else
                         animatenpc(arg0, 1175.0, 1290.0, 0.18, $00)
@@ -1296,7 +1296,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                 Else
                     stopchannel(arg0\Field18)
                     arg0\Field18 = $00
-                    playsoundex(snd_i\Field40[$01], camera, arg0\Field3, 5.0, 1.0, $00)
+                    playsoundex(snd_i\Field40[$01], camera, arg0\Field3, 5.0, 1.0, $00, $00)
                     arg0\Field34 = Null
                     arg0\Field36 = 0.0
                     arg0\Field37 = 0.0
@@ -1329,7 +1329,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         EndIf
                         arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 10.0)
                         If (0.0 >= arg0\Field28) Then
-                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                            playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00, $00)
                             local10 = createpivot($00)
                             rotateentity(local10, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                             positionentity(local10, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
@@ -1342,7 +1342,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                             setemitter(Null, entityx(arg0\Field34\Field3, $00), entityy(arg0\Field34\Field3, $00), entityz(arg0\Field34\Field3, $00), $0F)
                             freeentity(local10)
                             local10 = $00
-                            playsoundex(snd_i\Field15, camera, arg0\Field34\Field3, 5.0, 1.0, $00)
+                            playsoundex(snd_i\Field15, camera, arg0\Field34\Field3, 5.0, 1.0, $00, $00)
                             If (arg0\Field34\Field60 > $00) Then
                                 arg0\Field34\Field60 = (Int max((Float (arg0\Field34\Field60 - rand($05, $0A))), 0.0))
                             Else
@@ -1453,11 +1453,11 @@ Function mp_updatenpctypemtf%(arg0.npcs)
         End Select
         If (0.01 < arg0\Field24) Then
             If ((((505.0 > local11) And (505.0 <= arg0\Field14)) Lor ((521.0 > local11) And (521.0 <= arg0\Field14))) <> 0) Then
-                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
             EndIf
         ElseIf (-0.01 > arg0\Field24) Then
             If ((((521.0 <= local11) And (521.0 > arg0\Field14)) Lor ((505.0 <= local11) And (505.0 > arg0\Field14))) <> 0) Then
-                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
             EndIf
         EndIf
         If (playerroom\Field7\Field6 <> $47) Then

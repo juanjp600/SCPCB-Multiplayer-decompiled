@@ -16,7 +16,7 @@ Function mp_updatenpctype372%(arg0.npcs)
             arg0\Field26 = 0.0
             arg0\Field10 = rnd(20.0, 60.0)
             If (rand($12C, $01) = $01) Then
-                playsoundex(snd_i\Field27[rand($00, $05)], camera, arg0\Field3, 8.0, rnd(0.0, 0.2), $00)
+                playsoundex(snd_i\Field27[rand($00, $05)], camera, arg0\Field3, 8.0, rnd(0.0, 0.2), $00, $00)
             EndIf
         EndIf
     EndIf
@@ -32,7 +32,7 @@ Function mp_updatenpctype372%(arg0.npcs)
             If (rand($1E, $01) = $01) Then
                 If (entityvisible(camera, arg0\Field0) <> 0) Then
                     If (channelplaying(arg0\Field18) = $00) Then
-                        arg0\Field18 = playsoundex(snd_i\Field27[rand($00, $05)], camera, arg0\Field0, 8.0, 0.3, $00)
+                        arg0\Field18 = playsoundex(snd_i\Field27[rand($00, $05)], camera, arg0\Field0, 8.0, 0.3, $00, $00)
                     EndIf
                 EndIf
             EndIf

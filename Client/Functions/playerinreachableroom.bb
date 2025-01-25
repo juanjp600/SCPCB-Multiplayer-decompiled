@@ -4,7 +4,7 @@ Function playerinreachableroom%(arg0%, arg1%)
         Return $00
     EndIf
     If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-        If (1.0 = forest_event\Field2) Then
+        If (20.0 < entityy(me\Field60, $00)) Then
             Return $00
         EndIf
     EndIf

@@ -8,17 +8,15 @@ Function updateitems%()
     Local local6%
     Local local7#
     Local local8#
-    Local local9#
-    Local local10%
-    Local local11#
-    Local local12%
-    Local local13#
+    Local local9%
+    Local local10#
+    Local local11%
+    Local local12#
     catcherrors("UpdateItems()")
-    local8 = (hidedistance * hidedistance)
-    local9 = (local8 * 0.04)
-    local10 = $00
-    local11 = rnd(-0.002, 0.002)
-    local12 = $00
+    local8 = 64.0
+    local9 = $00
+    local10 = rnd(-0.002, 0.002)
+    local11 = $00
     closestitem = Null
     For local0 = Each items
         local0\Field16 = $00
@@ -28,7 +26,7 @@ Function updateitems%()
             If (0.0 >= local0\Field11) Then
                 local0\Field10 = entitydistancesquared(camera, local0\Field2)
                 local0\Field11 = 35.0
-                local0\Field21 = (mp_anyplayernearitem(local0) Lor (local8 > local0\Field10))
+                local0\Field21 = ((local8 > local0\Field10) Lor mp_anyplayernearitem(local0))
             EndIf
             If (local0\Field21 <> 0) Then
                 If (entityhidden(local0\Field2) <> 0) Then
@@ -42,7 +40,7 @@ Function updateitems%()
                     local0\Field24 = $01
                 Else
                     If (0.0 >= local0\Field23) Then
-                        If (linepick(entityx(local0\Field2, $00), entityy(local0\Field2, $00), entityz(local0\Field2, $00), 0.0, -10.0, 0.0, 0.0) <> 0) Then
+                        If (linepick(entityx(local0\Field2, $00), entityy(local0\Field2, $00), entityz(local0\Field2, $00), 0.0, -3.0, 0.0, 0.0) <> 0) Then
                             local0\Field22 = $01
                             local0\Field23 = 35.0
                         Else
@@ -65,12 +63,12 @@ Function updateitems%()
                             local5 = (entityz(local1\Field2, $01) - entityz(local0\Field2, $01))
                             local7 = ((local3 * local3) + (local5 * local5))
                             If (((0.07 > local7) And (0.25 > (Abs local4))) <> 0) Then
-                                local13 = (0.07 - local7)
-                                local3 = (local3 * local13)
-                                local5 = (local5 * local13)
+                                local12 = (0.07 - local7)
+                                local3 = (local3 * local12)
+                                local5 = (local5 * local12)
                                 While (0.001 > ((Abs local3) + (Abs local5)))
-                                    local3 = (local3 + local11)
-                                    local5 = (local5 + local11)
+                                    local3 = (local3 + local10)
+                                    local5 = (local5 + local10)
                                 Wend
                                 translateentity(local1\Field2, local3, 0.0, local5, $00)
                                 translateentity(local0\Field2, (- local3), 0.0, (- local5), $00)
@@ -82,16 +80,16 @@ Function updateitems%()
                 EndIf
                 If (-60.0 > entityy(local0\Field2, $00)) Then
                     removeitem(local0)
-                    local10 = $01
+                    local9 = $01
                 EndIf
             ElseIf (entityhidden(local0\Field2) = $00) Then
                 hideentity(local0\Field2)
             EndIf
         EndIf
-        If (local10 = $00) Then
+        If (local9 = $00) Then
             mp_updateitem(local0)
         EndIf
-        local10 = $00
+        local9 = $00
     Next
     If (((invopen = $00) And (otheropen = Null)) <> 0) Then
         If (closestitem <> Null) Then

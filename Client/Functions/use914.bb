@@ -58,8 +58,8 @@ Function use914%(arg0.items, arg1%, arg2#, arg3#, arg4#)
                     local4\Field10 = 1.0
                     local4\Field12 = 1.0
                     local4\Field17 = loadsound_strict("SFX\SCP\1499\Triggered.ogg")
-                    local4\Field18 = playsoundex(local4\Field17, camera, local4\Field3, 20.0, 1.0, $00)
-                    local4\Field87 = $00
+                    local4\Field18 = playsoundex(local4\Field17, camera, local4\Field3, 20.0, 1.0, $00, $00)
+                    local4\Field95 = $00
             End Select
         Case $40,$41,$42
             Select arg1

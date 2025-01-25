@@ -9,7 +9,7 @@ Function playstepsound%(arg0%)
     If (decalstep = $01) Then
         local0 = $02
     ElseIf (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-        If (1.0 = forest_event\Field2) Then
+        If (20.0 < entityy(me\Field60, $00)) Then
             local0 = $04
         EndIf
     EndIf

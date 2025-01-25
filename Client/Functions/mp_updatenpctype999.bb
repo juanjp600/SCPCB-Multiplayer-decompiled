@@ -30,7 +30,7 @@ Function mp_updatenpctype999%(arg0.npcs)
                 arg0\Field24 = 0.0
                 animatenpc(arg0, clamp(animtime(arg0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                 If (73.9 <= arg0\Field14) Then
-                    setnpcframe(arg0, 1.0)
+                    setnpcframe(arg0, 1.0, $01)
                 EndIf
                 If (rand($32, $01) = $01) Then
                     rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
@@ -88,7 +88,7 @@ Function mp_updatenpctype999%(arg0.npcs)
                     arg0\Field12 = 105.0
                     arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 25.0)
                     If (0.09 > entitydistancesquared(arg0\Field3, local7\Field2)) Then
-                        playsoundex(loadtempsound("SFX\SCP\458\Eating.ogg"), camera, arg0\Field3, 3.0, 0.5, $00)
+                        playsoundex(loadtempsound("SFX\SCP\458\Eating.ogg"), camera, arg0\Field3, 3.0, 0.5, $00, $00)
                         removeitem(local7)
                     EndIf
                 EndIf
@@ -111,7 +111,7 @@ Function mp_updatenpctype999%(arg0.npcs)
                     If (0.001 >= arg0\Field24) Then
                         animatenpc(arg0, clamp(animtime(arg0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                     ElseIf (73.9 <= arg0\Field14) Then
-                        setnpcframe(arg0, 1.0)
+                        setnpcframe(arg0, 1.0, $01)
                     EndIf
                 Else
                     arg0\Field10 = 0.0
@@ -157,7 +157,7 @@ Function mp_updatenpctype999%(arg0.npcs)
                         arg0\Field24 = 0.0
                         animatenpc(arg0, clamp(animtime(arg0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                         If (73.9 <= arg0\Field14) Then
-                            setnpcframe(arg0, 1.0)
+                            setnpcframe(arg0, 1.0, $01)
                         EndIf
                         If (rand($32, $01) = $01) Then
                             rotateentity(arg0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
@@ -169,7 +169,7 @@ Function mp_updatenpctype999%(arg0.npcs)
         End Select
         If (rand($A0, $01) = $01) Then
             If (channelplaying(arg0\Field18) = $00) Then
-                arg0\Field18 = playsoundex(loadtempsound((("SFX\SCP\999\Gurgling" + (Str rand($00, $03))) + ".ogg")), camera, arg0\Field3, 5.0, 0.3, $00)
+                arg0\Field18 = playsoundex(loadtempsound((("SFX\SCP\999\Gurgling" + (Str rand($00, $03))) + ".ogg")), camera, arg0\Field3, 5.0, 0.3, $00, $00)
             EndIf
         EndIf
         If (0.0 < arg0\Field24) Then

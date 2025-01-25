@@ -26,7 +26,7 @@ Function mp_updatenpctype106%(arg0.npcs)
             local2 = $00
         EndIf
         If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-            If (1.0 = forest_event\Field2) Then
+            If (20.0 < entityy(me\Field60, $00)) Then
                 local2 = $00
             EndIf
         EndIf
@@ -89,7 +89,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                         local0 = createdecal($00, arg0\Field36, (arg0\Field37 + 0.005), arg0\Field38, 90.0, rnd(360.0, 0.0), 0.0, 0.05, 0.8, $00, $01, $00, $00, $00)
                         local0\Field4 = 0.001
                         entityparent(local0\Field0, playerroom\Field2, $01)
-                        setnpcframe(arg0, 110.0)
+                        setnpcframe(arg0, 110.0, $01)
                         playsound_strict(snd_i\Field24[$00], $00)
                         arg0\Field11 = 0.0
                         arg0\Field12 = 0.0
@@ -120,12 +120,12 @@ Function mp_updatenpctype106%(arg0.npcs)
                         EndIf
                         If (entityinview(arg0\Field3, mp_getnpctargetcamera(arg0)) <> 0) Then
                             local9 = (4.0 - sqr(local1))
-                            If (arg0\Field79 <> 0) Then
+                            If (arg0\Field83 <> 0) Then
                                 me\Field48 = max(clamp((local9 / 6.0), 0.1, 0.9), me\Field48)
                                 me\Field52 = max(me\Field52, (((sin(((Float millisec) / 20.0)) + 1.0) * 20.0) * max((local9 / 4.0), 0.0)))
                             EndIf
                             If ((millisecs() - arg0\Field29) > $EA60) Then
-                                If (arg0\Field79 <> 0) Then
+                                If (arg0\Field83 <> 0) Then
                                     me\Field52 = 40.0
                                 EndIf
                                 playsound_strict(snd_i\Field47[$06], $00)
@@ -199,7 +199,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                         EndIf
                         If (100.0 > local1) Then
                             If (((286.0 >= local11) And (286.0 < arg0\Field14)) <> 0) Then
-                                playsoundex(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field3, 6.0, rnd(0.8, 1.0), $00)
+                                playsoundex(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field3, 6.0, rnd(0.8, 1.0), $00, $00)
                                 If (playerroom\Field7\Field6 = $47) Then
                                     local0 = createdecal($00, (entityx(arg0\Field3, $01) + (cos(entityyaw(arg0\Field3, $00)) * 0.1)), (playerroom\Field4 + 0.005), (entityz(arg0\Field3, $01) - (sin(entityyaw(arg0\Field3, $00)) * 0.1)), 90.0, rnd(360.0, 0.0), 0.0, 0.1, 0.8, $00, $01, $00, $00, $00)
                                     local0\Field4 = -0.00002
@@ -217,7 +217,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                                     local3 = $00
                                 EndIf
                             ElseIf (((311.0 >= local11) And (311.0 < arg0\Field14)) <> 0) Then
-                                playsoundex(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field3, 6.0, rnd(0.8, 1.0), $00)
+                                playsoundex(stepsfx($02, $00, rand($00, $02)), camera, arg0\Field3, 6.0, rnd(0.8, 1.0), $00, $00)
                                 If (playerroom\Field7\Field6 = $47) Then
                                     local0 = createdecal($00, (entityx(arg0\Field3, $01) - (cos(entityyaw(arg0\Field3, $00)) * 0.1)), (playerroom\Field4 + 0.005), (entityz(arg0\Field3, $01) + (sin(entityyaw(arg0\Field3, $00)) * 0.1)), 90.0, rnd(360.0, 0.0), 0.0, 0.1, 0.8, $00, $01, $00, $00, $00)
                                     local0\Field4 = -0.00002
@@ -246,11 +246,11 @@ Function mp_updatenpctype106%(arg0.npcs)
                         pointentity(arg0\Field0, me\Field60, 0.0)
                         rotateentity(arg0\Field3, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field3, $00), (10.0 - (Float selecteddifficulty\Field4))), 0.0, $00)
                         If (110.0 = ceil(arg0\Field14)) Then
-                            If (((arg0\Field79 And (0.0 = me\Field0)) And (chs\Field0 = $00)) <> 0) Then
+                            If (((arg0\Field83 And (0.0 = me\Field0)) And (chs\Field0 = $00)) <> 0) Then
                                 playsound_strict(snd_i\Field51[$01], $00)
                                 playsound_strict(snd_i\Field47[$05], $00)
                             EndIf
-                            If ((arg0\Field79 And chs\Field0) = $00) Then
+                            If ((arg0\Field83 And chs\Field0) = $00) Then
                                 If (playerroom\Field7\Field6 = $69) Then
                                     msg\Field2 = format(getlocalstring("death", "106.dimension"), subjectname, "%s")
                                     kill($01, $01, $00, $01)
@@ -258,7 +258,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                                 ElseIf (playerroom\Field7\Field6 = $47) Then
                                     msg\Field2 = format(getlocalstring("death", "106.gatea"), subjectname, "%s")
                                     kill($01, $01, $00, $01)
-                                ElseIf ((arg0\Field79 And (0.0 = me\Field0)) <> 0) Then
+                                ElseIf ((arg0\Field83 And (0.0 = me\Field0)) <> 0) Then
                                     playsound_strict(snd_i\Field45[$03], $01)
                                     showentity(me\Field61)
                                     positionentity(me\Field61, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
@@ -287,8 +287,8 @@ Function mp_updatenpctype106%(arg0.npcs)
                                     pointentity(arg0\Field3, me\Field60, 0.0)
                                     rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $00), 0.0, $00)
                                     moveentity(arg0\Field3, 0.0, 0.0, -2.0)
-                                    playsoundex(snd_i\Field45[$03], camera, arg0\Field3, 10.0, 1.0, $01)
-                                    arg0\Field20 = playsoundex(snd_i\Field45[rand($06, $08)], camera, arg0\Field3, 10.0, 1.0, $00)
+                                    playsoundex(snd_i\Field45[$03], camera, arg0\Field3, 10.0, 1.0, $01, $00)
+                                    arg0\Field20 = playsoundex(snd_i\Field45[rand($06, $08)], camera, arg0\Field3, 10.0, 1.0, $00, $00)
                                     arg0\Field41 = 0.0
                                     arg0\Field28 = (700.0 / ((Float selecteddifficulty\Field4) + 1.0))
                                 EndIf
@@ -330,8 +330,8 @@ Function mp_updatenpctype106%(arg0.npcs)
                         EndIf
                         freeentity(local3)
                         local3 = $00
-                        arg0\Field18 = playsoundex(loadtempsound("SFX\Ending\GateA\106Retreat.ogg"), camera, arg0\Field0, 10.0, 1.0, $01)
-                        setnpcframe(arg0, 259.0)
+                        arg0\Field18 = playsoundex(loadtempsound("SFX\Ending\GateA\106Retreat.ogg"), camera, arg0\Field0, 10.0, 1.0, $01, $00)
+                        setnpcframe(arg0, 259.0, $01)
                     Else
                         animatenpc(arg0, 259.0, 111.0, -0.15, $00)
                         If (150.0 >= arg0\Field14) Then
@@ -345,7 +345,7 @@ Function mp_updatenpctype106%(arg0.npcs)
             End Select
             If (1.0 < arg0\Field10) Then
                 If (rand($1F4, $01) = $01) Then
-                    playsoundex(snd_i\Field45[rand($00, $02)], camera, arg0\Field3, 10.0, 1.0, $00)
+                    playsoundex(snd_i\Field45[rand($00, $02)], camera, arg0\Field3, 10.0, 1.0, $00, $00)
                 EndIf
                 arg0\Field18 = loopsoundex(snd_i\Field45[$04], arg0\Field18, camera, arg0\Field3, 8.0, 0.8, $01)
             EndIf

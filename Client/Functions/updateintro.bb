@@ -82,7 +82,7 @@ Function updateintro%()
                     local0\Field1\Field15[$07] = createnpc($13, tformedx(), tformedy(), tformedz())
                     local0\Field1\Field15[$07]\Field10 = -1.0
                     local0\Field1\Field15[$07]\Field17 = loadsound_strict("SFX\Room\Intro\Scientist\Conversation.ogg")
-                    setnpcframe(local0\Field1\Field15[$07], 182.0)
+                    setnpcframe(local0\Field1\Field15[$07], 182.0, $01)
                     changenpctextureid(local0\Field1\Field15[$07], $02)
                     hideentity(local0\Field1\Field15[$07]\Field0)
                     tformpoint(-3800.0, 250.0, -4088.0, local0\Field1\Field2, $00)
@@ -110,7 +110,7 @@ Function updateintro%()
                     local0\Field1\Field15[$0C] = createnpc($13, tformedx(), tformedy(), tformedz())
                     local0\Field1\Field15[$0C]\Field10 = -1.0
                     rotateentity(local0\Field1\Field15[$0C]\Field3, 0.0, 154.0, 0.0, $00)
-                    setnpcframe(local0\Field1\Field15[$0C], 357.0)
+                    setnpcframe(local0\Field1\Field15[$0C], 357.0, $01)
                     changenpctextureid(local0\Field1\Field15[$0C], $09)
                     hideentity(local0\Field1\Field15[$0C]\Field0)
                     For local8 = $08 To $0B Step $01
@@ -174,7 +174,7 @@ Function updateintro%()
                                     ElseIf (((10.8 > (local0\Field3 - local10)) And (10.8 <= local0\Field3)) <> 0) Then
                                         playsound_strict(snd_i\Field49[$01], $01)
                                     ElseIf (((13.0 > (local0\Field3 - local10)) And (13.0 <= local0\Field3)) <> 0) Then
-                                        playsoundex(stepsfx($00, $00, $00), camera, me\Field60, 8.0, 0.5, $00)
+                                        playsoundex(stepsfx($00, $00, $00), camera, me\Field60, 8.0, 0.5, $00, $00)
                                     EndIf
                                     local14 = clamp((local0\Field3 / 5.0), 0.0, 1.0)
                                     local14 = ((3.0 - (2.0 * local14)) * (local14 * local14))
@@ -231,7 +231,7 @@ Function updateintro%()
                                 EndIf
                                 If (150.0 <= local0\Field3) Then
                                     local0\Field1\Field15[$03]\Field17 = loadsound_strict("SFX\Room\Intro\Guard\Ulgrin\BeforeDoorOpen.ogg")
-                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                     local0\Field2 = 2.0
                                 EndIf
                             EndIf
@@ -239,7 +239,7 @@ Function updateintro%()
                             lightrenderdistance = 16.0
                             If (channelplaying(local0\Field1\Field15[$03]\Field18) = $00) Then
                                 loadnpcsound(local0\Field1\Field15[$03], "SFX\Room\Intro\Guard\Ulgrin\ExitCell.ogg", $00)
-                                local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                 For local8 = $03 To $05 Step $01
                                     local0\Field1\Field15[local8]\Field10 = 9.0
                                     showentity(local0\Field1\Field15[local8]\Field0)
@@ -253,7 +253,7 @@ Function updateintro%()
                                     stopchannel(local0\Field1\Field15[$03]\Field18)
                                     local0\Field1\Field15[$03]\Field18 = $00
                                     loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\Escort" + (Str rand($00, $01))) + ".ogg"), $00)
-                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                     openclosedoor(local0\Field1\Field14[$04], $01, $00)
                                 EndIf
                                 If (channelplaying(local0\Field1\Field15[$03]\Field18) = $00) Then
@@ -272,10 +272,10 @@ Function updateintro%()
                                 local0\Field3 = min((local0\Field3 + local10), 630.0)
                                 If (((300.0 > (local0\Field3 - local10)) And (300.0 <= local0\Field3)) <> 0) Then
                                     loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\ExitCellRefuse" + (Str rand($00, $01))) + ".ogg"), $00)
-                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                 ElseIf (((500.0 > (local0\Field3 - local10)) And (500.0 <= local0\Field3)) <> 0) Then
                                     loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\CellGas" + (Str rand($00, $01))) + ".ogg"), $00)
-                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                    local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                 ElseIf (630.0 <= local0\Field3) Then
                                     positionentity(me\Field60, entityx(me\Field60, $00), entityy(me\Field60, $00), min(entityz(me\Field60, $00), (local0\Field1\Field5 + 1.914062)), $00)
                                     If (local0\Field1\Field14[$04]\Field6 <> 0) Then
@@ -311,7 +311,7 @@ Function updateintro%()
                                             local0\Field1\Field15[local8]\Field18 = $00
                                         Next
                                         loadnpcsound(local0\Field1\Field15[$03], "SFX\Room\Intro\Guard\Ulgrin\EscortRun.ogg", $00)
-                                        local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                        local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                         local0\Field1\Field15[$03]\Field11 = 1.0
                                     EndIf
                                     local0\Field1\Field15[$03]\Field36 = entityx(me\Field60, $00)
@@ -394,7 +394,7 @@ Function updateintro%()
                                     If (local0\Field13 = "") Then
                                         If (channelplaying(local0\Field1\Field15[$03]\Field18) = $00) Then
                                             For local8 = $03 To $04 Step $01
-                                                local0\Field1\Field15[local8]\Field18 = playsoundex(local0\Field1\Field15[local8]\Field19, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                                local0\Field1\Field15[local8]\Field18 = playsoundex(local0\Field1\Field15[local8]\Field19, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                             Next
                                         Else
                                             For local8 = $03 To $04 Step $01
@@ -418,7 +418,7 @@ Function updateintro%()
                                 EndIf
                             Else
                                 If (channelplaying(local0\Field1\Field15[$07]\Field18) = $00) Then
-                                    local0\Field1\Field15[$07]\Field18 = playsoundex(local0\Field1\Field15[$07]\Field17, camera, local0\Field1\Field15[$07]\Field3, 7.0, 1.0, $01)
+                                    local0\Field1\Field15[$07]\Field18 = playsoundex(local0\Field1\Field15[$07]\Field17, camera, local0\Field1\Field15[$07]\Field3, 7.0, 1.0, $01, $00)
                                 EndIf
                                 If ((local0\Field1\Field5 - 0.25) < entityz(local0\Field1\Field15[$06]\Field3, $00)) Then
                                     rotateentity(local0\Field1\Field15[$06]\Field3, 0.0, curveangle(-90.0, entityyaw(local0\Field1\Field15[$06]\Field3, $00), 15.0), 0.0, $00)
@@ -479,7 +479,7 @@ Function updateintro%()
                                         Next
                                         local0\Field1\Field15[$03]\Field12 = 0.0
                                         loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\EscortDone" + (Str rand($00, $04))) + ".ogg"), $00)
-                                        local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                        local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                         local0\Field1\Field15[$04]\Field10 = 9.0
                                         createhintmsg(getlocalstring("msg", "enterchmbr"), 6.0, $00)
                                         For local8 = $02 To $03 Step $01
@@ -639,19 +639,19 @@ Function updateintro%()
                                 ElseIf (((11145.0 <= local0\Field4) And (11145.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     playsound_strict(snd_i\Field33[rand($00, $02)], $00)
                                     local0\Field1\Field15[$01]\Field17 = loadsound_strict("SFX\Room\Intro\ClassD\DontLikeThis.ogg")
-                                    local0\Field1\Field15[$01]\Field18 = playsoundex(local0\Field1\Field15[$01]\Field17, camera, local0\Field1\Field15[$01]\Field3, 10.0, 1.0, $01)
+                                    local0\Field1\Field15[$01]\Field18 = playsoundex(local0\Field1\Field15[$01]\Field17, camera, local0\Field1\Field15[$01]\Field3, 10.0, 1.0, $01, $00)
                                 ElseIf (((11561.0 <= local0\Field4) And (11561.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     playsound_strict(snd_i\Field49[$02], $00)
                                     local0\Field1\Field15[$02]\Field17 = loadsound_strict("SFX\Room\Intro\ClassD\Breen.ogg")
-                                    local0\Field1\Field15[$02]\Field18 = playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 10.0, 1.0, $01)
-                                    setnpcframe(local0\Field1\Field15[$06], 357.0)
+                                    local0\Field1\Field15[$02]\Field18 = playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 10.0, 1.0, $01, $00)
+                                    setnpcframe(local0\Field1\Field15[$06], 357.0, $01)
                                     local0\Field4 = 14000.0
                                 EndIf
                                 If (((10440.0 <= local0\Field4) And (11561.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     If (entityx(local0\Field1\Field14[$01]\Field2, $01) > entityx(me\Field60, $00)) Then
                                         If (12.0 <> local0\Field1\Field15[$00]\Field10) Then
                                             local0\Field1\Field15[$00]\Field17 = loadsound_strict((("SFX\Room\Intro\Guard\Balcony\Alert" + (Str rand($00, $01))) + ".ogg"))
-                                            local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 15.0, 1.0, $01)
+                                            local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 15.0, 1.0, $01, $00)
                                             local0\Field1\Field15[$00]\Field11 = 1.0
                                             local0\Field1\Field15[$00]\Field10 = 12.0
                                         EndIf
@@ -695,7 +695,7 @@ Function updateintro%()
                                     ElseIf (14065.0 > local0\Field4) Then
                                         me\Field10 = -10.0
                                         If (local0\Field1\Field15[$01]\Field50 = $00) Then
-                                            playsoundex(snd_i\Field53[rand($00, $02)], camera, n_i\Field2\Field3, 10.0, 1.0, $00)
+                                            playsoundex(snd_i\Field53[rand($00, $02)], camera, n_i\Field2\Field3, 10.0, 1.0, $00, $00)
                                             playsound_strict(snd_i\Field49[$04], $00)
                                             me\Field24 = 3.0
                                             local0\Field1\Field15[$01]\Field50 = $01
@@ -709,14 +709,14 @@ Function updateintro%()
                                         stopchannel(local0\Field1\Field15[$00]\Field18)
                                         local0\Field1\Field15[$00]\Field18 = $00
                                         loadnpcsound(local0\Field1\Field15[$00], (("SFX\Room\Intro\Guard\Balcony\WTF" + (Str rand($00, $01))) + ".ogg"), $00)
-                                        local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01)
+                                        local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01, $00)
                                         local0\Field1\Field15[$00]\Field10 = 12.0
                                         local0\Field1\Field15[$00]\Field11 = 0.0
                                         local0\Field1\Field15[$00]\Field15 = 180.0
                                         local0\Field4 = 14065.0
                                     ElseIf (local0\Field1\Field15[$02]\Field17 = $00) Then
                                         loadnpcsound(local0\Field1\Field15[$02], "SFX\Room\Intro\ClassD\Gasp.ogg", $00)
-                                        playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 8.0, 1.0, $01)
+                                        playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 8.0, 1.0, $01, $00)
                                     EndIf
                                     If (((14080.0 < local0\Field4) And (14080.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                         playsound_strict(snd_i\Field33[rand($00, $02)], $00)
@@ -728,7 +728,7 @@ Function updateintro%()
                                         If (local0\Field1\Field15[$02]\Field50 = $00) Then
                                             freesound_strict(local0\Field1\Field15[$02]\Field17)
                                             local0\Field1\Field15[$02]\Field17 = $00
-                                            playsoundex(snd_i\Field53[$01], camera, local0\Field1\Field15[$02]\Field3, 8.0, 1.0, $00)
+                                            playsoundex(snd_i\Field53[$01], camera, local0\Field1\Field15[$02]\Field3, 8.0, 1.0, $00, $00)
                                             local0\Field1\Field15[$02]\Field50 = $01
                                         EndIf
                                         positionentity(n_i\Field2\Field3, entityx(local0\Field1\Field15[$02]\Field0, $00), entityy(n_i\Field2\Field3, $00), entityz(local0\Field1\Field15[$02]\Field0, $00), $00)
@@ -736,7 +736,7 @@ Function updateintro%()
                                         pointentity(n_i\Field2\Field3, me\Field60, 0.0)
                                     EndIf
                                     If (14130.0 > local0\Field4) Then
-                                        setnpcframe(local0\Field1\Field15[$02], 50.0)
+                                        setnpcframe(local0\Field1\Field15[$02], 50.0, $01)
                                         me\Field10 = -10.0
                                         me\Field50 = 1.0
                                     Else
@@ -775,7 +775,7 @@ Function updateintro%()
                                         stopchannel(local0\Field1\Field15[$00]\Field18)
                                         local0\Field1\Field15[$00]\Field18 = $00
                                         loadnpcsound(local0\Field1\Field15[$00], "SFX\Room\Intro\Guard\Balcony\OhShit.ogg", $00)
-                                        local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01)
+                                        local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01, $00)
                                         n_i\Field2\Field15 = 0.0
                                         n_i\Field2\Field26 = 1.0
                                         pointentity(local0\Field1\Field15[$00]\Field3, n_i\Field2\Field0, 0.0)
@@ -804,7 +804,7 @@ Function updateintro%()
                                         freesound_strict(local0\Field1\Field15[$00]\Field17)
                                         local0\Field1\Field15[$00]\Field17 = $00
                                     EndIf
-                                    local0\Field1\Field15[$00]\Field18 = playsoundex(snd_i\Field53[$01], camera, local0\Field1\Field15[$00]\Field3, 8.0, 1.0, $00)
+                                    local0\Field1\Field15[$00]\Field18 = playsoundex(snd_i\Field53[$01], camera, local0\Field1\Field15[$00]\Field3, 8.0, 1.0, $00, $00)
                                     n_i\Field2\Field26 = 0.0
                                     playsound_strict(loadsound_strict("SFX\Room\Intro\173Vent.ogg"), $00)
                                     positionentity(n_i\Field2\Field3, 0.0, -500.0, 0.0, $00)
@@ -893,7 +893,7 @@ Function updateintro%()
                                                 local0\Field1\Field15[local8]\Field12 = 1.0
                                                 local0\Field1\Field15[local8]\Field28 = 210.0
                                             Next
-                                            local0\Field1\Field15[$05]\Field18 = playsoundex(loadtempsound("SFX\Room\Intro\Guard\PlayerEscape.ogg"), camera, local0\Field1\Field15[$05]\Field3, 10.0, 1.0, $01)
+                                            local0\Field1\Field15[$05]\Field18 = playsoundex(loadtempsound("SFX\Room\Intro\Guard\PlayerEscape.ogg"), camera, local0\Field1\Field15[$05]\Field3, 10.0, 1.0, $01, $00)
                                         EndIf
                                     EndIf
                                 EndIf
@@ -919,7 +919,7 @@ Function updateintro%()
                                                 local0\Field1\Field15[local8]\Field18 = $00
                                             Next
                                             loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\EscortRefuse" + (Str rand($00, $01))) + ".ogg"), $00)
-                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                             local0\Field1\Field15[$03]\Field11 = 3.0
                                             local0\Field1\Field15[$03]\Field12 = 50.0
                                         ElseIf (3.0 = local0\Field1\Field15[$03]\Field11) Then
@@ -928,7 +928,7 @@ Function updateintro%()
                                                 local0\Field1\Field15[local8]\Field18 = $00
                                             Next
                                             loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\EscortPissedOff" + (Str rand($00, $01))) + ".ogg"), $00)
-                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                             local0\Field1\Field15[$03]\Field11 = 4.0
                                             local0\Field1\Field15[$03]\Field12 = 50.0
                                         ElseIf (4.0 = local0\Field1\Field15[$03]\Field11) Then
@@ -937,7 +937,7 @@ Function updateintro%()
                                                 local0\Field1\Field15[local8]\Field18 = $00
                                             Next
                                             loadnpcsound(local0\Field1\Field15[$03], (("SFX\Room\Intro\Guard\Ulgrin\EscortKill" + (Str rand($00, $01))) + ".ogg"), $00)
-                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01)
+                                            local0\Field1\Field15[$03]\Field18 = playsoundex(local0\Field1\Field15[$03]\Field17, camera, local0\Field1\Field15[$03]\Field3, 10.0, 1.0, $01, $00)
                                             local0\Field1\Field15[$03]\Field11 = 5.0
                                             local0\Field1\Field15[$03]\Field12 = 225.0
                                         ElseIf (5.0 = local0\Field1\Field15[$03]\Field11) Then
@@ -953,7 +953,7 @@ Function updateintro%()
                             ElseIf (5.0 = local0\Field2) Then
                                 If (1.0 <> local0\Field1\Field15[$00]\Field10) Then
                                     loadnpcsound(local0\Field1\Field15[$00], (("SFX\Room\Intro\Guard\Balcony\WTF" + (Str rand($00, $01))) + ".ogg"), $00)
-                                    local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01)
+                                    local0\Field1\Field15[$00]\Field18 = playsoundex(local0\Field1\Field15[$00]\Field17, camera, local0\Field1\Field15[$00]\Field3, 20.0, 1.0, $01, $00)
                                     local0\Field1\Field15[$00]\Field10 = 1.0
                                     local0\Field1\Field15[$00]\Field11 = 10.0
                                     local0\Field1\Field15[$00]\Field12 = 1.0

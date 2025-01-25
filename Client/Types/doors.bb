@@ -37,4 +37,7 @@ Type doors
     Field Field35%
     Field Field36%
     Field Field37#
+    Field Field38%
+    Field Field39%
+    Field Field40#
 End Type

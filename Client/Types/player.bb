@@ -61,8 +61,9 @@ Type player
     Field Field59%
     Field Field60%
     Field Field61%
-    Field Field62#
-    Field Field63%
+    Field Field62%
+    Field Field63#
     Field Field64%
     Field Field65%
+    Field Field66%
 End Type

@@ -6,8 +6,8 @@ Function mp_server_senddoorsdata%()
             mp_writebyte($06)
             mp_writebyte($01)
             For local1 = Each doors
-                If (((local1\Field29 <> Null) Lor (625.0 > distancesquared(entityx(local1\Field2, $01), local0\Field7, entityy(local1\Field2, $01), local0\Field8, entityz(local1\Field2, $01), local0\Field9))) <> 0) Then
-                    mp_writeshort(local1\Field36)
+                If ((((local1\Field29 <> Null) Lor (625.0 > distancesquared(entityx(local1\Field2, $01), local0\Field7, entityy(local1\Field2, $01), local0\Field8, entityz(local1\Field2, $01), local0\Field9))) And (local1\Field38 = $00)) <> 0) Then
+                    mp_writeshort(local1\Field39)
                     mp_writebyte((Int ((((Float (((local1\Field6 + (local1\Field4 Shl $01)) + (local1\Field33 Shl $02)) + ((local1\Field34 <> $00) Shl $03))) + (max((Float (local1\Field34 - $01)), 0.0) * 16.0)) + (Float (local1\Field35 Shl $05))) + (Float (local1\Field27 Shl $06)))))
                     mp_writebyte((local1\Field28 + (local1\Field31 Shl $01)))
                 EndIf

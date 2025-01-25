@@ -5,7 +5,7 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     mp_menu\Field0 = arg0
     mp_menu\Field1 = arg1
     local0 = blitz_mp_readbyte0(arg2)
-    If (local0 <> $04) Then
+    If (local0 <> $08) Then
         Return $01
     EndIf
     local1 = blitz_mp_readbyte0(arg2)

@@ -109,7 +109,7 @@ Function loadgamequick%(arg0$)
     me\Field38 = 0.0
     me\Field22 = 0.0
     me\Field30 = 0.0
-    me\Field62 = 0.0
+    me\Field63 = 0.0
     me\Field0 = 0.0
     me\Field4 = 0.0
     me\Field3 = 0.0
@@ -153,8 +153,8 @@ Function loadgamequick%(arg0$)
     me\Field33 = readfloat(local20)
     me\Field34 = readfloat(local20)
     msg\Field2 = readstring(local20)
-    me\Field63 = readint(local20)
-    me\Field64 = readbyte(local20)
+    me\Field64 = readint(local20)
+    me\Field65 = readbyte(local20)
     me\Field26 = readfloat(local20)
     me\Field25 = readbyte(local20)
     me\Field21 = readfloat(local20)
@@ -311,10 +311,7 @@ Function loadgamequick%(arg0$)
         If (0.0 < local1\Field61) Then
             scaleentity(local1\Field0, local1\Field61, local1\Field61, local1\Field61, $00)
         EndIf
-        local1\Field62 = readbyte(local20)
-        If (local1\Field62 > $00) Then
-            changenpctextureid(local1, (local1\Field62 - $01))
-        EndIf
+        changenpctextureid(local1, (readbyte(local20) - $01))
         local1\Field43 = readbyte(local20)
     Next
     For local1 = Each npcs

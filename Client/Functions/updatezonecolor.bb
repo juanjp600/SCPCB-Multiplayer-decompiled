@@ -35,7 +35,7 @@ Function updatezonecolor%()
             setzonecolor("000000000", "030030030")
         EndIf
     ElseIf (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-        If (1.0 = forest_event\Field2) Then
+        If (20.0 < entityy(me\Field60, $00)) Then
             If (0.0 = forest_event\Field5) Then
                 setzonecolor("098133162", "030030030")
                 fog\Field0 = 8.0
@@ -86,7 +86,7 @@ Function updatezonecolor%()
         Select wi\Field5
             Case $00
                 If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                    If (1.0 = forest_event\Field2) Then
+                    If (20.0 < entityy(me\Field60, $00)) Then
                         local3 = 200.0
                         local4 = 200.0
                         local5 = 200.0

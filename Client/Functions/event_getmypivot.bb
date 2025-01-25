@@ -1,4 +1,4 @@
 Function event_getmypivot%()
-    Return event_prevplayercollider
+    Return getrealcollider()
     Return $00
 End Function

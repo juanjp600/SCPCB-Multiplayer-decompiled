@@ -11,8 +11,6 @@ Function initializeserver%(arg0%)
         setnetworklimiter($400)
         ue_server\Field0 = $01
         mp_initvoice($FFFFFFFF, $BB80, $FFFFFC18, $800)
-        ue_server\Field11 = $01
-        ue_server\Field4 = "SCP CB UERM COOP Session"
         ue_server\Field9 = $01
         ue_server\Field8 = $80
         senddebuglog((("Hosted at " + (Str udpstreamport(ue_server\Field3))) + " port"))

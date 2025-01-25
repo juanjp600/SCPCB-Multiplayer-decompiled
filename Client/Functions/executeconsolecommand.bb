@@ -361,8 +361,10 @@ Function executeconsolecommand%(arg0$)
             local11 = $00
             For local7 = Each itemtemplates
                 If ((((lower(local7\Field1) = local14) Lor (lower(local7\Field0) = local14)) Lor ((Str local7\Field2) = local14)) <> 0) Then
-                    local4 = createitem(local7\Field1, local7\Field2, entityx(me\Field60, $00), entityy(camera, $01), entityz(me\Field60, $00), $00, $00, $00, 1.0, $00)
-                    entitytype(local4\Field2, $03, $00)
+                    If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
+                        local4 = createitem(local7\Field1, local7\Field2, entityx(me\Field60, $00), entityy(camera, $01), entityz(me\Field60, $00), $00, $00, $00, 1.0, $00)
+                        entitytype(local4\Field2, $03, $00)
+                    EndIf
                     createconsolemsg(format(getlocalstring("console", "si.success"), local7\Field0, "%s"), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                     local11 = $01
                     Exit
@@ -666,15 +668,15 @@ Function executeconsolecommand%(arg0$)
                 createconsolemsg(getlocalstring("console", "god.off"), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             EndIf
         Case "revive","undead","resurrect"
+            If (mp_getsocket() <> $00) Then
+                mp_respawnplayer(ue_players[mp_getmyindex()])
+            EndIf
             resetnegativestats($01)
             If (t\Field3[$0A] <> $00) Then
                 freeentity(t\Field3[$0A])
                 t\Field3[$0A] = $00
             EndIf
             me\Field9 = $01
-            If (mp_getsocket() <> $00) Then
-                mp_respawnplayer(ue_players[mp_getmyindex()])
-            EndIf
         Case "noclip","fly"
             local14 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
             Select local14

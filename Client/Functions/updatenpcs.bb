@@ -75,7 +75,7 @@ Function updatenpcs%()
     catcherrors("UpdateNPCs()")
     For local0 = Each npcs
         local0\Field59 = isinfacility(entityy(local0\Field3, $00))
-        local0\Field79 = $01
+        local0\Field83 = $01
         Select local0\Field4
             Case $07
                 If (((3.0 <> local0\Field26) And (isplayeroutsidefacility() = $00)) <> 0) Then
@@ -126,7 +126,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (2.25 > local13) Then
                                     If (rand($2BC, $01) = $01) Then
-                                        playsoundex(snd_i\Field46[rand($00, $02)], camera, local0\Field0, 10.0, 1.0, $00)
+                                        playsoundex(snd_i\Field46[rand($00, $02)], camera, local0\Field0, 10.0, 1.0, $00, $00)
                                     EndIf
                                     If (((2.0 < local0\Field30) And local39) <> 0) Then
                                         me\Field52 = 40.0
@@ -299,7 +299,7 @@ Function updatenpcs%()
                         local45 = $00
                     EndIf
                     If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                        If (1.0 = forest_event\Field2) Then
+                        If (20.0 < entityy(me\Field60, $00)) Then
                             local45 = $00
                         EndIf
                     EndIf
@@ -362,7 +362,7 @@ Function updatenpcs%()
                                     local3 = createdecal($00, local0\Field36, (local0\Field37 + 0.005), local0\Field38, 90.0, rnd(360.0, 0.0), 0.0, 0.05, 0.8, $00, $01, $00, $00, $00)
                                     local3\Field4 = 0.001
                                     entityparent(local3\Field0, playerroom\Field2, $01)
-                                    setnpcframe(local0, 110.0)
+                                    setnpcframe(local0, 110.0, $01)
                                     playsound_strict(snd_i\Field24[$00], $00)
                                     local0\Field11 = 0.0
                                     local0\Field12 = 0.0
@@ -472,7 +472,7 @@ Function updatenpcs%()
                                     EndIf
                                     If (100.0 > local13) Then
                                         If (((286.0 >= local21) And (286.0 < local0\Field14)) <> 0) Then
-                                            playsoundex(stepsfx($02, $00, rand($00, $02)), camera, local0\Field3, 6.0, rnd(0.8, 1.0), $00)
+                                            playsoundex(stepsfx($02, $00, rand($00, $02)), camera, local0\Field3, 6.0, rnd(0.8, 1.0), $00, $00)
                                             If (playerroom\Field7\Field6 = $47) Then
                                                 local3 = createdecal($00, (entityx(local0\Field3, $01) + (cos(entityyaw(local0\Field3, $00)) * 0.1)), (playerroom\Field4 + 0.005), (entityz(local0\Field3, $01) - (sin(entityyaw(local0\Field3, $00)) * 0.1)), 90.0, rnd(360.0, 0.0), 0.0, 0.1, 0.8, $00, $01, $00, $00, $00)
                                                 local3\Field4 = -0.00002
@@ -490,7 +490,7 @@ Function updatenpcs%()
                                                 local26 = $00
                                             EndIf
                                         ElseIf (((311.0 >= local21) And (311.0 < local0\Field14)) <> 0) Then
-                                            playsoundex(stepsfx($02, $00, rand($00, $02)), camera, local0\Field3, 6.0, rnd(0.8, 1.0), $00)
+                                            playsoundex(stepsfx($02, $00, rand($00, $02)), camera, local0\Field3, 6.0, rnd(0.8, 1.0), $00, $00)
                                             If (playerroom\Field7\Field6 = $47) Then
                                                 local3 = createdecal($00, (entityx(local0\Field3, $01) - (cos(entityyaw(local0\Field3, $00)) * 0.1)), (playerroom\Field4 + 0.005), (entityz(local0\Field3, $01) + (sin(entityyaw(local0\Field3, $00)) * 0.1)), 90.0, rnd(360.0, 0.0), 0.0, 0.1, 0.8, $00, $01, $00, $00, $00)
                                                 local3\Field4 = -0.00002
@@ -558,8 +558,8 @@ Function updatenpcs%()
                                                 pointentity(local0\Field3, me\Field60, 0.0)
                                                 rotateentity(local0\Field3, 0.0, entityyaw(local0\Field3, $00), 0.0, $00)
                                                 moveentity(local0\Field3, 0.0, 0.0, -2.0)
-                                                playsoundex(snd_i\Field45[$03], camera, local0\Field3, 10.0, 1.0, $01)
-                                                local0\Field20 = playsoundex(snd_i\Field45[rand($06, $08)], camera, local0\Field3, 10.0, 1.0, $00)
+                                                playsoundex(snd_i\Field45[$03], camera, local0\Field3, 10.0, 1.0, $01, $00)
+                                                local0\Field20 = playsoundex(snd_i\Field45[rand($06, $08)], camera, local0\Field3, 10.0, 1.0, $00, $00)
                                                 local0\Field41 = 0.0
                                                 local0\Field28 = (700.0 / ((Float selecteddifficulty\Field4) + 1.0))
                                             EndIf
@@ -601,8 +601,8 @@ Function updatenpcs%()
                                     EndIf
                                     freeentity(local26)
                                     local26 = $00
-                                    local0\Field18 = playsoundex(loadtempsound("SFX\Ending\GateA\106Retreat.ogg"), camera, local0\Field0, 10.0, 1.0, $01)
-                                    setnpcframe(local0, 259.0)
+                                    local0\Field18 = playsoundex(loadtempsound("SFX\Ending\GateA\106Retreat.ogg"), camera, local0\Field0, 10.0, 1.0, $01, $00)
+                                    setnpcframe(local0, 259.0, $01)
                                 Else
                                     animatenpc(local0, 259.0, 111.0, -0.15, $00)
                                     If (150.0 >= local0\Field14) Then
@@ -616,7 +616,7 @@ Function updatenpcs%()
                         End Select
                         If (1.0 < local0\Field10) Then
                             If (rand($1F4, $01) = $01) Then
-                                playsoundex(snd_i\Field45[rand($00, $02)], camera, local0\Field3, 10.0, 1.0, $00)
+                                playsoundex(snd_i\Field45[rand($00, $02)], camera, local0\Field3, 10.0, 1.0, $00, $00)
                             EndIf
                             local0\Field18 = loopsoundex(snd_i\Field45[$04], local0\Field18, camera, local0\Field3, 8.0, 0.8, $01)
                         EndIf
@@ -690,7 +690,7 @@ Function updatenpcs%()
                                 If (-1.0 = local0\Field12) Then
                                     animatenpc(local0, 936.0, 1263.0, 0.1, $00)
                                     If (1262.9 <= local0\Field14) Then
-                                        setnpcframe(local0, 312.0)
+                                        setnpcframe(local0, 312.0, $01)
                                         local0\Field12 = 0.0
                                         local0\Field10 = 1.0
                                     EndIf
@@ -710,7 +710,7 @@ Function updatenpcs%()
                                             playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
                                             s2imaperase(unlockedachievements, "096")
                                             me\Field52 = 10.0
-                                            setnpcframe(local0, 194.0)
+                                            setnpcframe(local0, 194.0, $01)
                                             stopstream_strict(local0\Field18)
                                             local0\Field18 = $00
                                             local0\Field21 = $00
@@ -769,7 +769,7 @@ Function updatenpcs%()
                                         local0\Field24 = curvevalue((local0\Field23 * 0.05), local0\Field24, 8.0)
                                         animatenpc(local0, 1383.0, 1469.0, (local0\Field24 * 45.0), $00)
                                         If (1468.9 <= local0\Field14) Then
-                                            setnpcframe(local0, 423.0)
+                                            setnpcframe(local0, 423.0, $01)
                                         EndIf
                                     Else
                                         local0\Field24 = curvevalue(0.0, local0\Field24, 4.0)
@@ -786,7 +786,7 @@ Function updatenpcs%()
                                             s2imaperase(unlockedachievements, "096")
                                             me\Field52 = 10.0
                                             If (422.0 <= local0\Field14) Then
-                                                setnpcframe(local0, 677.0)
+                                                setnpcframe(local0, 677.0, $01)
                                             EndIf
                                             stopstream_strict(local0\Field18)
                                             local0\Field18 = $00
@@ -798,7 +798,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (0.001 < local0\Field24) Then
                                     If (((((1383.0 > local21) And (1383.0 <= local0\Field14)) Lor ((1420.0 > local21) And (1420.0 <= local0\Field14))) Lor ((1466.0 > local21) And (1466.0 <= local0\Field14))) <> 0) Then
-                                        playsoundex(snd_i\Field56[rand($0A, $0C)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                                        playsoundex(snd_i\Field56[rand($0A, $0C)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                                     EndIf
                                 EndIf
                             EndIf
@@ -813,18 +813,18 @@ Function updatenpcs%()
                                 If (312.0 > local0\Field14) Then
                                     animatenpc(local0, 193.0, 311.0, 0.3, $00)
                                     If (310.9 < local0\Field14) Then
-                                        setnpcframe(local0, 737.0)
+                                        setnpcframe(local0, 737.0, $01)
                                         local0\Field10 = 3.0
                                     EndIf
                                 ElseIf (((312.0 <= local0\Field14) And (422.0 >= local0\Field14)) <> 0) Then
                                     animatenpc(local0, 312.0, 422.0, 0.3, $00)
                                     If (421.9 < local0\Field14) Then
-                                        setnpcframe(local0, 677.0)
+                                        setnpcframe(local0, 677.0, $01)
                                     EndIf
                                 Else
                                     animatenpc(local0, 677.0, 736.0, 0.3, $00)
                                     If (735.9 < local0\Field14) Then
-                                        setnpcframe(local0, 737.0)
+                                        setnpcframe(local0, 737.0, $01)
                                         local0\Field10 = 3.0
                                     EndIf
                                 EndIf
@@ -886,7 +886,7 @@ Function updatenpcs%()
                                     local0\Field40 = $00
                                     If (((7.84 > local13) Lor (150.0 > local0\Field14)) <> 0) Then
                                         If (193.0 < local0\Field14) Then
-                                            setnpcframe(local0, 2.0)
+                                            setnpcframe(local0, 2.0, $01)
                                         EndIf
                                         animatenpc(local0, 2.0, 193.0, 0.7, $01)
                                         If (1.0 < local13) Then
@@ -977,7 +977,7 @@ Function updatenpcs%()
                                                     EndIf
                                                     local10 = setemitter(Null, entityx(local0\Field39[local0\Field42]\Field1\Field0, $01), entityy(local0\Field39[local0\Field42]\Field1\Field0, $01), entityz(local0\Field39[local0\Field42]\Field1\Field0, $01), $10)
                                                     entityparent(local10\Field6, local0\Field39[local0\Field42]\Field1\Field0, $01)
-                                                    playsoundex(snd_i\Field9, camera, local0\Field39[local0\Field42]\Field1\Field2, 10.0, 1.0, $00)
+                                                    playsoundex(snd_i\Field9, camera, local0\Field39[local0\Field42]\Field1\Field2, 10.0, 1.0, $00, $00)
                                                 EndIf
                                             EndIf
                                             If (0.04 > local14) Then
@@ -1049,7 +1049,7 @@ Function updatenpcs%()
                                 If (wi\Field2 > $00) Then
                                     removehazmattimer = (removehazmattimer - (fps\Field7[$00] * 1.5))
                                     If ((((350.0 > removehazmattimer) And (350.0 <= ((fps\Field7[$00] * 1.5) + removehazmattimer))) And (channelplaying(local0\Field20) = $00)) <> 0) Then
-                                        local0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\TakeOffHazmat.ogg"), camera, local0\Field3, 10.0, 1.0, $01)
+                                        local0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\TakeOffHazmat.ogg"), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                     ElseIf (0.0 >= removehazmattimer) Then
                                         For local11 = $00 To $02 Step $01
                                             If (((removehazmattimer < (- (((Float (wi\Field2 = $04)) * 250.0) * (Float local11)))) And ((- (((Float (wi\Field2 = $04)) * 250.0) * (Float local11))) <= ((fps\Field7[$00] * 1.5) + removehazmattimer))) <> 0) Then
@@ -1077,7 +1077,7 @@ Function updatenpcs%()
                                         remove714timer = (remove714timer - (fps\Field7[$00] * (3.0 / (Float i_714\Field0))))
                                         If ((((350.0 > remove714timer) And (350.0 <= ((fps\Field7[$00] * 1.5) + remove714timer))) And (channelplaying(local0\Field20) = $00)) <> 0) Then
                                             If (i_714\Field0 = $02) Then
-                                                local0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\714Equipped.ogg"), camera, local0\Field3, 10.0, 1.0, $01)
+                                                local0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\714Equipped.ogg"), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                             EndIf
                                         ElseIf (0.0 >= remove714timer) Then
                                             For local11 = $00 To (maxitemamount - $01) Step $01
@@ -1153,7 +1153,7 @@ Function updatenpcs%()
                             If (538.0 <= local0\Field14) Then
                                 animatenpc(local0, 659.0, 538.0, -0.45, $00)
                                 If (537.9 < local0\Field14) Then
-                                    setnpcframe(local0, 37.0)
+                                    setnpcframe(local0, 37.0, $01)
                                 EndIf
                             Else
                                 animatenpc(local0, 37.0, 269.0, 0.7, $00)
@@ -1171,7 +1171,7 @@ Function updatenpcs%()
                                     EndIf
                                     If (((local0\Field13 <= $01) And (channelplaying(local0\Field20) = $00)) <> 0) Then
                                         loadnpcsound(local0, (("SFX\SCP\049\Spotted" + (Str rand($00, $06))) + ".ogg"), $01)
-                                        local0\Field20 = playsoundex(local0\Field19, camera, local0\Field0, 10.0, 1.0, $01)
+                                        local0\Field20 = playsoundex(local0\Field19, camera, local0\Field0, 10.0, 1.0, $01, $00)
                                         local0\Field13 = $02
                                     EndIf
                                     local0\Field40 = $00
@@ -1189,7 +1189,7 @@ Function updatenpcs%()
                                         ElseIf (428.0 < local0\Field14) Then
                                             animatenpc(local0, min(animtime(local0\Field0), 463.0), 498.0, (local0\Field24 * 38.0), $00)
                                             If (497.9 < local0\Field14) Then
-                                                setnpcframe(local0, 358.0)
+                                                setnpcframe(local0, 358.0, $01)
                                             EndIf
                                         Else
                                             animatenpc(local0, clamp(animtime(local0\Field0), 346.0, 358.0), 393.0, (local0\Field24 * 38.0), $01)
@@ -1223,7 +1223,7 @@ Function updatenpcs%()
                                                 Else
                                                     loadnpcsound(local0, (("SFX\SCP\049\Searching" + (Str rand($00, $05))) + ".ogg"), $01)
                                                 EndIf
-                                                local0\Field20 = playsoundex(local0\Field19, camera, local0\Field3, 10.0, 1.0, $01)
+                                                local0\Field20 = playsoundex(local0\Field19, camera, local0\Field3, 10.0, 1.0, $01, $00)
                                                 local0\Field13 = $01
                                             EndIf
                                             usedoornpc(local0, $01, $00)
@@ -1326,7 +1326,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (0.005 < local0\Field24) Then
                                     If ((((((361.0 > local21) And (361.0 <= local0\Field14)) Lor ((377.0 > local21) And (377.0 <= local0\Field14))) Lor ((431.0 > local21) And (431.0 <= local0\Field14))) Lor ((447.0 > local21) And (447.0 <= local0\Field14))) <> 0) Then
-                                        playsoundex(snd_i\Field56[rand($07, $09)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                                        playsoundex(snd_i\Field56[rand($07, $09)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                                     EndIf
                                 EndIf
                                 updatesoundorigin(local0\Field20, camera, local0\Field0, 10.0, 1.0, $01, $01)
@@ -1410,7 +1410,7 @@ Function updatenpcs%()
                             EndIf
                             If (0.005 < local0\Field24) Then
                                 If ((((((361.0 > local21) And (361.0 <= local0\Field14)) Lor ((377.0 > local21) And (377.0 <= local0\Field14))) Lor ((431.0 > local21) And (431.0 <= local0\Field14))) Lor ((447.0 > local21) And (447.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(snd_i\Field56[rand($07, $09)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                                    playsoundex(snd_i\Field56[rand($07, $09)], camera, local0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                                 EndIf
                             EndIf
                             updatesoundorigin(local0\Field20, camera, local0\Field0, 10.0, 1.0, $01, $01)
@@ -1434,7 +1434,7 @@ Function updatenpcs%()
                         Case 1.0
                             animatenpc(local0, 1.0, 556.0, 1.0, $00)
                             If ((((288.0 > local21) And (288.0 <= local0\Field14)) Lor ((350.0 > local21) And (350.0 <= local0\Field14))) <> 0) Then
-                                playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                             EndIf
                             If (555.9 <= local0\Field14) Then
                                 local0\Field10 = 2.0
@@ -1465,14 +1465,14 @@ Function updatenpcs%()
                                 moveentity(local0\Field3, 0.0, 0.0, (local0\Field24 * fps\Field7[$00]))
                                 local0\Field15 = curveangle(entityyaw(local0\Field3, $01), local0\Field15, 20.0)
                                 If (0.49 > local13) Then
-                                    setnpcframe(local0, 795.0)
+                                    setnpcframe(local0, 795.0, $01)
                                     local0\Field10 = 4.0
                                 EndIf
                                 local0\Field41 = 0.0
                                 local0\Field40 = $00
                                 local0\Field42 = $00
                                 If ((((733.0 > local21) And (733.0 <= local0\Field14)) Lor ((773.0 > local21) And (773.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             Else
                                 local0\Field34 = Null
@@ -1536,7 +1536,7 @@ Function updatenpcs%()
                                 If (713.0 < local0\Field14) Then
                                     animatenpc(local0, 795.0, 813.0, 0.8, $00)
                                     If (812.9 < local0\Field14) Then
-                                        setnpcframe(local0, 557.0)
+                                        setnpcframe(local0, 557.0, $01)
                                     EndIf
                                 Else
                                     animatenpc(local0, 557.0, 704.0, 0.2, $01)
@@ -1544,7 +1544,7 @@ Function updatenpcs%()
                             Else
                                 animatenpc(local0, clamp(animtime(local0\Field0), 705.0, 714.0), 794.0, (local0\Field24 * 38.0), $01)
                                 If ((((733.0 > local21) And (733.0 <= local0\Field14)) Lor ((773.0 > local21) And (773.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             EndIf
                             If (local13 > ((hidedistance * 2.0) * (hidedistance * 2.0))) Then
@@ -1592,9 +1592,9 @@ Function updatenpcs%()
                                 animatenpc(local0, 795.0, 813.0, 0.7, $00)
                                 If (812.9 < local0\Field14) Then
                                     If (rand($02, $01) = $01) Then
-                                        setnpcframe(local0, 814.0)
+                                        setnpcframe(local0, 814.0, $01)
                                     Else
-                                        setnpcframe(local0, 879.0)
+                                        setnpcframe(local0, 879.0, $01)
                                     EndIf
                                 EndIf
                             Else
@@ -1602,14 +1602,14 @@ Function updatenpcs%()
                                     animatenpc(local0, 814.0, 878.0, 0.5, $00)
                                     local30 = ((839.0 <= local0\Field14) And (839.0 > local21))
                                     If (877.9 < local0\Field14) Then
-                                        setnpcframe(local0, 705.0)
+                                        setnpcframe(local0, 705.0, $01)
                                         local0\Field10 = (me\Field0 + 2.0)
                                     EndIf
                                 Else
                                     animatenpc(local0, 879.0, 943.0, 0.5, $00)
                                     local30 = ((900.0 <= local0\Field14) And (900.0 > local21))
                                     If (942.9 < local0\Field14) Then
-                                        setnpcframe(local0, 705.0)
+                                        setnpcframe(local0, 705.0, $01)
                                         local0\Field10 = (me\Field0 + 2.0)
                                     EndIf
                                 EndIf
@@ -1624,10 +1624,10 @@ Function updatenpcs%()
                                                 kill($01, $01, $00, $01)
                                             EndIf
                                         Else
-                                            playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                            playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                         EndIf
                                     ElseIf (0.5625 > entitydistancesquared(local0\Field3, local0\Field34\Field3)) Then
-                                        playsoundex(snd_i\Field51[rand($05, $08)], camera, local0\Field34\Field0, 10.0, 1.0, $00)
+                                        playsoundex(snd_i\Field51[rand($05, $08)], camera, local0\Field34\Field0, 10.0, 1.0, $00, $00)
                                         If (local0\Field34\Field60 > $00) Then
                                             local0\Field34\Field60 = (Int max(((Float local0\Field34\Field60) - rnd(30.0, 50.0)), 0.0))
                                         Else
@@ -1635,7 +1635,7 @@ Function updatenpcs%()
                                             local0\Field10 = 3.0
                                         EndIf
                                     Else
-                                        playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                        playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                     EndIf
                                 EndIf
                             EndIf
@@ -1669,7 +1669,7 @@ Function updatenpcs%()
                         If (((((39.0 > local0\Field14) Lor ((76.0 < local0\Field14) And (245.0 > local0\Field14))) Lor ((248.0 < local0\Field14) And (302.0 > local0\Field14))) Lor (344.0 < local0\Field14)) <> 0) Then
                             animatenpc(local0, 345.0, 357.0, 0.2, $00)
                             If (356.0 <= local0\Field14) Then
-                                setnpcframe(local0, 302.0)
+                                setnpcframe(local0, 302.0, $01)
                             EndIf
                         EndIf
                         If (0.0 = me\Field0) Then
@@ -1699,7 +1699,7 @@ Function updatenpcs%()
                                         ElseIf (playerroom\Field7\Field6 = $49) Then
                                             msg\Field2 = getlocalstring("death", "guard.gateb")
                                         EndIf
-                                        playsoundex(snd_i\Field13[$00], camera, local0\Field3, 35.0, 1.0, $00)
+                                        playsoundex(snd_i\Field13[$00], camera, local0\Field3, 35.0, 1.0, $00, $00)
                                         rotateentity(local26, entitypitch(local0\Field3, $00), entityyaw(local0\Field3, $00), 0.0, $01)
                                         positionentity(local26, entityx(local0\Field0, $00), entityy(local0\Field0, $00), entityz(local0\Field0, $00), $00)
                                         moveentity(local26, 0.0622, 0.83925, 0.5351)
@@ -1733,7 +1733,7 @@ Function updatenpcs%()
                     Case 2.0
                         animatenpc(local0, 245.0, 248.0, 0.35, $01)
                         If (0.0 = local0\Field28) Then
-                            playsoundex(snd_i\Field13[$00], camera, local0\Field3, 15.0, 1.0, $00)
+                            playsoundex(snd_i\Field13[$00], camera, local0\Field3, 15.0, 1.0, $00, $00)
                             local26 = createpivot($00)
                             rotateentity(local26, entitypitch(local0\Field3, $00), entityyaw(local0\Field3, $00), 0.0, $01)
                             positionentity(local26, entityx(local0\Field0, $00), entityy(local0\Field0, $00), entityz(local0\Field0, $00), $00)
@@ -1830,7 +1830,7 @@ Function updatenpcs%()
                         If (((((39.0 > local0\Field14) Lor ((76.0 < local0\Field14) And (245.0 > local0\Field14))) Lor ((248.0 < local0\Field14) And (302.0 > local0\Field14))) Lor (344.0 < local0\Field14)) <> 0) Then
                             animatenpc(local0, 345.0, 357.0, 0.2, $00)
                             If (356.0 <= local0\Field14) Then
-                                setnpcframe(local0, 302.0)
+                                setnpcframe(local0, 302.0, $01)
                             EndIf
                         EndIf
                         If (0.0 = me\Field0) Then
@@ -1849,7 +1849,7 @@ Function updatenpcs%()
                                     If (1.0 = local0\Field12) Then
                                         local61 = $00
                                         msg\Field2 = ""
-                                        playsoundex(snd_i\Field13[$00], camera, local0\Field3, 15.0, 1.0, $00)
+                                        playsoundex(snd_i\Field13[$00], camera, local0\Field3, 15.0, 1.0, $00, $00)
                                         rotateentity(local26, entitypitch(local0\Field3, $00), entityyaw(local0\Field3, $00), 0.0, $01)
                                         positionentity(local26, entityx(local0\Field0, $00), entityy(local0\Field0, $00), entityz(local0\Field0, $00), $00)
                                         moveentity(local26, 0.0622, 0.83925, 0.5351)
@@ -1916,7 +1916,7 @@ Function updatenpcs%()
                                     EndIf
                                 EndIf
                                 If ((((43.0 > local21) And (43.0 <= local0\Field14)) Lor ((61.0 > local21) And (61.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                                    playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
                                 EndIf
                             EndIf
                         Else
@@ -1926,7 +1926,7 @@ Function updatenpcs%()
                         If (((((39.0 > local0\Field14) Lor ((76.0 < local0\Field14) And (245.0 > local0\Field14))) Lor ((248.0 < local0\Field14) And (302.0 > local0\Field14))) Lor (344.0 < local0\Field14)) <> 0) Then
                             animatenpc(local0, 345.0, 357.0, 0.2, $00)
                             If (356.0 <= local0\Field14) Then
-                                setnpcframe(local0, 302.0)
+                                setnpcframe(local0, 302.0, $01)
                             EndIf
                         EndIf
                         If (345.0 > local0\Field14) Then
@@ -1982,7 +1982,7 @@ Function updatenpcs%()
                             local0\Field10 = 13.0
                         EndIf
                         If ((((43.0 > local21) And (43.0 <= local0\Field14)) Lor ((61.0 > local21) And (61.0 <= local0\Field14))) <> 0) Then
-                            playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                            playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
                         EndIf
                     Case 15.0
                         If (local0\Field1 <> $00) Then
@@ -2026,11 +2026,11 @@ Function updatenpcs%()
                 End Select
                 If (0.01 < local0\Field24) Then
                     If ((((5.0 > local21) And (5.0 <= local0\Field14)) Lor ((23.0 > local21) And (23.0 <= local0\Field14))) <> 0) Then
-                        playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                        playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
                     EndIf
                 ElseIf (-0.01 > local0\Field24) Then
                     If ((((23.0 <= local21) And (23.0 > local0\Field14)) Lor ((5.0 <= local21) And (5.0 > local0\Field14))) <> 0) Then
-                        playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                        playsoundex(snd_i\Field56[rand($00, $02)], camera, local0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
                     EndIf
                 EndIf
                 local0\Field28 = max(0.0, (local0\Field28 - fps\Field7[$00]))
@@ -2060,11 +2060,11 @@ Function updatenpcs%()
                             moveentity(local0\Field3, 0.0, 0.0, (local0\Field24 * fps\Field7[$00]))
                             If (0.005 < local0\Field24) Then
                                 If ((((244.0 > local21) And (244.0 <= local0\Field14)) Lor ((254.0 > local21) And (254.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             ElseIf (-0.005 > local0\Field24) Then
                                 If ((((254.0 <= local21) And (254.0 > local0\Field14)) Lor ((244.0 <= local21) And (244.0 > local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             EndIf
                         Case 2.0
@@ -2073,12 +2073,12 @@ Function updatenpcs%()
                             moveentity(local0\Field3, 0.0, 0.0, (local0\Field24 * fps\Field7[$00]))
                             If (0.005 < local0\Field24) Then
                                 If ((((309.0 > local21) And (309.0 <= local0\Field14)) Lor ((319.0 >= local21) And (301.0 >= local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx(getstepsound(local0\Field3), $01, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(stepsfx(getstepsound(local0\Field3), $01, rand($00, $02)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             EndIf
                     End Select
                     If (((local0\Field60 <= $00) And (local0\Field4 = $12)) <> 0) Then
-                        setnpcframe(local0, 41.0)
+                        setnpcframe(local0, 41.0, $01)
                         local0\Field50 = $01
                     EndIf
                 Else
@@ -2119,7 +2119,7 @@ Function updatenpcs%()
                             local0\Field24 = 0.0
                             animatenpc(local0, clamp(animtime(local0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                             If (73.9 <= local0\Field14) Then
-                                setnpcframe(local0, 1.0)
+                                setnpcframe(local0, 1.0, $01)
                             EndIf
                             If (rand($32, $01) = $01) Then
                                 rotateentity(local0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
@@ -2176,7 +2176,7 @@ Function updatenpcs%()
                                 local0\Field12 = 105.0
                                 local0\Field15 = curveangle(entityyaw(local0\Field3, $01), local0\Field15, 25.0)
                                 If (0.09 > entitydistancesquared(local0\Field3, local67\Field2)) Then
-                                    playsoundex(loadtempsound("SFX\SCP\458\Eating.ogg"), camera, local0\Field3, 3.0, 0.5, $00)
+                                    playsoundex(loadtempsound("SFX\SCP\458\Eating.ogg"), camera, local0\Field3, 3.0, 0.5, $00, $00)
                                     removeitem(local67)
                                 EndIf
                             EndIf
@@ -2199,7 +2199,7 @@ Function updatenpcs%()
                                 If (0.001 >= local0\Field24) Then
                                     animatenpc(local0, clamp(animtime(local0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                                 ElseIf (73.9 <= local0\Field14) Then
-                                    setnpcframe(local0, 1.0)
+                                    setnpcframe(local0, 1.0, $01)
                                 EndIf
                             Else
                                 local0\Field10 = 0.0
@@ -2245,7 +2245,7 @@ Function updatenpcs%()
                                     local0\Field24 = 0.0
                                     animatenpc(local0, clamp(animtime(local0\Field0), 1.0, 11.0), 74.0, 0.3, $00)
                                     If (73.9 <= local0\Field14) Then
-                                        setnpcframe(local0, 1.0)
+                                        setnpcframe(local0, 1.0, $01)
                                     EndIf
                                     If (rand($32, $01) = $01) Then
                                         rotateentity(local0\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
@@ -2257,7 +2257,7 @@ Function updatenpcs%()
                     End Select
                     If (rand($A0, $01) = $01) Then
                         If (channelplaying(local0\Field18) = $00) Then
-                            local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\999\Gurgling" + (Str rand($00, $03))) + ".ogg")), camera, local0\Field3, 5.0, 0.3, $00)
+                            local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\999\Gurgling" + (Str rand($00, $03))) + ".ogg")), camera, local0\Field3, 5.0, 0.3, $00, $00)
                         EndIf
                     EndIf
                     If (0.0 < local0\Field24) Then
@@ -2364,7 +2364,7 @@ Function updatenpcs%()
                             animatenpc(local0, 2.0, 399.0, local0\Field23, $01)
                             If (rand($12C, $01) = $01) Then
                                 If (channelplaying(local0\Field18) = $00) Then
-                                    local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\1048A\Random" + (Str rand($00, $04))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01)
+                                    local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\1048A\Random" + (Str rand($00, $04))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01, $00)
                                 EndIf
                             EndIf
                             If ((local23 And ((chs\Field2 Lor i_268\Field2) = $00)) <> 0) Then
@@ -2405,7 +2405,7 @@ Function updatenpcs%()
                     positionentity(local0\Field0, entityx(local0\Field3, $00), (entityy(local0\Field3, $00) - 0.15), entityz(local0\Field3, $00), $00)
                     rotateentity(local0\Field0, -90.0, local0\Field15, 0.0, $00)
                     If (local0\Field60 <= $00) Then
-                        playsoundex(loadtempsound("SFX\SCP\1048A\Explode.ogg"), camera, local0\Field3, 8.0, 1.0, $00)
+                        playsoundex(loadtempsound("SFX\SCP\1048A\Explode.ogg"), camera, local0\Field3, 8.0, 1.0, $00, $00)
                         local16 = entityx(local0\Field3, $00)
                         local18 = entityy(local0\Field3, $00)
                         local19 = entityz(local0\Field3, $00)
@@ -2585,7 +2585,7 @@ Function updatenpcs%()
                             local0\Field26 = 0.0
                             local0\Field10 = rnd(20.0, 60.0)
                             If (rand($12C, $01) = $01) Then
-                                playsoundex(snd_i\Field27[rand($00, $05)], camera, local0\Field3, 8.0, rnd(0.0, 0.2), $00)
+                                playsoundex(snd_i\Field27[rand($00, $05)], camera, local0\Field3, 8.0, rnd(0.0, 0.2), $00, $00)
                             EndIf
                         EndIf
                     EndIf
@@ -2601,7 +2601,7 @@ Function updatenpcs%()
                             If (rand($1E, $01) = $01) Then
                                 If (entityvisible(camera, local0\Field0) <> 0) Then
                                     If (channelplaying(local0\Field18) = $00) Then
-                                        local0\Field18 = playsoundex(snd_i\Field27[rand($00, $05)], camera, local0\Field0, 8.0, 0.3, $00)
+                                        local0\Field18 = playsoundex(snd_i\Field27[rand($00, $05)], camera, local0\Field0, 8.0, 0.3, $00, $00)
                                     EndIf
                                 EndIf
                             EndIf
@@ -2646,7 +2646,7 @@ Function updatenpcs%()
                                 If (900.0 > distancesquared(entityx(me\Field60, $00), entityx(local0\Field3, $00), entityz(me\Field60, $00), entityz(local0\Field3, $00), 0.0, 0.0)) Then
                                     If (20.0 > (Abs (entityy(me\Field60, $00) - entityy(local0\Field3, $00)))) Then
                                         If (entityvisible(me\Field60, local0\Field3) <> 0) Then
-                                            playsoundex(snd_i\Field50[$01], camera, local0\Field3, 50.0, 1.0, $00)
+                                            playsoundex(snd_i\Field50[$01], camera, local0\Field3, 50.0, 1.0, $00, $00)
                                             local0\Field10 = 2.0
                                         EndIf
                                     EndIf
@@ -2690,7 +2690,7 @@ Function updatenpcs%()
                                             moveentity(local26, 0.0, 0.023, 0.188)
                                             pointentity(local26, local25, 0.0)
                                             If (10.0 > wrapangle((entityyaw(local26, $00) - entityyaw(local0\Field3, $00)), 360.0)) Then
-                                                playsoundex(snd_i\Field13[$01], camera, local0\Field3, 20.0, 1.0, $00)
+                                                playsoundex(snd_i\Field13[$01], camera, local0\Field3, 20.0, 1.0, $00, $00)
                                                 local36 = sqr(local13)
                                                 shoot(local0, entityx(local26, $00), entityy(local26, $00), entityz(local26, $00), local0\Field3, (((10.0 / local36) * (1.0 / local36)) * (Float (2.0 = local0\Field10))), (2.0 = local0\Field10), $00)
                                                 If (((Int me\Field0) And (3.0 <> local0\Field10)) <> 0) Then
@@ -2758,8 +2758,8 @@ Function updatenpcs%()
                                     EndIf
                                     freeentity(local26)
                                     local26 = $00
-                                    playsoundex(loadtempsound("SFX\SCP\035_Tentacle\TentacleSpawn.ogg"), camera, local0\Field3, 5.0, 1.0, $00)
-                                    setnpcframe(local0, 283.0)
+                                    playsoundex(loadtempsound("SFX\SCP\035_Tentacle\TentacleSpawn.ogg"), camera, local0\Field3, 5.0, 1.0, $00, $00)
+                                    setnpcframe(local0, 283.0, $01)
                                 Else
                                     me\Field30 = max(curvevalue(1.0, me\Field30, 50.0), me\Field30)
                                     me\Field28 = max(curvevalue(130.0, me\Field28, 100.0), me\Field28)
@@ -2784,7 +2784,7 @@ Function updatenpcs%()
                                 If (((32.0 < local0\Field14) And (174.0 > local0\Field14)) <> 0) Then
                                     animatenpc(local0, 33.0, 174.0, 2.0, $00)
                                     If (173.9 < local0\Field14) Then
-                                        setnpcframe(local0, 2.0)
+                                        setnpcframe(local0, 2.0, $01)
                                     EndIf
                                 Else
                                     pointentity(local0\Field0, me\Field60, 0.0)
@@ -2810,13 +2810,13 @@ Function updatenpcs%()
                                                 EndIf
                                                 me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.0)
                                             Else
-                                                playsoundex(snd_i\Field48, camera, local0\Field3, 10.0, 1.0, $00)
+                                                playsoundex(snd_i\Field48, camera, local0\Field3, 10.0, 1.0, $00, $00)
                                             EndIf
                                         Else
-                                            playsoundex(snd_i\Field48, camera, local0\Field3, 3.0, 1.0, $00)
+                                            playsoundex(snd_i\Field48, camera, local0\Field3, 3.0, 1.0, $00, $00)
                                         EndIf
                                     ElseIf (31.9 < local0\Field14) Then
-                                        setnpcframe(local0, 173.0)
+                                        setnpcframe(local0, 173.0, $01)
                                         local0\Field10 = 1.0
                                     EndIf
                                 EndIf
@@ -2835,7 +2835,7 @@ Function updatenpcs%()
                 rotateentity(local0\Field0, (entitypitch(local0\Field3, $00) - 90.0), (entityyaw(local0\Field3, $00) - 180.0), entityroll(local0\Field3, $00), $01)
             Case $0A
                 If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                    If (1.0 = forest_event\Field2) Then
+                    If (20.0 < entityy(me\Field60, $00)) Then
                         local74 = playerroom\Field10
                         local13 = entitydistancesquared(me\Field60, local0\Field3)
                         If (1.0 = forestnpcdata[$02]) Then
@@ -2898,21 +2898,21 @@ Function updatenpcs%()
                                         Next
                                     Next
                                     If (-100.0 < entityy(local0\Field3, $00)) Then
-                                        playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 0.5, $00)
+                                        playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 0.5, $00, $00)
                                         If (1.0 <> forestnpcdata[$02]) Then
                                             forestnpcdata[$02] = 0.0
                                         EndIf
                                         Select rand($03, $01)
                                             Case $01
                                                 pointentity(local0\Field3, me\Field60, 0.0)
-                                                setnpcframe(local0, 2.0)
+                                                setnpcframe(local0, 2.0, $01)
                                             Case $02
                                                 pointentity(local0\Field3, me\Field60, 0.0)
-                                                setnpcframe(local0, 201.0)
+                                                setnpcframe(local0, 201.0, $01)
                                             Case $03
                                                 pointentity(local0\Field3, me\Field60, 0.0)
                                                 turnentity(local0\Field3, 0.0, 90.0, 0.0, $00)
-                                                setnpcframe(local0, 299.0)
+                                                setnpcframe(local0, 299.0, $01)
                                         End Select
                                         local0\Field11 = 0.0
                                     EndIf
@@ -2957,22 +2957,22 @@ Function updatenpcs%()
                                     If (0.0 = local0\Field11) Then
                                         If (entityinview(local0\Field3, camera) <> 0) Then
                                             If (rand($08, $01) = $01) Then
-                                                playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 20.0, 1.0, $01)
+                                                playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 20.0, 1.0, $01, $00)
                                             EndIf
                                             local0\Field11 = 1.0
                                         EndIf
                                     ElseIf (199.0 >= local0\Field14) Then
                                         animatenpc(local0, 2.0, 199.0, 0.5, $00)
                                         If (199.0 = local0\Field14) Then
-                                            playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 1.0, $00)
-                                            setnpcframe(local0, 298.0)
+                                            playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 1.0, $00, $00)
+                                            setnpcframe(local0, 298.0, $01)
                                         EndIf
                                     ElseIf (297.0 >= local0\Field14) Then
                                         pointentity(local0\Field3, me\Field60, 0.0)
                                         animatenpc(local0, 200.0, 297.0, 0.5, $00)
                                         If (297.0 = local0\Field14) Then
-                                            playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 1.0, $00)
-                                            setnpcframe(local0, 298.0)
+                                            playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 1.0, $00, $00)
+                                            setnpcframe(local0, 298.0, $01)
                                         EndIf
                                     Else
                                         local15 = curveangle(pointdirection(entityx(local0\Field3, $00), entityz(local0\Field3, $00), entityx(me\Field60, $00), entityz(me\Field60, $00)), (entityyaw(local0\Field3, $00) + 90.0), 20.0)
@@ -3025,7 +3025,7 @@ Function updatenpcs%()
                                             If (entityinview(local0\Field3, camera) <> 0) Then
                                                 If (rand($08, $01) = $01) Then
                                                     playsound_strict(loadtempsound((("SFX\SCP\860_2\Chase" + (Str rand($00, $02))) + ".ogg")), $00)
-                                                    playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                                    playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                                 EndIf
                                                 local0\Field11 = 1.0
                                             EndIf
@@ -3039,7 +3039,7 @@ Function updatenpcs%()
                                                 local39 = $00
                                             EndIf
                                             If (local39 <> 0) Then
-                                                local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                                local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                             EndIf
                                         EndIf
                                     Else
@@ -3047,10 +3047,10 @@ Function updatenpcs%()
                                     EndIf
                                     If (((20.25 > local13) Lor (rnd(200.0, 250.0) < local0\Field12)) <> 0) Then
                                         If ((chs\Field2 Lor i_268\Field2) = $00) Then
-                                            local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($03, $05))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                            local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($03, $05))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                             local0\Field10 = 3.0
                                         ElseIf ((((492.0 > local21) And (492.0 <= local0\Field14)) Lor ((568.0 > local21) And (568.0 <= local0\Field14))) <> 0) Then
-                                            setnpcframe(local0, 2.0)
+                                            setnpcframe(local0, 2.0, $01)
                                             local0\Field10 = 4.0
                                         EndIf
                                     EndIf
@@ -3059,7 +3059,7 @@ Function updatenpcs%()
                                     EndIf
                                 EndIf
                                 If ((((533.0 > local21) And (533.0 <= local0\Field14)) Lor ((568.0 > local21) And (568.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 0.6, $00)
+                                    playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 15.0, 0.6, $00, $00)
                                 EndIf
                             Case 3.0
                                 If (entityhidden(local0\Field0) <> 0) Then
@@ -3085,13 +3085,13 @@ Function updatenpcs%()
                                     local0\Field24 = curvevalue((local0\Field23 * 0.8), local0\Field24, 10.0)
                                     animatenpc(local0, 298.0, 316.0, (local0\Field24 * 10.0), $01)
                                     If (((307.0 > local21) And (307.0 <= local0\Field14)) <> 0) Then
-                                        playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 10.0, 1.0, $00)
+                                        playsoundex(stepsfx($04, $00, rand($00, $02)), camera, local0\Field3, 10.0, 1.0, $00, $00)
                                     EndIf
                                 EndIf
                                 moveentity(local0\Field3, 0.0, 0.0, (local0\Field24 * fps\Field7[$00]))
                                 If ((chs\Field2 Lor i_268\Field2) <> 0) Then
                                     If ((((315.0 > local21) And (315.0 <= local0\Field14)) Lor ((492.0 > local21) And (492.0 <= local0\Field14))) <> 0) Then
-                                        setnpcframe(local0, 2.0)
+                                        setnpcframe(local0, 2.0, $01)
                                         local0\Field10 = 4.0
                                     EndIf
                                 EndIf
@@ -3140,7 +3140,7 @@ Function updatenpcs%()
                                 local0\Field24 = curvevalue((local0\Field23 * 0.05), local0\Field24, 10.0)
                                 animatenpc(local0, 644.0, 683.0, ((local0\Field24 * 28.0) * 4.0), $00)
                                 If (682.0 <= local0\Field14) Then
-                                    setnpcframe(local0, 175.0)
+                                    setnpcframe(local0, 175.0, $01)
                                 EndIf
                             Else
                                 local0\Field24 = curvevalue(0.0, local0\Field24, 5.0)
@@ -3159,12 +3159,12 @@ Function updatenpcs%()
                             local21 = local0\Field14
                             animatenpc(local0, 644.0, 683.0, (local0\Field24 * 28.0), $01)
                             If ((((664.0 > local21) And (664.0 <= local0\Field14)) Lor ((673.0 < local21) And (654.0 > local0\Field14))) <> 0) Then
-                                playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 12.0, 1.0, $00)
+                                playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 12.0, 1.0, $00, $00)
                                 If (rand($0A, $01) = $01) Then
                                     local39 = ((local0\Field18 = $00) Lor (channelplaying(local0\Field18) = $00))
                                     If (local39 <> 0) Then
                                         loadnpcsound(local0, (((("SFX\SCP\939\" + (Str (local0\Field5 Mod $03))) + "Lure") + (Str rand($00, $09))) + ".ogg"), $00)
-                                        local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01)
+                                        local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01, $00)
                                     EndIf
                                 EndIf
                             EndIf
@@ -3195,7 +3195,7 @@ Function updatenpcs%()
                                             injureplayer(rnd(1.5, 2.5), 0.0, 500.0, rnd(0.2, 0.75), 0.0)
                                             me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.0)
                                         Else
-                                            setnpcframe(local0, 449.0)
+                                            setnpcframe(local0, 449.0, $01)
                                         EndIf
                                     EndIf
                                     If (4.0 < me\Field31) Then
@@ -3209,11 +3209,11 @@ Function updatenpcs%()
                                     local0\Field24 = curvevalue(local0\Field23, local0\Field24, 15.0)
                                     animatenpc(local0, 449.0, 464.0, (local0\Field24 * 6.0), $01)
                                     If ((((452.0 > local21) And (452.0 <= local0\Field14)) Lor ((459.0 > local21) And (459.0 <= local0\Field14))) <> 0) Then
-                                        playsoundex(stepsfx($01, $01, rand($00, $07)), camera, local0\Field3, 12.0, 1.0, $00)
+                                        playsoundex(stepsfx($01, $01, rand($00, $07)), camera, local0\Field3, 12.0, 1.0, $00, $00)
                                     EndIf
                                     If (1.0 > distancesquared(local0\Field36, entityx(local0\Field3, $00), local0\Field38, entityz(local0\Field3, $00), 0.0, 0.0)) Then
                                         If (entityvisible(me\Field60, local0\Field3) <> 0) Then
-                                            setnpcframe(local0, 18.0)
+                                            setnpcframe(local0, 18.0, $01)
                                         EndIf
                                     EndIf
                                 Else
@@ -3243,7 +3243,7 @@ Function updatenpcs%()
                         If (((local13 < ((me\Field42 * 1.6) * (me\Field42 * 1.6))) Lor (2.5 > local13)) <> 0) Then
                             If (0.0 = local0\Field12) Then
                                 loadnpcsound(local0, (((("SFX\SCP\939\" + (Str (local0\Field5 Mod $03))) + "Attack") + (Str rand($00, $02))) + ".ogg"), $00)
-                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01)
+                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01, $00)
                                 giveachievement("939", $01)
                                 playsound_strict(loadtempsound("SFX\SCP\939\Horror.ogg"), $00)
                                 local0\Field12 = 1.0
@@ -3252,9 +3252,9 @@ Function updatenpcs%()
                         ElseIf (local13 < ((me\Field42 * 1.9) * (me\Field42 * 1.9))) Then
                             If (((1.0 <> local0\Field10) And (0.0 >= local0\Field28)) <> 0) Then
                                 loadnpcsound(local0, (((("SFX\SCP\939\" + (Str (local0\Field5 Mod $03))) + "Alert") + (Str rand($00, $02))) + ".ogg"), $00)
-                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01)
+                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 10.0, 1.0, $01, $00)
                                 giveachievement("939", $01)
-                                setnpcframe(local0, 175.0)
+                                setnpcframe(local0, 175.0, $01)
                                 local0\Field28 = 210.0
                             EndIf
                             local0\Field10 = 1.0
@@ -3301,15 +3301,15 @@ Function updatenpcs%()
                         Case 1.0
                             If (451.0 > local0\Field14) Then
                                 local15 = wrapangle(curveangle((deltayaw(local0\Field3, me\Field60) - 180.0), ((animtime(local0\Field0) - 2.0) / 1.2445), 15.0), 360.0)
-                                setnpcframe(local0, ((local15 * 1.2445) + 2.0))
+                                setnpcframe(local0, ((local15 * 1.2445) + 2.0), $01)
                             Else
                                 animatenpc(local0, 636.0, 646.0, 0.4, $00)
                                 If (646.0 = local0\Field14) Then
-                                    setnpcframe(local0, 2.0)
+                                    setnpcframe(local0, 2.0, $01)
                                 EndIf
                             EndIf
                             If (rand($2BC, $01) = $01) Then
-                                playsoundex(loadtempsound((("SFX\SCP\066\Eric" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01)
+                                playsoundex(loadtempsound((("SFX\SCP\066\Eric" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01, $00)
                             EndIf
                             If (local13 < ((local0\Field30 * local0\Field30) + 1.0)) Then
                                 If (entityvisible(me\Field60, local0\Field3) <> 0) Then
@@ -3321,16 +3321,16 @@ Function updatenpcs%()
                             If (647.0 > local0\Field14) Then
                                 local15 = curveangle(0.0, ((animtime(local0\Field0) - 2.0) / 1.2445), 5.0)
                                 If (((5.0 > local15) Lor (355.0 < local15)) <> 0) Then
-                                    setnpcframe(local0, 647.0)
+                                    setnpcframe(local0, 647.0, $01)
                                 Else
-                                    setnpcframe(local0, ((local15 * 1.2445) + 2.0))
+                                    setnpcframe(local0, ((local15 * 1.2445) + 2.0), $01)
                                 EndIf
                             ElseIf (683.0 = local0\Field14) Then
                                 If (0.0 = local0\Field11) Then
                                     If (rand($02, $01) = $01) Then
-                                        playsoundex(loadtempsound((("SFX\SCP\066\Eric" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01)
+                                        playsoundex(loadtempsound((("SFX\SCP\066\Eric" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $01, $00)
                                     Else
-                                        playsoundex(loadtempsound((("SFX\SCP\066\Notes" + (Str rand($00, $05))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $00)
+                                        playsoundex(loadtempsound((("SFX\SCP\066\Notes" + (Str rand($00, $05))) + ".ogg")), camera, local0\Field3, 8.0, 1.0, $00, $00)
                                     EndIf
                                     If ((chs\Field2 Lor i_268\Field2) = $00) Then
                                         Select rand($06, $01)
@@ -3400,7 +3400,7 @@ Function updatenpcs%()
                             local0\Field17 = loadsound_strict("SFX\SCP\066\Rolling.ogg")
                         EndIf
                         If (channelplaying(local0\Field18) = $00) Then
-                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $00)
+                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $00, $00)
                         EndIf
                     EndIf
                     If (0.0 < local0\Field12) Then
@@ -3467,7 +3467,7 @@ Function updatenpcs%()
                                 If (557.0 < local0\Field14) Then
                                     animatenpc(local0, 628.0, 652.0, 0.25, $00)
                                     If (651.9 < local0\Field14) Then
-                                        setnpcframe(local0, 2.0)
+                                        setnpcframe(local0, 2.0, $01)
                                     EndIf
                                 Else
                                     animatenpc(local0, 2.0, 214.0, 0.25, $00)
@@ -3515,7 +3515,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (((228.0 < local0\Field14) And (228.0 >= local21)) <> 0) Then
                                     If (channelplaying(local0\Field18) = $00) Then
-                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Echo" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Echo" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                     EndIf
                                 EndIf
                                 updatesoundorigin(local0\Field18, camera, local0\Field3, 10.0, 1.0, $01, $01)
@@ -3538,7 +3538,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (((((271.0 < local0\Field14) And (271.0 >= local21)) Lor ((301.0 < local0\Field14) And (301.0 >= local21))) Lor ((314.0 < local0\Field14) And (314.0 >= local21))) <> 0) Then
                                     If (channelplaying(local0\Field18) = $00) Then
-                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Idle" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Idle" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                     EndIf
                                 EndIf
                                 updatesoundorigin(local0\Field18, camera, local0\Field3, 10.0, 1.0, $01, $01)
@@ -3630,18 +3630,18 @@ Function updatenpcs%()
                                     If (557.0 < local0\Field14) Then
                                         animatenpc(local0, 628.0, 652.0, 0.25, $00)
                                         If (651.9 < local0\Field14) Then
-                                            setnpcframe(local0, 2.0)
+                                            setnpcframe(local0, 2.0, $01)
                                         EndIf
                                     Else
                                         animatenpc(local0, 2.0, 214.0, 0.25, $01)
                                     EndIf
                                     If (((650.0 > local21) And (650.0 <= local0\Field14)) <> 0) Then
-                                        playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00)
+                                        playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00, $00)
                                     EndIf
                                 Else
                                     animatenpc(local0, clamp(animtime(local0\Field0), 557.0, 580.0), 628.0, (local0\Field24 * 25.0), $01)
                                     If ((((581.0 > local21) And (581.0 <= local0\Field14)) Lor ((607.0 > local21) And (607.0 <= local0\Field14))) <> 0) Then
-                                        playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00)
+                                        playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00, $00)
                                     EndIf
                                 EndIf
                             Case 9.0
@@ -3651,22 +3651,22 @@ Function updatenpcs%()
                                     rotateentity(local0\Field3, 0.0, entityyaw(local0\Field3, $01), 0.0, $01)
                                     local0\Field15 = curveangle(entityyaw(local0\Field3, $01), local0\Field15, 20.0)
                                     If (local0\Field29 = $00) Then
-                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Echo" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01)
+                                        local0\Field18 = playsoundex(loadtempsound((("SFX\SCP\966\Echo" + (Str rand($00, $02))) + ".ogg")), camera, local0\Field3, 10.0, 1.0, $01, $00)
                                         local0\Field29 = $01
                                     EndIf
                                     If (557.0 < local0\Field14) Then
                                         animatenpc(local0, 629.0, 652.0, 0.25, $00)
                                         If (((650.0 > local21) And (650.0 <= local0\Field14)) <> 0) Then
-                                            playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00)
+                                            playsoundex(snd_i\Field56[rand($03, $06)], camera, local0\Field3, 7.0, rnd(0.5, 0.7), $00, $00)
                                         EndIf
                                         If (651.9 < local0\Field14) Then
                                             Select rand($03, $01)
                                                 Case $01
-                                                    setnpcframe(local0, 458.0)
+                                                    setnpcframe(local0, 458.0, $01)
                                                 Case $02
-                                                    setnpcframe(local0, 488.0)
+                                                    setnpcframe(local0, 488.0, $01)
                                                 Case $03
-                                                    setnpcframe(local0, 518.0)
+                                                    setnpcframe(local0, 518.0, $01)
                                             End Select
                                         EndIf
                                     ElseIf (487.0 >= local0\Field14) Then
@@ -3698,7 +3698,7 @@ Function updatenpcs%()
                                                 kill($01, $01, $00, $01)
                                             EndIf
                                         Else
-                                            playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                            playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                         EndIf
                                     EndIf
                                 EndIf
@@ -3801,19 +3801,19 @@ Function updatenpcs%()
                                             local0\Field34\Field28 = 1.0
                                             local39 = rand($00, $02)
                                             If (local39 = $00) Then
-                                                setnpcframe(local0, 296.0)
+                                                setnpcframe(local0, 296.0, $01)
                                             ElseIf (local39 = $01) Then
-                                                setnpcframe(local0, 856.0)
+                                                setnpcframe(local0, 856.0, $01)
                                             Else
-                                                setnpcframe(local0, 905.0)
+                                                setnpcframe(local0, 905.0, $01)
                                             EndIf
                                             local39 = rand($00, $02)
                                             If (local39 = $00) Then
-                                                setnpcframe(local0\Field34, 296.0)
+                                                setnpcframe(local0\Field34, 296.0, $01)
                                             ElseIf (local39 = $01) Then
-                                                setnpcframe(local0\Field34, 856.0)
+                                                setnpcframe(local0\Field34, 856.0, $01)
                                             Else
-                                                setnpcframe(local0\Field34, 905.0)
+                                                setnpcframe(local0\Field34, 905.0, $01)
                                             EndIf
                                         EndIf
                                     EndIf
@@ -3832,9 +3832,9 @@ Function updatenpcs%()
                                     Else
                                         local39 = rand($00, $01)
                                         If (local39 = $00) Then
-                                            setnpcframe(local0, 509.0)
+                                            setnpcframe(local0, 509.0, $01)
                                         Else
-                                            setnpcframe(local0, 534.0)
+                                            setnpcframe(local0, 534.0, $01)
                                         EndIf
                                     EndIf
                                 ElseIf (local0\Field13 = $02) Then
@@ -3857,11 +3857,11 @@ Function updatenpcs%()
                                 Else
                                     local39 = rand($00, $02)
                                     If (local39 = $00) Then
-                                        setnpcframe(local0, 296.0)
+                                        setnpcframe(local0, 296.0, $01)
                                     ElseIf (local39 = $01) Then
-                                        setnpcframe(local0, 856.0)
+                                        setnpcframe(local0, 856.0, $01)
                                     Else
-                                        setnpcframe(local0, 905.0)
+                                        setnpcframe(local0, 905.0, $01)
                                     EndIf
                                 EndIf
                             Else
@@ -3899,7 +3899,7 @@ Function updatenpcs%()
                                         local13 = entitydistancesquared(local0\Field3, me\Field60)
                                         If (400.0 > local13) Then
                                             loadnpcsound(local0, (("SFX\SCP\1499\Idle" + (Str rand($00, $03))) + ".ogg"), $00)
-                                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01)
+                                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01, $00)
                                         EndIf
                                     EndIf
                                     local0\Field11 = 0.0
@@ -3911,7 +3911,7 @@ Function updatenpcs%()
                                         If (entityvisible(local0\Field3, me\Field60) <> 0) Then
                                             If (25.0 > local13) Then
                                                 loadnpcsound(local0, "SFX\SCP\1499\Triggered.ogg", $00)
-                                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01)
+                                                local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01, $00)
                                                 local0\Field11 = 1.0
                                                 For local1 = Each npcs
                                                     If (((local1\Field4 = local0\Field4) And (local1 <> local0)) <> 0) Then
@@ -3924,7 +3924,7 @@ Function updatenpcs%()
                                             Else
                                                 local0\Field11 = 0.0
                                             EndIf
-                                            setnpcframe(local0, 203.0)
+                                            setnpcframe(local0, 203.0, $01)
                                             local0\Field10 = 2.0
                                         EndIf
                                     EndIf
@@ -3935,8 +3935,8 @@ Function updatenpcs%()
                                     If (16.0 > local13) Then
                                         If (entityvisible(local0\Field3, me\Field60) <> 0) Then
                                             loadnpcsound(local0, "SFX\SCP\1499\Triggered.ogg", $00)
-                                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01)
-                                            setnpcframe(local0, 203.0)
+                                            local0\Field18 = playsoundex(local0\Field17, camera, local0\Field3, 20.0, 1.0, $01, $00)
+                                            setnpcframe(local0, 203.0, $01)
                                             local0\Field10 = 1.0
                                         EndIf
                                     EndIf
@@ -3970,9 +3970,9 @@ Function updatenpcs%()
                             If (0.5625 > local13) Then
                                 If (((((((local0\Field5 Mod $02) = $00) Lor (1.0 = local0\Field12)) Lor (local0\Field13 = $01)) Lor (local0\Field13 = $03)) Lor (local0\Field13 = $04)) <> 0) Then
                                     If (1.0 = local0\Field11) Then
-                                        setnpcframe(local0, 63.0)
+                                        setnpcframe(local0, 63.0, $01)
                                     Else
-                                        setnpcframe(local0, 168.0)
+                                        setnpcframe(local0, 168.0, $01)
                                     EndIf
                                     local0\Field11 = (Float rand($01, $02))
                                     local0\Field10 = 3.0
@@ -4006,7 +4006,7 @@ Function updatenpcs%()
                             EndIf
                             If (local30 <> 0) Then
                                 If (((0.64 < local13) Lor (60.0 < (Abs deltayaw(local0\Field3, me\Field60)))) <> 0) Then
-                                    playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                    playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                 Else
                                     playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
                                     injureplayer((rnd(0.65, 1.1) * local37), 0.0, 500.0, (0.35 * local37), (0.15 * local37))
@@ -4047,7 +4047,7 @@ Function updatenpcs%()
                     updatenpcblinking(local0)
                     Select local0\Field10
                         Case 0.0
-                            setnpcframe(local0, 11.0)
+                            setnpcframe(local0, 11.0, $01)
                             local0\Field15 = curveangle(entityyaw(local0\Field3, $01), local0\Field15, 20.0)
                         Case 1.0
                             animatenpc(local0, 11.0, 29.0, 0.1, $00)
@@ -4084,14 +4084,14 @@ Function updatenpcs%()
                                 moveentity(local0\Field3, 0.0, 0.0, (local0\Field24 * fps\Field7[$00]))
                                 local0\Field15 = curveangle(entityyaw(local0\Field3, $01), local0\Field15, 20.0)
                                 If (0.49 > local13) Then
-                                    setnpcframe(local0, 126.0)
+                                    setnpcframe(local0, 126.0, $01)
                                     local0\Field10 = 4.0
                                 EndIf
                                 local0\Field41 = 0.0
                                 local0\Field40 = $00
                                 local0\Field42 = $00
                                 If ((((((65.0 > local21) And (65.0 <= local0\Field14)) Lor ((80.0 > local21) And (80.0 <= local0\Field14))) Lor ((95.0 > local21) And (95.0 <= local0\Field14))) Lor ((113.0 > local21) And (113.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $07)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $07)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             Else
                                 local0\Field34 = Null
@@ -4170,7 +4170,7 @@ Function updatenpcs%()
                             Else
                                 animatenpc(local0, 64.0, 93.0, (local0\Field24 * 30.0), $01)
                                 If ((((65.0 > local21) And (65.0 <= local0\Field14)) Lor ((80.0 > local21) And (80.0 <= local0\Field14))) <> 0) Then
-                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $07)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                                    playsoundex(stepsfx(getstepsound(local0\Field3), $00, rand($00, $07)), camera, local0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                                 EndIf
                             EndIf
                             If (local13 > ((hidedistance * 1.5) * (hidedistance * 1.5))) Then
@@ -4227,10 +4227,10 @@ Function updatenpcs%()
                                             kill($01, $01, $00, $01)
                                         EndIf
                                     Else
-                                        playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                        playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                     EndIf
                                 ElseIf (0.5625 > entitydistancesquared(local0\Field3, local0\Field34\Field3)) Then
-                                    playsoundex(snd_i\Field51[rand($05, $08)], camera, local0\Field34\Field0, 10.0, 1.0, $00)
+                                    playsoundex(snd_i\Field51[rand($05, $08)], camera, local0\Field34\Field0, 10.0, 1.0, $00, $00)
                                     If (local0\Field34\Field60 > $00) Then
                                         local0\Field34\Field60 = (Int max(((Float local0\Field34\Field60) - rnd(10.0, 20.0)), 0.0))
                                     Else
@@ -4238,7 +4238,7 @@ Function updatenpcs%()
                                         local0\Field10 = 3.0
                                     EndIf
                                 Else
-                                    playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00)
+                                    playsoundex(snd_i\Field48, camera, local0\Field3, 2.5, 1.0, $00, $00)
                                 EndIf
                             ElseIf (164.0 <= local0\Field14) Then
                                 local0\Field10 = (me\Field0 + 2.0)
@@ -4281,7 +4281,7 @@ Function updatenpcs%()
                             EndIf
                             freeentity(local26)
                             local26 = $00
-                            playsoundex(loadtempsound("SFX\Room\PocketDimension\Impact.ogg"), camera, local0\Field3, 4.0, 0.8, $00)
+                            playsoundex(loadtempsound("SFX\Room\PocketDimension\Impact.ogg"), camera, local0\Field3, 4.0, 0.8, $00, $00)
                             hideentity(local0\Field3)
                             hideentity(local0\Field0)
                             local90 = $01
@@ -4376,7 +4376,7 @@ Function updatenpcs%()
                         If (local0\Field59 = $00) Then
                             If (playerroom\Field7\Field6 <> $04) Then
                                 If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                                    If (1.0 = forest_event\Field2) Then
+                                    If (20.0 < entityy(me\Field60, $00)) Then
                                         local95 = $01
                                     EndIf
                                 EndIf
@@ -4426,6 +4426,7 @@ Function updatenpcs%()
                         Else
                             local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
                         EndIf
+                        translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
                     Else
                         local0\Field7 = 0.0
                     EndIf

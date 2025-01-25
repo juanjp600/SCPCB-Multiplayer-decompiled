@@ -85,19 +85,19 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                                 arg0\Field34\Field28 = 1.0
                                 local3 = rand($00, $02)
                                 If (local3 = $00) Then
-                                    setnpcframe(arg0, 296.0)
+                                    setnpcframe(arg0, 296.0, $01)
                                 ElseIf (local3 = $01) Then
-                                    setnpcframe(arg0, 856.0)
+                                    setnpcframe(arg0, 856.0, $01)
                                 Else
-                                    setnpcframe(arg0, 905.0)
+                                    setnpcframe(arg0, 905.0, $01)
                                 EndIf
                                 local3 = rand($00, $02)
                                 If (local3 = $00) Then
-                                    setnpcframe(arg0\Field34, 296.0)
+                                    setnpcframe(arg0\Field34, 296.0, $01)
                                 ElseIf (local3 = $01) Then
-                                    setnpcframe(arg0\Field34, 856.0)
+                                    setnpcframe(arg0\Field34, 856.0, $01)
                                 Else
-                                    setnpcframe(arg0\Field34, 905.0)
+                                    setnpcframe(arg0\Field34, 905.0, $01)
                                 EndIf
                             EndIf
                         EndIf
@@ -116,9 +116,9 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                         Else
                             local3 = rand($00, $01)
                             If (local3 = $00) Then
-                                setnpcframe(arg0, 509.0)
+                                setnpcframe(arg0, 509.0, $01)
                             Else
-                                setnpcframe(arg0, 534.0)
+                                setnpcframe(arg0, 534.0, $01)
                             EndIf
                         EndIf
                     ElseIf (arg0\Field13 = $02) Then
@@ -141,11 +141,11 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                     Else
                         local3 = rand($00, $02)
                         If (local3 = $00) Then
-                            setnpcframe(arg0, 296.0)
+                            setnpcframe(arg0, 296.0, $01)
                         ElseIf (local3 = $01) Then
-                            setnpcframe(arg0, 856.0)
+                            setnpcframe(arg0, 856.0, $01)
                         Else
-                            setnpcframe(arg0, 905.0)
+                            setnpcframe(arg0, 905.0, $01)
                         EndIf
                     EndIf
                 Else
@@ -182,7 +182,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                         If (channelplaying(arg0\Field18) = $00) Then
                             If (400.0 > local2) Then
                                 loadnpcsound(arg0, (("SFX\SCP\1499\Idle" + (Str rand($00, $03))) + ".ogg"), $00)
-                                arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01)
+                                arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
                             EndIf
                         EndIf
                         arg0\Field11 = 0.0
@@ -193,7 +193,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                             If (entityvisible(arg0\Field3, me\Field60) <> 0) Then
                                 If (25.0 > local2) Then
                                     loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
-                                    arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01)
+                                    arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
                                     arg0\Field11 = 1.0
                                     For local0 = Each npcs
                                         If (((local0\Field4 = arg0\Field4) And (local0 <> arg0)) <> 0) Then
@@ -206,7 +206,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                                 Else
                                     arg0\Field11 = 0.0
                                 EndIf
-                                setnpcframe(arg0, 203.0)
+                                setnpcframe(arg0, 203.0, $01)
                                 arg0\Field10 = 2.0
                             EndIf
                         EndIf
@@ -216,8 +216,8 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                         If (16.0 > local2) Then
                             If (entityvisible(arg0\Field3, me\Field60) <> 0) Then
                                 loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
-                                arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01)
-                                setnpcframe(arg0, 203.0)
+                                arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
+                                setnpcframe(arg0, 203.0, $01)
                                 arg0\Field10 = 1.0
                             EndIf
                         EndIf
@@ -250,9 +250,9 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                 If (0.5625 > local2) Then
                     If (((((((arg0\Field5 Mod $02) = $00) Lor (1.0 = arg0\Field12)) Lor (arg0\Field13 = $01)) Lor (arg0\Field13 = $03)) Lor (arg0\Field13 = $04)) <> 0) Then
                         If (1.0 = arg0\Field11) Then
-                            setnpcframe(arg0, 63.0)
+                            setnpcframe(arg0, 63.0, $01)
                         Else
-                            setnpcframe(arg0, 168.0)
+                            setnpcframe(arg0, 168.0, $01)
                         EndIf
                         arg0\Field11 = (Float rand($01, $02))
                         arg0\Field10 = 3.0
@@ -286,8 +286,8 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                 EndIf
                 If (local5 <> 0) Then
                     If (((0.64 < local2) Lor (60.0 < (Abs deltayaw(arg0\Field3, me\Field60)))) <> 0) Then
-                        playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00)
-                    ElseIf (arg0\Field79 <> 0) Then
+                        playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00, $00)
+                    ElseIf (arg0\Field83 <> 0) Then
                         playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
                         injureplayer((rnd(0.65, 1.1) * difficultydmgmult), 0.0, 500.0, (0.35 * difficultydmgmult), (0.15 * difficultydmgmult))
                         me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.5)
@@ -300,7 +300,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                             kill($01, $01, $00, $01)
                         EndIf
                     Else
-                        playsoundex(snd_i\Field51[rand($0B, $0C)], camera, arg0\Field3, 8.0, 1.0, $00)
+                        playsoundex(snd_i\Field51[rand($0B, $0C)], camera, arg0\Field3, 8.0, 1.0, $00, $00)
                     EndIf
                 EndIf
             Case 4.0

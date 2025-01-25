@@ -53,7 +53,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
     arg2\Field4 = $01
     If (arg1\Field6 <> 0) Then
         arg1\Field22 = $03
-        If (me\Field65 <> 0) Then
+        If (me\Field66 <> 0) Then
             If (518.0 > arg0) Then
                 arg1\Field4 = $00
             EndIf
@@ -62,20 +62,20 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
     EndIf
     If (arg2\Field6 <> 0) Then
         arg2\Field22 = $03
-        If (me\Field65 <> 0) Then
+        If (me\Field66 <> 0) Then
             arg2\Field4 = $00
             arg2\Field22 = $01
         EndIf
     EndIf
     local8 = $00
     If (n_i\Field4 <> Null) Then
-        If ((((((1.0 < n_i\Field4\Field10) And (n_i\Field4\Field34 = Null)) And (infacility = $00)) And me\Field65) And (chs\Field2 = $00)) <> 0) Then
+        If ((((((1.0 < n_i\Field4\Field10) And (n_i\Field4\Field34 = Null)) And (infacility = $00)) And me\Field66) And (chs\Field2 = $00)) <> 0) Then
             local8 = $01
         EndIf
     EndIf
     If (local8 = $00) Then
         If (((arg1\Field6 = $00) And (arg2\Field6 = $00)) <> 0) Then
-            If (me\Field65 <> 0) Then
+            If (me\Field66 <> 0) Then
                 cansave = $00
             EndIf
             arg1\Field4 = $01
@@ -156,7 +156,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                             updatelightvolume()
                             updatedoors()
                             updaterooms()
-                            arg1\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg1\Field0, 10.0, 1.0, $00)
+                            arg1\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg1\Field0, 10.0, 1.0, $00, $00)
                         EndIf
                         For local0 = Each npcs
                             local23 = entityx(local0\Field3, $01)
@@ -221,11 +221,11 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                                 updatedecals()
                             EndIf
                         Next
-                        openclosedoor(arg2, (me\Field65 = $00), $00)
+                        openclosedoor(arg2, (me\Field66 = $00), $00)
                         arg1\Field6 = $00
                         clearelevatorpaneltexture(arg1)
                         clearelevatorpaneltexture(arg2)
-                        playsoundex(snd_i\Field42, camera, arg3, 4.0, 1.0, $00)
+                        playsoundex(snd_i\Field42, camera, arg3, 4.0, 1.0, $00, $00)
                     EndIf
                 Else
                     arg0 = (fps\Field7[$00] + arg0)
@@ -286,7 +286,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                             updatelightvolume()
                             updatedoors()
                             updaterooms()
-                            arg2\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg2\Field0, 10.0, 1.0, $00)
+                            arg2\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg2\Field0, 10.0, 1.0, $00, $00)
                         EndIf
                         For local0 = Each npcs
                             local23 = entityx(local0\Field3, $01)
@@ -348,11 +348,11 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                                 updatedecals()
                             EndIf
                         Next
-                        openclosedoor(arg1, (me\Field65 = $00), $00)
+                        openclosedoor(arg1, (me\Field66 = $00), $00)
                         arg2\Field6 = $00
                         clearelevatorpaneltexture(arg1)
                         clearelevatorpaneltexture(arg2)
-                        playsoundex(snd_i\Field42, camera, arg4, 4.0, 1.0, $00)
+                        playsoundex(snd_i\Field42, camera, arg4, 4.0, 1.0, $00, $00)
                     EndIf
                 EndIf
             EndIf
@@ -368,7 +368,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
             local28 = 0.0
         EndIf
         If (((0.0 = arg1\Field8) And (arg1\Field6 = $00)) <> 0) Then
-            If (me\Field65 <> 0) Then
+            If (me\Field66 <> 0) Then
                 If (0.0 = arg0) Then
                     teleportentity(n_i\Field4\Field3, entityx(arg1\Field2, $00), (entityy(arg1\Field2, $00) + 1.0), entityz(arg1\Field2, $00), n_i\Field4\Field6, $00, 2.0, $00)
                     pointentity(n_i\Field4\Field3, arg3, 0.0)
@@ -376,7 +376,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                     moveentity(n_i\Field4\Field3, 0.0, 0.0, -0.5)
                     resetentity(n_i\Field4\Field3)
                     n_i\Field4\Field10 = 6.0
-                    setnpcframe(n_i\Field4, 0.0)
+                    setnpcframe(n_i\Field4, 0.0, $01)
                     loadeventsound(arg5, "SFX\SCP\096\ElevatorSlam.ogg", $00)
                     arg0 = ((fps\Field7[$00] * 1.4) + arg0)
                     arg1\Field4 = $01

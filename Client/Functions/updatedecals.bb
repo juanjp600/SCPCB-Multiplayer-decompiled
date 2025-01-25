@@ -23,7 +23,7 @@ Function updatedecals%()
                         local4 = rnd(local0\Field3, 0.0)
                         local5 = createdecal($01, (entityx(local0\Field0, $01) + (cos(local3) * local4)), (local1 - 0.0005), (entityz(local0\Field0, $01) + (sin(local3) * local4)), entitypitch(local0\Field0, $01), entityyaw(local0\Field0, $01), entityroll(local0\Field0, $01), rnd(0.1, 0.5), 1.0, $00, $01, $00, $00, $00)
                         entityparent(local5\Field0, getparent(local0\Field0), $01)
-                        playsoundex(snd_i\Field24[rand($03, $01)], camera, local5\Field0, 10.0, rnd(0.1, 0.5), $00)
+                        playsoundex(snd_i\Field24[rand($03, $01)], camera, local5\Field0, 10.0, rnd(0.1, 0.5), $00, $00)
                         local0\Field13 = rnd(50.0, 100.0)
                     Else
                         local0\Field13 = (local0\Field13 - fps\Field7[$00])

@@ -1,6 +1,7 @@
 Function createserverinfo%()
     ue_server = (New mp_server)
     ue_connection = (New mp_connection)
-    mp_allowversion($04)
+    ue_server\Field4 = "SCP CB UERM COOP Session"
+    mp_allowversion($08)
     Return $00
 End Function

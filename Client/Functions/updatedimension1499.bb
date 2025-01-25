@@ -205,10 +205,10 @@ Function updatedimension1499%()
                             For local10 = $02 To $05 Step $01
                                 If (local10 = $02) Then
                                     loadnpcsound(local0\Field1\Field15[local10], "SFX\SCP\1499\Triggered.ogg", $00)
-                                    local0\Field1\Field15[local10]\Field18 = playsoundex(local0\Field1\Field15[local10]\Field17, camera, local0\Field1\Field15[local10]\Field3, 50.0, 1.0, $00)
+                                    local0\Field1\Field15[local10]\Field18 = playsoundex(local0\Field1\Field15[local10]\Field17, camera, local0\Field1\Field15[local10]\Field3, 50.0, 1.0, $00, $00)
                                 EndIf
                                 local0\Field1\Field15[local10]\Field10 = 1.0
-                                setnpcframe(local0\Field1\Field15[local10], 203.0)
+                                setnpcframe(local0\Field1\Field15[local10], 203.0, $01)
                             Next
                             local0\Field4 = 2100.0
                         EndIf

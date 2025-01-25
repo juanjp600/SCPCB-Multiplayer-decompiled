@@ -121,7 +121,7 @@ Function updateevents%()
                         Wend
                         If (local3\Field1\Field15[$00] <> Null) Then
                             local3\Field1\Field15[$00]\Field10 = 8.0
-                            setnpcframe(local3\Field1\Field15[$00], 74.0)
+                            setnpcframe(local3\Field1\Field15[$00], 74.0, $01)
                         EndIf
                         If (local3\Field1\Field15[$01] <> Null) Then
                             positionentity(local3\Field1\Field15[$01]\Field3, local3\Field1\Field3, (local3\Field1\Field4 + 0.5), ((local3\Field1\Field5 - 1.0) + 8.0), $01)
@@ -130,7 +130,7 @@ Function updateevents%()
                             local3\Field1\Field15[$01] = createnpc($13, local3\Field1\Field3, (local3\Field1\Field4 + 0.5), ((local3\Field1\Field5 - 1.0) + 8.0))
                             changenpctextureid(local3\Field1\Field15[$01], $03)
                         EndIf
-                        setnpcframe(local3\Field1\Field15[$01], 210.0)
+                        setnpcframe(local3\Field1\Field15[$01], 210.0, $01)
                         If (local3\Field1\Field15[$02] <> Null) Then
                             positionentity(local3\Field1\Field15[$02]\Field3, local3\Field1\Field3, (local3\Field1\Field4 + 0.5), (local3\Field1\Field5 + 10.0625), $01)
                             resetentity(local3\Field1\Field15[$02]\Field3)
@@ -145,20 +145,20 @@ Function updateevents%()
                             local3\Field1\Field15[$03] = createnpc($14, tformedx(), tformedy(), tformedz())
                             local3\Field1\Field15[$03]\Field10 = 8.0
                             local3\Field1\Field15[$03]\Field50 = $01
-                            setnpcframe(local3\Field1\Field15[$03], 286.0)
+                            setnpcframe(local3\Field1\Field15[$03], 286.0, $01)
                             rotateentity(local3\Field1\Field15[$03]\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $01)
                             tformpoint(4712.0, 435.8, 4026.0, local3\Field1\Field2, $00)
                             local3\Field1\Field15[$04] = createnpc($13, tformedx(), tformedy(), tformedz())
                             local3\Field1\Field15[$04]\Field12 = -1.0
                             local3\Field1\Field15[$04]\Field50 = $01
-                            setnpcframe(local3\Field1\Field15[$04], 677.0)
+                            setnpcframe(local3\Field1\Field15[$04], 677.0, $01)
                             rotateentity(local3\Field1\Field15[$04]\Field3, 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, $01)
                             tformpoint(4340.0, 435.8, 3680.0, local3\Field1\Field2, $00)
                             local3\Field1\Field15[$05] = createnpc($13, tformedx(), tformedy(), tformedz())
                             local3\Field1\Field15[$05]\Field12 = -1.0
                             local3\Field1\Field15[$05]\Field50 = $01
                             changenpctextureid(local3\Field1\Field15[$05], $05)
-                            setnpcframe(local3\Field1\Field15[$05], 779.0)
+                            setnpcframe(local3\Field1\Field15[$05], 779.0, $01)
                             rotateentity(local3\Field1\Field15[$05]\Field3, 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, $01)
                             playsound_strict(loadtempsound("SFX\Room\Intro\173Vent.ogg"), $00)
                             me\Field10 = -10.0
@@ -202,11 +202,11 @@ Function updateevents%()
                                     positionentity(n_i\Field2\Field3, (local3\Field1\Field3 + 0.125), (local3\Field1\Field4 + 0.32), (local3\Field1\Field5 + 12.1875), $01)
                                     resetentity(n_i\Field2\Field3)
                                     local3\Field1\Field15[$01]\Field17 = loadsound_strict("SFX\Room\Intro\WhatThe0a.ogg")
-                                    local3\Field1\Field15[$01]\Field18 = playsoundex(local3\Field1\Field15[$01]\Field17, camera, local3\Field1\Field15[$01]\Field3, 10.0, 1.0, $01)
+                                    local3\Field1\Field15[$01]\Field18 = playsoundex(local3\Field1\Field15[$01]\Field17, camera, local3\Field1\Field15[$01]\Field3, 10.0, 1.0, $01, $00)
                                     local3\Field1\Field15[$01]\Field10 = 1.0
                                     local3\Field1\Field15[$01]\Field23 = -0.008
                                     local3\Field1\Field15[$02]\Field17 = loadsound_strict("SFX\Room\Intro\WhatThe0b.ogg")
-                                    local3\Field1\Field15[$02]\Field18 = playsoundex(local3\Field1\Field15[$02]\Field17, camera, local3\Field1\Field15[$02]\Field3, 10.0, 1.0, $01)
+                                    local3\Field1\Field15[$02]\Field18 = playsoundex(local3\Field1\Field15[$02]\Field17, camera, local3\Field1\Field15[$02]\Field3, 10.0, 1.0, $01, $00)
                                 EndIf
                                 local3\Field1\Field15[$01]\Field24 = curvevalue(local3\Field1\Field15[$01]\Field23, local3\Field1\Field15[$01]\Field24, 5.0)
                                 rotateentity(local3\Field1\Field15[$01]\Field3, 0.0, 0.0, 0.0, $00)
@@ -238,7 +238,7 @@ Function updateevents%()
                                         playsound_strict(snd_i\Field33[rand($00, $02)], $00)
                                         me\Field50 = 3.0
                                         me\Field10 = -10.0
-                                        playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00)
+                                        playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00, $00)
                                         pointentity(n_i\Field2\Field3, local3\Field1\Field15[$02]\Field3, 0.0)
                                     EndIf
                                     positionentity(n_i\Field2\Field3, (local3\Field1\Field3 - 0.375), (local3\Field1\Field4 + 0.32), (local3\Field1\Field5 + 10.3125), $01)
@@ -250,7 +250,7 @@ Function updateevents%()
                                             me\Field50 = 3.0
                                             me\Field10 = -10.0
                                             playsound_strict(snd_i\Field33[rand($00, $02)], $00)
-                                            playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00)
+                                            playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00, $00)
                                             positionentity(n_i\Field2\Field3, entityx(me\Field60, $00), entityy(me\Field60, $00), entityz(me\Field60, $00), $00)
                                             resetentity(n_i\Field2\Field3)
                                             n_i\Field2\Field26 = 0.0
@@ -262,7 +262,7 @@ Function updateevents%()
                                             me\Field50 = 3.0
                                             me\Field10 = -10.0
                                             playsound_strict(snd_i\Field33[rand($00, $02)], $00)
-                                            playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00)
+                                            playsoundex(snd_i\Field12, camera, n_i\Field2\Field3, 10.0, 1.0, $00, $00)
                                             positionentity(n_i\Field2\Field3, 0.0, -500.0, 0.0, $00)
                                             resetentity(n_i\Field2\Field3)
                                             n_i\Field2\Field26 = 0.0
@@ -306,7 +306,7 @@ Function updateevents%()
                             EndIf
                             If (rand($12C, $01) = $02) Then
                                 If (6.25 > entitydistancesquared(local3\Field1\Field11[$00], me\Field60)) Then
-                                    playsoundex(snd_i\Field24[rand($03, $01)], camera, local3\Field1\Field11[$00], 3.0, 1.0, $00)
+                                    playsoundex(snd_i\Field24[rand($03, $01)], camera, local3\Field1\Field11[$00], 3.0, 1.0, $00, $00)
                                 EndIf
                             EndIf
                         EndIf
@@ -423,7 +423,7 @@ Function updateevents%()
                         local1 = createnpc($14, tformedx(), tformedy(), tformedz())
                         local1\Field10 = 8.0
                         local1\Field50 = $01
-                        setnpcframe(local1, 287.0)
+                        setnpcframe(local1, 287.0, $01)
                         rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $01)
                         tformpoint(382.0, 150.0, -875.0, local3\Field1\Field2, $00)
                         local5 = createdecal($03, tformedx(), tformedy(), tformedz(), 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, 0.3, 1.0, $00, $01, $00, $00, $00)
@@ -433,7 +433,7 @@ Function updateevents%()
                         local1 = createnpc($14, tformedx(), tformedy(), tformedz())
                         local1\Field10 = 8.0
                         local1\Field50 = $01
-                        setnpcframe(local1, 288.0)
+                        setnpcframe(local1, 288.0, $01)
                         rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) + 125.0), 0.0, $01)
                     EndIf
                     removeevent(local3)
@@ -446,7 +446,7 @@ Function updateevents%()
                             local1 = createnpc($14, tformedx(), tformedy(), tformedz())
                             local1\Field10 = 8.0
                             local1\Field50 = $01
-                            setnpcframe(local1, 288.0)
+                            setnpcframe(local1, 288.0, $01)
                             rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) + 180.0), 0.0, $01)
                             tformpoint(-2220.0, -10688.0, 1000.0, local3\Field1\Field2, $00)
                             local5 = createdecal($03, tformedx(), (tformedy() + 0.005), tformedz(), 90.0, rnd(360.0, 0.0), 0.0, 0.5, 1.0, $00, $01, $00, $00, $00)
@@ -522,7 +522,7 @@ Function updateevents%()
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
+                    me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field5 = updateelevators(local3\Field5, local3\Field1\Field14[$01], local3\Field1\Field14[$02], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00)
                 EndIf
@@ -698,12 +698,12 @@ Function updateevents%()
                         local3\Field1\Field15[$00]\Field50 = $01
                         local3\Field1\Field15[$00]\Field43 = $01
                         rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 180.0), 0.0, $01)
-                        setnpcframe(local3\Field1\Field15[$00], 17.0)
+                        setnpcframe(local3\Field1\Field15[$00], 17.0, $01)
                     EndIf
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
+                    me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field5 = updateelevators(local3\Field5, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00)
                 ElseIf (playerinreachableroom($01, $00) = $00) Then
@@ -731,7 +731,7 @@ Function updateevents%()
                             local1\Field12 = -1.0
                             local1\Field50 = $01
                             changenpctextureid(local1, $10)
-                            setnpcframe(local1, 40.0)
+                            setnpcframe(local1, 40.0, $01)
                             rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) - 180.0), 0.0, $01)
                             local3\Field2 = 1.0
                         EndIf
@@ -743,9 +743,9 @@ Function updateevents%()
                                 rotateentity(local3\Field1\Field13[$00]\Field0, curveangle((80.0 - ((Float local3\Field1\Field14[$00]\Field6) * 160.0)), entitypitch(local3\Field1\Field13[$00]\Field0, $00), 10.0), entityyaw(local3\Field1\Field13[$00]\Field0, $00), 0.0, $00)
                                 If (rand(((local3\Field1\Field14[$00]\Field6 * $96) + $96), $01) = $01) Then
                                     If (local3\Field1\Field14[$00]\Field6 <> 0) Then
-                                        playsoundex(snd_i\Field3, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                                        playsoundex(snd_i\Field3, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                                     Else
-                                        playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                                        playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                                     EndIf
                                     openclosedoor(local3\Field1\Field14[$00], $01, $00)
                                 EndIf
@@ -825,7 +825,7 @@ Function updateevents%()
                                 EndIf
                                 animateex(local3\Field1\Field11[$05], animtime(local3\Field1\Field11[$05]), $E4, $178, 0.2, $01)
                                 If (2800.0 < local3\Field3) Then
-                                    playsoundex(loadtempsound("SFX\SCP\205\Horror.ogg"), camera, local3\Field1\Field11[$05], 10.0, 0.3, $00)
+                                    playsoundex(loadtempsound("SFX\SCP\205\Horror.ogg"), camera, local3\Field1\Field11[$05], 10.0, 0.3, $00, $00)
                                     local3\Field2 = (local3\Field2 + 1.0)
                                 EndIf
                             Case 7.0
@@ -843,7 +843,7 @@ Function updateevents%()
                                 Next
                                 animateex(local3\Field1\Field11[$04], animtime(local3\Field1\Field11[$04]), $1F4, $288, 0.2, $01)
                                 If (4200.0 < local3\Field3) Then
-                                    playsoundex(loadtempsound("SFX\SCP\205\Horror.ogg"), camera, local3\Field1\Field11[$05], 10.0, 0.5, $00)
+                                    playsoundex(loadtempsound("SFX\SCP\205\Horror.ogg"), camera, local3\Field1\Field11[$05], 10.0, 0.5, $00, $00)
                                     local3\Field2 = (local3\Field2 + 1.0)
                                 EndIf
                             Case 9.0
@@ -992,9 +992,9 @@ Function updateevents%()
                             local3\Field1\Field15[$00]\Field48 = 0.0
                             local3\Field1\Field15[$00]\Field9 = 0.0
                             local3\Field1\Field15[$00]\Field17 = loadsound_strict((("SFX\Room\895Chamber\GuardIdle" + (Str rand($00, $02))) + ".ogg"))
-                            local3\Field1\Field15[$00]\Field18 = playsoundex(local3\Field1\Field15[$00]\Field17, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01)
+                            local3\Field1\Field15[$00]\Field18 = playsoundex(local3\Field1\Field15[$00]\Field17, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01, $00)
                             rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $00)
-                            setnpcframe(local3\Field1\Field15[$00], 270.0)
+                            setnpcframe(local3\Field1\Field15[$00], 270.0, $01)
                             local3\Field1\Field14[$00]\Field6 = $01
                         EndIf
                         If ((((n_i\Field3\Field65 = $00) And (2.0 > n_i\Field3\Field10)) And ((chs\Field2 Lor i_268\Field2) = $00)) <> 0) Then
@@ -1013,7 +1013,7 @@ Function updateevents%()
                                 stopchannel(local3\Field1\Field15[$00]\Field18)
                                 local3\Field1\Field15[$00]\Field18 = $00
                                 loadnpcsound(local3\Field1\Field15[$00], (("SFX\Room\895Chamber\GuardScream" + (Str rand($00, $02))) + ".ogg"), $00)
-                                local3\Field1\Field15[$00]\Field18 = playsoundex(local3\Field1\Field15[$00]\Field17, camera, local3\Field1\Field15[$00]\Field3, 100.0, 1.0, $01)
+                                local3\Field1\Field15[$00]\Field18 = playsoundex(local3\Field1\Field15[$00]\Field17, camera, local3\Field1\Field15[$00]\Field3, 100.0, 1.0, $01, $00)
                                 local3\Field1\Field15[$00]\Field11 = 0.0
                                 local3\Field1\Field15[$00]\Field13 = $01
                             EndIf
@@ -1228,8 +1228,8 @@ Function updateevents%()
                                         If (((local11\Field2 <> $00) And (local11\Field15 = $00)) <> 0) Then
                                             If (200.0 > (Abs (entityx(local11\Field2, $00) - (local3\Field1\Field3 - 2.78125)))) Then
                                                 If (104.0 > (Abs (entityy(local11\Field2, $00) - (local3\Field1\Field4 + 2.53125)))) Then
-                                                    local3\Field6 = playsoundex(snd_i\Field59, camera, local3\Field1\Field11[$01], 10.0, 1.0, $00)
-                                                    local3\Field1\Field14[$01]\Field17 = playsoundex(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00)
+                                                    local3\Field6 = playsoundex(snd_i\Field59, camera, local3\Field1\Field11[$01], 10.0, 1.0, $00, $00)
+                                                    local3\Field1\Field14[$01]\Field17 = playsoundex(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00, $00)
                                                     setanimtime(local3\Field1\Field11[$07], 1.0, $00)
                                                     local3\Field2 = 1.0
                                                     Exit
@@ -1257,7 +1257,7 @@ Function updateevents%()
                                 local3\Field7 = $00
                                 If (((((((-94.0 < local54) And (-86.0 > local54)) Lor ((-44.0 < local54) And (-36.0 > local54))) Lor ((-4.0 < local54) And (4.0 > local54))) Lor ((36.0 < local54) And (44.0 > local54))) Lor ((86.0 < local54) And (94.0 > local54))) <> 0) Then
                                     If (local3\Field6 = $00) Then
-                                        local3\Field6 = playsoundex(snd_i\Field31[rand($00, $01)], camera, local3\Field1\Field11[$01], 2.0, 0.5, $00)
+                                        local3\Field6 = playsoundex(snd_i\Field31[rand($00, $01)], camera, local3\Field1\Field11[$01], 2.0, 0.5, $00, $00)
                                     EndIf
                                 Else
                                     local3\Field6 = $00
@@ -1304,7 +1304,7 @@ Function updateevents%()
                         rotateentity(local3\Field1\Field11[$01], 0.0, 0.0, curvevalue(local37, entityroll(local3\Field1\Field11[$01], $00), 20.0), $00)
                         If (((((((-90.0 = local37) Lor (-40.0 = local37)) Lor (-1.0 = local37)) Lor (0.0 = local37)) Lor (40.0 = local37)) Lor (90.0 = local37)) <> 0) Then
                             If (local3\Field7 = $00) Then
-                                local3\Field7 = playsoundex(snd_i\Field31[rand($00, $01)], camera, local3\Field1\Field11[$01], 2.0, 0.5, $00)
+                                local3\Field7 = playsoundex(snd_i\Field31[rand($00, $01)], camera, local3\Field1\Field11[$01], 2.0, 0.5, $00, $00)
                             EndIf
                         EndIf
                     EndIf
@@ -1319,7 +1319,7 @@ Function updateevents%()
                         local3\Field1\Field14[$01]\Field6 = $00
                         If (140.0 < local3\Field2) Then
                             If (local3\Field1\Field14[$00]\Field6 <> 0) Then
-                                local3\Field1\Field14[$00]\Field17 = playsoundex(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00)
+                                local3\Field1\Field14[$00]\Field17 = playsoundex(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $00)
                             EndIf
                             local3\Field1\Field14[$00]\Field6 = $00
                         EndIf
@@ -1381,8 +1381,8 @@ Function updateevents%()
                             local3\Field1\Field14[$01]\Field6 = $01
                             rotateentity(local3\Field1\Field11[$00], 0.0, 0.0, 0.0, $00)
                             local58 = loadtempsound("SFX\SCP\914\DoorOpen.ogg")
-                            local3\Field1\Field14[$00]\Field17 = playsoundex(local58, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00)
-                            local3\Field1\Field14[$01]\Field17 = playsoundex(local58, camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00)
+                            local3\Field1\Field14[$00]\Field17 = playsoundex(local58, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $00)
+                            local3\Field1\Field14[$01]\Field17 = playsoundex(local58, camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00, $00)
                             me\Field9 = $01
                             local3\Field2 = 0.0
                         EndIf
@@ -1457,7 +1457,7 @@ Function updateevents%()
                                                 injureplayer(0.3, 0.001, 500.0, 0.0, 0.0)
                                                 createmsg(getlocalstring("msg", "008.173"), 6.0)
                                             EndIf
-                                            local3\Field7 = playsoundex(loadtempsound("SFX\Room\GlassBreak.ogg"), camera, local3\Field1\Field11[$00], 10.0, 1.0, $00)
+                                            local3\Field7 = playsoundex(loadtempsound("SFX\Room\GlassBreak.ogg"), camera, local3\Field1\Field11[$00], 10.0, 1.0, $00, $00)
                                             local3\Field3 = 1.0
                                         EndIf
                                     EndIf
@@ -1505,7 +1505,7 @@ Function updateevents%()
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$08]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$09]))
+                    me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$08]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$09]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$04], local3\Field1\Field14[$05], local3\Field1\Field11[$08], local3\Field1\Field11[$09], local3, $01, $00)
                 ElseIf (entityhidden(local3\Field1\Field11[$0A]) = $00) Then
@@ -1521,7 +1521,7 @@ Function updateevents%()
                                     If (((0.0 <= me\Field3) And remotedooron) <> 0) Then
                                         giveachievement("012", $01)
                                         playsound_strict(snd_i\Field47[$07], $00)
-                                        playsoundex(snd_i\Field32, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00)
+                                        playsoundex(snd_i\Field32, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $00)
                                         If (local3\Field1\Field14[$00]\Field6 = $00) Then
                                             openclosedoor(local3\Field1\Field14[$00], $01, $00)
                                         EndIf
@@ -1675,7 +1675,7 @@ Function updateevents%()
                         local31 = entityx(me\Field60, $01)
                         local32 = entityy(me\Field60, $01)
                         local33 = entityz(me\Field60, $01)
-                        me\Field65 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
+                        me\Field66 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
                         toelevatorfloor = $FFFFFFFF
                         local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                         local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00)
@@ -1745,7 +1745,7 @@ Function updateevents%()
                                     local3\Field5 = 0.0
                                 EndIf
                             ElseIf ((((d_i\Field9 = local3\Field1\Field11[$05]) And mo\Field0) And (Int local34)) <> 0) Then
-                                playsoundex(buttonsfx[$00], camera, local3\Field1\Field11[$05], 10.0, 1.0, $00)
+                                playsoundex(buttonsfx[$00], camera, local3\Field1\Field11[$05], 10.0, 1.0, $00, $00)
                                 mo\Field0 = $00
                                 If (0.0 = local3\Field5) Then
                                     If (opt\Field0 > $00) Then
@@ -1789,7 +1789,7 @@ Function updateevents%()
                                 local31 = entityx(me\Field60, $01)
                                 local32 = entityy(me\Field60, $01)
                                 local33 = entityz(me\Field60, $01)
-                                me\Field65 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
+                                me\Field66 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
                                 toelevatorfloor = $FFFFFFFF
                                 local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                                 local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00)
@@ -1804,7 +1804,7 @@ Function updateevents%()
                                         positionentity(local3\Field1\Field15[$00]\Field3, entityx(local3\Field1\Field11[local20], $01), entityy(local3\Field1\Field11[local20], $01), entityz(local3\Field1\Field11[local20], $01), $00)
                                         resetentity(local3\Field1\Field15[$00]\Field3)
                                         giveachievement("049", $01)
-                                        playsoundex(snd_i\Field42, camera, local3\Field1\Field11[local20], 4.0, 1.0, $00)
+                                        playsoundex(snd_i\Field42, camera, local3\Field1\Field11[local20], 4.0, 1.0, $00, $00)
                                         local3\Field1\Field14[local20]\Field4 = $00
                                         openclosedoor(local3\Field1\Field14[local20], $01, $00)
                                         local3\Field1\Field14[(local20 - $01)]\Field6 = $00
@@ -1830,7 +1830,7 @@ Function updateevents%()
                             ElseIf (16800.0 > local3\Field2) Then
                                 For local1 = Each npcs
                                     If (((local1\Field4 = $03) And (0.0 = local1\Field10)) <> 0) Then
-                                        setnpcframe(local1, 155.0)
+                                        setnpcframe(local1, 155.0, $01)
                                         local1\Field10 = 1.0
                                     EndIf
                                 Next
@@ -1914,7 +1914,7 @@ Function updateevents%()
                             local3\Field1\Field15[$00]\Field12 = -1.0
                             local3\Field1\Field15[$00]\Field50 = $01
                             changenpctextureid(local3\Field1\Field15[$00], $0D)
-                            setnpcframe(local3\Field1\Field15[$00], 19.0)
+                            setnpcframe(local3\Field1\Field15[$00], 19.0, $01)
                             rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, (Float local3\Field1\Field6), 0.0, $01)
                             local5 = createdecal($13, local34, ((local35 - (1.0 / 4.55516)) + 0.005), local36, 90.0, rnd(360.0, 0.0), 0.0, 0.85, 0.8, $00, $01, $00, $00, $00)
                             entityparent(local5\Field0, local3\Field1\Field2, $01)
@@ -1953,14 +1953,14 @@ Function updateevents%()
                             If (rand($32, $01) = $01) Then
                                 settemplatevelocity(particleeffect[$13], -0.007, 0.008, -0.001, 0.0012, 0.007, 0.008)
                                 setemitter(local3\Field1, entityx(local3\Field1\Field11[$03], $01), entityy(local3\Field1\Field11[$03], $01), entityz(local3\Field1\Field11[$03], $01), $13)
-                                playsoundex(snd_i\Field62, camera, local3\Field1\Field11[$03], 3.0, 0.4, $00)
+                                playsoundex(snd_i\Field62, camera, local3\Field1\Field11[$03], 3.0, 0.4, $00, $00)
                             EndIf
                         EndIf
                     EndIf
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
+                    me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                 EndIf
@@ -1998,24 +1998,20 @@ Function updateevents%()
             Case $39
                 local60 = local3\Field1\Field10
                 If (((playerroom = local3\Field1) And (local60 <> Null)) <> 0) Then
-                    If (1.0 = local3\Field2) Then
+                    If (20.0 < entityy(me\Field60, $00)) Then
                         For local2 = Each rooms
                             hideroomsnocoll(local2)
                         Next
                         showroomsnocoll(local3\Field1)
                         updateforest(local60)
-                        If (((local3\Field1\Field15[$00] = Null) And (0.0 = local3\Field5)) <> 0) Then
-                            local3\Field1\Field15[$00] = createnpc($0A, 0.0, 0.0, 0.0)
-                        EndIf
-                        If (1.0 = local3\Field5) Then
+                        shouldplay = $09
+                        If (local3\Field1\Field15[$00] = Null) Then
                             shouldplay = $21
                             If (rand($64, $01) = $01) Then
                                 me\Field23 = 0.7
                                 me\Field30 = 0.7
                                 me\Field28 = rnd(60.0, 70.0)
                             EndIf
-                        Else
-                            shouldplay = $09
                         EndIf
                         If (local3\Field1\Field15[$00] <> Null) Then
                             If ((((1.0 = local3\Field1\Field15[$00]\Field11) And (1.0 < local3\Field1\Field15[$00]\Field10)) Lor (2.0 < local3\Field1\Field15[$00]\Field10)) <> 0) Then
@@ -2158,9 +2154,9 @@ Function updateevents%()
                                 openclosedoor(local3\Field1\Field14[$01], $01, $00)
                             EndIf
                             If (((1040.0 <= local3\Field3) And (1040.0 > (local3\Field3 - fps\Field7[$00]))) <> 0) Then
-                                local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer0.ogg"), camera, local3\Field1\Field15[$00]\Field0, 10.0, 1.0, $01)
+                                local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer0.ogg"), camera, local3\Field1\Field15[$00]\Field0, 10.0, 1.0, $01, $00)
                             ElseIf (((1400.0 <= local3\Field3) And (1400.0 > (local3\Field3 - fps\Field7[$00]))) <> 0) Then
-                                local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer1.ogg"), camera, local3\Field1\Field15[$00]\Field0, 10.0, 1.0, $01)
+                                local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer1.ogg"), camera, local3\Field1\Field15[$00]\Field0, 10.0, 1.0, $01, $00)
                             EndIf
                             local3\Field1\Field15[$00]\Field10 = 3.0
                             animatenpc(local3\Field1\Field15[$00], 3.0, 26.0, 0.2, $01)
@@ -2217,7 +2213,7 @@ Function updateevents%()
                             resetentity(me\Field60)
                             local5 = createdecal($03, entityx(me\Field60, $01), ((local3\Field1\Field4 + 3.003906) + 0.005), entityz(me\Field60, $01), 90.0, rnd(360.0, 0.0), 0.0, 0.5, 1.0, $00, $01, $00, $00, $00)
                             entityparent(local5\Field0, local3\Field1\Field2, $01)
-                            local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer2.ogg"), camera, local3\Field1\Field15[$00]\Field3, 7.0, 1.0, $01)
+                            local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\SCP\1123\Officer2.ogg"), camera, local3\Field1\Field15[$00]\Field3, 7.0, 1.0, $01, $00)
                             local3\Field2 = 6.0
                         EndIf
                     ElseIf (6.0 = local3\Field2) Then
@@ -2474,7 +2470,7 @@ Function updateevents%()
                             me\Field50 = 4.0
                             For local20 = $00 To $01 Step $01
                                 If (local3\Field1\Field14[local20]\Field6 = $00) Then
-                                    local3\Field1\Field14[local20]\Field17 = playsoundex(snd_i\Field4, camera, local3\Field1\Field14[local20]\Field2, 5.0, 1.0, $00)
+                                    local3\Field1\Field14[local20]\Field17 = playsoundex(snd_i\Field4, camera, local3\Field1\Field14[local20]\Field2, 5.0, 1.0, $00, $00)
                                     openclosedoor(local3\Field1\Field14[local20], $01, $00)
                                 EndIf
                             Next
@@ -2498,7 +2494,7 @@ Function updateevents%()
                         If (playerroom = local3\Field1) Then
                             If (2.25 > entitydistancesquared(me\Field60, local3\Field1\Field11[$00])) Then
                                 giveachievement("789j", $01)
-                                local3\Field6 = playsoundex(loadtempsound("SFX\SCP\Joke\789J.ogg"), camera, local3\Field1\Field11[$00], 10.0, 1.0, $01)
+                                local3\Field6 = playsoundex(loadtempsound("SFX\SCP\Joke\789J.ogg"), camera, local3\Field1\Field11[$00], 10.0, 1.0, $01, $00)
                                 local3\Field2 = 2.0
                             EndIf
                         EndIf
@@ -2521,7 +2517,7 @@ Function updateevents%()
                             local3\Field1\Field15[$00] = createnpc($14, tformedx(), tformedy(), tformedz())
                             local3\Field1\Field15[$00]\Field10 = 8.0
                             local3\Field1\Field15[$00]\Field50 = $01
-                            setnpcframe(local3\Field1\Field15[$00], 287.0)
+                            setnpcframe(local3\Field1\Field15[$00], 287.0, $01)
                             rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $01)
                             tformpoint(1328.0, 150.0, 491.0, local3\Field1\Field2, $00)
                             local5 = createdecal($03, tformedx(), tformedy(), tformedz(), 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, 0.3, 1.0, $00, $01, $00, $00, $00)
@@ -2543,7 +2539,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00]\Field18 = $00
                         freesound_strict(local3\Field1\Field15[$00]\Field17)
                         local3\Field1\Field15[$00]\Field17 = $00
-                        local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\Character\Guard\SuicideGuard1.ogg"), camera, local3\Field1\Field15[$00]\Field3, 12.0, 1.0, $01)
+                        local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\Character\Guard\SuicideGuard1.ogg"), camera, local3\Field1\Field15[$00]\Field3, 12.0, 1.0, $01, $00)
                         local3\Field2 = 3.0
                     Case 3.0
                         updatesoundorigin(local3\Field1\Field15[$00]\Field18, camera, local3\Field1\Field15[$00]\Field3, 15.0, 1.0, $00, $01)
@@ -2614,8 +2610,8 @@ Function updateevents%()
                     If (local3\Field8 = $00) Then
                         loadeventsound(local3, "SFX\Door\DoorCheckpoint.ogg", $00)
                     EndIf
-                    local3\Field6 = playsoundex(local3\Field8, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00)
-                    local3\Field7 = playsoundex(local3\Field8, camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00)
+                    local3\Field6 = playsoundex(local3\Field8, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $00)
+                    local3\Field7 = playsoundex(local3\Field8, camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00, $00)
                 EndIf
                 local3\Field2 = (Float local3\Field1\Field14[$00]\Field6)
                 updatesoundorigin(local3\Field6, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $01)
@@ -2632,7 +2628,7 @@ Function updateevents%()
                                 pointentity(local3\Field1\Field15[$00]\Field3, local3\Field1\Field2, 0.0)
                                 rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, entityyaw(local3\Field1\Field15[$00]\Field3, $00), 0.0, $01)
                                 moveentity(local3\Field1\Field15[$00]\Field3, 0.0, 0.0, 0.5)
-                                playsoundex(loadtempsound("SFX\Door\EndroomDoor.ogg"), camera, local3\Field1\Field2, 15.0, 1.0, $00)
+                                playsoundex(loadtempsound("SFX\Door\EndroomDoor.ogg"), camera, local3\Field1\Field2, 15.0, 1.0, $00, $00)
                                 local3\Field2 = 1.0
                             EndIf
                         EndIf
@@ -2667,7 +2663,7 @@ Function updateevents%()
                         n_i\Field3\Field26 = 1.0
                         If (7.74 < entitydistancesquared(local3\Field1\Field15[$00]\Field3, local3\Field1\Field14[$00]\Field2)) Then
                             If (1.0 = local3\Field1\Field15[$00]\Field10) Then
-                                setnpcframe(local3\Field1\Field15[$00], 41.0)
+                                setnpcframe(local3\Field1\Field15[$00], 41.0, $01)
                             EndIf
                             local3\Field1\Field15[$00]\Field10 = 6.0
                             local3\Field1\Field15[$00]\Field24 = curvevalue(0.0, local3\Field1\Field15[$00]\Field24, 25.0)
@@ -2739,7 +2735,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00] = createnpc($13, tformedx(), tformedy(), tformedz())
                         local3\Field1\Field15[$00]\Field12 = 2.0
                         changenpctextureid(local3\Field1\Field15[$00], $0A)
-                        local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\Character\Maintenance\EscapeFromClosets.ogg"), camera, local3\Field1\Field15[$00]\Field3, 12.0, 1.0, $01)
+                        local3\Field1\Field15[$00]\Field18 = playsoundex(loadtempsound("SFX\Character\Maintenance\EscapeFromClosets.ogg"), camera, local3\Field1\Field15[$00]\Field3, 12.0, 1.0, $01, $00)
                         tformpoint(-1292.0, -256.0, -160.0, local3\Field1\Field2, $00)
                         local3\Field1\Field15[$01] = createnpc($13, tformedx(), tformedy(), tformedz())
                         local3\Field1\Field15[$01]\Field12 = 3.0
@@ -2754,12 +2750,12 @@ Function updateevents%()
                         rotateentity(local3\Field1\Field15[$01]\Field3, 0.0, curveangle(((Float local3\Field1\Field6) + 90.0), entityyaw(local3\Field1\Field15[$01]\Field3, $00), 100.0), 0.0, $01)
                         local3\Field1\Field15[$00]\Field10 = 1.0
                         If (((203.0 < local3\Field2) And (203.0 >= (local3\Field2 - fps\Field7[$00]))) <> 0) Then
-                            playsoundex(loadtempsound("SFX\Room\Intro\173Vent.ogg"), camera, local3\Field1\Field2, 15.0, 1.0, $00)
+                            playsoundex(loadtempsound("SFX\Room\Intro\173Vent.ogg"), camera, local3\Field1\Field2, 15.0, 1.0, $00, $00)
                         EndIf
                     ElseIf (455.0 > local3\Field2) Then
                         If (210.0 > (local3\Field2 - fps\Field7[$00])) Then
                             local3\Field1\Field15[$00]\Field10 = 0.0
-                            local3\Field1\Field15[$01]\Field18 = playsoundex(loadtempsound("SFX\Character\Scientist\EscapeFromClosets.ogg"), camera, local3\Field1\Field15[$01]\Field3, 12.0, 1.0, $01)
+                            local3\Field1\Field15[$01]\Field18 = playsoundex(loadtempsound("SFX\Character\Scientist\EscapeFromClosets.ogg"), camera, local3\Field1\Field15[$01]\Field3, 12.0, 1.0, $01, $00)
                         EndIf
                         If (315.0 < local3\Field2) Then
                             pointentity(local3\Field1\Field15[$00]\Field0, local3\Field1\Field2, 0.0)
@@ -2779,7 +2775,7 @@ Function updateevents%()
                             If (wi\Field5 > $00) Then
                                 me\Field10 = -10.0
                             EndIf
-                            playsoundex(snd_i\Field53[$00], camera, local3\Field1\Field15[$00]\Field3, 8.0, 1.0, $00)
+                            playsoundex(snd_i\Field53[$00], camera, local3\Field1\Field15[$00]\Field3, 8.0, 1.0, $00, $00)
                             positionentity(n_i\Field2\Field3, (entityx(local3\Field1\Field15[$00]\Field3, $01) + 0.35), (entityy(local3\Field1\Field15[$00]\Field3, $01) + 0.15), entityz(local3\Field1\Field15[$00]\Field3, $01), $00)
                             pointentity(n_i\Field2\Field3, local3\Field1\Field15[$00]\Field3, 0.0)
                             resetentity(n_i\Field2\Field3)
@@ -2789,7 +2785,7 @@ Function updateevents%()
                             If (wi\Field5 > $00) Then
                                 me\Field10 = -10.0
                             EndIf
-                            playsoundex(snd_i\Field53[$01], camera, local3\Field1\Field15[$01]\Field3, 8.0, 1.0, $00)
+                            playsoundex(snd_i\Field53[$01], camera, local3\Field1\Field15[$01]\Field3, 8.0, 1.0, $00, $00)
                             positionentity(n_i\Field2\Field3, (entityx(local3\Field1\Field15[$01]\Field3, $01) + 0.35), (entityy(local3\Field1\Field15[$01]\Field3, $01) + 0.15), entityz(local3\Field1\Field15[$01]\Field3, $01), $00)
                             pointentity(n_i\Field2\Field3, local3\Field1\Field15[$01]\Field3, 0.0)
                             resetentity(n_i\Field2\Field3)
@@ -2831,10 +2827,10 @@ Function updateevents%()
                                     local71 = $01
                                     local3\Field3 = (local3\Field3 + 1.0)
                                 ElseIf (((selecteditem\Field4\Field2 = $61) Lor (selecteditem\Field4\Field2 = $62)) <> 0) Then
-                                    me\Field64 = ((selecteditem\Field4\Field2 = $62) + $01)
+                                    me\Field65 = ((selecteditem\Field4\Field2 = $62) + $01)
                                     If (0.0 < selecteditem\Field12) Then
                                         selecteditem\Field12 = (selecteditem\Field12 - 1.0)
-                                        me\Field63 = (Int selecteditem\Field12)
+                                        me\Field64 = (Int selecteditem\Field12)
                                         playsound_strict(loadtempsound("SFX\SCP\294\InsertMasterCard.ogg"), $00)
                                         local71 = $01
                                         removeitem(selecteditem)
@@ -2850,15 +2846,15 @@ Function updateevents%()
                                 selecteditem = Null
                                 mo\Field0 = $00
                             EndIf
-                        ElseIf ((((1.0 = local3\Field3) And (local71 = $00)) And (me\Field64 = $00)) <> 0) Then
+                        ElseIf ((((1.0 = local3\Field3) And (local71 = $00)) And (me\Field65 = $00)) <> 0) Then
                             i_294\Field0 = $00
                             createmsg(getlocalstring("msg", "294.another"), 6.0)
-                        ElseIf (((local71 = $00) And (me\Field64 = $00)) <> 0) Then
+                        ElseIf (((local71 = $00) And (me\Field65 = $00)) <> 0) Then
                             i_294\Field0 = $00
                             createmsg(getlocalstring("msg", "294.two"), 6.0)
-                        ElseIf (me\Field64 > $00) Then
+                        ElseIf (me\Field65 > $00) Then
                             createmsg(getlocalstring("msg", "294.funds"), 6.0)
-                            me\Field64 = $00
+                            me\Field65 = $00
                         EndIf
                     EndIf
                     If (interactobject(local3\Field1\Field11[$01], 0.8, $00) <> 0) Then
@@ -2912,7 +2908,7 @@ Function updateevents%()
                         local31 = entityx(me\Field60, $01)
                         local32 = entityy(me\Field60, $01)
                         local33 = entityz(me\Field60, $01)
-                        me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
+                        me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
                         toelevatorfloor = $01
                         local3\Field2 = updateelevators(local3\Field2, local3\Field1\Field14[$00], local73\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $01)
                         If (16.0 > entitydistancesquared(me\Field60, local3\Field1\Field11[$01])) Then
@@ -2950,7 +2946,7 @@ Function updateevents%()
                         local31 = entityx(me\Field60, $01)
                         local32 = entityy(me\Field60, $01)
                         local33 = entityz(me\Field60, $01)
-                        me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
+                        me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
                         toelevatorfloor = $01
                         local3\Field2 = updateelevators(local3\Field2, local3\Field1\Field14[$00], local74\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                         If (n_i\Field3\Field65 = $00) Then
@@ -2971,7 +2967,7 @@ Function updateevents%()
                     local75 = local3\Field3
                     local3\Field3 = (Float updatelever(local3\Field1\Field13[$01]\Field0, $00, $50, -80.0))
                     If (((local75 <> local3\Field3) And (0.0 < local3\Field2)) <> 0) Then
-                        playsoundex(snd_i\Field34, camera, local3\Field1\Field13[$01]\Field0, 10.0, 1.0, $00)
+                        playsoundex(snd_i\Field34, camera, local3\Field1\Field13[$01]\Field0, 10.0, 1.0, $00, $00)
                     EndIf
                     isblackout = (0.0 = local3\Field3)
                     If (((wi\Field5 = $00) And (wi\Field9 = $00)) <> 0) Then
@@ -3089,7 +3085,7 @@ Function updateevents%()
                     local1\Field12 = -1.0
                     local1\Field50 = $01
                     changenpctextureid(local1, $00)
-                    setnpcframe(local1, 19.0)
+                    setnpcframe(local1, 19.0, $01)
                     rotateentity(local1\Field3, 0.0, (entityyaw(local3\Field1\Field2, $00) - 80.0), 0.0, $01)
                     removeevent(local3)
                 EndIf
@@ -3108,9 +3104,9 @@ Function updateevents%()
                         If (playerroom <> local3\Field1) Then
                             local3\Field4 = (local3\Field3 * 5.0)
                         ElseIf (((0.0 = (Float local23)) And (1.0 = local3\Field3)) <> 0) Then
-                            local3\Field7 = playsoundex(loadtempsound("SFX\Ambient\Room Ambience\FanOn.ogg"), camera, local3\Field1\Field11[$00], 8.0, 1.0, $00)
+                            local3\Field7 = playsoundex(loadtempsound("SFX\Ambient\Room Ambience\FanOn.ogg"), camera, local3\Field1\Field11[$00], 8.0, 1.0, $00, $00)
                         ElseIf (((1.0 = (Float local23)) And (0.0 = local3\Field3)) <> 0) Then
-                            local3\Field7 = playsoundex(loadtempsound("SFX\Ambient\Room Ambience\FanOff.ogg"), camera, local3\Field1\Field11[$00], 8.0, 1.0, $00)
+                            local3\Field7 = playsoundex(loadtempsound("SFX\Ambient\Room Ambience\FanOff.ogg"), camera, local3\Field1\Field11[$00], 8.0, 1.0, $00, $00)
                         EndIf
                         local3\Field2 = (rnd(15.0, 30.0) * 70.0)
                     Else
@@ -3125,7 +3121,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00]\Field12 = -1.0
                         local3\Field1\Field15[$00]\Field50 = $01
                         changenpctextureid(local3\Field1\Field15[$00], $07)
-                        setnpcframe(local3\Field1\Field15[$00], 40.0)
+                        setnpcframe(local3\Field1\Field15[$00], 40.0, $01)
                         rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $01)
                     EndIf
                 EndIf
@@ -3177,7 +3173,7 @@ Function updateevents%()
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
+                    me\Field66 = (isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                 EndIf
@@ -3221,7 +3217,7 @@ Function updateevents%()
                             local3\Field1\Field15[$00] = createnpc($13, local3\Field1\Field3, (local3\Field1\Field4 + 0.203125), local3\Field1\Field5)
                             local3\Field1\Field15[$00]\Field12 = -1.0
                             local3\Field1\Field15[$00]\Field50 = $01
-                            setnpcframe(local3\Field1\Field15[$00], 19.0)
+                            setnpcframe(local3\Field1\Field15[$00], 19.0, $01)
                             rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 180.0), 0.0, $00)
                             moveentity(local3\Field1\Field15[$00]\Field3, 0.0, 0.0, -0.5)
                             changenpctextureid(local3\Field1\Field15[$00], $0C)
@@ -3315,7 +3311,7 @@ Function updateevents%()
                                             stopchannel(local3\Field6)
                                             local3\Field6 = $00
                                         EndIf
-                                        local3\Field6 = playsoundex(snd_i\Field17, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00)
+                                        local3\Field6 = playsoundex(snd_i\Field17, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00, $00)
                                         local3\Field2 = 1.0
                                     EndIf
                                 EndIf
@@ -3339,7 +3335,7 @@ Function updateevents%()
                                             stopchannel(local3\Field6)
                                             local3\Field6 = $00
                                         EndIf
-                                        local3\Field6 = playsoundex(snd_i\Field17, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00)
+                                        local3\Field6 = playsoundex(snd_i\Field17, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00, $00)
                                         local3\Field2 = 1.0
                                     EndIf
                                 EndIf
@@ -3359,7 +3355,7 @@ Function updateevents%()
                             If (35.0 <= local3\Field3) Then
                                 stopchannel(local3\Field7)
                                 local3\Field7 = $00
-                                local3\Field7 = playsoundex(snd_i\Field19, camera, local3\Field1\Field11[$00], 10.0, 1.0, $00)
+                                local3\Field7 = playsoundex(snd_i\Field19, camera, local3\Field1\Field11[$00], 10.0, 1.0, $00, $00)
                                 local3\Field2 = 2.0
                             EndIf
                         Case 2.0
@@ -3426,7 +3422,7 @@ Function updateevents%()
                             If (0.0 >= local3\Field3) Then
                                 stopchannel(local3\Field6)
                                 local3\Field6 = $00
-                                local3\Field6 = playsoundex(snd_i\Field18, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00)
+                                local3\Field6 = playsoundex(snd_i\Field18, camera, local3\Field1\Field11[$00], 4.0, 0.5, $00, $00)
                                 local3\Field2 = 3.0
                                 local3\Field3 = -70.0
                             EndIf
@@ -4138,7 +4134,7 @@ Function updateevents%()
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$04])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$05]))
+                    me\Field66 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$04])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$05]))
                     toelevatorfloor = $01
                     local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $00, (1.0 = local3\Field2))
                     local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$04], local3\Field1\Field11[$05], local3, $00, (1.0 = local3\Field2))
@@ -4269,7 +4265,7 @@ Function updateevents%()
                     ElseIf (entityinview(local3\Field1\Field11[$00], camera) = $00) Then
                         local3\Field2 = (local3\Field2 + fps\Field7[$00])
                         If (((rand($C8, $01) = $01) And (300.0 < local3\Field2)) <> 0) Then
-                            local3\Field6 = playsoundex(loadtempsound("SFX\SCP\Joke\Saxophone.ogg"), camera, local3\Field1\Field11[$00], 6.0, 1.0, $00)
+                            local3\Field6 = playsoundex(loadtempsound("SFX\SCP\Joke\Saxophone.ogg"), camera, local3\Field1\Field11[$00], 6.0, 1.0, $00, $00)
                             local3\Field2 = 0.0
                         EndIf
                     ElseIf (channelplaying(local3\Field6) <> 0) Then
@@ -4284,7 +4280,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00] = createnpc($0E, tformedx(), tformedy(), tformedz())
                         local3\Field1\Field15[$00]\Field10 = 3.0
                         pointentity(local3\Field1\Field15[$00]\Field3, local3\Field1\Field2, 0.0)
-                        setnpcframe(local3\Field1\Field15[$00], 326.0)
+                        setnpcframe(local3\Field1\Field15[$00], 326.0, $01)
                         local107 = (("drawing_1048(" + (Str rand($19, $01))) + ").png")
                         For local19 = Each itemtemplates
                             If (local19\Field1 = "Drawing") Then
@@ -4343,7 +4339,7 @@ Function updateevents%()
                                 local3\Field2 = 1.0
                             EndIf
                         ElseIf (((2.25 > entitydistancesquared(me\Field60, local3\Field1\Field14[$00]\Field0)) And remotedooron) <> 0) Then
-                            playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                            playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                             openclosedoor(local3\Field1\Field14[$00], $01, $00)
                         EndIf
                     ElseIf (local3\Field1\Field11[$00] = $00) Then
@@ -4382,7 +4378,7 @@ Function updateevents%()
                         n_i\Field4\Field11 = 700.0
                         rotateentity(n_i\Field4\Field3, 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, $01)
                         loadeventsound(local3, "SFX\Character\Guard\096ServerRoom0.ogg", $00)
-                        local3\Field6 = playsoundex(local3\Field8, camera, n_i\Field4\Field0, 10.0, 1.0, $01)
+                        local3\Field6 = playsoundex(local3\Field8, camera, n_i\Field4\Field0, 10.0, 1.0, $01, $00)
                         tformpoint(-1328.0, 150.0, 528.0, local3\Field1\Field2, $00)
                         local3\Field1\Field15[$00] = createnpc($14, tformedx(), tformedy(), tformedz())
                         giveachievement("096", $01)
@@ -4392,7 +4388,7 @@ Function updateevents%()
                     If (((rand($32, $01) = $01) And (playerroom = local3\Field1)) <> 0) Then
                         me\Field50 = rnd(1.0, 2.0)
                         If (rand($05, $01) = $01) Then
-                            playsoundex(snd_i\Field33[rand($00, $02)], camera, local3\Field1\Field2, 8.0, rnd(0.1, 0.3), $00)
+                            playsoundex(snd_i\Field33[rand($00, $02)], camera, local3\Field1\Field2, 8.0, rnd(0.1, 0.3), $00, $00)
                         EndIf
                     EndIf
                     local3\Field2 = min((local3\Field2 + fps\Field7[$00]), 2800.0)
@@ -4405,7 +4401,7 @@ Function updateevents%()
                             If (entitydistancesquared(me\Field60, local3\Field1\Field14[$01]\Field2) > entitydistancesquared(me\Field60, local3\Field1\Field14[$00]\Field2)) Then
                                 animatenpc(n_i\Field4, 521.0, 555.0, 0.25, $00)
                                 If (554.5 <= n_i\Field4\Field14) Then
-                                    setnpcframe(n_i\Field4, 677.0)
+                                    setnpcframe(n_i\Field4, 677.0, $01)
                                     n_i\Field4\Field10 = 2.0
                                     turnentity(n_i\Field4\Field3, 0.0, 180.0, 0.0, $00)
                                     moveentity(n_i\Field4\Field3, 0.0, 0.0, 0.3)
@@ -4414,7 +4410,7 @@ Function updateevents%()
                             Else
                                 animatenpc(n_i\Field4, 556.0, 590.0, 0.25, $00)
                                 If (589.5 <= n_i\Field4\Field14) Then
-                                    setnpcframe(n_i\Field4, 677.0)
+                                    setnpcframe(n_i\Field4, 677.0, $01)
                                     n_i\Field4\Field10 = 2.0
                                     turnentity(n_i\Field4\Field3, 0.0, 180.0, 0.0, $00)
                                     moveentity(n_i\Field4\Field3, 0.0, 0.0, 0.3)
@@ -4461,7 +4457,7 @@ Function updateevents%()
                         EndIf
                         If (((25.0 < n_i\Field4\Field14) And (150.0 > n_i\Field4\Field14)) <> 0) Then
                             loadeventsound(local3, "SFX\Character\Guard\096ServerRoom1.ogg", $00)
-                            local3\Field6 = playsoundex(local3\Field8, camera, n_i\Field4\Field0, 10.0, 1.0, $01)
+                            local3\Field6 = playsoundex(local3\Field8, camera, n_i\Field4\Field0, 10.0, 1.0, $01, $00)
                             changenpctextureid(n_i\Field4, $12)
                             n_i\Field4\Field24 = 0.0
                             For local20 = $00 To $06 Step $01
@@ -4511,7 +4507,7 @@ Function updateevents%()
                             If (channelplaying(local3\Field6) <> 0) Then
                                 me\Field50 = rnd(0.5, 6.0)
                                 If (rand($32, $01) = $01) Then
-                                    playsoundex(snd_i\Field33[rand($00, $02)], camera, local3\Field1\Field2, 8.0, rnd(0.1, 0.3), $00)
+                                    playsoundex(snd_i\Field33[rand($00, $02)], camera, local3\Field1\Field2, 8.0, rnd(0.1, 0.3), $00, $00)
                                 EndIf
                             EndIf
                             If (((0.0 = (Float local3\Field1\Field6)) Lor (180.0 = (Float local3\Field1\Field6))) <> 0) Then
@@ -4763,7 +4759,7 @@ Function updateevents%()
                                 local3\Field1\Field15[$00]\Field50 = $01
                                 rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) - 200.0), 0.0, $01)
                                 changenpctextureid(local3\Field1\Field15[$00], $01)
-                                setnpcframe(local3\Field1\Field15[$00], 80.0)
+                                setnpcframe(local3\Field1\Field15[$00], 80.0, $01)
                             Case 30.0
                                 local20 = rand($00, (maxitemamount - $01))
                                 If (inventory(local20) <> Null) Then
@@ -4933,7 +4929,7 @@ Function updateevents%()
                     local31 = entityx(me\Field60, $01)
                     local32 = entityy(me\Field60, $01)
                     local33 = entityz(me\Field60, $01)
-                    me\Field65 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
+                    me\Field66 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$00]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$01])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03]))
                     toelevatorfloor = $FFFFFFFF
                     local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00)
                     local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00)
@@ -4959,14 +4955,14 @@ Function updateevents%()
                             local3\Field1\Field15[$04]\Field12 = -1.0
                             local3\Field1\Field15[$04]\Field50 = $01
                             changenpctextureid(local3\Field1\Field15[$04], $0E)
-                            setnpcframe(local3\Field1\Field15[$04], 40.0)
+                            setnpcframe(local3\Field1\Field15[$04], 40.0, $01)
                             rotateentity(local3\Field1\Field15[$04]\Field3, 0.0, ((Float local3\Field1\Field6) + 90.0), 0.0, $01)
                             tformpoint(1083.0, -5580.8, 989.0, local3\Field1\Field2, $00)
                             local3\Field1\Field15[$05] = createnpc($13, tformedx(), tformedy(), tformedz())
                             local3\Field1\Field15[$05]\Field12 = -1.0
                             local3\Field1\Field15[$05]\Field50 = $01
                             changenpctextureid(local3\Field1\Field15[$05], $0F)
-                            setnpcframe(local3\Field1\Field15[$05], 19.0)
+                            setnpcframe(local3\Field1\Field15[$05], 19.0, $01)
                             rotateentity(local3\Field1\Field15[$05]\Field3, 0.0, (Float local3\Field1\Field6), 0.0, $01)
                         Else
                             If (0.0 = local3\Field2) Then
@@ -4997,7 +4993,7 @@ Function updateevents%()
                                     If (updatelever(local3\Field1\Field13[local20]\Field0, $00, $50, -80.0) <> 0) Then
                                         local3\Field1\Field14[$04]\Field6 = $01
                                         loadeventsound(local3, "SFX\Door\Door2OpenDistanced.ogg", $01)
-                                        local3\Field7 = playsoundex(local3\Field9, camera, local3\Field1\Field14[$04]\Field0, 400.0, 1.0, $00)
+                                        local3\Field7 = playsoundex(local3\Field9, camera, local3\Field1\Field14[$04]\Field0, 400.0, 1.0, $00, $00)
                                         Exit
                                     EndIf
                                 Next
@@ -5039,7 +5035,7 @@ Function updateevents%()
                     local1 = createnpc($14, tformedx(), tformedy(), tformedz())
                     local1\Field10 = 8.0
                     local1\Field50 = $01
-                    setnpcframe(local1, 288.0)
+                    setnpcframe(local1, 288.0, $01)
                     rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) + rnd(160.0, 180.0)), 0.0, $01)
                     removeevent(local3)
                 EndIf
@@ -5050,7 +5046,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00]\Field10 = 6.0
                         createnpcasset(local3\Field1\Field15[$00])
                         changenpctextureid(local3\Field1\Field15[$00], $0C)
-                        setnpcframe(local3\Field1\Field15[$00], 501.0)
+                        setnpcframe(local3\Field1\Field15[$00], 501.0, $01)
                         rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, $01)
                         local3\Field2 = 1.0
                     ElseIf (0.0 < local3\Field2) Then
@@ -5098,7 +5094,7 @@ Function updateevents%()
                                             If (1050.0 >= (local3\Field4 - fps\Field7[$00])) Then
                                                 loadnpcsound(local3\Field1\Field15[$00], "SFX\SCP\035\Gased1.ogg", $00)
                                                 local3\Field1\Field15[$00]\Field18 = playsound_strict(local3\Field1\Field15[$00]\Field17, $01)
-                                                setnpcframe(local3\Field1\Field15[$00], 553.0)
+                                                setnpcframe(local3\Field1\Field15[$00], 553.0, $01)
                                             EndIf
                                             local3\Field1\Field15[$00]\Field10 = 6.0
                                             animatenpc(local3\Field1\Field15[$00], 553.0, 529.0, -0.12, $00)
@@ -5429,7 +5425,7 @@ Function updateevents%()
                 EndIf
             Case $1C
                 If (playerroom = local3\Field1) Then
-                    playsoundex(snd_i\Field25, camera, local3\Field1\Field2, 10.0, 1.0, $00)
+                    playsoundex(snd_i\Field25, camera, local3\Field1\Field2, 10.0, 1.0, $00, $00)
                     tformpoint(0.0, 460.0, 512.0, local3\Field1\Field2, $00)
                     local18 = setemitter(local3\Field1, tformedx(), tformedy(), tformedz(), $00)
                     local18\Field11 = $01
@@ -5551,7 +5547,7 @@ Function updateevents%()
                                         tformpoint(-801.0, 240.0, -206.95, local3\Field1\Field2, $00)
                                         local5 = createdecal($18, tformedx(), tformedy(), tformedz(), 0.0, ((Float local3\Field1\Field6) + 180.0), 0.0, 0.2, 0.5, $00, $01, $00, $00, $00)
                                         entityparent(local5\Field0, local3\Field1\Field2, $01)
-                                        playsoundex(loadtempsound("SFX\Room\GlassBreak.ogg"), camera, n_i\Field2\Field0, 10.0, 1.0, $00)
+                                        playsoundex(loadtempsound("SFX\Room\GlassBreak.ogg"), camera, n_i\Field2\Field0, 10.0, 1.0, $00, $00)
                                         hideentity(local3\Field1\Field11[$02])
                                         positionentity(n_i\Field2\Field3, entityx(local3\Field1\Field11[$01], $01), 0.5, entityz(local3\Field1\Field11[$01], $01), $00)
                                         resetentity(n_i\Field2\Field3)
@@ -5582,7 +5578,7 @@ Function updateevents%()
                                 local3\Field1\Field15[$00]\Field12 = -1.0
                                 changenpctextureid(local3\Field1\Field15[$00], $04)
                                 rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, rnd(360.0, 0.0), 0.0, $01)
-                                setnpcframe(local3\Field1\Field15[$00], 1.0)
+                                setnpcframe(local3\Field1\Field15[$00], 1.0, $01)
                                 playsound_strict(snd_i\Field47[$00], $00)
                                 playsound_strict(snd_i\Field24[$02], $00)
                             EndIf
@@ -5604,7 +5600,7 @@ Function updateevents%()
                                 animatenpc(local3\Field1\Field15[$00], 11.0, 19.0, 0.25, $00)
                                 If (local3\Field8 = $00) Then
                                     loadeventsound(local3, "SFX\Character\BodyFall.ogg", $00)
-                                    playsoundex(local3\Field8, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $00)
+                                    playsoundex(local3\Field8, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $00, $00)
                                     local5 = createdecal($00, local3\Field1\Field3, (local3\Field1\Field4 + 0.005), local3\Field1\Field5, 90.0, rnd(360.0, 0.0), 0.0, 0.4, 0.8, $00, $01, $00, $00, $00)
                                     entityparent(local5\Field0, local3\Field1\Field2, $01)
                                 EndIf
@@ -5691,7 +5687,7 @@ Function updateevents%()
                     local1\Field12 = -1.0
                     local1\Field50 = $01
                     changenpctextureid(local1, $08)
-                    setnpcframe(local1, 19.0)
+                    setnpcframe(local1, 19.0, $01)
                     rotateentity(local1\Field3, 0.0, ((Float local3\Field1\Field6) - 30.0), 0.0, $01)
                     removeevent(local3)
                 EndIf
@@ -5702,7 +5698,7 @@ Function updateevents%()
                         local3\Field1\Field15[$00] = createnpc($14, tformedx(), tformedy(), tformedz())
                         local3\Field1\Field15[$00]\Field10 = 8.0
                         local3\Field1\Field15[$00]\Field50 = $01
-                        setnpcframe(local3\Field1\Field15[$00], 288.0)
+                        setnpcframe(local3\Field1\Field15[$00], 288.0, $01)
                         rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 225.0), 0.0, $01)
                     EndIf
                 EndIf
@@ -5712,7 +5708,7 @@ Function updateevents%()
                         If (rand($32, $01) = $01) Then
                             settemplatevelocity(particleeffect[$13], -0.007, -0.008, -0.001, 0.0012, -0.007, 0.008)
                             setemitter(local3\Field1, entityx(local3\Field1\Field11[$00], $01), entityy(local3\Field1\Field11[$00], $01), entityz(local3\Field1\Field11[$00], $01), $13)
-                            playsoundex(snd_i\Field62, camera, local3\Field1\Field11[$00], 3.0, 0.4, $00)
+                            playsoundex(snd_i\Field62, camera, local3\Field1\Field11[$00], 3.0, 0.4, $00, $00)
                         EndIf
                     EndIf
                 EndIf
@@ -5724,7 +5720,7 @@ Function updateevents%()
                         If ((((0.64 > entitydistancesquared(local3\Field1\Field11[$00], me\Field60)) And (0.0 = local3\Field3)) And (1.0 = local3\Field4)) <> 0) Then
                             If (local112 <> 0) Then
                                 loadeventsound(local3, "SFX\Room\SparkLong.ogg", $01)
-                                local3\Field7 = playsoundex(local3\Field9, camera, local3\Field1\Field11[$01], 5.0, 1.0, $00)
+                                local3\Field7 = playsoundex(local3\Field9, camera, local3\Field1\Field11[$01], 5.0, 1.0, $00, $00)
                             EndIf
                             stopchannel(local3\Field6)
                             local3\Field6 = $00
@@ -5769,7 +5765,7 @@ Function updateevents%()
                                 EndIf
                             Next
                             If (channelplaying(local3\Field6) = $00) Then
-                                local3\Field6 = playsoundex(local3\Field8, camera, local3\Field1\Field11[$00], 5.0, 1.0, $00)
+                                local3\Field6 = playsoundex(local3\Field8, camera, local3\Field1\Field11[$00], 5.0, 1.0, $00, $00)
                             EndIf
                         EndIf
                     Else
@@ -5874,7 +5870,7 @@ Function updateevents%()
                                 EndIf
                             Next
                             If (0.0 = local3\Field1\Field15[$00]\Field28) Then
-                                playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$01]\Field2, 7.0, 1.0, $00)
+                                playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$01]\Field2, 7.0, 1.0, $00, $00)
                                 local3\Field1\Field15[$00]\Field7 = 0.0
                                 local3\Field1\Field15[$00]\Field28 = 1.0
                             EndIf
@@ -5894,7 +5890,7 @@ Function updateevents%()
                                 If (local3\Field1\Field15[$00]\Field13 = $01) Then
                                     If (local3\Field1\Field15[$00]\Field20 = $00) Then
                                         local3\Field1\Field15[$00]\Field19 = loadsound_strict("SFX\SCP\049\Room2SL0.ogg")
-                                        local3\Field1\Field15[$00]\Field20 = playsoundex(local3\Field1\Field15[$00]\Field19, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01)
+                                        local3\Field1\Field15[$00]\Field20 = playsoundex(local3\Field1\Field15[$00]\Field19, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01, $00)
                                     ElseIf (channelplaying(local3\Field1\Field15[$00]\Field20) = $00) Then
                                         local3\Field1\Field15[$00]\Field41 = 1.0
                                         local3\Field1\Field15[$00]\Field20 = $00
@@ -5903,7 +5899,7 @@ Function updateevents%()
                                     If (3.0 = local3\Field1\Field15[$00]\Field12) Then
                                         If (local3\Field1\Field15[$00]\Field20 = $00) Then
                                             local3\Field1\Field15[$00]\Field19 = loadsound_strict("SFX\SCP\049\Room2SL1.ogg")
-                                            local3\Field1\Field15[$00]\Field20 = playsoundex(local3\Field1\Field15[$00]\Field19, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01)
+                                            local3\Field1\Field15[$00]\Field20 = playsoundex(local3\Field1\Field15[$00]\Field19, camera, local3\Field1\Field15[$00]\Field3, 10.0, 1.0, $01, $00)
                                         ElseIf (channelplaying(local3\Field1\Field15[$00]\Field20) = $00) Then
                                             local3\Field1\Field15[$00]\Field41 = 1.0
                                             local3\Field1\Field15[$00]\Field20 = $00
@@ -5976,19 +5972,19 @@ Function updateevents%()
                                             If (local3\Field1\Field14[$00]\Field6 <> 0) Then
                                                 local3\Field1\Field14[$00]\Field9 = $01
                                                 openclosedoor(local3\Field1\Field14[$00], $01, $00)
-                                                playsoundex(snd_i\Field3, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                                                playsoundex(snd_i\Field3, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                                             EndIf
                                         EndIf
                                     ElseIf (local3\Field1\Field14[$00]\Field6 = $00) Then
                                         local3\Field1\Field14[$00]\Field9 = $00
                                         openclosedoor(local3\Field1\Field14[$00], $01, $00)
-                                        playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                                        playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                                     EndIf
                                 EndIf
                             ElseIf (local3\Field1\Field14[$00]\Field6 = $00) Then
                                 local3\Field1\Field14[$00]\Field9 = $00
                                 openclosedoor(local3\Field1\Field14[$00], $01, $00)
-                                playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00)
+                                playsoundex(snd_i\Field4, camera, local3\Field1\Field14[$00]\Field2, 7.0, 1.0, $00, $00)
                             EndIf
                         EndIf
                     EndIf
@@ -6230,14 +6226,14 @@ Function updateevents%()
                     local3\Field1\Field15[$00] = createnpc($14, tformedx(), tformedy(), tformedz())
                     local3\Field1\Field15[$00]\Field10 = 8.0
                     local3\Field1\Field15[$00]\Field50 = $01
-                    setnpcframe(local3\Field1\Field15[$00], 286.0)
+                    setnpcframe(local3\Field1\Field15[$00], 286.0, $01)
                     rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 180.0), 0.0, $01)
                 EndIf
                 If (playerroom = local3\Field1) Then
                     updatebutton(local3\Field1\Field11[$01])
                     If (((d_i\Field9 = local3\Field1\Field11[$01]) And mo\Field0) <> 0) Then
                         createmsg(getlocalstring("msg", "elev.broken"), 6.0)
-                        playsoundex(buttonsfx[$01], camera, local3\Field1\Field11[$01], 10.0, 1.0, $00)
+                        playsoundex(buttonsfx[$01], camera, local3\Field1\Field11[$01], 10.0, 1.0, $00, $00)
                         mo\Field0 = $00
                     EndIf
                 EndIf

@@ -117,20 +117,20 @@ Function update294%()
                         playerroom\Field9 = playsound_strict(loadtempsound(local14), $00)
                         mp_synchronize3dsound(Null, local14, playerroom\Field11[$00], 10.0, 1.0)
                     EndIf
-                    If (me\Field64 > $00) Then
-                        local15 = ((me\Field64 = $02) + $61)
+                    If (me\Field65 > $00) Then
+                        local15 = ((me\Field65 = $02) + $61)
                         playsound_strict(loadtempsound("SFX\SCP\294\PullMasterCard.ogg"), $00)
                         mp_synchronize3dsound(Null, "SFX\SCP\294\PullMasterCard.ogg", playerroom\Field11[$00], 2.0, 1.0)
                         If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
                             If (getitemamount() < maxitemamount) Then
                                 local0 = createitem("Mastercard", local15, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
-                                local0\Field12 = (Float me\Field63)
+                                local0\Field12 = (Float me\Field64)
                                 entitytype(local0\Field2, $03, $00)
                                 pickitem(local0, $00)
                             Else
                                 local0 = createitem("Mastercard", local15, entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.3), entityz(me\Field60, $00), $00, $00, $00, 1.0, $00)
                                 local0\Field4\Field4 = $01
-                                local0\Field12 = (Float me\Field63)
+                                local0\Field12 = (Float me\Field64)
                                 entitytype(local0\Field2, $03, $00)
                                 createmsg(getlocalstring("msg", "cantcarry"), 6.0)
                             EndIf
@@ -179,7 +179,7 @@ Function update294%()
         If (channelplaying(playerroom\Field9) = $00) Then
             If (i_294\Field1 <> getlocalstring("misc", "ofr")) Then
                 i_294\Field0 = $00
-                me\Field64 = $00
+                me\Field65 = $00
                 stopmousemovement()
                 For local18 = Each events
                     If (playerroom = local18\Field1) Then

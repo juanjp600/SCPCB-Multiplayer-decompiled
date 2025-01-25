@@ -31,11 +31,11 @@ Function updatelever%(arg0%, arg1%, arg2%, arg3#)
         local0 = entitypitch(arg0, $01)
         If (local0 > ((Float arg2) - 5.0)) Then
             If (local2 <= ((Float arg2) - 5.0)) Then
-                playsoundex(snd_i\Field32, camera, arg0, 2.0, 1.0, $00)
+                playsoundex(snd_i\Field32, camera, arg0, 2.0, 1.0, $00, $00)
             EndIf
         ElseIf (local0 < (arg3 + 5.0)) Then
             If (local2 >= (arg3 + 5.0)) Then
-                playsoundex(snd_i\Field32, camera, arg0, 2.0, 1.0, $00)
+                playsoundex(snd_i\Field32, camera, arg0, 2.0, 1.0, $00, $00)
             EndIf
         EndIf
     EndIf

@@ -22,7 +22,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
                 animatenpc(arg0, 2.0, 399.0, arg0\Field23, $01)
                 If (rand($12C, $01) = $01) Then
                     If (channelplaying(arg0\Field18) = $00) Then
-                        arg0\Field18 = playsoundex(loadtempsound((("SFX\SCP\1048A\Random" + (Str rand($00, $04))) + ".ogg")), camera, arg0\Field3, 8.0, 1.0, $01)
+                        arg0\Field18 = playsoundex(loadtempsound((("SFX\SCP\1048A\Random" + (Str rand($00, $04))) + ".ogg")), camera, arg0\Field3, 8.0, 1.0, $01, $00)
                     EndIf
                 EndIf
                 If ((local1 And ((chs\Field2 Lor i_268\Field2) = $00)) <> 0) Then
@@ -50,7 +50,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
                 EndIf
                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                 If (646.0 < local3) Then
-                    If ((((16.0 > local0) And (0.0 = i_1048a\Field0)) And (me\Field54 = $00)) <> 0) Then
+                    If ((((arg0\Field83 And (16.0 > local0)) And (0.0 = i_1048a\Field0)) And (me\Field54 = $00)) <> 0) Then
                         i_1048a\Field2 = playsound_strict(loadtempsound("SFX\SCP\1048A\Growth.ogg"), $01)
                         me\Field49 = 1000.0
                         me\Field23 = 2.0
@@ -63,7 +63,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
         positionentity(arg0\Field0, entityx(arg0\Field3, $00), (entityy(arg0\Field3, $00) - 0.15), entityz(arg0\Field3, $00), $00)
         rotateentity(arg0\Field0, -89.9, arg0\Field15, 0.0, $00)
         If (arg0\Field60 <= $00) Then
-            playsoundex(loadtempsound("SFX\SCP\1048A\Explode.ogg"), camera, arg0\Field3, 8.0, 1.0, $00)
+            playsoundex(loadtempsound("SFX\SCP\1048A\Explode.ogg"), camera, arg0\Field3, 8.0, 1.0, $00, $00)
             local6 = entityx(arg0\Field3, $00)
             local7 = entityy(arg0\Field3, $00)
             local8 = entityz(arg0\Field3, $00)

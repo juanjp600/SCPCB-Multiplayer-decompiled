@@ -9,7 +9,7 @@ Function rendermenuinputboxes%()
         color($FF, $FF, $FF)
         If (selectedinputbox = local0\Field6) Then
             If ((((((millisec Mod $320) < $190) Lor keydown($CD)) Lor keydown($CB)) Lor insertmode) <> 0) Then
-                rect((Int ((((Float (local0\Field2 Sar $01)) * local0\Field7) + (Float local0\Field0)) + ((Float stringwidth(left(local0\Field4, (Int max((Float cursorpos), 0.0))))) / (2.0 - (Float (1.0 <> local0\Field7)))))), (Int ((Float (local0\Field1 + (local0\Field3 Sar $01))) - (5.0 * menuscale))), (Int (2.0 * menuscale)), (Int (12.0 * menuscale)), $01)
+                rect((Int (((((Float (local0\Field2 Sar $01)) * local0\Field7) + (Float local0\Field0)) + (Float stringwidth(left(local0\Field4, (Int max((Float cursorpos), 0.0)))))) - (Float ((stringwidth(local0\Field4) Sar $01) * (1.0 = local0\Field7))))), (Int ((Float (local0\Field1 + (local0\Field3 Sar $01))) - (5.0 * menuscale))), (Int (2.0 * menuscale)), (Int (12.0 * menuscale)), $01)
             EndIf
         EndIf
         setfontex(fo\Field0[local0\Field5])

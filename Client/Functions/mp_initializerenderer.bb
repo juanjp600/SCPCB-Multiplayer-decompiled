@@ -147,7 +147,7 @@ Function mp_initializerenderer%()
     local2 = createattachmodelpreset($08, $01)
     local2\Field0 = "Bip01_Head"
     local2\Field3 = -90.0
-    local2\Field4 = -3.3
+    local2\Field4 = -3.5
     local2\Field6 = 4.6
     local2\Field7 = 0.97725
     copyattachmodelpreset($08, $01, $09)

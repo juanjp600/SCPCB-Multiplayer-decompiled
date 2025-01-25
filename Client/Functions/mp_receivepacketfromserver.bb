@@ -5,7 +5,7 @@ Function mp_receivepacketfromserver%()
     Select local0
         Case $05
             mp_refreshtimeout()
-            myplayerlogic\Field0 = mp_readbyte()
+            client_recvmyindex()
             client_recvplayers()
             client_recvownplayerdata()
         Case $06

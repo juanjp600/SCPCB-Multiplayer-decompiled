@@ -29,7 +29,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             local2 = (inigetfloat("Data\NPCs.ini", "SCP-008-1", "Scale", 0.0, $01) / meshwidth(local0\Field0))
             scaleentity(local0\Field0, local2, local2, local2, $00)
             meshcullbox(local0\Field0, (- meshwidth(local0\Field0)), (- meshheight(local0\Field0)), (- meshdepth(local0\Field0)), (meshwidth(local0\Field0) * 2.0), (meshheight(local0\Field0) * 2.0), (meshdepth(local0\Field0) * 2.0))
-            setnpcframe(local0, 11.0)
+            setnpcframe(local0, 11.0, $01)
             If (npcsound[$03] = $00) Then
                 npcsound[$03] = loadsound_strict("SFX\SCP\008_1\Breath.ogg")
             EndIf
@@ -43,7 +43,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             local0\Field0 = copyentity(n_i\Field0[$01], $00)
             local2 = (inigetfloat("Data\NPCs.ini", "SCP-035's Tentacle", "Scale", 0.0, $01) / 10.0)
             scaleentity(local0\Field0, local2, local2, local2, $00)
-            setnpcframe(local0, 282.0)
+            setnpcframe(local0, 282.0, $01)
             If (npcsound[$04] = $00) Then
                 npcsound[$04] = loadsound_strict("SFX\SCP\035_Tentacle\TentacleIdle.ogg")
             EndIf
@@ -321,7 +321,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             local0\Field0 = copyentity(n_i\Field0[$12], $00)
             local2 = (inigetfloat("Data\NPCs.ini", "SCP-966", "Scale", 0.0, $01) / 40.0)
             scaleentity(local0\Field0, local2, local2, local2, $00)
-            setnpcframe(local0, 15.0)
+            setnpcframe(local0, 15.0, $01)
         Case $0D
             local0\Field47 = "SCP-999"
             local0\Field23 = (inigetfloat("Data\NPCs.ini", "SCP-999", "Speed", 0.0, $01) / 100.0)

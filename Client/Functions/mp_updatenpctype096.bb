@@ -71,7 +71,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (-1.0 = arg0\Field12) Then
                         animatenpc(arg0, 936.0, 1263.0, 0.1, $00)
                         If (1262.9 <= arg0\Field14) Then
-                            setnpcframe(arg0, 312.0)
+                            setnpcframe(arg0, 312.0, $01)
                             arg0\Field12 = 0.0
                             arg0\Field10 = 1.0
                         EndIf
@@ -88,12 +88,12 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (chs\Field2 = $00) Then
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
-                                If (arg0\Field79 <> 0) Then
+                                If (arg0\Field83 <> 0) Then
                                     playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
                                 me\Field52 = 10.0
-                                setnpcframe(arg0, 194.0)
+                                setnpcframe(arg0, 194.0, $01)
                                 stopstream_strict(arg0\Field18)
                                 arg0\Field18 = $00
                                 arg0\Field21 = $00
@@ -152,7 +152,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                             arg0\Field24 = curvevalue((arg0\Field23 * 0.05), arg0\Field24, 8.0)
                             animatenpc(arg0, 1383.0, 1469.0, (arg0\Field24 * 45.0), $00)
                             If (1468.9 <= arg0\Field14) Then
-                                setnpcframe(arg0, 423.0)
+                                setnpcframe(arg0, 423.0, $01)
                             EndIf
                         Else
                             arg0\Field24 = curvevalue(0.0, arg0\Field24, 4.0)
@@ -165,13 +165,13 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (chs\Field2 = $00) Then
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
-                                If (arg0\Field79 <> 0) Then
+                                If (arg0\Field83 <> 0) Then
                                     playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
                                 me\Field52 = 10.0
                                 If (422.0 <= arg0\Field14) Then
-                                    setnpcframe(arg0, 677.0)
+                                    setnpcframe(arg0, 677.0, $01)
                                 EndIf
                                 stopstream_strict(arg0\Field18)
                                 arg0\Field18 = $00
@@ -183,7 +183,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                     EndIf
                     If (0.001 < arg0\Field24) Then
                         If (((((1383.0 > local6) And (1383.0 <= arg0\Field14)) Lor ((1420.0 > local6) And (1420.0 <= arg0\Field14))) Lor ((1466.0 > local6) And (1466.0 <= arg0\Field14))) <> 0) Then
-                            playsoundex(snd_i\Field56[rand($0A, $0C)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                            playsoundex(snd_i\Field56[rand($0A, $0C)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                         EndIf
                     EndIf
                 EndIf
@@ -198,18 +198,18 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (312.0 > arg0\Field14) Then
                         animatenpc(arg0, 193.0, 311.0, 0.3, $00)
                         If (310.9 < arg0\Field14) Then
-                            setnpcframe(arg0, 737.0)
+                            setnpcframe(arg0, 737.0, $01)
                             arg0\Field10 = 3.0
                         EndIf
                     ElseIf (((312.0 <= arg0\Field14) And (422.0 >= arg0\Field14)) <> 0) Then
                         animatenpc(arg0, 312.0, 422.0, 0.3, $00)
                         If (421.9 < arg0\Field14) Then
-                            setnpcframe(arg0, 677.0)
+                            setnpcframe(arg0, 677.0, $01)
                         EndIf
                     Else
                         animatenpc(arg0, 677.0, 736.0, 0.3, $00)
                         If (735.9 < arg0\Field14) Then
-                            setnpcframe(arg0, 737.0)
+                            setnpcframe(arg0, 737.0, $01)
                             arg0\Field10 = 3.0
                         EndIf
                     EndIf
@@ -270,7 +270,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                     arg0\Field40 = $00
                     If (((7.84 > local0) Lor (150.0 > arg0\Field14)) <> 0) Then
                         If (193.0 < arg0\Field14) Then
-                            setnpcframe(arg0, 2.0)
+                            setnpcframe(arg0, 2.0, $01)
                         EndIf
                         animatenpc(arg0, 2.0, 193.0, 0.7, $01)
                         If (1.0 < local0) Then
@@ -278,8 +278,8 @@ Function mp_updatenpctype096%(arg0.npcs)
                         Else
                             arg0\Field24 = 0.0
                             If (arg0\Field34 = Null) Then
-                                playsoundex(snd_i\Field51[$04], camera, arg0\Field3, 10.0, 1.0, $00)
-                                If (arg0\Field79 <> 0) Then
+                                playsoundex(snd_i\Field51[$04], camera, arg0\Field3, 10.0, 1.0, $00, $00)
+                                If (arg0\Field83 <> 0) Then
                                     me\Field23 = 30.0
                                     me\Field49 = 2000.0
                                     msg\Field2 = format(getlocalstring("death", "096"), subjectname, "%s")
@@ -368,7 +368,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                                     EndIf
                                     local10 = setemitter(Null, entityx(arg0\Field39[arg0\Field42]\Field1\Field0, $01), entityy(arg0\Field39[arg0\Field42]\Field1\Field0, $01), entityz(arg0\Field39[arg0\Field42]\Field1\Field0, $01), $10)
                                     entityparent(local10\Field6, arg0\Field39[arg0\Field42]\Field1\Field0, $01)
-                                    playsoundex(snd_i\Field9, camera, arg0\Field39[arg0\Field42]\Field1\Field2, 10.0, 1.0, $00)
+                                    playsoundex(snd_i\Field9, camera, arg0\Field39[arg0\Field42]\Field1\Field2, 10.0, 1.0, $00, $00)
                                 EndIf
                             EndIf
                             If (0.04 > local9) Then
@@ -389,7 +389,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                 EndIf
             Case 6.0
                 If (193.0 < arg0\Field14) Then
-                    setnpcframe(arg0, 2.0)
+                    setnpcframe(arg0, 2.0, $01)
                 EndIf
                 animatenpc(arg0, 2.0, 193.0, 0.7, $01)
                 arg0\Field27 = (arg0\Field27 - fps\Field7[$00])

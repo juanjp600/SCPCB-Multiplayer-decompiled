@@ -16,11 +16,12 @@ Function mp_initializeevent%(arg0.events, arg1%)
         Next
     EndIf
     Select arg0\Field0
-        Case $49,$13,$06,$39,$10,$11,$32,$42,$35,$3F,$46,$47,$0B,$43,$1B,$3E,$14,$01,$45
+        Case $49,$13,$39,$10,$11,$32,$42,$35,$3F,$46,$47,$0B,$43,$1B,$3E,$14,$01,$45,$48
             mp_seteventconstant(arg0, $01)
         Default
             mp_seteventconstant(arg0, $00)
     End Select
     event_hasreceive = $00
+    npcs_hasreceive = $00
     Return $00
 End Function

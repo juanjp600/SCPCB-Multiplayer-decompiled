@@ -57,12 +57,12 @@ Function mp_server_onplayeruseitem%(arg0.mp_player, arg1.items, arg2.items)
                             If (0.0 < arg1\Field12) Then
                                 arg1\Field12 = (arg1\Field12 - 1.0)
                                 arg0\Field4\Field29 = ((arg1\Field4\Field2 = $62) + $01)
-                                playsoundex(loadtempsound("SFX\SCP\294\InsertMasterCard.ogg"), camera, local4\Field11[$00], 5.0, 1.0, $00)
+                                playsoundex(loadtempsound("SFX\SCP\294\InsertMasterCard.ogg"), camera, local4\Field11[$00], 5.0, 1.0, $00, $00)
                                 mp_synchronize3dsound(arg0, "SFX\SCP\294\InsertMasterCard.ogg", local4\Field11[$00], 5.0, 1.0)
                             EndIf
                         Case $6A,$6B
                             arg0\Field4\Field28 = (arg0\Field4\Field28 + $01)
-                            playsoundex(loadtempsound("SFX\SCP\294\CoinDrop.ogg"), camera, local4\Field11[$00], 5.0, 1.0, $00)
+                            playsoundex(loadtempsound("SFX\SCP\294\CoinDrop.ogg"), camera, local4\Field11[$00], 5.0, 1.0, $00, $00)
                             mp_synchronize3dsound(arg0, "SFX\SCP\294\CoinDrop.ogg", local4\Field11[$00], 5.0, 1.0)
                     End Select
                 EndIf

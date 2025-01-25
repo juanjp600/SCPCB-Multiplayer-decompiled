@@ -78,7 +78,6 @@ Global errormessageinitialized%
 Global escapesecondstimer#
 Global escapetimer%
 Global event_hasreceive%
-Global event_prevplayercollider%
 Global event_prevplayerroom.rooms
 Global fo.fonts
 Global fog.fogambient
@@ -198,6 +197,7 @@ Global myplayerlogic.mp_myplayerlogic
 Global n_i.npcinstance
 Global network.mp_network
 Global nowplaying%
+Global npcs_hasreceive%
 Global npcsound%[8]
 Global onbuttonid%
 Global onpalette%

@@ -24,7 +24,11 @@ Function updateplayermodelsounds%(arg0.mp_player)
         arg0\Field25 = calculateplayeradjacency(ue_players[mp_getmyindex()], arg0)
         local1 = arg0\Field35\Field1\Field12
         If (local1 = "") Then
-            local2 = (Object.sound stepsfx(getstepsound(arg0\Field18), $00, rand($00, $02)))
+            If ((((20.0 < entityy(me\Field60, $00)) And (forest_event <> Null)) And (forest_event\Field1 = mp_rooms[arg0\Field22])) <> 0) Then
+                local2 = (Object.sound stepsfx($04, $00, rand($00, $02)))
+            Else
+                local2 = (Object.sound stepsfx(getstepsound(arg0\Field18), $00, rand($00, $02)))
+            EndIf
             If (local2 <> Null) Then
                 local1 = local2\Field1
             EndIf

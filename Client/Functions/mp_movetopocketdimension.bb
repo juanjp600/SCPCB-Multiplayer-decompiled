@@ -10,10 +10,10 @@ Function mp_movetopocketdimension%()
             me\Field31 = (me\Field31 + 0.5)
             me\Field49 = 1750.0
             hideentity(me\Field61)
-            showentity(mp_getrealcollider())
+            showentity(getrealcollider())
             playsound_strict(snd_i\Field28, $00)
             playsound_strict(snd_i\Field45[$05], $00)
-            teleportentity(mp_getrealcollider(), entityx(local0\Field2, $00), (entityy(local0\Field2, $00) + 0.5), entityz(local0\Field2, $00), 0.3, $00, 2.0, $00)
+            teleportentity(getrealcollider(), entityx(local0\Field2, $00), (entityy(local0\Field2, $00) + 0.5), entityz(local0\Field2, $00), 0.3, $00, 2.0, $00)
             teleporttoroom(local0)
             For local1 = Each events
                 If (local0 = local1\Field1) Then

@@ -25,7 +25,7 @@ Function createnpcasset%(arg0.npcs)
             local6 = animtime(arg0\Field0)
             rotateentity(arg0\Field0, 0.0, 0.0, 0.0, $00)
             positionentity(arg0\Field0, 0.0, 0.0, 0.0, $00)
-            setnpcframe(arg0, 1.0)
+            setnpcframe(arg0, 1.0, $01)
             If (i_035\Field0 <> 0) Then
                 arg0\Field1 = loadmesh_strict("GFX\NPCs\scp_035_sad.b3d", $00)
             Else
@@ -38,7 +38,7 @@ Function createnpcasset%(arg0.npcs)
             entityparent(arg0\Field1, findchild(arg0\Field0, "Bip01_Head"), $01)
             rotateentity(arg0\Field0, 0.0, local2, 0.0, $00)
             positionentity(arg0\Field0, local3, local4, local5, $00)
-            setnpcframe(arg0, local6)
+            setnpcframe(arg0, local6, $01)
     End Select
     arg0\Field63 = $01
     Return $00

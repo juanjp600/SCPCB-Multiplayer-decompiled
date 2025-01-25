@@ -19,7 +19,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
             If (((((39.0 > arg0\Field14) Lor ((76.0 < arg0\Field14) And (245.0 > arg0\Field14))) Lor ((248.0 < arg0\Field14) And (302.0 > arg0\Field14))) Lor (344.0 < arg0\Field14)) <> 0) Then
                 animatenpc(arg0, 345.0, 357.0, 0.2, $00)
                 If (356.0 <= arg0\Field14) Then
-                    setnpcframe(arg0, 302.0)
+                    setnpcframe(arg0, 302.0, $01)
                 EndIf
             EndIf
             local3 = entitydistancesquared(arg0\Field3, me\Field60)
@@ -48,7 +48,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
                         ElseIf (playerroom\Field7\Field6 = $49) Then
                             msg\Field2 = getlocalstring("death", "guard.gateb")
                         EndIf
-                        playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 35.0, 1.0, $00)
+                        playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 35.0, 1.0, $00, $00)
                         rotateentity(local4, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                         positionentity(local4, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
                         moveentity(local4, 0.0622, 0.83925, 0.5351)
@@ -79,7 +79,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
         Case 2.0
             animatenpc(arg0, 245.0, 248.0, 0.35, $01)
             If (0.0 = arg0\Field28) Then
-                playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00, $00)
                 local4 = createpivot($00)
                 rotateentity(local4, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                 positionentity(local4, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
@@ -176,7 +176,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
             If (((((39.0 > arg0\Field14) Lor ((76.0 < arg0\Field14) And (245.0 > arg0\Field14))) Lor ((248.0 < arg0\Field14) And (302.0 > arg0\Field14))) Lor (344.0 < arg0\Field14)) <> 0) Then
                 animatenpc(arg0, 345.0, 357.0, 0.2, $00)
                 If (356.0 <= arg0\Field14) Then
-                    setnpcframe(arg0, 302.0)
+                    setnpcframe(arg0, 302.0, $01)
                 EndIf
             EndIf
             local3 = entitydistancesquared(arg0\Field3, me\Field60)
@@ -194,7 +194,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
                     If (1.0 = arg0\Field12) Then
                         local8 = $00
                         msg\Field2 = ""
-                        playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00)
+                        playsoundex(snd_i\Field13[$00], camera, arg0\Field3, 15.0, 1.0, $00, $00)
                         rotateentity(local4, entitypitch(arg0\Field3, $00), entityyaw(arg0\Field3, $00), 0.0, $01)
                         positionentity(local4, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
                         moveentity(local4, 0.0622, 0.83925, 0.5351)
@@ -261,14 +261,14 @@ Function mp_updatenpctypeguard%(arg0.npcs)
                     EndIf
                 EndIf
                 If ((((43.0 > local2) And (43.0 <= arg0\Field14)) Lor ((61.0 > local2) And (61.0 <= arg0\Field14))) <> 0) Then
-                    playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                    playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
                 EndIf
             EndIf
         Case 12.0
             If (((((39.0 > arg0\Field14) Lor ((76.0 < arg0\Field14) And (245.0 > arg0\Field14))) Lor ((248.0 < arg0\Field14) And (302.0 > arg0\Field14))) Lor (344.0 < arg0\Field14)) <> 0) Then
                 animatenpc(arg0, 345.0, 357.0, 0.2, $00)
                 If (356.0 <= arg0\Field14) Then
-                    setnpcframe(arg0, 302.0)
+                    setnpcframe(arg0, 302.0, $01)
                 EndIf
             EndIf
             If (345.0 > arg0\Field14) Then
@@ -324,7 +324,7 @@ Function mp_updatenpctypeguard%(arg0.npcs)
                 arg0\Field10 = 13.0
             EndIf
             If ((((43.0 > local2) And (43.0 <= arg0\Field14)) Lor ((61.0 > local2) And (61.0 <= arg0\Field14))) <> 0) Then
-                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+                playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
             EndIf
         Case 15.0
             If (arg0\Field1 <> $00) Then
@@ -368,11 +368,11 @@ Function mp_updatenpctypeguard%(arg0.npcs)
     End Select
     If (0.01 < arg0\Field24) Then
         If ((((5.0 > local2) And (5.0 <= arg0\Field14)) Lor ((23.0 > local2) And (23.0 <= arg0\Field14))) <> 0) Then
-            playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+            playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
         EndIf
     ElseIf (-0.01 > arg0\Field24) Then
         If ((((23.0 <= local2) And (23.0 > arg0\Field14)) Lor ((5.0 <= local2) And (5.0 > arg0\Field14))) <> 0) Then
-            playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00)
+            playsoundex(snd_i\Field56[rand($00, $02)], camera, arg0\Field3, 8.0, rnd(0.5, 0.7), $00, $00)
         EndIf
     EndIf
     arg0\Field28 = max(0.0, (arg0\Field28 - fps\Field7[$00]))

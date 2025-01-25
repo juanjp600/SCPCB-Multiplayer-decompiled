@@ -3,6 +3,8 @@ Function mp_client_receivenpc%(arg0%)
     Local local1%
     Local local2%
     Local local3%
+    Local local4#
+    Local local5#
     local0 = mp_npcs[arg0]
     local1 = mp_readbyte()
     If (local0 = Null) Then
@@ -13,7 +15,7 @@ Function mp_client_receivenpc%(arg0%)
         local0 = createnpc(local1, 0.0, 0.0, 0.0)
         mp_initializenpc(local0, arg0)
     EndIf
-    local0\Field87 = $00
+    local0\Field95 = $00
     local2 = mp_readbyte()
     local3 = mp_readbyte()
     local0\Field50 = readbool(local2, $00)
@@ -62,6 +64,15 @@ Function mp_client_receivenpc%(arg0%)
     local0\Field75 = convertshorttofloat(mp_readshort(), 10.0)
     local0\Field76 = convertshorttofloat(mp_readshort(), 10.0)
     local0\Field77 = convertunsignedshorttofloat(mp_readshort(), 10.0)
+    local4 = convertunsignedshorttofloat(mp_readshort(), 10.0)
+    local5 = convertunsignedshorttofloat(mp_readshort(), 10.0)
+    If (((local4 <> local0\Field84) Lor (local5 <> local0\Field85)) <> 0) Then
+        local0\Field80 = local4
+        local0\Field84 = local4
+        local0\Field85 = local5
+    EndIf
+    local0\Field86 = convertshorttofloat(mp_readshort(), 100.0)
+    local0\Field87 = readbool(local3, $04)
     If (readbool(local3, $01) <> 0) Then
         changenpctextureid(local0, (mp_readbyte() - $01))
     EndIf

@@ -21,8 +21,8 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                         EndIf
                         freeentity(local3)
                         local3 = $00
-                        playsoundex(loadtempsound("SFX\SCP\035_Tentacle\TentacleSpawn.ogg"), camera, arg0\Field3, 5.0, 1.0, $00)
-                        setnpcframe(arg0, 283.0)
+                        playsoundex(loadtempsound("SFX\SCP\035_Tentacle\TentacleSpawn.ogg"), camera, arg0\Field3, 5.0, 1.0, $00, $00)
+                        setnpcframe(arg0, 283.0, $01)
                     Else
                         me\Field30 = max(curvevalue(1.0, me\Field30, 50.0), me\Field30)
                         me\Field28 = max(curvevalue(130.0, me\Field28, 100.0), me\Field28)
@@ -47,7 +47,7 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                     If (((32.0 < arg0\Field14) And (174.0 > arg0\Field14)) <> 0) Then
                         animatenpc(arg0, 33.0, 174.0, 2.0, $00)
                         If (173.9 < arg0\Field14) Then
-                            setnpcframe(arg0, 2.0)
+                            setnpcframe(arg0, 2.0, $01)
                         EndIf
                     Else
                         pointentity(arg0\Field0, me\Field60, 0.0)
@@ -57,13 +57,13 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                             If (3.24 > local0) Then
                                 If (20.0 > (Abs deltayaw(arg0\Field3, me\Field60))) Then
                                     If (mp_getnpctargetmodel(arg0) = $02) Then
-                                        If (arg0\Field79 <> 0) Then
+                                        If (arg0\Field83 <> 0) Then
                                             playsound_strict(loadtempsound("SFX\Character\BodyFall.ogg"), $00)
                                         EndIf
                                         injureplayer(rnd(0.5, 0.0), 0.0, 0.0, 0.0, 0.0)
                                     Else
                                         injureplayer((rnd(0.75, 1.15) * difficultydmgmult), 0.0, 100.0, (0.4 * difficultydmgmult), (0.175 * difficultydmgmult))
-                                        playsoundex(snd_i\Field51[rand($09, $0A)], camera, arg0\Field3, 8.0, 1.0, $00)
+                                        playsoundex(snd_i\Field51[rand($09, $0A)], camera, arg0\Field3, 8.0, 1.0, $00, $00)
                                         If (3.0 < mp_getnpctargetinjuries(arg0)) Then
                                             If (playerroom\Field7\Field6 = $4D) Then
                                                 msg\Field2 = getlocalstring("death", "035.offices")
@@ -73,17 +73,17 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                                             kill($01, $01, $00, $01)
                                         EndIf
                                     EndIf
-                                    If (arg0\Field79 <> 0) Then
+                                    If (arg0\Field83 <> 0) Then
                                         me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.0)
                                     EndIf
                                 Else
-                                    playsoundex(snd_i\Field48, camera, arg0\Field3, 10.0, 1.0, $00)
+                                    playsoundex(snd_i\Field48, camera, arg0\Field3, 10.0, 1.0, $00, $00)
                                 EndIf
                             Else
-                                playsoundex(snd_i\Field48, camera, arg0\Field3, 3.0, 1.0, $00)
+                                playsoundex(snd_i\Field48, camera, arg0\Field3, 3.0, 1.0, $00, $00)
                             EndIf
                         ElseIf (31.9 < arg0\Field14) Then
-                            setnpcframe(arg0, 173.0)
+                            setnpcframe(arg0, 173.0, $01)
                             arg0\Field10 = 1.0
                         EndIf
                     EndIf

@@ -11,7 +11,7 @@ Function mp_updatenpctype008_1%(arg0.npcs)
         updatenpcblinking(arg0)
         Select arg0\Field10
             Case 0.0
-                setnpcframe(arg0, 11.0)
+                setnpcframe(arg0, 11.0, $01)
                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
             Case 1.0
                 animatenpc(arg0, 11.0, 29.0, 0.1, $00)
@@ -48,14 +48,14 @@ Function mp_updatenpctype008_1%(arg0.npcs)
                     moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
                     arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                     If (0.49 > local1) Then
-                        setnpcframe(arg0, 126.0)
+                        setnpcframe(arg0, 126.0, $01)
                         arg0\Field10 = 4.0
                     EndIf
                     arg0\Field41 = 0.0
                     arg0\Field40 = $00
                     arg0\Field42 = $00
                     If ((((((65.0 > local0) And (65.0 <= arg0\Field14)) Lor ((80.0 > local0) And (80.0 <= arg0\Field14))) Lor ((95.0 > local0) And (95.0 <= arg0\Field14))) Lor ((113.0 > local0) And (113.0 <= arg0\Field14))) <> 0) Then
-                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $07)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $07)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                     EndIf
                 Else
                     arg0\Field34 = Null
@@ -134,7 +134,7 @@ Function mp_updatenpctype008_1%(arg0.npcs)
                 Else
                     animatenpc(arg0, 64.0, 93.0, (arg0\Field24 * 30.0), $01)
                     If ((((65.0 > local0) And (65.0 <= arg0\Field14)) Lor ((80.0 > local0) And (80.0 <= arg0\Field14))) <> 0) Then
-                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $07)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $07)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                     EndIf
                 EndIf
                 If (local1 > ((hidedistance * 1.5) * (hidedistance * 1.5))) Then
@@ -187,9 +187,9 @@ Function mp_updatenpctype008_1%(arg0.npcs)
                 If (((146.0 <= arg0\Field14) And (146.0 > local0)) <> 0) Then
                     If (arg0\Field34 = Null) Then
                         If (0.5625 > entitydistancesquared(arg0\Field3, me\Field60)) Then
-                            playsoundex(snd_i\Field51[rand($05, $08)], camera, arg0\Field3, 10.0, 1.0, $00)
+                            playsoundex(snd_i\Field51[rand($05, $08)], camera, arg0\Field3, 10.0, 1.0, $00, $00)
                             injureplayer((rnd(0.4, 0.7) * difficultydmgmult), 1.0, 0.0, (0.225 * difficultydmgmult), (0.0875 * difficultydmgmult))
-                            If (arg0\Field79 <> 0) Then
+                            If (arg0\Field83 <> 0) Then
                                 me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.5)
                             EndIf
                             If (3.0 < mp_getnpctargetinjuries(arg0)) Then
@@ -197,10 +197,10 @@ Function mp_updatenpctype008_1%(arg0.npcs)
                                 kill($01, $01, $00, $01)
                             EndIf
                         Else
-                            playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00)
+                            playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00, $00)
                         EndIf
                     ElseIf (0.5625 > entitydistancesquared(arg0\Field3, arg0\Field34\Field3)) Then
-                        playsoundex(snd_i\Field51[rand($05, $08)], camera, arg0\Field34\Field0, 10.0, 1.0, $00)
+                        playsoundex(snd_i\Field51[rand($05, $08)], camera, arg0\Field34\Field0, 10.0, 1.0, $00, $00)
                         If (arg0\Field34\Field60 > $00) Then
                             arg0\Field34\Field60 = (Int max(((Float arg0\Field34\Field60) - rnd(10.0, 20.0)), 0.0))
                         Else
@@ -209,7 +209,7 @@ Function mp_updatenpctype008_1%(arg0.npcs)
                             Return $00
                         EndIf
                     Else
-                        playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00)
+                        playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00, $00)
                     EndIf
                 ElseIf (164.0 <= arg0\Field14) Then
                     arg0\Field10 = 2.0

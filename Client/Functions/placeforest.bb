@@ -210,6 +210,7 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
                 scaleentity(arg0\Field6[local10], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                 arg0\Field5[local10] = createdoor(Null, 0.0, 0.125, 0.0, 180.0, $00, $05, $FFFFFFFC, $00, arg0\Field6[local10])
                 arg0\Field5[local10]\Field4 = $02
+                arg0\Field5[local10]\Field38 = $01
                 entitytype(arg0\Field6[local10], $01, $00)
                 entitypickmode(arg0\Field6[local10], $02, $01)
                 positionentity(arg0\Field6[local10], (((Float local0) * local2) + arg1), arg2, (((((Float local1) * local2) + arg3) + (local2 / 2.0)) - (local2 * (Float local10))), $01)

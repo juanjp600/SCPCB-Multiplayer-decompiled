@@ -383,8 +383,10 @@ Function updatemainmenu%()
                     Case $02
                         local6 = (400.0 * menuscale)
                         selectedcustommap = Null
-                        randomseed = updatemenuinputbox((Int ((150.0 * menuscale) + local3)), (Int ((15.0 * menuscale) + local4)), (Int (200.0 * menuscale)), (Int (30.0 * menuscale)), randomseed, $00, $02, $0F, 1.0)
-                        menuport = updatemenuinputbox((Int ((150.0 * menuscale) + local3)), (Int ((55.0 * menuscale) + local4)), (Int (200.0 * menuscale)), (Int (30.0 * menuscale)), menuport, $00, $04, $291, 1.0)
+                        ue_server\Field4 = updatemenuinputbox((Int ((150.0 * menuscale) + local3)), (Int ((15.0 * menuscale) + local4)), (Int (300.0 * menuscale)), (Int (30.0 * menuscale)), ue_server\Field4, $00, $01, $20, 1.0)
+                        randomseed = updatemenuinputbox((Int ((150.0 * menuscale) + local3)), (Int ((55.0 * menuscale) + local4)), (Int (200.0 * menuscale)), (Int (30.0 * menuscale)), randomseed, $00, $02, $0F, 1.0)
+                        menuport = updatemenuinputbox((Int ((150.0 * menuscale) + local3)), (Int ((95.0 * menuscale) + local4)), (Int (200.0 * menuscale)), (Int (30.0 * menuscale)), menuport, $00, $04, $291, 1.0)
+                        ue_server\Field11 = updatemenutick((Int ((150.0 * menuscale) + local3)), (Int ((135.0 * menuscale) + local4)), ue_server\Field11, $00)
                         For local8 = $00 To $04 Step $01
                             local35 = selecteddifficulty
                             If (updatemenutick((Int ((20.0 * menuscale) + local3)), (Int (((Float (($1E * local8) + $DC)) * menuscale) + local4)), (selecteddifficulty = difficulties[local8]), $00) <> 0) Then

@@ -10,7 +10,6 @@ Function mp_terminateplayer%(arg0.mp_player, arg1%, arg2%)
     Local local8%
     Local local9.decals
     If (((mp_ishoster() And (arg0\Field4\Field4 = $00)) And ((arg0\Field4\Field34 = $00) Lor arg2)) <> 0) Then
-        senddebuglog(((("Player: " + (Str arg0\Field5)) + " dead. Godmode is: ") + (Str arg0\Field4\Field34)))
         arg0\Field4\Field4 = $01
         local0 = (i_zone\Field0[$00] - (selectedcustommap = Null))
         local1 = (i_zone\Field0[$01] - (selectedcustommap = Null))

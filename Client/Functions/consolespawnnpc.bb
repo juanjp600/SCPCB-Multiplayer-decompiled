@@ -74,7 +74,7 @@ Function consolespawnnpc%(arg0$, arg1$)
         Case "1499-1","14991","scp-1499-1","scp1499-1","scp-14991","scp14991"
             local0 = createnpc($10, entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.2), entityz(me\Field60, $00))
             local1 = format(getlocalstring("console", "spawn"), "SCP-1499-1", "%s")
-            local0\Field87 = $00
+            local0\Field95 = $00
         Case "apache","helicopter"
             local0 = createnpc($11, entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.2), entityz(me\Field60, $00))
             local1 = format(getlocalstring("console", "spawn"), getlocalstring("npc", "apache"), "%s")

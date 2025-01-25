@@ -105,7 +105,6 @@ Function mp_server_receiveconsole%(arg0.mp_player)
                 mp_synchronize3dsound(arg0, "SFX\Music\Using420J.ogg", me\Field60, 20.0, 1.0)
             Case "revive","undead","resurrect"
                 mp_respawnplayer(arg0)
-                senddebuglog(("Revive: " + (Str arg0\Field5)))
             Case "godmode","god"
                 local2 = lower(right(local0, (len(local0) - instr(local0, " ", $01))))
                 Select local2

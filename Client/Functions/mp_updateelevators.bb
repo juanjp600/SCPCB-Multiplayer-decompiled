@@ -76,7 +76,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                 local26 = isinsideelevator(local9, local10, local11, arg3)
                 If (local26 <> 0) Then
                     If (arg7 <> 0) Then
-                        If (((-250.0 < arg0) Lor (-500.0 >= arg0)) <> 0) Then
+                        If ((((-250.0 < arg0) Lor (-500.0 >= arg0)) And (-2000.0 < arg0)) <> 0) Then
                             If (channelplaying(arg1\Field18) = $00) Then
                                 arg1\Field18 = playsound_strict(snd_i\Field43, $00)
                                 updateelevatorpanel(arg1)
@@ -129,7 +129,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                         updatelightvolume()
                         updatedoors()
                         updaterooms()
-                        arg1\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg1\Field0, 10.0, 1.0, $00)
+                        arg1\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg1\Field0, 10.0, 1.0, $00, $00)
                     EndIf
                     For local1 = Each npcs
                         local23 = entityx(local1\Field3, $01)
@@ -198,7 +198,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                 Else
                     local28 = -2140.0
                     If (local28 > arg0) Then
-                        playsoundex(snd_i\Field42, camera, arg3, 4.0, 1.0, $00)
+                        playsoundex(snd_i\Field42, camera, arg3, 4.0, 1.0, $00, $00)
                         openclosedoor(arg2, $01, $00)
                         arg2\Field6 = $01
                         clearelevatorpaneltexture(arg1)
@@ -212,7 +212,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                 local26 = isinsideelevator(local9, local10, local11, arg4)
                 If (local26 <> 0) Then
                     If (arg7 <> 0) Then
-                        If (((250.0 > arg0) Lor (500.0 <= arg0)) <> 0) Then
+                        If ((((250.0 > arg0) Lor (500.0 <= arg0)) And (2000.0 > arg0)) <> 0) Then
                             If (channelplaying(arg2\Field18) = $00) Then
                                 arg2\Field18 = playsound_strict(snd_i\Field43, $00)
                                 updateelevatorpanel(arg2)
@@ -264,7 +264,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                         updatelightvolume()
                         updatedoors()
                         updaterooms()
-                        arg2\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg2\Field0, 10.0, 1.0, $00)
+                        arg2\Field17 = playsoundex(opendoorsfx($01, rand($00, $02)), camera, arg2\Field0, 10.0, 1.0, $00, $00)
                     EndIf
                     For local1 = Each npcs
                         local23 = entityx(local1\Field3, $01)
@@ -330,7 +330,7 @@ Function mp_updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.e
                 Else
                     local28 = 2140.0
                     If (local28 < arg0) Then
-                        playsoundex(snd_i\Field42, camera, arg4, 4.0, 1.0, $00)
+                        playsoundex(snd_i\Field42, camera, arg4, 4.0, 1.0, $00, $00)
                         openclosedoor(arg1, $01, $00)
                         arg1\Field6 = $01
                         clearelevatorpaneltexture(arg1)

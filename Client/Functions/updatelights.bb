@@ -32,7 +32,7 @@ Function updatelights%(arg0%)
                                         If (local4 = $00) Then
                                             hideentity(local0\Field0)
                                         EndIf
-                                        playsoundex(snd_i\Field33[rand($00, $02)], arg0, local0\Field0, 4.0, 1.0, $00)
+                                        playsoundex(snd_i\Field33[rand($00, $02)], arg0, local0\Field0, 4.0, 1.0, $00, $00)
                                         If (local9 <> 0) Then
                                             If (local6 = $00) Then
                                                 hideentity(local0\Field1)
@@ -91,7 +91,7 @@ Function updatelights%(arg0%)
                                     If (local4 = $00) Then
                                         hideentity(local0\Field0)
                                     EndIf
-                                    playsoundex(snd_i\Field33[rand($00, $02)], arg0, local0\Field0, 4.0, 1.0, $00)
+                                    playsoundex(snd_i\Field33[rand($00, $02)], arg0, local0\Field0, 4.0, 1.0, $00, $00)
                                     local2 = rnd(0.35, 0.8)
                                     secondarylighton = clamp((secondarylighton - local2), 0.301, 1.0)
                                     templightvolume = clamp((templightvolume - local2), 0.5, 1.0)

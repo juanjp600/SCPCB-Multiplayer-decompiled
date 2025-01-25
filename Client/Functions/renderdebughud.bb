@@ -49,7 +49,7 @@ Function renderdebughud%()
             EndIf
             textex(local3, (Int ((320.0 * menuscale) + (Float local4))), format(getlocalstring("console", "debug_1.currflo"), (Str infacility), "%s"), $00, $00)
             textex(local3, (Int ((340.0 * menuscale) + (Float local4))), format(getlocalstring("console", "debug_1.roomflo"), (Str toelevatorfloor), "%s"), $00, $00)
-            textex(local3, (Int ((360.0 * menuscale) + (Float local4))), format(getlocalstring("console", "debug_1.inelev"), (Str me\Field65), "%s"), $00, $00)
+            textex(local3, (Int ((360.0 * menuscale) + (Float local4))), format(getlocalstring("console", "debug_1.inelev"), (Str me\Field66), "%s"), $00, $00)
             textex(local3, (Int ((400.0 * menuscale) + (Float local4))), format(format(getlocalstring("console", "debug_1.time"), currentdate(), "{0}"), currenttime(), "{1}"), $00, $00)
             textex(local3, (Int ((420.0 * menuscale) + (Float local4))), format(format(getlocalstring("console", "debug_1.vidmem"), (Str (opt\Field54 - (availvidmem() Sar $0A))), "{0}"), (Str opt\Field54), "{1}"), $00, $00)
             textex(local3, (Int ((440.0 * menuscale) + (Float local4))), format(format(getlocalstring("console", "debug_1.glomem"), (Str (opt\Field55 - (availphys() Sar $0A))), "{0}"), (Str opt\Field55), "{1}"), $00, $00)

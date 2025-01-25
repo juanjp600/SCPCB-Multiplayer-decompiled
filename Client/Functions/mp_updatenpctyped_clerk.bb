@@ -14,11 +14,11 @@ Function mp_updatenpctyped_clerk%(arg0.npcs)
                 moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
                 If (0.005 < arg0\Field24) Then
                     If ((((244.0 > local0) And (244.0 <= arg0\Field14)) Lor ((254.0 > local0) And (254.0 <= arg0\Field14))) <> 0) Then
-                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                     EndIf
                 ElseIf (-0.005 > arg0\Field24) Then
                     If ((((254.0 <= local0) And (254.0 > arg0\Field14)) Lor ((244.0 <= local0) And (244.0 > arg0\Field14))) <> 0) Then
-                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                        playsoundex(stepsfx(getstepsound(arg0\Field3), $00, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                     EndIf
                 EndIf
             Case 2.0
@@ -27,12 +27,12 @@ Function mp_updatenpctyped_clerk%(arg0.npcs)
                 moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
                 If (0.005 < arg0\Field24) Then
                     If ((((309.0 > local0) And (309.0 <= arg0\Field14)) Lor ((319.0 >= local0) And (301.0 >= arg0\Field14))) <> 0) Then
-                        playsoundex(stepsfx(getstepsound(arg0\Field3), $01, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00)
+                        playsoundex(stepsfx(getstepsound(arg0\Field3), $01, rand($00, $02)), camera, arg0\Field3, 8.0, rnd(0.3, 0.5), $00, $00)
                     EndIf
                 EndIf
         End Select
         If (((arg0\Field60 <= $00) And (arg0\Field4 = $12)) <> 0) Then
-            setnpcframe(arg0, 41.0)
+            setnpcframe(arg0, 41.0, $01)
             arg0\Field50 = $01
         EndIf
     Else

@@ -33,10 +33,10 @@ Function mp_updatenpctype049%(arg0.npcs)
             If (entityvisible(me\Field60, arg0\Field3) <> 0) Then
                 If (((1.0 < arg0\Field10) And (3.0 <> arg0\Field10)) <> 0) Then
                     If (mp_getnpctargetmodel(arg0) = $02) Then
-                        If (arg0\Field79 <> 0) Then
+                        If (arg0\Field83 <> 0) Then
                             removehazmattimer = (removehazmattimer - (fps\Field7[$00] * 1.5))
                             If ((((350.0 > removehazmattimer) And (350.0 <= ((fps\Field7[$00] * 1.5) + removehazmattimer))) And (channelplaying(arg0\Field20) = $00)) <> 0) Then
-                                arg0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\TakeOffHazmat.ogg"), camera, arg0\Field3, 10.0, 1.0, $01)
+                                arg0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\TakeOffHazmat.ogg"), camera, arg0\Field3, 10.0, 1.0, $01, $00)
                             ElseIf (0.0 >= removehazmattimer) Then
                                 For local2 = $00 To $02 Step $01
                                     If (((removehazmattimer < (- (((Float (wi\Field2 = $04)) * 250.0) * (Float local2)))) And ((- (((Float (wi\Field2 = $04)) * 250.0) * (Float local2))) <= ((fps\Field7[$00] * 1.5) + removehazmattimer))) <> 0) Then
@@ -58,7 +58,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                             EndIf
                         EndIf
                     ElseIf (mp_getnpctargetattach(arg0, $03) = $0D) Then
-                        If (arg0\Field79 <> 0) Then
+                        If (arg0\Field83 <> 0) Then
                             me\Field49 = (me\Field49 + (fps\Field7[$00] * 2.5))
                             If (i_268\Field2 <> 0) Then
                                 remove714timer = min(remove714timer, 499.0)
@@ -66,7 +66,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                                 remove714timer = (remove714timer - (fps\Field7[$00] * (3.0 / (Float i_714\Field0))))
                                 If ((((350.0 > remove714timer) And (350.0 <= ((fps\Field7[$00] * 1.5) + remove714timer))) And (channelplaying(arg0\Field20) = $00)) <> 0) Then
                                     If (i_714\Field0 = $02) Then
-                                        arg0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\714Equipped.ogg"), camera, arg0\Field3, 10.0, 1.0, $01)
+                                        arg0\Field20 = playsoundex(loadtempsound("SFX\SCP\049\714Equipped.ogg"), camera, arg0\Field3, 10.0, 1.0, $01, $00)
                                     EndIf
                                 ElseIf (0.0 >= remove714timer) Then
                                     For local2 = $00 To (maxitemamount - $01) Step $01
@@ -83,18 +83,18 @@ Function mp_updatenpctype049%(arg0.npcs)
                             EndIf
                         EndIf
                     Else
-                        If (arg0\Field79 <> 0) Then
+                        If (arg0\Field83 <> 0) Then
                             me\Field52 = 20.0
                             me\Field49 = 500.0
                         EndIf
                         kill($00, $01, $00, $01)
                         me\Field1 = $00
-                        If (arg0\Field79 <> 0) Then
+                        If (arg0\Field83 <> 0) Then
                             msg\Field2 = getlocalstring("death", "049")
                             playsound_strict(loadtempsound("SFX\SCP\049\Horror.ogg"), $00)
                         EndIf
                         loadnpcsound(arg0, (("SFX\SCP\049\Kidnap" + (Str rand($00, $01))) + ".ogg"), $01)
-                        arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field0, 10.0, 1.0, $01)
+                        arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field0, 10.0, 1.0, $01, $00)
                         arg0\Field10 = 3.0
                     EndIf
                 EndIf
@@ -127,10 +127,7 @@ Function mp_updatenpctype049%(arg0.npcs)
             Case 0.0
             Case 1.0
                 If (538.0 <= arg0\Field14) Then
-                    animatenpc(arg0, 659.0, 538.0, -0.45, $00)
-                    If (537.9 < arg0\Field14) Then
-                        setnpcframe(arg0, 37.0)
-                    EndIf
+                    setnpcframe(arg0, 37.0, $01)
                 Else
                     animatenpc(arg0, 37.0, 269.0, 0.7, $00)
                     If (268.9 < arg0\Field14) Then
@@ -147,7 +144,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                         EndIf
                         If (((arg0\Field13 <= $01) And (channelplaying(arg0\Field20) = $00)) <> 0) Then
                             loadnpcsound(arg0, (("SFX\SCP\049\Spotted" + (Str rand($00, $06))) + ".ogg"), $01)
-                            arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field0, 10.0, 1.0, $01)
+                            arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field0, 10.0, 1.0, $01, $00)
                             arg0\Field13 = $02
                         EndIf
                         arg0\Field40 = $00
@@ -161,14 +158,14 @@ Function mp_updatenpctype049%(arg0.npcs)
                             arg0\Field24 = curvevalue(arg0\Field23, arg0\Field24, 20.0)
                             moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
                             If (9.0 > local1) Then
-                                animatenpc(arg0, clamp(animtime(arg0\Field0), 387.0, 428.0), 463.0, (arg0\Field24 * 38.0), $01)
+                                animatenpc(arg0, clamp(arg0\Field14, 387.0, 428.0), 463.0, (arg0\Field24 * 38.0), $01)
                             ElseIf (428.0 < arg0\Field14) Then
-                                animatenpc(arg0, min(animtime(arg0\Field0), 463.0), 498.0, (arg0\Field24 * 38.0), $00)
+                                animatenpc(arg0, min(arg0\Field14, 463.0), 498.0, (arg0\Field24 * 38.0), $00)
                                 If (497.9 < arg0\Field14) Then
-                                    setnpcframe(arg0, 358.0)
+                                    setnpcframe(arg0, 358.0, $01)
                                 EndIf
                             Else
-                                animatenpc(arg0, clamp(animtime(arg0\Field0), 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
+                                animatenpc(arg0, clamp(arg0\Field14, 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
                             EndIf
                         EndIf
                         arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, (15.0 - ((Float selecteddifficulty\Field4) * 1.5)))
@@ -191,7 +188,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                                 pointentity(arg0\Field3, arg0\Field39[arg0\Field42]\Field0, 0.0)
                                 rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
                                 moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
-                                animatenpc(arg0, clamp(animtime(arg0\Field0), 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
+                                animatenpc(arg0, clamp(arg0\Field14, 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
                                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, (15.0 - ((Float selecteddifficulty\Field4) * 1.5)))
                                 If (((arg0\Field13 = $00) And (channelplaying(arg0\Field20) = $00)) <> 0) Then
                                     If (rand($1E, $01) = $01) Then
@@ -199,7 +196,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                                     Else
                                         loadnpcsound(arg0, (("SFX\SCP\049\Searching" + (Str rand($00, $05))) + ".ogg"), $01)
                                     EndIf
-                                    arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field3, 10.0, 1.0, $01)
+                                    arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field3, 10.0, 1.0, $01, $00)
                                     arg0\Field13 = $01
                                 EndIf
                                 usedoornpc(arg0, $01, $00)
@@ -302,7 +299,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                     EndIf
                     If (0.005 < arg0\Field24) Then
                         If ((((((361.0 > local0) And (361.0 <= arg0\Field14)) Lor ((377.0 > local0) And (377.0 <= arg0\Field14))) Lor ((431.0 > local0) And (431.0 <= arg0\Field14))) Lor ((447.0 > local0) And (447.0 <= arg0\Field14))) <> 0) Then
-                            playsoundex(snd_i\Field56[rand($07, $09)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                            playsoundex(snd_i\Field56[rand($07, $09)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                         EndIf
                     EndIf
                     updatesoundorigin(arg0\Field20, camera, arg0\Field0, 10.0, 1.0, $01, $01)
@@ -369,7 +366,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                             moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field24 * fps\Field7[$00]))
                             arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, (10.0 - (Float selecteddifficulty\Field4)))
                             usedoornpc(arg0, $01, $00)
-                            animatenpc(arg0, clamp(animtime(arg0\Field0), 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
+                            animatenpc(arg0, clamp(arg0\Field14, 346.0, 358.0), 393.0, (arg0\Field24 * 38.0), $01)
                         EndIf
                     Else
                         Select arg0\Field13
@@ -387,7 +384,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                 EndIf
                 If (0.005 < arg0\Field24) Then
                     If ((((((361.0 > local0) And (361.0 <= arg0\Field14)) Lor ((377.0 > local0) And (377.0 <= arg0\Field14))) Lor ((431.0 > local0) And (431.0 <= arg0\Field14))) Lor ((447.0 > local0) And (447.0 <= arg0\Field14))) <> 0) Then
-                        playsoundex(snd_i\Field56[rand($07, $09)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00)
+                        playsoundex(snd_i\Field56[rand($07, $09)], camera, arg0\Field3, 8.0, rnd(0.8, 1.0), $00, $00)
                     EndIf
                 EndIf
                 updatesoundorigin(arg0\Field20, camera, arg0\Field0, 10.0, 1.0, $01, $01)

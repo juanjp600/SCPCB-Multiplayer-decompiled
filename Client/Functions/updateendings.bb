@@ -489,7 +489,7 @@ Function updateendings%()
                                                 local0\Field1\Field15[local9]\Field10 = 3.0
                                             Next
                                             local0\Field1\Field15[$05]\Field17 = loadsound_strict("SFX\Character\MTF\ThereHeIs0.ogg")
-                                            playsoundex(local0\Field1\Field15[$05]\Field17, camera, local0\Field1\Field15[$05]\Field3, 25.0, 1.0, $01)
+                                            playsoundex(local0\Field1\Field15[$05]\Field17, camera, local0\Field1\Field15[$05]\Field3, 25.0, 1.0, $01, $00)
                                             local0\Field1\Field14[$00]\Field6 = $01
                                             For local9 = $02 To $04 Step $01
                                                 local0\Field1\Field15[local9]\Field10 = 0.0
@@ -522,7 +522,7 @@ Function updateendings%()
                                             local16 = copyentity(local0\Field1\Field11[$0C], $00)
                                             positionentity(local16, (entityx(local0\Field1\Field2, $01) - 15.875), entityy(local0\Field1\Field11[$0B], $01), (entityz(local0\Field1\Field2, $01) - 8.25), $00)
                                             entityparent(local16, local0\Field1\Field11[$11], $01)
-                                            local0\Field6 = playsoundex(loadtempsound("SFX\Ending\GateA\Bell0.ogg"), camera, local0\Field1\Field11[$0C], 10.0, 1.0, $00)
+                                            local0\Field6 = playsoundex(loadtempsound("SFX\Ending\GateA\Bell0.ogg"), camera, local0\Field1\Field11[$0C], 10.0, 1.0, $00, $00)
                                             local4 = createparticle($05, entityx(local0\Field1\Field11[$0B], $01), entityy(camera, $01), entityz(local0\Field1\Field11[$0B], $01), 8.0, 0.0, 50.0)
                                             local4\Field4 = 0.15
                                             local4\Field2 = 0.5

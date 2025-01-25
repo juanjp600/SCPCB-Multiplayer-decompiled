@@ -19,12 +19,12 @@ Function updatemenu%()
     catcherrors("UpdateMenu()")
     If (menuopen <> 0) Then
         If (((isplayeroutsidefacility() Lor (Int me\Field0)) Lor me\Field56) = $00) Then
-            If (0.0 = me\Field62) Then
+            If (0.0 = me\Field63) Then
                 If (((((0.64 > entitydistancesquared(n_i\Field2\Field3, me\Field60)) And (2.0 > n_i\Field2\Field26)) Lor (0.64 > entitydistancesquared(n_i\Field3\Field3, me\Field60))) Lor ((((n_i\Field6 <> Null) And (0.64 > entitydistancesquared(n_i\Field6\Field3, me\Field60))) And ((n_i\Field7 <> Null) And (0.64 > entitydistancesquared(n_i\Field7\Field3, me\Field60)))) And ((n_i\Field4 <> Null) And (0.64 > entitydistancesquared(n_i\Field4\Field3, me\Field60))))) <> 0) Then
-                    me\Field62 = 1.0
+                    me\Field63 = 1.0
                 EndIf
-            ElseIf (rnd(120.0, 240.0) <= me\Field62) Then
-                me\Field62 = 0.0
+            ElseIf (rnd(120.0, 240.0) <= me\Field63) Then
+                me\Field63 = 0.0
                 menuopen = $00
                 Return $00
             EndIf

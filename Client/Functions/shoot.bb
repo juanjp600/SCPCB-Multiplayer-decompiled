@@ -14,13 +14,13 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
     entityparent(local2\Field6, arg4, $01)
     lightvolume = (templightvolume * 1.2)
     If (arg7 <> 0) Then
-        playsoundex(snd_i\Field15, camera, me\Field60, 0.4, rnd(0.8, 1.0), $00)
+        playsoundex(snd_i\Field15, camera, me\Field60, 0.4, rnd(0.8, 1.0), $00, $00)
         kill($01, $01, $00, $01)
         Return $00
     EndIf
     If (arg5 >= rnd(1.0, 0.0)) Then
         local7 = rand($11, $01)
-        If (arg0\Field79 <> 0) Then
+        If (arg0\Field83 <> 0) Then
             turnentity(camera, rnd(-3.0, 3.0), rnd(-3.0, 3.0), 0.0, $00)
         EndIf
         Select local7
@@ -63,7 +63,7 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
                     kill($01, $01, $00, $01)
                 EndIf
         End Select
-        If ((arg0\Field79 And (350.0 > msg\Field1)) <> 0) Then
+        If ((arg0\Field83 And (350.0 > msg\Field1)) <> 0) Then
             createmsg(local4, 6.0)
         EndIf
         If (6.0 < mp_getnpctargetinjuries(arg0)) Then
@@ -72,7 +72,7 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
         If (((local7 > $0A) And (local7 < $10)) <> 0) Then
             local2 = setemitter(Null, entityx(me\Field60, $00), entityy(me\Field60, $00), entityz(me\Field60, $00), $0F)
         EndIf
-        playsoundex(snd_i\Field15, camera, me\Field60, 0.4, rnd(0.8, 1.0), $00)
+        playsoundex(snd_i\Field15, camera, me\Field60, 0.4, rnd(0.8, 1.0), $00, $00)
     ElseIf ((arg6 And (opt\Field0 > $00)) <> 0) Then
         local3 = createpivot($00)
         positionentity(local3, entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.5), entityz(me\Field60, $00), $00)
@@ -82,7 +82,7 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
         turnentity(local3, 0.0, 180.0, 0.0, $00)
         entitypick(local3, 2.5)
         If (pickedentity() <> $00) Then
-            playsoundex(snd_i\Field14, camera, local3, 0.4, rnd(0.8, 1.0), $00)
+            playsoundex(snd_i\Field14, camera, local3, 0.4, rnd(0.8, 1.0), $00, $00)
             If (arg6 <> 0) Then
                 local9 = pickedx()
                 local10 = pickedy()

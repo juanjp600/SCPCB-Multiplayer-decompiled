@@ -76,7 +76,7 @@ Function update008%()
                                     resetentity(me\Field60)
                                     local0\Field15[$00] = createnpc($13, entityx(local0\Field11[$06], $01), (entityy(local0\Field11[$06], $01) + 0.2), entityz(local0\Field11[$06], $01))
                                     local0\Field15[$00]\Field10 = -1.0
-                                    setnpcframe(local0\Field15[$00], 357.0)
+                                    setnpcframe(local0\Field15[$00], 357.0, $01)
                                     changenpctextureid(local0\Field15[$00], $0B)
                                     playsound_strict(loadtempsound("SFX\SCP\008\KillScientist0.ogg"), $01)
                                     teleporttoroom(local0)
@@ -113,7 +113,7 @@ Function update008%()
                     If (94.7 > local3) Then
                         playerroom\Field15[$00]\Field12 = -1.0
                         playerroom\Field15[$00]\Field50 = $01
-                        setnpcframe(playerroom\Field15[$00], 19.0)
+                        setnpcframe(playerroom\Field15[$00], 19.0, $01)
                         playsound_strict(loadtempsound("SFX\SCP\008\KillScientist1.ogg"), $01)
                         msg\Field2 = format(getlocalstring("death", "0081"), subjectname, "%s")
                         local2 = createdecal($03, entityx(playerroom\Field15[$00]\Field3, $00), ((playerroom\Field4 + 2.125) + 0.01), entityz(playerroom\Field15[$00]\Field3, $00), 90.0, rnd(360.0, 0.0), 0.0, 0.8, 1.0, $00, $01, $00, $00, $00)
