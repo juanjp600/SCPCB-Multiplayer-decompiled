@@ -3,17 +3,17 @@ Function updateparticles_devil%()
     Local local1.particle
     Local local2%
     Local local3%
-    Local local4%
-    Local local5#
-    Local local7%
-    Local local8#
+    Local local4#
+    Local local5%
+    Local local6#
+    Local local8%
     Local local9#
     Local local10#
     Local local11#
     Local local12#
     Local local13#
-    Local local14%
-    Local local15#
+    Local local14#
+    Local local15%
     Local local16#
     Local local17#
     Local local18#
@@ -30,17 +30,19 @@ Function updateparticles_devil%()
     Local local29#
     Local local30#
     Local local31#
-    Local local32%
+    Local local32#
     Local local33%
     Local local34%
     Local local35%
-    Local local36#
+    Local local36%
     Local local37#
-    Local local38%
+    Local local38#
     Local local39%
     Local local40%
-    Local local41#
+    Local local41%
+    Local local42#
     local3 = $00
+    local4 = ((Float ($03 - opt\Field0)) * 2.0)
     For local0 = Each emitter
         clearsurface(local0\Field8, $01, $01)
         If (-1.0 < local0\Field2) Then
@@ -51,17 +53,17 @@ Function updateparticles_devil%()
         EndIf
         If (((0.0 < fps\Field7[$00]) And ((local0\Field10 = Null) Lor ((playerroom = local0\Field10) Lor (8.0 > local0\Field10\Field8)))) <> 0) Then
             If (local0\Field3\Field4 > $FFFFFFFF) Then
-                local4 = $00
+                local5 = $00
                 For local1 = Each particle
                     If (local1\Field0 = local0) Then
-                        local4 = (local4 + $01)
+                        local5 = (local5 + $01)
                     EndIf
                 Next
             EndIf
             local0\Field0 = ((local0\Field0 + 1.0) Mod (Float local0\Field3\Field2))
-            If (((0.0 = local0\Field0) And (local0\Field9 = $00)) <> 0) Then
+            If ((((0.0 = local0\Field0) And (local0\Field9 = $00)) And (0.0 >= local0\Field13)) <> 0) Then
                 For local2 = $01 To local0\Field3\Field3 Step $01
-                    If ((((local0\Field3\Field4 > $FFFFFFFF) And (local4 < local0\Field3\Field4)) Lor (local0\Field3\Field4 = $FFFFFFFF)) <> 0) Then
+                    If ((((local0\Field3\Field4 > $FFFFFFFF) And (local5 < local0\Field3\Field4)) Lor (local0\Field3\Field4 = $FFFFFFFF)) <> 0) Then
                         local1 = (New particle)
                         local1\Field0 = local0
                         local1\Field2 = rand(local0\Field3\Field5, local0\Field3\Field6)
@@ -72,12 +74,14 @@ Function updateparticles_devil%()
                         local1\Field7 = rnd(local0\Field3\Field20, local0\Field3\Field21)
                         local1\Field8 = rnd(local0\Field3\Field22, local0\Field3\Field23)
                         local1\Field10 = rnd(local0\Field3\Field24, local0\Field3\Field25)
-                        local5 = rnd(local0\Field3\Field33, local0\Field3\Field34)
-                        local1\Field11 = (local1\Field0\Field3\Field31 * local5)
-                        local1\Field12 = (local1\Field0\Field3\Field32 * local5)
+                        local6 = rnd(local0\Field3\Field33, local0\Field3\Field34)
+                        local1\Field11 = (local1\Field0\Field3\Field31 * local6)
+                        local1\Field12 = (local1\Field0\Field3\Field32 * local6)
                     EndIf
                 Next
+                local0\Field13 = local4
             EndIf
+            local0\Field13 = (local0\Field13 - fps\Field7[$00])
             If (local0\Field3\Field8 <> 0) Then
                 local0\Field3\Field9 = (local0\Field3\Field9 + local0\Field3\Field11)
                 If ((Float (local0\Field3\Field10 - $01)) < local0\Field3\Field9) Then
@@ -102,13 +106,13 @@ Function updateparticles_devil%()
             End Select
         EndIf
         If (local0\Field9 <> 0) Then
-            local7 = $01
+            local8 = $01
             For local1 = Each particle
                 If (local1\Field0 = local0) Then
-                    local7 = $00
+                    local8 = $00
                 EndIf
             Next
-            If (local7 <> 0) Then
+            If (local8 <> 0) Then
                 freeentity(local0\Field7)
                 local0\Field7 = $00
                 local0\Field8 = $00
@@ -132,9 +136,9 @@ Function updateparticles_devil%()
         me\Field14 = (me\Field14 + (fps\Field7[$00] * 4.0))
     EndIf
     positionentity(particlepiv, entityx(particlecam, $01), entityy(particlecam, $01), entityz(particlecam, $01), $00)
-    local8 = entitypitch(particlecam, $01)
-    local9 = entityyaw(particlecam, $01)
-    local10 = entityroll(particlecam, $01)
+    local9 = entitypitch(particlecam, $01)
+    local10 = entityyaw(particlecam, $01)
+    local11 = entityroll(particlecam, $01)
     For local1 = Each particle
         If ((((hidedistance * hidedistance) < entitydistancesquared(local1\Field0\Field6, me\Field60)) Lor (local1\Field1 > local1\Field2)) <> 0) Then
             Delete local1
@@ -147,81 +151,81 @@ Function updateparticles_devil%()
             EndIf
             local1\Field7 = (local1\Field7 - local1\Field0\Field3\Field28)
             If (local1\Field0\Field10 <> Null) Then
-                local11 = entityyaw(local1\Field0\Field10\Field2, $00)
-                local12 = sin(local11)
-                local13 = cos(local11)
-                local1\Field3 = (((local1\Field6 * local13) + (local1\Field8 * local12)) + local1\Field3)
+                local12 = entityyaw(local1\Field0\Field10\Field2, $00)
+                local13 = sin(local12)
+                local14 = cos(local12)
+                local1\Field3 = (((local1\Field6 * local14) + (local1\Field8 * local13)) + local1\Field3)
                 local1\Field4 = (local1\Field4 + local1\Field7)
-                local1\Field5 = (((local1\Field6 * local12) + (local1\Field8 * local13)) + local1\Field5)
+                local1\Field5 = (((local1\Field6 * local13) + (local1\Field8 * local14)) + local1\Field5)
             Else
                 local1\Field3 = (local1\Field3 + local1\Field6)
                 local1\Field4 = (local1\Field4 + local1\Field7)
                 local1\Field5 = (local1\Field5 + local1\Field8)
             EndIf
-            local14 = $00
+            local15 = $00
             If (local1\Field0\Field3\Field46 = $01) Then
                 If (local1\Field0\Field3\Field44 <= local1\Field4) Then
-                    local14 = $01
+                    local15 = $01
                 EndIf
             ElseIf (local1\Field0\Field3\Field46 = $00) Then
                 If (local1\Field0\Field3\Field44 > local1\Field4) Then
-                    local14 = $01
+                    local15 = $01
                 EndIf
             EndIf
-            If (local14 <> 0) Then
+            If (local15 <> 0) Then
                 local1\Field7 = (local1\Field7 * (- local1\Field0\Field3\Field45))
             EndIf
             local1\Field11 = ((local1\Field11 + local1\Field0\Field3\Field35) * local1\Field0\Field3\Field36)
             local1\Field12 = ((local1\Field12 + local1\Field0\Field3\Field35) * local1\Field0\Field3\Field36)
-            rotateentity(particlepiv, local8, local9, ((local1\Field9 + (Float local1\Field0\Field3\Field27)) + local10), $00)
+            rotateentity(particlepiv, local9, local10, ((local1\Field9 + (Float local1\Field0\Field3\Field27)) + local11), $00)
             If (local1\Field0\Field3\Field47 > $FFFFFFFF) Then
                 rotateentity(particlepiv, (Float local1\Field0\Field3\Field47), entityyaw(particlepiv, $00), entityroll(particlepiv, $00), $00)
             EndIf
             If (local1\Field0\Field3\Field48 > $FFFFFFFF) Then
                 rotateentity(particlepiv, entitypitch(particlepiv, $00), (Float local1\Field0\Field3\Field48), entityroll(particlepiv, $00), $00)
             EndIf
-            local15 = (entityx(local1\Field0\Field7, $00) + local1\Field3)
-            local16 = (entityy(local1\Field0\Field7, $00) + local1\Field4)
-            local17 = (entityz(local1\Field0\Field7, $00) + local1\Field5)
-            local18 = local1\Field11
-            local19 = local1\Field12
-            tformvector(local18, (- local19), 0.0, particlepiv, $00)
-            local20 = (tformedx() + local15)
-            local21 = (tformedy() + local16)
-            local22 = (tformedz() + local17)
-            tformvector((- local18), (- local19), 0.0, particlepiv, $00)
-            local23 = (tformedx() + local15)
-            local24 = (tformedy() + local16)
-            local25 = (tformedz() + local17)
-            tformvector(local18, local19, 0.0, particlepiv, $00)
-            local26 = (tformedx() + local15)
-            local27 = (tformedy() + local16)
-            local28 = (tformedz() + local17)
-            tformvector((- local18), local19, 0.0, particlepiv, $00)
-            local29 = (tformedx() + local15)
-            local30 = (tformedy() + local16)
-            local31 = (tformedz() + local17)
-            local32 = addvertex(local1\Field0\Field8, local20, local21, local22, 0.0, 0.0, 1.0)
-            local33 = addvertex(local1\Field0\Field8, local23, local24, local25, 1.0, 0.0, 1.0)
-            local34 = addvertex(local1\Field0\Field8, local26, local27, local28, 0.0, 1.0, 1.0)
-            local35 = addvertex(local1\Field0\Field8, local29, local30, local31, 1.0, 1.0, 1.0)
-            local36 = (Float local1\Field1)
-            local37 = (Float local1\Field2)
-            local38 = (Int ((((Float (local1\Field0\Field3\Field40 - local1\Field0\Field3\Field37)) * local36) / local37) + (Float local1\Field0\Field3\Field37)))
-            local39 = (Int ((((Float (local1\Field0\Field3\Field41 - local1\Field0\Field3\Field38)) * local36) / local37) + (Float local1\Field0\Field3\Field38)))
-            local40 = (Int ((((Float (local1\Field0\Field3\Field42 - local1\Field0\Field3\Field39)) * local36) / local37) + (Float local1\Field0\Field3\Field39)))
+            local16 = (entityx(local1\Field0\Field7, $00) + local1\Field3)
+            local17 = (entityy(local1\Field0\Field7, $00) + local1\Field4)
+            local18 = (entityz(local1\Field0\Field7, $00) + local1\Field5)
+            local19 = local1\Field11
+            local20 = local1\Field12
+            tformvector(local19, (- local20), 0.0, particlepiv, $00)
+            local21 = (tformedx() + local16)
+            local22 = (tformedy() + local17)
+            local23 = (tformedz() + local18)
+            tformvector((- local19), (- local20), 0.0, particlepiv, $00)
+            local24 = (tformedx() + local16)
+            local25 = (tformedy() + local17)
+            local26 = (tformedz() + local18)
+            tformvector(local19, local20, 0.0, particlepiv, $00)
+            local27 = (tformedx() + local16)
+            local28 = (tformedy() + local17)
+            local29 = (tformedz() + local18)
+            tformvector((- local19), local20, 0.0, particlepiv, $00)
+            local30 = (tformedx() + local16)
+            local31 = (tformedy() + local17)
+            local32 = (tformedz() + local18)
+            local33 = addvertex(local1\Field0\Field8, local21, local22, local23, 0.0, 0.0, 1.0)
+            local34 = addvertex(local1\Field0\Field8, local24, local25, local26, 1.0, 0.0, 1.0)
+            local35 = addvertex(local1\Field0\Field8, local27, local28, local29, 0.0, 1.0, 1.0)
+            local36 = addvertex(local1\Field0\Field8, local30, local31, local32, 1.0, 1.0, 1.0)
+            local37 = (Float local1\Field1)
+            local38 = (Float local1\Field2)
+            local39 = (Int ((((Float (local1\Field0\Field3\Field40 - local1\Field0\Field3\Field37)) * local37) / local38) + (Float local1\Field0\Field3\Field37)))
+            local40 = (Int ((((Float (local1\Field0\Field3\Field41 - local1\Field0\Field3\Field38)) * local37) / local38) + (Float local1\Field0\Field3\Field38)))
+            local41 = (Int ((((Float (local1\Field0\Field3\Field42 - local1\Field0\Field3\Field39)) * local37) / local38) + (Float local1\Field0\Field3\Field39)))
             If (local1\Field0\Field3\Field30 <> 0) Then
-                local41 = ((1.0 - (local36 / local37)) * local1\Field0\Field3\Field29)
+                local42 = ((1.0 - (local37 / local38)) * local1\Field0\Field3\Field29)
             Else
-                local41 = local1\Field0\Field3\Field29
+                local42 = local1\Field0\Field3\Field29
             EndIf
-            vertexcolor(local1\Field0\Field8, local32, (Float local38), (Float local39), (Float local40), local41)
-            vertexcolor(local1\Field0\Field8, local33, (Float local38), (Float local39), (Float local40), local41)
-            vertexcolor(local1\Field0\Field8, local34, (Float local38), (Float local39), (Float local40), local41)
-            vertexcolor(local1\Field0\Field8, local35, (Float local38), (Float local39), (Float local40), local41)
+            vertexcolor(local1\Field0\Field8, local33, (Float local39), (Float local40), (Float local41), local42)
+            vertexcolor(local1\Field0\Field8, local34, (Float local39), (Float local40), (Float local41), local42)
+            vertexcolor(local1\Field0\Field8, local35, (Float local39), (Float local40), (Float local41), local42)
+            vertexcolor(local1\Field0\Field8, local36, (Float local39), (Float local40), (Float local41), local42)
             For local2 = $01 To local1\Field0\Field3\Field43 Step $01
-                addtriangle(local1\Field0\Field8, local32, local33, local34)
-                addtriangle(local1\Field0\Field8, local34, local33, local35)
+                addtriangle(local1\Field0\Field8, local33, local34, local35)
+                addtriangle(local1\Field0\Field8, local35, local34, local36)
             Next
         EndIf
     Next

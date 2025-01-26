@@ -242,7 +242,7 @@ Function EntryPoint%()
     mp_setclientname(loadnicknamefromini())
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($08)
+    multiplayer_version = versiondots($09)
     senddebuglog(multiplayer_version)
     createserverinfo()
     mp_menuinit()

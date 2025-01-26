@@ -742,7 +742,9 @@ Function executeconsolecommand%(arg0$)
                     For local12 = $00 To $02 Step $01
                         removenpc(local1\Field1\Field15[local12])
                         If (local12 < $02) Then
-                            translateentity(local1\Field1\Field11[local12], 0.0, -1000.0, 0.0, $01)
+                            If (local1\Field1\Field11[local12] <> $00) Then
+                                translateentity(local1\Field1\Field11[local12], 0.0, -1000.0, 0.0, $01)
+                            EndIf
                         EndIf
                     Next
                     If (1.0 = n_i\Field2\Field26) Then

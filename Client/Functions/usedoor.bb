@@ -196,7 +196,7 @@ Function usedoor%(arg0%)
                                 ElseIf (forest_event\Field1\Field15[$00] = Null) Then
                                     forest_event\Field1\Field15[$00] = createnpc($0A, 0.0, 0.0, 0.0)
                                 EndIf
-                                If (((currentsyncplayer <> ue_players[mp_getmyindex()]) Lor (currentsyncplayer = Null)) <> 0) Then
+                                If (((currentsyncplayer <> Null) And (currentsyncplayer <> ue_players[mp_getmyindex()])) <> 0) Then
                                     Return $00
                                 EndIf
                                 d_i\Field7\Field4 = $00

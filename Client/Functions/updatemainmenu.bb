@@ -996,7 +996,6 @@ Function updatemainmenu%()
                                 Case $426
                                     key\Field15 = local47
                             End Select
-                            selectedinputbox = $00
                         EndIf
                 End Select
             EndIf

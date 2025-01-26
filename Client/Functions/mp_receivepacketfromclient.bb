@@ -37,7 +37,7 @@ Function mp_receivepacketfromclient%()
                 Return $00
             EndIf
             mp_writebyte($00)
-            mp_writebyte($08)
+            mp_writebyte($09)
             mp_writebyte(ue_server\Field9)
             mp_writebyte(ue_server\Field8)
             mp_writeline(ue_server\Field4)
@@ -116,6 +116,7 @@ Function mp_receivepacketfromclient%()
                         local13\Field2 = local7\Field3
                         local13\Field6 = local7\Field4
                         server_playerconnected(local13)
+                        mp_broadcastchatmessage((local13\Field6 + " has joined to server"))
                         senddebuglog((("New player created (" + (Str local13\Field5)) + ")"))
                         mp_countplayers($01)
                     EndIf

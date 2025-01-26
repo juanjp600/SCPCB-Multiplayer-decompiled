@@ -17,12 +17,13 @@ Type events
     Field Field15%
     Field Field16#
     Field Field17#
-    Field Field18%
+    Field Field18#
     Field Field19%
     Field Field20%
-    Field Field21.mp_player
-    Field Field22#
+    Field Field21%
+    Field Field22.mp_player
     Field Field23#
-    Field Field24%
+    Field Field24#
     Field Field25%
+    Field Field26%
 End Type

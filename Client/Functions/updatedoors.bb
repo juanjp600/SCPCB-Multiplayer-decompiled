@@ -21,14 +21,16 @@ Function updatedoors%()
     d_i\Field9 = $00
     d_i\Field7 = Null
     local8 = $00
-    For local0 = Each doors
-        If (mp_ishoster() <> 0) Then
+    If (mp_ishoster() <> 0) Then
+        For local0 = Each doors
             local0\Field37 = (local0\Field37 - fps\Field7[$00])
             If (0.0 >= local0\Field37) Then
                 local0\Field36 = mp_anyplayernearentity(local0\Field2, 200.0)
                 local0\Field37 = 35.0
             EndIf
-        EndIf
+        Next
+    EndIf
+    For local0 = Each doors
         local8 = (((hidedistance * 1.75) * (hidedistance * 1.75)) >= entitydistancesquared(local0\Field2, me\Field60))
         If (((local8 Lor (local0\Field22 > $00)) Lor local0\Field36) <> 0) Then
             local9 = ((local0\Field10 = $04) Lor (local0\Field10 = $05))

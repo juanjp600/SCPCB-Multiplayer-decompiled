@@ -40,7 +40,7 @@ Function updateitems%()
                     local0\Field24 = $01
                 Else
                     If (0.0 >= local0\Field23) Then
-                        If (linepick(entityx(local0\Field2, $00), entityy(local0\Field2, $00), entityz(local0\Field2, $00), 0.0, -3.0, 0.0, 0.0) <> 0) Then
+                        If (linepick(entityx(local0\Field2, $00), entityy(local0\Field2, $00), entityz(local0\Field2, $00), 0.0, -5.0, 0.0, 0.0) <> 0) Then
                             local0\Field22 = $01
                             local0\Field23 = 35.0
                         Else
@@ -74,6 +74,8 @@ Function updateitems%()
                                 translateentity(local0\Field2, (- local3), 0.0, (- local5), $00)
                                 local0\Field22 = $01
                                 local1\Field22 = $01
+                                local0\Field24 = $00
+                                local1\Field24 = $00
                             EndIf
                         EndIf
                     Next

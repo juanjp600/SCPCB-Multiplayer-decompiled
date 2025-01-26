@@ -19,7 +19,7 @@ Function mp_updatecorpses%()
             local3 = (min(max(((local0\Field10 / 840.0) * 1.0), 0.0), 1.0) * (Float (local2 = $00)))
             If ((((((1.44 > entitydistancesquared(local0\Field1, me\Field60)) And (local1 = $00)) And (selectedcorpse = Null)) And (local0\Field14 = $00)) And entityvisible(local0\Field1, camera)) <> 0) Then
                 handentity = local0\Field1
-                If ((mo\Field0 And (((((((((Int me\Field0) Lor invopen) Lor (otheropen <> Null)) Lor (selecteditem <> Null)) Lor menuopen) Lor (d_i\Field6 <> Null)) Lor (d_i\Field7 <> Null)) Lor (2.0 <= entitydistancesquared(local0\Field1, me\Field60))) = $00)) <> 0) Then
+                If ((mo\Field0 And ((((((((((Int me\Field0) Lor invopen) Lor (otheropen <> Null)) Lor (selecteditem <> Null)) Lor (closestitem <> Null)) Lor menuopen) Lor (d_i\Field6 <> Null)) Lor (d_i\Field7 <> Null)) Lor (2.0 <= entitydistancesquared(local0\Field1, me\Field60))) = $00)) <> 0) Then
                     selectedcorpse = local0
                     selectedcorpse\Field17 = 0.0
                     playsound_strict(snd_i\Field44[$02], $00)

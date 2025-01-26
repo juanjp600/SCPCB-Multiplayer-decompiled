@@ -126,6 +126,6 @@ Function renderhud%()
         drawblock(t\Field0[$08], (Int (local0 - (Float local9))), (Int (local1 + 1.0)), $00)
     EndIf
     local1 = (local1 - local14)
-    Return (Int local1)
+    mp_setchatposition((30.0 * menuscale), local1)
     Return $00
 End Function

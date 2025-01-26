@@ -8,6 +8,7 @@ Function mp_updatetimeouts%()
             EndIf
             If (1050.0 < local0\Field4\Field1) Then
                 senddebuglog((("Player " + local0\Field6) + " is timed out"))
+                mp_broadcastchatmessage((local0\Field6 + " has left the server"))
                 flushplayer(local0\Field5)
             EndIf
         EndIf

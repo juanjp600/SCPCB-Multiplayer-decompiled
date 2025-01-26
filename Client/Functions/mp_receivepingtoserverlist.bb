@@ -14,6 +14,12 @@ Function mp_receivepingtoserverlist%(arg0$, arg1%, arg2.mp_netbuffer, arg3%, arg
         For local0 = Each mp_listserver
             If (((local0\Field1 = arg1) And (local0\Field0 = arg0)) <> 0) Then
                 local0\Field16 = (((local0\Field10 = $00) Shl $00) = $00)
+                local0\Field2 = ((local0\Field0 + ":") + (Str local0\Field1))
+                local0\Field3 = "-"
+                local0\Field8 = "-"
+                local0\Field4 = $00
+                local0\Field5 = $00
+                local0\Field6 = $00
             EndIf
         Next
     Else

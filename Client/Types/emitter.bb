@@ -12,4 +12,5 @@ Type emitter
     Field Field10.rooms
     Field Field11%
     Field Field12%
+    Field Field13#
 End Type
