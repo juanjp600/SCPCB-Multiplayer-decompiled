@@ -128,6 +128,7 @@ Function updateplayerlogic%(arg0.mp_player)
             If (local1 <> 0) Then
                 arg0\Field4\Field10 = me\Field10
                 arg0\Field4\Field18 = wi\Field7
+                arg0\Field4\Field7 = me\Field32
             EndIf
             arg0\Field29 = (((-16.0 < arg0\Field4\Field10) And (-6.0 > arg0\Field4\Field10)) Lor arg0\Field4\Field18)
             If (0.0 < arg0\Field4\Field9) Then

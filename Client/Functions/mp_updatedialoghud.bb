@@ -35,11 +35,11 @@ Function mp_updatedialoghud%(arg0%)
                     EndIf
                 Forever
                 For local2 = $01 To local5 Step $01
-                    local1 = (((Float (getlineamount(local4[local2], (Int (local0 * 0.9)), opt\Field47, (4.5 * menuscale)) * $18)) * menuscale) + local1)
+                    local1 = (((Float (getlineamount(local4[local2], (Int (local0 * 0.9)), opt\Field50, (4.5 * menuscale)) * $18)) * menuscale) + local1)
                 Next
             Case $02
                 local1 = (220.0 * menuscale)
-                local1 = (((Float (getlineamount(mp_dialog\Field3, (Int (local0 * 0.9)), opt\Field47, (4.5 * menuscale)) * $18)) * menuscale) + local1)
+                local1 = (((Float (getlineamount(mp_dialog\Field3, (Int (local0 * 0.9)), opt\Field50, (4.5 * menuscale)) * $18)) * menuscale) + local1)
             Case $01
                 local1 = (150.0 * menuscale)
                 local8 = $00
@@ -58,8 +58,8 @@ Function mp_updatedialoghud%(arg0%)
                 Forever
                 local1 = (((31.0 * (Float local8)) * menuscale) + local1)
         End Select
-        local10 = (Float (opt\Field46 Sar $01))
-        local11 = ((Float (opt\Field47 Sar $01)) + (15.0 * menuscale))
+        local10 = (Float (opt\Field49 Sar $01))
+        local11 = ((Float (opt\Field50 Sar $01)) + (15.0 * menuscale))
         updatemenubutton((Int (local10 - (local0 / 2.0))), (Int (local11 - (local1 / 2.0))), (Int local0), (Int local1), "", arg0, $00, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
         updatemenubutton((Int (local10 - (local0 / 2.0))), (Int ((local11 - (local1 / 2.0)) + (40.0 * menuscale))), (Int local0), (Int (4.0 * menuscale)), "", arg0, $00, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
         local12 = $00

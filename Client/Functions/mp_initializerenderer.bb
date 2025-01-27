@@ -9,102 +9,171 @@ Function mp_initializerenderer%()
     createplayermodeltexture($02, "GFX\NPCs\class_d(2).png", $01)
     createplayermodeltexture($03, "GFX\NPCs\D_9341.png", $01)
     local0 = getplayermodelmeshpreset($01)
-    local0\Field6 = $28
-    local0\Field9 = -0.3
-    local0\Field8 = 180.0
+    local0\Field7 = $28
+    local0\Field10 = -0.3
+    local0\Field9 = 180.0
     local0\Field1 = "Bip01_Spine1"
     local0\Field0 = "Bip01_Head"
     local0\Field3 = "Bip01_L_Forearm"
     local0\Field2 = "Bip01_L_Finger0"
-    local0\Field7 = $01
+    local0\Field8 = $01
+    local0\Field6 = $46
     local0\Field4 = $1E
     local0\Field5 = $3C
-    local0\Field11 = (0.51 / meshwidth(getplayermodelmesh($01)))
-    local0\Field10 = 0.3
-    local0\Field13 = 0.0
-    local0\Field14 = 70.0
-    local0\Field15 = 10.0
-    local0\Field16 = -0.03
-    local0\Field17 = 0.015
-    local0\Field18 = 0.0
-    local0\Field19 = -60.0
-    local0\Field20 = -45.0
-    local0\Field21 = 0.0
-    local0\Field22[$01] = packtwovalues($D2, $EB)
-    local0\Field23[$01] = 0.1
-    local0\Field22[$02] = packtwovalues($EC, $104)
-    local0\Field23[$02] = 0.33
-    local0\Field24[$02] = 45.0
-    local0\Field22[$03] = packtwovalues($12D, $13F)
-    local0\Field23[$03] = 0.33
-    local0\Field24[$03] = 30.0
-    local0\Field22[$04] = packtwovalues($165, $17D)
-    local0\Field23[$04] = 0.1
-    local0\Field22[$05] = packtwovalues($17E, $196)
-    local0\Field23[$05] = 0.3
-    local0\Field24[$05] = 45.0
-    local0\Field22[$06] = packtwovalues($C1, $C5)
-    local0\Field23[$06] = 0.025
-    local0\Field22[$07] = packtwovalues($C7, $D1)
-    local0\Field23[$07] = 0.33
-    local0\Field24[$07] = 35.0
-    local0\Field25[$00] = packtwovalues($01, $14)
-    local0\Field26[$00] = 0.4
-    local0\Field25[$01] = packtwovalues($29, $3C)
-    local0\Field26[$01] = 0.4
-    local0\Field25[$02] = packtwovalues($2A6, $2C7)
-    local0\Field26[$02] = 0.4
-    local0\Field25[$03] = packtwovalues($2C8, $30B)
-    local0\Field26[$03] = 0.4
+    local0\Field12 = (0.51 / meshwidth(getplayermodelmesh($01)))
+    local0\Field11 = 0.3
+    local0\Field14 = 0.0
+    local0\Field15 = 70.0
+    local0\Field16 = 10.0
+    local0\Field17 = -0.03
+    local0\Field18 = 0.015
+    local0\Field19 = 0.0
+    local0\Field20 = -60.0
+    local0\Field21 = -45.0
+    local0\Field22 = 0.0
+    local0\Field23[$01] = packtwovalues($D2, $EB)
+    local0\Field24[$01] = 0.1
+    local0\Field23[$02] = packtwovalues($EC, $104)
+    local0\Field24[$02] = 0.33
+    local0\Field25[$02] = 45.0
+    local0\Field23[$03] = packtwovalues($12D, $13F)
+    local0\Field24[$03] = 0.33
+    local0\Field25[$03] = 30.0
+    local0\Field23[$04] = packtwovalues($165, $17D)
+    local0\Field24[$04] = 0.1
+    local0\Field23[$05] = packtwovalues($17E, $196)
+    local0\Field24[$05] = 0.3
+    local0\Field25[$05] = 45.0
+    local0\Field23[$06] = packtwovalues($C1, $C5)
+    local0\Field24[$06] = 0.025
+    local0\Field23[$07] = packtwovalues($C7, $D1)
+    local0\Field24[$07] = 0.33
+    local0\Field25[$07] = 35.0
+    local0\Field23[$08] = packtwovalues($322, $336)
+    local0\Field24[$08] = 0.23
+    local0\Field23[$09] = packtwovalues($30C, $321)
+    local0\Field24[$09] = 0.33
+    local0\Field28[$08] = $01
+    local0\Field28[$09] = $01
+    local0\Field26[$00] = packtwovalues($01, $14)
+    local0\Field27[$00] = 0.4
+    local0\Field26[$01] = packtwovalues($29, $3C)
+    local0\Field27[$01] = 0.4
+    local0\Field26[$02] = packtwovalues($2A6, $2C7)
+    local0\Field27[$02] = 0.4
+    local0\Field26[$03] = packtwovalues($2C8, $30B)
+    local0\Field27[$03] = 0.4
+    createplayermodelmesh($03, "GFX\NPCs\class_d.b3d", $01)
+    createplayermodeltexture($05, "GFX\NPCs\sq.png", $01)
+    local0 = getplayermodelmeshpreset($03)
+    local0\Field7 = $28
+    local0\Field10 = -0.3
+    local0\Field9 = 180.0
+    local0\Field1 = "Bip01_Spine1"
+    local0\Field0 = "Bip01_Head"
+    local0\Field3 = "Bip01_L_Forearm"
+    local0\Field2 = "Bip01_L_Finger0"
+    local0\Field8 = $01
+    local0\Field6 = $46
+    local0\Field4 = $1E
+    local0\Field5 = $3C
+    local0\Field12 = ((0.51 / meshwidth(getplayermodelmesh($03))) * 1.035)
+    local0\Field11 = 0.3
+    local0\Field14 = 0.0
+    local0\Field15 = 70.0
+    local0\Field16 = 10.0
+    local0\Field17 = -0.03
+    local0\Field18 = 0.015
+    local0\Field19 = 0.0
+    local0\Field20 = -60.0
+    local0\Field21 = -45.0
+    local0\Field22 = 0.0
+    local0\Field23[$01] = packtwovalues($D2, $EB)
+    local0\Field24[$01] = 0.1
+    local0\Field23[$02] = packtwovalues($EC, $104)
+    local0\Field24[$02] = 0.33
+    local0\Field25[$02] = 45.0
+    local0\Field23[$03] = packtwovalues($12D, $13F)
+    local0\Field24[$03] = 0.33
+    local0\Field25[$03] = 30.0
+    local0\Field23[$04] = packtwovalues($165, $17D)
+    local0\Field24[$04] = 0.1
+    local0\Field23[$05] = packtwovalues($17E, $196)
+    local0\Field24[$05] = 0.3
+    local0\Field25[$05] = 45.0
+    local0\Field23[$06] = packtwovalues($C1, $C5)
+    local0\Field24[$06] = 0.025
+    local0\Field23[$07] = packtwovalues($C7, $D1)
+    local0\Field24[$07] = 0.33
+    local0\Field25[$07] = 35.0
+    local0\Field23[$08] = packtwovalues($322, $336)
+    local0\Field24[$08] = 0.23
+    local0\Field23[$09] = packtwovalues($30C, $321)
+    local0\Field24[$09] = 0.33
+    local0\Field28[$08] = $01
+    local0\Field28[$09] = $01
+    local0\Field26[$00] = packtwovalues($01, $14)
+    local0\Field27[$00] = 0.4
+    local0\Field26[$01] = packtwovalues($29, $3C)
+    local0\Field27[$01] = 0.4
+    local0\Field26[$02] = packtwovalues($2A6, $2C7)
+    local0\Field27[$02] = 0.4
+    local0\Field26[$03] = packtwovalues($2C8, $30B)
+    local0\Field27[$03] = 0.4
     createplayermodelmesh($02, "GFX\Items\Wearable\Hazmat_wearmodel.b3d", $01)
     createplayermodeltexture($04, "GFX\Items\hazmat_suit.png", $01)
     setplayermodelterminatedtexture($04, "GFX\Items\hazmat_suit_bloody.png")
     createplayermodeltexture(local1, "GFX\Items\hazmat_suit_heavy.png", $01)
     setplayermodelterminatedtexture(local1, "GFX\Items\hazmat_suit_heavy_bloody.png")
     local0 = getplayermodelmeshpreset($02)
-    local0\Field6 = $28
-    local0\Field9 = -0.3
-    local0\Field8 = 180.0
+    local0\Field7 = $28
+    local0\Field10 = -0.3
+    local0\Field9 = 180.0
     local0\Field1 = "Bip01_Spine1"
     local0\Field0 = "Bip01_Head"
     local0\Field3 = "Bip01_L_Forearm"
     local0\Field2 = "Bip01_L_Finger0"
-    local0\Field7 = $01
+    local0\Field8 = $01
+    local0\Field6 = $46
     local0\Field4 = $1E
     local0\Field5 = $3C
-    local0\Field11 = 0.013
-    local0\Field10 = 0.3
-    local0\Field13 = 0.0
-    local0\Field14 = 70.0
-    local0\Field15 = 10.0
-    local0\Field16 = -0.03
-    local0\Field17 = 0.015
-    local0\Field18 = 0.0
-    local0\Field19 = -60.0
-    local0\Field20 = -45.0
-    local0\Field21 = 0.0
-    local0\Field22[$01] = packtwovalues($D2, $EB)
-    local0\Field23[$01] = 0.1
-    local0\Field22[$02] = packtwovalues($EC, $104)
-    local0\Field23[$02] = 0.33
-    local0\Field24[$02] = 40.0
-    local0\Field22[$03] = packtwovalues($12D, $13F)
-    local0\Field23[$03] = 0.33
-    local0\Field24[$03] = 30.0
-    local0\Field22[$04] = packtwovalues($165, $17D)
-    local0\Field23[$04] = 0.1
-    local0\Field22[$05] = packtwovalues($17E, $196)
-    local0\Field23[$05] = 0.3
-    local0\Field24[$05] = 40.0
-    local0\Field22[$06] = packtwovalues($C1, $C5)
-    local0\Field23[$06] = 0.025
-    local0\Field22[$07] = packtwovalues($C7, $D1)
-    local0\Field23[$07] = 0.33
-    local0\Field24[$07] = 35.0
-    local0\Field25[$00] = packtwovalues($01, $14)
-    local0\Field26[$00] = 0.4
-    local0\Field25[$01] = packtwovalues($29, $3C)
-    local0\Field26[$01] = 0.4
+    local0\Field12 = 0.013
+    local0\Field11 = 0.3
+    local0\Field14 = 0.0
+    local0\Field15 = 70.0
+    local0\Field16 = 10.0
+    local0\Field17 = -0.03
+    local0\Field18 = 0.015
+    local0\Field19 = 0.0
+    local0\Field20 = -60.0
+    local0\Field21 = -45.0
+    local0\Field22 = 0.0
+    local0\Field23[$01] = packtwovalues($D2, $EB)
+    local0\Field24[$01] = 0.1
+    local0\Field23[$02] = packtwovalues($EC, $104)
+    local0\Field24[$02] = 0.33
+    local0\Field25[$02] = 40.0
+    local0\Field23[$03] = packtwovalues($12D, $13F)
+    local0\Field24[$03] = 0.33
+    local0\Field25[$03] = 30.0
+    local0\Field23[$04] = packtwovalues($165, $17D)
+    local0\Field24[$04] = 0.1
+    local0\Field23[$05] = packtwovalues($17E, $196)
+    local0\Field24[$05] = 0.3
+    local0\Field25[$05] = 40.0
+    local0\Field23[$06] = packtwovalues($C1, $C5)
+    local0\Field24[$06] = 0.025
+    local0\Field23[$07] = packtwovalues($C7, $D1)
+    local0\Field24[$07] = 0.33
+    local0\Field25[$07] = 35.0
+    local0\Field23[$08] = packtwovalues($165, $17D)
+    local0\Field24[$08] = 0.25
+    local0\Field23[$09] = packtwovalues($17E, $196)
+    local0\Field24[$09] = 0.25
+    local0\Field26[$00] = packtwovalues($01, $14)
+    local0\Field27[$00] = 0.4
+    local0\Field26[$01] = packtwovalues($29, $3C)
+    local0\Field27[$01] = 0.4
     setplayermodelmeshsound($02, $00, "SFX\Character\D9341\BreathGasRelaxed.ogg")
     createattachmodel($01, "GFX\Items\Wearable\gasmask_wearmodel.b3d", "GFX\Items\gas_mask.png", $01)
     createattachmodel($02, "GFX\Items\Wearable\gasmask_wearmodel.b3d", "GFX\Items\gas_mask.png", $01)
@@ -114,6 +183,7 @@ Function mp_initializerenderer%()
     createattachmodel($06, "GFX\Items\Wearable\Ballistic_vest_wearmodel.b3d", "GFX\Items\ballistic_vest.png", $01)
     createattachmodel($07, "GFX\Items\ballistic_helmet.b3d", "GFX\Items\ballistic_helmet.png", $01)
     setattachmodelvariety($07, $01, "GFX\Items\Wearable\ballistic_helmet_visor.b3d", "GFX\Items\ballistic_helmet.png")
+    setattachmodelvariety($07, $02, "GFX\Items\Wearable\mask.b3d", "GFX\Items\Wearable\mask.png")
     createattachmodel($08, "GFX\Items\Wearable\NVG_wearmodel.b3d", "GFX\Items\night_vision_goggles_green.png", $01)
     createattachmodel($09, "GFX\Items\Wearable\NVG_wearmodel.b3d", "GFX\Items\night_vision_goggles_red.png", $01)
     createattachmodel($0A, "GFX\Items\Wearable\NVG_wearmodel.b3d", "GFX\Items\night_vision_goggles_blue.png", $01)
@@ -183,5 +253,61 @@ Function mp_initializerenderer%()
     local2\Field4 = -1.0
     local2\Field5 = -1.3
     copyattachmodelpreset($11, $01, $12)
+    local2 = createattachmodelpreset($01, $03)
+    local2\Field0 = "Bip01_Head"
+    local2\Field2 = 179.9
+    local2\Field3 = -90.0
+    local2\Field4 = -3.0
+    local2\Field6 = 0.5
+    local2\Field7 = 1.04705
+    copyattachmodelpreset($01, $03, $02)
+    copyattachmodelpreset($01, $03, $03)
+    copyattachmodelpreset($01, $03, $04)
+    local2 = createattachmodelpreset($07, $03)
+    local2\Field0 = "Bip01_Head"
+    local2\Field3 = 90.0
+    local2\Field4 = -2.3
+    local2\Field6 = 1.0
+    local2\Field7 = 0.9
+    local2\Field8 = $02
+    local2 = createattachmodelpreset($08, $03)
+    local2\Field0 = "Bip01_Head"
+    local2\Field3 = -90.0
+    local2\Field4 = -3.5
+    local2\Field6 = 4.6
+    local2\Field7 = 0.97725
+    copyattachmodelpreset($08, $03, $09)
+    copyattachmodelpreset($08, $03, $0A)
+    copyattachmodelpreset($08, $03, $0B)
+    copyattachmodelpreset($08, $03, $0C)
+    local2 = createattachmodelpreset($0F, $03)
+    local2\Field0 = "Bip01_Head"
+    local2\Field3 = 90.0
+    local2\Field4 = -5.1
+    local2\Field6 = 1.7
+    local2\Field7 = 4.88625
+    copyattachmodelpreset($0F, $03, $10)
+    copyattachmodelpreset($0F, $03, $0E)
+    local2 = createattachmodelpreset($0D, $03)
+    local2\Field0 = "Bip01_Neck"
+    local2\Field4 = 0.3
+    local2\Field6 = 3.5
+    local2\Field3 = 90.0
+    local2\Field2 = -65.0
+    local2\Field7 = 1.04705
+    local2 = createattachmodelpreset($05, $03)
+    local2\Field0 = "Bip01_Spine1"
+    local2\Field7 = 1.15176
+    local2\Field2 = 179.9
+    local2\Field3 = -90.0
+    local2\Field4 = -1.5
+    copyattachmodelpreset($05, $03, $06)
+    local2 = createattachmodelpreset($11, $03)
+    local2\Field0 = "Bip01_L_Finger0"
+    local2\Field7 = 13.9609
+    local2\Field3 = 90.0
+    local2\Field4 = -1.0
+    local2\Field5 = -1.3
+    copyattachmodelpreset($11, $03, $12)
     Return $00
 End Function

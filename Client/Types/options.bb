@@ -45,15 +45,18 @@ Type options
     Field Field43%
     Field Field44%
     Field Field45#
-    Field Field46%
-    Field Field47%
-    Field Field48%
+    Field Field46$
+    Field Field47#
+    Field Field48$
     Field Field49%
     Field Field50%
     Field Field51%
-    Field Field52$
+    Field Field52%
     Field Field53%
     Field Field54%
-    Field Field55%
+    Field Field55$
     Field Field56%
+    Field Field57%
+    Field Field58%
+    Field Field59%
 End Type

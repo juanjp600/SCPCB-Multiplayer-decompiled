@@ -40,6 +40,7 @@ Function updateitems%()
                     local0\Field24 = $01
                 Else
                     If (0.0 >= local0\Field23) Then
+                        entitypickmode(local0\Field2, $00, $01)
                         If (linepick(entityx(local0\Field2, $00), entityy(local0\Field2, $00), entityz(local0\Field2, $00), 0.0, -5.0, 0.0, 0.0) <> 0) Then
                             local0\Field22 = $01
                             local0\Field23 = 35.0
@@ -48,6 +49,7 @@ Function updateitems%()
                             local0\Field23 = 70.0
                             local0\Field5 = 0.0
                         EndIf
+                        entitypickmode(local0\Field2, $01, $00)
                     EndIf
                     If (35.0 >= local0\Field23) Then
                         local0\Field5 = max((local0\Field5 - (fps\Field7[$00] * 0.0004)), -0.03)

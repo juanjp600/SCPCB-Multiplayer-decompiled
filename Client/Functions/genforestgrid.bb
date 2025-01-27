@@ -126,7 +126,7 @@ Function genforestgrid%(arg0.forest)
             EndIf
         EndIf
     Wend
-    If (opt\Field51 <> 0) Then
+    If (opt\Field54 <> 0) Then
         Repeat
             showpointer()
             cls()
@@ -157,7 +157,7 @@ Function genforestgrid%(arg0.forest)
                 Next
                 local2 = (local2 - $01)
             Next
-            renderloadingtext(mo\Field9, (Int ((Float opt\Field47) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $01, $01)
+            renderloadingtext(mo\Field9, (Int ((Float opt\Field50) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $01, $01)
             flip($01)
             rendercursor()
         Until (((getkey() <> $00) Lor mousehit($01)) <> 0)

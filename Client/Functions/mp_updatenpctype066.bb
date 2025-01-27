@@ -73,10 +73,8 @@ Function mp_updatenpctype066%(arg0.npcs)
                         If ((chs\Field2 Lor i_268\Field2) = $00) Then
                             Select rand($06, $01)
                                 Case $01
-                                    If (mp_ishoster() <> 0) Then
-                                        playsoundex(loadtempsound("SFX\SCP\066\Beethoven.ogg"), camera, arg0\Field3, 20.0, 1.0, $00, $00)
-                                        mp_synchronize3dsound(Null, "SFX\SCP\066\Beethoven.ogg", arg0\Field3, 20.0, 1.0)
-                                    EndIf
+                                    playsoundex(loadtempsound("SFX\SCP\066\Beethoven.ogg"), camera, arg0\Field3, 20.0, 1.0, $00, $00)
+                                    mp_synchronize3dsound(Null, "SFX\SCP\066\Beethoven.ogg", arg0\Field3, 20.0, 1.0)
                                     If (arg0\Field83 <> 0) Then
                                         me\Field55 = ((((Float selecteddifficulty\Field4) * 15.0) + 45.0) * 70.0)
                                         me\Field54 = $01

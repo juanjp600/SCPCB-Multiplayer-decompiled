@@ -34,7 +34,7 @@ Function mp_createcorpse.mp_playercorpse(arg0#, arg1#, arg2#, arg3#, arg4%, arg5
     If (arg8 = $FFFFFFFF) Then
         local3 = $FFFFFFFF
         For local1 = $00 To $03 Step $01
-            If (local0\Field25[local1] <> $00) Then
+            If (local0\Field26[local1] <> $00) Then
                 local3 = local1
             EndIf
         Next
@@ -43,12 +43,12 @@ Function mp_createcorpse.mp_playercorpse(arg0#, arg1#, arg2#, arg3#, arg4%, arg5
         EndIf
     EndIf
     If (arg8 >= $00) Then
-        local4 = local0\Field25[arg8]
+        local4 = local0\Field26[arg8]
         extractanimseq(local2\Field2, getfirstpackedvalue(local4), getsecondpackedvalue(local4), $00)
         If (arg7 <> 0) Then
             animate(local2\Field2, $03, 200.0, $01, 0.0)
         Else
-            animate(local2\Field2, $03, local0\Field26[arg8], $01, 0.0)
+            animate(local2\Field2, $03, local0\Field27[arg8], $01, 0.0)
         EndIf
         local2\Field9 = arg8
     EndIf

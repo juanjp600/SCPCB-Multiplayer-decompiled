@@ -80,6 +80,7 @@ Function mp_client_receivenpc%(arg0%)
     If (readbool(local3, $03) <> 0) Then
         local0\Field60 = mp_readshort()
     EndIf
+    local0\Field43 = readbool(local3, $05)
     If (mp_events[local0\Field67] <> Null) Then
         mp_events[local0\Field67]\Field1\Field15[local0\Field68] = local0
     EndIf

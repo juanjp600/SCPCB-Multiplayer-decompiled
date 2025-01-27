@@ -10,7 +10,7 @@ Function client_recvplayers%()
     Forever
     For local1 = Each mp_player
         If (local1\Field20 = $00) Then
-            flushplayer(local1\Field5)
+            flushplayer(local1)
         Else
             local1\Field20 = $00
         EndIf

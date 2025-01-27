@@ -77,23 +77,25 @@ Function mp_updatenpctype966%(arg0.npcs)
                         pointentity(arg0\Field3, me\Field60, 0.0)
                         rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
                         If (350.0 > arg0\Field12) Then
-                            me\Field49 = (((sin(((Float millisec) / 50.0)) + 1.0) * 200.0) / sqr(local0))
-                            If ((((i_714\Field0 <> $02) And (wi\Field0 <> $04)) And (wi\Field2 <> $04)) <> 0) Then
-                                If (0.0 = i_966\Field1) Then
-                                    Select rand($04, $01)
-                                        Case $01
-                                            createmsg(getlocalstring("msg", "966.sleep_1"), 6.0)
-                                        Case $02
-                                            createmsg(getlocalstring("msg", "966.sleep_2"), 6.0)
-                                        Case $03
-                                            createmsg(getlocalstring("msg", "966.sleep_3"), 6.0)
-                                        Case $04
-                                            createmsg(getlocalstring("msg", "966.sleep_4"), 6.0)
-                                    End Select
+                            If (arg0\Field83 <> 0) Then
+                                me\Field49 = (((sin(((Float millisec) / 50.0)) + 1.0) * 200.0) / sqr(local0))
+                                If ((((i_714\Field0 <> $02) And (wi\Field0 <> $04)) And (wi\Field2 <> $04)) <> 0) Then
+                                    If (0.0 = i_966\Field1) Then
+                                        Select rand($04, $01)
+                                            Case $01
+                                                createmsg(getlocalstring("msg", "966.sleep_1"), 6.0)
+                                            Case $02
+                                                createmsg(getlocalstring("msg", "966.sleep_2"), 6.0)
+                                            Case $03
+                                                createmsg(getlocalstring("msg", "966.sleep_3"), 6.0)
+                                            Case $04
+                                                createmsg(getlocalstring("msg", "966.sleep_4"), 6.0)
+                                        End Select
+                                    EndIf
+                                    i_966\Field1 = (1.0 - ((Float i_714\Field0) * 0.5))
+                                    local5 = ((((Float selecteddifficulty\Field4) * 700.0) + 2100.0) / ((Float i_714\Field0) + 1.0))
+                                    i_966\Field0 = clamp(((fps\Field7[$00] * (6.0 - ((Float i_714\Field0) * 2.5))) + i_966\Field0), local5, (local5 * 2.0))
                                 EndIf
-                                i_966\Field1 = (1.0 - ((Float i_714\Field0) * 0.5))
-                                local5 = ((((Float selecteddifficulty\Field4) * 700.0) + 2100.0) / ((Float i_714\Field0) + 1.0))
-                                i_966\Field0 = clamp(((fps\Field7[$00] * (6.0 - ((Float i_714\Field0) * 2.5))) + i_966\Field0), local5, (local5 * 2.0))
                             EndIf
                         EndIf
                         arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)

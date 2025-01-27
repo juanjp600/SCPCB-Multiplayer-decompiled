@@ -5,7 +5,7 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     mp_menu\Field0 = arg0
     mp_menu\Field1 = arg1
     local0 = blitz_mp_readbyte0(arg2)
-    If (local0 <> $09) Then
+    If (local0 <> $0A) Then
         Return $01
     EndIf
     local1 = blitz_mp_readbyte0(arg2)
@@ -16,8 +16,8 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     ue_server\Field4 = blitz_mp_readline0(arg2)
     blitz_mp_readline0(arg2)
     randomseed = blitz_mp_readline0(arg2)
-    opt\Field50 = blitz_mp_readbyte0(arg2)
-    If (opt\Field50 <> $00) Then
+    opt\Field53 = blitz_mp_readbyte0(arg2)
+    If (opt\Field53 <> $00) Then
         senddebuglog("Intro enabled")
     EndIf
     selecteddifficulty = difficulties[(Int min((Float blitz_mp_readbyte0(arg2)), 4.0))]

@@ -10,10 +10,12 @@ Function mp_update%()
     EndIf
     mp_updateplayers()
     If (mp_ishoster() <> 0) Then
+        mp_postserverlogic()
         mp_sendgamedata()
         mp_recvserver()
         mp_auth()
         mp_updatetimeouts()
+        mp_serverlogic()
     Else
         mp_recvclient()
         mp_sendmyplayerdata()

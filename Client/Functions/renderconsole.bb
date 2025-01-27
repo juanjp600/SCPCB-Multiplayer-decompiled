@@ -19,8 +19,8 @@ Function renderconsole%()
         local6 = (Int (26.0 * menuscale))
         setfontex(fo\Field0[$05])
         local1 = $00
-        local2 = (Int ((Float opt\Field47) - (300.0 * menuscale)))
-        local3 = opt\Field46
+        local2 = (Int ((Float opt\Field50) - (300.0 * menuscale)))
+        local3 = opt\Field49
         local4 = (Int (270.0 * menuscale))
         renderframe(local1, local2, local3, (Int ((30.0 * menuscale) + (Float local4))), $00, $00, $00)
         local7 = $00

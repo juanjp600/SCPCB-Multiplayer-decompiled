@@ -1,7 +1,7 @@
 Function renderworldex%(arg0#)
     cameraprojmode(arkblurcam, $00)
     cameraprojmode(camera, $01)
-    cameraviewport(camera, $00, $00, opt\Field46, opt\Field47)
+    cameraviewport(camera, $00, $00, opt\Field49, opt\Field50)
     If (wi\Field7 = $00) Then
         renderworld(arg0)
     EndIf

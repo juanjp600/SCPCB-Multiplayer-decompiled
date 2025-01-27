@@ -17,9 +17,6 @@ Function updateplayertags%(arg0.mp_player)
             local3\Field8 = $00
         EndIf
         If (local3\Field1 <> $00) Then
-            If (entityhidden(local3\Field1) = $00) Then
-                hideentity(local3\Field1)
-            EndIf
             If (((local1 >= entitydistancesquared(arg0\Field18, me\Field60)) And (arg0\Field30 = $00)) <> 0) Then
                 If (entityhidden(local3\Field1) <> 0) Then
                     showentity(local3\Field1)
@@ -31,6 +28,8 @@ Function updateplayertags%(arg0.mp_player)
                 EndIf
                 positionentity(local3\Field1, 0.0, (local3\Field5 - ((Float arg0\Field27) * 0.2)), 0.0, $00)
                 entityalpha(local3\Field1, local5)
+            ElseIf (entityhidden(local3\Field1) = $00) Then
+                hideentity(local3\Field1)
             EndIf
         EndIf
     Next

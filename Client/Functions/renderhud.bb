@@ -18,7 +18,7 @@ Function renderhud%()
         Return $00
     EndIf
     local0 = (80.0 * menuscale)
-    local1 = ((Float opt\Field47) - (15.0 * menuscale))
+    local1 = ((Float opt\Field50) - (15.0 * menuscale))
     local2 = (200.0 * menuscale)
     local3 = (20.0 * menuscale)
     local7 = entityy(me\Field60, $00)

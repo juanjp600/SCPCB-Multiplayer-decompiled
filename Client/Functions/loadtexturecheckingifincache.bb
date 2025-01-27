@@ -24,7 +24,7 @@ Function loadtexturecheckingifincache%(arg0$, arg1%, arg2%)
     If (local0\Field0 = $00) Then
         local0\Field0 = loadtexture(local1, arg1)
     EndIf
-    If ((((opt\Field48 = $00) And (local0\Field0 <> $00)) And (texturebuffer(local0\Field0, $00) <> $00)) <> 0) Then
+    If ((((opt\Field51 = $00) And (local0\Field0 <> $00)) And (texturebuffer(local0\Field0, $00) <> $00)) <> 0) Then
         bufferdirty(texturebuffer(local0\Field0, $00))
     EndIf
     Return local0\Field0

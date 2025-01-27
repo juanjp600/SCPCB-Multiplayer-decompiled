@@ -43,6 +43,9 @@ Function updatemainmenu%()
     Local local47%
     Local local49%
     Local local50%
+    Local local51$
+    Local local52%
+    Local local53%
     catcherrors("UpdateMainMenu()")
     While (0.0 < fps\Field0)
         fps\Field0 = (fps\Field0 - 1.166667)
@@ -101,7 +104,7 @@ Function updatemainmenu%()
             EndIf
             local4 = ((100.0 * menuscale) + local4)
             If (updatemenubutton((Int local3), (Int local4), (Int local5), (Int local6), getlocalstring("menu", "new"), $01, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
-                If (opt\Field51 <> 0) Then
+                If (opt\Field54 <> 0) Then
                     randomseed = "666"
                 Else
                     local8 = rand($04, $08)
@@ -204,7 +207,7 @@ Function updatemainmenu%()
                         local18 = serverlist\Field4
                         If (local18 <> $02) Then
                             If ((updatemenubutton((Int ((145.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Host server", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
-                                If (opt\Field51 <> 0) Then
+                                If (opt\Field54 <> 0) Then
                                     randomseed = "666"
                                 Else
                                     local8 = rand($04, $08)
@@ -228,7 +231,7 @@ Function updatemainmenu%()
                                 local15 = $01
                             EndIf
                             If ((updatemenubutton((Int ((275.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Host server", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
-                                If (opt\Field51 <> 0) Then
+                                If (opt\Field54 <> 0) Then
                                     randomseed = "666"
                                 Else
                                     local8 = rand($04, $08)
@@ -426,7 +429,7 @@ Function updatemainmenu%()
                         EndIf
                         If (updatemenubutton((Int ((420.0 * menuscale) + local3)), (Int ((local4 + local6) + (20.0 * menuscale))), (Int (160.0 * menuscale)), (Int (75.0 * menuscale)), getlocalstring("mpmenu", "host"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                             If (initializeserver((Int menuport)) <> 0) Then
-                                opt\Field50 = $00
+                                opt\Field53 = $00
                                 currsave\Field0 = ""
                                 If (randomseed = "") Then
                                     randomseed = (Str millisecs())
@@ -435,7 +438,7 @@ Function updatemainmenu%()
                                 local36 = $00
                                 local37 = $02
                                 initnewgame()
-                                iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field50), $01)
+                                iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field53), $01)
                                 shoulddeletegadgets = $01
                                 mainmenuopen = $00
                                 Return $00
@@ -463,7 +466,7 @@ Function updatemainmenu%()
                             shoulddeletegadgets = $01
                             selectedcustommap = Null
                         EndIf
-                        opt\Field50 = updatemenutick((Int ((280.0 * menuscale) + local3)), (Int ((110.0 * menuscale) + local4)), opt\Field50, $00)
+                        opt\Field53 = updatemenutick((Int ((280.0 * menuscale) + local3)), (Int ((110.0 * menuscale) + local4)), opt\Field53, $00)
                         For local8 = $00 To $04 Step $01
                             local35 = selecteddifficulty
                             If (updatemenutick((Int ((20.0 * menuscale) + local3)), (Int (((Float (($1E * local8) + $B4)) * menuscale) + local4)), (selecteddifficulty = difficulties[local8]), $00) <> 0) Then
@@ -537,7 +540,7 @@ Function updatemainmenu%()
                                 currsave\Field0 = (((currsave\Field0 + " (") + (Str local37)) + ")")
                             EndIf
                             initnewgame()
-                            iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field50), $01)
+                            iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field53), $01)
                             shoulddeletegadgets = $01
                             mainmenuopen = $00
                             Return $00
@@ -708,7 +711,7 @@ Function updatemainmenu%()
                         local4 = ((30.0 * menuscale) + local4)
                         opt\Field5 = updatemenutick((Int local3), (Int local4), opt\Field5, $00)
                         local4 = ((30.0 * menuscale) + local4)
-                        opt\Field1 = updatemenutick((Int local3), (Int local4), opt\Field1, (opt\Field48 <> $00))
+                        opt\Field1 = updatemenutick((Int local3), (Int local4), opt\Field1, (opt\Field51 <> $00))
                         local4 = ((30.0 * menuscale) + local4)
                         opt\Field4 = updatemenutick((Int local3), (Int local4), opt\Field4, $00)
                         local4 = ((40.0 * menuscale) + local4)
@@ -977,8 +980,40 @@ Function updatemainmenu%()
                     Case $0B
                         local4 = ((20.0 * menuscale) + local4)
                         local3 = (local3 - (170.0 * menuscale))
-                        mp_settings\Field0 = left(updatemenuinputbox((Int local3), (Int (local4 - (5.0 * menuscale))), (Int (300.0 * menuscale)), (Int (30.0 * menuscale)), mp_settings\Field0, $00, $424, $00, 1.0), $1F)
-                        local4 = ((60.0 * menuscale) + local4)
+                        opt\Field46 = left(updatemenuinputbox((Int ((20.0 * menuscale) + local3)), (Int (local4 - (5.0 * menuscale))), (Int (300.0 * menuscale)), (Int (30.0 * menuscale)), opt\Field46, $00, $424, $00, 1.0), $1F)
+                        local4 = ((35.0 * menuscale) + local4)
+                        opt\Field47 = (updatemenuslidebar((Int ((80.0 * menuscale) + local3)), (Int local4), (Int (150.0 * menuscale)), (opt\Field47 * 100.0), $01) / 100.0)
+                        local4 = ((35.0 * menuscale) + local4)
+                        If (((opt\Field48 = "") And (bass_getrecorddevicecount() > $00)) <> 0) Then
+                            opt\Field48 = bass_getrecorddevicename($00)
+                        EndIf
+                        If (opt\Field48 = "") Then
+                            updatemenubutton((Int ((20.0 * menuscale) + local3)), (Int local4), (Int (400.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpoptions", "nullvoice"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00)
+                        Else
+                            local51 = opt\Field48
+                            If (len(local51) > $25) Then
+                                local51 = left(opt\Field48, $25)
+                                local51 = (local51 + "...")
+                            EndIf
+                            If (updatemenubutton((Int ((20.0 * menuscale) + local3)), (Int local4), (Int (400.0 * menuscale)), (Int (30.0 * menuscale)), local51, $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                                local52 = bass_getrecorddevicecount()
+                                If (local52 > $00) Then
+                                    local53 = $00
+                                    For local8 = $00 To (local52 - $01) Step $01
+                                        If (bass_getrecorddevicename(local8) = opt\Field48) Then
+                                            local53 = local8
+                                            Exit
+                                        EndIf
+                                    Next
+                                    local53 = (local53 + $01)
+                                    If (local53 >= local52) Then
+                                        local53 = $00
+                                    EndIf
+                                    opt\Field48 = bass_getrecorddevicename(local53)
+                                EndIf
+                            EndIf
+                        EndIf
+                        local4 = ((95.0 * menuscale) + local4)
                         updatemenuinputbox((Int local3), (Int local4), (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field14), 210.0))], $00, $425, $00, 1.0)
                         local4 = ((20.0 * menuscale) + local4)
                         updatemenuinputbox((Int local3), (Int local4), (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field15), 210.0))], $00, $426, $00, 1.0)
@@ -1018,7 +1053,7 @@ Function updatemainmenu%()
                         Case $02
                             mm\Field5 = $01
                         Case $03
-                            iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field50), $01)
+                            iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field53), $01)
                             For local0 = Each save
                                 Delete local0
                             Next
@@ -1047,7 +1082,6 @@ Function updatemainmenu%()
                             textureanisotropic(opt\Field13)
                             mm\Field5 = $00
                         Case $0B
-                            mp_savesettings()
                             mm\Field5 = $06
                         Case $07,$08,$09,$0A
                             mm\Field5 = $06

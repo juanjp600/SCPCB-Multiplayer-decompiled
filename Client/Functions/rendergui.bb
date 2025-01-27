@@ -514,8 +514,8 @@ Function rendergui%()
             Case $45,$46,$47,$48
                 If (((selecteditem\Field4\Field11 <> $00) And (-6.0 < me\Field10)) <> 0) Then
                     local23 = ""
-                    local4 = (opt\Field46 - selecteditem\Field4\Field13)
-                    local5 = (opt\Field47 - selecteditem\Field4\Field14)
+                    local4 = (opt\Field49 - selecteditem\Field4\Field13)
+                    local5 = (opt\Field50 - selecteditem\Field4\Field14)
                     drawimage(selecteditem\Field4\Field11, local4, local5, $00)
                     If (((((0.0 < selecteditem\Field12) Lor (selecteditem\Field4\Field2 = $47)) Lor (selecteditem\Field4\Field2 = $48)) And ((16.0 < coffindistance) Lor (coffindistance > rnd(16.0, 0.0)))) <> 0) Then
                         If (((playerroom\Field7\Field6 <> $69) And (8.0 <= coffindistance)) <> 0) Then
@@ -569,8 +569,8 @@ Function rendergui%()
                 EndIf
             Case $49,$4A,$4B,$4C
                 If (((selecteditem\Field4\Field11 <> $00) And (-6.0 < me\Field10)) <> 0) Then
-                    local4 = (Int ((Float (opt\Field46 - selecteditem\Field4\Field13)) + (20.0 * menuscale)))
-                    local5 = (Int ((Float (opt\Field47 - selecteditem\Field4\Field14)) - (85.0 * menuscale)))
+                    local4 = (Int ((Float (opt\Field49 - selecteditem\Field4\Field13)) + (20.0 * menuscale)))
+                    local5 = (Int ((Float (opt\Field50 - selecteditem\Field4\Field14)) - (85.0 * menuscale)))
                     drawimage(selecteditem\Field4\Field11, (local4 - selecteditem\Field4\Field13), (Int ((Float (local5 - selecteditem\Field4\Field14)) + (85.0 * menuscale))), $00)
                     setfontex(fo\Field0[$02])
                     local53 = ((selecteditem\Field4\Field2 = $4A) Lor (selecteditem\Field4\Field2 = $49))
@@ -631,8 +631,8 @@ Function rendergui%()
                         drawblockrect(t\Field1[$07], (Int ((80.0 * menuscale) + (Float local60))), (Int ((70.0 * menuscale) + (Float local61))), (Int ((80.0 * menuscale) + (Float local60))), (Int ((70.0 * menuscale) + (Float local61))), (Int (270.0 * menuscale)), (Int (230.0 * menuscale)), $00)
                         color((($AA * local53) + $1E), ($1E * local53), ($1E * local53))
                         rect((Int ((80.0 * menuscale) + (Float local60))), (Int ((70.0 * menuscale) + (Float local61))), (Int (270.0 * menuscale)), (Int (230.0 * menuscale)), $00)
-                        local4 = (Int ((Float (opt\Field46 - selecteditem\Field4\Field13)) + (20.0 * menuscale)))
-                        local5 = (Int ((Float (opt\Field47 - selecteditem\Field4\Field14)) - (85.0 * menuscale)))
+                        local4 = (Int ((Float (opt\Field49 - selecteditem\Field4\Field13)) + (20.0 * menuscale)))
+                        local5 = (Int ((Float (opt\Field50 - selecteditem\Field4\Field14)) - (85.0 * menuscale)))
                         color((($AA * local53) + $1E), ($1E * local53), ($1E * local53))
                         If ((millisec Mod $320) < $C8) Then
                             If (local53 <> 0) Then

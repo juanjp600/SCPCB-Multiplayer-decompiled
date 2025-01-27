@@ -11,7 +11,7 @@ Function updateending%()
         me\Field45 = (me\Field45 - fps\Field7[$01])
     EndIf
     giveachievement("055", $01)
-    If ((((usedconsole = $00) And (selectedcustommap = Null)) Lor opt\Field51) <> 0) Then
+    If ((((usedconsole = $00) And (selectedcustommap = Null)) Lor opt\Field54) <> 0) Then
         giveachievement("console", $01)
         Select selecteddifficulty\Field0
             Case difficulties[$02]\Field0

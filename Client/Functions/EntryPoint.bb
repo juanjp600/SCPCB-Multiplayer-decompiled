@@ -54,9 +54,9 @@ Function EntryPoint%()
     key = (New keys)
     optionfile = (getenv("AppData") + "\scpcb-ue\Data\options.ini")
     opt = (New options)
-    opt\Field53 = countgfxdrivers()
-    opt\Field54 = (totalvidmem() Sar $0A)
-    opt\Field55 = (totalphys() Sar $0A)
+    opt\Field56 = countgfxdrivers()
+    opt\Field57 = (totalvidmem() Sar $0A)
+    opt\Field58 = (totalphys() Sar $0A)
     loadoptionsini()
     iniwritebuffer("Data\local.ini", "", $01)
     iniwritebuffer("Data\MP_local.ini", "Data\local.ini", $00)
@@ -65,7 +65,7 @@ Function EntryPoint%()
     mo = (New mouse)
     fo = (New fonts)
     lang = (New language)
-    setlanguage(opt\Field52, $01)
+    setlanguage(opt\Field55, $01)
     fps = (New framesperseconds)
     If (opt\Field41 <> 0) Then
         local1 = (New launcher)
@@ -73,19 +73,19 @@ Function EntryPoint%()
         updatelauncher(local1)
         Delete local1
     EndIf
-    graphicwidthfloat = (Float opt\Field46)
-    graphicheightfloat = (Float opt\Field47)
-    graphics3dex(opt\Field46, opt\Field47, $00, (((opt\Field48 = $02) + $01) + ((opt\Field48 = $01) * $03)))
+    graphicwidthfloat = (Float opt\Field49)
+    graphicheightfloat = (Float opt\Field50)
+    graphics3dex(opt\Field49, opt\Field50, $00, (((opt\Field51 = $02) + $01) + ((opt\Field51 = $01) * $03)))
     apptitle(format(getlocalstring("misc", "title"), "1.5", "%s"), "")
-    menuscale = ((Float opt\Field47) / 1024.0)
+    menuscale = ((Float opt\Field50) / 1024.0)
     input_resettime = 0.0
-    mo\Field9 = (opt\Field46 Sar $01)
-    mo\Field10 = (opt\Field47 Sar $01)
+    mo\Field9 = (opt\Field49 Sar $01)
+    mo\Field10 = (opt\Field50 Sar $01)
     setbuffer(backbuffer())
     seedrnd(millisecs())
     playstartupvideos()
     fps\Field6 = millisecs()
-    If (opt\Field48 = $00) Then
+    If (opt\Field51 = $00) Then
         cursorimg = scaleimageex(loadimage_strict("GFX\Menu\cursor.png"), menuscale, menuscale, $01)
     EndIf
     initloadingscreens("Data\loading_screens.jsonc")
@@ -143,7 +143,7 @@ Function EntryPoint%()
     difficulties[$04]\Field4 = $00
     difficulties[$04]\Field10 = $04
     setdifficultycolor($04, $C8, $32, $C8)
-    selecteddifficulty = difficulties[(opt\Field51 = $00)]
+    selecteddifficulty = difficulties[(opt\Field54 = $00)]
     renderloading($0F, getlocalstring("loading", "core.loading"))
     tempsoundindex = $00
     music[$00] = "LightContainmentZone"
@@ -222,7 +222,7 @@ Function EntryPoint%()
     menugray = loadimage_strict("GFX\Menu\menu_gray.png")
     menublack = loadimage_strict("GFX\Menu\menu_black.png")
     cursorpos = $FFFFFFFF
-    If (opt\Field48 <> $00) Then
+    If (opt\Field51 <> $00) Then
         opt\Field1 = $00
         iniwritestring(optionfile, "Graphics", "Anti-Aliasing", (Str opt\Field1), $01)
     EndIf
@@ -239,10 +239,9 @@ Function EntryPoint%()
     initnetwork()
     myplayerlogic = (New mp_myplayerlogic)
     mp_settings = (New mp_settingssystem)
-    mp_setclientname(loadnicknamefromini())
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($09)
+    multiplayer_version = versiondots($0A)
     senddebuglog(multiplayer_version)
     createserverinfo()
     mp_menuinit()
@@ -278,10 +277,10 @@ Function EntryPoint%()
     seterrormsg($05, (((((("CPU: " + trim(systemproperty("cpuname"))) + " (Arch: ") + systemproperty("cpuarch")) + ", ") + getenv("NUMBER_OF_PROCESSORS")) + " Threads)"))
     seterrormsg($0C, "Caught exception: _CaughtError_")
     errormessageinitialized = $01
-    gpuname = converttoutf8(gfxdrivername(opt\Field49))
+    gpuname = converttoutf8(gfxdrivername(opt\Field52))
     Repeat
-        seterrormsg($06, (((((("GPU: " + gpuname) + " (") + (Str (opt\Field54 - (availvidmem() Sar $0A)))) + "MB/") + (Str opt\Field54)) + " MB)"))
-        seterrormsg($07, (((("Global memory status: (" + (Str (opt\Field55 - (availphys() Sar $0A)))) + "MB/") + (Str opt\Field55)) + " MB)"))
+        seterrormsg($06, (((((("GPU: " + gpuname) + " (") + (Str (opt\Field57 - (availvidmem() Sar $0A)))) + "MB/") + (Str opt\Field57)) + " MB)"))
+        seterrormsg($07, (((("Global memory status: (" + (Str (opt\Field58 - (availphys() Sar $0A)))) + "MB/") + (Str opt\Field58)) + " MB)"))
         cls()
         millisec = millisecs()
         fps\Field2 = millisec

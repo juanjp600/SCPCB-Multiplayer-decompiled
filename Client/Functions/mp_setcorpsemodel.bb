@@ -25,13 +25,13 @@ Function mp_setcorpsemodel%(arg0.mp_playercorpse, arg1#, arg2#, arg3#, arg4#, ar
     EndIf
     positionentity(arg0\Field2, arg1, arg2, arg3, $00)
     rotateentity(arg0\Field2, 0.0, arg4, 0.0, $00)
-    scaleentity(arg0\Field2, local0\Field11, local0\Field11, local0\Field11, $01)
+    scaleentity(arg0\Field2, local0\Field12, local0\Field12, local0\Field12, $01)
     arg0\Field1 = createpivot(arg0\Field2)
     translateentity(arg0\Field1, 0.0, 0.05, 0.0, $00)
     entityradius(arg0\Field1, 0.01, 0.0)
     entitypickmode(arg0\Field1, $01, $01)
     If (local1 <> $FFFFFFFF) Then
-        local4 = local0\Field25[local1]
+        local4 = local0\Field26[local1]
         If (local4 <> $00) Then
             extractanimseq(arg0\Field2, getfirstpackedvalue(local4), getsecondpackedvalue(local4), $00)
             animate(arg0\Field2, $03, 200.0, $01, 0.0)

@@ -43,15 +43,15 @@ Function updatelauncher%(arg0.launcher)
             EndIf
         Next
         If (local5 = $00) Then
-            If (opt\Field51 <> 0) Then
-                If (((opt\Field46 = gfxmodewidth(local0)) And (opt\Field47 = gfxmodeheight(local0))) <> 0) Then
+            If (opt\Field54 <> 0) Then
+                If (((opt\Field49 = gfxmodewidth(local0)) And (opt\Field50 = gfxmodeheight(local0))) <> 0) Then
                     arg0\Field2 = arg0\Field1
                 EndIf
                 arg0\Field3[arg0\Field1] = gfxmodewidth(local0)
                 arg0\Field4[arg0\Field1] = gfxmodeheight(local0)
                 arg0\Field1 = (arg0\Field1 + $01)
             ElseIf (((gfxmodewidth(local0) >= $320) And (gfxmodeheight(local0) >= $258)) <> 0) Then
-                If (((opt\Field46 = gfxmodewidth(local0)) And (opt\Field47 = gfxmodeheight(local0))) <> 0) Then
+                If (((opt\Field49 = gfxmodewidth(local0)) And (opt\Field50 = gfxmodeheight(local0))) <> 0) Then
                     arg0\Field2 = arg0\Field1
                 EndIf
                 arg0\Field3[arg0\Field1] = gfxmodewidth(local0)
@@ -102,22 +102,22 @@ Function updatelauncher%(arg0.launcher)
         color($FF, $FF, $FF)
         textex($1C7, $B1, getlocalstring("launcher", "gfx"), $00, $00)
         renderframe($1C7, $C5, $9B, $1E, $00, $00, $00)
-        If (opt\Field49 = $01) Then
+        If (opt\Field52 = $01) Then
             local14 = getlocalstring("launcher", "gfx.primary")
         Else
-            local14 = format(getlocalstring("launcher", "gfx.num"), (Str (opt\Field49 - $01)), "%s")
+            local14 = format(getlocalstring("launcher", "gfx.num"), (Str (opt\Field52 - $01)), "%s")
         EndIf
         textex($214, $CF, local14, $01, $00)
         If (updatelauncherbutton($25D, $C5, $1E, $1E, ">", $00, $00, $00, $FF, $FF, $FF) <> 0) Then
-            opt\Field49 = (opt\Field49 + $01)
+            opt\Field52 = (opt\Field52 + $01)
         EndIf
-        If (opt\Field49 > opt\Field53) Then
-            opt\Field49 = $01
+        If (opt\Field52 > opt\Field56) Then
+            opt\Field52 = $01
         EndIf
         textex($1C7, $EB, getlocalstring("launcher", "display"), $00, $00)
         local16 = desktopwidth()
         local17 = desktopheight()
-        Select opt\Field48
+        Select opt\Field51
             Case $00
                 local15 = getlocalstring("launcher", "display.fullscreen")
             Case $01
@@ -134,14 +134,14 @@ Function updatelauncher%(arg0.launcher)
         renderframe($1C7, $FE, $9B, $1E, $00, $00, $00)
         textex($214, $108, local15, $01, $00)
         If (updatelauncherbutton($25D, $FE, $1E, $1E, ">", $00, $00, $00, $FF, $FF, $FF) <> 0) Then
-            opt\Field48 = ((opt\Field48 + $01) Mod $03)
+            opt\Field51 = ((opt\Field51 + $01) Mod $03)
         EndIf
         local19 = (Float fontwidth())
         local20 = (Float fontheight())
         If (mouseon($1C7, $C5, $9B, $1E) <> 0) Then
             local8 = (Int (mouseposx + 5.0))
             local9 = (Int (mouseposy + 10.0))
-            local10 = converttoutf8(gfxdrivername(opt\Field49))
+            local10 = converttoutf8(gfxdrivername(opt\Field52))
             local11 = stringwidth(local10)
             If (640.0 < ((Float (local8 + local11)) + local19)) Then
                 local8 = ((local8 - local11) - $0A)
@@ -149,7 +149,7 @@ Function updatelauncher%(arg0.launcher)
             renderframe(local8, local9, (Int ((Float local11) + local19)), (Int (local20 + 16.0)), $00, $00, $00)
             textex((local8 + $08), (local9 + $08), local10, $00, $00)
         EndIf
-        If (opt\Field48 = $00) Then
+        If (opt\Field51 = $00) Then
             drawimage(local4, $262, $E6, $06)
             If (mouseon($262, $E6, $15, $15) <> 0) Then
                 local8 = (Int (mouseposx + 5.0))
@@ -210,10 +210,10 @@ Function updatelauncher%(arg0.launcher)
                 If (mo\Field0 <> 0) Then
                     playsound_strict(buttonsfx[$00], $00)
                     If (filetype("Localization") = $02) Then
-                        setlanguage(findnextdirectory("Localization", opt\Field52, "en"), $00)
+                        setlanguage(findnextdirectory("Localization", opt\Field55, "en"), $00)
                         freeimage(launcherbg)
                         launcherbg = $00
-                        iniwritestring(optionfile, "Global", "Language", opt\Field52, $01)
+                        iniwritestring(optionfile, "Global", "Language", opt\Field55, $01)
                     EndIf
                 EndIf
             Else
@@ -237,15 +237,15 @@ Function updatelauncher%(arg0.launcher)
             execfile_strict("Changelog.txt")
         EndIf
         If (updatelauncherbutton($208, $177, $64, $1E, getlocalstring("launcher", "launch"), $00, $00, $00, $FF, $FF, $FF) <> 0) Then
-            If (opt\Field48 = $01) Then
-                opt\Field46 = local16
-                opt\Field47 = local17
+            If (opt\Field51 = $01) Then
+                opt\Field49 = local16
+                opt\Field50 = local17
             Else
-                opt\Field46 = arg0\Field3[arg0\Field2]
-                opt\Field47 = arg0\Field4[arg0\Field2]
+                opt\Field49 = arg0\Field3[arg0\Field2]
+                opt\Field50 = arg0\Field4[arg0\Field2]
             EndIf
-            graphicwidthfloat = (Float opt\Field46)
-            graphicheightfloat = (Float opt\Field47)
+            graphicwidthfloat = (Float opt\Field49)
+            graphicheightfloat = (Float opt\Field50)
             Exit
         EndIf
         If (updatelauncherbutton($208, $1AE, $64, $1E, getlocalstring("launcher", "exit"), $00, $00, $00, $FF, $FF, $FF) <> 0) Then
@@ -257,9 +257,9 @@ Function updatelauncher%(arg0.launcher)
     iniwritestring(optionfile, "Global", "Width", (Str arg0\Field3[arg0\Field2]), $01)
     iniwritestring(optionfile, "Global", "Height", (Str arg0\Field4[arg0\Field2]), $01)
     iniwritestring(optionfile, "Advanced", "Launcher Enabled", (Str opt\Field41), $01)
-    iniwritestring(optionfile, "Global", "Display Mode", (Str opt\Field48), $01)
-    iniwritestring(optionfile, "Global", "GFX Driver", (Str opt\Field49), $01)
-    iniwritestring(optionfile, "Global", "No Progress Bar", (Str opt\Field56), $01)
+    iniwritestring(optionfile, "Global", "Display Mode", (Str opt\Field51), $01)
+    iniwritestring(optionfile, "Global", "GFX Driver", (Str opt\Field52), $01)
+    iniwritestring(optionfile, "Global", "No Progress Bar", (Str opt\Field59), $01)
     For local0 = $00 To $01 Step $01
         freeimage(local2[local0])
         local2[local0] = $00

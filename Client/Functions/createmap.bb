@@ -510,7 +510,7 @@ Function createmap%()
     calculateroomextents(local0)
     local0 = createroom($00, $00, 160.0, 0.0, 160.0, $69, 0.0)
     calculateroomextents(local0)
-    If (opt\Field50 <> 0) Then
+    If (opt\Field53 <> 0) Then
         local0 = createroom($00, $00, 8.0, 250.0, 160.0, $04, 0.0)
         calculateroomextents(local0)
     EndIf
@@ -519,7 +519,7 @@ Function createmap%()
     For local0 = Each rooms
         preventroomoverlap(local0)
     Next
-    If (opt\Field51 <> 0) Then
+    If (opt\Field54 <> 0) Then
         Repeat
             showpointer()
             cls()
@@ -566,8 +566,8 @@ Function createmap%()
             color($32, $32, $FF)
             textex((Int (6.0 * menuscale)), (Int (140.0 * menuscale)), (Str currmapgrid\Field4[$04]), $00, $00)
             color($FF, $FF, $FF)
-            textex(mo\Field9, (Int ((Float opt\Field47) - (15.0 * menuscale))), format(getlocalstring("menu", "new.seed2"), randomseed, "%s"), $01, $01)
-            renderloadingtext(mo\Field9, (Int ((Float opt\Field47) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $01, $01)
+            textex(mo\Field9, (Int ((Float opt\Field50) - (15.0 * menuscale))), format(getlocalstring("menu", "new.seed2"), randomseed, "%s"), $01, $01)
+            renderloadingtext(mo\Field9, (Int ((Float opt\Field50) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $01, $01)
             flip($01)
             rendercursor()
         Until (((getkey() <> $00) Lor mousehit($01)) <> 0)

@@ -10,7 +10,7 @@ Function createblurimage%()
     moveentity(local0, 0.0, 0.0, 10000.0)
     cameraprojmode(local0, $00)
     arkblurcam = local0
-    cameraviewport(local0, $00, $00, opt\Field46, opt\Field47)
+    cameraviewport(local0, $00, $00, opt\Field49, opt\Field50)
     local1 = createmesh(local0)
     local2 = createsurface(local1, $00)
     addvertex(local2, -1.0, 1.0, 0.0, 0.0, 0.0, 1.0)

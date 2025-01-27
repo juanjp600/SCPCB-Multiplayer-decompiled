@@ -15,7 +15,10 @@ Function updatemenu%()
     Local local17%
     Local local19%
     Local local20%
+    Local local21$
     Local local22%
+    Local local23%
+    Local local25%
     catcherrors("UpdateMenu()")
     If (menuopen <> 0) Then
         If (((isplayeroutsidefacility() Lor (Int me\Field0)) Lor me\Field56) = $00) Then
@@ -80,7 +83,7 @@ Function updatemenu%()
                         local8 = (Int ((30.0 * menuscale) + (Float local8)))
                         opt\Field5 = updatemenutick(local7, local8, opt\Field5, $00)
                         local8 = (Int ((30.0 * menuscale) + (Float local8)))
-                        opt\Field1 = updatemenutick(local7, local8, opt\Field1, (opt\Field48 <> $00))
+                        opt\Field1 = updatemenutick(local7, local8, opt\Field1, (opt\Field51 <> $00))
                         local8 = (Int ((30.0 * menuscale) + (Float local8)))
                         opt\Field4 = updatemenutick(local7, local8, opt\Field4, $00)
                         local8 = (Int ((40.0 * menuscale) + (Float local8)))
@@ -308,10 +311,42 @@ Function updatemenu%()
                         local8 = (Int ((40.0 * menuscale) + (Float local8)))
                         updatemenubutton((Int ((Float local7) - (270.0 * menuscale))), local8, (Int (195.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("options", "reset"), $00, $00, $01, $FF, $FF, $FF, $01, 1.0, $00, $00)
                     Case $06
+                        opt\Field47 = (updatemenuslidebar((Int ((Float local7) - (70.0 * menuscale))), local8, (Int (150.0 * menuscale)), (opt\Field47 * 100.0), $01) / 100.0)
+                        local8 = (Int ((35.0 * menuscale) + (Float local8)))
+                        If (((opt\Field48 = "") And (bass_getrecorddevicecount() > $00)) <> 0) Then
+                            opt\Field48 = bass_getrecorddevicename($00)
+                        EndIf
+                        If (opt\Field48 = "") Then
+                            updatemenubutton((Int ((Float local7) - (130.0 * menuscale))), local8, (Int (300.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpoptions", "nullvoice"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00)
+                        Else
+                            local21 = opt\Field48
+                            If (len(local21) > $1C) Then
+                                local21 = left(opt\Field48, $1C)
+                                local21 = (local21 + "...")
+                            EndIf
+                            If (updatemenubutton((Int ((Float local7) - (130.0 * menuscale))), local8, (Int (300.0 * menuscale)), (Int (30.0 * menuscale)), local21, $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                                local22 = bass_getrecorddevicecount()
+                                If (local22 > $00) Then
+                                    local23 = $00
+                                    For local4 = $00 To (local22 - $01) Step $01
+                                        If (bass_getrecorddevicename(local4) = opt\Field48) Then
+                                            local23 = local4
+                                            Exit
+                                        EndIf
+                                    Next
+                                    local23 = (local23 + $01)
+                                    If (local23 >= local22) Then
+                                        local23 = $00
+                                    EndIf
+                                    opt\Field48 = bass_getrecorddevicename(local23)
+                                    mp_reloadvoicedevice()
+                                EndIf
+                            EndIf
+                        EndIf
+                        local8 = (Int ((100.0 * menuscale) + (Float local8)))
+                        updatemenuinputbox((Int ((Float local7) - (50.0 * menuscale))), local8, (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field14), 210.0))], $00, $425, $00, 1.0)
                         local8 = (Int ((20.0 * menuscale) + (Float local8)))
-                        updatemenuinputbox(local7, local8, (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field14), 210.0))], $00, $425, $00, 1.0)
-                        local8 = (Int ((20.0 * menuscale) + (Float local8)))
-                        updatemenuinputbox(local7, local8, (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field15), 210.0))], $00, $426, $00, 1.0)
+                        updatemenuinputbox((Int ((Float local7) - (50.0 * menuscale))), local8, (Int (110.0 * menuscale)), (Int (20.0 * menuscale)), key\Field0[(Int min((Float key\Field15), 210.0))], $00, $426, $00, 1.0)
                         local17 = $00
                         For local4 = $00 To $E3 Step $01
                             If (keyhit(local4) <> 0) Then
@@ -331,10 +366,10 @@ Function updatemenu%()
                 End Select
             EndIf
         ElseIf ((((igm\Field0 <= $00) And (igm\Field2 <= $00)) And (igm\Field1 > $00)) <> 0) Then
-            local22 = $55
+            local25 = $55
             If ((((selecteddifficulty\Field3 = $02) Lor (selecteddifficulty\Field3 = $00)) And (mp_getsocket() = $00)) <> 0) Then
                 If (cansave = $03) Then
-                    local22 = $A0
+                    local25 = $A0
                     If (updatemenubutton(local7, (Int ((85.0 * menuscale) + (Float local8))), (Int (430.0 * menuscale)), (Int (60.0 * menuscale)), getlocalstring("menu", "savequit"), $01, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                         me\Field36 = 0.0
                         savegame(currsave\Field0)
@@ -345,7 +380,8 @@ Function updatemenu%()
                     EndIf
                 EndIf
             EndIf
-            If (updatemenubutton(local7, (Int (((Float local22) * menuscale) + (Float local8))), (Int (430.0 * menuscale)), (Int (60.0 * menuscale)), getlocalstring("menu", "quit"), $01, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+            If (updatemenubutton(local7, (Int (((Float local25) * menuscale) + (Float local8))), (Int (430.0 * menuscale)), (Int (60.0 * menuscale)), getlocalstring("menu", "quit"), $01, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                mp_client_disconnect()
                 nullgame($00)
                 currsave = Null
                 resetinput()
@@ -503,6 +539,7 @@ Function updatemenu%()
                     local8 = (Int ((75.0 * menuscale) + (Float local8)))
                 EndIf
                 If (updatemenubutton(local7, local8, (Int (430.0 * menuscale)), (Int (60.0 * menuscale)), getlocalstring("menu", "quitmenu"), $01, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                    mp_client_disconnect()
                     nullgame($00)
                     currsave = Null
                     resetinput()

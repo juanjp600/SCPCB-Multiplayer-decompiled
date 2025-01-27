@@ -5,7 +5,7 @@ Function rendercredits%()
     Local local3%
     Local local4%
     Local local5%
-    local2 = (((me\Field45 + 2000.0) / 2.0) + ((Float opt\Field47) + 10.0))
+    local2 = (((me\Field45 + 2000.0) / 2.0) + ((Float opt\Field50) + 10.0))
     local3 = $00
     local4 = $00
     cls()
@@ -61,7 +61,7 @@ Function rendercredits%()
             EndIf
         Next
     EndIf
-    renderloadingtext((Int (20.0 * menuscale)), (Int ((Float opt\Field47) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $00, $00)
+    renderloadingtext((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (35.0 * menuscale))), getlocalstring("menu", "anykey"), $00, $00)
     If (-1.0 = me\Field47) Then
         freefont(fo\Field0[$06])
         fo\Field0[$06] = $00

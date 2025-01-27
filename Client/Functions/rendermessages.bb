@@ -15,7 +15,7 @@ Function rendermessages%()
         color(local1, local1, local1)
         local2 = (Int ((Float mo\Field10) + (200.0 * menuscale)))
         If (local0 <> 0) Then
-            local2 = (Int ((Float opt\Field47) * 0.94))
+            local2 = (Int ((Float opt\Field50) * 0.94))
         EndIf
         textex((Int (((Float ((-200.0 > me\Field5) * rand($FFFFFFF6, $0A))) * menuscale) + (Float mo\Field9))), (Int (((Float ((-200.0 > me\Field5) * rand($FFFFFFF6, $0A))) * menuscale) + (Float local2))), msg\Field0, $01, $00)
     EndIf

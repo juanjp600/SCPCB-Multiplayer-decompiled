@@ -18,7 +18,7 @@ Function dropitem%(arg0.items, arg1%)
         resetentity(arg0\Field2)
     Else
         local2 = rndseed()
-        seedrnd((mp_getmyindex() + generateseednumber(mp_getclientname())))
+        seedrnd((mp_getmyindex() + generateseednumber(opt\Field46)))
         positionentity(arg0\Field2, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
         rotateentity(arg0\Field2, entitypitch(camera, $00), (rnd(-20.0, 20.0) + local1), 0.0, $00)
         moveentity(arg0\Field2, 0.0, -0.1, 0.1)

@@ -9,7 +9,7 @@ Function initializeplayer.mp_player(arg0%, arg1%, arg2%)
     local0\Field1 = arg2
     local0\Field35 = (New mp_playermodel)
     If (mp_ishoster() <> 0) Then
-        local0\Field4 = (New mp_playerserverlogic)
+        local0\Field4 = createplayerlogic()
     EndIf
     createplayervoice(local0)
     initializeplayerpivot(local0)

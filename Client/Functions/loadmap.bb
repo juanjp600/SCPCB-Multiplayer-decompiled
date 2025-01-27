@@ -272,7 +272,7 @@ Function loadmap%(arg0$)
     local0 = createroom($00, $00, 184.0, 0.0, 184.0, $69, 0.0)
     calculateroomextents(local0)
     createevent($48, $69, $00, 0.0)
-    If (opt\Field50 <> 0) Then
+    If (opt\Field53 <> 0) Then
         local0 = createroom($00, $00, 8.0, 250.0, 184.0, $04, 0.0)
         calculateroomextents(local0)
         createevent($04, $04, $00, 0.0)

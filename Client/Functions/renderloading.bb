@@ -54,14 +54,14 @@ Function renderloading%(arg0%, arg1$)
         If (imagealignx = "center") Then
             local0 = (mo\Field9 - (imagewidth(loadingimage) Sar $01))
         ElseIf (imagealignx = "right") Then
-            local0 = (opt\Field46 - imagewidth(loadingimage))
+            local0 = (opt\Field49 - imagewidth(loadingimage))
         Else
             local0 = $00
         EndIf
         If (imagealigny = "center") Then
             local1 = (mo\Field10 - (imageheight(loadingimage) Sar $01))
         ElseIf (imagealigny = "bottom") Then
-            local1 = (opt\Field47 - imageheight(loadingimage))
+            local1 = (opt\Field50 - imageheight(loadingimage))
         Else
             local1 = $00
         EndIf
@@ -69,11 +69,11 @@ Function renderloading%(arg0%, arg1$)
         local6 = (Int (300.0 * menuscale))
         local7 = (Int (20.0 * menuscale))
         local0 = (mo\Field9 - (local6 Sar $01))
-        local1 = (Int ((Float opt\Field47) - (80.0 * menuscale)))
+        local1 = (Int ((Float opt\Field50) - (80.0 * menuscale)))
         renderbar(blinkmeterimg, local0, local1, local6, local7, (Float arg0), 100.0, $64, $64, $64)
         color($FF, $FF, $FF)
         setfontex(fo\Field0[$00])
-        textex(((local6 Sar $01) + local0), (Int ((Float opt\Field47) - (70.0 * menuscale))), ((Str arg0) + "%"), $01, $01)
+        textex(((local6 Sar $01) + local0), (Int ((Float opt\Field50) - (70.0 * menuscale))), ((Str arg0) + "%"), $01, $01)
         If (local5 <> 0) Then
             If (local2 <> 0) Then
                 If (arg0 = $00) Then
@@ -142,7 +142,7 @@ Function renderloading%(arg0%, arg1$)
         EndIf
         If (arg0 <> $64) Then
             color($FF, $FF, $FF)
-            textex(mo\Field9, (Int ((Float opt\Field47) - (35.0 * menuscale))), format(getlocalstring("loading", "assets"), arg1, "%s"), $01, $01)
+            textex(mo\Field9, (Int ((Float opt\Field50) - (35.0 * menuscale))), format(getlocalstring("loading", "assets"), arg1, "%s"), $01, $01)
             resetinput()
         Else
             If (local5 <> 0) Then
@@ -153,7 +153,7 @@ Function renderloading%(arg0%, arg1$)
                 EndIf
                 local9 = getlocalstring("menu", "anykey")
             EndIf
-            renderloadingtext(mo\Field9, (Int ((Float opt\Field47) - (35.0 * menuscale))), local9, $01, $01)
+            renderloadingtext(mo\Field9, (Int ((Float opt\Field50) - (35.0 * menuscale))), local9, $01, $01)
         EndIf
         rendergamma()
         flip($01)
@@ -182,7 +182,7 @@ Function renderloading%(arg0%, arg1$)
             imagealigny = ""
         EndIf
     Until (local13 <> 0)
-    If ((((initializeintromovie And local5) And opt\Field50) And (arg0 = $64)) <> 0) Then
+    If ((((initializeintromovie And local5) And opt\Field53) And (arg0 = $64)) <> 0) Then
         stopstream_strict(musicchn)
         musicchn = $00
         playmovie("startup_Intro")

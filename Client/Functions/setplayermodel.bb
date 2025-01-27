@@ -15,14 +15,16 @@ Function setplayermodel%(arg0.mp_player, arg1%, arg2%)
         Select arg1
             Case $01
                 setplayermodeltexture(arg0, rand($01, $03))
+            Case $03
+                setplayermodeltexture(arg0, $05)
             Case $02
                 setplayermodeltexture(arg0, $04)
         End Select
     Else
         setplayermodeltexture(arg0, local0\Field11)
     EndIf
-    local0\Field19 = local1\Field10
-    local0\Field20 = local1\Field11
+    local0\Field19 = local1\Field11
+    local0\Field20 = local1\Field12
     local0\Field10 = $00
     local0\Field11 = $00
     If (local0\Field17 <> arg1) Then

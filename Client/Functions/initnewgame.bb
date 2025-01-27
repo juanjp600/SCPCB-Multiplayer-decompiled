@@ -123,7 +123,7 @@ Function initnewgame%()
                 entityparent(local0\Field0, local3\Field2, $01)
             EndIf
         EndIf
-        If (((local3\Field7\Field6 = $03) And (opt\Field50 = $00)) <> 0) Then
+        If (((local3\Field7\Field6 = $03) And (opt\Field53 = $00)) <> 0) Then
             tformpoint(3584.0, 580.0, 3096.0, local3\Field2, $00)
             positionentity(me\Field60, tformedx(), tformedy(), tformedz(), $00)
             playerroom = local3
@@ -131,7 +131,7 @@ Function initnewgame%()
             entitytype(local2\Field2, $03, $00)
             pickitem(local2, $00)
             local2\Field27 = $01
-        ElseIf (((local3\Field7\Field6 = $04) And opt\Field50) <> 0) Then
+        ElseIf (((local3\Field7\Field6 = $04) And opt\Field53) <> 0) Then
             initializeintromovie = $01
             tformpoint(-4096.0, 0.0, 0.0, local3\Field2, $00)
             positionentity(me\Field60, tformedx(), 0.0, tformedz(), $00)
@@ -195,6 +195,7 @@ Function initnewgame%()
         EndIf
         renderloading($64, "")
     EndIf
+    raycastitems()
     fps\Field7[$00] = 0.0
     fps\Field1 = millisecs()
     resetinput()

@@ -11,7 +11,7 @@ Function initializeplayerpivot%(arg0.mp_player)
         hideentity(arg0\Field18)
         arg0\Field19 = createcamera(arg0\Field18)
         positionentity(arg0\Field19, 0.0, 0.6, 0.0, $00)
-        cameraviewport(arg0\Field19, $00, $00, opt\Field46, opt\Field47)
+        cameraviewport(arg0\Field19, $00, $00, opt\Field49, opt\Field50)
         camerarange(arg0\Field19, 0.01, 50.0)
         hideentity(arg0\Field19)
     EndIf

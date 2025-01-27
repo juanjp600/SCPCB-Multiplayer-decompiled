@@ -1,6 +1,6 @@
 Function loadevents%()
     seedrnd((generateseednumber(randomseed) + $04))
-    If (opt\Field50 <> 0) Then
+    If (opt\Field53 <> 0) Then
         createevent($04, $04, $00, 0.0)
     EndIf
     createevent($03, $03, $00, 0.0)

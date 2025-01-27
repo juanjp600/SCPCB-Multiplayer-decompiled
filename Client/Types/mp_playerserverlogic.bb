@@ -35,4 +35,11 @@ Type mp_playerserverlogic
     Field Field33%
     Field Field34%
     Field Field35%
+    Field Field36%
+    Field Field37%
+    Field Field38%
+    Field Field39%
+    Field Field40#
+    Field Field41#
+    Field Field42#
 End Type

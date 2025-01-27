@@ -35,7 +35,7 @@ Function renderending%()
                 drawblock(me\Field44, (Int ((Float mo\Field9) - (400.0 * menuscale))), (Int ((Float mo\Field10) - (400.0 * menuscale))), $00)
             Else
                 color($00, $00, $00)
-                rect($64, $64, (opt\Field46 - $C8), (opt\Field47 - $C8), $01)
+                rect($64, $64, (opt\Field49 - $C8), (opt\Field50 - $C8), $01)
                 color($FF, $FF, $FF)
             EndIf
         Else

@@ -27,9 +27,9 @@ Function mp_terminateplayer%(arg0.mp_player, arg1%, arg2%)
             If (arg0\Field5 = mp_getmyindex()) Then
                 local7 = getplayermodelmeshpreset(arg0\Field35\Field17)
                 local3 = entityx(arg0\Field18, $00)
-                local4 = (entityy(arg0\Field18, $00) + local7\Field9)
+                local4 = (entityy(arg0\Field18, $00) + local7\Field10)
                 local5 = entityz(arg0\Field18, $00)
-                local6 = (entityyaw(arg0\Field18, $00) - local7\Field8)
+                local6 = (entityyaw(arg0\Field18, $00) - local7\Field9)
             ElseIf (arg0\Field35\Field0 <> $00) Then
                 local3 = entityx(arg0\Field35\Field0, $01)
                 local4 = entityy(arg0\Field35\Field0, $01)

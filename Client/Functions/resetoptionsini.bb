@@ -1,7 +1,7 @@
 Function resetoptionsini%()
     opt\Field2 = $01
     opt\Field5 = $01
-    opt\Field1 = (opt\Field48 = $00)
+    opt\Field1 = (opt\Field51 = $00)
     opt\Field4 = $01
     opt\Field6 = 1.0
     opt\Field7 = 1.0
@@ -56,7 +56,7 @@ Function resetoptionsini%()
     opt\Field40 = $01
     opt\Field41 = $01
     shoulddeletegadgets = $01
-    opt\Field50 = $01
-    opt\Field52 = "en"
+    opt\Field53 = $01
+    opt\Field55 = "en"
     Return $00
 End Function

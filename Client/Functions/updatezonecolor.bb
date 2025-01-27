@@ -10,7 +10,7 @@ Function updatezonecolor%()
     fog\Field2 = ""
     camerafogmode(camera, $01)
     camerafogrange(camera, (0.1 * lightvolume), (fog\Field0 * lightvolume))
-    camerarange(camera, 0.01, (((((Float (opt\Field51 = $00)) * fog\Field0) * lightvolume) * 1.3) + ((Float opt\Field51) * 100.0)))
+    camerarange(camera, 0.01, (((((Float (opt\Field54 = $00)) * fog\Field0) * lightvolume) * 1.3) + ((Float opt\Field54) * 100.0)))
     If (((playerroom\Field7\Field6 = $1F) And (infacility = $FFFFFFFF)) <> 0) Then
         setzonecolor("002007000", "030030030")
     ElseIf (local1 <> 0) Then

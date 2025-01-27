@@ -19,7 +19,7 @@ Function mp_updatechathud%()
         mp_chat\Field1 = updatemenuinputbox((Int local0), (Int local1), (Int (600.0 * menuscale)), (Int (30.0 * menuscale)), mp_chat\Field1, $00, $3ED, $90, 0.05)
         If (keyhit($1C) <> 0) Then
             If (len(mp_chat\Field1) > $00) Then
-                mp_createchatmessage(((mp_getclientname() + ": ") + mp_chat\Field1))
+                mp_createchatmessage(((opt\Field46 + ": ") + mp_chat\Field1))
                 mp_sendchatmessage(mp_chat\Field1)
                 mp_chat\Field1 = ""
             EndIf

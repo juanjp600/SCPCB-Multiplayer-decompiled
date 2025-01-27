@@ -17,7 +17,7 @@ Function renderachievementmsg%()
     local5 = (Int (10.0 * menuscale))
     For local0 = Each achievementmsg
         If (0.0 <> local0\Field3) Then
-            local6 = (Int ((Float opt\Field46) + local0\Field2))
+            local6 = (Int ((Float opt\Field49) + local0\Field2))
             local7 = $00
             For local1 = Each achievementmsg
                 If (local1 <> local0) Then

@@ -28,7 +28,7 @@ Function rendermainmenu%()
     EndIf
     drawblock(mma\Field0, $00, $00, $00)
     If ((Float rand((Int mm\Field1[$00]), $01)) <= ((Float millisec) Mod mm\Field0[$00])) Then
-        drawblock(mma\Field2, (opt\Field46 - imagewidth(mma\Field2)), (opt\Field47 - imageheight(mma\Field2)), $00)
+        drawblock(mma\Field2, (opt\Field49 - imagewidth(mma\Field2)), (opt\Field50 - imageheight(mma\Field2)), $00)
     EndIf
     setfontex(fo\Field0[$00])
     If (mm\Field1[$01] > mm\Field0[$01]) Then
@@ -74,9 +74,9 @@ Function rendermainmenu%()
         EndIf
     EndIf
     setfontex(fo\Field0[$01])
-    drawblock(mma\Field1, (mo\Field9 - (imagewidth(mma\Field1) Sar $01)), (Int (((Float opt\Field47) - (20.0 * menuscale)) - (Float imageheight(mma\Field1)))), $00)
-    If (opt\Field46 > $4D8) Then
-        rendertiledimagerect(menuwhite, $00, (Int (5.0 * menuscale)), (Int (512.0 * menuscale)), (Int (5.0 * menuscale)), (Int (985.0 * menuscale)), (Int (407.0 * menuscale)), (Int ((Float opt\Field46) - (940.0 * menuscale))), (Int (5.0 * menuscale)))
+    drawblock(mma\Field1, (mo\Field9 - (imagewidth(mma\Field1) Sar $01)), (Int (((Float opt\Field50) - (20.0 * menuscale)) - (Float imageheight(mma\Field1)))), $00)
+    If (opt\Field49 > $4D8) Then
+        rendertiledimagerect(menuwhite, $00, (Int (5.0 * menuscale)), (Int (512.0 * menuscale)), (Int (5.0 * menuscale)), (Int (985.0 * menuscale)), (Int (407.0 * menuscale)), (Int ((Float opt\Field49) - (940.0 * menuscale))), (Int (5.0 * menuscale)))
     EndIf
     If (mm\Field5 <> $00) Then
         local0 = (Int (159.0 * menuscale))
@@ -464,7 +464,7 @@ Function rendermainmenu%()
                         renderoptionstooltip((Int local6), (Int local7), (Int local8), (Int local9), $01, 0.0)
                     EndIf
                     local1 = (Int ((30.0 * menuscale) + (Float local1)))
-                    local13 = ($FF - ((opt\Field48 <> $00) * $9B))
+                    local13 = ($FF - ((opt\Field51 <> $00) * $9B))
                     color(local13, local13, local13)
                     textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("options", "antialias"), $00, $00)
                     If ((mouseon((Int ((290.0 * menuscale) + (Float local0))), local1, local33, local33) And (onsliderid = $00)) <> 0) Then
@@ -734,6 +734,10 @@ Function rendermainmenu%()
                     color($FF, $FF, $FF)
                     textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("mpoptions", "playername"), $00, $00)
                     local1 = (Int ((35.0 * menuscale) + (Float local1)))
+                    textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("mpoptions", "voicevolume"), $00, $00)
+                    local1 = (Int ((40.0 * menuscale) + (Float local1)))
+                    textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("mpoptions", "selvoice"), $00, $00)
+                    local1 = (Int ((65.0 * menuscale) + (Float local1)))
                     textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("menu", "controlconfig"), $00, $00)
                     local1 = (Int ((20.0 * menuscale) + (Float local1)))
                     textex(local0, (Int ((5.0 * menuscale) + (Float local1))), getlocalstring("mpoptions", "voice"), $00, $00)
@@ -753,10 +757,10 @@ Function rendermainmenu%()
     If (opt\Field32 <> 0) Then
         color($FF, $FF, $FF)
         setfontex(fo\Field0[$05])
-        textex((Int (20.0 * menuscale)), (Int ((Float opt\Field47) - (50.0 * menuscale))), ((("Multiplayer beta v" + multiplayer_version) + " based on UER ") + "1.5"), $00, $00)
+        textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (50.0 * menuscale))), ((("Multiplayer beta v" + multiplayer_version) + " based on UER ") + "1.5"), $00, $00)
         If (opt\Field33 <> 0) Then
             setfontex(fo\Field0[$05])
-            textex((Int (20.0 * menuscale)), (Int ((Float opt\Field47) - (30.0 * menuscale))), ("FPS: " + (Str fps\Field3)), $00, $00)
+            textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (30.0 * menuscale))), ("FPS: " + (Str fps\Field3)), $00, $00)
         EndIf
     EndIf
     rendercursor()

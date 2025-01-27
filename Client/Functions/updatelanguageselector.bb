@@ -97,7 +97,7 @@ Function updatelanguageselector%()
         Select local15
             Case $02
                 If (local16\Field5 = $00) Then
-                    If (opt\Field56 <> 0) Then
+                    If (opt\Field59 <> 0) Then
                         downloadfile(((local0 + local16\Field1) + ".zip"), (local1 + "/local.zip"))
                     Else
                         downloadfilethread(((local0 + local16\Field1) + ".zip"), (local1 + "/local.zip"))
@@ -150,7 +150,7 @@ Function updatelanguageselector%()
                         local14 = local2
                     EndIf
                 EndIf
-                If (local2\Field1 = opt\Field52) Then
+                If (local2\Field1 = opt\Field55) Then
                     color($C8, $00, $00)
                     rect($00, (Int ((local20 - 195.0) - (Float local12))), $1AE, $14, $00)
                 EndIf
@@ -188,7 +188,7 @@ Function updatelanguageselector%()
                         local14 = local2
                     EndIf
                 EndIf
-                If (local2\Field1 = opt\Field52) Then
+                If (local2\Field1 = opt\Field55) Then
                     color($C8, $00, $00)
                     rect($14, (Int (local20 - (Float local12))), $1AE, $14, $00)
                 EndIf
@@ -212,7 +212,7 @@ Function updatelanguageselector%()
         color($64, $64, $64)
         If (local15 = $01) Then
             local22 = getlocalstring("language", "downloading")
-            If (opt\Field56 = $00) Then
+            If (opt\Field59 = $00) Then
                 updatelauncherbutton($1DF, $13B, $9B, $1E, "0%", $00, $00, $01, $FF, $FF, $FF)
             EndIf
             local15 = $02
@@ -223,7 +223,7 @@ Function updatelanguageselector%()
                 local15 = $03
             EndIf
         ElseIf (local15 = $03) Then
-            If (opt\Field56 = $00) Then
+            If (opt\Field59 = $00) Then
                 local22 = format(format(getlocalstring("language", "downloading.filesize"), simplefilesize(getdownloadfilethreadsize()), "{0}"), simplefilesize(local16\Field7), "{1}")
                 updatelauncherbutton($1DF, $13B, $9B, $1E, ((Str (Int ceil((((Float getdownloadfilethreadsize()) / (Float local16\Field7)) * 100.0)))) + "%"), $00, $00, $01, $FF, $FF, $FF)
                 If (getdownloadfilethreadsize() >= local16\Field7) Then
@@ -245,7 +245,7 @@ Function updatelanguageselector%()
         color($00, $00, $01)
         rowtext(local22, $1E1, $C7, $97, $66, $00, 1.0)
         If (local13 <> Null) Then
-            If (local13\Field1 = opt\Field52) Then
+            If (local13\Field1 = opt\Field55) Then
                 If (updatelauncherbuttonwithimage($1DF, $16D, $9B, $1E, getlocalstring("language", "contribute"), $00, local11, $04, (Int isdownloadinglanguage(local15))) <> 0) Then
                     execfile_strict("https://github.ziyuesinicization.site/Jabka666/scpcb-ue-my/wiki/How-to-contribute-a-language")
                 EndIf
@@ -254,10 +254,10 @@ Function updatelanguageselector%()
                     setlanguage(local13\Field1, $01)
                     freeimage(local9)
                     local9 = $00
-                    iniwritestring(optionfile, "Global", "Language", opt\Field52, $01)
+                    iniwritestring(optionfile, "Global", "Language", opt\Field55, $01)
                 EndIf
             ElseIf (filetype(("Localization\" + local13\Field1)) = $02) Then
-                If (local13\Field1 <> opt\Field52) Then
+                If (local13\Field1 <> opt\Field55) Then
                     If (updatelauncherbuttonwithimage($1DF, $13B, $9B, $1E, getlocalstring("language", "uninstall"), $00, local11, $03, (Int isdownloadinglanguage(local15))) <> 0) Then
                         local15 = $06
                         local16 = local13
@@ -266,15 +266,15 @@ Function updatelanguageselector%()
                         setlanguage(local13\Field1, $01)
                         freeimage(local9)
                         local9 = $00
-                        iniwritestring(optionfile, "Global", "Language", opt\Field52, $01)
+                        iniwritestring(optionfile, "Global", "Language", opt\Field55, $01)
                     EndIf
                 EndIf
             Else
                 If (((local15 = $00) Lor (local15 = $08)) <> 0) Then
                     color($FF, $FF, $FF)
                     text($1FD, $14C, getlocalstring("language", "speedup"), $00, $01)
-                    local23 = updatelaunchertick($1DF, $143, opt\Field56, $00)
-                    If (local23 <> opt\Field56) Then
+                    local23 = updatelaunchertick($1DF, $143, opt\Field59, $00)
+                    If (local23 <> opt\Field59) Then
                         If (local23 <> 0) Then
                             color($FF, $FF, $FF)
                             Repeat
@@ -287,7 +287,7 @@ Function updatelanguageselector%()
                                 text($140, $104, getlocalstring("language", "speedup.notice_4"), $01, $00)
                                 If (updatelauncherbutton($C8, $12C, $64, $1E, getlocalstring("language", "yes"), $00, $00, $00, $FF, $FF, $FF) <> 0) Then
                                     delay($64)
-                                    opt\Field56 = $01
+                                    opt\Field59 = $01
                                     Exit
                                 EndIf
                                 If (updatelauncherbutton($154, $12C, $64, $1E, getlocalstring("language", "no"), $00, $00, $00, $FF, $FF, $FF) <> 0) Then
@@ -299,7 +299,7 @@ Function updatelanguageselector%()
                                 cls()
                             Forever
                         Else
-                            opt\Field56 = $00
+                            opt\Field59 = $00
                         EndIf
                     EndIf
                 EndIf

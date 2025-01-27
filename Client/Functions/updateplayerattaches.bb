@@ -9,7 +9,7 @@ Function updateplayerattaches%(arg0.mp_player)
         If (((local1\Field0 <> $00) And (local1\Field2 <> Null)) <> 0) Then
             local1\Field5 = (local1\Field5 - fps\Field7[$00])
             If (0.0 > local1\Field5) Then
-                If (((local1\Field4 = $00) Lor (channelplaying(local1\Field4) = $00)) <> 0) Then
+                If (channelplaying(local1\Field4) = $00) Then
                     local1\Field4 = $00
                     If (local1\Field2\Field6 > $00) Then
                         local1\Field4 = playsound_strict(local1\Field2\Field8[rand($00, (local1\Field2\Field6 - $01))], $00)
@@ -17,9 +17,7 @@ Function updateplayerattaches%(arg0.mp_player)
                 EndIf
                 local1\Field5 = 35.0
             EndIf
-            If (local1\Field4 <> $00) Then
-                updatesoundorigin(local1\Field4, camera, local1\Field0, 8.0, 1.0, $00, $01)
-            EndIf
+            updatesoundorigin(local1\Field4, camera, local1\Field0, 8.0, 1.0, $00, $01)
         EndIf
     Next
     Return $00

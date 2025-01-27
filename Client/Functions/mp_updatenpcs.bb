@@ -19,7 +19,7 @@ Function mp_updatenpcs%()
     Local local19#
     Local local20.rooms
     catcherrors("MP_UpdateNPCs()")
-    If (((mp_ishoster() = $00) And (mp_isconnected() = $00)) <> 0) Then
+    If (((mp_ishoster() = $00) And ((mp_isconnected() = $00) Lor (mp_isnpcsreceived() = $00))) <> 0) Then
         Return $00
     EndIf
     local1 = playerroom

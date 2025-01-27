@@ -49,10 +49,15 @@ Function saveoptionsini%(arg0%)
     iniwritestring(optionfile, "Advanced", "Vignette Enabled", (Str opt\Field39), $01)
     iniwritestring(optionfile, "Advanced", "Play Startup Videos", (Str opt\Field40), $01)
     iniwritestring(optionfile, "Advanced", "Launcher Enabled", (Str opt\Field41), $01)
+    iniwritestring(optionfile, "Multiplayer", "Voice device", opt\Field48, $01)
+    iniwritestring(optionfile, "Multiplayer", "Nickname", opt\Field46, $01)
+    iniwritestring(optionfile, "Multiplayer", "Voice Volume", (Str opt\Field47), $01)
+    iniwritestring(optionfile, "Multiplayer", "Voice Key", (Str key\Field14), $01)
+    iniwritestring(optionfile, "Multiplayer", "Chat Key", (Str key\Field15), $01)
     If (arg0 <> 0) Then
-        iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field50), $01)
+        iniwritestring(optionfile, "Global", "Enable Intro", (Str opt\Field53), $01)
     EndIf
-    iniwritestring(optionfile, "Global", "Language", opt\Field52, $01)
-    iniwritestring(optionfile, "Global", "No Progress Bar", (Str opt\Field56), $01)
+    iniwritestring(optionfile, "Global", "Language", opt\Field55, $01)
+    iniwritestring(optionfile, "Global", "No Progress Bar", (Str opt\Field59), $01)
     Return $00
 End Function

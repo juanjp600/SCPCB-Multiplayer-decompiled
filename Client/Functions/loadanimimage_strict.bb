@@ -11,7 +11,7 @@ Function loadanimimage_strict%(arg0$, arg1%, arg2%, arg3%, arg4%)
         If (local0 = $00) Then
             runtimeerrorex(format(getlocalstring("runerr", "animimage.failed.load"), arg0, "%s"))
         EndIf
-        If (opt\Field48 = $00) Then
+        If (opt\Field51 = $00) Then
             bufferdirty(imagebuffer(local0, $00))
         EndIf
     EndIf

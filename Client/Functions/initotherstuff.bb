@@ -5,7 +5,7 @@ Function initotherstuff%()
     me\Field43 = $FFFFFFFF
     opt\Field16 = opt\Field17
     chs\Field4 = 2.0
-    If (opt\Field51 <> 0) Then
+    If (opt\Field54 <> 0) Then
         initcheats()
     EndIf
     as\Field1 = 8400.0

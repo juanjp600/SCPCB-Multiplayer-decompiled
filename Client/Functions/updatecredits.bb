@@ -4,7 +4,7 @@ Function updatecredits%()
     Local local2#
     Local local3%
     Local local4%
-    local2 = (((me\Field45 + 2000.0) / 2.0) + ((Float opt\Field47) + 10.0))
+    local2 = (((me\Field45 + 2000.0) / 2.0) + ((Float opt\Field50) + 10.0))
     local3 = $00
     local4 = $00
     local1 = Null
@@ -35,6 +35,7 @@ Function updatecredits%()
         me\Field47 = -1.0
     EndIf
     If (-1.0 = me\Field47) Then
+        mp_client_disconnect()
         Delete Each creditsline
         nullgame($00)
         stopstream_strict(musicchn)

@@ -37,13 +37,13 @@ Function mp_receivepacketfromclient%()
                 Return $00
             EndIf
             mp_writebyte($00)
-            mp_writebyte($09)
+            mp_writebyte($0A)
             mp_writebyte(ue_server\Field9)
             mp_writebyte(ue_server\Field8)
             mp_writeline(ue_server\Field4)
             mp_writeline("Cooperative")
             mp_writeline(randomseed)
-            mp_writebyte(opt\Field50)
+            mp_writebyte(opt\Field53)
             mp_writebyte(selecteddifficulty\Field10)
             If (selecteddifficulty\Field5 <> 0) Then
                 mp_writebyte(selecteddifficulty\Field2)
@@ -146,6 +146,8 @@ Function mp_receivepacketfromclient%()
             mp_server_receiveinteract(local2)
         Case $13
             mp_server_receivechatmessage(local2)
+        Case $14
+            mp_server_disconnectplayer(local2, "has left the server")
     End Select
     Return $00
 End Function

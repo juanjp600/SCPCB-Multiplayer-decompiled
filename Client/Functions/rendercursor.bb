@@ -1,5 +1,5 @@
 Function rendercursor%()
-    If (((opt\Field48 <> $00) Lor onpalette) <> 0) Then
+    If (((opt\Field51 <> $00) Lor onpalette) <> 0) Then
         Return $00
     EndIf
     drawimage(cursorimg, (Int mouseposx), (Int mouseposy), $00)

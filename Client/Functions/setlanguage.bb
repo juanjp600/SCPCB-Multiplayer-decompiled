@@ -19,7 +19,7 @@ Function setlanguage%(arg0$, arg1%)
     Else
         splitspace = ""
     EndIf
-    opt\Field52 = arg0
+    opt\Field55 = arg0
     initkeynames()
     If (fo\Field0[$00] <> $00) Then
         freefont(fo\Field0[$00])

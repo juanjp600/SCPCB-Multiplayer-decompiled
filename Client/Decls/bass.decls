@@ -15,6 +15,5 @@ bass_channelset3dposition_%(param0%, param1*, param2%, param3%):"BASS_ChannelSet
 bass_recordfree%():"BASS_RecordFree"
 bass_recordgetdeviceinfo%(param0%, param1*):"BASS_RecordGetDeviceInfo"
 bass_recordinit%(param0%):"BASS_RecordInit"
-bass_recordsetinput%(param0%, param1%, param2#):"BASS_RecordSetInput"
 bass_recordstart%(param0%, param1%, param2%, param3%, param4%):"BASS_RecordStart"
 bass_fxsetparameters%(param0%, param1*):"BASS_FXSetParameters"

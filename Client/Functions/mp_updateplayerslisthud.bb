@@ -10,20 +10,23 @@ Function mp_updateplayerslisthud%()
         Return $00
     EndIf
     If ((((((ismultiplayerhudenabled Lor menuopen) Lor consoleopen) = $00) And keydown($19)) Lor mp_playerslist\Field0) <> 0) Then
-        ue_players[mp_getmyindex()]\Field6 = mp_getclientname()
+        ue_players[mp_getmyindex()]\Field6 = opt\Field46
         setfontex(fo\Field0[$00])
         local0 = (700.0 * menuscale)
         local1 = (150.0 * menuscale)
         For local2 = Each mp_player
             local1 = (((30.0 * menuscale) + local1) - (4.0 * menuscale))
         Next
-        local3 = (Float (opt\Field46 Sar $01))
-        local4 = ((Float (opt\Field47 Sar $01)) + (15.0 * menuscale))
+        local3 = (Float (opt\Field49 Sar $01))
+        local4 = ((Float (opt\Field50 Sar $01)) + (15.0 * menuscale))
         updatemenubutton((Int (local3 - (local0 / 2.0))), (Int (local4 - (local1 / 2.0))), (Int local0), (Int local1), "", $00, $00, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
         updatemenubutton((Int (local3 - (local0 / 2.0))), (Int ((local4 - (local1 / 2.0)) + (30.0 * menuscale))), (Int local0), (Int (4.0 * menuscale)), "", local5, $00, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
         local6 = ((local4 - (local1 / 2.0)) + (30.0 * menuscale))
         For local2 = Each mp_player
-            updatemenubutton((Int (local3 - (local0 / 2.0))), (Int local6), (Int local0), (Int (30.0 * menuscale)), local2\Field6, $00, $01, $00, $FF, $FF, $FF, $01, 0.05, $00, $00)
+            updatemenubutton((Int (local3 - (local0 / 2.0))), (Int local6), (Int local0), (Int (30.0 * menuscale)), local2\Field6, $00, $00, $00, $FF, $FF, $FF, $01, 0.05, $01, $01)
+            If (updatemenubutton((Int (((local3 - (local0 / 2.0)) + (local0 * 0.95)) - (2.0 * menuscale))), (Int local6), (Int (local0 * 0.05)), (Int (30.0 * menuscale)), "A", $09, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                setplayervoicemute(local2, $FFFFFFFF)
+            EndIf
             local6 = (((30.0 * menuscale) + local6) - (4.0 * menuscale))
         Next
         If (mo\Field1 <> 0) Then

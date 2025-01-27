@@ -26,8 +26,8 @@ Function render3dhandicon%(arg0%, arg1%, arg2%)
     EndIf
     freeentity(local1)
     local1 = $00
-    local4 = (((Float mo\Field9) + ((Float (opt\Field46 / $03)) * sin(local2))) - (Float local0))
-    local5 = (((Float mo\Field10) - ((Float (opt\Field47 / $03)) * sin(local3))) - (Float local0))
+    local4 = (((Float mo\Field9) + ((Float (opt\Field49 / $03)) * sin(local2))) - (Float local0))
+    local5 = (((Float mo\Field10) - ((Float (opt\Field50 / $03)) * sin(local3))) - (Float local0))
     If (arg2 <> $FFFFFFFF) Then
         local6 = (Int (69.0 * menuscale))
         Select arg2

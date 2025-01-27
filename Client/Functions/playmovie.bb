@@ -19,22 +19,22 @@ Function playmovie%(arg0$)
     local1 = (1.0 / 0.5625)
     local2 = (graphicwidthfloat / graphicheightfloat)
     If (local1 < local2) Then
-        local0 = opt\Field47
+        local0 = opt\Field50
     Else
-        local0 = (Int ((Float opt\Field46) / local1))
+        local0 = (Int ((Float opt\Field49) / local1))
     EndIf
     local5 = ("GFX\Menu\" + arg0)
     local6 = openmovie_strict((local5 + ".wmv"))
     local7 = streamsound_strict((local5 + ".ogg"), (opt\Field20 * opt\Field16), $00)
     Repeat
         cls()
-        drawmovie(local6, $00, (mo\Field10 - (local0 Sar $01)), opt\Field46, local0)
+        drawmovie(local6, $00, (mo\Field10 - (local0 Sar $01)), opt\Field49, local0)
         If (initializeintromovie <> 0) Then
             local4 = getlocalstring("menu", "wakeup")
         Else
             local4 = getlocalstring("menu", "anykey")
         EndIf
-        renderloadingtext(mo\Field9, (Int ((Float opt\Field47) - (35.0 * menuscale))), local4, $01, $01)
+        renderloadingtext(mo\Field9, (Int ((Float opt\Field50) - (35.0 * menuscale))), local4, $01, $01)
         flip($01)
         local8 = $00
         If ((((getkey() <> $00) Lor mousehit($01)) Lor (isstreamplaying_strict(local7) = $00)) <> 0) Then

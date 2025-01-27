@@ -24,6 +24,7 @@ Function mp_client_recvplayermodel%(arg0.mp_player)
         local0\Field18 = local2
         local0\Field20 = local3
         local0\Field19 = local4
+        flushplayermodel(arg0)
     EndIf
     For local7 = $00 To $09 Step $01
         setplayerattachmodel(arg0, local7, mp_readbyte())

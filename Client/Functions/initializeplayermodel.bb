@@ -7,8 +7,8 @@ Function initializeplayermodel%(arg0.mp_player)
         arg0\Field35\Field0 = copyentity(getplayermodelmesh(arg0\Field35\Field17), $00)
         entitytexture(arg0\Field35\Field0, getplayermodeltexture(arg0\Field35\Field18), $00, $00)
         entityparent(arg0\Field35\Field0, arg0\Field18, $01)
-        rotateentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field8, 0.0, $00)
-        positionentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field9, 0.0, $00)
+        rotateentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field9, 0.0, $00)
+        positionentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field10, 0.0, $00)
         scaleentity(arg0\Field35\Field0, arg0\Field35\Field20, arg0\Field35\Field20, arg0\Field35\Field20, $01)
         entityradius(arg0\Field18, (arg0\Field35\Field19 / 2.0), arg0\Field35\Field19)
         showentity(arg0\Field18)
@@ -19,15 +19,15 @@ Function initializeplayermodel%(arg0.mp_player)
         For local0 = $01 To $13 Step $01
             local1 = $00
             local2 = $00
-            If (arg0\Field35\Field1\Field22[local0] <> $00) Then
-                local1 = getfirstpackedvalue(arg0\Field35\Field1\Field22[local0])
-                local2 = getsecondpackedvalue(arg0\Field35\Field1\Field22[local0])
+            If (arg0\Field35\Field1\Field23[local0] <> $00) Then
+                local1 = getfirstpackedvalue(arg0\Field35\Field1\Field23[local0])
+                local2 = getsecondpackedvalue(arg0\Field35\Field1\Field23[local0])
             EndIf
             extractanimseq(arg0\Field35\Field0, local1, local2, $00)
         Next
         arg0\Field14 = $01
-        animate(arg0\Field35\Field0, $01, arg0\Field35\Field1\Field23[arg0\Field14], arg0\Field14, 0.0)
-        If (arg0\Field35\Field1\Field7 <> 0) Then
+        animate(arg0\Field35\Field0, $01, arg0\Field35\Field1\Field24[arg0\Field14], arg0\Field14, 0.0)
+        If (arg0\Field35\Field1\Field8 <> 0) Then
             If (arg0\Field35\Field3 <> $00) Then
                 arg0\Field35\Field8 = entityroll(arg0\Field35\Field3, $01)
             EndIf

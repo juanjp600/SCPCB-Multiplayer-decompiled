@@ -22,8 +22,8 @@ Function updateconsole%()
         consoleg = $FF
         consoleb = $FF
         local2 = $00
-        local3 = (Int ((Float opt\Field47) - (300.0 * menuscale)))
-        local4 = opt\Field46
+        local3 = (Int ((Float opt\Field50) - (300.0 * menuscale)))
+        local4 = opt\Field49
         local5 = (Int (270.0 * menuscale))
         local6 = (local5 Sar $01)
         local7 = $00

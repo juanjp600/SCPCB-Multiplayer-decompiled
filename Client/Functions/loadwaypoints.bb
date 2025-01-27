@@ -104,7 +104,7 @@ Function loadwaypoints%(arg0%)
     For local1 = Each waypoints
         entityradius(local1\Field0, 0.0, 0.0)
         entitypickmode(local1\Field0, $00, $00)
-        If (opt\Field51 <> 0) Then
+        If (opt\Field54 <> 0) Then
             For local13 = $00 To $04 Step $01
                 If (local1\Field4[local13] <> Null) Then
                     local16 = createline(entityx(local1\Field0, $01), entityy(local1\Field0, $01), entityz(local1\Field0, $01), entityx(local1\Field4[local13]\Field0, $01), entityy(local1\Field4[local13]\Field0, $01), entityz(local1\Field4[local13]\Field0, $01), $00)
