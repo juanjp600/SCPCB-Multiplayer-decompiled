@@ -234,7 +234,7 @@ Function updateplayerlogic%(arg0.mp_player)
                                     setplayerattachmodel(arg0, $02, $00)
                                     settempplayermodel(arg0, $02)
                                     If (local10\Field4\Field2 = $3F) Then
-                                        setplayermodeltexture(arg0, local15)
+                                        setplayermodeltexture(arg0, local15, $00)
                                     EndIf
                                     local13 = $01
                                     Exit

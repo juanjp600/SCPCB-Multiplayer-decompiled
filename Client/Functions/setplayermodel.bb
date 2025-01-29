@@ -14,14 +14,16 @@ Function setplayermodel%(arg0.mp_player, arg1%, arg2%)
     If (arg2 = $00) Then
         Select arg1
             Case $01
-                setplayermodeltexture(arg0, rand($01, $03))
+                setplayermodeltexture(arg0, rand($01, $03), $00)
             Case $03
-                setplayermodeltexture(arg0, $05)
+                setplayermodeltexture(arg0, $05, $00)
+            Case $04
+                setplayermodeltexture(arg0, $06, $00)
             Case $02
-                setplayermodeltexture(arg0, $04)
+                setplayermodeltexture(arg0, $04, $00)
         End Select
     Else
-        setplayermodeltexture(arg0, local0\Field11)
+        setplayermodeltexture(arg0, local0\Field11, $00)
     EndIf
     local0\Field19 = local1\Field11
     local0\Field20 = local1\Field12

@@ -37,7 +37,7 @@ Function mp_updatenpctype939%(arg0.npcs)
                 If (rand($0A, $01) = $01) Then
                     local2 = ((arg0\Field18 = $00) Lor (channelplaying(arg0\Field18) = $00))
                     If (local2 <> 0) Then
-                        loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Lure") + (Str rand($00, $09))) + ".ogg"), $00)
+                        mp_loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Lure") + (Str rand($00, $09))) + ".ogg"), $00)
                         arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 10.0, 1.0, $01, $00)
                     EndIf
                 EndIf
@@ -67,7 +67,7 @@ Function mp_updatenpctype939%(arg0.npcs)
                         If (2.25 > entitydistancesquared(me\Field60, arg0\Field3)) Then
                             playsoundex(snd_i\Field51[$0B], camera, arg0\Field3, 8.0, 1.0, $00, $00)
                             injureplayer(rnd(1.5, 2.5), 0.0, 500.0, rnd(0.2, 0.75), 0.0)
-                            If (arg0\Field83 <> 0) Then
+                            If (arg0\Field85 <> 0) Then
                                 me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.0)
                             EndIf
                             If (4.0 < mp_getnpctargetinjuries(arg0)) Then
@@ -112,9 +112,9 @@ Function mp_updatenpctype939%(arg0.npcs)
         If (((local0 < ((me\Field42 * 1.6) * (me\Field42 * 1.6))) Lor (2.5 > local0)) <> 0) Then
             If (0.0 = arg0\Field12) Then
                 If (((arg0\Field18 = $00) Lor (channelplaying(arg0\Field18) = $00)) <> 0) Then
-                    loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Attack") + (Str rand($00, $02))) + ".ogg"), $00)
+                    mp_loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Attack") + (Str rand($00, $02))) + ".ogg"), $00)
                     arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 10.0, 1.0, $01, $00)
-                    If (arg0\Field83 <> 0) Then
+                    If (arg0\Field85 <> 0) Then
                         playsound_strict(loadtempsound("SFX\SCP\939\Horror.ogg"), $00)
                     EndIf
                 EndIf
@@ -125,7 +125,7 @@ Function mp_updatenpctype939%(arg0.npcs)
         ElseIf (local0 < ((me\Field42 * 1.9) * (me\Field42 * 1.9))) Then
             If (((1.0 <> arg0\Field10) And (0.0 >= arg0\Field28)) <> 0) Then
                 If (((arg0\Field18 = $00) Lor (channelplaying(arg0\Field18) = $00)) <> 0) Then
-                    loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Alert") + (Str rand($00, $02))) + ".ogg"), $00)
+                    mp_loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Alert") + (Str rand($00, $02))) + ".ogg"), $00)
                     arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 10.0, 1.0, $01, $00)
                 EndIf
                 giveachievement("939", $01)

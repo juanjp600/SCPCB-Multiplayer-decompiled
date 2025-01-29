@@ -103,6 +103,7 @@ Function updatedoors%()
                             local0\Field17 = playsoundex(snd_i\Field10, camera, local0\Field0, 10.0, 1.0, $00, $00)
                         EndIf
                         If (0.0 = local0\Field13) Then
+                            local0\Field17 = $00
                             openclosedoor(local0, $01, $00)
                         EndIf
                     EndIf

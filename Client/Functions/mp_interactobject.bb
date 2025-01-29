@@ -9,7 +9,7 @@ Function mp_interactobject%(arg0.rooms, arg1%, arg2#, arg3%, arg4%)
         Case $01
             local0 = arg0\Field15[arg1]\Field0
     End Select
-    If (((grabbedentity <> $00) And (grabbedentity <> local0)) <> 0) Then
+    If ((((grabbedentity <> $00) And (grabbedentity <> local0)) Lor (local0 = $00)) <> 0) Then
         Return $00
     EndIf
     If ((arg2 * arg2) > entitydistancesquared(me\Field60, local0)) Then

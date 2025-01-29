@@ -40,7 +40,7 @@ Function updatelanguageselector%()
     Else
         local0 = "https://???????/cbue/"
     EndIf
-    local1 = (getenv("AppData") + "\scpcb-ue\temp\")
+    local1 = (getenv("AppData") + "\scpcb-mr\temp\")
     deletefolder(local1)
     createdir(local1)
     If (filetype("Localization\") <> $02) Then

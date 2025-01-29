@@ -7,7 +7,7 @@ Function raycastitems%()
     For local1 = Each items
         entitypickmode(local1\Field2, $00, $01)
         If (((local1\Field15 = $00) And (linepick(entityx(local1\Field2, $00), entityy(local1\Field2, $00), entityz(local1\Field2, $00), 0.0, -5.0, 0.0, 0.0) <> $00)) <> 0) Then
-            positionentity(local1\Field2, entityx(local1\Field2, $00), (pickedy() + 0.005), entityz(local1\Field2, $00), $00)
+            positionentity(local1\Field2, entityx(local1\Field2, $00), (pickedy() + 0.011), entityz(local1\Field2, $00), $00)
             resetentity(local1\Field2)
             local1\Field24 = $01
             local1\Field22 = $00

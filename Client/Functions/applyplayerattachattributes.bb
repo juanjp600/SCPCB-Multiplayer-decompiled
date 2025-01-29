@@ -26,7 +26,9 @@ Function applyplayerattachattributes%(arg0.mp_player, arg1%)
     positionentity(local1\Field0, local2\Field4, local2\Field5, local2\Field6, $00)
     rotateentity(local1\Field0, local2\Field1, local2\Field2, local2\Field3, $00)
     scaleentity(local1\Field0, local2\Field7, local2\Field7, local2\Field7, $00)
-    entitytexture(local1\Field0, local1\Field2\Field4[local2\Field8], $00, $00)
+    If (local1\Field2\Field4[local2\Field8] <> $00) Then
+        entitytexture(local1\Field0, local1\Field2\Field4[local2\Field8], $00, $00)
+    EndIf
     Return $01
     Return $00
 End Function

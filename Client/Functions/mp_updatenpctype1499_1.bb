@@ -181,7 +181,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                     If (rand($1388, $01) = $01) Then
                         If (channelplaying(arg0\Field18) = $00) Then
                             If (400.0 > local2) Then
-                                loadnpcsound(arg0, (("SFX\SCP\1499\Idle" + (Str rand($00, $03))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\SCP\1499\Idle" + (Str rand($00, $03))) + ".ogg"), $00)
                                 arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
                             EndIf
                         EndIf
@@ -192,7 +192,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                         If (100.0 > local2) Then
                             If (entityvisible(arg0\Field3, me\Field60) <> 0) Then
                                 If (25.0 > local2) Then
-                                    loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
+                                    mp_loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
                                     arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
                                     arg0\Field11 = 1.0
                                     For local0 = Each npcs
@@ -215,7 +215,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                     If ((chs\Field2 Lor i_268\Field2) = $00) Then
                         If (16.0 > local2) Then
                             If (entityvisible(arg0\Field3, me\Field60) <> 0) Then
-                                loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
+                                mp_loadnpcsound(arg0, "SFX\SCP\1499\Triggered.ogg", $00)
                                 arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 20.0, 1.0, $01, $00)
                                 setnpcframe(arg0, 203.0, $01)
                                 arg0\Field10 = 1.0
@@ -287,7 +287,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                 If (local5 <> 0) Then
                     If (((0.64 < local2) Lor (60.0 < (Abs deltayaw(arg0\Field3, me\Field60)))) <> 0) Then
                         playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00, $00)
-                    ElseIf (arg0\Field83 <> 0) Then
+                    ElseIf (arg0\Field85 <> 0) Then
                         playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
                         injureplayer((rnd(0.65, 1.1) * difficultydmgmult), 0.0, 500.0, (0.35 * difficultydmgmult), (0.15 * difficultydmgmult))
                         me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.5)

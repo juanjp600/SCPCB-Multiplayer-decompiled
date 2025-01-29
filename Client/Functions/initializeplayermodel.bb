@@ -5,9 +5,10 @@ Function initializeplayermodel%(arg0.mp_player)
     If ((((arg0\Field5 <> mp_getmyindex()) And (arg0\Field35\Field0 = $00)) And (arg0\Field35\Field17 > $00)) <> 0) Then
         arg0\Field35\Field1 = getplayermodelmeshpreset(arg0\Field35\Field17)
         arg0\Field35\Field0 = copyentity(getplayermodelmesh(arg0\Field35\Field17), $00)
-        entitytexture(arg0\Field35\Field0, getplayermodeltexture(arg0\Field35\Field18), $00, $00)
+        If (getplayermodeltexture(arg0\Field35\Field18) <> $00) Then
+            entitytexture(arg0\Field35\Field0, getplayermodeltexture(arg0\Field35\Field18), $00, $00)
+        EndIf
         entityparent(arg0\Field35\Field0, arg0\Field18, $01)
-        rotateentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field9, 0.0, $00)
         positionentity(arg0\Field35\Field0, 0.0, arg0\Field35\Field1\Field10, 0.0, $00)
         scaleentity(arg0\Field35\Field0, arg0\Field35\Field20, arg0\Field35\Field20, arg0\Field35\Field20, $01)
         entityradius(arg0\Field18, (arg0\Field35\Field19 / 2.0), arg0\Field35\Field19)

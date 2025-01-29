@@ -120,12 +120,12 @@ Function mp_updatenpctype106%(arg0.npcs)
                         EndIf
                         If (entityinview(arg0\Field3, mp_getnpctargetcamera(arg0)) <> 0) Then
                             local9 = (4.0 - sqr(local1))
-                            If (arg0\Field83 <> 0) Then
+                            If (arg0\Field85 <> 0) Then
                                 me\Field48 = max(clamp((local9 / 6.0), 0.1, 0.9), me\Field48)
                                 me\Field52 = max(me\Field52, (((sin(((Float millisec) / 20.0)) + 1.0) * 20.0) * max((local9 / 4.0), 0.0)))
                             EndIf
                             If ((millisecs() - arg0\Field29) > $EA60) Then
-                                If (arg0\Field83 <> 0) Then
+                                If (arg0\Field85 <> 0) Then
                                     me\Field52 = 40.0
                                 EndIf
                                 playsound_strict(snd_i\Field47[$06], $00)
@@ -246,11 +246,11 @@ Function mp_updatenpctype106%(arg0.npcs)
                         pointentity(arg0\Field0, me\Field60, 0.0)
                         rotateentity(arg0\Field3, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field3, $00), (10.0 - (Float selecteddifficulty\Field4))), 0.0, $00)
                         If (110.0 = ceil(arg0\Field14)) Then
-                            If (((arg0\Field83 And (0.0 = me\Field0)) And (chs\Field0 = $00)) <> 0) Then
+                            If (((arg0\Field85 And (0.0 = me\Field0)) And (chs\Field0 = $00)) <> 0) Then
                                 playsound_strict(snd_i\Field51[$01], $00)
                                 playsound_strict(snd_i\Field47[$05], $00)
                             EndIf
-                            If ((arg0\Field83 And chs\Field0) = $00) Then
+                            If ((arg0\Field85 And chs\Field0) = $00) Then
                                 If (playerroom\Field7\Field6 = $69) Then
                                     msg\Field2 = format(getlocalstring("death", "106.dimension"), subjectname, "%s")
                                     kill($01, $01, $00, $01)
@@ -258,7 +258,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                                 ElseIf (playerroom\Field7\Field6 = $47) Then
                                     msg\Field2 = format(getlocalstring("death", "106.gatea"), subjectname, "%s")
                                     kill($01, $01, $00, $01)
-                                ElseIf ((arg0\Field83 And (0.0 = me\Field0)) <> 0) Then
+                                ElseIf ((arg0\Field85 And (0.0 = me\Field0)) <> 0) Then
                                     playsound_strict(snd_i\Field45[$03], $01)
                                     showentity(me\Field61)
                                     positionentity(me\Field61, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)

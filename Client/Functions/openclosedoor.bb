@@ -40,15 +40,17 @@ Function openclosedoor%(arg0.doors, arg1%, arg2%)
             local3 = snd_i\Field0[local0]
             local2 = snd_i\Field1[local0]
         EndIf
-        If (arg0\Field6 <> 0) Then
-            arg0\Field17 = playsoundex(local2, camera, arg0\Field0, 10.0, 1.0, $00, $00)
-            local4 = local2
-        Else
-            arg0\Field17 = playsoundex(local3, camera, arg0\Field0, 10.0, 1.0, $00, $00)
-            local4 = local3
-        EndIf
-        If (currentsyncplayer <> Null) Then
-            mp_synchronize3dsound(currentsyncplayer, getsoundfilename(local4), arg0\Field0, 10.0, 1.0)
+        If (channelplaying(arg0\Field17) = $00) Then
+            If (arg0\Field6 <> 0) Then
+                arg0\Field17 = playsoundex(local2, camera, arg0\Field0, 10.0, 1.0, $00, $00)
+                local4 = local2
+            Else
+                arg0\Field17 = playsoundex(local3, camera, arg0\Field0, 10.0, 1.0, $00, $00)
+                local4 = local3
+            EndIf
+            If (currentsyncplayer <> Null) Then
+                mp_synchronize3dsound(currentsyncplayer, getsoundfilename(local4), arg0\Field0, 10.0, 1.0)
+            EndIf
         EndIf
     EndIf
     Return $00

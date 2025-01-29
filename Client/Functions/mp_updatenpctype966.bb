@@ -13,7 +13,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                     hideentity(arg0\Field0)
                 EndIf
                 If ((chs\Field2 Lor i_268\Field2) = $00) Then
-                    If (((arg0\Field83 And (1.0 > local0)) And (0.0 >= arg0\Field28)) <> 0) Then
+                    If (((arg0\Field85 And (1.0 > local0)) And (0.0 >= arg0\Field28)) <> 0) Then
                         Select rand($06, $01)
                             Case $01
                                 createmsg(getlocalstring("msg", "966_1"), 6.0)
@@ -77,7 +77,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                         pointentity(arg0\Field3, me\Field60, 0.0)
                         rotateentity(arg0\Field3, 0.0, entityyaw(arg0\Field3, $01), 0.0, $01)
                         If (350.0 > arg0\Field12) Then
-                            If (arg0\Field83 <> 0) Then
+                            If (arg0\Field85 <> 0) Then
                                 me\Field49 = (((sin(((Float millisec) / 50.0)) + 1.0) * 200.0) / sqr(local0))
                                 If ((((i_714\Field0 <> $02) And (wi\Field0 <> $04)) And (wi\Field2 <> $04)) <> 0) Then
                                     If (0.0 = i_966\Field1) Then
@@ -276,7 +276,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                     EndIf
                     If (((((470.0 < arg0\Field14) And (470.0 >= local1)) Lor ((500.0 < arg0\Field14) And (500.0 >= local1))) Lor ((527.0 < arg0\Field14) And (527.0 >= local1))) <> 0) Then
                         If (0.81 > local0) Then
-                            If (arg0\Field83 <> 0) Then
+                            If (arg0\Field85 <> 0) Then
                                 playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
                                 injureplayer((rnd(0.45, 0.75) * difficultydmgmult), 0.0, 500.0, (0.25 * difficultydmgmult), (0.1 * difficultydmgmult))
                                 me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 1.8)

@@ -12,7 +12,7 @@ Function setnpcframe%(arg0.npcs, arg1#, arg2%)
         setanimtime(arg0\Field0, arg1, $00)
     EndIf
     If (arg2 <> 0) Then
-        arg0\Field80 = arg1
+        arg0\Field82 = arg1
     EndIf
     arg0\Field14 = arg1
     Return $00

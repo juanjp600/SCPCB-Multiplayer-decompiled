@@ -354,6 +354,21 @@ Function executeconsolecommand%(arg0$)
             If (local11 = $00) Then
                 createconsolemsg(getlocalstring("console", "tp.failed"), $FF, $00, $00, $00)
             EndIf
+        Case "crps"
+            If (mp_ishoster() <> 0) Then
+                setplayermodeltexture(ue_players[mp_getmyindex()], $07, $00)
+                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (CORPSE). Use this always after death")
+            EndIf
+        Case "sq"
+            If (mp_ishoster() <> 0) Then
+                setplayermodel(ue_players[mp_getmyindex()], $03, $00)
+                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (J12). Use this always after death")
+            EndIf
+        Case "j12"
+            If (mp_ishoster() <> 0) Then
+                setplayermodel(ue_players[mp_getmyindex()], $04, $00)
+                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (SQUID). Use this always after death")
+            EndIf
         Case "sq"
             If (mp_ishoster() <> 0) Then
                 setplayermodel(ue_players[mp_getmyindex()], $03, $00)

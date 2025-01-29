@@ -45,14 +45,14 @@ Function EntryPoint%()
     If (len(local0) > $00) Then
         runtimeerror((((((("The following DLLs were not found in the game directory:" + chr($0D)) + chr($0A)) + chr($0D)) + chr($0A)) + local0) + "."))
     EndIf
-    If (filetype((getenv("AppData") + "\scpcb-ue\")) <> $02) Then
-        createdir((getenv("AppData") + "\scpcb-ue"))
+    If (filetype((getenv("AppData") + "\scpcb-mr\")) <> $02) Then
+        createdir((getenv("AppData") + "\scpcb-mr"))
     EndIf
-    If (filetype((getenv("AppData") + "\scpcb-ue\Data\")) <> $02) Then
-        createdir((getenv("AppData") + "\scpcb-ue\Data"))
+    If (filetype((getenv("AppData") + "\scpcb-mr\Data\")) <> $02) Then
+        createdir((getenv("AppData") + "\scpcb-mr\Data"))
     EndIf
     key = (New keys)
-    optionfile = (getenv("AppData") + "\scpcb-ue\Data\options.ini")
+    optionfile = (getenv("AppData") + "\scpcb-mr\Data\options.ini")
     opt = (New options)
     opt\Field56 = countgfxdrivers()
     opt\Field57 = (totalvidmem() Sar $0A)
@@ -241,7 +241,7 @@ Function EntryPoint%()
     mp_settings = (New mp_settingssystem)
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($0A)
+    multiplayer_version = versiondots($0B)
     senddebuglog(multiplayer_version)
     createserverinfo()
     mp_menuinit()

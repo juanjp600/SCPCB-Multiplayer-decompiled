@@ -7,7 +7,7 @@ Function loadfont_strict%(arg0$, arg1%, arg2%, arg3%)
         If (filetype(arg0) <> $01) Then
             runtimeerrorex(format(getlocalstring("runerr", "font.notfound"), arg0, "%s"))
         EndIf
-        local0 = loadfont(arg0, arg3)
+        local0 = loadfont(arg0, (((Int (((Float opt\Field50) / 1024.0) * (Float arg1))) * (arg2 = $00)) + (arg2 * arg1)), arg3, $00, $00)
         If (local0 = $00) Then
             runtimeerrorex(format(getlocalstring("runerr", "font.failed.load"), arg0, "%s"))
         EndIf

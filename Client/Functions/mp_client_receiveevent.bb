@@ -45,6 +45,6 @@ Function mp_client_receiveevent%(arg0%)
             local0\Field4 = local8
         EndIf
     EndIf
-    local0\Field26 = $01
+    local0\Field28 = $01
     Return $00
 End Function

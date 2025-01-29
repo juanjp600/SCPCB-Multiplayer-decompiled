@@ -86,7 +86,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                         arg0\Field38 = (local0\Field5 + 14.74219)
                                         Exit
                                     Else
-                                        loadnpcsound(arg0, (("SFX\Character\MTF\173\Cont" + (Str rand($00, $03))) + ".ogg"), $00)
+                                        mp_loadnpcsound(arg0, (("SFX\Character\MTF\173\Cont" + (Str rand($00, $03))) + ".ogg"), $00)
                                         playmtfsound(arg0\Field17, arg0)
                                         playannouncement("SFX\Character\MTF\Announc173Contain.ogg", $01)
                                         If (local0\Field14[$00]\Field6 <> 0) Then
@@ -204,14 +204,14 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         If (local16 > $00) Then
                             If (((arg0\Field29 > $00) And (1050.0 > (Float arg0\Field29))) <> 0) Then
                                 If (local16 < $02) Then
-                                    loadnpcsound(arg0, (("SFX\Character\MTF\ThereHeIs" + (Str rand($00, $05))) + ".ogg"), $00)
+                                    mp_loadnpcsound(arg0, (("SFX\Character\MTF\ThereHeIs" + (Str rand($00, $05))) + ".ogg"), $00)
                                     playmtfsound(arg0\Field17, arg0)
                                 EndIf
                             ElseIf (local16 = $01) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\Stop" + (Str rand($00, $05))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\Stop" + (Str rand($00, $05))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             ElseIf (local16 = $02) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\ClassD" + (Str rand($00, $03))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\ClassD" + (Str rand($00, $03))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             arg0\Field36 = entityx(me\Field60, $01)
@@ -231,9 +231,9 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         If (npcseesnpc(n_i\Field2, arg0, 36.0) > $00) Then
                             If (local18 = Null) Then
                                 If (0.0 < arg0\Field11) Then
-                                    loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
+                                    mp_loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
                                 Else
-                                    loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                    mp_loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 EndIf
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
@@ -257,7 +257,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (1.0 < n_i\Field3\Field10) Then
                         If (npcseesnpc(n_i\Field3, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             arg0\Field36 = entityx(n_i\Field3\Field3, $01)
@@ -276,7 +276,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (n_i\Field4 <> Null) Then
                         If (npcseesnpc(n_i\Field4, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00, $00)
@@ -296,7 +296,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (n_i\Field6 <> Null) Then
                         If (npcseesnpc(n_i\Field6, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             arg0\Field36 = entityx(n_i\Field6\Field3, $01)
@@ -333,7 +333,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 Case $03
                                     If (npcseesnpc(local2, arg0, 36.0) = $01) Then
                                         If (local18 = Null) Then
-                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
+                                            mp_loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
                                             playmtfsound(arg0\Field17, arg0)
                                         EndIf
                                         arg0\Field36 = entityx(local2\Field3, $01)
@@ -598,9 +598,9 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         If (npcseesnpc(n_i\Field2, arg0, 36.0) > $00) Then
                             If (local18 = Null) Then
                                 If (0.0 < arg0\Field11) Then
-                                    loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
+                                    mp_loadnpcsound(arg0, "SFX\Character\MTF\173\Spotted3.ogg", $00)
                                 Else
-                                    loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                    mp_loadnpcsound(arg0, (("SFX\Character\MTF\173\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 EndIf
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
@@ -624,7 +624,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (1.0 < n_i\Field3\Field10) Then
                         If (npcseesnpc(n_i\Field3, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\106\Spotted" + (Str rand($00, $02))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             arg0\Field36 = entityx(n_i\Field3\Field3, $01)
@@ -643,7 +643,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (n_i\Field4 <> Null) Then
                         If (npcseesnpc(n_i\Field4, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\096\Spotted" + (Str rand($00, $01))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             playsoundex(snd_i\Field40[$00], camera, arg0\Field3, 5.0, 1.0, $00, $00)
@@ -663,7 +663,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (n_i\Field6 <> Null) Then
                         If (npcseesnpc(n_i\Field6, arg0, 36.0) = $01) Then
                             If (local18 = Null) Then
-                                loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
+                                mp_loadnpcsound(arg0, (("SFX\Character\MTF\049\Spotted" + (Str rand($00, $04))) + ".ogg"), $00)
                                 playmtfsound(arg0\Field17, arg0)
                             EndIf
                             arg0\Field36 = entityx(n_i\Field6\Field3, $01)
@@ -700,7 +700,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                 Case $03
                                     If (npcseesnpc(local2, arg0, 36.0) = $01) Then
                                         If (local18 = Null) Then
-                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
+                                            mp_loadnpcsound(arg0, "SFX\Character\MTF\049_2\Spotted.ogg", $00)
                                             playmtfsound(arg0\Field17, arg0)
                                         EndIf
                                         arg0\Field36 = entityx(local2\Field3, $01)
@@ -898,7 +898,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                     If (1175.0 > arg0\Field14) Then
                         animatenpc(arg0, 423.0, 463.0, 0.5, $00)
                         If (462.9 < arg0\Field14) Then
-                            loadnpcsound(arg0, "SFX\Character\MTF\TeslaRequest.ogg", $00)
+                            mp_loadnpcsound(arg0, "SFX\Character\MTF\TeslaRequest.ogg", $00)
                             playmtfsound(arg0\Field17, arg0)
                             setnpcframe(arg0, 1175.0, $01)
                         EndIf
@@ -953,7 +953,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                         If (local25 > local24) Then
                             arg0\Field12 = (arg0\Field12 + fps\Field7[$00])
                             If (1050.0 <= arg0\Field12) Then
-                                loadnpcsound(n_i\Field8, (("SFX\Character\MTF\173\Box" + (Str rand($00, $02))) + ".ogg"), $00)
+                                mp_loadnpcsound(n_i\Field8, (("SFX\Character\MTF\173\Box" + (Str rand($00, $02))) + ".ogg"), $00)
                                 playmtfsound(n_i\Field8\Field17, n_i\Field8)
                                 arg0\Field34\Field26 = 2.0
                             EndIf
@@ -1350,7 +1350,7 @@ Function mp_updatenpctypemtf%(arg0.npcs)
                                     local26 = arg0\Field34\Field4
                                     If (local26 = $03) Then
                                         If (local18 = Null) Then
-                                            loadnpcsound(arg0, "SFX\Character\MTF\049_2\TargetTerminated.ogg", $00)
+                                            mp_loadnpcsound(arg0, "SFX\Character\MTF\049_2\TargetTerminated.ogg", $00)
                                             playmtfsound(arg0\Field17, arg0)
                                         EndIf
                                     EndIf

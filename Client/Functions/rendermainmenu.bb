@@ -757,10 +757,11 @@ Function rendermainmenu%()
     If (opt\Field32 <> 0) Then
         color($FF, $FF, $FF)
         setfontex(fo\Field0[$05])
-        textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (50.0 * menuscale))), ((("Multiplayer beta v" + multiplayer_version) + " based on UER ") + "1.5"), $00, $00)
         If (opt\Field33 <> 0) Then
-            setfontex(fo\Field0[$05])
+            textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (50.0 * menuscale))), ((("Multiplayer beta v" + multiplayer_version) + " based on UER ") + "1.5"), $00, $00)
             textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (30.0 * menuscale))), ("FPS: " + (Str fps\Field3)), $00, $00)
+        Else
+            textex((Int (20.0 * menuscale)), (Int ((Float opt\Field50) - (30.0 * menuscale))), ((("Multiplayer beta v" + multiplayer_version) + " based on UER ") + "1.5"), $00, $00)
         EndIf
     EndIf
     rendercursor()

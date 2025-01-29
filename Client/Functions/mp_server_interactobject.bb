@@ -41,7 +41,7 @@ Function mp_server_interactobject%(arg0.mp_player, arg1%, arg2%)
                                         For local2 = Each mp_player
                                             If (local2\Field5 > $01) Then
                                                 mp_writebyte($12)
-                                                mp_writebyte(local0\Field25)
+                                                mp_writebyte(local0\Field27)
                                                 mp_send(local2\Field0, local2\Field1)
                                             EndIf
                                         Next
@@ -66,7 +66,7 @@ Function mp_server_interactobject%(arg0.mp_player, arg1%, arg2%)
                                         For local2 = Each mp_player
                                             If (local2\Field5 > $01) Then
                                                 mp_writebyte($12)
-                                                mp_writebyte(local0\Field25)
+                                                mp_writebyte(local0\Field27)
                                                 mp_send(local2\Field0, local2\Field1)
                                             EndIf
                                         Next

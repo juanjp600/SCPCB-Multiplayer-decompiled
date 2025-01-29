@@ -18,18 +18,18 @@ Function mp_client_receivenpcsdata%()
     n_i\Field8 = mp_npcs[local0]
     n_i\Field9 = mp_npcs[local1]
     For local3 = Each npcs
-        If (((local3\Field71 = $00) And (local3\Field95 = $00)) <> 0) Then
-            If (mp_events[local3\Field67] = Null) Then
+        If (((local3\Field73 = $00) And (local3\Field97 = $00)) <> 0) Then
+            If (mp_events[local3\Field69] = Null) Then
                 removenpc(local3)
             Else
-                local3\Field72 = -9999.0
-                local3\Field73 = -9999.0
                 local3\Field74 = -9999.0
+                local3\Field75 = -9999.0
+                local3\Field76 = -9999.0
                 local3\Field26 = 1.0
                 local3\Field10 = 0.0
             EndIf
         Else
-            local3\Field71 = $00
+            local3\Field73 = $00
         EndIf
     Next
     npcs_hasreceive = $01

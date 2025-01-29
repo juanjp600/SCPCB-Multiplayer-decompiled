@@ -15,7 +15,7 @@ Function mp_client_receivenpc%(arg0%)
         local0 = createnpc(local1, 0.0, 0.0, 0.0)
         mp_initializenpc(local0, arg0)
     EndIf
-    local0\Field95 = $00
+    local0\Field97 = $00
     local2 = mp_readbyte()
     local3 = mp_readbyte()
     local0\Field50 = readbool(local2, $00)
@@ -24,8 +24,8 @@ Function mp_client_receivenpc%(arg0%)
     local0\Field12 = 0.0
     local0\Field28 = 0.0
     local0\Field26 = 0.0
-    local0\Field67 = $00
-    local0\Field68 = $00
+    local0\Field69 = $00
+    local0\Field70 = $00
     local0\Field34 = Null
     local0\Field36 = 0.0
     local0\Field37 = 0.0
@@ -47,8 +47,8 @@ Function mp_client_receivenpc%(arg0%)
         local0\Field34 = mp_npcs[mp_readbyte()]
     EndIf
     If (readbool(local2, $06) <> 0) Then
-        local0\Field67 = mp_readbyte()
-        local0\Field68 = mp_readbyte()
+        local0\Field69 = mp_readbyte()
+        local0\Field70 = mp_readbyte()
     EndIf
     If (readbool(local2, $07) <> 0) Then
         local0\Field26 = convertshorttofloat(mp_readshort(), 10.0)
@@ -58,21 +58,21 @@ Function mp_client_receivenpc%(arg0%)
         local0\Field37 = mp_readfloat()
         local0\Field38 = mp_readfloat()
     EndIf
-    local0\Field72 = mp_readfloat()
-    local0\Field73 = mp_readfloat()
     local0\Field74 = mp_readfloat()
-    local0\Field75 = convertshorttofloat(mp_readshort(), 10.0)
-    local0\Field76 = convertshorttofloat(mp_readshort(), 10.0)
-    local0\Field77 = convertunsignedshorttofloat(mp_readshort(), 10.0)
+    local0\Field75 = mp_readfloat()
+    local0\Field76 = mp_readfloat()
+    local0\Field77 = convertshorttofloat(mp_readshort(), 10.0)
+    local0\Field78 = convertshorttofloat(mp_readshort(), 10.0)
+    local0\Field79 = convertunsignedshorttofloat(mp_readshort(), 10.0)
     local4 = convertunsignedshorttofloat(mp_readshort(), 10.0)
     local5 = convertunsignedshorttofloat(mp_readshort(), 10.0)
-    If (((local4 <> local0\Field84) Lor (local5 <> local0\Field85)) <> 0) Then
-        local0\Field80 = local4
-        local0\Field84 = local4
-        local0\Field85 = local5
+    If (((local4 <> local0\Field86) Lor (local5 <> local0\Field87)) <> 0) Then
+        local0\Field82 = local4
+        local0\Field86 = local4
+        local0\Field87 = local5
     EndIf
-    local0\Field86 = convertshorttofloat(mp_readshort(), 100.0)
-    local0\Field87 = readbool(local3, $04)
+    local0\Field88 = convertshorttofloat(mp_readshort(), 100.0)
+    local0\Field89 = readbool(local3, $04)
     If (readbool(local3, $01) <> 0) Then
         changenpctextureid(local0, (mp_readbyte() - $01))
     EndIf
@@ -81,9 +81,9 @@ Function mp_client_receivenpc%(arg0%)
         local0\Field60 = mp_readshort()
     EndIf
     local0\Field43 = readbool(local3, $05)
-    If (mp_events[local0\Field67] <> Null) Then
-        mp_events[local0\Field67]\Field1\Field15[local0\Field68] = local0
+    If (mp_events[local0\Field69] <> Null) Then
+        mp_events[local0\Field69]\Field1\Field15[local0\Field70] = local0
     EndIf
-    local0\Field71 = $01
+    local0\Field73 = $01
     Return $00
 End Function

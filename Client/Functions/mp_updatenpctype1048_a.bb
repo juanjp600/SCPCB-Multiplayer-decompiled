@@ -50,7 +50,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
                 EndIf
                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                 If (646.0 < local3) Then
-                    If ((((arg0\Field83 And (16.0 > local0)) And (0.0 = i_1048a\Field0)) And (me\Field54 = $00)) <> 0) Then
+                    If ((((arg0\Field85 And (16.0 > local0)) And (0.0 = i_1048a\Field0)) And (me\Field54 = $00)) <> 0) Then
                         i_1048a\Field2 = playsound_strict(loadtempsound("SFX\SCP\1048A\Growth.ogg"), $01)
                         me\Field49 = 1000.0
                         me\Field23 = 2.0

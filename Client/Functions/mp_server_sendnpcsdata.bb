@@ -18,9 +18,9 @@ Function mp_server_sendnpcsdata%()
         blitz_mp_writebyte0(mp_getdatabuffer(), $00)
     EndIf
     For local0 = Each npcs
-        If (local0\Field95 = $00) Then
-            local1 = ((((((((local0\Field50 <> $00) + ((0.0 <> local0\Field10) Shl $01)) + ((0.0 <> local0\Field11) Shl $02)) + ((0.0 <> local0\Field12) Shl $03)) + ((0.0 <> local0\Field28) Shl $04)) + ((local0\Field34 <> Null) Shl $05)) + ((local0\Field67 <> $00) Shl $06)) + ((0.0 <> local0\Field26) Shl $07))
-            local2 = ((((((((0.0 <> local0\Field36) Lor (0.0 <> local0\Field37)) Lor (0.0 <> local0\Field38)) + ((local0\Field62 > $00) Shl $01)) + ((local0\Field65 <> $00) Shl $02)) + ((local0\Field60 > $00) Shl $03)) + ((local0\Field87 <> $00) Shl $04)) + ((local0\Field43 <> $00) Shl $05))
+        If (local0\Field97 = $00) Then
+            local1 = ((((((((local0\Field50 <> $00) + ((0.0 <> local0\Field10) Shl $01)) + ((0.0 <> local0\Field11) Shl $02)) + ((0.0 <> local0\Field12) Shl $03)) + ((0.0 <> local0\Field28) Shl $04)) + ((local0\Field34 <> Null) Shl $05)) + ((local0\Field69 <> $00) Shl $06)) + ((0.0 <> local0\Field26) Shl $07))
+            local2 = ((((((((0.0 <> local0\Field36) Lor (0.0 <> local0\Field37)) Lor (0.0 <> local0\Field38)) + ((local0\Field62 > $00) Shl $01)) + ((local0\Field65 <> $00) Shl $02)) + ((local0\Field60 > $00) Shl $03)) + ((local0\Field89 <> $00) Shl $04)) + ((local0\Field43 <> $00) Shl $05))
             blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field5)
             blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field4)
             blitz_mp_writebyte0(mp_getdatabuffer(), local1)
@@ -40,9 +40,9 @@ Function mp_server_sendnpcsdata%()
             If (local0\Field34 <> Null) Then
                 blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field34\Field5)
             EndIf
-            If (local0\Field67 <> $00) Then
-                blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field67)
-                blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field68)
+            If (local0\Field69 <> $00) Then
+                blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field69)
+                blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field70)
             EndIf
             If (0.0 <> local0\Field26) Then
                 blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattoshort(local0\Field26, 10.0))
@@ -58,9 +58,9 @@ Function mp_server_sendnpcsdata%()
             blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattoshort(entityyaw(local0\Field3, $01), 10.0))
             blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattoshort(entityyaw(local0\Field0, $01), 10.0))
             blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattounsignedshort(max(animtime(local0\Field0), 0.0), 10.0))
-            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattounsignedshort(local0\Field84, 10.0))
-            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattounsignedshort(local0\Field85, 10.0))
-            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattoshort(local0\Field86, 100.0))
+            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattounsignedshort(local0\Field86, 10.0))
+            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattounsignedshort(local0\Field87, 10.0))
+            blitz_mp_writeshort0(mp_getdatabuffer(), convertfloattoshort(local0\Field88, 100.0))
             If (local0\Field62 > $00) Then
                 blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field62)
             EndIf

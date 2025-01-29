@@ -65,11 +65,14 @@ Function rendergui%()
     Local local71%
     Local local72%
     Local local73#
-    Local local74.npcs
-    Local local75.rooms
-    Local local76%
+    Local local74#
+    Local local75%
+    Local local76#
     Local local77%
-    Local local78%
+    Local local78.rooms
+    Local local79%
+    Local local80%
+    Local local81%
     catcherrors("RenderGUI()")
     If (((((((menuopen Lor invopen) Lor consoleopen) Lor (otheropen <> Null)) Lor (d_i\Field6 <> Null)) Lor (0.0 > me\Field45)) Lor ismultiplayerhudenabled) <> 0) Then
         showpointer()
@@ -604,21 +607,22 @@ Function rendergui%()
                             local69 = (Int min(20.0, (Float (local65 + $06))))
                             For local11 = (Float local66) To (Float local67) Step 1.0
                                 For local16 = (Float local68) To (Float local69) Step 1.0
-                                    If (((currmapgrid\Field0[(Int ((local16 * 21.0) + local11))] > $00) And ((currmapgrid\Field2[(Int ((local16 * 21.0) + local11))] > $00) Lor (local53 = $00))) <> 0) Then
-                                        local70 = (Int ((((Float local64) - local11) * (Float local56)) + (Float local4)))
-                                        local71 = (Int ((Float local5) - (((Float local65) - local16) * (Float local56))))
-                                        color(((((selecteditem\Field4\Field2 = $4C) And ((currmapgrid\Field0[(Int ((local16 * 21.0) + local11))] <= $00) Lor (currmapgrid\Field2[(Int ((local16 * 21.0) + local11))] <= $00))) * $46) + $82), $1E, $1E)
+                                    local70 = (Int ((local16 * 21.0) + local11))
+                                    If (((currmapgrid\Field0[local70] > $00) And ((currmapgrid\Field2[local70] > $00) Lor (local53 = $00))) <> 0) Then
+                                        local71 = (Int ((((Float local64) - local11) * (Float local56)) + (Float local4)))
+                                        local72 = (Int ((Float local5) - (((Float local65) - local16) * (Float local56))))
+                                        color(((((selecteditem\Field4\Field2 = $4C) And ((currmapgrid\Field0[local70] <= $00) Lor (currmapgrid\Field2[local70] <= $00))) * $AA) + $1E), $1E, $1E)
                                         If (currmapgrid\Field0[(Int ((local11 + 1.0) + (local16 * 21.0)))] = $00) Then
-                                            rect((local70 - local57), (local71 - local57), $01, local56, $01)
+                                            rect((local71 - local57), (local72 - local57), $01, local56, $01)
                                         EndIf
                                         If (currmapgrid\Field0[(Int ((local11 - 1.0) + (local16 * 21.0)))] = $00) Then
-                                            rect((local70 + local57), (local71 - local57), $01, local56, $01)
+                                            rect((local71 + local57), (local72 - local57), $01, local56, $01)
                                         EndIf
                                         If (currmapgrid\Field0[(Int (((local16 - 1.0) * 21.0) + local11))] = $00) Then
-                                            rect((local70 - local57), (local71 - local57), local56, $01, $01)
+                                            rect((local71 - local57), (local72 - local57), local56, $01, $01)
                                         EndIf
                                         If (currmapgrid\Field0[(Int (((local16 + 1.0) * 21.0) + local11))] = $00) Then
-                                            rect((local70 - local57), (local71 + local57), local56, $01, $01)
+                                            rect((local71 - local57), (local72 + local57), local56, $01, $01)
                                         EndIf
                                     EndIf
                                 Next
@@ -639,49 +643,52 @@ Function rendergui%()
                                 textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int ((10.0 * menuscale) + (Float (local5 - local59)))), getlocalstring("msg", "nav.data"), $00, $00)
                             EndIf
                             local8 = (entityyaw(me\Field60, $00) - 90.0)
-                            local10 = (((6.0 * menuscale) * cos(local8)) + (Float local4))
-                            local13 = ((Float local5) - ((6.0 * menuscale) * sin(local8)))
-                            local11 = ((cos((local8 - 140.0)) * (5.0 * menuscale)) + (Float local4))
-                            local14 = ((Float local5) - (sin((local8 - 140.0)) * (5.0 * menuscale)))
-                            local12 = ((cos((local8 + 140.0)) * (5.0 * menuscale)) + (Float local4))
-                            local15 = ((Float local5) - (sin((local8 + 140.0)) * (5.0 * menuscale)))
+                            local73 = (6.0 * menuscale)
+                            local74 = (5.0 * menuscale)
+                            local10 = ((cos(local8) * local73) + (Float local4))
+                            local13 = ((Float local5) - (sin(local8) * local73))
+                            local11 = ((cos((local8 - 140.0)) * local74) + (Float local4))
+                            local14 = ((Float local5) - (sin((local8 - 140.0)) * local74))
+                            local12 = ((cos((local8 + 140.0)) * local74) + (Float local4))
+                            local15 = ((Float local5) - (sin((local8 + 140.0)) * local74))
                             line((Int local10), (Int local13), (Int local11), (Int local14))
                             line((Int local10), (Int local13), (Int local12), (Int local15))
                             line((Int local11), (Int local14), (Int local12), (Int local15))
                         EndIf
-                        local72 = $00
+                        local75 = $00
                         If (selecteditem\Field4\Field2 = $4C) Then
-                            local76 = $00
-                            local77 = $00
-                            For local75 = Each rooms
-                                local78 = local75\Field7\Field6
-                                If ((((((local78 <> $04) And (local78 <> $47)) And (local78 <> $49)) And (local78 <> $69)) And (local78 <> $6A)) <> 0) Then
-                                    local76 = (local76 + $01)
-                                    local77 = (local77 + local75\Field1)
+                            local79 = $00
+                            local80 = $00
+                            For local78 = Each rooms
+                                local81 = local78\Field7\Field6
+                                If ((((((local81 <> $04) And (local81 <> $47)) And (local81 <> $49)) And (local81 <> $69)) And (local81 <> $6A)) <> 0) Then
+                                    local79 = (local79 + $01)
+                                    local80 = (local80 + local78\Field1)
                                 EndIf
                             Next
-                            textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int ((10.0 * menuscale) + (Float (local5 - local59)))), (((Str local77) + "/") + (Str local76)), $00, $00)
+                            textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int ((10.0 * menuscale) + (Float (local5 - local59)))), (((Str local80) + "/") + (Str local79)), $00, $00)
                             If ((millisec Mod $258) < $190) Then
                                 color($C8, $00, $00)
-                                For local74 = Each npcs
-                                    If ((((((local74\Field4 = $07) Lor (local74\Field4 = $06)) Lor (local74\Field4 = $05)) Lor (local74\Field4 = $02)) Lor (local74\Field4 = $04)) <> 0) Then
-                                        If (local74\Field43 = $00) Then
-                                            local73 = entitydistancesquared(camera, local74\Field3)
-                                            If (900.0 > local73) Then
-                                                local24 = sqr(local73)
+                                ;bbFieldPtrAdd at _3337_frendergui:86, probably for an object of unknowable type
+                                Select eax_0AE2
+                                    Case $07,$06,$05,$02,$04
+                                        ;bbFieldPtrAdd at _35058_frendergui:6, probably for an object of unknowable type
+                                        If (eax_0AE6 = $00) Then
+                                            ;bbFieldPtrAdd at _35058_frendergui:16, probably for an object of unknowable type
+                                            local76 = entitydistancesquared(camera, eax_0AEA)
+                                            If (900.0 > local76) Then
+                                                local24 = sqr(local76)
                                                 oval((Int ((Float local4) - ((1.5 * menuscale) * local24))), (Int ((Float local5) - ((1.5 * menuscale) * local24))), (Int ((3.0 * menuscale) * local24)), (Int ((3.0 * menuscale) * local24)), $00)
-                                                textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local72)) * menuscale))), local74\Field47, $00, $00)
-                                                local72 = (local72 + $01)
+                                                ;bbFieldPtrAdd at _35058_frendergui:173, probably for an object of unknowable type
+                                                textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local75)) * menuscale))), eax_0AFA, $00, $00)
+                                                local75 = (local75 + $01)
                                             EndIf
                                         EndIf
-                                    EndIf
-                                Next
-                                If (playerroom\Field7\Field6 = $2C) Then
-                                    If (8.0 > coffindistance) Then
-                                        local73 = rnd(4.0, 8.0)
-                                        oval((Int ((Float local4) - ((1.5 * menuscale) * local73))), (Int ((Float local5) - ((1.5 * menuscale) * local73))), (Int ((3.0 * menuscale) * local73)), (Int ((3.0 * menuscale) * local73)), $00)
-                                        textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local72)) * menuscale))), "SCP-895", $00, $00)
-                                    EndIf
+                                End Select
+                                If (((playerroom\Field7\Field6 = $2C) And (8.0 > coffindistance)) <> 0) Then
+                                    local76 = rnd(4.0, 8.0)
+                                    oval((Int ((Float local4) - ((1.5 * menuscale) * local76))), (Int ((Float local5) - ((1.5 * menuscale) * local76))), (Int ((3.0 * menuscale) * local76)), (Int ((3.0 * menuscale) * local76)), $00)
+                                    textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local75)) * menuscale))), "SCP-895", $00, $00)
                                 EndIf
                             EndIf
                         EndIf

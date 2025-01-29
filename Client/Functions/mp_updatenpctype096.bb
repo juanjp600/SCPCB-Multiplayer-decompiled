@@ -88,7 +88,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (chs\Field2 = $00) Then
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
-                                If (arg0\Field83 <> 0) Then
+                                If (arg0\Field85 <> 0) Then
                                     playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
@@ -165,7 +165,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                     If (chs\Field2 = $00) Then
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
-                                If (arg0\Field83 <> 0) Then
+                                If (arg0\Field85 <> 0) Then
                                     playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
@@ -279,7 +279,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                             arg0\Field24 = 0.0
                             If (arg0\Field34 = Null) Then
                                 playsoundex(snd_i\Field51[$04], camera, arg0\Field3, 10.0, 1.0, $00, $00)
-                                If (arg0\Field83 <> 0) Then
+                                If (arg0\Field85 <> 0) Then
                                     me\Field23 = 30.0
                                     me\Field49 = 2000.0
                                     msg\Field2 = format(getlocalstring("death", "096"), subjectname, "%s")

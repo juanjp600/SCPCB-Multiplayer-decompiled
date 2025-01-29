@@ -1,9 +1,9 @@
 Function loadachievementsfile%()
     Local local0$
-    If (filetype((getenv("AppData") + "\scpcb-ue\Data\Does the Black Moon howl.cb")) <> $01) Then
+    If (filetype((getenv("AppData") + "\scpcb-mr\Data\Does the Black Moon howl.cb")) <> $01) Then
         Return $00
     EndIf
-    local0 = (Str openfile((getenv("AppData") + "\scpcb-ue\Data\Does the Black Moon howl.cb")))
+    local0 = (Str openfile((getenv("AppData") + "\scpcb-mr\Data\Does the Black Moon howl.cb")))
     If (readbyte((Int local0)) <> 0) Then
         s2imapset(unlockedachievements, "keter", $01)
     EndIf

@@ -59,18 +59,18 @@ Function mp_updatenpctype173%(arg0.npcs)
                 EndIf
                 If (local2 = $00) Then
                     local5 = sqr(local0)
-                    If (arg0\Field83 <> 0) Then
+                    If (arg0\Field85 <> 0) Then
                         me\Field48 = max(clamp(((4.0 - local5) / 6.0), 0.1, 0.9), me\Field48)
                         me\Field52 = max(me\Field52, (((sin(((Float millisec) / 20.0)) + 1.0) * 15.0) * max(((3.5 - local5) / 3.5), 0.0)))
                     EndIf
                     If ((((12.25 > local0) And ((millisecs() - arg0\Field29) > $EA60)) And local1) <> 0) Then
-                        If (arg0\Field83 <> 0) Then
+                        If (arg0\Field85 <> 0) Then
                             playsound_strict(snd_i\Field47[rand($03, $04)], $00)
                         EndIf
                         arg0\Field29 = millisecs()
                     EndIf
                     If (2.25 > local0) Then
-                        If (arg0\Field83 <> 0) Then
+                        If (arg0\Field85 <> 0) Then
                             If (rand($2BC, $01) = $01) Then
                                 playsoundex(snd_i\Field46[rand($00, $02)], camera, arg0\Field0, 10.0, 1.0, $00, $00)
                             EndIf
@@ -138,7 +138,7 @@ Function mp_updatenpctype173%(arg0.npcs)
                     EndIf
                     If (local1 <> 0) Then
                         If (i_268\Field2 = $00) Then
-                            arg0\Field15 = deltayaw(arg0\Field3, arg0\Field94\Field19)
+                            arg0\Field15 = deltayaw(arg0\Field3, arg0\Field96\Field19)
                         EndIf
                         If (0.4225 > local0) Then
                             Select playerroom\Field7\Field6
@@ -151,7 +151,7 @@ Function mp_updatenpctype173%(arg0.npcs)
                                 Default
                                     msg\Field2 = format(getlocalstring("death", "173.default"), subjectname, "%s")
                             End Select
-                            If (arg0\Field83 <> 0) Then
+                            If (arg0\Field85 <> 0) Then
                                 If (chs\Field0 = $00) Then
                                     playsoundex(snd_i\Field53[rand($00, $02)], camera, arg0\Field0, 8.0, 1.0, $00, $00)
                                     If (rand($02, $01) = $01) Then
@@ -171,7 +171,7 @@ Function mp_updatenpctype173%(arg0.npcs)
                             translateentity(arg0\Field3, ((cos((entityyaw(arg0\Field3, $00) + 90.0)) * arg0\Field23) * fps\Field7[$00]), 0.0, ((sin((entityyaw(arg0\Field3, $00) + 90.0)) * arg0\Field23) * fps\Field7[$00]), $00)
                         EndIf
                     ElseIf (0.0 <> arg0\Field36) Then
-                        arg0\Field15 = deltayaw(arg0\Field3, arg0\Field94\Field19)
+                        arg0\Field15 = deltayaw(arg0\Field3, arg0\Field96\Field19)
                         If (((0.25 < distancesquared(entityx(arg0\Field3, $00), arg0\Field36, entityz(arg0\Field3, $00), arg0\Field38, 0.0, 0.0)) And (i_268\Field2 = $00)) <> 0) Then
                             aligntovector(arg0\Field3, (arg0\Field36 - entityx(arg0\Field3, $00)), 0.0, (arg0\Field38 - entityz(arg0\Field3, $00)), $03, 1.0)
                             moveentity(arg0\Field3, 0.0, 0.0, (arg0\Field23 * fps\Field7[$00]))

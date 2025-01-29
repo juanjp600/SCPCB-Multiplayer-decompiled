@@ -103,10 +103,10 @@ Function updategui%()
             EndIf
         EndIf
     EndIf
-    If (i_294\Field0 <> 0) Then
-        update294()
-    EndIf
     If ((((menuopen Lor (Int me\Field0)) Lor consoleopen) Lor ismultiplayerhudenabled) = $00) Then
+        If (i_294\Field0 <> 0) Then
+            update294()
+        EndIf
         If (((((invopen Lor i_294\Field0) Lor (otheropen <> Null)) Lor (d_i\Field6 <> Null)) Lor (selectedscreen <> Null)) = $00) Then
             If (d_i\Field9 <> $00) Then
                 If (mo\Field6 <> 0) Then

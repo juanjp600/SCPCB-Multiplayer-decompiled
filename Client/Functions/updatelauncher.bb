@@ -30,7 +30,7 @@ Function updatelauncher%(arg0.launcher)
     For local0 = $00 To $01 Step $01
         buttonsfx[local0] = loadsound_strict((("SFX\Interact\Button" + (Str local0)) + ".ogg"))
     Next
-    local2[$00] = loadanimimage_strict("GFX\Menu\launcher_media.png", $40, $40, $00, $03)
+    local2[$00] = loadanimimage_strict("GFX\Menu\launcher_media.png", $40, $40, $00, $04)
     local3 = (imagewidth(local2[$00]) Sar $01)
     local2[$01] = loadanimimage_strict("GFX\Menu\language_button.png", $28, $28, $00, $04)
     local4 = loadanimimage_strict("GFX\Menu\buttons.png", $15, $15, $00, $07)
@@ -175,24 +175,33 @@ Function updatelauncher%(arg0.launcher)
             EndIf
         EndIf
         drawblock(local2[$00], $14, $18A, $00)
-        If (mouseon($82, $18A, $40, $40) <> 0) Then
-            rect($81, $189, $42, $42, $00)
-            textex(($82 + local3), $176, "MODDB", $01, $00)
+        If (mouseon($64, $18A, $40, $40) <> 0) Then
+            rect($63, $189, $42, $42, $00)
+            textex(($64 + local3), $176, "MODDB", $01, $00)
             If (mo\Field0 <> 0) Then
                 playsound_strict(buttonsfx[$00], $00)
                 execfile_strict("https://www.moddb.com/mods/scp-containment-breach-ultimate-edition")
             EndIf
         EndIf
-        drawblock(local2[$00], $82, $18A, $01)
-        If (mouseon($F0, $18A, $40, $40) <> 0) Then
-            rect($EF, $189, $42, $42, $00)
-            textex(($F0 + local3), $176, "YOUTUBE", $01, $00)
+        drawblock(local2[$00], $64, $18A, $01)
+        If (mouseon($B4, $18A, $40, $40) <> 0) Then
+            rect($B3, $189, $42, $42, $00)
+            textex(($B4 + local3), $176, "YOUTUBE", $01, $00)
             If (mo\Field0 <> 0) Then
                 playsound_strict(buttonsfx[$00], $00)
                 execfile_strict("https://www.youtube.com/channel/UCPqWOCPfKooDnrLNzA67Acw")
             EndIf
         EndIf
-        drawblock(local2[$00], $F0, $18A, $02)
+        drawblock(local2[$00], $B4, $18A, $02)
+        If (mouseon($104, $18A, $40, $40) <> 0) Then
+            rect($103, $189, $42, $42, $00)
+            textex(($104 + local3), $176, "Wiki", $01, $00)
+            If (mo\Field0 <> 0) Then
+                playsound_strict(buttonsfx[$00], $00)
+                execfile_strict("https://scpcbultimatereborn.miraheze.org/wiki/Main_Page")
+            EndIf
+        EndIf
+        drawblock(local2[$00], $104, $18A, $03)
         If (local7 <> $00) Then
             color($FF, $00, $00)
             drawimage(local2[$01], $1C7, $126, $03)

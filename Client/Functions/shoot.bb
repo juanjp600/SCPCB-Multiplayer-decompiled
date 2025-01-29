@@ -20,7 +20,7 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
     EndIf
     If (arg5 >= rnd(1.0, 0.0)) Then
         local7 = rand($11, $01)
-        If (arg0\Field83 <> 0) Then
+        If (arg0\Field85 <> 0) Then
             turnentity(camera, rnd(-3.0, 3.0), rnd(-3.0, 3.0), 0.0, $00)
         EndIf
         Select local7
@@ -63,7 +63,7 @@ Function shoot%(arg0.npcs, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%)
                     kill($01, $01, $00, $01)
                 EndIf
         End Select
-        If ((arg0\Field83 And (350.0 > msg\Field1)) <> 0) Then
+        If ((arg0\Field85 And (350.0 > msg\Field1)) <> 0) Then
             createmsg(local4, 6.0)
         EndIf
         If (6.0 < mp_getnpctargetinjuries(arg0)) Then

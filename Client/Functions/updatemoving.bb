@@ -53,7 +53,7 @@ Function updatemoving%()
     EndIf
     If (me\Field20 > me\Field17) Then
         local7 = (0.0 < me\Field38)
-        me\Field17 = min((((fps\Field7[$00] * 0.2) * (((Float local7) * 0.6) + (Float (local7 = $00)))) + me\Field17), 100.0)
+        me\Field17 = min(((((((Float local7) * 0.6) + (Float (local7 = $00))) / (i_966\Field1 + 1.0)) * (fps\Field7[$00] * 0.2)) + me\Field17), 100.0)
     EndIf
     me\Field20 = 100.0
     If (0.0 < me\Field19) Then

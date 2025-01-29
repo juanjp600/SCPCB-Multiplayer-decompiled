@@ -33,7 +33,7 @@ Function mp_server_receiveconsole%(arg0.mp_player)
             local1 = $01
         Case "reset096","r096","reset372","r372","disable173","dis173","enable173","en173","disable106","dis106","enable106","en106","disable966","dis966","enable966","en966","disable049","dis049"
             local1 = $01
-        Case "enable049","en049","disable066","dis066","enable066","en066","disable096","dis096","enable096","en096","106retreat","106r","money","rich","asd","notarget","nt","godmode","god","sq","bfall"
+        Case "enable049","en049","disable066","dis066","enable066","en066","disable096","dis096","enable096","en096","106retreat","106r","money","rich","asd","notarget","nt","godmode","god","sq","bfall","j12"
             local1 = $01
     End Select
     If (local1 <> 0) Then
@@ -41,9 +41,16 @@ Function mp_server_receiveconsole%(arg0.mp_player)
         local4 = me\Field60
         me\Field60 = arg0\Field18
         Select lower(local2)
+            Case "crps"
+                setplayermodeltexture(arg0, $07, $00)
+                flushplayermodel(arg0)
+                mp_server_sendsinglechatmessage(arg0, "You got new skin (CORPSE). Use this always after death")
             Case "sq"
                 setplayermodel(arg0, $03, $00)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin. Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, "You got new skin (J12). Use this always after death")
+            Case "j12"
+                setplayermodel(arg0, $04, $00)
+                mp_server_sendsinglechatmessage(arg0, "You got new skin (SQUID). Use this always after death")
             Case "bfall"
                 local2 = lower(right(local0, (len(local0) - instr(local0, " ", $01))))
                 Select local2

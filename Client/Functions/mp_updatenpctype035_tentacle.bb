@@ -57,7 +57,7 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                             If (3.24 > local0) Then
                                 If (20.0 > (Abs deltayaw(arg0\Field3, me\Field60))) Then
                                     If (mp_getnpctargetmodel(arg0) = $02) Then
-                                        If (arg0\Field83 <> 0) Then
+                                        If (arg0\Field85 <> 0) Then
                                             playsound_strict(loadtempsound("SFX\Character\BodyFall.ogg"), $00)
                                         EndIf
                                         injureplayer(rnd(0.5, 0.0), 0.0, 0.0, 0.0, 0.0)
@@ -73,7 +73,7 @@ Function mp_updatenpctype035_tentacle%(arg0.npcs)
                                             kill($01, $01, $00, $01)
                                         EndIf
                                     EndIf
-                                    If (arg0\Field83 <> 0) Then
+                                    If (arg0\Field85 <> 0) Then
                                         me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.0)
                                     EndIf
                                 Else

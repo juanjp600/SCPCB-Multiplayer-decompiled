@@ -75,7 +75,7 @@ Function updatenpcs%()
     catcherrors("UpdateNPCs()")
     For local0 = Each npcs
         local0\Field59 = isinfacility(entityy(local0\Field3, $00))
-        local0\Field83 = $01
+        local0\Field85 = $01
         Select local0\Field4
             Case $07
                 If (((3.0 <> local0\Field26) And (isplayeroutsidefacility() = $00)) <> 0) Then
@@ -1414,6 +1414,16 @@ Function updatenpcs%()
                                 EndIf
                             EndIf
                             updatesoundorigin(local0\Field20, camera, local0\Field0, 10.0, 1.0, $01, $01)
+                        Case 5.0
+                            If (1120.0 > local0\Field14) Then
+                                setnpcframe(local0, 1121.0, $01)
+                                moveentity(local0\Field3, 0.0, 0.0, 0.5)
+                            Else
+                                animatenpc(local0, 1121.0, 1224.0, 0.3, $00)
+                                If (1223.9 < local0\Field14) Then
+                                    local0\Field10 = 2.0
+                                EndIf
+                            EndIf
                     End Select
                     local0\Field29 = (Int max(((Float local0\Field29) - fps\Field7[$00]), 0.0))
                 EndIf

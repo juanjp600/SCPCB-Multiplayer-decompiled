@@ -46,8 +46,8 @@ Function updateplayersmodel%()
                         rotateentity(local0\Field35\Field2, local1, local2, (entityroll(local0\Field35\Field2, $01) + local0\Field35\Field15), $01)
                     EndIf
                 Else
-                    rotateentity(local0\Field35\Field0, 0.0, (local0\Field35\Field7 - local0\Field35\Field1\Field9), 0.0, $01)
                     local0\Field35\Field7 = local0\Field13
+                    rotateentity(local0\Field35\Field0, 0.0, (local0\Field35\Field7 - local0\Field35\Field1\Field9), 0.0, $01)
                 EndIf
                 If (local0\Field35\Field3 <> $00) Then
                     local5 = local0\Field35\Field1\Field6

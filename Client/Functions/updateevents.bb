@@ -2407,7 +2407,7 @@ Function updateevents%()
                                 mo\Field0 = $00
                                 playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\BodyHorrorExchange" + (Str rand($00, $03))) + ".ogg")), $00)
                                 me\Field51 = 5.0
-                                If (15.0 < me\Field31) Then
+                                If (7.0 < me\Field31) Then
                                     msg\Field2 = getlocalstring("death", "1162")
                                     kill($01, $01, $00, $01)
                                 Else
@@ -2434,7 +2434,7 @@ Function updateevents%()
                             local25 = $00
                             playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\BodyHorrorExchange" + (Str rand($00, $03))) + ".ogg")), $00)
                             me\Field51 = 5.0
-                            If (15.0 < me\Field31) Then
+                            If (7.0 < me\Field31) Then
                                 msg\Field2 = getlocalstring("death", "1162")
                                 kill($01, $01, $00, $01)
                             Else
@@ -2843,6 +2843,8 @@ Function updateevents%()
                             giveachievement("294", $01)
                             i_294\Field0 = local23
                             If (i_294\Field0 <> 0) Then
+                                createhintmsg(getlocalstring("msg", "294.keys"), 6.0, $01)
+                                flushkeys()
                                 selecteditem = Null
                                 mo\Field0 = $00
                             EndIf
@@ -3395,6 +3397,8 @@ Function updateevents%()
                                                 If (((n_i\Field12 Lor n_i\Field10) Lor n_i\Field11) = $00) Then
                                                     changenpctextureid(local1, $13)
                                                 EndIf
+                                            Case $02
+                                                local1\Field10 = 5.0
                                             Case $0C
                                                 showentity(local1\Field0)
                                             Case $0D
@@ -4136,8 +4140,8 @@ Function updateevents%()
                     local33 = entityz(me\Field60, $01)
                     me\Field66 = (((isinsideelevator(local31, local32, local33, local3\Field1\Field11[$02]) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$03])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$04])) Lor isinsideelevator(local31, local32, local33, local3\Field1\Field11[$05]))
                     toelevatorfloor = $01
-                    local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $00, (1.0 = local3\Field2))
-                    local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$04], local3\Field1\Field11[$05], local3, $00, (1.0 = local3\Field2))
+                    local3\Field3 = updateelevators(local3\Field3, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $00, ((1.0 = local3\Field2) And (1.0 < n_i\Field3\Field10)))
+                    local3\Field4 = updateelevators(local3\Field4, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$04], local3\Field1\Field11[$05], local3, $00, ((1.0 = local3\Field2) And (1.0 < n_i\Field3\Field10)))
                 ElseIf (local3\Field1\Field18 <> Null) Then
                     If (local3\Field1\Field18\Field2[$00] <> $00) Then
                         For local93 = $00 To $12 Step $01
@@ -6267,10 +6271,10 @@ Function updateevents%()
                     If (interactobject(local3\Field1\Field11[$01], 0.8, $00) <> 0) Then
                         If ((((i_714\Field0 <> $02) And (wi\Field0 <> $04)) And (wi\Field2 <> $04)) <> 0) Then
                             createmsg(getlocalstring("msg", "duck"), 6.0)
+                            playsound_strict(loadtempsound("SFX\SCP\Joke\Quack.ogg"), $00)
                         Else
                             createmsg(getlocalstring("msg", "flamingo"), 6.0)
                         EndIf
-                        playsound_strict(loadtempsound("SFX\SCP\Joke\Quack.ogg"), $00)
                     EndIf
                     If (0.0 = local3\Field3) Then
                         If (interactobject(local3\Field1\Field11[$02], 0.8, $00) <> 0) Then

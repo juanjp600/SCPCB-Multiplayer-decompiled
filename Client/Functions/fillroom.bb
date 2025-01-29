@@ -186,7 +186,7 @@ Function fillroom%(arg0.rooms)
                 local0 = createdoor(arg0, (arg0\Field3 - 6.869531), (arg0\Field4 + 1.484375), (arg0\Field5 + 26.0875), -90.0, $00, $00, $00, $00, $00)
                 local0 = createdoor(arg0, (arg0\Field3 - 8.617188), (arg0\Field4 + 1.484375), (arg0\Field5 + 14.49375), 0.0, $00, $00, $00, $00, $00)
                 If (rand($02, $01) = $01) Then
-                    local7 = createitem("Level 0 Key Card", $59, (arg0\Field3 - 5.247718), (arg0\Field4 + 1.972656), (arg0\Field5 + 24.74093), $00, $00, $00, 1.0, $00)
+                    local7 = createitem("Level 0 Key Card", $59, (arg0\Field3 - 5.246094), (arg0\Field4 + 1.972656), (arg0\Field5 + 24.73828), $00, $00, $00, 1.0, $00)
                     entityparent(local7\Field2, arg0\Field2, $01)
                 EndIf
             EndIf
@@ -280,6 +280,8 @@ Function fillroom%(arg0.rooms)
             EndIf
             local7 = createitem("Document SCP-173", $00, (arg0\Field3 + 3.277539), (arg0\Field4 + (1.0 / 1.479769)), (arg0\Field5 + 9.683946), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Note From Bryan", $00, (arg0\Field3 + 6.414062), (arg0\Field4 + 2.148438), (arg0\Field5 + 5.203125), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 7.226562), (arg0\Field4 + 1.972656), (arg0\Field5 + 4.246094), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
             If (rand($03, $01) = $01) Then
@@ -318,7 +320,7 @@ Function fillroom%(arg0.rooms)
                 local7 = createitem("E-Reader 30", $4F, (arg0\Field3 + 1.453125), (arg0\Field4 + (1.0 / 1.024)), (arg0\Field5 + (1.0 / 1.089362)), $00, $00, $00, 1.0, $00)
                 entityparent(local7\Field2, arg0\Field2, $01)
             EndIf
-            local6 = setemitter(arg0, (arg0\Field3 + 13.21875), (arg0\Field4 + (1.0 / 0.512)), (arg0\Field5 + 17.57812), $07)
+            local6 = setemitter(arg0, (arg0\Field3 + 13.16406), (arg0\Field4 + 2.03125), (arg0\Field5 + 17.85156), $07)
             local6\Field11 = $02
         Case $04
             local0 = createdoor(arg0, (arg0\Field3 - 22.5), arg0\Field4, (arg0\Field5 + 4.75), 180.0, $00, $00, $00, $00, $00)
@@ -804,6 +806,8 @@ Function fillroom%(arg0.rooms)
             local3\Field4 = 0.00005
             local3\Field5 = 5.5
             entityparent(local3\Field0, arg0\Field2, $01)
+            local3 = createdecal($01, (arg0\Field3 + (1.0 / 2.485437)), ((arg0\Field4 + 2.75) - 0.005), (arg0\Field5 + (1.0 / 1.590062)), -90.0, rnd(360.0, 0.0), 0.0, rnd(0.2, 0.3), 0.7, $00, $01, $00, $00, $00)
+            entityparent(local3\Field0, arg0\Field2, $01)
             local3 = createdecal($15, (arg0\Field3 + (1.0 / 2.485437)), ((arg0\Field4 + 2.75) - 0.005), (arg0\Field5 + (1.0 / 1.590062)), -90.0, rnd(360.0, 0.0), 0.0, rnd(0.7, 0.8), 1.0, $00, $01, $00, $00, $00)
             local3\Field4 = 0.00005
             local3\Field5 = 5.5
@@ -835,6 +839,8 @@ Function fillroom%(arg0.rooms)
             freeentity(local0\Field1)
             local0\Field1 = $00
             arg0\Field13[$00] = createlever(arg0, (arg0\Field3 - (1.0 / 5.22449)), (arg0\Field4 + 2.691406), (arg0\Field5 + 3.566406), 0.0, $01)
+            local7 = createitem("Note from Nobody #3", $00, (arg0\Field3 + 3.285156), (arg0\Field4 + 2.5), (arg0\Field5 - (1.0 / 10.24)), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local24 = (1.0 / 142.2222)
             arg0\Field21[$00] = loadanimtexture_strict("GFX\Overlays\SL_monitors_checkpoint.png", $01, $200, $200, $00, $04, $01)
             arg0\Field21[$01] = loadanimtexture_strict("GFX\Overlays\SL_monitors.png", $01, $200, $200, $00, $0B, $01)
@@ -1261,6 +1267,8 @@ Function fillroom%(arg0.rooms)
             entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("Document SCP-914", $00, (arg0\Field3 - 2.617188), (arg0\Field4 + 0.53125), (arg0\Field5 - 2.898438), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Note from Nobody #2", $00, (arg0\Field3 - 3.472656), (arg0\Field4 + 0.53125), (arg0\Field5 + 1.609375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("SCP-1499", $24, (arg0\Field3 + 2.40625), (arg0\Field4 + 0.6875), (arg0\Field5 - (1.0 / 1.094017)), $00, $00, $00, 1.0, $00)
             rotateentity(local7\Field2, 0.0, 0.0, 0.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
@@ -1567,6 +1575,8 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$00], (arg0\Field3 - 2.734375), (arg0\Field4 + 1.5), (arg0\Field5 + 1.132812), $01)
             scaleentity(arg0\Field11[$00], 2.0, 2.0, 2.0, $00)
             rotateentity(arg0\Field11[$00], 0.0, 0.0, 0.0, $00)
+            local7 = createitem("Note from Nobody #1", $00, (arg0\Field3 - 1.097656), (arg0\Field4 + 0.625), (arg0\Field5 + 2.34375), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("Clipboard", $2D, (arg0\Field3 + 3.589844), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 - 3.339844), $00, $00, $00, 1.0, $00)
             local7\Field17 = local7\Field4\Field7
             setanimtime(local7\Field3, 0.0, $00)
@@ -1966,6 +1976,8 @@ Function fillroom%(arg0.rooms)
             local7 = createrandombattery((arg0\Field3 + 4.441406), (arg0\Field4 + (1.0 / 1.590062)), (arg0\Field5 + 1.6875))
             entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("ReVision Eyedrops", $30, (arg0\Field3 + 7.539062), (arg0\Field4 + (1.0 / 1.137778)), (arg0\Field5 + 0.5), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Note from Nobody #4", $00, (arg0\Field3 + 3.890625), (arg0\Field4 + 0.625), (arg0\Field5 - (1.0 / 2.509804)), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
         Case $38
             local0 = createdoor(arg0, (arg0\Field3 + 2.8125), arg0\Field4, arg0\Field5, 0.0, $00, $02, $FFFFFFFD, $00, $00)
@@ -2580,6 +2592,8 @@ Function fillroom%(arg0.rooms)
             entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("Groups of Interest Log", $00, (arg0\Field3 + (1.0 / 2.56)), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + (1.0 / 2.56)), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
+            local7 = createitem("Note from Nobody #6", $00, (arg0\Field3 + 1.335938), (arg0\Field4 + (1.0 / 1.28)), (arg0\Field5 + 1.167969), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("First Aid Kit", $34, (arg0\Field3 + 2.65625), (arg0\Field4 + 1.015625), (arg0\Field5 + 3.486328), $00, $00, $00, 1.0, $00)
             rotateentity(local7\Field2, 0.0, 90.0, 0.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
@@ -2859,6 +2873,8 @@ Function fillroom%(arg0.rooms)
             local0\Field3[$00] = $00
             freeentity(local0\Field1)
             local0\Field1 = $00
+            local7 = createitem("Note from Nobody #5", $00, (arg0\Field3 + 0.046875), (arg0\Field4 - 2.460938), (arg0\Field5 - 1.601562), $00, $00, $00, 1.0, $00)
+            entityparent(local7\Field2, arg0\Field2, $01)
             local7 = createitem("Fine Night Vision Goggles", $42, (arg0\Field3 + 0.1875), (arg0\Field4 - 2.53125), (arg0\Field5 + 3.0625), $00, $00, $00, 1.0, $00)
             entityparent(local7\Field2, arg0\Field2, $01)
         Case $5A

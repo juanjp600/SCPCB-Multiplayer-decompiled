@@ -28,26 +28,26 @@ Function mp_updatenpcs%()
     local4 = chs\Field2
     For local0 = Each npcs
         local0\Field59 = isinfacility(entityy(local0\Field3, $00))
-        If ((((local0\Field82 < mp_gettimer()) Lor (local0\Field94 = Null)) Lor ((local0\Field94 <> Null) And entityhidden(local0\Field94\Field18))) <> 0) Then
-            local0\Field94 = mp_npc_findnearesttarget(local0)
-            If (local0\Field94 = Null) Then
-                local0\Field94 = ue_players[mp_getmyindex()]
+        If ((((local0\Field84 < mp_gettimer()) Lor (local0\Field96 = Null)) Lor ((local0\Field96 <> Null) And entityhidden(local0\Field96\Field18))) <> 0) Then
+            local0\Field96 = mp_npc_findnearesttarget(local0)
+            If (local0\Field96 = Null) Then
+                local0\Field96 = ue_players[mp_getmyindex()]
             EndIf
-            local0\Field82 = (mp_gettimer() + $7D0)
+            local0\Field84 = (mp_gettimer() + $7D0)
         EndIf
         playerroom = local1
         me\Field60 = local2
         me\Field42 = local3
         chs\Field2 = $01
-        local0\Field83 = $01
-        If ((((local0\Field94 <> Null) And (entityhidden(local0\Field94\Field18) = $00)) And (mp_rooms[local0\Field94\Field22] <> Null)) <> 0) Then
+        local0\Field85 = $01
+        If ((((local0\Field96 <> Null) And (entityhidden(local0\Field96\Field18) = $00)) And (mp_rooms[local0\Field96\Field22] <> Null)) <> 0) Then
             chs\Field2 = local4
-            playerroom = mp_rooms[local0\Field94\Field22]
-            me\Field60 = local0\Field94\Field18
-            me\Field42 = local0\Field94\Field28
-            local0\Field83 = (local0\Field94 = ue_players[mp_getmyindex()])
+            playerroom = mp_rooms[local0\Field96\Field22]
+            me\Field60 = local0\Field96\Field18
+            me\Field42 = local0\Field96\Field28
+            local0\Field85 = (local0\Field96 = ue_players[mp_getmyindex()])
         EndIf
-        currentsyncplayer = local0\Field94
+        currentsyncplayer = local0\Field96
         mp_updatenpc(local0)
         Select local0\Field4
             Case $07

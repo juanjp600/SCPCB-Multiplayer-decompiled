@@ -12,10 +12,10 @@ Function mp_client_receiveeventsdata%()
         mp_client_receiveevent(local0)
     Forever
     For local1 = Each events
-        If (((local1\Field26 = $00) And (local1\Field20 = $00)) <> 0) Then
+        If (((local1\Field28 = $00) And (local1\Field22 = $00)) <> 0) Then
             removeevent(local1)
         Else
-            local1\Field26 = $00
+            local1\Field28 = $00
         EndIf
     Next
     event_hasreceive = $01

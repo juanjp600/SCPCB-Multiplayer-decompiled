@@ -22,6 +22,8 @@ Function mp_setcorpsemodel%(arg0.mp_playercorpse, arg1#, arg2#, arg3#, arg4#, ar
     arg0\Field2 = copyentity(getplayermodelmesh(arg5), $00)
     If (getplayermodelterminatedtexture(arg6) <> $00) Then
         entitytexture(arg0\Field2, getplayermodelterminatedtexture(arg6), $00, $00)
+    ElseIf (getplayermodeltexture(arg6) <> $00) Then
+        entitytexture(arg0\Field2, getplayermodeltexture(arg6), $00, $00)
     EndIf
     positionentity(arg0\Field2, arg1, arg2, arg3, $00)
     rotateentity(arg0\Field2, 0.0, arg4, 0.0, $00)
