@@ -3346,8 +3346,7 @@ Function updatenpcs%()
                                         Select rand($06, $01)
                                             Case $01
                                                 playsound_strict(loadtempsound("SFX\SCP\066\Beethoven.ogg"), $00)
-                                                me\Field55 = ((((Float selecteddifficulty\Field4) * 15.0) + 45.0) * 70.0)
-                                                me\Field54 = $01
+                                                makedeaf(((((Float selecteddifficulty\Field4) * 15.0) + 45.0) * 70.0))
                                                 me\Field24 = 10.0
                                             Case $02
                                                 local0\Field12 = (Float rand($2BC, $578))
@@ -4370,7 +4369,6 @@ Function updatenpcs%()
             EndIf
             If (((local89 < ((hidedistance * 0.6) * (hidedistance * 0.6))) Lor (local0\Field4 = $10)) <> 0) Then
                 If (local0\Field59 = infacility) Then
-                    translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
                     local93 = $00
                     local94 = countcollisions(local0\Field3)
                     For local11 = $01 To local94 Step $01

@@ -403,7 +403,7 @@ Function executeconsolecommand%(arg0$)
                 EndIf
             Next
             If (local11 = $00) Then
-                createconsolemsg(getlocalstring("console", "tp.failed"), $FF, $00, $00, $00)
+                createconsolemsg(getlocalstring("console", "tpp.failed"), $FF, $00, $00, $00)
             EndIf
         Case "roomlist","roomslist","rooms","room list"
             For local8 = Each roomtemplates

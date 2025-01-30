@@ -31,7 +31,7 @@ Function mp_server_receiveconsole%(arg0.mp_player)
     Select lower(local2)
         Case "heal","spawnitem","si","giveitem","gi","spawncup","givecup","spawndrink","givedrink","spawn","s","stopsound","stfu","revive","undead","resurrect","scp-420-j","420","weed","scp420-j","scp-420j","420j"
             local1 = $01
-        Case "reset096","r096","reset372","r372","disable173","dis173","enable173","en173","disable106","dis106","enable106","en106","disable966","dis966","enable966","en966","disable049","dis049"
+        Case "reset096","r096","reset372","r372","disable173","dis173","enable173","en173","disable106","dis106","enable106","en106","disable966","dis966","enable966","en966","disable049","dis049","doorcontrol"
             local1 = $01
         Case "enable049","en049","disable066","dis066","enable066","en066","disable096","dis096","enable096","en096","106retreat","106r","money","rich","asd","notarget","nt","godmode","god","sq","bfall","j12"
             local1 = $01
@@ -90,7 +90,7 @@ Function mp_server_receiveconsole%(arg0.mp_player)
                 arg0\Field4\Field6 = 0.0
                 arg0\Field4\Field7 = 0.0
                 setplayerinjuriestimeout(arg0, 70.0)
-            Case "spawnitem"
+            Case "spawnitem","si","giveitem","gi"
                 local2 = lower(right(local0, (len(local0) - instr(local0, " ", $01))))
                 For local9 = Each itemtemplates
                     If ((((lower(local9\Field1) = local2) Lor (lower(local9\Field0) = local2)) Lor ((Str local9\Field2) = local2)) <> 0) Then

@@ -19,7 +19,7 @@ Function updateexplosion%()
             EndIf
             me\Field51 = min(((me\Field58 - 140.0) / 10.0), 5.0)
             If (160.0 < me\Field58) Then
-                kill($00, $01, $00, $00)
+                kill($00, $01, $01, $00)
             EndIf
             If (500.0 < me\Field58) Then
                 me\Field58 = 0.0

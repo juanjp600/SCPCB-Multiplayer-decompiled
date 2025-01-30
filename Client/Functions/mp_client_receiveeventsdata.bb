@@ -4,6 +4,10 @@ Function mp_client_receiveeventsdata%()
     isblackout = mp_readbyte()
     soundtransmission = mp_readbyte()
     remotedooron = mp_readbyte()
+    me\Field43 = (mp_readbyte() - $01)
+    If ((mp_readbyte() And (me\Field43 <> $FFFFFFFF)) <> 0) Then
+        me\Field0 = 1.0
+    EndIf
     Repeat
         local0 = mp_readbyte()
         If (local0 = $00) Then

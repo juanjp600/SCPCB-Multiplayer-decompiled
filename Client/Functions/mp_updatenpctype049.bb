@@ -131,7 +131,9 @@ Function mp_updatenpctype049%(arg0.npcs)
                 Else
                     animatenpc(arg0, 37.0, 269.0, 0.7, $00)
                     If (268.9 < arg0\Field14) Then
-                        arg0\Field10 = 2.0
+                        If (mp_ishoster() <> 0) Then
+                            arg0\Field10 = 2.0
+                        EndIf
                     EndIf
                 EndIf
             Case 2.0

@@ -669,17 +669,17 @@ Function rendergui%()
                             textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int ((10.0 * menuscale) + (Float (local5 - local59)))), (((Str local80) + "/") + (Str local79)), $00, $00)
                             If ((millisec Mod $258) < $190) Then
                                 color($C8, $00, $00)
-                                ;bbFieldPtrAdd at _3337_frendergui:86, probably for an object of unknowable type
+                                ;bbFieldPtrAdd at _3344_frendergui:86, probably for an object of unknowable type
                                 Select eax_0AE2
                                     Case $07,$06,$05,$02,$04
-                                        ;bbFieldPtrAdd at _35058_frendergui:6, probably for an object of unknowable type
+                                        ;bbFieldPtrAdd at _35103_frendergui:6, probably for an object of unknowable type
                                         If (eax_0AE6 = $00) Then
-                                            ;bbFieldPtrAdd at _35058_frendergui:16, probably for an object of unknowable type
+                                            ;bbFieldPtrAdd at _35103_frendergui:16, probably for an object of unknowable type
                                             local76 = entitydistancesquared(camera, eax_0AEA)
                                             If (900.0 > local76) Then
                                                 local24 = sqr(local76)
                                                 oval((Int ((Float local4) - ((1.5 * menuscale) * local24))), (Int ((Float local5) - ((1.5 * menuscale) * local24))), (Int ((3.0 * menuscale) * local24)), (Int ((3.0 * menuscale) * local24)), $00)
-                                                ;bbFieldPtrAdd at _35058_frendergui:173, probably for an object of unknowable type
+                                                ;bbFieldPtrAdd at _35103_frendergui:173, probably for an object of unknowable type
                                                 textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local75)) * menuscale))), eax_0AFA, $00, $00)
                                                 local75 = (local75 + $01)
                                             EndIf

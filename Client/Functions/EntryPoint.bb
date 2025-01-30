@@ -241,7 +241,7 @@ Function EntryPoint%()
     mp_settings = (New mp_settingssystem)
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($0B)
+    multiplayer_version = versiondots($0C)
     senddebuglog(multiplayer_version)
     createserverinfo()
     mp_menuinit()

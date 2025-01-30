@@ -81,6 +81,9 @@ Function mp_client_receivenpc%(arg0%)
         local0\Field60 = mp_readshort()
     EndIf
     local0\Field43 = readbool(local3, $05)
+    If ((readbool(local3, $06) And (local0\Field63 = $00)) <> 0) Then
+        createnpcasset(local0)
+    EndIf
     If (mp_events[local0\Field69] <> Null) Then
         mp_events[local0\Field69]\Field1\Field15[local0\Field70] = local0
     EndIf

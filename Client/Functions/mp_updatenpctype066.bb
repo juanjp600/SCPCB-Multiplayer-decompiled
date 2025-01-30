@@ -76,8 +76,7 @@ Function mp_updatenpctype066%(arg0.npcs)
                                     playsoundex(loadtempsound("SFX\SCP\066\Beethoven.ogg"), camera, arg0\Field3, 20.0, 1.0, $00, $00)
                                     mp_synchronize3dsound(Null, "SFX\SCP\066\Beethoven.ogg", arg0\Field3, 20.0, 1.0)
                                     If (arg0\Field85 <> 0) Then
-                                        me\Field55 = ((((Float selecteddifficulty\Field4) * 15.0) + 45.0) * 70.0)
-                                        me\Field54 = $01
+                                        makedeaf(((((Float selecteddifficulty\Field4) * 15.0) + 45.0) * 70.0))
                                         me\Field24 = 10.0
                                     EndIf
                                 Case $02

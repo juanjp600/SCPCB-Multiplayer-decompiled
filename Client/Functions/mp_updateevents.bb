@@ -5,7 +5,7 @@ Function mp_updateevents%()
     Local local3.events
     Local local4.events
     Local local5.decals
-    Local local6%
+    Local local6.dummy1499_1
     Local local7%
     Local local8%
     Local local9%
@@ -103,8 +103,9 @@ Function mp_updateevents%()
     Local local122%
     Local local124%
     Local local125%
-    Local local128#
-    Local local129%
+    Local local128.events
+    Local local129#
+    Local local130%
     catcherrors("MP_UpdateEvents()")
     If (((mp_ishoster() = $00) And (((mp_iseventsreceived() = $00) Lor (mp_isnpcsreceived() = $00)) Lor (mp_isconnected() = $00))) <> 0) Then
         Return $00
@@ -461,7 +462,9 @@ Function mp_updateevents%()
                         If (entityhidden(local3\Field1\Field11[$00]) <> 0) Then
                             showentity(local3\Field1\Field11[$00])
                         EndIf
-                        shouldplay = $04
+                        If (event_ismeinroom(local3) <> 0) Then
+                            shouldplay = $04
+                        EndIf
                         If (remotedooron <> 0) Then
                             local3\Field1\Field14[$00]\Field4 = $02
                         Else
@@ -469,6 +472,12 @@ Function mp_updateevents%()
                             If (1.0 = local3\Field2) Then
                                 If (9.0 > entitydistancesquared(local3\Field1\Field11[$00], me\Field60)) Then
                                     giveachievement("079", $01)
+                                    local3\Field2 = 2.0
+                                    local3\Field3 = 1.0
+                                EndIf
+                            EndIf
+                            If (2.0 <= local3\Field2) Then
+                                If (0.0 = local3\Field25) Then
                                     If (local3\Field6 <> $00) Then
                                         stopstream_strict(local3\Field6)
                                         local3\Field6 = $00
@@ -476,10 +485,8 @@ Function mp_updateevents%()
                                     EndIf
                                     local3\Field6 = streamsound_strict("SFX\SCP\079\Speech.ogg", (opt\Field21 * opt\Field16), $00)
                                     local3\Field11 = $01
-                                    local3\Field2 = 2.0
-                                    local3\Field3 = 1.0
+                                    local3\Field25 = 1.0
                                 EndIf
-                            ElseIf (2.0 <= local3\Field2) Then
                                 local3\Field2 = (local3\Field2 + fps\Field7[$00])
                                 If (5000.0 < local3\Field2) Then
                                     If (6.25 > entitydistancesquared(local3\Field1\Field11[$00], me\Field60)) Then
@@ -1156,12 +1163,12 @@ Function mp_updateevents%()
                             EndIf
                         EndIf
                     EndIf
-                    If (0.0 < local3\Field4) Then
-                        local3\Field4 = max((local3\Field4 - fps\Field7[$00]), 0.0)
+                    If (0.0 < local3\Field25) Then
+                        local3\Field25 = max((local3\Field25 - fps\Field7[$00]), 0.0)
                     EndIf
-                    If (0.0 = local3\Field4) Then
+                    If (0.0 = local3\Field25) Then
                         entitytexture(t\Field3[$04], t\Field2[$01], $00, $00)
-                        local3\Field4 = -1.0
+                        local3\Field25 = -1.0
                     EndIf
                     If (event_ismeinroom(local3) <> 0) Then
                         shouldplay = $42
@@ -2804,7 +2811,6 @@ Function mp_updateevents%()
                         event_resetprev()
                         If (16.0 > entitydistancesquared(me\Field60, local3\Field1\Field11[$01])) Then
                             event_prevplayerroom = local77
-                            removeevent(local3)
                         EndIf
                     EndIf
                 EndIf
@@ -4876,7 +4882,7 @@ Function mp_updateevents%()
                 EndIf
             Case $15
                 If (event_isplayerinroom(local3) <> 0) Then
-                    If (local3\Field1\Field15[$00] = Null) Then
+                    If (0.0 = local3\Field2) Then
                         local3\Field1\Field15[$00] = createnpc($13, entityx(local3\Field1\Field11[$01], $01), 0.5, entityz(local3\Field1\Field11[$01], $01))
                         local3\Field1\Field15[$00]\Field10 = 6.0
                         createnpcasset(local3\Field1\Field15[$00])
@@ -4884,8 +4890,10 @@ Function mp_updateevents%()
                         setnpcframe(local3\Field1\Field15[$00], 501.0, $01)
                         rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, ((Float local3\Field1\Field6) + 270.0), 0.0, $01)
                         local3\Field2 = 1.0
-                    ElseIf (0.0 < local3\Field2) Then
-                        shouldplay = $1A
+                    ElseIf (((0.0 < local3\Field2) And (50000.0 > local3\Field2)) <> 0) Then
+                        If (event_ismeinroom(local3) <> 0) Then
+                            shouldplay = $1A
+                        EndIf
                         If (channelplaying(local3\Field1\Field15[$00]\Field18) <> 0) Then
                             local3\Field1\Field15[$00]\Field18 = loopsoundex(local3\Field1\Field15[$00]\Field17, local3\Field1\Field15[$00]\Field18, camera, local3\Field1\Field2, 6.0, 1.0, $00)
                         EndIf
@@ -5112,8 +5120,7 @@ Function mp_updateevents%()
                                             rotateentity(local3\Field1\Field15[$00]\Field3, 0.0, curveangle(entityyaw(local3\Field1\Field15[$00]\Field0, $00), entityyaw(local3\Field1\Field15[$00]\Field3, $00), 15.0), 0.0, $00)
                                         EndIf
                                     Else
-                                        local3\Field1\Field15[$00]\Field50 = $01
-                                        translateentity(local3\Field1\Field15[$00]\Field3, -10000.0, 0.0, 0.0, $00)
+                                        removenpc(local3\Field1\Field15[$00])
                                         For local20 = $00 To $02 Step $01
                                             local3\Field1\Field14[local20]\Field4 = $00
                                         Next
@@ -5128,7 +5135,7 @@ Function mp_updateevents%()
                                         Next
                                         local3\Field3 = 0.0
                                         local3\Field4 = 0.0
-                                        local3\Field2 = -1.0
+                                        local3\Field2 = 99999.0
                                     EndIf
                                 EndIf
                             EndIf
@@ -5149,7 +5156,9 @@ Function mp_updateevents%()
                                 EndIf
                             Next
                         EndIf
-                        shouldplay = $01
+                        If (event_ismeinroom(local3) <> 0) Then
+                            shouldplay = $01
+                        EndIf
                         local23 = $00
                         If (entityx(me\Field60, $00) > min(entityx(local3\Field1\Field11[$02], $01), entityx(local3\Field1\Field11[$03], $01))) Then
                             If (entityx(me\Field60, $00) < max(entityx(local3\Field1\Field11[$02], $01), entityx(local3\Field1\Field11[$03], $01))) Then
@@ -5163,20 +5172,6 @@ Function mp_updateevents%()
                                             If (local3\Field1\Field15[$01] = Null) Then
                                                 local3\Field1\Field15[$01] = createnpc($01, 0.0, 0.0, 0.0)
                                             EndIf
-                                        EndIf
-                                        me\Field17 = curvevalue(min(60.0, me\Field17), me\Field17, 20.0)
-                                        local23 = $01
-                                        mp_loadeventsound(local3, "SFX\Room\035Chamber\Whispers0.ogg", $00)
-                                        mp_loadeventsound(local3, "SFX\Room\035Chamber\Whispers1.ogg", $01)
-                                        local3\Field3 = min((local3\Field3 + (fps\Field7[$00] / 6000.0)), 1.0)
-                                        local3\Field4 = curvevalue(local3\Field3, local3\Field4, 50.0)
-                                        If ((((i_714\Field0 <> $02) And (wi\Field2 <> $04)) And (wi\Field0 <> $04)) <> 0) Then
-                                            me\Field5 = (me\Field5 - (fps\Field7[$00] * 1.1))
-                                            me\Field49 = (sin(((Float millisec) / 10.0)) * (Abs me\Field5))
-                                        EndIf
-                                        me\Field31 = ((fps\Field7[$00] / (((Float (wi\Field2 > $00)) + 1.0) * 5000.0)) + me\Field31)
-                                        If (((Int me\Field0) And (100.0 <= me\Field32)) <> 0) Then
-                                            msg\Field2 = format(getlocalstring("death", "035"), subjectname, "%s")
                                         EndIf
                                     EndIf
                                 EndIf
@@ -5193,14 +5188,6 @@ Function mp_updateevents%()
                                 EndIf
                             EndIf
                         EndIf
-                        If (local23 = $00) Then
-                            local3\Field3 = max((local3\Field3 - (fps\Field7[$00] / 2000.0)), 0.0)
-                            local3\Field4 = max((local3\Field4 - (fps\Field7[$00] / 100.0)), 0.0)
-                        EndIf
-                        If (((((0.0 < local3\Field4) And (i_714\Field0 <> $02)) And (wi\Field2 <> $04)) And (wi\Field0 <> $04)) <> 0) Then
-                            local3\Field6 = loopsoundex(local3\Field8, local3\Field6, camera, local3\Field1\Field2, 10.0, local3\Field4, $00)
-                            local3\Field7 = loopsoundex(local3\Field9, local3\Field7, camera, local3\Field1\Field2, 10.0, ((local3\Field4 - 0.5) * 2.0), $00)
-                        EndIf
                     EndIf
                     If (local3\Field1\Field15[$00] <> Null) Then
                         updatesoundorigin(local3\Field1\Field15[$00]\Field18, camera, local3\Field1\Field2, 6.0, 0.8, $01, $01)
@@ -5212,6 +5199,7 @@ Function mp_updateevents%()
                                 If (isroomadjacent(event_prevplayerroom\Field19[local20], local3\Field1) <> 0) Then
                                     mp_loadeventsound(local3, "SFX\Room\035Chamber\InProximity.ogg", $00)
                                     playsound_strict(local3\Field8, $01)
+                                    Exit
                                 EndIf
                             Next
                         EndIf
@@ -6083,7 +6071,11 @@ Function mp_updateevents%()
                 EndIf
             Case $2C
                 If (event_isplayerinroom(local3) <> 0) Then
-                    If (local3\Field1\Field15[$00] = Null) Then
+                    local128 = findevent($2B)
+                    If (local128 <> Null) Then
+                        local128\Field25 = mp_updateelevators(local128\Field25, local128\Field1\Field14[$00], local3\Field1\Field14[$01], local128\Field1\Field11[$00], local128\Field1\Field11[$01], local128, $01, $01, $00)
+                    EndIf
+                    If (local3\Field1\Field11[$00] = $00) Then
                         renderloading($00, getlocalstring("loading", "ending"))
                         local3\Field1\Field15[$00] = createnpc($11, local3\Field1\Field3, 100.0, local3\Field1\Field5)
                         local3\Field1\Field15[$00]\Field10 = 1.0
@@ -6107,6 +6099,11 @@ Function mp_updateevents%()
                         createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                         local3\Field2 = 1.0
                         renderloading($64, "")
+                        If (event_ismeinroom(local3) = $00) Then
+                            positionentity(getrealcollider(), entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.1), entityz(me\Field60, $00), $00)
+                            resetentity(getrealcollider())
+                            event_prevplayerroom = local3\Field1
+                        EndIf
                     Else
                         updatesky(sky)
                         showroomsnocoll(local3\Field1)
@@ -6318,7 +6315,11 @@ Function mp_updateevents%()
                 EndIf
             Case $2E
                 If (event_isplayerinroom(local3) <> 0) Then
-                    If (local3\Field1\Field15[$02] = Null) Then
+                    local128 = findevent($2D)
+                    If (local128 <> Null) Then
+                        local128\Field25 = mp_updateelevators(local128\Field25, local128\Field1\Field14[$00], local3\Field1\Field14[$01], local128\Field1\Field11[$00], local128\Field1\Field11[$01], local128, $01, $00, $00)
+                    EndIf
+                    If (local3\Field1\Field11[$00] = $00) Then
                         renderloading($00, getlocalstring("loading", "ending"))
                         For local20 = $02 To $04 Step $01
                             local3\Field1\Field15[local20] = createnpc($11, local3\Field1\Field3, (local3\Field1\Field4 + 11.0), local3\Field1\Field5)
@@ -6373,6 +6374,11 @@ Function mp_updateevents%()
                         createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                         local3\Field2 = 1.0
                         renderloading($64, "")
+                        If (event_ismeinroom(local3) = $00) Then
+                            positionentity(getrealcollider(), entityx(me\Field60, $00), (entityy(me\Field60, $00) + 0.1), entityz(me\Field60, $00), $00)
+                            resetentity(getrealcollider())
+                            event_prevplayerroom = local3\Field1
+                        EndIf
                     Else
                         updatesky(sky)
                         showroomsnocoll(local3\Field1)
@@ -6532,17 +6538,17 @@ Function mp_updateevents%()
                                                 local3\Field1\Field15[local20]\Field10 = 5.0
                                             Next
                                             local3\Field1\Field11[$0C] = loadanimmesh_strict("GFX\NPCs\CI.b3d", $00)
-                                            local128 = (0.55 / meshwidth(local3\Field1\Field11[$0C]))
-                                            scaleentity(local3\Field1\Field11[$0C], local128, local128, local128, $00)
+                                            local129 = (0.55 / meshwidth(local3\Field1\Field11[$0C]))
+                                            scaleentity(local3\Field1\Field11[$0C], local129, local129, local129, $00)
                                             positionentity(local3\Field1\Field11[$0C], entityx(local3\Field1\Field11[$0B], $01), entityy(local3\Field1\Field11[$0B], $01), entityz(local3\Field1\Field11[$0B], $01), $00)
                                             local3\Field1\Field11[$11] = copyentity(local3\Field1\Field11[$0C], $00)
                                             positionentity(local3\Field1\Field11[$11], (entityx(local3\Field1\Field2, $01) - 15.5), entityy(local3\Field1\Field11[$0B], $01), (entityz(local3\Field1\Field2, $01) - 7.5), $00)
-                                            local129 = copyentity(local3\Field1\Field11[$0C], $00)
-                                            positionentity(local129, (entityx(local3\Field1\Field2, $01) - 16.25), entityy(local3\Field1\Field11[$0B], $01), (entityz(local3\Field1\Field2, $01) - 7.5), $00)
-                                            entityparent(local129, local3\Field1\Field11[$11], $01)
-                                            local129 = copyentity(local3\Field1\Field11[$0C], $00)
-                                            positionentity(local129, (entityx(local3\Field1\Field2, $01) - 15.875), entityy(local3\Field1\Field11[$0B], $01), (entityz(local3\Field1\Field2, $01) - 8.25), $00)
-                                            entityparent(local129, local3\Field1\Field11[$11], $01)
+                                            local130 = copyentity(local3\Field1\Field11[$0C], $00)
+                                            positionentity(local130, (entityx(local3\Field1\Field2, $01) - 16.25), entityy(local3\Field1\Field11[$0B], $01), (entityz(local3\Field1\Field2, $01) - 7.5), $00)
+                                            entityparent(local130, local3\Field1\Field11[$11], $01)
+                                            local130 = copyentity(local3\Field1\Field11[$0C], $00)
+                                            positionentity(local130, (entityx(local3\Field1\Field2, $01) - 15.875), entityy(local3\Field1\Field11[$0B], $01), (entityz(local3\Field1\Field2, $01) - 8.25), $00)
+                                            entityparent(local130, local3\Field1\Field11[$11], $01)
                                             local3\Field6 = playsoundex(loadtempsound("SFX\Ending\GateA\Bell0.ogg"), camera, local3\Field1\Field11[$0C], 10.0, 1.0, $00, $00)
                                             local0 = createparticle($05, entityx(local3\Field1\Field11[$0B], $01), entityy(camera, $01), entityz(local3\Field1\Field11[$0B], $01), 8.0, 0.0, 50.0)
                                             local0\Field4 = 0.15
@@ -6661,6 +6667,47 @@ Function mp_updateevents%()
                     EndIf
                 Else
                     hideroomsnocoll(local3\Field1)
+                EndIf
+            Case $49
+                If (event_prevplayerroom <> local3\Field1) Then
+                    If (local3\Field1\Field11[$00] <> $00) Then
+                        For local20 = $01 To $0F Step $01
+                            If (entityhidden(local3\Field1\Field11[local20]) = $00) Then
+                                hideentity(local3\Field1\Field11[local20])
+                            EndIf
+                        Next
+                    EndIf
+                    If ((entityy(local3\Field1\Field2, $00) - 0.5) < entityy(me\Field60, $00)) Then
+                        event_prevplayerroom = local3\Field1
+                    EndIf
+                    If (2.0 = local3\Field2) Then
+                        If (local3\Field6 <> $00) Then
+                            stopstream_strict(local3\Field6)
+                            local3\Field6 = $00
+                            local3\Field11 = $00
+                        EndIf
+                        stopchannel(local3\Field7)
+                        local3\Field7 = $00
+                        hideentity(i_1499\Field8)
+                        hidechunks()
+                        hideroomsnocoll(local3\Field1)
+                        For local1 = Each npcs
+                            If (local1\Field4 = $10) Then
+                                removenpc(local1)
+                            EndIf
+                        Next
+                        For local6 = Each dummy1499_1
+                            removedummy1499_1(local6)
+                        Next
+                        If (local3\Field9 <> $00) Then
+                            freesound_strict(local3\Field9)
+                            local3\Field9 = $00
+                        EndIf
+                        If (2100.0 > local3\Field4) Then
+                            local3\Field4 = 0.0
+                        EndIf
+                        local3\Field2 = 1.0
+                    EndIf
                 EndIf
         End Select
         If (local3 <> Null) Then

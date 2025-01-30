@@ -5,6 +5,8 @@ Function mp_server_sendeventsdata%()
     blitz_mp_writebyte0(mp_getdatabuffer(), isblackout)
     blitz_mp_writebyte0(mp_getdatabuffer(), soundtransmission)
     blitz_mp_writebyte0(mp_getdatabuffer(), remotedooron)
+    blitz_mp_writebyte0(mp_getdatabuffer(), (me\Field43 + $01))
+    blitz_mp_writebyte0(mp_getdatabuffer(), ((Int me\Field0) And (me\Field43 <> $FFFFFFFF)))
     For local0 = Each events
         If (local0\Field22 = $00) Then
             blitz_mp_writebyte0(mp_getdatabuffer(), local0\Field27)

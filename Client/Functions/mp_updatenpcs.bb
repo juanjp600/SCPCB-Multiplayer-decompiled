@@ -189,7 +189,7 @@ Function mp_updatenpcs%()
                 playannouncement("SFX\Character\MTF\AnnouncLost.ogg", $01)
                 mtftimer = 31000.0
             EndIf
-            If ((((local6 < ((hidedistance * 0.6) * (hidedistance * 0.6))) Lor (local0\Field4 = $10)) And (local0\Field59 = isinfacility(entityy(me\Field60, $00)))) <> 0) Then
+            If (((11.0 > local6) Lor (local0\Field4 = $10)) <> 0) Then
                 local12 = $00
                 local13 = countcollisions(local0\Field3)
                 For local14 = $01 To local13 Step $01

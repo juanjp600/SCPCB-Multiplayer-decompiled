@@ -263,33 +263,6 @@ Function updatedimension1499%()
                     me\Field36 = 0.0
                 EndIf
                 playerfallingpickdistance = 0.0
-            ElseIf (2.0 = local0\Field2) Then
-                If (local0\Field6 <> $00) Then
-                    stopstream_strict(local0\Field6)
-                    local0\Field6 = $00
-                    local0\Field11 = $00
-                EndIf
-                stopchannel(local0\Field7)
-                local0\Field7 = $00
-                hideentity(i_1499\Field8)
-                hidechunks()
-                hideroomsnocoll(local0\Field1)
-                For local1 = Each npcs
-                    If (local1\Field4 = $10) Then
-                        removenpc(local1)
-                    EndIf
-                Next
-                For local4 = Each dummy1499_1
-                    removedummy1499_1(local4)
-                Next
-                If (local0\Field9 <> $00) Then
-                    freesound_strict(local0\Field9)
-                    local0\Field9 = $00
-                EndIf
-                If (2100.0 > local0\Field4) Then
-                    local0\Field4 = 0.0
-                EndIf
-                local0\Field2 = 1.0
             EndIf
             Exit
         EndIf

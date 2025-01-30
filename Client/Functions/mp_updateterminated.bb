@@ -4,14 +4,13 @@ Function mp_updateterminated%()
     Local local2#
     Local local3#
     Local local4#
-    Local local5.mp_player
+    Local local6#
     Local local7#
     Local local8#
     Local local9#
     Local local10#
-    Local local11#
     mp_terminated\Field6 = (mp_terminated\Field6 - fps\Field7[$00])
-    If (((Int me\Field0) And (0.0 >= mp_terminated\Field6)) <> 0) Then
+    If ((((Int me\Field0) And (0.0 >= mp_terminated\Field6)) And (me\Field43 = $FFFFFFFF)) <> 0) Then
         If (mp_terminated\Field0 <> 0) Then
             grabbedentity = $00
             handentity = $00
@@ -42,8 +41,18 @@ Function mp_updateterminated%()
             chs\Field7 = 0.0
             If ((((((invopen Lor i_294\Field0) Lor (otheropen <> Null)) Lor (d_i\Field6 <> Null)) Lor (selectedscreen <> Null)) Lor ((((menuopen Lor consoleopen) Lor (0.0 > me\Field45)) Lor ismultiplayerhudenabled) And (mp_getsocket() <> $00))) <> 0) Then
                 stopmousemovement()
-            ElseIf (keyhit($1C) <> 0) Then
-                mp_terminated\Field1 = (mp_terminated\Field1 = $00)
+            Else
+                If (keyhit($1C) <> 0) Then
+                    mp_terminated\Field1 = (mp_terminated\Field1 + $01)
+                    If (mp_terminated\Field1 >= $03) Then
+                        mp_terminated\Field1 = $00
+                    EndIf
+                EndIf
+                If (mo\Field0 <> 0) Then
+                    mp_terminated\Field2 = mp_findspectateplayer(mp_terminated\Field2, $00)
+                ElseIf (mo\Field1 <> 0) Then
+                    mp_terminated\Field2 = mp_findspectateplayer(mp_terminated\Field2, $01)
+                EndIf
             EndIf
             local0 = (opt\Field45 + 0.5)
             local1 = ((5.0 / (opt\Field45 + 1.0)) * opt\Field42)
@@ -73,41 +82,26 @@ Function mp_updateterminated%()
             camerapitch = (camerapitch + local4)
             camerapitch = clamp(camerapitch, -70.0, 70.0)
             rotateentity(camera, camerapitch, entityyaw(camera, $00), 0.0, $00)
-            If (((mp_terminated\Field2 = Null) Lor entityhidden(mp_terminated\Field2\Field18)) <> 0) Then
-                mp_terminated\Field2 = Null
-                For local5 = Each mp_player
-                    If (entityhidden(local5\Field18) = $00) Then
-                        mp_terminated\Field2 = local5
-                        Exit
-                    EndIf
-                Next
+            If (mp_terminated\Field1 <> $02) Then
+                If (mp_terminated\Field2 = Null) Then
+                    mp_terminated\Field2 = mp_findspectateplayer(Null, $FFFFFFFF)
+                EndIf
+                If (entityhidden(mp_terminated\Field2\Field18) <> 0) Then
+                    mp_terminated\Field2 = mp_findspectateplayer(mp_terminated\Field2, $01)
+                EndIf
+                If (mp_terminated\Field2 = Null) Then
+                    mp_terminated\Field1 = $02
+                EndIf
             EndIf
             Select mp_terminated\Field1
                 Case $00
                     If (mp_terminated\Field2 <> Null) Then
-                        local7 = (entityx(mp_terminated\Field2\Field18, $00) + (sin((- entityyaw(camera, $00))) * -1.0))
-                        local8 = ((entityy(mp_terminated\Field2\Field18, $00) + 0.4) + (tan((- entitypitch(camera, $00))) * -1.0))
-                        local9 = (entityz(mp_terminated\Field2\Field18, $00) + (cos((- entityyaw(camera, $00))) * -1.0))
-                        positionentity(camera, local7, local8, local9, $00)
+                        local6 = (entityx(mp_terminated\Field2\Field18, $00) + (sin((- entityyaw(camera, $00))) * -1.0))
+                        local7 = ((entityy(mp_terminated\Field2\Field18, $00) + 0.4) + (tan((- entitypitch(camera, $00))) * -1.0))
+                        local8 = (entityz(mp_terminated\Field2\Field18, $00) + (cos((- entityyaw(camera, $00))) * -1.0))
+                        positionentity(camera, local6, local7, local8, $00)
                         If (mp_rooms[mp_terminated\Field2\Field22] <> Null) Then
                             playerroom = mp_rooms[mp_terminated\Field2\Field22]
-                        EndIf
-                    Else
-                        local10 = max(((Float keydown(key\Field7)) * 2.5), 1.0)
-                        local11 = 0.018
-                        local1 = (local11 * local10)
-                        local1 = (chs\Field4 * local1)
-                        If (keydown(key\Field4) <> 0) Then
-                            moveentity(camera, 0.0, 0.0, (fps\Field7[$00] * (- local1)))
-                        EndIf
-                        If (keydown(key\Field3) <> 0) Then
-                            moveentity(camera, 0.0, 0.0, (fps\Field7[$00] * local1))
-                        EndIf
-                        If (keydown(key\Field1) <> 0) Then
-                            moveentity(camera, (fps\Field7[$00] * (- local1)), 0.0, 0.0)
-                        EndIf
-                        If (keydown(key\Field2) <> 0) Then
-                            moveentity(camera, (fps\Field7[$00] * local1), 0.0, 0.0)
                         EndIf
                     EndIf
                 Case $01
@@ -120,8 +114,23 @@ Function mp_updateterminated%()
                         If (mp_terminated\Field2\Field35\Field0 <> $00) Then
                             hideentity(mp_terminated\Field2\Field35\Field0)
                         EndIf
-                    Else
-                        mp_terminated\Field1 = $00
+                    EndIf
+                Case $02
+                    local9 = max(((Float keydown(key\Field7)) * 2.5), 1.0)
+                    local10 = 0.018
+                    local1 = (local10 * local9)
+                    local1 = (chs\Field4 * local1)
+                    If (keydown(key\Field4) <> 0) Then
+                        moveentity(camera, 0.0, 0.0, (fps\Field7[$00] * (- local1)))
+                    EndIf
+                    If (keydown(key\Field3) <> 0) Then
+                        moveentity(camera, 0.0, 0.0, (fps\Field7[$00] * local1))
+                    EndIf
+                    If (keydown(key\Field1) <> 0) Then
+                        moveentity(camera, (fps\Field7[$00] * (- local1)), 0.0, 0.0)
+                    EndIf
+                    If (keydown(key\Field2) <> 0) Then
+                        moveentity(camera, (fps\Field7[$00] * local1), 0.0, 0.0)
                     EndIf
             End Select
             positionentity(me\Field60, entityx(camera, $00), (entityy(camera, $00) - 0.6), entityz(camera, $00), $00)

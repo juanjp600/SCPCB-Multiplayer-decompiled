@@ -8,6 +8,7 @@ Function mp_client_receivenpcsdata%()
     mtftimer = mp_readfloat()
     local0 = mp_readbyte()
     local1 = mp_readbyte()
+    i_035\Field0 = mp_readbyte()
     Repeat
         local2 = mp_readbyte()
         If (local2 = $00) Then

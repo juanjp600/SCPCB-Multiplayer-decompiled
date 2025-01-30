@@ -147,9 +147,11 @@ Function updatemenu%()
                             EndIf
                         Next
                     Case $03
-                        opt\Field17 = (updatemenuslidebar(local7, local8, (Int (100.0 * menuscale)), (opt\Field16 * 100.0), $01) / 100.0)
                         If (me\Field54 = $00) Then
+                            opt\Field17 = (updatemenuslidebar(local7, local8, (Int (100.0 * menuscale)), (opt\Field16 * 100.0), $01) / 100.0)
                             opt\Field16 = opt\Field17
+                        Else
+                            updatemenuslidebar(local7, local8, (Int (100.0 * menuscale)), (opt\Field16 * 100.0), $01)
                         EndIf
                         local8 = (Int ((40.0 * menuscale) + (Float local8)))
                         opt\Field18 = (updatemenuslidebar(local7, local8, (Int (100.0 * menuscale)), (opt\Field18 * 100.0), $02) / 100.0)

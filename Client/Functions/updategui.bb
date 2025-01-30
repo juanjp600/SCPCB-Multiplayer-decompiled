@@ -41,7 +41,9 @@ Function updategui%()
     Local local43%
     Local local67%
     Local local68%
-    Local local77.itemtemplates
+    Local local76%
+    Local local77%
+    Local local79.itemtemplates
     catcherrors("UpdateGUI()")
     If (((pd_event <> Null) And (pd_event\Field1 = playerroom)) <> 0) Then
         If ((((wi\Field5 > $00) Lor (wi\Field9 > $00)) And (5.0 <> pd_event\Field3)) <> 0) Then
@@ -2200,7 +2202,17 @@ Function updategui%()
                     removeitem(selecteditem)
                 EndIf
             Case $15
-                If (i_500\Field0 < rand($14, $01)) Then
+                If (mp_getsocket() <> $00) Then
+                    If (mp_ishoster() <> 0) Then
+                        local76 = rand($04, $01)
+                        For local77 = $00 To local76 Step $01
+                            local1 = createitem("SCP-500-01", $16, entityx(me\Field60, $00), (entityy(camera, $00) - 0.2), entityz(me\Field60, $00), $00, $00, $00, 1.0, $00)
+                            entitytype(local1\Field2, $03, $00)
+                        Next
+                    EndIf
+                    createmsg(getlocalstring("msg", "500mp"), 6.0)
+                    removeitem(selecteditem)
+                ElseIf (i_500\Field0 < rand($14, $01)) Then
                     If (getitemamount() < maxitemamount) Then
                         local1 = createitem("SCP-500-01", $16, 0.0, 0.0, 0.0, $00, $00, $00, 1.0, $00)
                         entitytype(local1\Field2, $03, $00)
@@ -2263,9 +2275,9 @@ Function updategui%()
                     selecteditem\Field14 = 0.0
                     local15 = getereaderdocument((Int selecteditem\Field13))
                     If (((selecteditem\Field4\Field12 = $00) And (local15 <> "")) <> 0) Then
-                        For local77 = Each itemtemplates
-                            If (strippath(local77\Field10) = (local15 + ".png")) Then
-                                local77\Field4 = $01
+                        For local79 = Each itemtemplates
+                            If (strippath(local79\Field10) = (local15 + ".png")) Then
+                                local79\Field4 = $01
                                 Exit
                             EndIf
                         Next

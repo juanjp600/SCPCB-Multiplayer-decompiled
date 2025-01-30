@@ -185,6 +185,23 @@ Function updatedoors%()
                     End Select
                 EndIf
             EndIf
+            If (local0\Field10 = $03) Then
+                If (local0\Field4 = $02) Then
+                    If (48.0 < local0\Field8) Then
+                        local0\Field6 = $00
+                        local0\Field8 = min(local0\Field8, 48.0)
+                    EndIf
+                EndIf
+                If (0.1225 > entitydistancesquared(me\Field60, local0\Field2)) Then
+                    If ((((6.0 < local0\Field8) And (48.0 > local0\Field8)) And (local0\Field6 = $00)) <> 0) Then
+                        If (((0.0 = me\Field0) And (chs\Field0 = $00)) <> 0) Then
+                            playsound_strict(snd_i\Field29, $00)
+                            msg\Field2 = format(getlocalstring("death", "door"), subjectname, "%s")
+                            kill($01, $01, $00, $01)
+                        EndIf
+                    EndIf
+                EndIf
+            EndIf
             If (local8 <> 0) Then
                 updatesoundorigin(local0\Field17, camera, local0\Field2, 10.0, 1.0, $00, $01)
                 If (((((180.0 <= local0\Field8) Lor (0.0 >= local0\Field8)) And local10) And (grabbedentity = $00)) <> 0) Then
@@ -199,23 +216,6 @@ Function updatedoors%()
                             EndIf
                         EndIf
                     Next
-                EndIf
-                If (local0\Field10 = $03) Then
-                    If (local0\Field4 = $02) Then
-                        If (48.0 < local0\Field8) Then
-                            local0\Field6 = $00
-                            local0\Field8 = min(local0\Field8, 48.0)
-                        EndIf
-                    EndIf
-                    If (0.1225 > entitydistancesquared(me\Field60, local0\Field2)) Then
-                        If ((((6.0 < local0\Field8) And (48.0 > local0\Field8)) And (local0\Field6 = $00)) <> 0) Then
-                            If (((0.0 = me\Field0) And (chs\Field0 = $00)) <> 0) Then
-                                playsound_strict(snd_i\Field29, $00)
-                                msg\Field2 = format(getlocalstring("death", "door"), subjectname, "%s")
-                                kill($01, $01, $00, $01)
-                            EndIf
-                        EndIf
-                    EndIf
                 EndIf
                 If (local9 = $00) Then
                     If (0.0 >= local0\Field26) Then

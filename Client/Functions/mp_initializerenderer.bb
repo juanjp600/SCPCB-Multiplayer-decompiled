@@ -135,7 +135,7 @@ Function mp_initializerenderer%()
     local0\Field6 = $46
     local0\Field4 = $1E
     local0\Field5 = $3C
-    local0\Field12 = 0.501398
+    local0\Field12 = 0.52
     local0\Field11 = 0.3
     local0\Field14 = 0.0
     local0\Field15 = 70.0

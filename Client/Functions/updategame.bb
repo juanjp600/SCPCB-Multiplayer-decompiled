@@ -30,7 +30,7 @@ Function updategame%()
             deletemenugadgets()
         EndIf
         shoulddeletegadgets = $00
-        If (((((menuopen Lor consoleopen) Lor (0.0 > me\Field45)) = $00) Lor (mp_getsocket() <> $00)) <> 0) Then
+        If (((((menuopen Lor consoleopen) Lor (0.0 > me\Field45)) = $00) Lor ((mp_getsocket() <> $00) And (0.0 <= me\Field45))) <> 0) Then
             updatemusic()
             If (opt\Field22 <> 0) Then
                 autoreleasesounds()

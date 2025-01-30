@@ -5,6 +5,8 @@ Function mp_server_onplayeruseitem%(arg0.mp_player, arg1.items, arg2.items)
     Local local4.rooms
     Local local9.props
     Local local10.items
+    Local local11%
+    Local local12%
     If (arg2 = Null) Then
         Select arg1\Field4\Field2
             Case $2B
@@ -180,6 +182,12 @@ Function mp_server_onplayeruseitem%(arg0.mp_player, arg1.items, arg2.items)
                         EndIf
                         Exit
                     EndIf
+                Next
+            Case $15
+                local11 = rand($04, $01)
+                For local12 = $00 To local11 Step $01
+                    arg1 = createitem("SCP-500-01", $16, entityx(arg0\Field18, $00), (entityy(arg0\Field18, $00) + 0.5), entityz(arg0\Field18, $00), $00, $00, $00, 1.0, $00)
+                    entitytype(arg1\Field2, $03, $00)
                 Next
         End Select
         setplayerinjuriestimeout(arg0, 70.0)
