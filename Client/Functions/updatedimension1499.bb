@@ -222,7 +222,7 @@ Function updatedimension1499%()
                             If (nowplaying = $42) Then
                                 If (local0\Field6 = $00) Then
                                     local0\Field9 = loadsound_strict("SFX\Music\HaveMercyOnMe(Choir).ogg")
-                                    local0\Field6 = streamsound_strict("SFX\Music\HaveMercyOnMe(NoChoir).ogg", (opt\Field18 * opt\Field16), $02)
+                                    local0\Field6 = streamsound_strict("SFX\Music\HaveMercyOnMe(NoChoir).ogg", (opt\Field18 * opt\Field16), (1.0 / ∞))
                                     local0\Field11 = $01
                                 EndIf
                             EndIf

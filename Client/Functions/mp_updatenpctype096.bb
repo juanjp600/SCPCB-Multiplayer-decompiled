@@ -65,7 +65,7 @@ Function mp_updatenpctype096%(arg0.npcs)
             Case 0.0
                 If (64.0 > local0) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $02)
+                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
                         arg0\Field21 = $01
                     EndIf
                     If (-1.0 = arg0\Field12) Then
@@ -108,7 +108,7 @@ Function mp_updatenpctype096%(arg0.npcs)
             Case 1.0
                 If (256.0 > local0) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $02)
+                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
                         arg0\Field21 = $01
                     EndIf
                     local6 = arg0\Field14
@@ -190,7 +190,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                 updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 14.0, 1.0, $01)
             Case 2.0,3.0,4.0
                 If (arg0\Field18 = $00) Then
-                    arg0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, $02)
+                    arg0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, (1.0 / ∞))
                     arg0\Field21 = $01
                 EndIf
                 updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 10.0, 1.0, $01)
@@ -237,12 +237,12 @@ Function mp_updatenpctype096%(arg0.npcs)
                 me\Field52 = curvevalue(max(me\Field52, ((sin(((Float millisec) / 20.0)) + 1.0) * 10.0)), me\Field52, 8.0)
                 If (arg0\Field34 = Null) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, $02)
+                        arg0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, (1.0 / ∞))
                         arg0\Field21 = $01
                     EndIf
                     updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 7.5, 1.0, $01)
                     If (arg0\Field20 = $00) Then
-                        arg0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, $02)
+                        arg0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, (1.0 / ∞))
                         arg0\Field22 = $01
                     Else
                         setstreamvolume_strict(arg0\Field20, ((clamp((8.0 - sqr(local0)), 0.6, 1.0) * opt\Field21) * opt\Field16))

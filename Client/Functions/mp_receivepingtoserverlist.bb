@@ -60,7 +60,7 @@ Function mp_receivepingtoserverlist%(arg0$, arg1%, arg2.mp_netbuffer, arg3%, arg
             Next
         EndIf
         If ((((local1 <> Null) And (arg4 = $01)) And (mp_getdialogindex() = $01)) <> 0) Then
-            mp_showlocaldialog("Information", (((((((((((((((((("Server name: " + local1\Field2) + "\nGamemode: ") + local1\Field3) + "\nPlayers:  ") + (Str local1\Field4)) + " / ") + (Str local1\Field5)) + "\nDifficulty: ") + difficulties[local1\Field7]\Field0) + "\nRandom seed: ") + local1\Field8) + "\nIntro: ") + getbool(local1\Field9)) + "\nVoice bitrate: ") + mp_voicegetbitrate(local1\Field11)) + "\nPing: ") + (Str local1\Field6)) + "\n"), "Close", "", $00, $01, $00)
+            mp_showlocaldialog(getlocalstring("mpmenu", "information"), (((((((((((((((format(getlocalstring("mpmenu", "info.name"), local1\Field2, "%s") + "\n") + format(getlocalstring("mpmenu", "info.gamemode"), local1\Field3, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.players"), (((Str local1\Field4) + " / ") + (Str local1\Field5)), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.diff"), difficulties[local1\Field7]\Field0, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.seed"), local1\Field8, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.intro"), getbool(local1\Field9), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.voice"), mp_voicegetbitrate(local1\Field11), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.ping"), (Str local1\Field6), "%s")) + "\n"), getlocalstring("gui", "close"), "", $00, $01, $00)
         EndIf
     EndIf
     mp_fillserverlist(serverlist\Field4)

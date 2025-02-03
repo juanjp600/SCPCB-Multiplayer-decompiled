@@ -1,4 +1,4 @@
-Function opus_get_current_encoder%()
+Function getopusencoder%()
     Return opusencoder
     Return $00
 End Function

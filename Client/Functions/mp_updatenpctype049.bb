@@ -57,7 +57,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                                 Next
                             EndIf
                         EndIf
-                    ElseIf (mp_getnpctargetattach(arg0, $03) = $0D) Then
+                    ElseIf (mp_getnpctargetattach(arg0, $03) = $11) Then
                         If (arg0\Field85 <> 0) Then
                             me\Field49 = (me\Field49 + (fps\Field7[$00] * 2.5))
                             If (i_268\Field2 <> 0) Then

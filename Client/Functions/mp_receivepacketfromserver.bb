@@ -1,6 +1,9 @@
 Function mp_receivepacketfromserver%()
     Local local0%
     Local local2%
+    If (((getpacketip() <> getnetworkserverip()) Lor (getpacketport() <> getnetworkserverport())) <> 0) Then
+        Return $00
+    EndIf
     local0 = mp_readbyte()
     Select local0
         Case $05

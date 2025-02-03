@@ -2,7 +2,6 @@ Function mp_server_sendeventsdata%()
     Local local0.events
     Local local1.mp_player
     mp_flushbuffer(mp_getdatabuffer())
-    blitz_mp_writebyte0(mp_getdatabuffer(), isblackout)
     blitz_mp_writebyte0(mp_getdatabuffer(), soundtransmission)
     blitz_mp_writebyte0(mp_getdatabuffer(), remotedooron)
     blitz_mp_writebyte0(mp_getdatabuffer(), (me\Field43 + $01))

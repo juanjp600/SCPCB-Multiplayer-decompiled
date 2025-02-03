@@ -23,6 +23,8 @@ Function mp_updateterminated%()
             wi\Field4 = $00
             wi\Field5 = $00
             wi\Field9 = $00
+            remove714timer = 500.0
+            removehazmattimer = 500.0
             hideentity(me\Field60)
             me\Field49 = 0.0
             me\Field31 = 0.0

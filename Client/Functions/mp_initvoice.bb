@@ -2,6 +2,7 @@ Function mp_initvoice%(arg0%, arg1%, arg2%, arg3%)
     Local local0%
     Local local1%
     Local local2%
+    Local local3%
     If (mp_voice <> Null) Then
         Return $00
     EndIf
@@ -12,22 +13,23 @@ Function mp_initvoice%(arg0%, arg1%, arg2%, arg3%)
     If (opus_get_new_encoder() = $00) Then
         Return $00
     EndIf
-    senddebuglog(("Bitrate: " + (Str arg2)))
-    opus_encoder_set_ctl(opus_get_current_encoder(), $FA2, arg2)
-    local0 = bass_getrecorddevicecount()
-    If (local0 = $00) Then
+    opus_encoder_ctl_bb(getopusencoder(), $FA2, arg2)
+    local0 = $00
+    opus_encoder_ctl_bb(getopusencoder(), $FA3, local0)
+    local1 = bass_getrecorddevicecount()
+    If (local1 = $00) Then
         Return $00
     EndIf
-    local1 = $FFFFFFFF
+    local2 = $FFFFFFFF
     If (opt\Field48 <> "") Then
-        For local2 = $00 To (local0 - $01) Step $01
-            If (bass_getrecorddevicename(local2) = opt\Field48) Then
-                local1 = bass_getrecorddevice(local2)
+        For local3 = $00 To (local1 - $01) Step $01
+            If (bass_getrecorddevicename(local3) = opt\Field48) Then
+                local2 = bass_getrecorddevice(local3)
                 Exit
             EndIf
         Next
     EndIf
-    If (bass_recordinit(local1) = $00) Then
+    If (bass_recordinit(local2) = $00) Then
         Return $00
     EndIf
     mp_voice = (New mp_voicesystem)

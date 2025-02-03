@@ -1,7 +1,8 @@
 .lib "inicontroller.dll"
 
 iniclearbuffer%(arg0$):"_IniClearBuffer@4"
-iniwritebuffer_%(arg0$, arg1$, arg2%):"_IniWriteBuffer@12"
+inibufferkeyexist_%(arg0$, arg1$, arg2$):"_IniBufferKeyExist@12"
+iniwritebuffer_%(arg0$, arg1%):"_IniWriteBuffer@8"
 inigetstring_$(arg0$, arg1$, arg2$, arg3$, arg4%):"_IniGetString@20"
 inigetfloat_%(arg0$, arg1$, arg2$, arg3#, arg4%):"_IniGetFloat@20"
 inigetbufferstring_$(arg0$, arg1$, arg2$, arg3$):"_IniGetBufferString@16"

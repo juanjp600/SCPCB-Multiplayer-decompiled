@@ -29,7 +29,6 @@ Function mp_pingserver%(arg0$, arg1%, arg2%, arg3%)
     writebyte(mp_ping\Field0, $03)
     writebyte(mp_ping\Field0, arg3)
     sendudpmsg(mp_ping\Field0, local1, arg1)
-    senddebuglog(((("Send ping to: " + (Str local1)) + " Port: ") + (Str arg1)))
     Return $01
     Return $00
 End Function

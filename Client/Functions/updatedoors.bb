@@ -203,6 +203,7 @@ Function updatedoors%()
                 EndIf
             EndIf
             If (local8 <> 0) Then
+                local0\Field41 = (local0\Field41 - fps\Field7[$00])
                 updatesoundorigin(local0\Field17, camera, local0\Field2, 10.0, 1.0, $00, $01)
                 If (((((180.0 <= local0\Field8) Lor (0.0 >= local0\Field8)) And local10) And (grabbedentity = $00)) <> 0) Then
                     For local4 = $00 To $01 Step $01

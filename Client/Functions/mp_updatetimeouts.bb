@@ -7,7 +7,7 @@ Function mp_updatetimeouts%()
                 playerconnectionlossing(local0)
             EndIf
             If (1050.0 < local0\Field4\Field1) Then
-                mp_server_disconnectplayer(local0, "timed out")
+                mp_server_disconnectplayer(local0, getlocalstring("broadcast", "to"))
             EndIf
         EndIf
     Next

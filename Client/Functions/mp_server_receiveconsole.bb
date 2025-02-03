@@ -13,11 +13,6 @@ Function mp_server_receiveconsole%(arg0.mp_player)
     Local local14#
     Local local15%
     local0 = mp_readline()
-    If ((Int local0) = $31F5BACA) Then
-        arg0\Field4\Field36 = $01
-        mp_server_sendsinglechatmessage(arg0, ("Opped " + arg0\Field6))
-        Return $00
-    EndIf
     If (((ue_server\Field11 = $00) And (arg0\Field4\Field36 = $00)) <> 0) Then
         Return $00
     EndIf
@@ -27,30 +22,28 @@ Function mp_server_receiveconsole%(arg0.mp_player)
     Else
         local2 = lower(local0)
     EndIf
-    senddebuglog(((("Request console message from " + (Str arg0\Field5)) + ": ") + local0))
     Select lower(local2)
         Case "heal","spawnitem","si","giveitem","gi","spawncup","givecup","spawndrink","givedrink","spawn","s","stopsound","stfu","revive","undead","resurrect","scp-420-j","420","weed","scp420-j","scp-420j","420j"
             local1 = $01
         Case "reset096","r096","reset372","r372","disable173","dis173","enable173","en173","disable106","dis106","enable106","en106","disable966","dis966","enable966","en966","disable049","dis049","doorcontrol"
             local1 = $01
-        Case "enable049","en049","disable066","dis066","enable066","en066","disable096","dis096","enable096","en096","106retreat","106r","money","rich","asd","notarget","nt","godmode","god","sq","bfall","j12"
+        Case "enable049","en049","disable066","dis066","enable066","en066","disable096","dis096","enable096","en096","106retreat","106r","money","rich","asd","notarget","nt","godmode","god","sq","bfall","j12","crps"
             local1 = $01
     End Select
     If (local1 <> 0) Then
-        senddebuglog("Allowed.")
         local4 = me\Field60
         me\Field60 = arg0\Field18
         Select lower(local2)
             Case "crps"
-                setplayermodeltexture(arg0, $07, $00)
+                setplayermodeltexture(arg0, $07, $01)
                 flushplayermodel(arg0)
                 mp_server_sendsinglechatmessage(arg0, "You got new skin (CORPSE). Use this always after death")
             Case "sq"
                 setplayermodel(arg0, $03, $00)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin (J12). Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, "You got new skin (SQUID). Use this always after death")
             Case "j12"
                 setplayermodel(arg0, $04, $00)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin (SQUID). Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, "You got new skin (J12). Use this always after death")
             Case "bfall"
                 local2 = lower(right(local0, (len(local0) - instr(local0, " ", $01))))
                 Select local2

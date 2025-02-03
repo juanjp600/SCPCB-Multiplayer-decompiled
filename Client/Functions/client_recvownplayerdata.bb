@@ -26,5 +26,6 @@ Function client_recvownplayerdata%()
     EndIf
     i_268\Field3 = (Float mp_readshort())
     chs\Field0 = mp_readbyte()
+    ue_server\Field11 = (mp_readbyte() <> $00)
     Return $00
 End Function

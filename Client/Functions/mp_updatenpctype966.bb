@@ -13,7 +13,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                     hideentity(arg0\Field0)
                 EndIf
                 If ((chs\Field2 Lor i_268\Field2) = $00) Then
-                    If (((arg0\Field85 And (1.0 > local0)) And (0.0 >= arg0\Field28)) <> 0) Then
+                    If (((arg0\Field85 And (1.0 > local0)) And (0.0 >= arg0\Field90)) <> 0) Then
                         Select rand($06, $01)
                             Case $01
                                 createmsg(getlocalstring("msg", "966_1"), 6.0)
@@ -28,7 +28,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                             Case $06
                                 createmsg(getlocalstring("msg", "966_6"), 6.0)
                         End Select
-                        arg0\Field28 = 1680.0
+                        arg0\Field90 = 1680.0
                     EndIf
                 EndIf
             Else
@@ -39,7 +39,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                     showentity(arg0\Field0)
                 EndIf
             EndIf
-            arg0\Field28 = (arg0\Field28 - fps\Field7[$00])
+            arg0\Field90 = (arg0\Field90 - fps\Field7[$00])
             If (350.0 <= arg0\Field12) Then
                 arg0\Field10 = max(arg0\Field10, 8.0)
             EndIf
@@ -245,15 +245,17 @@ Function mp_updatenpctype966%(arg0.npcs)
                         If (((650.0 > local1) And (650.0 <= arg0\Field14)) <> 0) Then
                             playsoundex(snd_i\Field56[rand($03, $06)], camera, arg0\Field3, 7.0, rnd(0.5, 0.7), $00, $00)
                         EndIf
-                        If (651.9 < arg0\Field14) Then
-                            Select rand($03, $01)
-                                Case $01
-                                    setnpcframe(arg0, 458.0, $01)
-                                Case $02
-                                    setnpcframe(arg0, 488.0, $01)
-                                Case $03
-                                    setnpcframe(arg0, 518.0, $01)
-                            End Select
+                        If (mp_ishoster() <> 0) Then
+                            If (651.9 < arg0\Field14) Then
+                                Select rand($03, $01)
+                                    Case $01
+                                        setnpcframe(arg0, 458.0, $01)
+                                    Case $02
+                                        setnpcframe(arg0, 488.0, $01)
+                                    Case $03
+                                        setnpcframe(arg0, 518.0, $01)
+                                End Select
+                            EndIf
                         EndIf
                     ElseIf (487.0 >= arg0\Field14) Then
                         animatenpc(arg0, 458.0, 487.0, 0.3, $00)

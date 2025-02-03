@@ -37,7 +37,7 @@ Function mp_receivepacketfromclient%()
                 Return $00
             EndIf
             mp_writebyte($00)
-            mp_writebyte($0C)
+            mp_writebyte($0D)
             mp_writebyte(ue_server\Field9)
             mp_writebyte(ue_server\Field8)
             mp_writeline(ue_server\Field4)
@@ -54,16 +54,13 @@ Function mp_receivepacketfromclient%()
             mp_writebyte($00)
             mp_sendtosender()
         Case $01
-            senddebuglog("Got request for connection.")
             For local6 = Each mp_player
                 If (((local6\Field0 = local0) And (local6\Field1 = local1)) <> 0) Then
-                    senddebuglog("Same IP&Port.")
                     Return $00
                 EndIf
             Next
             For local7 = Each mp_playerauth
                 If (((local7\Field0 = local0) And (local7\Field1 = local1)) <> 0) Then
-                    senddebuglog("Same auth.")
                     Return $00
                 EndIf
             Next
@@ -74,7 +71,6 @@ Function mp_receivepacketfromclient%()
                 mp_writebyte($02)
                 mp_writebyte($02)
                 mp_sendtosender()
-                senddebuglog("Too much players.")
                 Return $00
             EndIf
             local11 = $00
@@ -88,14 +84,12 @@ Function mp_receivepacketfromclient%()
                 mp_writebyte($02)
                 mp_writebyte($01)
                 mp_sendtosender()
-                senddebuglog("Not allowed version.")
                 Return $00
             EndIf
             If (local10 <> randomseed) Then
                 mp_writebyte($02)
                 mp_writebyte($03)
                 mp_sendtosender()
-                senddebuglog("Wrong seed.")
                 Return $00
             EndIf
             local7 = (New mp_playerauth)
@@ -107,7 +101,6 @@ Function mp_receivepacketfromclient%()
             mp_writebyte($00)
             mp_server_fillconnection()
             mp_sendtosender()
-            senddebuglog("Sent connection accept")
         Case $02
             For local7 = Each mp_playerauth
                 If (((local7\Field0 = local0) And (local7\Field1 = local1)) <> 0) Then
@@ -116,8 +109,7 @@ Function mp_receivepacketfromclient%()
                         local13\Field2 = local7\Field3
                         local13\Field6 = local7\Field4
                         server_playerconnected(local13)
-                        mp_broadcastchatmessage((local13\Field6 + " has joined to server"))
-                        senddebuglog((("New player created (" + (Str local13\Field5)) + ")"))
+                        mp_broadcastchatmessage(format(getlocalstring("broadcast", "joined"), local13\Field6, "%s"))
                         mp_countplayers($01)
                     EndIf
                     Delete local7
@@ -147,7 +139,7 @@ Function mp_receivepacketfromclient%()
         Case $13
             mp_server_receivechatmessage(local2)
         Case $14
-            mp_server_disconnectplayer(local2, "has left the server")
+            mp_server_disconnectplayer(local2, getlocalstring("broadcast", "left"))
     End Select
     Return $00
 End Function

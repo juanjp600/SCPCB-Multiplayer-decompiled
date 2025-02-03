@@ -1,7 +1,7 @@
 Function loadspritefont.spritefont(arg0$, arg1$, arg2#, arg3#)
     Local local0%
     Local local1.spritefont
-    local0 = loadfont(arg1, (Int arg2), $00, $00, $00)
+    local0 = loadfont(arg1, (Int arg2))
     If (local0 = $00) Then
         Return Null
     EndIf

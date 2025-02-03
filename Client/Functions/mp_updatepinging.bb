@@ -7,7 +7,7 @@ Function mp_updatepinging%()
     If (mp_getdialogindex() = $03) Then
         If (mp_gettimer() > mp_ping\Field2) Then
             mp_resetdialogstates()
-            mp_showlocaldialog("Connect", "Can't connect to server: Server not responding", "Ok", "", $00, $01, $01)
+            mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "not_respond"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
         EndIf
     ElseIf (mp_latestcloseddialog() = $03) Then
         For local0 = Each mp_serverping
@@ -22,9 +22,7 @@ Function mp_updatepinging%()
             For local0 = Each mp_serverping
                 If (((local0\Field0 = local1) And (local0\Field1 = local2)) <> 0) Then
                     If ((millisecs() - local0\Field6) < mp_ping\Field1) Then
-                        senddebuglog(((("Receive ping from " + (Str local1)) + " Port: ") + (Str local2)))
                         receivetonetworkbuffer(mp_ping\Field0, local0\Field2)
-                        senddebuglog((("Access ping. Received: " + (Str local0\Field2\Field2)) + " bytes"))
                         local3 = blitz_mp_readbyte0(local0\Field2)
                         If ((local0\Field4 And (local3 = $00)) <> 0) Then
                             mp_resetdialogstates()
@@ -38,15 +36,15 @@ Function mp_updatepinging%()
                                 Select local4
                                     Case $00
                                     Case $01
-                                        mp_showlocaldialog("Connect", "Can't connect to server: Wrong version", "Ok", "", $00, $01, $01)
+                                        mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "wrong_version"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
                                     Case $02
-                                        mp_showlocaldialog("Connect", "Can't connect to server: Server is full", "Ok", "", $00, $01, $01)
+                                        mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "full"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
                                     Case $04
-                                        mp_showlocaldialog("Connect", "Can't connect to server: Server not responding", "Ok", "", $00, $01, $01)
+                                        mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "not_respond"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
                                     Case $03
-                                        mp_showlocaldialog("Connect", "Can't connect to server: Wrong seed", "Ok", "", $00, $01, $01)
+                                        mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "wrong_seed"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
                                     Default
-                                        mp_showlocaldialog("Connect", "Can't connect to server: Unknown error", "Ok", "", $00, $01, $01)
+                                        mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "cant_connect"), getlocalstring("mpmenu", "unknown"), "%s"), getlocalstring("gui", "ok"), "", $00, $01, $01)
                                 End Select
                             EndIf
                             local0\Field5 = $00

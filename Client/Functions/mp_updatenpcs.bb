@@ -9,15 +9,15 @@ Function mp_updatenpcs%()
     Local local9%
     Local local10.decals
     Local local11%
-    Local local12%
+    Local local12.rooms
     Local local13%
     Local local14%
     Local local15%
-    Local local16#
+    Local local16%
     Local local17#
     Local local18#
     Local local19#
-    Local local20.rooms
+    Local local20#
     catcherrors("MP_UpdateNPCs()")
     If (((mp_ishoster() = $00) And ((mp_isconnected() = $00) Lor (mp_isnpcsreceived() = $00))) <> 0) Then
         Return $00
@@ -189,66 +189,76 @@ Function mp_updatenpcs%()
                 playannouncement("SFX\Character\MTF\AnnouncLost.ogg", $01)
                 mtftimer = 31000.0
             EndIf
-            If (((11.0 > local6) Lor (local0\Field4 = $10)) <> 0) Then
-                local12 = $00
-                local13 = countcollisions(local0\Field3)
-                For local14 = $01 To local13 Step $01
-                    If ((entityy(local0\Field3, $00) - 0.01) > collisiony(local0\Field3, local14)) Then
-                        local12 = $01
-                        Exit
-                    EndIf
-                Next
-                If (local12 <> 0) Then
-                    local0\Field7 = 0.0
-                ElseIf (shouldentitiesfall <> 0) Then
-                    local15 = $00
-                    If (local0\Field59 = $00) Then
-                        If (playerroom\Field7\Field6 <> $04) Then
-                            If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
-                                If (20.0 < entityy(me\Field60, $00)) Then
-                                    local15 = $01
+            If (((local6 < ((hidedistance * 0.6) * (hidedistance * 0.6))) Lor (local0\Field4 = $10)) <> 0) Then
+                If (local0\Field59 = isinfacility(entityy(me\Field60, $00))) Then
+                    translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
+                    local13 = $00
+                    local14 = countcollisions(local0\Field3)
+                    For local15 = $01 To local14 Step $01
+                        If ((entityy(local0\Field3, $00) - 0.01) > collisiony(local0\Field3, local15)) Then
+                            local13 = $01
+                            Exit
+                        EndIf
+                    Next
+                    If (local13 <> 0) Then
+                        local0\Field7 = 0.0
+                    ElseIf (shouldentitiesfall <> 0) Then
+                        local16 = $00
+                        If (local0\Field59 = $00) Then
+                            If (playerroom\Field7\Field6 <> $04) Then
+                                If (((forest_event <> Null) And (forest_event\Field1 = playerroom)) <> 0) Then
+                                    If (20.0 < entityy(me\Field60, $00)) Then
+                                        local16 = $01
+                                    EndIf
                                 EndIf
+                            Else
+                                local16 = $01
+                            EndIf
+                            If (local16 = $00) Then
+                                For local12 = Each rooms
+                                    If (((((0.0 <> local12\Field26) Lor (0.0 <> local12\Field23)) Lor (0.0 <> local12\Field28)) Lor (0.0 <> local12\Field25)) <> 0) Then
+                                        local17 = local12\Field26
+                                        local18 = local12\Field23
+                                        local19 = local12\Field28
+                                        local20 = local12\Field25
+                                    Else
+                                        local17 = 4.0
+                                        local18 = 0.0
+                                        local19 = 4.0
+                                        local20 = 0.0
+                                    EndIf
+                                    If ((Abs (local17 - local18)) >= (Abs (entityx(local0\Field3, $00) - entityx(local12\Field2, $00)))) Then
+                                        If ((Abs (local19 - local20)) >= (Abs (entityz(local0\Field3, $00) - entityz(local12\Field2, $00)))) Then
+                                            If (local12 = playerroom) Then
+                                                local16 = $01
+                                                Exit
+                                            EndIf
+                                            If (isroomadjacent(playerroom, local12) <> 0) Then
+                                                local16 = $01
+                                                Exit
+                                            EndIf
+                                        EndIf
+                                    EndIf
+                                Next
                             EndIf
                         Else
-                            local15 = $01
+                            local16 = $01
                         EndIf
-                        If (local15 = $00) Then
-                            For local20 = Each rooms
-                                If (((((0.0 <> local20\Field26) Lor (0.0 <> local20\Field23)) Lor (0.0 <> local20\Field28)) Lor (0.0 <> local20\Field25)) <> 0) Then
-                                    local16 = local20\Field26
-                                    local17 = local20\Field23
-                                    local18 = local20\Field28
-                                    local19 = local20\Field25
-                                Else
-                                    local16 = 4.0
-                                    local17 = 0.0
-                                    local18 = 4.0
-                                    local19 = 0.0
-                                EndIf
-                                If ((((Abs (local16 - local17)) >= (Abs (entityx(local0\Field3, $00) - entityx(local20\Field2, $00)))) And ((Abs (local18 - local19)) >= (Abs (entityz(local0\Field3, $00) - entityz(local20\Field2, $00))))) <> 0) Then
-                                    If (local20 = playerroom) Then
-                                        local15 = $01
-                                        Exit
-                                    EndIf
-                                    If (isroomadjacent(playerroom, local20) <> 0) Then
-                                        local15 = $01
-                                        Exit
-                                    EndIf
-                                EndIf
-                            Next
+                        If (local16 <> 0) Then
+                            local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
+                        ElseIf (0.0 < local0\Field9) Then
+                            local0\Field7 = 0.0
+                        Else
+                            local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
                         EndIf
                     Else
-                        local15 = $01
-                    EndIf
-                    If (local15 <> 0) Then
-                        local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
-                    ElseIf (0.0 < local0\Field9) Then
                         local0\Field7 = 0.0
-                    Else
-                        local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
                     EndIf
-                    translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
+                Else
+                    local0\Field7 = 0.0
                 EndIf
+            Else
+                local0\Field7 = 0.0
             EndIf
         EndIf
         mp_updatenpcobject(local0)

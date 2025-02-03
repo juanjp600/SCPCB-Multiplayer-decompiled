@@ -31,6 +31,7 @@ Function mp_sendmyplayerdata%()
             mp_writebyte(((keydown(key\Field8) + ((-1.0 >= me\Field41) Shl $01)) + ((1.0 <= me\Field41) Shl $02)))
             mp_writebyte((Int me\Field31))
             mp_writeshort((Int me\Field14))
+            mp_writebyte((Int i_966\Field1))
             If (local2 <> 0) Then
                 If (myplayerlogic\Field4 <> Null) Then
                     mp_writebyte(myplayerlogic\Field4\Field0\Field31)

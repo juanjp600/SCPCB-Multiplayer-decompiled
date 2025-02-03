@@ -11,11 +11,9 @@ Function mp_receiveconnpacketfromserver%()
         local2 = mp_readbyte()
         mp_menuconnectionresult(local2)
         If (local2 <> $00) Then
-            senddebuglog(("The server didn't accept your connection. Error code: " + (Str local2)))
             shutdownserver(local2)
             Return $00
         EndIf
-        senddebuglog("Successfully connected!")
         setnetworkserver(ue_connection\Field0, ue_connection\Field1)
         mp_client_receiveconnection()
         mp_writebyte($02)

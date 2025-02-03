@@ -105,7 +105,7 @@ Function update427%()
             entityparent(local0\Field0, playerroom\Field2, $01)
             local4 = playsound_strict(snd_i\Field30[rand($00, $03)], $00)
             channelvolume(local4, ((rnd(0.0, 0.8) * opt\Field20) * opt\Field16))
-            channelpitch(local4, rand($4E20, $7530))
+            channelpitch(local4, (Float rand($4E20, $7530)))
             freeentity(local3)
             local3 = $00
             me\Field49 = 800.0

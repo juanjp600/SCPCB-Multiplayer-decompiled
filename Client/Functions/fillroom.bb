@@ -184,7 +184,7 @@ Function fillroom%(arg0.rooms)
                 freeentity(local0\Field1)
                 local0\Field1 = $00
                 local0 = createdoor(arg0, (arg0\Field3 - 6.869531), (arg0\Field4 + 1.484375), (arg0\Field5 + 26.0875), -90.0, $00, $00, $00, $00, $00)
-                local0 = createdoor(arg0, (arg0\Field3 - 8.617188), (arg0\Field4 + 1.484375), (arg0\Field5 + 14.49375), 0.0, $00, $00, $00, $00, $00)
+                local0 = createdoor(arg0, (arg0\Field3 - 8.617188), (arg0\Field4 + 1.484375), (arg0\Field5 + 14.47422), 0.0, $00, $00, $00, $00, $00)
                 If (rand($02, $01) = $01) Then
                     local7 = createitem("Level 0 Key Card", $59, (arg0\Field3 - 5.246094), (arg0\Field4 + 1.972656), (arg0\Field5 + 24.73828), $00, $00, $00, 1.0, $00)
                     entityparent(local7\Field2, arg0\Field2, $01)

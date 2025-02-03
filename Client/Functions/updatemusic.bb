@@ -14,7 +14,7 @@ Function updatemusic%()
     EndIf
     If (nowplaying < $42) Then
         If (currmusic = $00) Then
-            musicchn = streamsound_strict((("SFX\Music\" + music[nowplaying]) + ".ogg"), 0.0, $02)
+            musicchn = streamsound_strict((("SFX\Music\" + music[nowplaying]) + ".ogg"), 0.0, (1.0 / ∞))
             currmusic = $01
         EndIf
         setstreamvolume_strict(musicchn, (opt\Field19 * opt\Field16))

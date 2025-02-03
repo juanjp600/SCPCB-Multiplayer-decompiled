@@ -1,5 +1,6 @@
 Function setlanguage%(arg0$, arg1%)
     If (lang\Field1 <> "") Then
+        iniclearbuffer((lang\Field1 + "Data\MP_local.ini"))
         iniclearbuffer((lang\Field1 + "Data\local.ini"))
         iniclearbuffer((lang\Field1 + "Data\fonts.ini"))
         iniclearbuffer((lang\Field1 + "Data\achievements.jsonc"))
@@ -9,10 +10,10 @@ Function setlanguage%(arg0$, arg1%)
         lang\Field1 = ""
     Else
         lang\Field1 = (("Localization\" + lang\Field0) + "\")
-        iniwritebuffer((lang\Field1 + "Data\local.ini"), "", $01)
-        iniwritebuffer((lang\Field1 + "Data\MP_local.ini"), (lang\Field1 + "Data\local.ini"), $00)
-        iniwritebuffer((lang\Field1 + "Data\fonts.ini"), "", $01)
-        iniwritebuffer((lang\Field1 + "Data\achievements.jsonc"), "", $01)
+        iniwritebuffer((lang\Field1 + "Data\MP_local.ini"), $01)
+        iniwritebuffer((lang\Field1 + "Data\local.ini"), $01)
+        iniwritebuffer((lang\Field1 + "Data\fonts.ini"), $01)
+        iniwritebuffer((lang\Field1 + "Data\achievements.jsonc"), $01)
     EndIf
     If (stringtoboolean(getlocalstring("global", "splitwithspace"), $00) <> 0) Then
         splitspace = " "

@@ -150,18 +150,18 @@ Function updatemainmenu%()
                         local14 = $00
                         local15 = $00
                         local16 = local3
-                        If (updatemenubutton((Int local16), (Int local4), (Int (local5 / 3.0)), (Int (25.0 * menuscale)), (("INTERNET (" + (Str mp_countlistservers($00, $01))) + ")"), $00, $01, (serverlist\Field4 = $00), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int local16), (Int local4), (Int (local5 / 3.0)), (Int (25.0 * menuscale)), format(getlocalstring("mpmenu", "list.internet"), (Str mp_countlistservers($00, $01)), "%s"), $00, $01, (serverlist\Field4 = $00), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
                             serverlist\Field4 = $00
                             mp_fillserverlist($00)
                             local14 = $01
                         EndIf
                         local16 = ((local5 / 3.0) + local16)
-                        If (updatemenubutton((Int (local16 - (4.0 * menuscale))), (Int local4), (Int ((local5 / 3.0) + (4.0 * menuscale))), (Int (25.0 * menuscale)), (("HISTORY (" + (Str mp_countlistservers($01, $00))) + ")"), $00, $01, (serverlist\Field4 = $01), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local16 - (4.0 * menuscale))), (Int local4), (Int ((local5 / 3.0) + (4.0 * menuscale))), (Int (25.0 * menuscale)), format(getlocalstring("mpmenu", "list.history"), (Str mp_countlistservers($01, $00)), "%s"), $00, $01, (serverlist\Field4 = $01), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
                             serverlist\Field4 = $01
                             mp_fillserverlist($01)
                         EndIf
                         local16 = ((local5 / 3.0) + local16)
-                        If (updatemenubutton((Int (local16 - (4.0 * menuscale))), (Int local4), (Int ((local5 / 3.0) + (4.0 * menuscale))), (Int (25.0 * menuscale)), (("FAVOURITES (" + (Str mp_countlistservers($02, $00))) + ")"), $00, $01, (serverlist\Field4 = $02), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local16 - (4.0 * menuscale))), (Int local4), (Int ((local5 / 3.0) + (4.0 * menuscale))), (Int (25.0 * menuscale)), format(getlocalstring("mpmenu", "list.favourites"), (Str mp_countlistservers($02, $00)), "%s"), $00, $01, (serverlist\Field4 = $02), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
                             serverlist\Field4 = $02
                             mp_fillserverlist($02)
                             local14 = $01
@@ -172,29 +172,29 @@ Function updatemainmenu%()
                         EndIf
                         local17 = ((local5 * 0.027) + local17)
                         local14 = (local14 + mouseon((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int (local5 * 0.5402)), (Int (25.0 * menuscale))))
-                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.5402) + (4.0 * menuscale))), (Int (25.0 * menuscale)), ("Servers" + mp_getsortedchar($00)), $00, $01, $00, $FF, $FF, $FF, $00, 0.05, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.5402) + (4.0 * menuscale))), (Int (25.0 * menuscale)), (getlocalstring("mpmenu", "servers") + mp_getsortedchar($00)), $00, $01, $00, $FF, $FF, $FF, $00, 0.05, $00, $00) <> 0) Then
                             mp_sortserverlist(serverlist\Field4, $00)
                         EndIf
                         local17 = ((local5 * 0.5402) + local17)
                         local14 = (local14 + mouseon((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int (local5 * 0.18)), (Int (25.0 * menuscale))))
-                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.18) + (4.0 * menuscale))), (Int (25.0 * menuscale)), ("Gamemode" + mp_getsortedchar($01)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.18) + (4.0 * menuscale))), (Int (25.0 * menuscale)), (getlocalstring("mpmenu", "gamemode") + mp_getsortedchar($01)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
                             mp_sortserverlist(serverlist\Field4, $01)
                         EndIf
                         local17 = ((local5 * 0.18) + local17)
                         local14 = (local14 + mouseon((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int (local5 * 0.13)), (Int (25.0 * menuscale))))
-                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.13) + (4.0 * menuscale))), (Int (25.0 * menuscale)), ("Players" + mp_getsortedchar($02)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.13) + (4.0 * menuscale))), (Int (25.0 * menuscale)), (getlocalstring("mpmenu", "players") + mp_getsortedchar($02)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
                             mp_sortserverlist(serverlist\Field4, $02)
                         EndIf
                         local17 = ((local5 * 0.13) + local17)
                         local14 = (local14 + mouseon((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int (local5 * 0.1013)), (Int (25.0 * menuscale))))
-                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.1013) + (2.0 * menuscale))), (Int (25.0 * menuscale)), ("Ping" + mp_getsortedchar($03)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int (local17 - (4.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.1013) + (2.0 * menuscale))), (Int (25.0 * menuscale)), (getlocalstring("mpmenu", "ping") + mp_getsortedchar($03)), $00, $01, $00, $FF, $FF, $FF, $00, 0.15, $00, $00) <> 0) Then
                             mp_sortserverlist(serverlist\Field4, $03)
                         EndIf
                         local17 = ((local5 * 0.1013) + local17)
                         local14 = (local14 + mouseon((Int local3), (Int (((local4 + local6) - (35.0 * menuscale)) + (6.0 * menuscale))), (Int local5), (Int (50.0 * menuscale))))
                         updatemenubutton((Int local3), (Int (((local4 + local6) - (35.0 * menuscale)) + (6.0 * menuscale))), (Int local5), (Int (54.0 * menuscale)), "", $00, $01, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
                         updatemenubutton((Int (local17 - (8.0 * menuscale))), (Int (((25.0 * menuscale) + local4) - (4.0 * menuscale))), (Int ((local5 * 0.0215) + (8.0 * menuscale))), (Int (25.0 * menuscale)), "E", $09, $01, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
-                        If (updatemenubutton((Int ((15.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Refresh", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                        If (updatemenubutton((Int ((15.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpmenu", "refresh"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                             For local12 = Each mp_listserver
                                 If (local12\Field10 = serverlist\Field4) Then
                                     mp_pingserver(local12\Field0, local12\Field1, $00, $00)
@@ -206,7 +206,7 @@ Function updatemainmenu%()
                         EndIf
                         local18 = serverlist\Field4
                         If (local18 <> $02) Then
-                            If ((updatemenubutton((Int ((145.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Host server", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
+                            If ((updatemenubutton((Int ((145.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpmenu", "host"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
                                 If (opt\Field54 <> 0) Then
                                     randomseed = "666"
                                 Else
@@ -226,11 +226,11 @@ Function updatemainmenu%()
                                 mm\Field5 = $02
                             EndIf
                         Else
-                            If ((updatemenubutton((Int ((145.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Add server", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
-                                mp_showlocaldialog("Add server", "Enter server IP Address (0.0.0.0:0)", "Add", "Cancel", $02, $02, $01)
+                            If ((updatemenubutton((Int ((145.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpmenu", "addserver"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
+                                mp_showlocaldialog(getlocalstring("mpmenu", "addserver"), (getlocalstring("mpmenu", "enter_ip") + " (0.0.0.0:0)"), getlocalstring("gui", "add"), getlocalstring("gui", "cancel"), $02, $02, $01)
                                 local15 = $01
                             EndIf
-                            If ((updatemenubutton((Int ((275.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), "Host server", $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
+                            If ((updatemenubutton((Int ((275.0 * menuscale) + local3)), (Int ((((local4 + local6) - (17.0 * menuscale)) - (7.5 * menuscale)) + (6.0 * menuscale))), (Int (120.0 * menuscale)), (Int (30.0 * menuscale)), getlocalstring("mpmenu", "host"), $00, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) And (mp_getdialogindex() = $00)) <> 0) Then
                                 If (opt\Field54 <> 0) Then
                                     randomseed = "666"
                                 Else
@@ -316,7 +316,7 @@ Function updatemainmenu%()
                                     serverlist\Field3 = (Int mouseposy)
                                 EndIf
                                 If ((((((local29 And mo\Field3) And (local14 = $00)) And (serverlist\Field1 = $00)) And (mp_getdialogindex() = $00)) And (serverlist\Field5 = ((Handle local12) + $01))) <> 0) Then
-                                    mp_showlocaldialog("Connect", (("Connecting to " + local12\Field2) + "..."), "Cancel", "", $00, $03, $01)
+                                    mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "connecting"), local12\Field2, "%s"), getlocalstring("gui", "cancel"), "", $00, $03, $01)
                                     mp_pingserver(local12\Field0, local12\Field1, $01, $00)
                                     mp_waitingforping($BB8)
                                     mo\Field0 = $00
@@ -345,28 +345,28 @@ Function updatemainmenu%()
                             local31 = (Object.mp_listserver (serverlist\Field1 - $01))
                             local32 = mouseon(serverlist\Field2, serverlist\Field3, (Int (160.0 * menuscale)), (Int (88.0 * menuscale)))
                             local33 = $00
-                            If (updatemenubutton(serverlist\Field2, serverlist\Field3, (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Connect", $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
-                                mp_showlocaldialog("Connect", (("Connecting to " + local31\Field2) + "..."), "Cancel", "", $00, $03, $01)
+                            If (updatemenubutton(serverlist\Field2, serverlist\Field3, (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), getlocalstring("mpmenu", "connect2"), $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                                mp_showlocaldialog(getlocalstring("mpmenu", "connect2"), format(getlocalstring("mpmenu", "connecting"), local31\Field2, "%s"), getlocalstring("gui", "cancel"), "", $00, $03, $01)
                                 mp_pingserver(local31\Field0, local31\Field1, $01, $00)
                                 local33 = $01
                             EndIf
                             If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (25.0 * menuscale)) - (3.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Open info", $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
-                                mp_showlocaldialog("Information", (((((((((((((((((("Server name: " + local31\Field2) + "\nGamemode: ") + local31\Field3) + "\nPlayers:  ") + (Str local31\Field4)) + " / ") + (Str local31\Field5)) + "\nDifficulty: ") + difficulties[local31\Field7]\Field0) + "\nRandom seed: ") + local31\Field8) + "\nIntro: ") + getbool(local31\Field9)) + "\nVoice bitrate: ") + mp_voicegetbitrate(local31\Field11)) + "\nPing: ") + (Str local31\Field6)) + "\n"), "Close", "", $00, $01, $00)
+                                mp_showlocaldialog(getlocalstring("mpmenu", "information"), (((((((((((((((format(getlocalstring("mpmenu", "info.name"), local31\Field2, "%s") + "\n") + format(getlocalstring("mpmenu", "info.gamemode"), local31\Field3, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.players"), (((Str local31\Field4) + " / ") + (Str local31\Field5)), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.diff"), difficulties[local31\Field7]\Field0, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.seed"), local31\Field8, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.intro"), getbool(local31\Field9), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.voice"), mp_voicegetbitrate(local31\Field11), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.ping"), (Str local31\Field6), "%s")) + "\n"), getlocalstring("gui", "close"), "", $00, $01, $00)
                                 mp_pingserver(local31\Field0, local31\Field1, $00, $01)
                                 local33 = $01
                             EndIf
-                            If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (50.0 * menuscale)) - (6.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Update", $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                            If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (50.0 * menuscale)) - (6.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), getlocalstring("gui", "update"), $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                                 mp_pingserver(local31\Field0, local31\Field1, $00, $00)
                                 local33 = $01
                             EndIf
                             Select serverlist\Field4
                                 Case $00
-                                    If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (75.0 * menuscale)) - (9.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Add to favourites", $00, $01, (mp_getserverfromcategory(local31\Field0, local31\Field1, $02) <> Null), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
+                                    If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (75.0 * menuscale)) - (9.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), getlocalstring("mpmenu", "add_to_favourites"), $00, $01, (mp_getserverfromcategory(local31\Field0, local31\Field1, $02) <> Null), $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
                                         mp_addlistserver(local31\Field0, local31\Field1, $02)
                                         local33 = $01
                                     EndIf
                                 Case $02,$01
-                                    If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (75.0 * menuscale)) - (9.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Delete", $00, $01, $00, $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
+                                    If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (75.0 * menuscale)) - (9.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), getlocalstring("gui", "delete"), $00, $01, $00, $FF, $FF, $FF, $00, 1.0, $00, $00) <> 0) Then
                                         mp_removelistserver(local31)
                                         local33 = $01
                                         local15 = $01

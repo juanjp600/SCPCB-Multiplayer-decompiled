@@ -10,5 +10,6 @@ Function server_fillownplayerdata%(arg0.mp_player)
     mp_writeshort((Int arg0\Field4\Field30))
     mp_writeshort((Int arg0\Field4\Field31))
     mp_writebyte(arg0\Field4\Field34)
+    mp_writebyte((arg0\Field4\Field36 + ue_server\Field11))
     Return $00
 End Function

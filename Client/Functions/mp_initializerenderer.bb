@@ -52,7 +52,7 @@ Function mp_initializerenderer%()
     local0\Field25[$07] = 35.0
     local0\Field23[$08] = packtwovalues($322, $336)
     local0\Field24[$08] = 0.23
-    local0\Field23[$09] = packtwovalues($30C, $321)
+    local0\Field23[$09] = packtwovalues($30D, $321)
     local0\Field24[$09] = 0.33
     local0\Field28[$08] = $01
     local0\Field28[$09] = $01

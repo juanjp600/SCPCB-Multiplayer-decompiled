@@ -1,7 +1,6 @@
 Function mp_client_receiveeventsdata%()
     Local local0%
     Local local1.events
-    isblackout = mp_readbyte()
     soundtransmission = mp_readbyte()
     remotedooron = mp_readbyte()
     me\Field43 = (mp_readbyte() - $01)

@@ -684,7 +684,7 @@ Function updatenpcs%()
                         Case 0.0
                             If (64.0 > local13) Then
                                 If (local0\Field18 = $00) Then
-                                    local0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $02)
+                                    local0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
                                     local0\Field21 = $01
                                 EndIf
                                 If (-1.0 = local0\Field12) Then
@@ -725,7 +725,7 @@ Function updatenpcs%()
                         Case 1.0
                             If (256.0 > local13) Then
                                 If (local0\Field18 = $00) Then
-                                    local0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $02)
+                                    local0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
                                     local0\Field21 = $01
                                 EndIf
                                 local21 = local0\Field14
@@ -805,7 +805,7 @@ Function updatenpcs%()
                             updatestreamsoundorigin(local0\Field18, camera, local0\Field3, 14.0, 1.0, $01)
                         Case 2.0,3.0,4.0
                             If (local0\Field18 = $00) Then
-                                local0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, $02)
+                                local0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, (1.0 / ∞))
                                 local0\Field21 = $01
                             EndIf
                             updatestreamsoundorigin(local0\Field18, camera, local0\Field3, 10.0, 1.0, $01)
@@ -852,12 +852,12 @@ Function updatenpcs%()
                             me\Field52 = curvevalue(max(me\Field52, ((sin(((Float millisec) / 20.0)) + 1.0) * 10.0)), me\Field52, 8.0)
                             If (local0\Field34 = Null) Then
                                 If (local0\Field18 = $00) Then
-                                    local0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, $02)
+                                    local0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, (1.0 / ∞))
                                     local0\Field21 = $01
                                 EndIf
                                 updatestreamsoundorigin(local0\Field18, camera, local0\Field3, 7.5, 1.0, $01)
                                 If (local0\Field20 = $00) Then
-                                    local0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, $02)
+                                    local0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, (1.0 / ∞))
                                     local0\Field22 = $01
                                 Else
                                     setstreamvolume_strict(local0\Field20, ((clamp((8.0 - sqr(local13)), 0.6, 1.0) * opt\Field21) * opt\Field16))
@@ -4369,6 +4369,7 @@ Function updatenpcs%()
             EndIf
             If (((local89 < ((hidedistance * 0.6) * (hidedistance * 0.6))) Lor (local0\Field4 = $10)) <> 0) Then
                 If (local0\Field59 = infacility) Then
+                    translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
                     local93 = $00
                     local94 = countcollisions(local0\Field3)
                     For local11 = $01 To local94 Step $01
@@ -4434,7 +4435,6 @@ Function updatenpcs%()
                         Else
                             local0\Field7 = max((local0\Field7 - ((fps\Field7[$00] * 0.005) * local0\Field48)), (- local0\Field49))
                         EndIf
-                        translateentity(local0\Field3, 0.0, local0\Field7, 0.0, $00)
                     Else
                         local0\Field7 = 0.0
                     EndIf

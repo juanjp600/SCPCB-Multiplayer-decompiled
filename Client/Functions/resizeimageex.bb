@@ -20,6 +20,7 @@ Function resizeimageex%(arg0%, arg1#, arg2#)
     copyrect((mo\Field9 - (local2 Sar $01)), (mo\Field10 - (local3 Sar $01)), local2, local3, $00, $00, local5, imagebuffer(local4, $00))
     freeimage(arg0)
     arg0 = $00
+    bufferdirty(imagebuffer(local4, $00))
     Return local4
     Return $00
 End Function

@@ -72,7 +72,7 @@ Function mp_updatenpctype939%(arg0.npcs)
                             EndIf
                             If (4.0 < mp_getnpctargetinjuries(arg0)) Then
                                 kill($01, $01, $00, $01)
-                                arg0\Field10 = 2.0
+                                arg0\Field10 = 1.0
                             EndIf
                         Else
                             setnpcframe(arg0, 449.0, $01)

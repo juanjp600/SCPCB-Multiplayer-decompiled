@@ -5,7 +5,7 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     mp_menu\Field0 = arg0
     mp_menu\Field1 = arg1
     local0 = blitz_mp_readbyte0(arg2)
-    If (local0 <> $0C) Then
+    If (local0 <> $0D) Then
         Return $01
     EndIf
     local1 = blitz_mp_readbyte0(arg2)
@@ -18,7 +18,6 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     randomseed = blitz_mp_readline0(arg2)
     opt\Field53 = blitz_mp_readbyte0(arg2)
     If (opt\Field53 <> $00) Then
-        senddebuglog("Intro enabled")
     EndIf
     selecteddifficulty = difficulties[(Int min((Float blitz_mp_readbyte0(arg2)), 4.0))]
     If (selecteddifficulty\Field5 <> 0) Then
@@ -26,11 +25,6 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
         selecteddifficulty\Field3 = blitz_mp_readbyte0(arg2)
         selecteddifficulty\Field9 = blitz_mp_readbyte0(arg2)
         selecteddifficulty\Field4 = blitz_mp_readbyte0(arg2)
-        senddebuglog("CustomDifficulty found. Checking for custom settings...")
-        senddebuglog(("AgressiveNPC's: " + (Str selecteddifficulty\Field2)))
-        senddebuglog(("Savetype: " + (Str selecteddifficulty\Field3)))
-        senddebuglog(("InventorySlots: " + (Str selecteddifficulty\Field9)))
-        senddebuglog(("OtherFactors: " + (Str selecteddifficulty\Field4)))
     EndIf
     local2 = (blitz_mp_readbyte0(arg2) * $3E8)
     If (local2 = $00) Then
@@ -38,7 +32,6 @@ Function mp_menustartgame%(arg0%, arg1%, arg2.mp_netbuffer)
     EndIf
     mp_initvoice($FFFFFFFF, $BB80, local2, $800)
     mp_addlistserver(dottedip(arg0), arg1, $01)
-    senddebuglog(("Got random seed: " + randomseed))
     currsave = (New save)
     loadcustommaps()
     currcustommap = (New custommaps)

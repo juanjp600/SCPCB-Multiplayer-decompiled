@@ -348,7 +348,7 @@ Function updatemoving%()
                 EndIf
                 local15 = playsound_strict(snd_i\Field30[rand($00, $03)], $00)
                 channelvolume(local15, ((rnd(0.0, 0.8) * opt\Field20) * opt\Field16))
-                channelpitch(local15, rand($4E20, $7530))
+                channelpitch(local15, (Float rand($4E20, $7530)))
             EndIf
             me\Field52 = max(me\Field52, (((sin(((Float millisec) / 20.0)) + 1.0) * me\Field32) * 0.2))
             If (60.0 < me\Field32) Then

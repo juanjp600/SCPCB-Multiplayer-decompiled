@@ -105,6 +105,7 @@ Function updatelanguageselector%()
                 EndIf
                 downloadfile((("https://????????/translations/scpcb-ue/local-ini/" + local16\Field1) + "/file/"), (local1 + "/local.ini"))
                 downloadfile((("https://????????/translations/scpcb-ue/achievements-jsonc/" + local16\Field1) + "/file/"), (local1 + "/achievements.jsonc"))
+                downloadfile((("https://????????/translations/scpcbm-reborn/mp-local-ini/" + local16\Field1) + "/file/"), (local1 + "/MP_local.ini"))
                 local15 = $03
             Case $05
                 createdir(("Localization\" + local16\Field1))
@@ -114,6 +115,7 @@ Function updatelanguageselector%()
                 createdir((("Localization\" + local16\Field1) + "/Data"))
                 copyfile((local1 + "/local.ini"), (("Localization\" + local16\Field1) + "/Data/local.ini"))
                 copyfile((local1 + "/achievements.jsonc"), (("Localization\" + local16\Field1) + "/Data/achievements.jsonc"))
+                copyfile((local1 + "/MP_local.ini"), (("Localization\" + local16\Field1) + "/Data/MP_local.ini"))
                 local17 = millisecs()
                 local15 = $08
             Case $07

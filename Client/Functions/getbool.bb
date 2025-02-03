@@ -1,7 +1,7 @@
 Function getbool$(arg0%)
     If (arg0 <> 0) Then
-        Return "True"
+        Return getlocalstring("gui", "yes")
     EndIf
-    Return "False"
+    Return getlocalstring("gui", "no")
     Return ""
 End Function

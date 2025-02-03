@@ -472,7 +472,7 @@ Function updateevents%()
                                         local3\Field6 = $00
                                         local3\Field11 = $00
                                     EndIf
-                                    local3\Field6 = streamsound_strict("SFX\SCP\079\Speech.ogg", (opt\Field21 * opt\Field16), $00)
+                                    local3\Field6 = streamsound_strict("SFX\SCP\079\Speech.ogg", (opt\Field21 * opt\Field16), 0.0)
                                     local3\Field11 = $01
                                     local3\Field2 = 2.0
                                     local3\Field3 = 1.0
@@ -486,7 +486,7 @@ Function updateevents%()
                                             local3\Field6 = $00
                                             local3\Field11 = $00
                                         EndIf
-                                        local3\Field6 = streamsound_strict("SFX\SCP\079\Refuse.ogg", (opt\Field21 * opt\Field16), $00)
+                                        local3\Field6 = streamsound_strict("SFX\SCP\079\Refuse.ogg", (opt\Field21 * opt\Field16), 0.0)
                                         local3\Field11 = $01
                                         local3\Field2 = 1.5
                                     EndIf
@@ -533,7 +533,7 @@ Function updateevents%()
                             local3\Field6 = $00
                             local3\Field11 = $00
                         EndIf
-                        local3\Field6 = streamsound_strict("SFX\SCP\079\GateB.ogg", (opt\Field21 * opt\Field16), $00)
+                        local3\Field6 = streamsound_strict("SFX\SCP\079\GateB.ogg", (opt\Field21 * opt\Field16), 0.0)
                         local3\Field11 = $01
                         For local4 = Each events
                             If (((local4\Field0 = $2B) Lor (local4\Field0 = $2D)) <> 0) Then

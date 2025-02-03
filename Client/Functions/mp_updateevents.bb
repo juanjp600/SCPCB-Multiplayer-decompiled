@@ -483,7 +483,7 @@ Function mp_updateevents%()
                                         local3\Field6 = $00
                                         local3\Field11 = $00
                                     EndIf
-                                    local3\Field6 = streamsound_strict("SFX\SCP\079\Speech.ogg", (opt\Field21 * opt\Field16), $00)
+                                    local3\Field6 = streamsound_strict("SFX\SCP\079\Speech.ogg", (opt\Field21 * opt\Field16), 0.0)
                                     local3\Field11 = $01
                                     local3\Field25 = 1.0
                                 EndIf
@@ -495,7 +495,7 @@ Function mp_updateevents%()
                                             local3\Field6 = $00
                                             local3\Field11 = $00
                                         EndIf
-                                        local3\Field6 = streamsound_strict("SFX\SCP\079\Refuse.ogg", (opt\Field21 * opt\Field16), $00)
+                                        local3\Field6 = streamsound_strict("SFX\SCP\079\Refuse.ogg", (opt\Field21 * opt\Field16), 0.0)
                                         local3\Field11 = $01
                                         local3\Field2 = 1.5
                                     EndIf
@@ -537,7 +537,7 @@ Function mp_updateevents%()
                             local3\Field6 = $00
                             local3\Field11 = $00
                         EndIf
-                        local3\Field6 = streamsound_strict("SFX\SCP\079\GateB.ogg", (opt\Field21 * opt\Field16), $00)
+                        local3\Field6 = streamsound_strict("SFX\SCP\079\GateB.ogg", (opt\Field21 * opt\Field16), 0.0)
                         local3\Field11 = $01
                         For local4 = Each events
                             If (((local4\Field0 = $2B) Lor (local4\Field0 = $2D)) <> 0) Then
@@ -1287,6 +1287,11 @@ Function mp_updateevents%()
                         EndIf
                         rotateentity(local3\Field1\Field11[$01], 0.0, 0.0, curvevalue(local37, entityroll(local3\Field1\Field11[$01], $00), 20.0), $00)
                     EndIf
+                    If (((((mp_ishoster() = $00) And (0.0 < local3\Field2)) And (0.0 >= local3\Field25)) And (local3\Field6 = $00)) <> 0) Then
+                        local3\Field6 = playsoundex(snd_i\Field59, camera, local3\Field1\Field11[$01], 10.0, 1.0, $00, $01)
+                        local3\Field1\Field14[$01]\Field17 = playsoundex(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00, $00)
+                        setanimtime(local3\Field1\Field11[$07], 1.0, $00)
+                    EndIf
                     If (local3\Field6 <> $00) Then
                         If (0.0 < local3\Field2) Then
                             local57 = 318.7
@@ -1331,7 +1336,7 @@ Function mp_updateevents%()
                             Else
                                 rotateentity(local3\Field1\Field11[$00], entitypitch(local3\Field1\Field11[$00], $00), entityyaw(local3\Field1\Field11[$00], $00), 180.0, $00)
                             EndIf
-                            If (((((12.0 - (Float (mp_ishoster() = $00))) * 70.0) < local3\Field2) And (channelplaying(local3\Field1\Field14[$00]\Field17) = $00)) <> 0) Then
+                            If (((840.0 < local3\Field2) And (channelplaying(local3\Field1\Field14[$00]\Field17) = $00)) <> 0) Then
                                 If (local60 <> 0) Then
                                     Select local56
                                         Case $FFFFFFFF
@@ -1364,6 +1369,7 @@ Function mp_updateevents%()
                                 local63 = loadtempsound("SFX\SCP\914\DoorOpen.ogg")
                                 local3\Field1\Field14[$00]\Field17 = playsoundex(local63, camera, local3\Field1\Field14[$00]\Field0, 10.0, 1.0, $00, $00)
                                 local3\Field1\Field14[$01]\Field17 = playsoundex(local63, camera, local3\Field1\Field14[$01]\Field0, 10.0, 1.0, $00, $00)
+                                local3\Field25 = 140.0
                                 local3\Field2 = 0.0
                             EndIf
                         EndIf
@@ -1380,6 +1386,7 @@ Function mp_updateevents%()
                     EndIf
                 EndIf
                 If (12.0 > local3\Field18) Then
+                    local3\Field25 = (local3\Field25 - fps\Field7[$00])
                     If (0.0 > entitypitch(local3\Field1\Field13[$00]\Field0, $00)) Then
                         local3\Field4 = min((local3\Field4 + fps\Field7[$00]), 212.0)
                     Else
@@ -4776,7 +4783,7 @@ Function mp_updateevents%()
                     local3\Field25 = mp_updateelevators(local3\Field25, local3\Field1\Field14[$00], local3\Field1\Field14[$01], local3\Field1\Field11[$00], local3\Field1\Field11[$01], local3, $01, $00, $00)
                     local3\Field26 = mp_updateelevators(local3\Field26, local3\Field1\Field14[$02], local3\Field1\Field14[$03], local3\Field1\Field11[$02], local3\Field1\Field11[$03], local3, $01, $00, $00)
                     If (local3\Field1\Field15[$00] = Null) Then
-                        For local20 = $00 To $03 Step $01
+                        For local20 = $00 To $02 Step $01
                             local3\Field1\Field15[local20] = createnpc($0B, 0.0, 0.0, 0.0)
                         Next
                         tformpoint(3372.0, -5580.8, 6294.0, local3\Field1\Field2, $00)
@@ -4797,26 +4804,21 @@ Function mp_updateevents%()
                     If (0.0 >= local3\Field20) Then
                         If (0.0 = local3\Field2) Then
                             If (-17.96875 > mp_findlowestplayery(local3\Field1)) Then
-                                positionentity(local3\Field1\Field15[$00]\Field3, entityx(local3\Field1\Field11[$04], $01), (entityy(local3\Field1\Field11[$04], $01) + 0.2), entityz(local3\Field1\Field11[$04], $01), $00)
+                                positionentity(local3\Field1\Field15[$00]\Field3, entityx(local3\Field1\Field11[$08], $01), (entityy(local3\Field1\Field11[$08], $01) + 0.2), entityz(local3\Field1\Field11[$08], $01), $00)
                                 resetentity(local3\Field1\Field15[$00]\Field3)
                                 local3\Field1\Field15[$00]\Field10 = 2.0
-                                local3\Field1\Field15[$00]\Field11 = 5.0
-                                local3\Field1\Field15[$00]\Field13 = $07
-                                positionentity(local3\Field1\Field15[$01]\Field3, entityx(local3\Field1\Field11[$08], $01), (entityy(local3\Field1\Field11[$08], $01) + 0.2), entityz(local3\Field1\Field11[$08], $01), $00)
+                                local3\Field1\Field15[$00]\Field11 = 9.0
+                                local3\Field1\Field15[$00]\Field13 = $0B
+                                positionentity(local3\Field1\Field15[$01]\Field3, entityx(local3\Field1\Field11[$06], $01), (entityy(local3\Field1\Field11[$06], $01) + 0.2), entityz(local3\Field1\Field11[$06], $01), $00)
                                 resetentity(local3\Field1\Field15[$01]\Field3)
                                 local3\Field1\Field15[$01]\Field10 = 2.0
-                                local3\Field1\Field15[$01]\Field11 = 9.0
-                                local3\Field1\Field15[$01]\Field13 = $0B
+                                local3\Field1\Field15[$01]\Field11 = 7.0
+                                local3\Field1\Field15[$01]\Field13 = $07
                                 positionentity(local3\Field1\Field15[$02]\Field3, entityx(local3\Field1\Field11[$0C], $01), (entityy(local3\Field1\Field11[$0C], $01) + 0.2), entityz(local3\Field1\Field11[$0C], $01), $00)
                                 resetentity(local3\Field1\Field15[$02]\Field3)
                                 local3\Field1\Field15[$02]\Field10 = 2.0
                                 local3\Field1\Field15[$02]\Field11 = 13.0
                                 local3\Field1\Field15[$02]\Field13 = $0F
-                                positionentity(local3\Field1\Field15[$03]\Field3, entityx(local3\Field1\Field11[$06], $01), (entityy(local3\Field1\Field11[$06], $01) + 0.2), entityz(local3\Field1\Field11[$06], $01), $00)
-                                resetentity(local3\Field1\Field15[$03]\Field3)
-                                local3\Field1\Field15[$03]\Field10 = 2.0
-                                local3\Field1\Field15[$03]\Field11 = 7.0
-                                local3\Field1\Field15[$03]\Field13 = $07
                                 local3\Field2 = 1.0
                             EndIf
                         ElseIf (-17.96875 <= mp_findlowestplayery(local3\Field1)) Then
@@ -5236,9 +5238,7 @@ Function mp_updateevents%()
                 If (event_isplayerinroom(local3) <> 0) Then
                     If (2.0 = local3\Field2) Then
                         If (((6.25 > entitydistancesquared(me\Field60, local3\Field1\Field11[$06])) And (0.0 < local3\Field2)) <> 0) Then
-                            If (event_ismeinroom(local3) <> 0) Then
-                                playsound_strict(loadtempsound("SFX\SCP\079\TestroomWarning.ogg"), $01)
-                            EndIf
+                            playsound_strict(loadtempsound("SFX\SCP\079\TestroomWarning.ogg"), $01)
                             For local20 = $00 To $05 Step $01
                                 local18 = setemitter(local3\Field1, entityx(local3\Field1\Field11[local20], $01), entityy(local3\Field1\Field11[local20], $01), entityz(local3\Field1\Field11[local20], $01), $04)
                                 local18\Field11 = $01
@@ -6127,8 +6127,7 @@ Function mp_updateevents%()
                                 local3\Field1\Field15[$03] = createnpc($11, entityx(local3\Field1\Field11[$04], $01), (entityy(local3\Field1\Field11[$04], $01) - 2.0), entityz(local3\Field1\Field11[$04], $01))
                                 local3\Field1\Field15[$03]\Field10 = 3.0
                                 local3\Field1\Field15[$00]\Field10 = 3.0
-                                removenpc(local3\Field1\Field15[$01])
-                                local3\Field6 = streamsound_strict("SFX\Ending\GateB\682Battle.ogg", (opt\Field21 * opt\Field16), $00)
+                                local3\Field6 = streamsound_strict("SFX\Ending\GateB\682Battle.ogg", (opt\Field21 * opt\Field16), 0.0)
                                 local3\Field11 = $01
                                 local3\Field2 = 2.0
                             EndIf
@@ -6173,7 +6172,7 @@ Function mp_updateevents%()
                             ElseIf (((2450.0 < local3\Field2) And (2555.0 > local3\Field2)) <> 0) Then
                                 me\Field23 = 1.5
                                 If (2450.0 >= (local3\Field2 - fps\Field7[$00])) Then
-                                    local3\Field6 = streamsound_strict("SFX\Ending\GateB\DetonatingAlphaWarheads.ogg", (opt\Field21 * opt\Field16), $00)
+                                    local3\Field6 = streamsound_strict("SFX\Ending\GateB\DetonatingAlphaWarheads.ogg", (opt\Field21 * opt\Field16), 0.0)
                                     local3\Field11 = $01
                                 EndIf
                             ElseIf (((2765.0 < local3\Field2) And (2786.0 > local3\Field2)) <> 0) Then
@@ -6192,7 +6191,7 @@ Function mp_updateevents%()
                             local3\Field22 = $01
                             If (5250.0 > local3\Field2) Then
                                 If (local3\Field7 = $00) Then
-                                    local3\Field7 = streamsound_strict("SFX\Ending\GateB\Siren.ogg", (opt\Field20 * opt\Field16), $02)
+                                    local3\Field7 = streamsound_strict("SFX\Ending\GateB\Siren.ogg", (opt\Field20 * opt\Field16), (1.0 / ∞))
                                     local3\Field12 = $01
                                 EndIf
                             ElseIf (me\Field43 = $FFFFFFFF) Then
@@ -6219,7 +6218,7 @@ Function mp_updateevents%()
                                     me\Field43 = $03
                                 Else
                                     selecteditem = Null
-                                    local3\Field7 = streamsound_strict("SFX\Ending\GateB\AlphaWarheadsFail.ogg", (opt\Field21 * opt\Field16), $00)
+                                    local3\Field7 = streamsound_strict("SFX\Ending\GateB\AlphaWarheadsFail.ogg", (opt\Field21 * opt\Field16), 0.0)
                                     local3\Field12 = $01
                                     local1 = createnpc($15, entityx(local3\Field1\Field11[$08], $01), (entityy(local3\Field1\Field11[$08], $01) + 0.29), entityz(local3\Field1\Field11[$08], $01))
                                     local3\Field1\Field15[$04] = local1

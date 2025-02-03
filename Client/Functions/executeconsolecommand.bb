@@ -17,17 +17,16 @@ Function executeconsolecommand%(arg0$)
     Local local15$
     Local local16$
     Local local17$
-    Local local21%
-    Local local23.mp_player
+    Local local22.mp_player
+    Local local23%
     Local local24%
     Local local25%
-    Local local26%
-    Local local27#
+    Local local26#
+    Local local37%
     Local local38%
     Local local39%
-    Local local40%
-    Local local41$
-    Local local42%
+    Local local40$
+    Local local41%
     consoleinput = arg0
     If (instr(consoleinput, " ", $01) <> $00) Then
         local14 = lower(left(consoleinput, (instr(consoleinput, " ", $01) - $01)))
@@ -356,27 +355,22 @@ Function executeconsolecommand%(arg0$)
             EndIf
         Case "crps"
             If (mp_ishoster() <> 0) Then
-                setplayermodeltexture(ue_players[mp_getmyindex()], $07, $00)
+                setplayermodeltexture(ue_players[mp_getmyindex()], $07, $01)
                 mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (CORPSE). Use this always after death")
             EndIf
         Case "sq"
             If (mp_ishoster() <> 0) Then
                 setplayermodel(ue_players[mp_getmyindex()], $03, $00)
-                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (J12). Use this always after death")
+                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (SQUID). Use this always after death")
             EndIf
         Case "j12"
             If (mp_ishoster() <> 0) Then
                 setplayermodel(ue_players[mp_getmyindex()], $04, $00)
-                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (SQUID). Use this always after death")
-            EndIf
-        Case "sq"
-            If (mp_ishoster() <> 0) Then
-                setplayermodel(ue_players[mp_getmyindex()], $03, $00)
-                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin. Use this always after death")
+                mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (J12). Use this always after death")
             EndIf
         Case "bfall"
             If (mp_ishoster() <> 0) Then
-                local14 = lower(right((Str local21), (len((Str local21)) - instr((Str local21), " ", $01))))
+                local14 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                 Select local14
                     Case "on","1","true"
                         ue_players[mp_getmyindex()]\Field4\Field37 = $01
@@ -392,12 +386,12 @@ Function executeconsolecommand%(arg0$)
         Case "tpp"
             local14 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
             local11 = $00
-            For local23 = Each mp_player
-                If (instr(lower(local23\Field6), local14, $01) <> 0) Then
-                    positionentity(me\Field60, local23\Field7, local23\Field8, local23\Field9, $00)
+            For local22 = Each mp_player
+                If (instr(lower(local22\Field6), local14, $01) <> 0) Then
+                    positionentity(me\Field60, local22\Field7, local22\Field8, local22\Field9, $00)
                     resetentity(me\Field60)
-                    If (mp_rooms[local23\Field22] <> Null) Then
-                        playerroom = mp_rooms[local23\Field22]
+                    If (mp_rooms[local22\Field22] <> Null) Then
+                        playerroom = mp_rooms[local22\Field22]
                     EndIf
                     local11 = $01
                 EndIf
@@ -430,27 +424,27 @@ Function executeconsolecommand%(arg0$)
             local14 = upper(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
             local11 = $00
             If (s2imapcontains(i_294\Field2, local14) <> 0) Then
-                local24 = jsongetarrayvalue(i_294\Field3, s2imapget(i_294\Field2, local14))
-                local25 = $00
-                local25 = jsongetvalue(local24, "explosion")
-                If (jsonisnull(local25) = $00) Then
-                    If (jsongetbool(local25) <> 0) Then
+                local23 = jsongetarrayvalue(i_294\Field3, s2imapget(i_294\Field2, local14))
+                local24 = $00
+                local24 = jsongetvalue(local23, "explosion")
+                If (jsonisnull(local24) = $00) Then
+                    If (jsongetbool(local24) <> 0) Then
                         me\Field58 = 135.0
-                        local25 = jsongetvalue(local24, "death_message")
-                        If (jsonisnull(local25) = $00) Then
-                            msg\Field2 = jsongetstring(local25)
+                        local24 = jsongetvalue(local23, "death_message")
+                        If (jsonisnull(local24) = $00) Then
+                            msg\Field2 = jsongetstring(local24)
                         EndIf
                     EndIf
                 EndIf
-                local26 = jsongetarray(jsongetvalue(local24, "color"))
-                local27 = jsongetfloat(jsongetvalue(local24, "alpha"))
-                local25 = jsongetvalue(local24, "glow")
-                If (jsonisnull(local25) = $00) Then
-                    If (jsongetbool(local25) <> 0) Then
-                        local27 = (- local27)
+                local25 = jsongetarray(jsongetvalue(local23, "color"))
+                local26 = jsongetfloat(jsongetvalue(local23, "alpha"))
+                local24 = jsongetvalue(local23, "glow")
+                If (jsonisnull(local24) = $00) Then
+                    If (jsongetbool(local24) <> 0) Then
+                        local26 = (- local26)
                     EndIf
                 EndIf
-                local4 = createitem("Cup", $2B, entityx(me\Field60, $00), entityy(camera, $01), entityz(me\Field60, $00), jsongetint(jsongetarrayvalue(local26, $00)), jsongetint(jsongetarrayvalue(local26, $01)), jsongetint(jsongetarrayvalue(local26, $02)), local27, $00)
+                local4 = createitem("Cup", $2B, entityx(me\Field60, $00), entityy(camera, $01), entityz(me\Field60, $00), jsongetint(jsongetarrayvalue(local25, $00)), jsongetint(jsongetarrayvalue(local25, $01)), jsongetint(jsongetarrayvalue(local25, $02)), local26, $00)
                 local4\Field1 = local14
                 local4\Field0 = format(getlocalstring("items", "cupof"), local14, "%s")
                 entitytype(local4\Field2, $03, $00)
@@ -1014,7 +1008,7 @@ Function executeconsolecommand%(arg0$)
             local15 = piece(local13, $02, " ")
             local16 = piece(local13, $03, " ")
             local17 = piece(local13, $04, " ")
-            local38 = $00
+            local37 = $00
             If (((((local14 = "") Lor (local15 = "")) Lor (local16 = "")) Lor (local17 = "")) <> 0) Then
                 createconsolemsg(getlocalstring("console", "ses.failed"), $FF, $96, $00, $00)
             Else
@@ -1033,11 +1027,11 @@ Function executeconsolecommand%(arg0$)
                             local1\Field5 = (Float local17)
                         EndIf
                         createconsolemsg(format(format(format(format(getlocalstring("console", "ses.success"), (Str local1\Field2), "{0}"), (Str local1\Field3), "{1}"), (Str local1\Field4), "{2}"), (Str local1\Field5), "{3}"), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                        local38 = $01
+                        local37 = $01
                         Exit
                     EndIf
                 Next
-                If (local38 = $00) Then
+                If (local37 = $00) Then
                     createconsolemsg(getlocalstring("console", "ses.failed.apply"), $FF, $96, $00, $00)
                 EndIf
             EndIf
@@ -1048,14 +1042,14 @@ Function executeconsolecommand%(arg0$)
                 local14 = ""
             EndIf
             If (local14 = "all") Then
-                local39 = jsongetarray(jsongetvalue(achievementsarray, "achievements"))
-                local40 = jsongetarraysize(local39)
-                For local12 = $00 To (local40 - $01) Step $01
-                    local41 = jsongetstring(jsongetvalue(jsongetarrayvalue(local39, local12), "id"))
+                local38 = jsongetarray(jsongetvalue(achievementsarray, "achievements"))
+                local39 = jsongetarraysize(local38)
+                For local12 = $00 To (local39 - $01) Step $01
+                    local40 = jsongetstring(jsongetvalue(jsongetarrayvalue(local38, local12), "id"))
                     If (opt\Field54 <> 0) Then
-                        giveachievement(local41, $01)
-                    ElseIf ((((local41 <> "console") And (local41 <> "keter")) And (local41 <> "apollyon")) <> 0) Then
-                        giveachievement(local41, $01)
+                        giveachievement(local40, $01)
+                    ElseIf ((((local40 <> "console") And (local40 <> "keter")) And (local40 <> "apollyon")) <> 0) Then
+                        giveachievement(local40, $01)
                     EndIf
                 Next
                 saveachievementsfile()
@@ -1063,11 +1057,11 @@ Function executeconsolecommand%(arg0$)
             EndIf
             If (s2imapcontains(achievementsindex, local14) <> 0) Then
                 giveachievement(local14, $01)
-                local42 = jsongetvalue(jsongetvalue(jsongetvalue(localachievementsarray, "translations"), local14), "name")
-                If (jsonisnull(local42) <> 0) Then
-                    local42 = jsongetvalue(jsongetvalue(jsongetvalue(achievementsarray, "translations"), local14), "name")
+                local41 = jsongetvalue(jsongetvalue(jsongetvalue(localachievementsarray, "translations"), local14), "name")
+                If (jsonisnull(local41) <> 0) Then
+                    local41 = jsongetvalue(jsongetvalue(jsongetvalue(achievementsarray, "translations"), local14), "name")
                 EndIf
-                createconsolemsg(format(getlocalstring("console", "ga.success"), jsongetstring(local42), "%s"), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                createconsolemsg(format(getlocalstring("console", "ga.success"), jsongetstring(local41), "%s"), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             ElseIf (local14 <> "all") Then
                 createconsolemsg(format(getlocalstring("console", "ga.failed"), local14, "%s"), $FF, $00, $00, $00)
             EndIf

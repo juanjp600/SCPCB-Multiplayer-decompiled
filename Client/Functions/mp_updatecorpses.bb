@@ -52,6 +52,9 @@ Function mp_updatecorpses%()
             mp_explorecorpse(selectedcorpse)
             selectedcorpse = Null
         EndIf
+        If (mo\Field1 <> 0) Then
+            selectedcorpse = Null
+        EndIf
     EndIf
     Return $00
 End Function

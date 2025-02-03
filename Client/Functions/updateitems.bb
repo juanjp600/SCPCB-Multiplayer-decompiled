@@ -64,8 +64,8 @@ Function updateitems%()
                             local4 = (entityy(local1\Field2, $01) - entityy(local0\Field2, $01))
                             local5 = (entityz(local1\Field2, $01) - entityz(local0\Field2, $01))
                             local7 = ((local3 * local3) + (local5 * local5))
-                            If (((0.07 > local7) And (0.25 > (Abs local4))) <> 0) Then
-                                local12 = (0.07 - local7)
+                            If (((0.05 > local7) And (0.25 > (Abs local4))) <> 0) Then
+                                local12 = (0.05 - local7)
                                 local3 = (local3 * local12)
                                 local5 = (local5 * local12)
                                 While (0.001 > ((Abs local3) + (Abs local5)))

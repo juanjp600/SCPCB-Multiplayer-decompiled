@@ -111,11 +111,11 @@ Function updateplayerlogic%(arg0.mp_player)
                     arg0\Field4\Field10 = arg0\Field4\Field11
                 EndIf
                 arg0\Field4\Field10 = (arg0\Field4\Field10 - fps\Field7[$01])
+            Else
+                arg0\Field4\Field10 = (arg0\Field4\Field10 - ((fps\Field7[$01] * (((Float arg0\Field4\Field38) * 0.5) + 1.0)) * arg0\Field4\Field12))
                 If (((0.0 < arg0\Field4\Field14) And (getplayerattachmodel(arg0, $00) = $00)) <> 0) Then
                     arg0\Field4\Field10 = (arg0\Field4\Field10 - (min(((arg0\Field4\Field14 / 70.0) + 1.0), 5.0) * fps\Field7[$01]))
                 EndIf
-            Else
-                arg0\Field4\Field10 = (arg0\Field4\Field10 - ((fps\Field7[$01] * 1.0) * arg0\Field4\Field12))
             EndIf
             If (0.0 < arg0\Field4\Field13) Then
                 arg0\Field4\Field13 = (arg0\Field4\Field13 - (fps\Field7[$01] / 70.0))

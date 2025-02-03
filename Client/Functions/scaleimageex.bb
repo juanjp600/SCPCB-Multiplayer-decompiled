@@ -39,6 +39,7 @@ Function scaleimageex%(arg0%, arg1#, arg2#, arg3%)
     local4 = $00
     freeimage(arg0)
     arg0 = $00
+    bufferdirty(imagebuffer(local5, $00))
     Return local5
     Return $00
 End Function

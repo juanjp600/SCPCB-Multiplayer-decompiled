@@ -1109,6 +1109,7 @@ Function use914%(arg0.items, arg1%, arg2#, arg3#, arg4#)
     Else
         positionentity(arg0\Field2, arg2, arg3, arg4, $00)
         resetentity(arg0\Field2)
+        arg0\Field24 = $00
     EndIf
     If (local1 <> Null) Then
         entitytype(local1\Field2, $03, $00)

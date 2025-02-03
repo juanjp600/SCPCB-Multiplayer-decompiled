@@ -9,9 +9,6 @@ Function EntryPoint%()
     If (filesize("BlitzToolbox.dll") = $00) Then
         local0 = (((local0 + "BlitzToolbox.dll") + chr($0D)) + chr($0A))
     EndIf
-    If (filesize("FMod.dll") = $00) Then
-        local0 = (((local0 + "FMod.dll") + chr($0D)) + chr($0A))
-    EndIf
     If (filesize("dplayx.dll") = $00) Then
         local0 = (((local0 + "dplayx.dll") + chr($0D)) + chr($0A))
     EndIf
@@ -58,10 +55,10 @@ Function EntryPoint%()
     opt\Field57 = (totalvidmem() Sar $0A)
     opt\Field58 = (totalphys() Sar $0A)
     loadoptionsini()
-    iniwritebuffer("Data\local.ini", "", $01)
-    iniwritebuffer("Data\MP_local.ini", "Data\local.ini", $00)
-    iniwritebuffer("Data\achievements.jsonc", "", $01)
-    iniwritebuffer("Data\fonts.ini", "", $01)
+    iniwritebuffer("Data\MP_local.ini", $01)
+    iniwritebuffer("Data\local.ini", $01)
+    iniwritebuffer("Data\achievements.jsonc", $01)
+    iniwritebuffer("Data\fonts.ini", $01)
     mo = (New mouse)
     fo = (New fonts)
     lang = (New language)
@@ -180,7 +177,7 @@ Function EntryPoint%()
     music[$1F] = "008Cutscene"
     music[$20] = "012Chamber"
     music[$21] = "860_1_Red"
-    musicchn = streamsound_strict((("SFX\Music\" + music[$02]) + ".ogg"), opt\Field18, $02)
+    musicchn = streamsound_strict((("SFX\Music\" + music[$02]) + ".ogg"), opt\Field18, (1.0 / ∞))
     nowplaying = $02
     shouldplay = $0B
     currmusic = $01
@@ -241,8 +238,7 @@ Function EntryPoint%()
     mp_settings = (New mp_settingssystem)
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($0C)
-    senddebuglog(multiplayer_version)
+    multiplayer_version = versiondots($0D)
     createserverinfo()
     mp_menuinit()
     initpinging()
