@@ -57,7 +57,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                                 Next
                             EndIf
                         EndIf
-                    ElseIf (mp_getnpctargetattach(arg0, $03) = $11) Then
+                    ElseIf (mp_getnpctargetattach(arg0, $04) = $11) Then
                         If (arg0\Field85 <> 0) Then
                             me\Field49 = (me\Field49 + (fps\Field7[$00] * 2.5))
                             If (i_268\Field2 <> 0) Then
@@ -91,7 +91,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                         me\Field1 = $00
                         If (arg0\Field85 <> 0) Then
                             msg\Field2 = getlocalstring("death", "049")
-                            playsound_strict(loadtempsound("SFX\SCP\049\Horror.ogg"), $00)
+                            playsound_strict(loadtempsound("SFX\SCP\049\Horror.ogg"), $00, $01)
                         EndIf
                         mp_loadnpcsound(arg0, (("SFX\SCP\049\Kidnap" + (Str rand($00, $01))) + ".ogg"), $01)
                         arg0\Field20 = playsoundex(arg0\Field19, camera, arg0\Field0, 10.0, 1.0, $01, $00)
@@ -331,7 +331,7 @@ Function mp_updatenpctype049%(arg0.npcs)
                 local4 = npcseesplayer(arg0, ((8.0 - me\Field40) + me\Field42), 60.0, $01)
                 If (local4 = $01) Then
                     If (0.0 = arg0\Field90) Then
-                        playsound_strict(loadtempsound("SFX\SCP\049\Room2SLSpawn.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\SCP\049\Room2SLSpawn.ogg"), $00, $01)
                         arg0\Field90 = 1.0
                     EndIf
                     arg0\Field40 = $00

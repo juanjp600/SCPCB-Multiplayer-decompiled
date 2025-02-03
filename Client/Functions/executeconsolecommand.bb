@@ -355,7 +355,7 @@ Function executeconsolecommand%(arg0$)
             EndIf
         Case "crps"
             If (mp_ishoster() <> 0) Then
-                setplayermodeltexture(ue_players[mp_getmyindex()], $07, $01)
+                setplayermodeltexture(ue_players[mp_getmyindex()], $08, $01)
                 mp_server_sendsinglechatmessage(ue_players[mp_getmyindex()], "You got new skin (CORPSE). Use this always after death")
             EndIf
         Case "sq"
@@ -697,7 +697,7 @@ Function executeconsolecommand%(arg0$)
                 local4 = createitem(local14, local11, ((cos((18.0 * (Float local12))) * rnd(0.3, 0.5)) + entityx(me\Field60, $01)), entityy(camera, $01), ((sin((18.0 * (Float local12))) * rnd(0.3, 0.5)) + entityz(me\Field60, $01)), $00, $00, $00, 1.0, $00)
                 entitytype(local4\Field2, $03, $00)
             Next
-            playsound_strict(loadtempsound("SFX\Music\Using420J.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\Music\Using420J.ogg"), $00, $01)
             mp_synchronize3dsound(Null, "SFX\Music\Using420J.ogg", me\Field60, 20.0, 1.0)
         Case "godmode","god"
             local14 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))

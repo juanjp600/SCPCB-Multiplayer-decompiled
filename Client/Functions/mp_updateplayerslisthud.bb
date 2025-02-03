@@ -6,6 +6,7 @@ Function mp_updateplayerslisthud%()
     Local local4#
     Local local5%
     Local local6#
+    Local local7$
     If (mp_getsocket() = $00) Then
         Return $00
     EndIf
@@ -23,8 +24,12 @@ Function mp_updateplayerslisthud%()
         updatemenubutton((Int (local3 - (local0 / 2.0))), (Int ((local4 - (local1 / 2.0)) + (30.0 * menuscale))), (Int local0), (Int (4.0 * menuscale)), "", local5, $00, $00, $FF, $FF, $FF, $00, 1.0, $01, $01)
         local6 = ((local4 - (local1 / 2.0)) + (30.0 * menuscale))
         For local2 = Each mp_player
+            local7 = "A"
+            If (getplayervoicemute(local2) <> 0) Then
+                local7 = "L"
+            EndIf
             updatemenubutton((Int (local3 - (local0 / 2.0))), (Int local6), (Int local0), (Int (30.0 * menuscale)), ((("[" + (Str local2\Field5)) + "] ") + local2\Field6), $00, $00, $00, $FF, $FF, $FF, $01, 0.05, $01, $01)
-            If (updatemenubutton((Int (((local3 - (local0 / 2.0)) + (local0 * 0.95)) - (2.0 * menuscale))), (Int local6), (Int (local0 * 0.05)), (Int (30.0 * menuscale)), "A", $09, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+            If (updatemenubutton((Int (((local3 - (local0 / 2.0)) + (local0 * 0.95)) - (2.0 * menuscale))), (Int local6), (Int (local0 * 0.05)), (Int (30.0 * menuscale)), local7, $09, $00, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                 setplayervoicemute(local2, $FFFFFFFF)
             EndIf
             local6 = (((30.0 * menuscale) + local6) - (4.0 * menuscale))

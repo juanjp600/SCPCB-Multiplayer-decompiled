@@ -279,7 +279,7 @@ Function mp_updatenpctype966%(arg0.npcs)
                     If (((((470.0 < arg0\Field14) And (470.0 >= local1)) Lor ((500.0 < arg0\Field14) And (500.0 >= local1))) Lor ((527.0 < arg0\Field14) And (527.0 >= local1))) <> 0) Then
                         If (0.81 > local0) Then
                             If (arg0\Field85 <> 0) Then
-                                playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
+                                playsound_strict(snd_i\Field51[rand($0B, $0C)], $00, $01)
                                 injureplayer((rnd(0.45, 0.75) * difficultydmgmult), 0.0, 500.0, (0.25 * difficultydmgmult), (0.1 * difficultydmgmult))
                                 me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 1.8)
                                 If (10.0 < mp_getnpctargetinjuries(arg0)) Then

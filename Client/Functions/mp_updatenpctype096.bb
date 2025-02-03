@@ -36,7 +36,7 @@ Function mp_updatenpctype096%(arg0.npcs)
             Next
             If (local4 <> 0) Then
                 If (channelplaying(scramblechn) = $00) Then
-                    scramblechn = playsound_strict(snd_i\Field39, $00)
+                    scramblechn = playsound_strict(snd_i\Field39, $00, $01)
                 EndIf
                 If (entityhidden(arg0\Field1) <> 0) Then
                     showentity(arg0\Field1)
@@ -65,7 +65,7 @@ Function mp_updatenpctype096%(arg0.npcs)
             Case 0.0
                 If (64.0 > local0) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
+                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $01)
                         arg0\Field21 = $01
                     EndIf
                     If (-1.0 = arg0\Field12) Then
@@ -89,7 +89,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
                                 If (arg0\Field85 <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
+                                    playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01, $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
                                 me\Field52 = 10.0
@@ -108,7 +108,7 @@ Function mp_updatenpctype096%(arg0.npcs)
             Case 1.0
                 If (256.0 > local0) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, (1.0 / ∞))
+                        arg0\Field18 = streamsound_strict("SFX\Music\096.ogg", 0.0, $01)
                         arg0\Field21 = $01
                     EndIf
                     local6 = arg0\Field14
@@ -166,7 +166,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                         If (((((mp_getnpctargetattach(arg0, $00) = $0B) Lor (mp_getnpctargetattach(arg0, $00) = $0C)) = $00) And local3) <> 0) Then
                             If (mp_getnpctargetblinking(arg0) = $00) Then
                                 If (arg0\Field85 <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01)
+                                    playsound_strict(loadtempsound("SFX\SCP\096\Triggered.ogg"), $01, $01)
                                 EndIf
                                 s2imaperase(unlockedachievements, "096")
                                 me\Field52 = 10.0
@@ -190,7 +190,7 @@ Function mp_updatenpctype096%(arg0.npcs)
                 updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 14.0, 1.0, $01)
             Case 2.0,3.0,4.0
                 If (arg0\Field18 = $00) Then
-                    arg0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, (1.0 / ∞))
+                    arg0\Field18 = streamsound_strict("SFX\Music\096Angered.ogg", 0.0, $01)
                     arg0\Field21 = $01
                 EndIf
                 updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 10.0, 1.0, $01)
@@ -237,12 +237,12 @@ Function mp_updatenpctype096%(arg0.npcs)
                 me\Field52 = curvevalue(max(me\Field52, ((sin(((Float millisec) / 20.0)) + 1.0) * 10.0)), me\Field52, 8.0)
                 If (arg0\Field34 = Null) Then
                     If (arg0\Field18 = $00) Then
-                        arg0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, (1.0 / ∞))
+                        arg0\Field18 = streamsound_strict("SFX\SCP\096\Scream.ogg", 0.0, $01)
                         arg0\Field21 = $01
                     EndIf
                     updatestreamsoundorigin(arg0\Field18, camera, arg0\Field3, 7.5, 1.0, $01)
                     If (arg0\Field20 = $00) Then
-                        arg0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, (1.0 / ∞))
+                        arg0\Field20 = streamsound_strict("SFX\Music\096Chase.ogg", 0.0, $01)
                         arg0\Field22 = $01
                     Else
                         setstreamvolume_strict(arg0\Field20, ((clamp((8.0 - sqr(local0)), 0.6, 1.0) * opt\Field21) * opt\Field16))

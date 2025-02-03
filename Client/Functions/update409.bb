@@ -26,19 +26,19 @@ Function update409%()
             EndIf
         ElseIf (((40.0 < i_409\Field0) And (40.0 >= local0)) <> 0) Then
             createmsg(getlocalstring("msg", "409legs_2"), 6.0)
-            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00, $01)
         ElseIf (((55.0 < i_409\Field0) And (55.0 >= local0)) <> 0) Then
             createmsg(getlocalstring("msg", "409abdomen_2"), 6.0)
-            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00, $01)
         ElseIf (((70.0 < i_409\Field0) And (70.0 >= local0)) <> 0) Then
             createmsg(getlocalstring("msg", "409arms_2"), 6.0)
-            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\SCP\409\Crackling0.ogg"), $00, $01)
         ElseIf (((85.0 < i_409\Field0) And (85.0 >= local0)) <> 0) Then
             createmsg(getlocalstring("msg", "409head_2"), 6.0)
-            playsound_strict(loadtempsound("SFX\SCP\409\Crackling1.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\SCP\409\Crackling1.ogg"), $00, $01)
         ElseIf (((93.0 < i_409\Field0) And (93.0 >= local0)) <> 0) Then
             If (i_409\Field1 = $00) Then
-                playsound_strict(snd_i\Field51[$0D], $01)
+                playsound_strict(snd_i\Field51[$0D], $01, $01)
                 me\Field31 = max(me\Field31, 2.0)
             EndIf
         ElseIf (94.0 < i_409\Field0) Then

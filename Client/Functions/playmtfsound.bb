@@ -7,7 +7,7 @@ Function playmtfsound%(arg0%, arg1.npcs)
             If (((arg0 <> npcsound[$00]) Lor (channelplaying(radiochn[$03]) = $00)) <> 0) Then
                 stopchannel(radiochn[$03])
                 radiochn[$03] = $00
-                radiochn[$03] = playsound_strict(arg0, $01)
+                radiochn[$03] = playsound_strict(arg0, $01, $01)
             EndIf
         EndIf
     EndIf

@@ -195,7 +195,7 @@ Function updatedoors%()
                 If (0.1225 > entitydistancesquared(me\Field60, local0\Field2)) Then
                     If ((((6.0 < local0\Field8) And (48.0 > local0\Field8)) And (local0\Field6 = $00)) <> 0) Then
                         If (((0.0 = me\Field0) And (chs\Field0 = $00)) <> 0) Then
-                            playsound_strict(snd_i\Field29, $00)
+                            playsound_strict(snd_i\Field29, $00, $01)
                             msg\Field2 = format(getlocalstring("death", "door"), subjectname, "%s")
                             kill($01, $01, $00, $01)
                         EndIf
@@ -277,7 +277,7 @@ Function updatedoors%()
         If ((d_i\Field7\Field20 And remotedooron) <> 0) Then
             If ((d_i\Field7\Field6 And (180.0 = d_i\Field7\Field8)) <> 0) Then
                 If ((((i_714\Field0 = $00) And (wi\Field0 <> $04)) And (wi\Field2 <> $04)) <> 0) Then
-                    playsound_strict(snd_i\Field47[$07], $00)
+                    playsound_strict(snd_i\Field47[$07], $00, $01)
                 EndIf
                 openclosedoor(d_i\Field7, $01, $00)
                 d_i\Field7\Field20 = $00

@@ -11,7 +11,7 @@ Function mp_client_receiveinteract%(arg0%)
                 local0\Field6 = $00
             EndIf
             snd_i\Field22 = loadsound_strict("SFX\Room\106Chamber\FemurBreaker.ogg")
-            local0\Field6 = playsound_strict(snd_i\Field22, $01)
+            local0\Field6 = playsound_strict(snd_i\Field22, $01, $01)
         Case $01
             If (0.0 = local0\Field3) Then
                 local0\Field3 = (Float rand($01, $02))

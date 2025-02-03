@@ -8,7 +8,7 @@ Function updatescreens%()
             If (interactobject(local0\Field0, 1.0, $02) <> 0) Then
                 selectedscreen = local0
                 local0\Field2 = scaleimageex(loadimage_strict(("GFX\Map\Screens\" + local0\Field1)), menuscale, menuscale, $01)
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
                 mo\Field6 = $00
                 Exit
             EndIf

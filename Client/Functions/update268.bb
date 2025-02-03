@@ -10,7 +10,7 @@ Function update268%()
         EndIf
         i_268\Field1 = max((i_268\Field1 - local0), 0.0)
         If (((1.0 <= i_268\Field1) And (1.0 > (i_268\Field1 - local0))) <> 0) Then
-            playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOff.ogg"), $00)
+            playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOff.ogg"), $00, $01)
         EndIf
     Else
         If (0.0 >= i_268\Field3) Then

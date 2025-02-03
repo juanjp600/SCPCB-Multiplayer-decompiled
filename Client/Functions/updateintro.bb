@@ -127,7 +127,7 @@ Function updateintro%()
                     hideentity(me\Field60)
                     positionentity(me\Field60, local11, (local0\Field1\Field4 + 0.302), local13, $00)
                     rotateentity(camera, -70.0, 0.0, 0.0, $00)
-                    playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                    playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                     me\Field49 = 1600.0
                     me\Field51 = 1.0
                     makemeunplayable()
@@ -170,9 +170,9 @@ Function updateintro%()
                                     ElseIf (((1.3 > (local0\Field3 - local10)) And (1.3 <= local0\Field3)) <> 0) Then
                                         me\Field10 = -10.0
                                     ElseIf (((2.8 > (local0\Field3 - local10)) And (2.8 <= local0\Field3)) <> 0) Then
-                                        playsound_strict(snd_i\Field49[$00], $01)
+                                        playsound_strict(snd_i\Field49[$00], $01, $01)
                                     ElseIf (((10.8 > (local0\Field3 - local10)) And (10.8 <= local0\Field3)) <> 0) Then
-                                        playsound_strict(snd_i\Field49[$01], $01)
+                                        playsound_strict(snd_i\Field49[$01], $01, $01)
                                     ElseIf (((13.0 > (local0\Field3 - local10)) And (13.0 <= local0\Field3)) <> 0) Then
                                         playsoundex(stepsfx($00, $00, $00), camera, me\Field60, 8.0, 0.5, $00, $00)
                                     EndIf
@@ -384,12 +384,12 @@ Function updateintro%()
                             EndIf
                             If (((local0\Field13 <> "") And (local0\Field13 <> "Done")) <> 0) Then
                                 If (local0\Field6 = $00) Then
-                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Room\Intro\IA\On.ogg"), $01)
+                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Room\Intro\IA\On.ogg"), $01, $01)
                                 EndIf
                                 If (channelplaying(local0\Field6) = $00) Then
                                     local17 = left(local0\Field13, (instr(local0\Field13, "|", $01) - $01))
                                     loadeventsound(local0, ("SFX\Room\Intro\IA\" + local17), $00)
-                                    local0\Field6 = playsound_strict(local0\Field8, $01)
+                                    local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                     local0\Field13 = right(local0\Field13, ((len(local0\Field13) - len(local17)) - $01))
                                     If (local0\Field13 = "") Then
                                         If (channelplaying(local0\Field1\Field15[$03]\Field18) = $00) Then
@@ -411,7 +411,7 @@ Function updateintro%()
                                     If (25.0 > distancesquared(entityx(me\Field60, $00), (local0\Field1\Field3 - 13.0), entityz(me\Field60, $00), (local0\Field1\Field5 - 4.8125), 0.0, 0.0)) Then
                                         If (local0\Field13 = "Done") Then
                                             loadeventsound(local0, (("SFX\Room\Intro\IA\Scripted\Announcement" + (Str rand($00, $06))) + ".ogg"), $00)
-                                            local0\Field6 = playsound_strict(local0\Field8, $00)
+                                            local0\Field6 = playsound_strict(local0\Field8, $00, $01)
                                         EndIf
                                         local0\Field1\Field15[$06]\Field10 = 1.0
                                     EndIf
@@ -516,7 +516,7 @@ Function updateintro%()
                             If (snd_i\Field49[$03] <> $00) Then
                                 If ((entityvisible(camera, n_i\Field2\Field0) And entityinview(n_i\Field2\Field0, camera)) <> 0) Then
                                     createhintmsg(format(getlocalstring("msg", "blink"), key\Field0[key\Field8], "%s"), 6.0, $00)
-                                    playsound_strict(snd_i\Field49[$03], $00)
+                                    playsound_strict(snd_i\Field49[$03], $00, $01)
                                     freesound_strict(snd_i\Field49[$03])
                                     snd_i\Field49[$03] = $00
                                 EndIf
@@ -578,7 +578,7 @@ Function updateintro%()
                                 local0\Field4 = min((local0\Field4 + local10), 5000.0)
                                 If (((130.0 <= local0\Field4) And (130.0 > (local0\Field4 - local10))) <> 0) Then
                                     loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\EnterChamber.ogg", $00)
-                                    local0\Field6 = playsound_strict(local0\Field8, $01)
+                                    local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                 ElseIf (230.0 < local0\Field4) Then
                                     local9 = $01
                                     For local8 = $01 To $02 Step $01
@@ -598,13 +598,13 @@ Function updateintro%()
                                     If ((local0\Field1\Field3 + 2.71875) > entityx(me\Field60, $00)) Then
                                         If (((450.0 <= local0\Field4) And (450.0 > (local0\Field4 - local10))) <> 0) Then
                                             loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\Refuse0.ogg", $00)
-                                            local0\Field6 = playsound_strict(local0\Field8, $01)
+                                            local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                         ElseIf (((650.0 <= local0\Field4) And (650.0 > (local0\Field4 - local10))) <> 0) Then
                                             loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\Refuse1.ogg", $00)
-                                            local0\Field6 = playsound_strict(local0\Field8, $01)
+                                            local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                         ElseIf (((850.0 <= local0\Field4) And (850.0 > (local0\Field4 - local10))) <> 0) Then
                                             loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\Refuse2.ogg", $00)
-                                            local0\Field6 = playsound_strict(local0\Field8, $01)
+                                            local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                             openclosedoor(local0\Field1\Field14[$01], $01, $00)
                                         ElseIf (1000.0 < local0\Field4) Then
                                             local0\Field1\Field15[$00]\Field10 = 1.0
@@ -630,18 +630,18 @@ Function updateintro%()
                                 EndIf
                                 If (((10300.0 <= local0\Field4) And (10300.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\Approach173.ogg", $00)
-                                    local0\Field6 = playsound_strict(local0\Field8, $01)
+                                    local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                 ElseIf (((10440.0 <= local0\Field4) And (10440.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     openclosedoor(local0\Field1\Field14[$01], $01, $00)
                                 ElseIf (((10740.0 <= local0\Field4) And (10740.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
                                     loadeventsound(local0, "SFX\Room\Intro\Scientist\Franklin\Problem.ogg", $00)
-                                    local0\Field6 = playsound_strict(local0\Field8, $01)
+                                    local0\Field6 = playsound_strict(local0\Field8, $01, $01)
                                 ElseIf (((11145.0 <= local0\Field4) And (11145.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                    playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                                    playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                                     local0\Field1\Field15[$01]\Field17 = loadsound_strict("SFX\Room\Intro\ClassD\DontLikeThis.ogg")
                                     local0\Field1\Field15[$01]\Field18 = playsoundex(local0\Field1\Field15[$01]\Field17, camera, local0\Field1\Field15[$01]\Field3, 10.0, 1.0, $01, $00)
                                 ElseIf (((11561.0 <= local0\Field4) And (11561.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                    playsound_strict(snd_i\Field49[$02], $00)
+                                    playsound_strict(snd_i\Field49[$02], $00, $01)
                                     local0\Field1\Field15[$02]\Field17 = loadsound_strict("SFX\Room\Intro\ClassD\Breen.ogg")
                                     local0\Field1\Field15[$02]\Field18 = playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 10.0, 1.0, $01, $00)
                                     setnpcframe(local0\Field1\Field15[$06], 357.0, $01)
@@ -696,7 +696,7 @@ Function updateintro%()
                                         me\Field10 = -10.0
                                         If (local0\Field1\Field15[$01]\Field50 = $00) Then
                                             playsoundex(snd_i\Field53[rand($00, $02)], camera, n_i\Field2\Field3, 10.0, 1.0, $00, $00)
-                                            playsound_strict(snd_i\Field49[$04], $00)
+                                            playsound_strict(snd_i\Field49[$04], $00, $01)
                                             me\Field24 = 3.0
                                             local0\Field1\Field15[$01]\Field50 = $01
                                         EndIf
@@ -719,7 +719,7 @@ Function updateintro%()
                                         playsoundex(local0\Field1\Field15[$02]\Field17, camera, local0\Field1\Field15[$02]\Field3, 8.0, 1.0, $01, $00)
                                     EndIf
                                     If (((14080.0 < local0\Field4) And (14080.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                        playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                                        playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                                     EndIf
                                     me\Field24 = 3.0
                                 ElseIf (14200.0 > local0\Field4) Then
@@ -743,7 +743,7 @@ Function updateintro%()
                                         n_i\Field2\Field26 = 0.0
                                     EndIf
                                     If (((14100.0 <= local0\Field4) And (14100.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                        playsound_strict(snd_i\Field49[$05], $00)
+                                        playsound_strict(snd_i\Field49[$05], $00, $01)
                                     EndIf
                                     If (14150.0 > local0\Field4) Then
                                         me\Field24 = 5.0
@@ -768,7 +768,7 @@ Function updateintro%()
                                     me\Field24 = 2.0
                                 ElseIf (20200.0 > local0\Field4) Then
                                     If (((20105.0 < local0\Field4) And (20105.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                        playsound_strict(snd_i\Field49[$06], $00)
+                                        playsound_strict(snd_i\Field49[$06], $00, $01)
                                         tformpoint(128.0, 480.0, 1280.0, local0\Field1\Field2, $00)
                                         positionentity(local0\Field1\Field15[$00]\Field3, tformedx(), tformedy(), tformedz(), $00)
                                         resetentity(local0\Field1\Field15[$00]\Field3)
@@ -791,7 +791,7 @@ Function updateintro%()
                                     pointentity(local0\Field1\Field15[$00]\Field3, n_i\Field2\Field3, 0.0)
                                     local0\Field1\Field15[$00]\Field10 = 2.0
                                     If (((20260.0 < local0\Field4) And (20260.0 > (local0\Field4 - fps\Field7[$00]))) <> 0) Then
-                                        playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                                        playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                                     EndIf
                                 ElseIf (20300.0 > (local0\Field4 - fps\Field7[$00])) Then
                                     me\Field10 = -10.0
@@ -799,14 +799,14 @@ Function updateintro%()
                                     me\Field24 = 3.0
                                     me\Field38 = 0.0
                                     me\Field9 = $00
-                                    playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                                    playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                                     If (local0\Field1\Field15[$00]\Field17 <> $00) Then
                                         freesound_strict(local0\Field1\Field15[$00]\Field17)
                                         local0\Field1\Field15[$00]\Field17 = $00
                                     EndIf
                                     local0\Field1\Field15[$00]\Field18 = playsoundex(snd_i\Field53[$01], camera, local0\Field1\Field15[$00]\Field3, 8.0, 1.0, $00, $00)
                                     n_i\Field2\Field26 = 0.0
-                                    playsound_strict(loadsound_strict("SFX\Room\Intro\173Vent.ogg"), $00)
+                                    playsound_strict(loadsound_strict("SFX\Room\Intro\173Vent.ogg"), $00, $01)
                                     positionentity(n_i\Field2\Field3, 0.0, -500.0, 0.0, $00)
                                     resetentity(n_i\Field2\Field3)
                                     For local1 = Each rooms
@@ -969,7 +969,7 @@ Function updateintro%()
                             Next
                         Else
                             shouldplay = $42
-                            playsound_strict(loadtempsound("SFX\Room\Intro\Guard\Ulgrin\EscortTerminated.ogg"), $00)
+                            playsound_strict(loadtempsound("SFX\Room\Intro\Guard\Ulgrin\EscortTerminated.ogg"), $00, $01)
                             removeevent(local0)
                             Return $00
                         EndIf

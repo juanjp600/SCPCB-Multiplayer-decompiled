@@ -183,7 +183,7 @@ Function initnewgame%()
     updateworld(1.0)
     deletetextureentriesfromcache($00)
     If (mp_menugetip() <> $00) Then
-        renderloading($63, "ESTABLISHING CONNECTION")
+        renderloading($63, getlocalstring("loading", "establish"))
         mp_connect(mp_menugetip(), mp_menugetport())
     Else
         If (mp_ishoster() <> 0) Then

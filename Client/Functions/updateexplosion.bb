@@ -5,7 +5,7 @@ Function updateexplosion%()
         If (140.0 > me\Field58) Then
             If (5.0 > (me\Field58 - fps\Field7[$00])) Then
                 snd_i\Field58 = loadsound_strict("SFX\Ending\GateB\Nuke0.ogg")
-                playsound_strict(snd_i\Field58, $00)
+                playsound_strict(snd_i\Field58, $00, $01)
                 me\Field24 = 10.0
                 me\Field58 = 5.0
             EndIf
@@ -15,7 +15,7 @@ Function updateexplosion%()
             If (140.0 > (me\Field58 - fps\Field7[$00])) Then
                 me\Field10 = 1.0
                 snd_i\Field58 = loadsound_strict("SFX\Ending\GateB\Nuke1.ogg")
-                playsound_strict(snd_i\Field58, $00)
+                playsound_strict(snd_i\Field58, $00, $01)
             EndIf
             me\Field51 = min(((me\Field58 - 140.0) / 10.0), 5.0)
             If (160.0 < me\Field58) Then

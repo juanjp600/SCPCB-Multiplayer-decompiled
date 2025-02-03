@@ -177,7 +177,7 @@ Function EntryPoint%()
     music[$1F] = "008Cutscene"
     music[$20] = "012Chamber"
     music[$21] = "860_1_Red"
-    musicchn = streamsound_strict((("SFX\Music\" + music[$02]) + ".ogg"), opt\Field18, (1.0 / ∞))
+    musicchn = streamsound_strict((("SFX\Music\" + music[$02]) + ".ogg"), opt\Field18, $01)
     nowplaying = $02
     shouldplay = $0B
     currmusic = $01
@@ -238,7 +238,7 @@ Function EntryPoint%()
     mp_settings = (New mp_settingssystem)
     menuport = "39100"
     menuip = "127.0.0.1"
-    multiplayer_version = versiondots($0D)
+    multiplayer_version = versiondots($0E)
     createserverinfo()
     mp_menuinit()
     initpinging()

@@ -170,7 +170,7 @@ Function updatelauncher%(arg0.launcher)
             rect($13, $189, $42, $42, $00)
             textex(($14 + local3), $176, "DISCORD", $01, $00)
             If (mo\Field0 <> 0) Then
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
                 execfile_strict("https://discord.gg/n7KdW4u")
             EndIf
         EndIf
@@ -179,7 +179,7 @@ Function updatelauncher%(arg0.launcher)
             rect($63, $189, $42, $42, $00)
             textex(($64 + local3), $176, "MODDB", $01, $00)
             If (mo\Field0 <> 0) Then
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
                 execfile_strict("https://www.moddb.com/mods/scp-containment-breach-ultimate-edition")
             EndIf
         EndIf
@@ -188,7 +188,7 @@ Function updatelauncher%(arg0.launcher)
             rect($B3, $189, $42, $42, $00)
             textex(($B4 + local3), $176, "YOUTUBE", $01, $00)
             If (mo\Field0 <> 0) Then
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
                 execfile_strict("https://www.youtube.com/channel/UCPqWOCPfKooDnrLNzA67Acw")
             EndIf
         EndIf
@@ -197,7 +197,7 @@ Function updatelauncher%(arg0.launcher)
             rect($103, $189, $42, $42, $00)
             textex(($104 + local3), $176, "Wiki", $01, $00)
             If (mo\Field0 <> 0) Then
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
                 execfile_strict("https://scpcbultimatereborn.miraheze.org/wiki/Main_Page")
             EndIf
         EndIf
@@ -217,7 +217,7 @@ Function updatelauncher%(arg0.launcher)
                 rect($1C7, $126, $28, $28, $00)
                 textex($1F4, $13A, getlocalstring("launcher", "language.iter"), $00, $01)
                 If (mo\Field0 <> 0) Then
-                    playsound_strict(buttonsfx[$00], $00)
+                    playsound_strict(buttonsfx[$00], $00, $01)
                     If (filetype("Localization") = $02) Then
                         setlanguage(findnextdirectory("Localization", opt\Field55, "en"), $00)
                         freeimage(launcherbg)
@@ -230,7 +230,7 @@ Function updatelauncher%(arg0.launcher)
                 rect($1C7, $126, $28, $28, $00)
                 textex($1F4, $13A, getlocalstring("launcher", "language"), $00, $01)
                 If (mo\Field0 <> 0) Then
-                    playsound_strict(buttonsfx[$00], $00)
+                    playsound_strict(buttonsfx[$00], $00, $01)
                     If (updatelanguageselector() <> 0) Then
                         local7 = millisecs()
                     EndIf

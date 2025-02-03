@@ -35,27 +35,27 @@ Function mp_server_receiveconsole%(arg0.mp_player)
         me\Field60 = arg0\Field18
         Select lower(local2)
             Case "crps"
-                setplayermodeltexture(arg0, $07, $01)
+                setplayermodeltexture(arg0, $08, $01)
                 flushplayermodel(arg0)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin (CORPSE). Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "newskin.corpse"))
             Case "sq"
                 setplayermodel(arg0, $03, $00)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin (SQUID). Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "newskin.sq"))
             Case "j12"
                 setplayermodel(arg0, $04, $00)
-                mp_server_sendsinglechatmessage(arg0, "You got new skin (J12). Use this always after death")
+                mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "newskin.j12"))
             Case "bfall"
                 local2 = lower(right(local0, (len(local0) - instr(local0, " ", $01))))
                 Select local2
                     Case "on","1","true"
                         arg0\Field4\Field37 = $01
-                        mp_server_sendsinglechatmessage(arg0, "You set new crouch animation")
+                        mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "newcrouch"))
                     Case "off","0","false"
                         arg0\Field4\Field37 = $00
-                        mp_server_sendsinglechatmessage(arg0, "You removed new crouch animation")
+                        mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "rmcrouch"))
                     Default
                         arg0\Field4\Field37 = (arg0\Field4\Field37 = $00)
-                        mp_server_sendsinglechatmessage(arg0, "You set or removed new crouch animation")
+                        mp_server_sendsinglechatmessage(arg0, getlocalstring("mpmsg", "newrmcrouch"))
                 End Select
             Case "asd"
                 arg0\Field4\Field34 = $01

@@ -92,7 +92,7 @@ Function updatemoving%()
                 If ((((wi\Field0 > $00) Lor (i_1499\Field0 > $00)) Lor (wi\Field2 > $00)) <> 0) Then
                     local7 = $01
                 EndIf
-                breathchn = playsound_strict(breathsfx(local7, $00), $01)
+                breathchn = playsound_strict(breathsfx(local7, $00), $01, $01)
                 channelvolume(breathchn, (opt\Field21 * opt\Field16))
             EndIf
         ElseIf (40.0 > me\Field17) Then
@@ -101,7 +101,7 @@ Function updatemoving%()
                 If ((((wi\Field0 > $00) Lor (i_1499\Field0 > $00)) Lor (wi\Field2 > $00)) <> 0) Then
                     local7 = $01
                 EndIf
-                breathchn = playsound_strict(breathsfx(local7, rand($03, $01)), $01)
+                breathchn = playsound_strict(breathsfx(local7, rand($03, $01)), $01, $01)
                 channelvolume(breathchn, ((min(((70.0 - me\Field17) / 70.0), 1.0) * opt\Field21) * opt\Field16))
             EndIf
         EndIf
@@ -346,7 +346,7 @@ Function updatemoving%()
                     freeentity(local4)
                     local4 = $00
                 EndIf
-                local15 = playsound_strict(snd_i\Field30[rand($00, $03)], $00)
+                local15 = playsound_strict(snd_i\Field30[rand($00, $03)], $00, $01)
                 channelvolume(local15, ((rnd(0.0, 0.8) * opt\Field20) * opt\Field16))
                 channelpitch(local15, (Float rand($4E20, $7530)))
             EndIf
@@ -379,7 +379,7 @@ Function updatemoving%()
     EndIf
     If (0.0 < me\Field30) Then
         If (0.0 >= me\Field29) Then
-            local15 = playsound_strict(snd_i\Field52, $00)
+            local15 = playsound_strict(snd_i\Field52, $00, $01)
             channelvolume(local15, ((me\Field30 * opt\Field20) * opt\Field16))
             me\Field29 = ((60.0 / max(me\Field28, 1.0)) * 70.0)
         Else

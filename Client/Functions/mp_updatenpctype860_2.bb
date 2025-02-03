@@ -208,7 +208,7 @@ Function mp_updatenpctype860_2%(arg0.npcs)
                         If (entityinview(arg0\Field3, mp_getnpctargetcamera(arg0)) <> 0) Then
                             If (rand($08, $01) = $01) Then
                                 If (arg0\Field85 <> 0) Then
-                                    playsound_strict(loadtempsound((("SFX\SCP\860_2\Chase" + (Str rand($00, $02))) + ".ogg")), $00)
+                                    playsound_strict(loadtempsound((("SFX\SCP\860_2\Chase" + (Str rand($00, $02))) + ".ogg")), $00, $01)
                                 EndIf
                                 playsoundex(loadtempsound((("SFX\SCP\860_2\Cancer" + (Str rand($00, $02))) + ".ogg")), camera, arg0\Field3, 10.0, 1.0, $01, $00)
                             EndIf
@@ -263,7 +263,7 @@ Function mp_updatenpctype860_2%(arg0.npcs)
                 EndIf
                 If ((((476.0 > local11) And (476.0 <= arg0\Field14)) Lor ((486.0 > local11) And (486.0 <= arg0\Field14))) <> 0) Then
                     If (arg0\Field85 <> 0) Then
-                        playsound_strict(snd_i\Field51[$0C], $00)
+                        playsound_strict(snd_i\Field51[$0C], $00, $01)
                     Else
                         playsoundex(snd_i\Field51[$0B], camera, arg0\Field3, 10.0, 1.0, $00, $00)
                     EndIf

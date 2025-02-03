@@ -89,7 +89,7 @@ Function updategame%()
                     shouldplay = (Int min((Float me\Field59), 2.0))
                     If (rand($C350, $01) = $03) Then
                         me\Field50 = rnd(1.0, 2.0)
-                        playsound_strict(loadtempsound((("SFX\SCP\079\Broadcast" + (Str rand($00, $07))) + ".ogg")), $01)
+                        playsound_strict(loadtempsound((("SFX\SCP\079\Broadcast" + (Str rand($00, $07))) + ".ogg")), $01, $01)
                     EndIf
                 EndIf
             EndIf

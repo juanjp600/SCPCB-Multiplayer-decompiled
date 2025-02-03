@@ -57,22 +57,22 @@ Function updategui%()
                 pd_event\Field6 = $00
                 Select rand($05, $01)
                     Case $01
-                        playsound_strict(snd_i\Field47[$01], $00)
+                        playsound_strict(snd_i\Field47[$01], $00, $01)
                     Case $02
-                        playsound_strict(snd_i\Field47[$02], $00)
+                        playsound_strict(snd_i\Field47[$02], $00, $01)
                     Case $03
-                        playsound_strict(snd_i\Field47[$09], $00)
+                        playsound_strict(snd_i\Field47[$09], $00, $01)
                     Case $04
-                        playsound_strict(snd_i\Field47[$0A], $00)
+                        playsound_strict(snd_i\Field47[$0A], $00, $01)
                     Case $05
-                        playsound_strict(snd_i\Field47[$0C], $00)
+                        playsound_strict(snd_i\Field47[$0C], $00, $01)
                 End Select
                 pd_event\Field14 = scaleimageex(loadimage_strict("GFX\Overlays\scp_106_face_overlay.png"), menuscale, menuscale, $01)
             Else
                 wi\Field7 = $01
                 If (rand($1E, $01) = $01) Then
                     If (channelplaying(pd_event\Field6) = $00) Then
-                        pd_event\Field6 = playsound_strict(snd_i\Field30[rand($00, $03)], $00)
+                        pd_event\Field6 = playsound_strict(snd_i\Field30[rand($00, $03)], $00, $01)
                     EndIf
                 EndIf
             EndIf
@@ -87,10 +87,10 @@ Function updategui%()
                     If (pd_event\Field15 = $00) Then
                         stopchannel(pd_event\Field6)
                         pd_event\Field6 = $00
-                        playsound_strict(pd_event\Field9, $01)
+                        playsound_strict(pd_event\Field9, $01, $01)
                         pd_event\Field15 = scaleimageex(loadimage_strict("GFX\Overlays\kneel_mortal_overlay.png"), menuscale, menuscale, $01)
                     ElseIf (channelplaying(pd_event\Field6) = $00) Then
-                        pd_event\Field6 = playsound_strict(pd_event\Field8, $00)
+                        pd_event\Field6 = playsound_strict(pd_event\Field8, $00, $01)
                         channelvolume(pd_event\Field6, (opt\Field21 * opt\Field16))
                     EndIf
                 ElseIf (channelplaying(pd_event\Field6) <> 0) Then
@@ -183,7 +183,7 @@ Function updategui%()
                         local3 = $00
                         If ((mouseon(local13, local14, (Int ((54.0 * menuscale) * local10)), (Int ((65.0 * menuscale) * local10))) And (msg\Field3 = "")) <> 0) Then
                             If (mo\Field6 <> 0) Then
-                                playsound_strict(buttonsfx[$00], $00)
+                                playsound_strict(buttonsfx[$00], $00, $01)
                                 Select ((local12 + $01) + (local7 Shl $02))
                                     Case $01,$02,$03
                                         msg\Field5 = (msg\Field5 + (Str ((local12 + $01) + (local7 Shl $02))))
@@ -287,7 +287,7 @@ Function updategui%()
                                     Return $00
                                 EndIf
                                 If (otheropen\Field18[local12]\Field4\Field3 <> $42) Then
-                                    playsound_strict(snd_i\Field44[otheropen\Field18[local12]\Field4\Field3], $00)
+                                    playsound_strict(snd_i\Field44[otheropen\Field18[local12]\Field4\Field3], $00, $01)
                                 EndIf
                                 otheropen = Null
                                 local28 = $01
@@ -323,7 +323,7 @@ Function updategui%()
                 If (local18 = $42) Then
                     local35 = entityyaw(camera, $00)
                     If (selecteditem\Field4\Field3 <> $42) Then
-                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                     EndIf
                     showentity(selecteditem\Field2)
                     positionentity(selecteditem\Field2, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
@@ -413,7 +413,7 @@ Function updategui%()
                             selecteditem = inventory(local12)
                             If ((mo\Field3 And (mo\Field4 = local12)) <> 0) Then
                                 If (inventory(local12)\Field4\Field3 <> $42) Then
-                                    playsound_strict(snd_i\Field44[inventory(local12)\Field4\Field3], $00)
+                                    playsound_strict(snd_i\Field44[inventory(local12)\Field4\Field3], $00, $01)
                                 EndIf
                                 invopen = $00
                                 mo\Field3 = $00
@@ -524,7 +524,7 @@ Function updategui%()
                                                     For local43 = $00 To (maxitemamount - $01) Step $01
                                                         If (inventory(local43) = selecteditem) Then
                                                             inventory(local43) = Null
-                                                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                                             Exit
                                                         EndIf
                                                     Next
@@ -582,7 +582,7 @@ Function updategui%()
                                                         For local43 = $00 To (maxitemamount - $01) Step $01
                                                             If (inventory(local43) = selecteditem) Then
                                                                 inventory(local43) = Null
-                                                                playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                                                playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                                                 Exit
                                                             EndIf
                                                         Next
@@ -613,7 +613,7 @@ Function updategui%()
                             Select inventory(local18)\Field4\Field2
                                 Case $49
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 0.0)
@@ -624,7 +624,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nav.bat.no"), 6.0)
                                 Case $45
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 0.0)
@@ -635,7 +635,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "radio.bat.no"), 6.0)
                                 Case $40
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 0.0)
@@ -646,7 +646,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nvg.bat.notfit"), 6.0)
                                 Case $43
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 0.0)
@@ -655,7 +655,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "gear.bat.notfit"), 6.0)
                                 Case $4D
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 0.0)
@@ -678,7 +678,7 @@ Function updategui%()
                             Select inventory(local18)\Field4\Field2
                                 Case $49
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 100.0)
@@ -689,7 +689,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nav.bat.no"), 6.0)
                                 Case $45
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 100.0)
@@ -700,7 +700,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "radio.bat.no"), 6.0)
                                 Case $40
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 1000.0)
@@ -711,7 +711,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nvg.bat.notfit"), 6.0)
                                 Case $43
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 1000.0)
@@ -720,7 +720,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "gear.bat.notfit"), 6.0)
                                 Case $4D
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 100.0)
@@ -745,7 +745,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nav.bat.notfit"), 6.0)
                                 Case $4B
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 100.0)
@@ -756,7 +756,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "radio.bat.notfit"), 6.0)
                                 Case $46
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(50.0, 100.0)
@@ -767,7 +767,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nvg.bat.notfit"), 6.0)
                                 Case $41
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 1000.0)
@@ -778,7 +778,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "gear.bat.notfit"), 6.0)
                                 Case $44
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 1000.0)
@@ -787,7 +787,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "e.reader.bat.notfit"), 6.0)
                                 Case $4E
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = rnd(500.0, 1000.0)
@@ -808,7 +808,7 @@ Function updategui%()
                             Select inventory(local18)\Field4\Field2
                                 Case $49
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = 1000.0
@@ -819,7 +819,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nav.bat.no"), 6.0)
                                 Case $45
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = 1000.0
@@ -830,7 +830,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "radio.bat.no"), 6.0)
                                 Case $40
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = 10000.0
@@ -841,7 +841,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "nvg.bat.notfit"), 6.0)
                                 Case $43
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = 10000.0
@@ -850,7 +850,7 @@ Function updategui%()
                                     createmsg(getlocalstring("msg", "gear.bat.notfit"), 6.0)
                                 Case $4D
                                     If (selecteditem\Field4\Field3 <> $42) Then
-                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                                        playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                                     EndIf
                                     removeitem(selecteditem)
                                     inventory(local18)\Field12 = 1000.0
@@ -917,7 +917,7 @@ Function updategui%()
                     EndIf
                     If (100.0 = selecteditem\Field12) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (wi\Field0 > $00) Then
                             createmsg(getlocalstring("msg", "mask.off"), 6.0)
@@ -958,7 +958,7 @@ Function updategui%()
                     selecteditem\Field12 = min((selecteditem\Field12 + (fps\Field7[$00] / 1.5)), 100.0)
                     If (100.0 = selecteditem\Field12) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (i_1499\Field0 > $00) Then
                             createmsg(getlocalstring("msg", "mask.off"), 6.0)
@@ -980,7 +980,7 @@ Function updategui%()
                                     EndIf
                                     resetentity(me\Field60)
                                     teleporttoroom(local2)
-                                    playsound_strict(loadtempsound("SFX\SCP\1499\Enter.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\SCP\1499\Enter.ogg"), $00, $01)
                                     i_1499\Field5 = 0.0
                                     i_1499\Field6 = 0.0
                                     i_1499\Field7 = 0.0
@@ -1035,14 +1035,14 @@ Function updategui%()
                     selecteditem\Field14 = min((selecteditem\Field14 + fps\Field7[$00]), 100.0)
                     If (100.0 = selecteditem\Field14) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (wi\Field5 > $00) Then
                             createmsg(getlocalstring("msg", "nvg.off"), 6.0)
                             fog\Field0 = (6.0 - (2.0 * (Float isblackout)))
                             wi\Field5 = $00
                             If (0.0 < selecteditem\Field12) Then
-                                playsound_strict(snd_i\Field40[$01], $00)
+                                playsound_strict(snd_i\Field40[$01], $00, $01)
                             EndIf
                         Else
                             createmsg(getlocalstring("msg", "nvg.on"), 6.0)
@@ -1056,7 +1056,7 @@ Function updategui%()
                                     wi\Field5 = $03
                             End Select
                             If (0.0 < selecteditem\Field12) Then
-                                playsound_strict(snd_i\Field40[$00], $00)
+                                playsound_strict(snd_i\Field40[$00], $00, $01)
                             EndIf
                         EndIf
                         selecteditem\Field14 = 0.0
@@ -1079,7 +1079,7 @@ Function updategui%()
                     selecteditem\Field14 = min((selecteditem\Field14 + fps\Field7[$00]), 100.0)
                     If (100.0 = selecteditem\Field14) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (wi\Field9 > $00) Then
                             createmsg(getlocalstring("msg", "gear.off"), 6.0)
@@ -1105,7 +1105,7 @@ Function updategui%()
                     selecteditem\Field12 = min((selecteditem\Field12 + (fps\Field7[$00] / 0.7)), 100.0)
                     If (100.0 = selecteditem\Field12) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (wi\Field4 <> 0) Then
                             createmsg(getlocalstring("msg", "helmet.off"), 6.0)
@@ -1138,11 +1138,11 @@ Function updategui%()
                     selecteditem\Field12 = min((selecteditem\Field12 + (fps\Field7[$00] / 0.7)), 100.0)
                     If (100.0 = selecteditem\Field12) Then
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (i_268\Field0 > $00) Then
                             If (((i_268\Field0 > $01) And (0.0 < i_268\Field1)) <> 0) Then
-                                playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOff.ogg"), $00)
+                                playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOff.ogg"), $00, $01)
                             EndIf
                             createmsg(getlocalstring("msg", "cap.off"), 6.0)
                             i_268\Field0 = $00
@@ -1158,7 +1158,7 @@ Function updategui%()
                                     i_268\Field0 = $03
                             End Select
                             If (i_268\Field0 > $01) Then
-                                playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOn.ogg"), $00)
+                                playsound_strict(loadtempsound("SFX\SCP\268\InvisibilityOn.ogg"), $00, $01)
                             EndIf
                         EndIf
                         selecteditem\Field12 = 0.0
@@ -1175,7 +1175,7 @@ Function updategui%()
                         dropitem(selecteditem, $01)
                     Else
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         Select selecteditem\Field4\Field2
                             Case $27
@@ -1199,7 +1199,7 @@ Function updategui%()
                         dropitem(selecteditem, $01)
                     Else
                         If (selecteditem\Field4\Field3 <> $42) Then
-                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                            playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
                         EndIf
                         If (wi\Field5 > $00) Then
                             fog\Field0 = (6.0 - (2.0 * (Float isblackout)))
@@ -1233,7 +1233,7 @@ Function updategui%()
                     selecteditem = Null
                 EndIf
             Case $19
-                playsound_strict(loadtempsound("SFX\SCP\513\Bell.ogg"), $00)
+                playsound_strict(loadtempsound("SFX\SCP\513\Bell.ogg"), $00, $01)
                 giveachievement("513", $01)
                 If (((n_i\Field5 = Null) And (me\Field54 = $00)) <> 0) Then
                     n_i\Field5 = createnpc($09, 0.0, 0.0, 0.0)
@@ -1442,7 +1442,7 @@ Function updategui%()
                                 If (0.0 = i_1025\Field1[$00]) Then
                                     maxitemamount = (maxitemamount + $02)
                                     injureplayer(1.5, 0.0, 1000.0, 0.0, 0.0)
-                                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\BodyHorrorExchange" + (Str rand($00, $03))) + ".ogg")), $00)
+                                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\BodyHorrorExchange" + (Str rand($00, $03))) + ".ogg")), $00, $01)
                                     createmsg(getlocalstring("msg", "extraparts"), 6.0)
                                     i_1025\Field1[$00] = 1.0
                                 EndIf
@@ -1514,11 +1514,11 @@ Function updategui%()
                                 If (jsonisnull(local3) = $00) Then
                                     local15 = jsongetstring(local3)
                                     If (((local15 = "SFX\SCP\294\Burn.ogg") And (0.0 < i_1025\Field1[$03])) = $00) Then
-                                        playsound_strict(loadtempsound(local15), $01)
+                                        playsound_strict(loadtempsound(local15), $01, $01)
                                         mp_synchronizesound(local15, $01, ue_players[mp_getmyindex()], 10.0, 1.0, 0.0, 0.0, 0.0)
                                     Else
                                         me\Field31 = (me\Field31 + 0.5)
-                                        playsound_strict(loadtempsound("SFX\SCP\294\Slurp.ogg"), $01)
+                                        playsound_strict(loadtempsound("SFX\SCP\294\Slurp.ogg"), $01, $01)
                                         mp_synchronizesound("SFX\SCP\294\Slurp.ogg", $01, ue_players[mp_getmyindex()], 10.0, 1.0, 0.0, 0.0, 0.0)
                                     EndIf
                                 EndIf
@@ -1608,7 +1608,7 @@ Function updategui%()
             Case $6C
                 If (canuseitem($01, $00, $00) <> 0) Then
                     createmsg(getlocalstring("msg", "pizza"), 6.0)
-                    playsound_strict(loadtempsound("SFX\SCP\458\Eating.ogg"), $00)
+                    playsound_strict(loadtempsound("SFX\SCP\458\Eating.ogg"), $00, $01)
                     removeitem(selecteditem)
                 EndIf
             Case $55
@@ -1687,7 +1687,7 @@ Function updategui%()
                             EndIf
                         Next
                         If (channelplaying(radiochn[$06]) = $00) Then
-                            radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                            radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                         EndIf
                     ElseIf (8.0 > coffindistance) Then
                         For local7 = $00 To $05 Step $01
@@ -1696,7 +1696,7 @@ Function updategui%()
                             EndIf
                         Next
                         If (channelplaying(radiochn[$06]) = $00) Then
-                            radiochn[$06] = playsound_strict(snd_i\Field37, $00)
+                            radiochn[$06] = playsound_strict(snd_i\Field37, $00, $01)
                         EndIf
                     Else
                         If (mp_getsocket() <> $00) Then
@@ -1706,12 +1706,12 @@ Function updategui%()
                         If (selecteditem\Field4\Field2 = $48) Then
                             selecteditem\Field13 = -1.0
                             If (channelplaying(radiochn[$06]) = $00) Then
-                                radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                                radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                             EndIf
                             radiostate[$06] = (fps\Field7[$00] + radiostate[$06])
                             local4 = (Int mid((Str code_dr_gears), (Int (radiostate[$08] + 1.0)), $01))
                             If ((((radiostate[$07] * 50.0) >= (radiostate[$06] - fps\Field7[$00])) And (radiostate[$06] > (radiostate[$07] * 50.0))) <> 0) Then
-                                playsound_strict(snd_i\Field38, $00)
+                                playsound_strict(snd_i\Field38, $00, $01)
                                 radiostate[$07] = (radiostate[$07] + 1.0)
                                 If ((Float local4) <= radiostate[$07]) Then
                                     radiostate[$07] = 0.0
@@ -1728,11 +1728,11 @@ Function updategui%()
                                 Case $00
                                     If (opt\Field24 = $00) Then
                                         If (channelplaying(radiochn[$06]) = $00) Then
-                                            radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                                            radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                                         EndIf
                                     ElseIf (usertrackmusicamount < $01) Then
                                         If (channelplaying(radiochn[$06]) = $00) Then
-                                            radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                                            radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                                         EndIf
                                     Else
                                         If (channelplaying(radiochn[$06]) <> 0) Then
@@ -1757,12 +1757,12 @@ Function updategui%()
                                                 currusertrack = $00
                                             EndIf
                                             currusertrack = loadsound_strict(("SFX\Radio\UserTracks\" + usertrackname[(Int radiostate[$00])]))
-                                            radiochn[$00] = playsound_strict(currusertrack, $00)
+                                            radiochn[$00] = playsound_strict(currusertrack, $00, $01)
                                         Else
                                             usertrackflag = $00
                                         EndIf
                                         If (keyhit($02) <> 0) Then
-                                            playsound_strict(snd_i\Field35, $00)
+                                            playsound_strict(snd_i\Field35, $00, $01)
                                             If (usertrackflag = $00) Then
                                                 If (opt\Field24 = $01) Then
                                                     If ((Float (usertrackmusicamount - $01)) > radiostate[$00]) Then
@@ -1780,7 +1780,7 @@ Function updategui%()
                                                 currusertrack = $00
                                             EndIf
                                             currusertrack = loadsound_strict(("SFX\Radio\UserTracks\" + usertrackname[(Int radiostate[$00])]))
-                                            radiochn[$00] = playsound_strict(currusertrack, $00)
+                                            radiochn[$00] = playsound_strict(currusertrack, $00, $01)
                                         EndIf
                                     EndIf
                                 Case $01
@@ -1790,11 +1790,11 @@ Function updategui%()
                                     EndIf
                                     If (channelplaying(radiochn[$01]) = $00) Then
                                         If (5.0 <= radiostate[$01]) Then
-                                            radiochn[$01] = playsound_strict(radiosfx($00, $01), $00)
+                                            radiochn[$01] = playsound_strict(radiosfx($00, $01), $00, $01)
                                             radiostate[$01] = 0.0
                                         Else
                                             radiostate[$01] = (radiostate[$01] + 1.0)
-                                            radiochn[$01] = playsound_strict(radiosfx($00, $00), $00)
+                                            radiochn[$01] = playsound_strict(radiosfx($00, $00), $00, $01)
                                         EndIf
                                     EndIf
                                 Case $02
@@ -1808,14 +1808,14 @@ Function updategui%()
                                             radiostate[$02] = 1.0
                                         EndIf
                                         If (ceil((radiostate[$02] / 2.0)) = floor((radiostate[$02] / 2.0))) Then
-                                            radiochn[$02] = playsound_strict(radiosfx($01, (Int (radiostate[$02] / 2.0))), $00)
+                                            radiochn[$02] = playsound_strict(radiosfx($01, (Int (radiostate[$02] / 2.0))), $00, $01)
                                         Else
-                                            radiochn[$02] = playsound_strict(radiosfx($01, $00), $00)
+                                            radiochn[$02] = playsound_strict(radiosfx($01, $00), $00, $01)
                                         EndIf
                                     EndIf
                                 Case $03
                                     If (((channelplaying(radiochn[$06]) = $00) And (channelplaying(radiochn[$03]) = $00)) <> 0) Then
-                                        radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                                        radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                                     EndIf
                                     If (0.0 < mtftimer) Then
                                         If (radiostate2[$06] = $00) Then
@@ -1824,43 +1824,43 @@ Function updategui%()
                                         Select radiostate[$03]
                                             Case 40.0
                                                 If (radiostate2[$00] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random0.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random0.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$00] = $01
                                                 EndIf
                                             Case 400.0
                                                 If (radiostate2[$01] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random1.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random1.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$01] = $01
                                                 EndIf
                                             Case 800.0
                                                 If (radiostate2[$02] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random2.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random2.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$02] = $01
                                                 EndIf
                                             Case 1200.0
                                                 If (radiostate2[$03] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random3.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random3.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$03] = $01
                                                 EndIf
                                             Case 1600.0
                                                 If (radiostate2[$04] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random4.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random4.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$04] = $01
                                                 EndIf
                                             Case 2000.0
                                                 If (radiostate2[$05] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random5.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random5.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$05] = $01
                                                 EndIf
                                             Case 2400.0
                                                 If (radiostate2[$06] = $00) Then
-                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random6.ogg"), $01)
+                                                    radiochn[$03] = playsound_strict(loadtempsound("SFX\Character\MTF\Random6.ogg"), $01, $01)
                                                     radiostate[$03] = (radiostate[$03] + 1.0)
                                                     radiostate2[$06] = $01
                                                 EndIf
@@ -1868,11 +1868,11 @@ Function updategui%()
                                     EndIf
                                 Case $04
                                     If (channelplaying(radiochn[$06]) = $00) Then
-                                        radiochn[$06] = playsound_strict(snd_i\Field36, $00)
+                                        radiochn[$06] = playsound_strict(snd_i\Field36, $00, $01)
                                     EndIf
                                     If (channelplaying(radiochn[$04]) = $00) Then
                                         If (((remotedooron = $00) And (0.0 = radiostate[$08])) <> 0) Then
-                                            radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter2.ogg"), $01)
+                                            radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter2.ogg"), $01, $01)
                                             radiostate[$08] = 1.0
                                         Else
                                             radiostate[$04] = (max((Float rand($FFFFFFF6, $01)), 0.0) + radiostate[$04])
@@ -1880,62 +1880,62 @@ Function updategui%()
                                                 Case 10.0
                                                     If (n_i\Field3\Field65 = $00) Then
                                                         If (radiostate3[$00] = $00) Then
-                                                            radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\OhGod.ogg"), $01)
+                                                            radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\OhGod.ogg"), $01, $01)
                                                             radiostate[$04] = (radiostate[$04] + 1.0)
                                                             radiostate3[$00] = $01
                                                         EndIf
                                                     EndIf
                                                 Case 100.0
                                                     If (radiostate3[$01] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter1.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter1.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$01] = $01
                                                     EndIf
                                                 Case 158.0
                                                     If (((0.0 = mtftimer) And (radiostate3[$02] = $00)) <> 0) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin0.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin0.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate[$02] = 1.0
                                                     EndIf
                                                 Case 200.0
                                                     If (radiostate3[$03] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter3.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter3.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$03] = $01
                                                     EndIf
                                                 Case 260.0
                                                     If (radiostate3[$04] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\035Help0.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\035Help0.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$04] = $01
                                                     EndIf
                                                 Case 300.0
                                                     If (radiostate3[$05] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter0.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Chatter0.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$05] = $01
                                                     EndIf
                                                 Case 350.0
                                                     If (radiostate3[$06] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin1.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin1.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$06] = $01
                                                     EndIf
                                                 Case 400.0
                                                     If (radiostate3[$07] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\035Help1.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\035Help1.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$07] = $01
                                                     EndIf
                                                 Case 450.0
                                                     If (radiostate3[$08] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin2.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin2.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$08] = $01
                                                     EndIf
                                                 Case 600.0
                                                     If (radiostate3[$09] = $00) Then
-                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin3.ogg"), $01)
+                                                        radiochn[$04] = playsound_strict(loadtempsound("SFX\Radio\Franklin3.ogg"), $01, $01)
                                                         radiostate[$04] = (radiostate[$04] + 1.0)
                                                         radiostate3[$09] = $01
                                                     EndIf
@@ -1948,13 +1948,13 @@ Function updategui%()
                                         radiochn[$06] = $00
                                     EndIf
                                     If (channelplaying(radiochn[$05]) = $00) Then
-                                        radiochn[$05] = playsound_strict(snd_i\Field36, $00)
+                                        radiochn[$05] = playsound_strict(snd_i\Field36, $00, $01)
                                     EndIf
                             End Select
                             For local7 = $02 To $0A Step $01
                                 If (keyhit(local7) <> 0) Then
                                     If ((Float (local7 - $02)) <> selecteditem\Field13) Then
-                                        playsound_strict(snd_i\Field35, $00)
+                                        playsound_strict(snd_i\Field35, $00, $01)
                                         pausechannel(radiochn[(Int min(selecteditem\Field13, 5.0))])
                                     EndIf
                                     selecteditem\Field13 = (Float (local7 - $02))
@@ -1972,7 +1972,7 @@ Function updategui%()
                             If (70.0 <= batmsgtimer) Then
                                 If (channelplaying(lowbatterychn[$00]) = $00) Then
                                     me\Field42 = max(3.0, me\Field42)
-                                    lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00)
+                                    lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00, $01)
                                 EndIf
                             EndIf
                         EndIf
@@ -2015,7 +2015,7 @@ Function updategui%()
                             If (70.0 <= batmsgtimer) Then
                                 If (channelplaying(lowbatterychn[$00]) = $00) Then
                                     me\Field42 = max(3.0, me\Field42)
-                                    lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00)
+                                    lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00, $01)
                                 EndIf
                             EndIf
                         EndIf
@@ -2058,7 +2058,7 @@ Function updategui%()
                         me\Field31 = max((me\Field31 - 0.5), 0.0)
                         me\Field49 = 500.0
                         giveachievement("420j", $01)
-                        playsound_strict(loadtempsound("SFX\Music\Using420J.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\Music\Using420J.ogg"), $00, $01)
                         mp_synchronize3dsound(Null, "SFX\Music\Using420J.ogg", me\Field60, 20.0, 1.0)
                     EndIf
                     removeitem(selecteditem)
@@ -2122,7 +2122,7 @@ Function updategui%()
                 EndIf
                 If (0.0 = selecteditem\Field12) Then
                     createmsg(getlocalstring("msg", "ticket"), 6.0)
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($00, $04))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($00, $04))) + ".ogg")), $00, $01)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $03,$04,$05
@@ -2133,7 +2133,7 @@ Function updategui%()
                     adaptscreengamma()
                 EndIf
                 If (0.0 = selecteditem\Field12) Then
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00, $01)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $06
@@ -2146,7 +2146,7 @@ Function updategui%()
                 EndIf
                 If (0.0 = selecteditem\Field12) Then
                     createmsg(getlocalstring("msg", "oldbadge"), 6.0)
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00, $01)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $01
@@ -2159,18 +2159,18 @@ Function updategui%()
                 If (0.0 = selecteditem\Field12) Then
                     me\Field49 = 1000.0
                     createmsg(getlocalstring("msg", "oldpaper"), 6.0)
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00, $01)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $69
                 If (0.0 = selecteditem\Field12) Then
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($05, $09))) + ".ogg")), $00, $01)
                     createmsg(getlocalstring("msg", "lostkey"), 6.0)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $6B
                 If (0.0 = selecteditem\Field12) Then
-                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($00, $04))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\1162_ARC\NostalgiaCancer" + (Str rand($00, $04))) + ".ogg")), $00, $01)
                     selecteditem\Field12 = 1.0
                 EndIf
             Case $14
@@ -2218,7 +2218,7 @@ Function updategui%()
                         entitytype(local1\Field2, $03, $00)
                         pickitem(local1, $00)
                         createmsg(getlocalstring("msg", "500"), 6.0)
-                        playsound_strict(loadtempsound("SFX\SCP\500\OpenBottle.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\SCP\500\OpenBottle.ogg"), $00, $01)
                         i_500\Field0 = (i_500\Field0 + $01)
                     Else
                         createmsg(getlocalstring("msg", "cantcarry"), 6.0)
@@ -2251,21 +2251,21 @@ Function updategui%()
                 Select local7
                     Case $31
                         selecteditem\Field13 = max(1.0, (selecteditem\Field13 - (Float local3)))
-                        playsound_strict(buttonsfx[$00], $00)
+                        playsound_strict(buttonsfx[$00], $00, $01)
                         If (selecteditem\Field4\Field12 <> $00) Then
                             freeimage(selecteditem\Field4\Field12)
                             selecteditem\Field4\Field12 = $00
                         EndIf
                     Case $32
                         selecteditem\Field13 = min((selecteditem\Field13 + (Float local3)), 41.0)
-                        playsound_strict(buttonsfx[$00], $00)
+                        playsound_strict(buttonsfx[$00], $00, $01)
                         If (selecteditem\Field4\Field12 <> $00) Then
                             freeimage(selecteditem\Field4\Field12)
                             selecteditem\Field4\Field12 = $00
                         EndIf
                     Case $33
                         selecteditem\Field13 = 0.0
-                        playsound_strict(buttonsfx[$00], $00)
+                        playsound_strict(buttonsfx[$00], $00, $01)
                         If (selecteditem\Field4\Field12 <> $00) Then
                             freeimage(selecteditem\Field4\Field12)
                             selecteditem\Field4\Field12 = $00
@@ -2291,7 +2291,7 @@ Function updategui%()
                         If (70.0 <= batmsgtimer) Then
                             If (channelplaying(lowbatterychn[$00]) = $00) Then
                                 me\Field42 = max(3.0, me\Field42)
-                                lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00)
+                                lowbatterychn[$00] = playsound_strict(snd_i\Field41[$00], $00, $01)
                             EndIf
                         EndIf
                     EndIf
@@ -2332,7 +2332,7 @@ Function updategui%()
                     selecteditem\Field13 = 0.0
             End Select
             If (selecteditem\Field4\Field3 <> $42) Then
-                playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00)
+                playsound_strict(snd_i\Field44[selecteditem\Field4\Field3], $00, $01)
             EndIf
             If (selecteditem\Field4\Field11 <> $00) Then
                 If (1.0 <> opt\Field7) Then

@@ -22,7 +22,7 @@ Function refillcup%()
                         local1\Field0 = format(getlocalstring("items", "cupof"), getlocalstring("misc", "water"), "%s")
                         entitytype(local1\Field2, $03, $00)
                         pickitem(local1, $01)
-                        playsound_strict(loadtempsound("SFX\SCP\294\Dispense1.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\SCP\294\Dispense1.ogg"), $00, $01)
                         mp_synchronize3dsound(Null, "SFX\SCP\294\Dispense1.ogg", local0\Field1, 8.0, 1.0)
                         createmsg(getlocalstring("msg", "refill"), 6.0)
                     Else

@@ -100,7 +100,7 @@ Function rendergui%()
             If (((70.0 > scribe_event\Field3) And (1.0 = scribe_event\Field4)) <> 0) Then
                 me\Field10 = -10.0
                 If (scribe_event\Field14 = $00) Then
-                    playsound_strict(snd_i\Field47[$0B], $00)
+                    playsound_strict(snd_i\Field47[$0B], $00, $01)
                     scribe_event\Field14 = scaleimageex(loadimage_strict("GFX\Overlays\scp_012_overlay.png"), menuscale, menuscale, $01)
                 Else
                     drawblock(scribe_event\Field14, (Int ((Float mo\Field9) - ((Float rand($136, $186)) * menuscale))), (Int ((Float mo\Field10) - ((Float rand($122, $136)) * menuscale))), $00)
@@ -669,17 +669,17 @@ Function rendergui%()
                             textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int ((10.0 * menuscale) + (Float (local5 - local59)))), (((Str local80) + "/") + (Str local79)), $00, $00)
                             If ((millisec Mod $258) < $190) Then
                                 color($C8, $00, $00)
-                                ;bbFieldPtrAdd at _3347_frendergui:86, probably for an object of unknowable type
+                                ;bbFieldPtrAdd at _3348_frendergui:86, probably for an object of unknowable type
                                 Select eax_0AE2
                                     Case $07,$06,$05,$02,$04
-                                        ;bbFieldPtrAdd at _35223_frendergui:6, probably for an object of unknowable type
+                                        ;bbFieldPtrAdd at _35249_frendergui:6, probably for an object of unknowable type
                                         If (eax_0AE6 = $00) Then
-                                            ;bbFieldPtrAdd at _35223_frendergui:16, probably for an object of unknowable type
+                                            ;bbFieldPtrAdd at _35249_frendergui:16, probably for an object of unknowable type
                                             local76 = entitydistancesquared(camera, eax_0AEA)
                                             If (900.0 > local76) Then
                                                 local24 = sqr(local76)
                                                 oval((Int ((Float local4) - ((1.5 * menuscale) * local24))), (Int ((Float local5) - ((1.5 * menuscale) * local24))), (Int ((3.0 * menuscale) * local24)), (Int ((3.0 * menuscale) * local24)), $00)
-                                                ;bbFieldPtrAdd at _35223_frendergui:173, probably for an object of unknowable type
+                                                ;bbFieldPtrAdd at _35249_frendergui:173, probably for an object of unknowable type
                                                 textex((Int ((10.0 * menuscale) + (Float (local4 - local58)))), (Int (((30.0 * menuscale) + (Float (local5 - local59))) + ((Float ($14 * local75)) * menuscale))), eax_0AFA, $00, $00)
                                                 local75 = (local75 + $01)
                                             EndIf

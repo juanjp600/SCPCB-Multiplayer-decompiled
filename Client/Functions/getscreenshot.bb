@@ -31,7 +31,7 @@ Function getscreenshot%()
     If (mainmenuopen = $00) Then
         createhintmsg(getlocalstring("msg", "screenshot"), 6.0, $00)
     EndIf
-    playsound_strict(loadtempsound("SFX\General\Screenshot.ogg"), $00)
+    playsound_strict(loadtempsound("SFX\General\Screenshot.ogg"), $00, $01)
     screenshotcount = (screenshotcount + $01)
     Return $00
 End Function

@@ -17,11 +17,11 @@ Function updatevomit%()
             me\Field23 = rnd(0.0, 2.0)
         EndIf
         If (((rand($32, $01) = $32) And ((millisec Mod $FA0) < $C8)) <> 0) Then
-            playsound_strict(coughsfx((((wi\Field0 > $00) Lor (i_1499\Field0 > $00)) Lor (wi\Field2 > $00)), rand($00, $02)), $01)
+            playsound_strict(coughsfx((((wi\Field0 > $00) Lor (i_1499\Field0 > $00)) Lor (wi\Field2 > $00)), rand($00, $02)), $01, $01)
         EndIf
         If (((10.0 > me\Field26) And (2.0 > rnd(0.0, (me\Field26 * 500.0)))) <> 0) Then
             If (((channelplaying(vomitchn) = $00) And (me\Field27 = $00)) <> 0) Then
-                vomitchn = playsound_strict(loadtempsound((("SFX\SCP\294\Retch" + (Str rand($00, $01))) + ".ogg")), $01)
+                vomitchn = playsound_strict(loadtempsound((("SFX\SCP\294\Retch" + (Str rand($00, $01))) + ".ogg")), $01, $01)
                 me\Field27 = (millisecs() + $32)
             EndIf
         EndIf
@@ -45,7 +45,7 @@ Function updatevomit%()
             me\Field49 = 2800.0
             snd_i\Field54 = loadsound_strict("SFX\SCP\294\Vomit.ogg")
             mp_synchronizesound("SFX\SCP\294\Vomit.ogg", $01, ue_players[mp_getmyindex()], 10.0, 1.0, 0.0, 0.0, 0.0)
-            vomitchn = playsound_strict(snd_i\Field54, $01)
+            vomitchn = playsound_strict(snd_i\Field54, $01, $01)
             me\Field33 = me\Field31
             me\Field34 = me\Field32
             If (me\Field39 = $00) Then
@@ -77,7 +77,7 @@ Function updatevomit%()
             snd_i\Field54 = $00
             me\Field26 = 0.0
             If (0.0 = me\Field0) Then
-                playsound_strict(breathsfx($00, $00), $01)
+                playsound_strict(breathsfx($00, $00), $01, $01)
             EndIf
             me\Field31 = me\Field33
             me\Field32 = me\Field34

@@ -61,7 +61,7 @@ Function updatemainmenu%()
         EndIf
         If (shouldplay = $14) Then
             endbreathsfx = loadsound_strict("SFX\Ending\MenuBreath.ogg")
-            endbreathchn = playsound_strict(endbreathsfx, $01)
+            endbreathchn = playsound_strict(endbreathsfx, $01, $01)
             shouldplay = $42
         ElseIf (shouldplay = $42) Then
             If (channelplaying(endbreathchn) = $00) Then
@@ -350,7 +350,7 @@ Function updatemainmenu%()
                                 mp_pingserver(local31\Field0, local31\Field1, $01, $00)
                                 local33 = $01
                             EndIf
-                            If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (25.0 * menuscale)) - (3.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), "Open info", $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
+                            If (updatemenubutton(serverlist\Field2, (Int (((Float serverlist\Field3) + (25.0 * menuscale)) - (3.0 * menuscale))), (Int (160.0 * menuscale)), (Int (25.0 * menuscale)), getlocalstring("mpmenu", "openinfo"), $00, $01, $00, $FF, $FF, $FF, $01, 1.0, $00, $00) <> 0) Then
                                 mp_showlocaldialog(getlocalstring("mpmenu", "information"), (((((((((((((((format(getlocalstring("mpmenu", "info.name"), local31\Field2, "%s") + "\n") + format(getlocalstring("mpmenu", "info.gamemode"), local31\Field3, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.players"), (((Str local31\Field4) + " / ") + (Str local31\Field5)), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.diff"), difficulties[local31\Field7]\Field0, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.seed"), local31\Field8, "%s")) + "\n") + format(getlocalstring("mpmenu", "info.intro"), getbool(local31\Field9), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.voice"), mp_voicegetbitrate(local31\Field11), "%s")) + "\n") + format(getlocalstring("mpmenu", "info.ping"), (Str local31\Field6), "%s")) + "\n"), getlocalstring("gui", "close"), "", $00, $01, $00)
                                 mp_pingserver(local31\Field0, local31\Field1, $00, $01)
                                 local33 = $01

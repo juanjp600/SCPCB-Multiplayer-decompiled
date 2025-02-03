@@ -7,7 +7,7 @@ Function updateplayermodelsounds%(arg0.mp_player)
         If (channelplaying(arg0\Field35\Field14) = $00) Then
             arg0\Field35\Field14 = $00
             If (arg0\Field35\Field1\Field29 > $00) Then
-                arg0\Field35\Field14 = playsound_strict(arg0\Field35\Field1\Field31[rand($00, (arg0\Field35\Field1\Field29 - $01))], $00)
+                arg0\Field35\Field14 = playsound_strict(arg0\Field35\Field1\Field31[rand($00, (arg0\Field35\Field1\Field29 - $01))], $00, $01)
             EndIf
         EndIf
         arg0\Field35\Field16 = 35.0

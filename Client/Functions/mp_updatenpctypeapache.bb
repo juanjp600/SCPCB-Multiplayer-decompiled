@@ -107,7 +107,7 @@ Function mp_updatenpctypeapache%(arg0.npcs)
                 positionentity(arg0\Field3, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
                 If (0.09 > entitydistancesquared(arg0\Field0, local1)) Then
                     me\Field23 = max(me\Field23, 3.0)
-                    playsound_strict(loadtempsound((("SFX\Character\Apache\Crash" + (Str rand($00, $01))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\Character\Apache\Crash" + (Str rand($00, $01))) + ".ogg")), $00, $01)
                     arg0\Field10 = 5.0
                 EndIf
                 freeentity(local1)

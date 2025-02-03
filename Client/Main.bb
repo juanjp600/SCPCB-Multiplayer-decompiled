@@ -1,5 +1,5 @@
-; Game0013_memdump_deobfuscated_disasm
-; Decompiled on 2/3/2025 11:31:53 AM
+; Game0014_memdump_deobfuscated_disasm
+; Decompiled on 2/3/2025 8:52:52 PM
 
 Include "Globals.bb"
 Include "Data.bb"
@@ -428,6 +428,7 @@ Include "Functions/event_getsomebodypivot.bb"
 Include "Functions/event_getsomebodycamera.bb"
 Include "Functions/mp_nearestdisttoentity.bb"
 Include "Functions/findevent.bb"
+Include "Functions/resetroomobject.bb"
 Include "Functions/mp_prepareeventnpcs.bb"
 Include "Functions/setzonecolor.bb"
 Include "Functions/mp_updatenpcs.bb"
@@ -632,6 +633,7 @@ Include "Functions/getlineamount.bb"
 Include "Functions/mp_voicegetlevel.bb"
 Include "Functions/mp_createchatmessage.bb"
 Include "Functions/mp_sendchatmessage.bb"
+Include "Functions/getplayervoicemute.bb"
 Include "Functions/setplayervoicemute.bb"
 Include "Functions/mp_renderplayerslisthud.bb"
 Include "Functions/mp_renderdialoghud.bb"

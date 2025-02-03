@@ -6,7 +6,7 @@ Function dropitem%(arg0.items, arg1%)
     catcherrors("DropItem()")
     local1 = entityyaw(camera, $00)
     If (((arg0\Field4\Field3 <> $42) And arg1) <> 0) Then
-        playsound_strict(snd_i\Field44[arg0\Field4\Field3], $00)
+        playsound_strict(snd_i\Field44[arg0\Field4\Field3], $00, $01)
     EndIf
     arg0\Field16 = $01
     showentity(arg0\Field2)

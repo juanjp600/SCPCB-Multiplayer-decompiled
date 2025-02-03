@@ -28,7 +28,7 @@ Function update008%()
             For local4 = $00 To $06 Step $01
                 If ((((((Float local4) * 15.0) + 10.0) < i_008\Field0) And (local3 <= (((Float local4) * 15.0) + 10.0))) <> 0) Then
                     If (i_008\Field1 = $00) Then
-                        playsound_strict(loadtempsound((("SFX\SCP\008\Voices" + (Str local4)) + ".ogg")), $01)
+                        playsound_strict(loadtempsound((("SFX\SCP\008\Voices" + (Str local4)) + ".ogg")), $01, $01)
                     EndIf
                 EndIf
             Next
@@ -52,7 +52,7 @@ Function update008%()
                 createmsg(getlocalstring("msg", "faint"), 6.0)
             ElseIf (91.5 <= i_008\Field0) Then
                 If (91.5 > local3) Then
-                    playsound_strict(loadtempsound("SFX\Character\D9341\Infected.ogg"), $01)
+                    playsound_strict(loadtempsound("SFX\Character\D9341\Infected.ogg"), $01, $01)
                 EndIf
                 me\Field10 = clamp(((i_008\Field0 - 91.5) * -10.0), me\Field10, -10.0)
                 makemeunplayable()
@@ -78,7 +78,7 @@ Function update008%()
                                     local0\Field15[$00]\Field10 = -1.0
                                     setnpcframe(local0\Field15[$00], 357.0, $01)
                                     changenpctextureid(local0\Field15[$00], $0B)
-                                    playsound_strict(loadtempsound("SFX\SCP\008\KillScientist0.ogg"), $01)
+                                    playsound_strict(loadtempsound("SFX\SCP\008\KillScientist0.ogg"), $01, $01)
                                     teleporttoroom(local0)
                                     Exit
                                 EndIf
@@ -114,7 +114,7 @@ Function update008%()
                         playerroom\Field15[$00]\Field12 = -1.0
                         playerroom\Field15[$00]\Field50 = $01
                         setnpcframe(playerroom\Field15[$00], 19.0, $01)
-                        playsound_strict(loadtempsound("SFX\SCP\008\KillScientist1.ogg"), $01)
+                        playsound_strict(loadtempsound("SFX\SCP\008\KillScientist1.ogg"), $01, $01)
                         msg\Field2 = format(getlocalstring("death", "0081"), subjectname, "%s")
                         local2 = createdecal($03, entityx(playerroom\Field15[$00]\Field3, $00), ((playerroom\Field4 + 2.125) + 0.01), entityz(playerroom\Field15[$00]\Field3, $00), 90.0, rnd(360.0, 0.0), 0.0, 0.8, 1.0, $00, $01, $00, $00, $00)
                         entityparent(local2\Field0, playerroom\Field2, $01)

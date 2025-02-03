@@ -77,9 +77,9 @@ Function renderloading%(arg0%, arg1$)
         If (local5 <> 0) Then
             If (local2 <> 0) Then
                 If (arg0 = $00) Then
-                    playsound_strict(loadtempsound("SFX\SCP\990\cwm0.cwm"), $00)
+                    playsound_strict(loadtempsound("SFX\SCP\990\cwm0.cwm"), $00, $01)
                 ElseIf (((arg0 = $64) And (initializeintromovie = $00)) <> 0) Then
-                    playsound_strict(loadtempsound("SFX\SCP\990\cwm1.cwm"), $00)
+                    playsound_strict(loadtempsound("SFX\SCP\990\cwm1.cwm"), $00, $01)
                 EndIf
             EndIf
             local9 = ""
@@ -149,7 +149,7 @@ Function renderloading%(arg0%, arg1$)
                 local9 = getlocalstring("menu", "wakeup")
             Else
                 If (local2 <> 0) Then
-                    playsound_strict(loadtempsound("SFX\Horror\Horror8.ogg"), $00)
+                    playsound_strict(loadtempsound("SFX\Horror\Horror8.ogg"), $00, $01)
                 EndIf
                 local9 = getlocalstring("menu", "anykey")
             EndIf

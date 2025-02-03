@@ -7,8 +7,9 @@ Function mp_initializerenderer%()
     createplayermodelmesh($01, "GFX\NPCs\class_d.b3d", $01)
     createplayermodeltexture($01, "GFX\NPCs\class_d.png", $01)
     createplayermodeltexture($02, "GFX\NPCs\class_d(2).png", $01)
-    createplayermodeltexture($03, "GFX\NPCs\D_9341.png", $01)
-    createplayermodeltexture($07, "GFX\NPCs\Maynard.png", $01)
+    createplayermodeltexture($03, "GFX\NPCs\class_d(3).png", $01)
+    createplayermodeltexture($04, "GFX\NPCs\D_9341.png", $01)
+    createplayermodeltexture($08, "GFX\NPCs\Maynard.png", $01)
     local0 = getplayermodelmeshpreset($01)
     local0\Field7 = $28
     local0\Field10 = -0.3
@@ -65,7 +66,7 @@ Function mp_initializerenderer%()
     local0\Field26[$03] = packtwovalues($2C8, $30B)
     local0\Field27[$03] = 0.4
     createplayermodelmesh($03, "GFX\NPCs\class_d.b3d", $01)
-    createplayermodeltexture($05, "GFX\NPCs\sq.png", $01)
+    createplayermodeltexture($06, "GFX\NPCs\sq.png", $01)
     local0 = getplayermodelmeshpreset($03)
     local0\Field7 = $28
     local0\Field10 = -0.3
@@ -122,7 +123,7 @@ Function mp_initializerenderer%()
     local0\Field26[$03] = packtwovalues($2C8, $30B)
     local0\Field27[$03] = 0.4
     createplayermodelmesh($04, "GFX\NPCs\class_d_2.b3d", $01)
-    createplayermodeltexture($06, "GFX\NPCs\muscles.png", $01)
+    createplayermodeltexture($07, "GFX\NPCs\muscles.png", $01)
     local0 = getplayermodelmeshpreset($04)
     local0\Field7 = $28
     local0\Field10 = -0.3
@@ -180,8 +181,8 @@ Function mp_initializerenderer%()
     local0\Field27[$03] = 0.4
     setplayermodelmeshsound($04, $00, "SFX\Character\D9341\BreathGasRelaxed.ogg")
     createplayermodelmesh($02, "GFX\Items\Wearable\Hazmat_wearmodel.b3d", $01)
-    createplayermodeltexture($04, "GFX\Items\hazmat_suit.png", $01)
-    setplayermodelterminatedtexture($04, "GFX\Items\hazmat_suit_bloody.png")
+    createplayermodeltexture($05, "GFX\Items\hazmat_suit.png", $01)
+    setplayermodelterminatedtexture($05, "GFX\Items\hazmat_suit_bloody.png")
     createplayermodeltexture(local1, "GFX\Items\hazmat_suit_heavy.png", $01)
     setplayermodelterminatedtexture(local1, "GFX\Items\hazmat_suit_heavy_bloody.png")
     local0 = getplayermodelmeshpreset($02)

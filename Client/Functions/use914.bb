@@ -716,7 +716,7 @@ Function use914%(arg0.items, arg1%, arg2#, arg3#, arg4#)
         Case $19
             Select arg1
                 Case $FFFFFFFE,$FFFFFFFF
-                    playsound_strict(loadtempsound("SFX\SCP\513\914Refine.ogg"), $00)
+                    playsound_strict(loadtempsound("SFX\SCP\513\914Refine.ogg"), $00, $01)
                     For local4 = Each npcs
                         If (local4\Field4 = $09) Then
                             removenpc(local4)
@@ -1032,7 +1032,7 @@ Function use914%(arg0.items, arg1%, arg2#, arg3#, arg4#)
         Case $23
             Select arg1
                 Case $FFFFFFFE,$FFFFFFFF
-                    playsound_strict(loadtempsound("SFX\SCP\1123\Horror.ogg"), $00)
+                    playsound_strict(loadtempsound("SFX\SCP\1123\Horror.ogg"), $00, $01)
                     local3 = createdecal($03, arg2, 0.03625, arg4, 90.0, rnd(360.0, 0.0), 0.0, rnd(0.3, 0.4), rnd(0.8, 1.0), $01, $01, $00, $00, $00)
                     entityparent(local3\Field0, playerroom\Field2, $01)
                 Case $00

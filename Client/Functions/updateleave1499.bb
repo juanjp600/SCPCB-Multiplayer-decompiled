@@ -48,7 +48,7 @@ Function updateleave1499%()
                 local3 = Null
                 fog\Field0 = (6.0 - (2.0 * (Float isblackout)))
                 clearfogcolor()
-                playsound_strict(loadtempsound("SFX\SCP\1499\Exit.ogg"), $00)
+                playsound_strict(loadtempsound("SFX\SCP\1499\Exit.ogg"), $00, $01)
                 i_1499\Field1 = 0.0
                 i_1499\Field2 = 0.0
                 i_1499\Field3 = 0.0

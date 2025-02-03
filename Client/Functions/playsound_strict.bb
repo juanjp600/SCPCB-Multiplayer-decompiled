@@ -1,7 +1,8 @@
-Function playsound_strict%(arg0%, arg1%)
+Function playsound_strict%(arg0%, arg1%, arg2%)
     Local local0.sound
     Local local1%
     Local local2%
+    Local local3#
     local0 = (Object.sound arg0)
     local1 = millisecs()
     If (local0 <> Null) Then
@@ -19,8 +20,12 @@ Function playsound_strict%(arg0%, arg1%)
                             openconsoleonerror(format(getlocalstring("runerr", "sound.failed.load"), local0\Field1, "%s"))
                         EndIf
                     EndIf
+                    local3 = 0.0
+                    If (arg2 <> 0) Then
+                        local3 = (((opt\Field21 * (Float arg1)) + (opt\Field20 * (Float (arg1 = $00)))) * opt\Field16)
+                    EndIf
+                    soundvolume(local0\Field0, local3)
                     local0\Field2[local2] = playsound(local0\Field0)
-                    channelvolume(local0\Field2[local2], (((opt\Field21 * (Float arg1)) + (opt\Field20 * (Float (arg1 = $00)))) * opt\Field16))
                     local0\Field3 = (local1 + $1388)
                     Return local0\Field2[local2]
                 EndIf
@@ -36,8 +41,12 @@ Function playsound_strict%(arg0%, arg1%)
                         openconsoleonerror(format(getlocalstring("runerr", "sound.failed.load"), local0\Field1, "%s"))
                     EndIf
                 EndIf
+                local3 = 0.0
+                If (arg2 <> 0) Then
+                    local3 = (((opt\Field21 * (Float arg1)) + (opt\Field20 * (Float (arg1 = $00)))) * opt\Field16)
+                EndIf
+                soundvolume(local0\Field0, local3)
                 local0\Field2[local2] = playsound(local0\Field0)
-                channelvolume(local0\Field2[local2], (((opt\Field21 * (Float arg1)) + (opt\Field20 * (Float (arg1 = $00)))) * opt\Field16))
                 local0\Field3 = (local1 + $1388)
                 Return local0\Field2[local2]
             EndIf

@@ -12,7 +12,7 @@ Function updateplayerattaches%(arg0.mp_player)
                 If (channelplaying(local1\Field4) = $00) Then
                     local1\Field4 = $00
                     If (local1\Field2\Field6 > $00) Then
-                        local1\Field4 = playsound_strict(local1\Field2\Field8[rand($00, (local1\Field2\Field6 - $01))], $00)
+                        local1\Field4 = playsound_strict(local1\Field2\Field8[rand($00, (local1\Field2\Field6 - $01))], $00, $01)
                     EndIf
                 EndIf
                 local1\Field5 = 35.0

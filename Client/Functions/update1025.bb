@@ -90,7 +90,7 @@ Function update1025%()
                                 Case $04,$05,$06
                                     me\Field23 = rnd(0.5, 2.0)
                                 Case $07,$08
-                                    playsound_strict(loadtempsound((("SFX\SCP\294\Retch" + (Str rand($00, $01))) + ".ogg")), $00)
+                                    playsound_strict(loadtempsound((("SFX\SCP\294\Retch" + (Str rand($00, $01))) + ".ogg")), $00, $01)
                                     me\Field42 = max(4.0, me\Field42)
                             End Select
                         EndIf

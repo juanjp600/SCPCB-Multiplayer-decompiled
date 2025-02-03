@@ -25,7 +25,7 @@ Function updatedimension106%()
     Local local27%
     For local0 = Each events
         If (local0\Field0 = $48) Then
-            If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
+            If (mp_getsocket() = $00) Then
                 local12 = (sin((local0\Field2 * 1.6)) * 4.0)
                 local13 = (cos((local0\Field2 * 0.8)) * 5.0)
                 positionentity(local0\Field1\Field11[$09], (entityx(local0\Field1\Field11[$08], $01) + 13.21875), 0.0, entityz(local0\Field1\Field11[$08], $01), $00)
@@ -60,7 +60,7 @@ Function updatedimension106%()
                     If (keyhit(key\Field9) <> 0) Then
                         Select selecteddifficulty\Field3
                             Case $00
-                                playsound_strict(loadtempsound("SFX\General\Save0.ogg"), $00)
+                                playsound_strict(loadtempsound("SFX\General\Save0.ogg"), $00, $01)
                                 createhintmsg(getlocalstring("save", "saved"), 6.0, $00)
                             Case $01
                                 createhintmsg(getlocalstring("save", "failed.screen"), 6.0, $00)
@@ -94,7 +94,7 @@ Function updatedimension106%()
                         EndIf
                         If (4550.0 < local0\Field2) Then
                             If (rand($320, $01) = $01) Then
-                                playsound_strict(snd_i\Field47[$08], $00)
+                                playsound_strict(snd_i\Field47[$08], $00, $01)
                                 n_i\Field3\Field26 = 0.0
                                 n_i\Field3\Field10 = 3.0
                                 n_i\Field3\Field11 = 0.0
@@ -129,7 +129,7 @@ Function updatedimension106%()
                                         local10 = $00
                                         If (((chs\Field0 = $00) And (0.0 = me\Field0)) <> 0) Then
                                             msg\Field2 = getlocalstring("death", "106_1")
-                                            playsound_strict(loadtempsound("SFX\Room\PocketDimension\Impact.ogg"), $00)
+                                            playsound_strict(loadtempsound("SFX\Room\PocketDimension\Impact.ogg"), $00, $01)
                                             me\Field49 = 3000.0
                                             kill($00, $01, $00, $00)
                                         EndIf
@@ -150,7 +150,7 @@ Function updatedimension106%()
                                 local21 = rand($0E, $1E)
                                 local20 = $01
                             ElseIf (((chs\Field0 = $00) And (0.0 = me\Field0)) <> 0) Then
-                                playsound_strict(snd_i\Field47[$08], $00)
+                                playsound_strict(snd_i\Field47[$08], $00, $01)
                                 msg\Field2 = getlocalstring("death", "106_2")
                                 me\Field49 = 3000.0
                                 kill($00, $01, $00, $00)
@@ -211,7 +211,7 @@ Function updatedimension106%()
                             EndIf
                         Next
                         If ((entityx(local0\Field1\Field11[$08], $01) - 15.625) > entityx(local0\Field1\Field11[$13], $01)) Then
-                            local0\Field7 = playsound_strict(local0\Field9, $00)
+                            local0\Field7 = playsound_strict(local0\Field9, $00, $01)
                             positionentity(local0\Field1\Field11[$13], (entityx(me\Field60, $01) + 15.625), 28.0, entityz(me\Field60, $01), $00)
                         EndIf
                         moveentity(me\Field60, 0.0, (min((28.0 - entityy(me\Field60, $00)), 0.0) * fps\Field7[$00]), 0.0)
@@ -299,7 +299,7 @@ Function updatedimension106%()
                                         me\Field10 = -10.0
                                         me\Field49 = 1500.0
                                         If (me\Field9 <> 0) Then
-                                            local0\Field6 = playsound_strict(loadtempsound("SFX\Room\PocketDimension\Exit.ogg"), $00)
+                                            local0\Field6 = playsound_strict(loadtempsound("SFX\Room\PocketDimension\Exit.ogg"), $00, $01)
                                             makemeunplayable()
                                         EndIf
                                         If (channelplaying(local0\Field6) = $00) Then
@@ -357,7 +357,7 @@ Function updatedimension106%()
                         updatedoors()
                         scaleentity(local0\Field1\Field2, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                         If (((0.0 = local0\Field4) And ((150.0 < local0\Field1\Field14[$00]\Field8) Lor (150.0 < local0\Field1\Field14[$01]\Field8))) <> 0) Then
-                            playsound_strict(snd_i\Field47[$0D], $00)
+                            playsound_strict(snd_i\Field47[$0D], $00, $01)
                             me\Field49 = 800.0
                             local0\Field4 = 1.0
                         EndIf
@@ -401,7 +401,7 @@ Function updatedimension106%()
                             rotateentity(n_i\Field3\Field0, 0.0, entityyaw(n_i\Field3\Field3, $00), 0.0, $00)
                             If (((rand($2EE, $01) = $01) And (12.0 < local0\Field4)) <> 0) Then
                                 me\Field10 = -10.0
-                                playsound_strict(snd_i\Field47[$08], $00)
+                                playsound_strict(snd_i\Field47[$08], $00, $01)
                                 local0\Field4 = (local0\Field4 - 1.0)
                             EndIf
                             If (12.0 = local0\Field4) Then
@@ -426,7 +426,7 @@ Function updatedimension106%()
                                 local21 = rand($0E, $1E)
                                 local20 = $01
                             ElseIf (((chs\Field0 = $00) And (0.0 = me\Field0)) <> 0) Then
-                                playsound_strict(snd_i\Field47[$08], $00)
+                                playsound_strict(snd_i\Field47[$08], $00, $01)
                                 msg\Field2 = getlocalstring("death", "106_2")
                                 me\Field49 = 3000.0
                                 kill($00, $01, $00, $00)
@@ -454,7 +454,7 @@ Function updatedimension106%()
                     n_i\Field3\Field26 = 1.0
                     Select local21
                         Case $01,$02,$03,$04,$05
-                            playsound_strict(snd_i\Field45[$03], $01)
+                            playsound_strict(snd_i\Field45[$03], $01, $01)
                             local10 = createpivot($00)
                             positionentity(local10, entityx(me\Field60, $00), entityy(me\Field60, $00), entityz(me\Field60, $00), $00)
                             pointentity(local10, local0\Field1\Field2, 0.0)
@@ -468,7 +468,7 @@ Function updatedimension106%()
                             local10 = $00
                             local0\Field3 = 0.0
                         Case $06,$07,$08,$09,$0A,$0B,$0C,$0D
-                            playsound_strict(snd_i\Field45[$03], $01)
+                            playsound_strict(snd_i\Field45[$03], $01, $01)
                             positionentity(me\Field60, entityx(local0\Field1\Field11[$08], $01), 0.6, entityz(local0\Field1\Field11[$08], $01), $00)
                             resetentity(me\Field60)
                             loadeventsound(local0, "SFX\Room\PocketDimension\Rumble.ogg", $00)
@@ -570,13 +570,13 @@ Function updatedimension106%()
                             local0\Field4 = 15.0
                             local0\Field3 = 6.0
                         Case $1C,$1D,$1E
-                            playsound_strict(snd_i\Field45[$03], $01)
+                            playsound_strict(snd_i\Field45[$03], $01, $01)
                             positionentity(me\Field60, entityx(local0\Field1\Field11[$08], $01), (local0\Field1\Field4 + 8.9375), entityz(local0\Field1\Field11[$08], $01), $00)
                             resetentity(me\Field60)
                             local0\Field4 = 0.0
                             local0\Field3 = 5.0
                         Case $1F
-                            playsound_strict(snd_i\Field45[$03], $01)
+                            playsound_strict(snd_i\Field45[$03], $01, $01)
                             local11 = rand($15, $18)
                             positionentity(me\Field60, entityx(local0\Field1\Field11[local11], $01), entityy(local0\Field1\Field11[local11], $01), entityz(local0\Field1\Field11[local11], $01), $00)
                             resetentity(me\Field60)
@@ -600,7 +600,7 @@ Function updatedimension106%()
                                     me\Field10 = -10.0
                                     me\Field49 = 1500.0
                                     If (me\Field9 <> 0) Then
-                                        local0\Field6 = playsound_strict(loadtempsound("SFX\Room\PocketDimension\Exit.ogg"), $00)
+                                        local0\Field6 = playsound_strict(loadtempsound("SFX\Room\PocketDimension\Exit.ogg"), $00, $01)
                                         makemeunplayable()
                                     EndIf
                                     If (channelplaying(local0\Field6) = $00) Then

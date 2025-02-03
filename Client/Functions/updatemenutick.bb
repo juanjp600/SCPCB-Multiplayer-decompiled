@@ -29,10 +29,10 @@ Function updatemenutick%(arg0%, arg1%, arg2%, arg3%)
     If (local5 <> 0) Then
         If (mo\Field0 <> 0) Then
             If (arg3 <> 0) Then
-                playsound_strict(buttonsfx[$01], $00)
+                playsound_strict(buttonsfx[$01], $00, $01)
             Else
                 arg2 = (arg2 = $00)
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
             EndIf
         EndIf
     EndIf

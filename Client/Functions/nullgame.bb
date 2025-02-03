@@ -38,7 +38,7 @@ Function nullgame%(arg0%)
     stopmousemovement()
     killsounds($00)
     If (arg0 <> 0) Then
-        playsound_strict(buttonsfx[$00], $00)
+        playsound_strict(buttonsfx[$00], $00, $01)
     EndIf
     randomseed = ""
     usedconsole = $00

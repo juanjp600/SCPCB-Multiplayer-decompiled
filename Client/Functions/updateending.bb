@@ -32,13 +32,13 @@ Function updateending%()
             opt\Field19 = opt\Field18
             stopstream_strict(musicchn)
             musicchn = $00
-            musicchn = streamsound_strict((("SFX\Music\" + music[$16]) + ".ogg"), (opt\Field19 * opt\Field16), 0.0)
+            musicchn = streamsound_strict((("SFX\Music\" + music[$16]) + ".ogg"), (opt\Field19 * opt\Field16), $00)
             nowplaying = shouldplay
-            playsound_strict(snd_i\Field34, $00)
+            playsound_strict(snd_i\Field34, $00, $01)
         EndIf
         If (-700.0 < me\Field45) Then
             If (((-450.0 < (me\Field45 + fps\Field7[$01])) And (-450.0 >= me\Field45)) <> 0) Then
-                playsound_strict(loadtempsound((("SFX\Ending\Ending" + (Str me\Field43)) + ".ogg")), $01)
+                playsound_strict(loadtempsound((("SFX\Ending\Ending" + (Str me\Field43)) + ".ogg")), $01, $01)
             EndIf
         ElseIf (((-1000.0 > me\Field45) And (-2000.0 < me\Field45)) <> 0) Then
             If (igm\Field0 <= $00) Then
@@ -64,7 +64,7 @@ Function updateending%()
                     Next
                     stopstream_strict(musicchn)
                     musicchn = $00
-                    musicchn = streamsound_strict((("SFX\Music\" + music[nowplaying]) + ".ogg"), 0.0, (1.0 / ∞))
+                    musicchn = streamsound_strict((("SFX\Music\" + music[nowplaying]) + ".ogg"), 0.0, $01)
                     setstreamvolume_strict(musicchn, (opt\Field18 * opt\Field16))
                     me\Field45 = -2000.0
                     shoulddeletegadgets = $01

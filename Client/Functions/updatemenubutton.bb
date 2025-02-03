@@ -42,12 +42,12 @@ Function updatemenubutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%, arg6%, arg7
         If (((mo\Field0 And (arg6 = $00)) Lor ((mo\Field6 And arg6) And (onbuttonid = (((arg0 + arg1) + arg2) + arg3)))) <> 0) Then
             If (arg7 <> 0) Then
                 If (arg11 <> 0) Then
-                    playsound_strict(buttonsfx[$01], $00)
+                    playsound_strict(buttonsfx[$01], $00, $01)
                 EndIf
             Else
                 local2 = $01
                 If (arg11 <> 0) Then
-                    playsound_strict(buttonsfx[$00], $00)
+                    playsound_strict(buttonsfx[$00], $00, $01)
                 EndIf
             EndIf
             If (arg6 <> 0) Then

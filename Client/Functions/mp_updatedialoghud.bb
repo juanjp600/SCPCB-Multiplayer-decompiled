@@ -114,7 +114,7 @@ Function mp_updatedialoghud%(arg0%)
             mp_dialog\Field9 = 20.0
             mp_cleardialog()
             shoulddeletegadgets = $01
-            playsound_strict(buttonsfx[$00], $00)
+            playsound_strict(buttonsfx[$00], $00, $01)
         EndIf
         ismultiplayerhudenabled = $01
         menuopen = $00

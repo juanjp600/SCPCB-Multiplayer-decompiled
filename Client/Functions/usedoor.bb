@@ -199,11 +199,11 @@ Function usedoor%(arg0%)
                                 If (((currentsyncplayer <> Null) And (currentsyncplayer <> ue_players[mp_getmyindex()])) <> 0) Then
                                     Return $00
                                 EndIf
-                                d_i\Field7\Field4 = $00
                                 createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                                 createconsolemsg(getlocalstring("misc", "warning2"), $FF, $00, $00, $00)
                                 createconsolemsg("", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                             EndIf
+                            d_i\Field7\Field4 = $00
                         EndIf
                         selecteditem = Null
                     EndIf

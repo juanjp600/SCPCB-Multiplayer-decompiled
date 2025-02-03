@@ -6,10 +6,10 @@ Function updatelauncherbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%, arg6%, 
         color($1E, $1E, $1E)
         If (((mo\Field0 And (arg6 = $00)) Lor (mo\Field6 And arg6)) <> 0) Then
             If (arg7 <> 0) Then
-                playsound_strict(buttonsfx[$01], $00)
+                playsound_strict(buttonsfx[$01], $00, $01)
             Else
                 local0 = $01
-                playsound_strict(buttonsfx[$00], $00)
+                playsound_strict(buttonsfx[$00], $00, $01)
             EndIf
         EndIf
         rect((arg0 + $03), (arg1 + $03), (arg2 - $06), (arg3 - $06), $01)

@@ -19,7 +19,7 @@ Function pickitem%(arg0.items, arg1%)
                     EndIf
                 Case $54
                     me\Field51 = 1.0
-                    playsound_strict(snd_i\Field33[rand($00, $02)], $00)
+                    playsound_strict(snd_i\Field33[rand($00, $02)], $00, $01)
                     msg\Field2 = format(getlocalstring("death", "killbat"), subjectname, "%s")
                     kill($00, $01, $00, $01)
                 Case $0C
@@ -80,7 +80,7 @@ Function pickitem%(arg0.items, arg1%)
                     EndIf
             End Select
             If (((arg0\Field4\Field3 <> $42) And arg1) <> 0) Then
-                playsound_strict(snd_i\Field44[arg0\Field4\Field3], $00)
+                playsound_strict(snd_i\Field44[arg0\Field4\Field3], $00, $01)
             EndIf
             arg0\Field15 = $01
             arg0\Field16 = $FFFFFFFF

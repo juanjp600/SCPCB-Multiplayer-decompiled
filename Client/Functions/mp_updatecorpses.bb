@@ -22,7 +22,7 @@ Function mp_updatecorpses%()
                 If ((mo\Field0 And ((((((((((Int me\Field0) Lor invopen) Lor (otheropen <> Null)) Lor (selecteditem <> Null)) Lor (closestitem <> Null)) Lor menuopen) Lor (d_i\Field6 <> Null)) Lor (d_i\Field7 <> Null)) Lor (2.0 <= entitydistancesquared(local0\Field1, me\Field60))) = $00)) <> 0) Then
                     selectedcorpse = local0
                     selectedcorpse\Field17 = 0.0
-                    playsound_strict(snd_i\Field44[$02], $00)
+                    playsound_strict(snd_i\Field44[$02], $00, $01)
                 EndIf
                 local1 = $01
             EndIf

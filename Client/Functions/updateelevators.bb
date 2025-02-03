@@ -103,17 +103,17 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                         If (arg7 <> 0) Then
                             If (((-250.0 < arg0) Lor (-500.0 >= arg0)) <> 0) Then
                                 If (channelplaying(arg1\Field18) = $00) Then
-                                    arg1\Field18 = playsound_strict(snd_i\Field43, $00)
+                                    arg1\Field18 = playsound_strict(snd_i\Field43, $00, $01)
                                     updateelevatorpanel(arg1)
                                 EndIf
                                 local27 = (Int ((Float (-500.0 >= arg0)) + 1.0))
                                 me\Field23 = (sin(((Abs arg0) / (3.0 * (Float local27)))) * (0.3 * (Float local27)))
                                 If (((-235.0 <= arg0) And (-235.0 > (arg0 - fps\Field7[$00]))) <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\Room\Blackout.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\Room\Blackout.ogg"), $00, $01)
                                 EndIf
                             ElseIf (-500.0 < arg0) Then
                                 If (channelplaying(arg1\Field18) <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00, $01)
                                     me\Field50 = 6.5
                                     stopchannel(arg1\Field18)
                                     arg1\Field18 = $00
@@ -122,12 +122,12 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                                     me\Field24 = 5.3
                                 EndIf
                                 If (((-490.0 <= arg0) And (-490.0 > (arg0 - fps\Field7[$00]))) <> 0) Then
-                                    playsound_strict(snd_i\Field18, $00)
+                                    playsound_strict(snd_i\Field18, $00, $01)
                                 EndIf
                             EndIf
                         Else
                             If (channelplaying(arg1\Field18) = $00) Then
-                                arg1\Field18 = playsound_strict(snd_i\Field43, $00)
+                                arg1\Field18 = playsound_strict(snd_i\Field43, $00, $01)
                                 updateelevatorpanel(arg1)
                             EndIf
                             me\Field23 = (sin(((Abs arg0) / 3.0)) * 0.3)
@@ -234,17 +234,17 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                         If (arg7 <> 0) Then
                             If (((250.0 > arg0) Lor (500.0 <= arg0)) <> 0) Then
                                 If (channelplaying(arg2\Field18) = $00) Then
-                                    arg2\Field18 = playsound_strict(snd_i\Field43, $00)
+                                    arg2\Field18 = playsound_strict(snd_i\Field43, $00, $01)
                                     updateelevatorpanel(arg2)
                                 EndIf
                                 local27 = (Int ((Float (500.0 <= arg0)) + 1.0))
                                 me\Field23 = (sin(((Abs arg0) / (3.0 * (Float local27)))) * (0.3 * (Float local27)))
                                 If (((235.0 >= arg0) And (235.0 < (fps\Field7[$00] + arg0))) <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\Room\Blackout.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\Room\Blackout.ogg"), $00, $01)
                                 EndIf
                             ElseIf (500.0 > arg0) Then
                                 If (channelplaying(arg2\Field18) <> 0) Then
-                                    playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00, $01)
                                     me\Field50 = 6.5
                                     stopchannel(arg2\Field18)
                                     arg2\Field18 = $00
@@ -253,12 +253,12 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                                     me\Field24 = 5.3
                                 EndIf
                                 If (((490.0 >= arg0) And (490.0 < (fps\Field7[$00] + arg0))) <> 0) Then
-                                    playsound_strict(snd_i\Field18, $00)
+                                    playsound_strict(snd_i\Field18, $00, $01)
                                 EndIf
                             EndIf
                         Else
                             If (channelplaying(arg2\Field18) = $00) Then
-                                arg2\Field18 = playsound_strict(snd_i\Field43, $00)
+                                arg2\Field18 = playsound_strict(snd_i\Field43, $00, $01)
                                 updateelevatorpanel(arg2)
                             EndIf
                             me\Field23 = (sin(((Abs arg0) / 3.0)) * 0.3)
@@ -386,7 +386,7 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
         EndIf
         If (0.0 < arg0) Then
             If (0.0 = local28) Then
-                arg5\Field6 = playsound_strict(arg5\Field8, $01)
+                arg5\Field6 = playsound_strict(arg5\Field8, $01, $01)
             EndIf
             If (((133.0 < arg0) And (arg0 < (fps\Field7[$00] + 140.0))) <> 0) Then
                 me\Field24 = 7.0

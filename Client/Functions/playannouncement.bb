@@ -9,6 +9,6 @@ Function playannouncement%(arg0$, arg1%)
         stopstream_strict(intercomstreamchn)
         intercomstreamchn = $00
     EndIf
-    intercomstreamchn = streamsound_strict(arg0, (opt\Field21 * opt\Field16), 0.0)
+    intercomstreamchn = streamsound_strict(arg0, (opt\Field21 * opt\Field16), $00)
     Return $00
 End Function

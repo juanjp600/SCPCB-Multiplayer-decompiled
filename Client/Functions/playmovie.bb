@@ -25,7 +25,7 @@ Function playmovie%(arg0$)
     EndIf
     local5 = ("GFX\Menu\" + arg0)
     local6 = openmovie_strict((local5 + ".wmv"))
-    local7 = streamsound_strict((local5 + ".ogg"), (opt\Field20 * opt\Field16), 0.0)
+    local7 = streamsound_strict((local5 + ".ogg"), (opt\Field20 * opt\Field16), $00)
     Repeat
         cls()
         drawmovie(local6, $00, (mo\Field10 - (local0 Sar $01)), opt\Field49, local0)

@@ -39,7 +39,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
                 local3 = arg0\Field14
                 animatenpc(arg0, max(local3, 2.0), 647.0, 1.0, $00)
                 If (((400.0 >= local3) And (400.0 < arg0\Field14)) <> 0) Then
-                    arg0\Field18 = playsound_strict(loadtempsound("SFX\SCP\1048A\Shriek.ogg"), $00)
+                    arg0\Field18 = playsound_strict(loadtempsound("SFX\SCP\1048A\Shriek.ogg"), $00, $01)
                 EndIf
                 local4 = max((1.0 - ((Abs (local3 - 600.0)) / 100.0)), 0.0)
                 me\Field49 = ((local4 * 1000.0) / max((local0 / 8.0), 1.0))
@@ -51,7 +51,7 @@ Function mp_updatenpctype1048_a%(arg0.npcs)
                 arg0\Field15 = curveangle(entityyaw(arg0\Field3, $01), arg0\Field15, 20.0)
                 If (646.0 < local3) Then
                     If ((((arg0\Field85 And (16.0 > local0)) And (0.0 = i_1048a\Field0)) And (me\Field54 = $00)) <> 0) Then
-                        i_1048a\Field2 = playsound_strict(loadtempsound("SFX\SCP\1048A\Growth.ogg"), $01)
+                        i_1048a\Field2 = playsound_strict(loadtempsound("SFX\SCP\1048A\Growth.ogg"), $01, $01)
                         me\Field49 = 1000.0
                         me\Field23 = 2.0
                         i_1048a\Field0 = 0.01

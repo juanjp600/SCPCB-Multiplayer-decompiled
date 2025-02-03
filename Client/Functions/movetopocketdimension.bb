@@ -12,8 +12,8 @@ Function movetopocketdimension%()
             me\Field49 = 1750.0
             hideentity(me\Field61)
             showentity(me\Field60)
-            playsound_strict(snd_i\Field28, $00)
-            playsound_strict(snd_i\Field45[$05], $00)
+            playsound_strict(snd_i\Field28, $00, $01)
+            playsound_strict(snd_i\Field45[$05], $00, $01)
             n_i\Field3\Field26 = 0.0
             teleportentity(me\Field60, entityx(local0\Field2, $00), (entityy(local0\Field2, $00) + 0.5), entityz(local0\Field2, $00), 0.3, $00, 2.0, $00)
             teleporttoroom(local0)

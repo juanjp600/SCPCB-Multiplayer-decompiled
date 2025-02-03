@@ -86,7 +86,7 @@ Function updateendings%()
                                 local0\Field1\Field15[$03]\Field10 = 3.0
                                 local0\Field1\Field15[$00]\Field10 = 3.0
                                 removenpc(local0\Field1\Field15[$01])
-                                local0\Field6 = streamsound_strict("SFX\Ending\GateB\682Battle.ogg", (opt\Field21 * opt\Field16), 0.0)
+                                local0\Field6 = streamsound_strict("SFX\Ending\GateB\682Battle.ogg", (opt\Field21 * opt\Field16), $00)
                                 local0\Field11 = $01
                                 local0\Field2 = 2.0
                             EndIf
@@ -131,7 +131,7 @@ Function updateendings%()
                             ElseIf (((2450.0 < local0\Field2) And (2555.0 > local0\Field2)) <> 0) Then
                                 me\Field23 = 1.5
                                 If (2450.0 >= (local0\Field2 - fps\Field7[$00])) Then
-                                    local0\Field6 = streamsound_strict("SFX\Ending\GateB\DetonatingAlphaWarheads.ogg", (opt\Field21 * opt\Field16), 0.0)
+                                    local0\Field6 = streamsound_strict("SFX\Ending\GateB\DetonatingAlphaWarheads.ogg", (opt\Field21 * opt\Field16), $00)
                                     local0\Field11 = $01
                                 EndIf
                             ElseIf (((2765.0 < local0\Field2) And (2786.0 > local0\Field2)) <> 0) Then
@@ -149,7 +149,7 @@ Function updateendings%()
                         If (3150.0 <= local0\Field2) Then
                             If (5250.0 > local0\Field2) Then
                                 If (local0\Field7 = $00) Then
-                                    local0\Field7 = streamsound_strict("SFX\Ending\GateB\Siren.ogg", (opt\Field20 * opt\Field16), (1.0 / ∞))
+                                    local0\Field7 = streamsound_strict("SFX\Ending\GateB\Siren.ogg", (opt\Field20 * opt\Field16), $01)
                                     local0\Field12 = $01
                                 EndIf
                             ElseIf (me\Field43 = $FFFFFFFF) Then
@@ -176,7 +176,7 @@ Function updateendings%()
                                     me\Field43 = $03
                                 Else
                                     selecteditem = Null
-                                    local0\Field7 = streamsound_strict("SFX\Ending\GateB\AlphaWarheadsFail.ogg", (opt\Field21 * opt\Field16), 0.0)
+                                    local0\Field7 = streamsound_strict("SFX\Ending\GateB\AlphaWarheadsFail.ogg", (opt\Field21 * opt\Field16), $00)
                                     local0\Field12 = $01
                                     local2 = createnpc($15, entityx(local0\Field1\Field11[$08], $01), (entityy(local0\Field1\Field11[$08], $01) + 0.29), entityz(local0\Field1\Field11[$08], $01))
                                     local0\Field1\Field15[$04] = local2
@@ -211,11 +211,11 @@ Function updateendings%()
                                     Next
                                     shouldplay = $00
                                     makemeunplayable()
-                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateB\THEREHEIS.ogg"), $01)
+                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateB\THEREHEIS.ogg"), $01, $01)
                                 EndIf
                                 If (((5.0 = local0\Field1\Field15[$04]\Field10) And (channelplaying(local0\Field6) = $00)) <> 0) Then
                                     clearcheats()
-                                    playsound_strict(loadtempsound("SFX\Ending\GateB\Gunshot.ogg"), $00)
+                                    playsound_strict(loadtempsound("SFX\Ending\GateB\Gunshot.ogg"), $00, $01)
                                     me\Field51 = 1.0
                                     me\Field0 = 1.0
                                     msg\Field2 = ""
@@ -245,7 +245,7 @@ Function updateendings%()
                                     local15 = wrapangle(entityroll(local0\Field1\Field11[$07], $00), 360.0)
                                     turnentity(local0\Field1\Field11[$07], 0.0, 0.0, ((((Abs sin(local15)) * 2.0) + 5.0) * fps\Field7[$00]), $00)
                                     If (((270.0 > local15) And (270.0 <= wrapangle(entityroll(local0\Field1\Field11[$07], $00), 360.0))) <> 0) Then
-                                        playsound_strict(loadtempsound("SFX\Character\Apache\Crash0.ogg"), $00)
+                                        playsound_strict(loadtempsound("SFX\Character\Apache\Crash0.ogg"), $00, $01)
                                         local0\Field1\Field15[$03]\Field10 = 4.0
                                         local0\Field1\Field15[$03]\Field11 = 1.0
                                         local0\Field1\Field15[$03]\Field36 = entityx(local0\Field1\Field11[$04], $01)
@@ -339,7 +339,7 @@ Function updateendings%()
                         resetentity(me\Field60)
                         rotateentity(me\Field60, 0.0, (entityyaw(me\Field60, $00) + ((Float local0\Field1\Field6) + 180.0)), 0.0, $00)
                         If (n_i\Field3\Field65 = $00) Then
-                            playsound_strict(loadtempsound("SFX\Ending\GateA\106Escape.ogg"), $00)
+                            playsound_strict(loadtempsound("SFX\Ending\GateA\106Escape.ogg"), $00, $01)
                         EndIf
                         isblackout = $00
                         hidedistance = 68.0
@@ -374,7 +374,7 @@ Function updateendings%()
                                     n_i\Field3\Field38 = entityz(local0\Field1\Field11[$03], $01)
                                     n_i\Field3\Field10 = 2.0
                                     rotateentity(n_i\Field3\Field3, 0.0, ((Float local0\Field1\Field6) + 90.0), 0.0, $00)
-                                    playsound_strict(snd_i\Field47[$05], $00)
+                                    playsound_strict(snd_i\Field47[$05], $00, $01)
                                 ElseIf (2.0 < n_i\Field3\Field10) Then
                                     If (3.0 = n_i\Field3\Field10) Then
                                         If (entityhidden(n_i\Field3\Field1) = $00) Then
@@ -413,7 +413,7 @@ Function updateendings%()
                                     n_i\Field3\Field24 = curvevalue(0.0, n_i\Field3\Field24, max((5.0 * sqr(local8)), 2.0))
                                     If (225.0 > local8) Then
                                         If (local0\Field7 = $00) Then
-                                            local0\Field7 = playsound_strict(loadtempsound("SFX\Ending\GateA\Franklin.ogg"), $01)
+                                            local0\Field7 = playsound_strict(loadtempsound("SFX\Ending\GateA\Franklin.ogg"), $01, $01)
                                         EndIf
                                         If (0.16 > local8) Then
                                             n_i\Field3\Field10 = 4.0
@@ -430,7 +430,7 @@ Function updateendings%()
                                             EndIf
                                         ElseIf (72.25 > local8) Then
                                             If (0.0 = local0\Field3) Then
-                                                local0\Field7 = playsound_strict(loadtempsound("SFX\Ending\GateA\HIDTurret.ogg"), $00)
+                                                local0\Field7 = playsound_strict(loadtempsound("SFX\Ending\GateA\HIDTurret.ogg"), $00, $01)
                                                 local0\Field3 = 1.0
                                             ElseIf (0.0 < local0\Field3) Then
                                                 local0\Field3 = (local0\Field3 + fps\Field7[$00])
@@ -452,7 +452,7 @@ Function updateendings%()
                                                         lightvolume = (rnd(1.0, 2.0) * templightvolume)
                                                         If (((Int me\Field0) Lor chs\Field0) = $00) Then
                                                             If (1.44 > entitydistancesquared(me\Field60, n_i\Field3\Field3)) Then
-                                                                playsound_strict(loadtempsound("SFX\SCP\294\Burn.ogg"), $00)
+                                                                playsound_strict(loadtempsound("SFX\SCP\294\Burn.ogg"), $00, $01)
                                                                 kill($01, $01, $00, $01)
                                                             EndIf
                                                         EndIf
@@ -557,7 +557,7 @@ Function updateendings%()
                                     EndIf
                                     If (230.0 <= local0\Field4) Then
                                         If (230.0 > (local0\Field4 - fps\Field7[$00])) Then
-                                            local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateA\CI.ogg"), $01)
+                                            local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateA\CI.ogg"), $01, $01)
                                             me\Field43 = $00
                                         EndIf
                                         If (480.0 <= local0\Field4) Then
@@ -566,7 +566,7 @@ Function updateendings%()
                                         EndIf
                                         If (channelplaying(local0\Field6) = $00) Then
                                             clearcheats()
-                                            playsound_strict(loadtempsound("SFX\Ending\GateA\Bell1.ogg"), $00)
+                                            playsound_strict(loadtempsound("SFX\Ending\GateA\Bell1.ogg"), $00, $01)
                                             For local2 = Each npcs
                                                 removenpc(local2)
                                             Next
@@ -619,14 +619,14 @@ Function updateendings%()
                                 ElseIf (2.0 = local0\Field3) Then
                                     makemeunplayable()
                                     me\Field43 = $01
-                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateA\STOPRIGHTTHERE.ogg"), $01)
+                                    local0\Field6 = playsound_strict(loadtempsound("SFX\Ending\GateA\STOPRIGHTTHERE.ogg"), $01, $01)
                                     local0\Field3 = 3.0
                                 ElseIf (3.0 = local0\Field3) Then
                                     shouldplay = $00
                                     me\Field38 = 0.0
                                     If (channelplaying(local0\Field6) = $00) Then
                                         clearcheats()
-                                        playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00)
+                                        playsound_strict(loadtempsound("SFX\Room\Intro\Bang2.ogg"), $00, $01)
                                         For local2 = Each npcs
                                             removenpc(local2)
                                         Next

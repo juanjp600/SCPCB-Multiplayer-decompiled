@@ -114,7 +114,7 @@ Function updatemouselook%()
                     breathgasrelaxedchn = $00
                 EndIf
             ElseIf (channelplaying(breathgasrelaxedchn) = $00) Then
-                breathgasrelaxedchn = playsound_strict(snd_i\Field55, $01)
+                breathgasrelaxedchn = playsound_strict(snd_i\Field55, $01, $01)
                 channelvolume(breathgasrelaxedchn, (opt\Field21 * opt\Field16))
             EndIf
         EndIf

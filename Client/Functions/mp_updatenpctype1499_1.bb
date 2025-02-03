@@ -288,7 +288,7 @@ Function mp_updatenpctype1499_1%(arg0.npcs)
                     If (((0.64 < local2) Lor (60.0 < (Abs deltayaw(arg0\Field3, me\Field60)))) <> 0) Then
                         playsoundex(snd_i\Field48, camera, arg0\Field3, 2.5, 1.0, $00, $00)
                     ElseIf (arg0\Field85 <> 0) Then
-                        playsound_strict(snd_i\Field51[rand($0B, $0C)], $00)
+                        playsound_strict(snd_i\Field51[rand($0B, $0C)], $00, $01)
                         injureplayer((rnd(0.65, 1.1) * difficultydmgmult), 0.0, 500.0, (0.35 * difficultydmgmult), (0.15 * difficultydmgmult))
                         me\Field23 = ((Float (0.0 = i_1025\Field1[$03])) * 2.5)
                         If (10.0 < mp_getnpctargetinjuries(arg0)) Then

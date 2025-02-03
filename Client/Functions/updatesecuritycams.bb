@@ -114,11 +114,11 @@ Function updatesecuritycams%()
                                     If (rand($06, $01) < $05) Then
                                         entitytexture(local0\Field7, mon_i\Field1[rand($0C, $10)], $00, $00)
                                         If (local0\Field12 = $01) Then
-                                            playsound_strict(snd_i\Field47[$01], $00)
+                                            playsound_strict(snd_i\Field47[$01], $00, $01)
                                         EndIf
                                         local0\Field12 = $02
                                         If (channelplaying(local0\Field13) = $00) Then
-                                            local0\Field13 = playsound_strict(snd_i\Field47[$04], $00)
+                                            local0\Field13 = playsound_strict(snd_i\Field47[$04], $00, $01)
                                         EndIf
                                         If (((local0\Field18 = $03) And (rand($C8, $01) = $01)) <> 0) Then
                                             local0\Field18 = $02
@@ -136,7 +136,7 @@ Function updatesecuritycams%()
                                     If (rand($32, $01) = $01) Then
                                         entitytexture(local0\Field7, mon_i\Field1[rand($0C, $10)], $00, $00)
                                         If (local0\Field12 = $00) Then
-                                            playsound_strict(snd_i\Field47[$00], $00)
+                                            playsound_strict(snd_i\Field47[$00], $00, $01)
                                         EndIf
                                         local0\Field12 = (Int max((Float local0\Field12), 1.0))
                                         If (((local0\Field18 = $03) And (rand($64, $01) = $01)) <> 0) Then
@@ -161,7 +161,7 @@ Function updatesecuritycams%()
                                 entitytexture(local0\Field7, mon_i\Field1[$00], $00, $00)
                             Else
                                 If (channelplaying(local0\Field13) = $00) Then
-                                    local0\Field13 = playsound_strict(loadtempsound((("SFX\SCP\079\Broadcast" + (Str rand($00, $02))) + ".ogg")), $00)
+                                    local0\Field13 = playsound_strict(loadtempsound((("SFX\SCP\079\Broadcast" + (Str rand($00, $02))) + ".ogg")), $00, $01)
                                     If (local0\Field18 = $02) Then
                                         local0\Field18 = $03
                                         local0\Field12 = $00

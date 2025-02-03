@@ -51,7 +51,7 @@ Function kill%(arg0%, arg1%, arg2%, arg3%)
         me\Field1 = rand($00, $01)
         me\Field7 = 0.0
         If (arg3 <> 0) Then
-            playsound_strict(snd_i\Field51[$00], $00)
+            playsound_strict(snd_i\Field51[$00], $00, $01)
         EndIf
         If (selecteddifficulty\Field3 >= $02) Then
             deletegame(currsave)

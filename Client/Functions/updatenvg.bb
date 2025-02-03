@@ -51,7 +51,7 @@ Function updatenvg%()
             If (70.0 <= batmsgtimer) Then
                 If (channelplaying(lowbatterychn[$01]) = $00) Then
                     me\Field42 = max(3.0, me\Field42)
-                    lowbatterychn[$01] = playsound_strict(snd_i\Field41[$01], $00)
+                    lowbatterychn[$01] = playsound_strict(snd_i\Field41[$01], $00, $01)
                 EndIf
             EndIf
         EndIf

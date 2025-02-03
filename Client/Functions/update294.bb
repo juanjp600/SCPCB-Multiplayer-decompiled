@@ -30,12 +30,12 @@ Function update294%()
                     local7 = jsongetarrayvalue(i_294\Field3, s2imapget(i_294\Field2, i_294\Field1))
                     If (jsonisnull(jsongetvalue(local7, "dispense_sound")) = $00) Then
                         local8 = jsongetstring(jsongetvalue(local7, "dispense_sound"))
-                        playerroom\Field9 = playsound_strict(loadtempsound(local8), $00)
+                        playerroom\Field9 = playsound_strict(loadtempsound(local8), $00, $01)
                         mp_synchronize3dsound(Null, local8, playerroom\Field11[$00], 10.0, 1.0)
                     EndIf
                     If (me\Field65 > $00) Then
                         local9 = ((me\Field65 = $02) + $61)
-                        playsound_strict(loadtempsound("SFX\SCP\294\PullMasterCard.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\SCP\294\PullMasterCard.ogg"), $00, $01)
                         mp_synchronize3dsound(Null, "SFX\SCP\294\PullMasterCard.ogg", playerroom\Field11[$00], 2.0, 1.0)
                         If (((mp_getsocket() = $00) Lor mp_ishoster()) <> 0) Then
                             If (getitemamount() < maxitemamount) Then
@@ -78,7 +78,7 @@ Function update294%()
                     EndIf
                 Else
                     i_294\Field1 = getlocalstring("misc", "ofr")
-                    playerroom\Field9 = playsound_strict(loadtempsound("SFX\SCP\294\OutOfRange.ogg"), $00)
+                    playerroom\Field9 = playsound_strict(loadtempsound("SFX\SCP\294\OutOfRange.ogg"), $00, $01)
                     mp_synchronize3dsound(Null, "SFX\SCP\294\OutOfRange.ogg", playerroom\Field11[$00], 10.0, 1.0)
                 EndIf
             EndIf

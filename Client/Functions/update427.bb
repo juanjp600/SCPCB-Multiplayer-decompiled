@@ -52,14 +52,14 @@ Function update427%()
                 i_427\Field2[$00] = loadsound_strict("SFX\SCP\427\Effect.ogg")
             EndIf
             If (channelplaying(i_427\Field3[$00]) = $00) Then
-                i_427\Field3[$00] = playsound_strict(i_427\Field2[$00], $00)
+                i_427\Field3[$00] = playsound_strict(i_427\Field2[$00], $00, $01)
             EndIf
             If (12600.0 <= i_427\Field1) Then
                 If (i_427\Field2[$01] = $00) Then
                     i_427\Field2[$01] = loadsound_strict("SFX\SCP\427\Transform.ogg")
                 EndIf
                 If (channelplaying(i_427\Field3[$01]) = $00) Then
-                    i_427\Field3[$01] = playsound_strict(i_427\Field2[$01], $00)
+                    i_427\Field3[$01] = playsound_strict(i_427\Field2[$01], $00, $01)
                 EndIf
             EndIf
             If (((4200.0 > local5) And (4200.0 <= i_427\Field1)) <> 0) Then
@@ -91,7 +91,7 @@ Function update427%()
         EndIf
         For local2 = $00 To $01 Step $01
             If (channelplaying(i_427\Field3[local2]) = $00) Then
-                i_427\Field3[local2] = playsound_strict(i_427\Field2[local2], $00)
+                i_427\Field3[local2] = playsound_strict(i_427\Field2[local2], $00, $01)
             EndIf
         Next
         If (2.0 > rnd(200.0, 0.0)) Then
@@ -103,7 +103,7 @@ Function update427%()
             local0\Field4 = rnd(0.001, 0.0015)
             local0\Field5 = (local0\Field3 + 0.009)
             entityparent(local0\Field0, playerroom\Field2, $01)
-            local4 = playsound_strict(snd_i\Field30[rand($00, $03)], $00)
+            local4 = playsound_strict(snd_i\Field30[rand($00, $03)], $00, $01)
             channelvolume(local4, ((rnd(0.0, 0.8) * opt\Field20) * opt\Field16))
             channelpitch(local4, (Float rand($4E20, $7530)))
             freeentity(local3)

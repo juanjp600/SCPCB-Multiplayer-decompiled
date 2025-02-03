@@ -16,6 +16,7 @@ Function mp_loadsound%(arg0$, arg1%)
     local0 = (New mp_sound)
     local0\Field0 = arg0
     local0\Field1 = local1
+    soundvolume(local1, 0.0)
     Return (Handle local0)
     Return $00
 End Function

@@ -65,7 +65,7 @@ Function mp_updatenpctype173%(arg0.npcs)
                     EndIf
                     If ((((12.25 > local0) And ((millisecs() - arg0\Field29) > $EA60)) And local1) <> 0) Then
                         If (arg0\Field85 <> 0) Then
-                            playsound_strict(snd_i\Field47[rand($03, $04)], $00)
+                            playsound_strict(snd_i\Field47[rand($03, $04)], $00, $01)
                         EndIf
                         arg0\Field29 = millisecs()
                     EndIf
@@ -80,15 +80,15 @@ Function mp_updatenpctype173%(arg0.npcs)
                                 me\Field30 = 0.5
                                 Select rand($05, $01)
                                     Case $01
-                                        playsound_strict(snd_i\Field47[$01], $00)
+                                        playsound_strict(snd_i\Field47[$01], $00, $01)
                                     Case $02
-                                        playsound_strict(snd_i\Field47[$02], $00)
+                                        playsound_strict(snd_i\Field47[$02], $00, $01)
                                     Case $03
-                                        playsound_strict(snd_i\Field47[$09], $00)
+                                        playsound_strict(snd_i\Field47[$09], $00, $01)
                                     Case $04
-                                        playsound_strict(snd_i\Field47[$0A], $00)
+                                        playsound_strict(snd_i\Field47[$0A], $00, $01)
                                     Case $05
-                                        playsound_strict(snd_i\Field47[$0C], $00)
+                                        playsound_strict(snd_i\Field47[$0C], $00, $01)
                                 End Select
                             EndIf
                         EndIf
@@ -114,7 +114,7 @@ Function mp_updatenpctype173%(arg0.npcs)
                                                     pointentity(local8, local7\Field3[local9], 0.0)
                                                     moveentity(local8, 0.0, 0.0, (arg0\Field23 * 0.6))
                                                     If (entitypick(local8, 0.5) = local7\Field3[local9]) Then
-                                                        playsound_strict(loadtempsound("SFX\Door\DoorOpen173.ogg"), $00)
+                                                        playsound_strict(loadtempsound("SFX\Door\DoorOpen173.ogg"), $00, $01)
                                                         openclosedoor(local7, $01, $00)
                                                         freeentity(local8)
                                                         local8 = $00

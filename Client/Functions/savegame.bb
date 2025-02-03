@@ -438,9 +438,9 @@ Function savegame%(arg0$)
     writeint(local8, escapetimer)
     closefile(local8)
     If (selecteddifficulty\Field3 = $01) Then
-        playsound_strict(loadtempsound("SFX\General\Save1.ogg"), $00)
+        playsound_strict(loadtempsound("SFX\General\Save1.ogg"), $00, $01)
     Else
-        playsound_strict(loadtempsound("SFX\General\Save0.ogg"), $00)
+        playsound_strict(loadtempsound("SFX\General\Save0.ogg"), $00, $01)
         as\Field1 = 8400.0
     EndIf
     createhintmsg(getlocalstring("save", "saved"), 6.0, $00)

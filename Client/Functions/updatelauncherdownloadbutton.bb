@@ -38,7 +38,7 @@ Function updatelauncherdownloadbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%)
     textex(((arg2 Sar $01) + arg0), (((arg3 Sar $01) + arg1) - $01), arg4, $01, $01)
     color($00, $00, $00)
     If ((local0 And mo\Field0) <> 0) Then
-        playsound_strict(buttonsfx[$00], $00)
+        playsound_strict(buttonsfx[$00], $00, $01)
         Return $01
     EndIf
     Return $00

@@ -36,7 +36,7 @@ Function mp_server_interactobject%(arg0.mp_player, arg1%, arg2%)
                                             local0\Field6 = $00
                                         EndIf
                                         snd_i\Field22 = loadsound_strict("SFX\Room\106Chamber\FemurBreaker.ogg")
-                                        local0\Field6 = playsound_strict(snd_i\Field22, $01)
+                                        local0\Field6 = playsound_strict(snd_i\Field22, $01, $01)
                                         local0\Field2 = 1.0
                                         For local2 = Each mp_player
                                             If (local2\Field5 > $01) Then

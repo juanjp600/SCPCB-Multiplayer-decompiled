@@ -37,7 +37,7 @@ Function mp_receivepacketfromclient%()
                 Return $00
             EndIf
             mp_writebyte($00)
-            mp_writebyte($0D)
+            mp_writebyte($0E)
             mp_writebyte(ue_server\Field9)
             mp_writebyte(ue_server\Field8)
             mp_writeline(ue_server\Field4)

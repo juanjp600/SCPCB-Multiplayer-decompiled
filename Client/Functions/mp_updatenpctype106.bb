@@ -90,7 +90,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                         local0\Field4 = 0.001
                         entityparent(local0\Field0, playerroom\Field2, $01)
                         setnpcframe(arg0, 110.0, $01)
-                        playsound_strict(snd_i\Field24[$00], $00)
+                        playsound_strict(snd_i\Field24[$00], $00, $01)
                         arg0\Field11 = 0.0
                         arg0\Field12 = 0.0
                         arg0\Field36 = 0.0
@@ -128,7 +128,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                                 If (arg0\Field85 <> 0) Then
                                     me\Field52 = 40.0
                                 EndIf
-                                playsound_strict(snd_i\Field47[$06], $00)
+                                playsound_strict(snd_i\Field47[$06], $00, $01)
                                 arg0\Field29 = millisecs()
                             EndIf
                         EndIf
@@ -247,8 +247,8 @@ Function mp_updatenpctype106%(arg0.npcs)
                         rotateentity(arg0\Field3, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field3, $00), (10.0 - (Float selecteddifficulty\Field4))), 0.0, $00)
                         If (110.0 = ceil(arg0\Field14)) Then
                             If (((arg0\Field85 And (0.0 = me\Field0)) And (chs\Field0 = $00)) <> 0) Then
-                                playsound_strict(snd_i\Field51[$01], $00)
-                                playsound_strict(snd_i\Field47[$05], $00)
+                                playsound_strict(snd_i\Field51[$01], $00, $01)
+                                playsound_strict(snd_i\Field47[$05], $00, $01)
                             EndIf
                             If ((arg0\Field85 And chs\Field0) = $00) Then
                                 If (playerroom\Field7\Field6 = $69) Then
@@ -259,7 +259,7 @@ Function mp_updatenpctype106%(arg0.npcs)
                                     msg\Field2 = format(getlocalstring("death", "106.gatea"), subjectname, "%s")
                                     kill($01, $01, $00, $01)
                                 ElseIf ((arg0\Field85 And (0.0 = me\Field0)) <> 0) Then
-                                    playsound_strict(snd_i\Field45[$03], $01)
+                                    playsound_strict(snd_i\Field45[$03], $01, $01)
                                     showentity(me\Field61)
                                     positionentity(me\Field61, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
                                     resetentity(me\Field61)

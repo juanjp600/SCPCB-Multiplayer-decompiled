@@ -13,9 +13,9 @@ Function mp_client_usedoor%(arg0.doors, arg1.items, arg2%, arg3%)
         mp_writeshort($00)
     EndIf
     mp_sendtoserver()
-    arg0\Field40 = 70.0
+    arg0\Field40 = 35.0
     If (arg0\Field21 <> Null) Then
-        arg0\Field21\Field40 = 70.0
+        arg0\Field21\Field40 = 35.0
     EndIf
     Return $00
 End Function

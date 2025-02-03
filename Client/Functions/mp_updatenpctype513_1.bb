@@ -73,7 +73,7 @@ Function mp_updatenpctype513_1%(arg0.npcs)
                     me\Field23 = 0.7
                     me\Field30 = 0.7
                     me\Field28 = 150.0
-                    playsound_strict(loadtempsound((("SFX\SCP\513_1\Bell" + (Str rand($00, $02))) + ".ogg")), $00)
+                    playsound_strict(loadtempsound((("SFX\SCP\513_1\Bell" + (Str rand($00, $02))) + ".ogg")), $00, $01)
                 EndIf
             EndIf
         ElseIf (arg0\Field39[$00] = Null) Then
@@ -110,7 +110,7 @@ Function mp_updatenpctype513_1%(arg0.npcs)
                                 me\Field23 = 0.7
                                 me\Field30 = 0.7
                                 me\Field28 = 150.0
-                                playsound_strict(loadtempsound((("SFX\SCP\513_1\Bell" + (Str rand($00, $02))) + ".ogg")), $00)
+                                playsound_strict(loadtempsound((("SFX\SCP\513_1\Bell" + (Str rand($00, $02))) + ".ogg")), $00, $01)
                             EndIf
                         EndIf
                         arg0\Field39[$00] = arg0\Field39[$00]\Field4[local4]

@@ -115,7 +115,7 @@ Function mp_updatenpctype939%(arg0.npcs)
                     mp_loadnpcsound(arg0, (((("SFX\SCP\939\" + (Str (arg0\Field5 Mod $03))) + "Attack") + (Str rand($00, $02))) + ".ogg"), $00)
                     arg0\Field18 = playsoundex(arg0\Field17, camera, arg0\Field3, 10.0, 1.0, $01, $00)
                     If (arg0\Field85 <> 0) Then
-                        playsound_strict(loadtempsound("SFX\SCP\939\Horror.ogg"), $00)
+                        playsound_strict(loadtempsound("SFX\SCP\939\Horror.ogg"), $00, $01)
                     EndIf
                 EndIf
                 giveachievement("939", $01)
