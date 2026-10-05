@@ -7,7 +7,7 @@ Function findspectateplayer%(arg0%)
             local1 = (spectate\Field1 - $01)
             While (local1 >= $01)
                 If (player[local1] <> Null) Then
-                    If (player[local1]\Field51 <> $00) Then
+                    If (player[local1]\Field49 <> $00) Then
                         spectate\Field1 = local1
                         Exit
                     EndIf
@@ -15,9 +15,9 @@ Function findspectateplayer%(arg0%)
                 local1 = (local1 + $FFFFFFFF)
             Wend
             If (local0 = spectate\Field1) Then
-                For local1 = (spectate\Field1 + $01) To networkserver\Field14 Step $01
+                For local1 = (spectate\Field1 + $01) To networkserver\Field52\Field14 Step $01
                     If (player[local1] <> Null) Then
-                        If (player[local1]\Field51 <> $00) Then
+                        If (player[local1]\Field49 <> $00) Then
                             spectate\Field1 = local1
                         EndIf
                     EndIf
@@ -26,9 +26,9 @@ Function findspectateplayer%(arg0%)
         EndIf
     Else
         local0 = spectate\Field1
-        For local1 = (spectate\Field1 + $01) To networkserver\Field14 Step $01
+        For local1 = (spectate\Field1 + $01) To networkserver\Field52\Field14 Step $01
             If (player[local1] <> Null) Then
-                If (player[local1]\Field51 <> $00) Then
+                If (player[local1]\Field49 <> $00) Then
                     spectate\Field1 = local1
                     Exit
                 EndIf
@@ -38,7 +38,7 @@ Function findspectateplayer%(arg0%)
             local1 = (spectate\Field1 - $01)
             While (local1 >= $01)
                 If (player[local1] <> Null) Then
-                    If (player[local1]\Field51 <> $00) Then
+                    If (player[local1]\Field49 <> $00) Then
                         spectate\Field1 = local1
                     EndIf
                 EndIf

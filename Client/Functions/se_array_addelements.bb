@@ -2,6 +2,10 @@ Function se_array_addelements%(arg0.se_array, arg1%, arg2%)
     Local local0%
     Local local1.se_value
     Local local2%
+    If (arg0 = Null) Then
+        Return $00
+    EndIf
+    arg1 = (Int min(max((Float arg1), 0.0), (Float ($10000 - arg0\Field1))))
     If (arg2 = $00) Then
         arg2 = $01
     EndIf

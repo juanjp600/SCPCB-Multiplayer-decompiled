@@ -1,11 +1,11 @@
 Function deleteguns%()
     Local local0.guns
     For local0 = Each guns
-        If (local0\Field21 <> $00) Then
-            freesound_strict(local0\Field21)
+        If (local0\Field22 <> $00) Then
+            freesound_strict(local0\Field22)
         EndIf
-        If (local0\Field19 <> $00) Then
-            freesound_strict(local0\Field19)
+        If (local0\Field20 <> $00) Then
+            freesound_strict(local0\Field20)
         EndIf
         If (local0\Field9 <> $00) Then
             freesound_strict(local0\Field9)

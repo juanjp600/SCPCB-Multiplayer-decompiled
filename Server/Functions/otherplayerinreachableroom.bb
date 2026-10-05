@@ -2,11 +2,11 @@ Function otherplayerinreachableroom%(arg0%, arg1%)
     Local local0$
     Local local1%
     Local local2%
-    local0 = player[arg0]\Field67
+    local0 = player[arg0]\Field69
     If (((((local0 = "pocketdimension") Or (local0 = "gatea")) Or (local0 = "dimension1499")) Or (local0 = "173")) <> 0) Then
         Return $00
     EndIf
-    If (((local0 = "exit1") And ((1040.0 * roomscale) < entityy(player[arg0]\Field62, $00))) <> 0) Then
+    If (((local0 = "exit1") And (4.0625 < entityy(player[arg0]\Field64, $00))) <> 0) Then
         Return $00
     EndIf
     local2 = $00
@@ -20,7 +20,7 @@ Function otherplayerinreachableroom%(arg0%, arg1%)
     EndIf
     If (arg1 = $00) Then
         If (selecteddifficulty\Field3 = $00) Then
-            If (((local0 = "room049") And ((-2848.0 * roomscale) >= entityy(player[arg0]\Field62, $00))) <> 0) Then
+            If (((local0 = "room049") And (-11.125 >= entityy(player[arg0]\Field64, $00))) <> 0) Then
                 Return $00
             EndIf
         EndIf

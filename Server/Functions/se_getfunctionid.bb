@@ -1,6 +1,5 @@
 Function se_getfunctionid%(arg0$)
     Local local1%
-    Local local2%
     Select arg0
         Case "breachrole_setrolecategory"
             Return local1
@@ -324,10 +323,6 @@ Function se_getfunctionid%(arg0$)
             Return $191
         Case "dllfunctionstring_9"
             Return $192
-        Case "connecttocentralserver"
-            Return $169
-        Case "reconnecttocentralserver"
-            Return $16A
         Case "createsteaminstance"
             Return $166
         Case "getsteaminstancetag"
@@ -671,7 +666,7 @@ Function se_getfunctionid%(arg0$)
         Case "getplayerhazmat"
             Return $65
         Case "getplayergasmask"
-            Return local2
+            Return $10F
         Case "getplayervest"
             Return $66
         Case "getplayerreadystate"

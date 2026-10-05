@@ -20,16 +20,25 @@ Function se_parselines%(arg0$)
     EndIf
     seekfile(local0, $00)
     While (eof(local0) = $00)
-        local1 = trim(readline(local0))
-        local2 = len(local1)
-        local3 = $01
-        local4 = $00
+        local1 = readline(local0)
+        If (left(local1, $01) = chr($FEFF)) Then
+            local1 = mid(local1, $02, $FFFFFFFF)
+        EndIf
+        If (isvalidutf8string(local1) = $00) Then
+            se_seterror((((("invalid UTF-8 in " + arg0) + " at line ") + (Str (local2 + $01))) + "; save the script as UTF-8"), $01)
+            closefile(local0)
+            Return $00
+        EndIf
+        local1 = trim(local1)
+        local3 = len(local1)
+        local4 = $01
         local5 = $00
         local6 = $00
-        local7 = (local7 + $01)
+        local7 = $00
+        local2 = (local2 + $01)
         If (left(local1, $01) = "#") Then
             Delete Each se_pptoken
-            se_parsedirective(right(local1, (local2 - $01)))
+            se_parsedirective(right(local1, (local3 - $01)))
             local8 = (First se_pptoken)
             Select local8\Field0
                 Case "playerscript","PLAYERSCRIPT"
@@ -93,64 +102,63 @@ Function se_parselines%(arg0$)
             If (se_error <> 0) Then
                 Return $00
             EndIf
-            local2 = $00
+            local3 = $00
         Else
             For local13 = Each defines
                 local1 = replace(local1, local13\Field1, local13\Field0)
             Next
         EndIf
-        While (local3 < local2)
-            If (mid(local1, local3, $02) = "//") Then
-                local1 = left(local1, (local3 - $01))
-                local2 = len(local1)
+        While (local4 < local3)
+            If (mid(local1, local4, $02) = "//") Then
+                local1 = left(local1, (local4 - $01))
+                local3 = len(local1)
                 Exit
-            ElseIf (mid(local1, local3, $02) = "/*") Then
-                local1 = (left(local1, (local3 - $01)) + right(local1, ((local2 - local3) - $01)))
-                local2 = len(local1)
-                local5 = local3
-                local4 = (local4 + $01)
-                local3 = (local3 + $02)
-            ElseIf (mid(local1, local3, $02) = "*/") Then
-                local4 = (local4 - $01)
-                If (local4 = $00) Then
-                    If (local5 = $00) Then
-                        local1 = right(local1, ((local2 - local3) - $01))
-                        local2 = len(local1)
-                        local3 = $01
+            ElseIf (mid(local1, local4, $02) = "/*") Then
+                local1 = (left(local1, (local4 - $01)) + right(local1, ((local3 - local4) - $01)))
+                local3 = len(local1)
+                local6 = local4
+                local5 = (local5 + $01)
+                local4 = (local4 + $02)
+            ElseIf (mid(local1, local4, $02) = "*/") Then
+                local5 = (local5 - $01)
+                If (local5 = $00) Then
+                    If (local6 = $00) Then
+                        local1 = right(local1, ((local3 - local4) - $01))
+                        local3 = len(local1)
+                        local4 = $01
                     Else
-                        local1 = (left(local1, (local5 - $01)) + right(local1, ((local2 - local3) - $01)))
-                        local2 = len(local1)
-                        local3 = (local5 + $01)
+                        local1 = (left(local1, (local6 - $01)) + right(local1, ((local3 - local4) - $01)))
+                        local3 = len(local1)
+                        local4 = (local6 + $01)
                     EndIf
                 Else
-                    local3 = (local3 + $02)
+                    local4 = (local4 + $02)
                 EndIf
-            ElseIf (mid(local1, local3, $01) = chr($22)) Then
-                local3 = instr(local1, chr($22), (local3 + $01))
-                If (local3 = $00) Then
-                    se_seterror((((("Terror at line " + (Str local7)) + ": expecting '") + chr($22)) + "'"), $01)
+            ElseIf (mid(local1, local4, $01) = chr($22)) Then
+                local4 = instr(local1, chr($22), (local4 + $01))
+                If (local4 = $00) Then
+                    se_seterror((((("Terror at line " + (Str local2)) + ": expecting '") + chr($22)) + "'"), $01)
                     Return $00
                 EndIf
-                local3 = (local3 + $01)
+                local4 = (local4 + $01)
             Else
-                local3 = (local3 + $01)
+                local4 = (local4 + $01)
             EndIf
         Wend
-        If (local4 = $00) Then
+        If (local5 = $00) Then
             local1 = trim(local1)
-            If (local2 <> 0) Then
-                local2 = len(local1)
+            If (local3 <> 0) Then
+                local3 = len(local1)
             EndIf
-            If (local2 > $00) Then
+            If (local3 > $00) Then
                 local14 = (New se_line)
                 local14\Field0 = local1
-                local14\Field1 = local7
-                local14\Field2 = local2
+                local14\Field1 = local2
+                local14\Field2 = local3
             EndIf
         EndIf
-        debuglog(local1)
     Wend
-    If (local4 <> 0) Then
+    If (local5 <> 0) Then
         se_warn(Null, "expecting */")
     EndIf
     closefile(local0)

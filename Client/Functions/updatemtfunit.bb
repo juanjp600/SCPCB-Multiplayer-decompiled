@@ -24,7 +24,7 @@ Function updatemtfunit%(arg0.npcs)
     Local local23#
     Local local24#
     If (arg0\Field48 <> 0) Then
-        arg0\Field49 = -1.0
+        arg0\Field50 = -1.0
         setnpcframe(arg0, 532.0)
         If (channelplaying(arg0\Field20) <> 0) Then
             stopchannel(arg0\Field20)
@@ -32,21 +32,21 @@ Function updatemtfunit%(arg0.npcs)
         Return $00
     EndIf
     arg0\Field45 = 0.03
-    arg0\Field49 = (arg0\Field49 - fpsfactor)
-    If (-5.0 >= arg0\Field49) Then
+    arg0\Field50 = (arg0\Field50 - fpsfactor)
+    If (-5.0 >= arg0\Field50) Then
         If (2.0 = arg0\Field9) Then
             If (othernpcseesmenpc(curr173, arg0) <> 0) Then
                 playmtfsound(loadtempsound("SFX\Character\MTF\173\BLINKING.ogg"), arg0)
             EndIf
         EndIf
-        arg0\Field49 = (rnd(10.0, 15.0) * 70.0)
+        arg0\Field50 = (rnd(10.0, 15.0) * 70.0)
     EndIf
     arg0\Field25 = (arg0\Field25 - fpsfactor)
     local11 = arg0\Field14
-    arg0\Field53 = ""
-    arg0\Field51 = $00
+    arg0\Field54 = ""
     arg0\Field52 = $00
-    arg0\Field57 = "MTF"
+    arg0\Field53 = $00
+    arg0\Field58 = "MTF"
     If ((Int arg0\Field9) <> $01) Then
         arg0\Field12 = $00
     EndIf
@@ -67,10 +67,10 @@ Function updatemtfunit%(arg0.npcs)
                     Else
                         If (2.0 <> curr173\Field24) Then
                             For local3 = Each rooms
-                                If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                    local0 = local3\Field3
+                                If ((((12.0 < (Abs (local3\Field4 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field6 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field6 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
+                                    local0 = local3\Field4
                                     local1 = 0.1
-                                    local2 = local3\Field5
+                                    local2 = local3\Field6
                                     Exit
                                 EndIf
                             Next
@@ -83,13 +83,12 @@ Function updatemtfunit%(arg0.npcs)
                             EndIf
                             If (local13 = $00) Then
                                 For local3 = Each rooms
-                                    If (local3\Field7\Field11 = "start") Then
+                                    If (local3\Field8\Field11 = "start") Then
                                         local14 = $00
                                         local15 = createpivot($00)
-                                        positionentity(local15, (entityx(local3\Field2, $01) + (4736.0 * roomscale)), 0.5, (entityz(local3\Field2, $01) + (1692.0 * roomscale)), $00)
+                                        positionentity(local15, (entityx(local3\Field3, $01) + 18.5), 0.5, (entityz(local3\Field3, $01) + 6.609375), $00)
                                         If (3.5 > distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))) Then
                                             local14 = $01
-                                            debuglog((Str distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))))
                                         EndIf
                                         If (((3.0 = curr173\Field24) And (4.0 < distance(entityx(local15, $00), entityz(local15, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00)))) <> 0) Then
                                             If (local3\Field29[$01]\Field5 = $01) Then
@@ -97,16 +96,14 @@ Function updatemtfunit%(arg0.npcs)
                                             EndIf
                                         EndIf
                                         freeentity(local15)
-                                        If (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field2, $01) + (4736.0 * roomscale)), (entityz(local3\Field2, $01) + (1692.0 * roomscale)))) And (local14 = $00)) <> 0) Then
-                                            local0 = (entityx(local3\Field2, $01) + (4736.0 * roomscale))
+                                        If (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field3, $01) + 18.5), (entityz(local3\Field3, $01) + 6.609375))) And (local14 = $00)) <> 0) Then
+                                            local0 = (entityx(local3\Field3, $01) + 18.5)
                                             local1 = 0.1
-                                            local2 = (entityz(local3\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move to 173's chamber")
+                                            local2 = (entityz(local3\Field3, $01) + 6.609375)
                                             Exit
-                                        ElseIf (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field2, $01) + (4736.0 * roomscale)), (entityz(local3\Field2, $01) + (1692.0 * roomscale)))) And local14) <> 0) Then
-                                            arg0\Field60 = (entityx(local3\Field2, $01) + (4736.0 * roomscale))
-                                            arg0\Field61 = (entityz(local3\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move inside 173's chamber")
+                                        ElseIf (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local3\Field3, $01) + 18.5), (entityz(local3\Field3, $01) + 6.609375))) And local14) <> 0) Then
+                                            arg0\Field62 = (entityx(local3\Field3, $01) + 18.5)
+                                            arg0\Field63 = (entityz(local3\Field3, $01) + 6.609375)
                                             Exit
                                         Else
                                             curr173\Field24 = 3.0
@@ -119,7 +116,6 @@ Function updatemtfunit%(arg0.npcs)
                                             arg0\Field16 = loadsound_strict((("SFX\Character\MTF\173\Cont" + (Str rand($01, $04))) + ".ogg"))
                                             playmtfsound(arg0\Field16, arg0)
                                             playannouncement("SFX\Character\MTF\Announc173Contain.ogg", $01, $00)
-                                            debuglog("173 contained")
                                             Exit
                                         EndIf
                                     EndIf
@@ -128,10 +124,9 @@ Function updatemtfunit%(arg0.npcs)
                                 local0 = entityx(curr173\Field4, $00)
                                 local1 = 0.1
                                 local2 = entityz(curr173\Field4, $00)
-                                debuglog("Going back to 173's cage")
                             EndIf
                         EndIf
-                        If (0.0 = arg0\Field60) Then
+                        If (0.0 = arg0\Field62) Then
                             arg0\Field37 = findpath(arg0, local0, local1, local2)
                         EndIf
                     EndIf
@@ -201,7 +196,7 @@ Function updatemtfunit%(arg0.npcs)
                                 playmtfsound(mtfsfx($05), arg0)
                             EndIf
                             arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                            If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                 arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                             EndIf
                         EndIf
@@ -210,9 +205,9 @@ Function updatemtfunit%(arg0.npcs)
                         EndIf
                     EndIf
                     arg0\Field38 = (arg0\Field38 - fpsfactor)
-                ElseIf (0.0 <> arg0\Field60) Then
+                ElseIf (0.0 <> arg0\Field62) Then
                     local15 = createpivot($00)
-                    positionentity(local15, arg0\Field60, 0.5, arg0\Field61, $00)
+                    positionentity(local15, arg0\Field62, 0.5, arg0\Field63, $00)
                     pointentity(arg0\Field4, local15, 0.0)
                     rotateentity(arg0\Field4, 0.0, entityyaw(arg0\Field4, $01), 0.0, $01)
                     arg0\Field15 = curveangle(entityyaw(arg0\Field4, $01), arg0\Field15, 20.0)
@@ -220,9 +215,9 @@ Function updatemtfunit%(arg0.npcs)
                     arg0\Field22 = curvevalue(arg0\Field21, arg0\Field22, 20.0)
                     translateentity(arg0\Field4, ((cos((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), 0.0, ((sin((entityyaw(arg0\Field4, $01) + 90.0)) * arg0\Field22) * fpsfactor), $01)
                     animatenpc(arg0, 488.0, 522.0, (arg0\Field22 * 26.0), $01)
-                    If (0.2 > distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), arg0\Field60, arg0\Field61)) Then
-                        arg0\Field60 = 0.0
-                        arg0\Field61 = 0.0
+                    If (0.2 > distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), arg0\Field62, arg0\Field63)) Then
+                        arg0\Field62 = 0.0
+                        arg0\Field63 = 0.0
                         arg0\Field38 = (rnd(6.0, 10.0) * 70.0)
                     EndIf
                     freeentity(local15)
@@ -277,11 +272,10 @@ Function updatemtfunit%(arg0.npcs)
                     arg0\Field26 = (Int (rnd(30.0, 40.0) * 70.0))
                     arg0\Field27 = 1.0
                     arg0\Field9 = 1.0
-                    arg0\Field33 = entityx(arg0\Field73, $01)
-                    arg0\Field34 = entityy(arg0\Field73, $01)
-                    arg0\Field35 = entityz(arg0\Field73, $01)
+                    arg0\Field33 = entityx(arg0\Field75, $01)
+                    arg0\Field34 = entityy(arg0\Field75, $01)
+                    arg0\Field35 = entityz(arg0\Field75, $01)
                     arg0\Field10 = ((15.0 * (Float local17)) * 70.0)
-                    debuglog(("player spotted :" + (Str arg0\Field10)))
                     arg0\Field38 = 0.0
                     arg0\Field37 = $00
                     arg0\Field25 = (Float ($C8 - (selecteddifficulty\Field3 * $64)))
@@ -298,7 +292,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -320,7 +313,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
                             arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -341,7 +333,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -364,7 +355,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field38 = 0.0
                                 arg0\Field37 = $00
                                 arg0\Field31 = local6
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -387,7 +377,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local6
                                 arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -410,7 +399,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local6
                                 arg0\Field25 = 350.0
-                                debuglog(("008 spotted :" + (Str arg0\Field10)))
                                 Exit
                             EndIf
                         EndIf
@@ -421,7 +409,7 @@ Function updatemtfunit%(arg0.npcs)
                 arg0\Field10 = (arg0\Field10 - fpsfactor)
                 If (menpcseesplayer(arg0, $00) = $01) Then
                     If (4.0 > (Float local19)) Then
-                        local20 = vectoryaw((entityx(arg0\Field73, $00) - entityx(arg0\Field4, $00)), 0.0, (entityz(arg0\Field73, $00) - entityz(arg0\Field4, $00)))
+                        local20 = vectoryaw((entityx(arg0\Field75, $00) - entityx(arg0\Field4, $00)), 0.0, (entityz(arg0\Field75, $00) - entityz(arg0\Field4, $00)))
                         rotateentity(arg0\Field4, 0.0, curveangle(local20, entityyaw(arg0\Field4, $00), 10.0), 0.0, $01)
                         arg0\Field15 = entityyaw(arg0\Field4, $00)
                         If (((0.0 >= arg0\Field25) And (0.0 = killtimer)) <> 0) Then
@@ -453,9 +441,9 @@ Function updatemtfunit%(arg0.npcs)
                                         local6\Field26 = (Int (rnd(30.0, 40.0) * 70.0))
                                         local6\Field27 = 1.0
                                         local6\Field9 = 1.0
-                                        local6\Field33 = entityx(arg0\Field73, $01)
-                                        local6\Field34 = entityy(arg0\Field73, $01)
-                                        local6\Field35 = entityz(arg0\Field73, $01)
+                                        local6\Field33 = entityx(arg0\Field75, $01)
+                                        local6\Field34 = entityy(arg0\Field75, $01)
+                                        local6\Field35 = entityz(arg0\Field75, $01)
                                         local6\Field10 = arg0\Field10
                                         local6\Field38 = 0.0
                                         local6\Field37 = $00
@@ -555,7 +543,7 @@ Function updatemtfunit%(arg0.npcs)
                                     playmtfsound(mtfsfx($05), arg0)
                                 EndIf
                                 arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                                If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                     arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                                 EndIf
                             EndIf
@@ -603,7 +591,6 @@ Function updatemtfunit%(arg0.npcs)
                 EndIf
                 If (((0.0 >= arg0\Field10) And (0.0 < (arg0\Field10 + fpsfactor))) <> 0) Then
                     If (arg0\Field47 = Null) Then
-                        debuglog(("targetlost: " + (Str arg0\Field10)))
                         playmtfsound(loadtempsound((("SFX\Character\MTF\Targetlost" + (Str rand($01, $03))) + ".ogg")), arg0)
                         If (0.0 = mtf_camerachecktimer) Then
                             If (rand(($0F - (selecteddifficulty\Field3 * $07)), $01) = $01) Then
@@ -623,7 +610,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field34 = entityy(curr173\Field4, $01)
                             arg0\Field35 = entityz(curr173\Field4, $01)
                             arg0\Field10 = 1050.0
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -648,7 +634,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
                             arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field47 = Null) Then
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
@@ -671,7 +656,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field47 = Null) Then
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
@@ -696,7 +680,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field38 = 0.0
                                 arg0\Field37 = $00
                                 arg0\Field31 = local6
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -719,7 +702,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local6
                                 arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -756,7 +738,6 @@ Function updatemtfunit%(arg0.npcs)
                         If (local24 > local23) Then
                             If (arg0\Field47 = Null) Then
                                 arg0\Field11 = (arg0\Field11 + fpsfactor)
-                                debuglog(("CONTAINING 173: " + (Str arg0\Field11)))
                                 If (1050.0 <= arg0\Field11) Then
                                     curr173\Field24 = 2.0
                                     If (arg0\Field47 = Null) Then
@@ -841,7 +822,7 @@ Function updatemtfunit%(arg0.npcs)
                                         playmtfsound(mtfsfx($05), arg0)
                                     EndIf
                                     arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                    If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                                    If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                         arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                                     EndIf
                                 EndIf
@@ -981,12 +962,11 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field37 = findpath(arg0, entityx(arg0\Field47\Field4, $01), (entityy(arg0\Field47\Field4, $01) + 0.1), entityz(arg0\Field47\Field4, $01))
                         Else
                             For local3 = Each rooms
-                                If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                    If (6.0 < entitydistance(local3\Field2, arg0\Field31\Field4)) Then
-                                        local0 = local3\Field3
+                                If ((((12.0 < (Abs (local3\Field4 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field6 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field6 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
+                                    If (6.0 < entitydistance(local3\Field3, arg0\Field31\Field4)) Then
+                                        local0 = local3\Field4
                                         local1 = 0.1
-                                        local2 = local3\Field5
-                                        debuglog(local3\Field7\Field11)
+                                        local2 = local3\Field6
                                         Exit
                                     EndIf
                                 EndIf
@@ -1041,7 +1021,7 @@ Function updatemtfunit%(arg0.npcs)
                                     playmtfsound(mtfsfx($05), arg0)
                                 EndIf
                                 arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                                If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                                If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                     arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                                 EndIf
                             EndIf
@@ -1078,13 +1058,13 @@ Function updatemtfunit%(arg0.npcs)
                 freeentity(local8)
                 arg0\Field15 = entityyaw(arg0\Field4, $00)
             Case $06
-                pointentity(arg0\Field0, arg0\Field73, 0.0)
+                pointentity(arg0\Field0, arg0\Field75, 0.0)
                 rotateentity(arg0\Field4, 0.0, curveangle(entityyaw(arg0\Field0, $00), entityyaw(arg0\Field4, $00), 20.0), 0.0, $00)
                 arg0\Field15 = entityyaw(arg0\Field4, $00)
                 animatenpc(arg0, 346.0, 351.0, 0.2, $00)
                 If (((0.0 >= arg0\Field25) And (0.0 = killtimer)) <> 0) Then
-                    If (entityvisible(arg0\Field4, arg0\Field73) <> 0) Then
-                        If (50.0 > (Abs deltayaw(arg0\Field4, arg0\Field73))) Then
+                    If (entityvisible(arg0\Field4, arg0\Field75) <> 0) Then
+                        If (50.0 > (Abs deltayaw(arg0\Field4, arg0\Field75))) Then
                             playsound2(gunshotsfx, camera, arg0\Field4, 15.0, 1.0)
                             local15 = createpivot($00)
                             rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
@@ -1107,27 +1087,26 @@ Function updatemtfunit%(arg0.npcs)
                     rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
                     positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
                     moveentity(local15, 0.0632, 0.84925, 0.5451)
-                    local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05)
+                    local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05, 1.0, $01)
                     turnentity(local7\Field0, 0.0, 0.0, rnd(360.0, 0.0), $00)
-                    local7\Field15 = -0.15
+                    local7\Field12 = -0.15
                     freeentity(local15)
                     arg0\Field25 = 7.0
                 EndIf
             Case $08
                 arg0\Field21 = 0.015
-                arg0\Field53 = "head"
-                arg0\Field51 = $01
-                arg0\Field52 = $02
+                arg0\Field54 = "head"
+                arg0\Field52 = $01
+                arg0\Field53 = $02
                 If (0.0 >= arg0\Field38) Then
                     If (arg0\Field47 <> Null) Then
                         arg0\Field37 = findpath(arg0, entityx(arg0\Field47\Field4, $01), (entityy(arg0\Field47\Field4, $01) + 0.1), entityz(arg0\Field47\Field4, $01))
                     Else
                         For local3 = Each rooms
-                            If ((((12.0 < (Abs (local3\Field3 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field5 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field5 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
-                                local0 = local3\Field3
+                            If ((((12.0 < (Abs (local3\Field4 - entityx(arg0\Field4, $01)))) Or (12.0 < (Abs (local3\Field6 - entityz(arg0\Field4, $01))))) And (rand($01, (Int max((Float ($04 - (Int (Abs (local3\Field6 - (entityz(arg0\Field4, $01) / 8.0)))))), 2.0))) = $01)) <> 0) Then
+                                local0 = local3\Field4
                                 local1 = 0.1
-                                local2 = local3\Field5
-                                debuglog(local3\Field7\Field11)
+                                local2 = local3\Field6
                                 Exit
                             EndIf
                         Next
@@ -1193,7 +1172,7 @@ Function updatemtfunit%(arg0.npcs)
                                 playmtfsound(mtfsfx($05), arg0)
                             EndIf
                             arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                            If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                 arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                             EndIf
                         EndIf
@@ -1251,11 +1230,11 @@ Function updatemtfunit%(arg0.npcs)
                             rotateentity(local15, entitypitch(arg0\Field4, $00), entityyaw(arg0\Field4, $00), 0.0, $01)
                             positionentity(local15, entityx(arg0\Field0, $00), entityy(arg0\Field0, $00), entityz(arg0\Field0, $00), $00)
                             moveentity(local15, 0.0632, 0.84925, 0.5451)
-                            local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05)
+                            local7 = createparticle(entityx(local15, $00), entityy(local15, $00), entityz(local15, $00), $01, rnd(0.08, 0.1), 0.0, $05, 1.0, $01)
                             turnentity(local7\Field0, 0.0, 0.0, rnd(360.0, 0.0), $00)
-                            local7\Field15 = -0.15
-                            If (arg0\Field31\Field59 > $00) Then
-                                arg0\Field31\Field59 = (Int max((Float (arg0\Field31\Field59 - rand($05, $0A))), 0.0))
+                            local7\Field12 = -0.15
+                            If (arg0\Field31\Field61 > $00) Then
+                                arg0\Field31\Field61 = (Int max((Float (arg0\Field31\Field61 - rand($05, $0A))), 0.0))
                             Else
                                 If (arg0\Field31\Field48 = $00) Then
                                     If (arg0\Field16 <> $00) Then
@@ -1328,7 +1307,7 @@ Function updatemtfunit%(arg0.npcs)
                                 playmtfsound(mtfsfx($05), arg0)
                             EndIf
                             arg0\Field36[arg0\Field39]\Field1\Field5 = $01
-                            If (arg0\Field36[arg0\Field39]\Field1\Field24 <> 0) Then
+                            If (arg0\Field36[arg0\Field39]\Field1\Field23 <> 0) Then
                                 arg0\Field36[arg0\Field39]\Field1\Field11 = 350.0
                             EndIf
                         EndIf

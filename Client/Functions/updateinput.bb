@@ -4,21 +4,21 @@ Function updateinput%()
         keyhite = keyhit(key_using)
         keydowne = keydown($12)
         doubleclick = $00
-        mousehit1 = (mousehit($01) <> $00)
+        mousehit1 = mousehit($01)
         If (mousehit1 <> 0) Then
-            If ((millisecs2() - lastmousehit1) < $12C) Then
+            If ((millisecs() - lastmousehit1) < $12C) Then
                 doubleclick = $01
             EndIf
-            lastmousehit1 = millisecs2()
+            lastmousehit1 = millisecs()
         EndIf
         local0 = mousedown1
-        mousedown1 = (mousedown($01) <> $00)
+        mousedown1 = mousedown($01)
         If (((local0 = $01) And (mousedown1 = $00)) <> 0) Then
             mouseup1 = $01
         Else
             mouseup1 = $00
         EndIf
-        mousehit2 = (mousehit($02) <> $00)
+        mousehit2 = mousehit($02)
         If (((mousedown1 = $00) And (mousehit1 = $00)) <> 0) Then
             grabbedentity = $00
         EndIf

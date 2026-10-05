@@ -38,35 +38,33 @@ Function updatedimension1499%()
                 local1\Field2 = 2.0
             EndIf
         EndIf
-        If (debughud = $00) Then
-            camerafogrange(camera, 40.0, 80.0)
-            camerafogcolor(camera, 96.0, 97.0, 104.0)
-            cameraclscolor(camera, 96.0, 97.0, 104.0)
-            camerarange(camera, 0.05, 90.0)
-        Else
-            camerafogrange(camera, 120.0, 120.0)
-            camerafogcolor(camera, 96.0, 97.0, 104.0)
-            cameraclscolor(camera, 96.0, 97.0, 104.0)
-            camerarange(camera, 0.05, 120.0)
-        EndIf
-        showentity(local1\Field1\Field2)
+        camerafogrange(camera, 0.5, 30.0)
+        camerafogcolor(camera, 96.0, 97.0, 104.0)
+        cameraclscolor(camera, 96.0, 97.0, 104.0, 1.0)
+        camerarange(camera, 0.02, 30.0)
+        showentity(local1\Field1\Field3)
         If (((quickloadpercent = $64) Or (quickloadpercent = $FFFFFFFF)) <> 0) Then
             updatechunks(local1\Field1, $0F, $01)
-            showentity(ntf_1499sky)
-            update1499sky()
+            showentity(sky[$02])
+            update2dsky($02)
             shouldplay = $12
             If (800.0 > entityy(local1\Field13, $00)) Then
                 positionentity(local1\Field13, entityx(local1\Field13, $00), 800.5, entityz(local1\Field13, $00), $01)
                 resetentity(local1\Field13)
             EndIf
             For local5 = Each items
-                If (750.0 < entityy(local5\Field1, $00)) Then
-                    If (800.0 > entityy(local5\Field1, $00)) Then
-                        positionentity(local5\Field1, entityx(local5\Field1, $00), 800.5, entityz(local5\Field1, $00), $00)
-                        resetentity(local5\Field1)
+                If (750.0 < entityy(local5\Field2, $00)) Then
+                    If (800.0 > entityy(local5\Field2, $00)) Then
+                        positionentity(local5\Field2, entityx(local5\Field2, $00), 800.5, entityz(local5\Field2, $00), $00)
+                        resetentity(local5\Field2)
                     EndIf
                 EndIf
             Next
+            If (8.4375 > (Abs (entityx(local1\Field13, $00) - (local1\Field1\Field4 - 0.21875)))) Then
+                If (5.5 > (Abs (entityz(local1\Field13, $00) - (local1\Field1\Field6 + 8.933594)))) Then
+                    shouldplay = $42
+                EndIf
+            EndIf
         Else
             dropspeed = 0.0
         EndIf
@@ -79,7 +77,7 @@ Function updatedimension1499%()
             local1\Field5 = $00
             local1\Field6 = $00
         EndIf
-        hideentity(ntf_1499sky)
+        hideentity(sky[$02])
         hidechunks()
         If (2100.0 > local1\Field4) Then
             local1\Field4 = 0.0

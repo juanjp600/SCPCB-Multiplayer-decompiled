@@ -1,20 +1,22 @@
-Function rcon_banip%(arg0$, arg1$)
-    Local local0.players
-    Local local1.banned
-    Local local2%
-    If (filetype(arg0) = $00) Then
-        createfile(arg0)
+Function rcon_banip%(arg0$)
+    Local local0$
+    Local local1.players
+    Local local2.banned
+    Local local3%
+    local0 = "player_cache\local\ipbanlist.dat"
+    If (filetype(local0) = $00) Then
+        createfile(local0)
     EndIf
-    For local0 = Each players
-        If (local0\Field40 = arg1) Then
-            kick(local0\Field30, (("[RCON] " + local0\Field15) + " has been banned."))
+    For local1 = Each players
+        If (local1\Field40 = arg0) Then
+            kick(local1\Field30, (("[RCON] " + local1\Field15) + " has been banned."), "You've been banned from the server.")
         EndIf
     Next
-    local1 = (New banned)
-    local1\Field1 = arg1
-    local2 = openfile(arg0)
-    seekfile(local2, filesize(arg0))
-    writeline(local2, arg1)
-    closefile(local2)
+    local2 = (New banned)
+    local2\Field1 = arg0
+    local3 = openfile(local0)
+    seekfile(local3, filesize(local0))
+    writeline(local3, arg0)
+    closefile(local3)
     Return $00
 End Function

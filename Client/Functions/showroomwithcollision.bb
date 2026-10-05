@@ -1,9 +1,9 @@
 Function showroomwithcollision%(arg0.rooms)
     Local local0%
     If (arg0\Field69 = $00) Then
-        showentity(arg0\Field2)
-        entityalpha(getchild(arg0\Field2, $02), 1.0)
-        For local0 = $00 To arg0\Field76 Step $01
+        showentity(arg0\Field3)
+        entityalpha(getchild(arg0\Field3, $02), 1.0)
+        For local0 = $00 To (arg0\Field76 - $01) Step $01
             entityalpha(arg0\Field75[local0], 1.0)
         Next
         If (debughud <> 0) Then

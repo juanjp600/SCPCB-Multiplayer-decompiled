@@ -11,7 +11,7 @@ Function object_create%(arg0%, arg1#, arg2#, arg3#, arg4#, arg5%, arg6%)
         addanimseq(multiplayer_object[local0]\Field11, arg6)
         setanimtime(multiplayer_object[local0]\Field11, 0.0, $00)
     Else
-        multiplayer_object[local0]\Field11 = loadanimmesh_strict(multiplayer_models[arg0], $00)
+        multiplayer_object[local0]\Field11 = loadanimmesh_strict(multiplayer_models[arg0], $00, $00)
     EndIf
     multiplayer_object[local0]\Field0 = arg0
     multiplayer_object[local0]\Field2 = arg1
@@ -22,7 +22,7 @@ Function object_create%(arg0%, arg1#, arg2#, arg3#, arg4#, arg5%, arg6%)
     multiplayer_object[local0]\Field1 = local0
     multiplayer_object[local0]\Field12 = arg4
     For local1 = Each players
-        local1\Field52 = (local1\Field52 + $01)
+        local1\Field54 = (local1\Field54 + $01)
     Next
     positionentity(multiplayer_object[local0]\Field11, arg1, arg2, arg3, $00)
     Return local0

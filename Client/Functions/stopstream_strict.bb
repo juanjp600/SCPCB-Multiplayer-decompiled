@@ -1,5 +1,8 @@
 Function stopstream_strict%(arg0%)
     Local local0.stream
+    If (arg0 = $00) Then
+        Return $00
+    EndIf
     local0 = (Object.stream arg0)
     If (local0 = Null) Then
         Return $00

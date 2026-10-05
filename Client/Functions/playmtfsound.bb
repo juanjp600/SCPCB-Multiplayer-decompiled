@@ -4,7 +4,7 @@ Function playmtfsound%(arg0%, arg1.npcs)
     EndIf
     If (selecteditem <> Null) Then
         If (((3.0 = selecteditem\Field14) And (0.0 < selecteditem\Field13)) <> 0) Then
-            Select selecteditem\Field3\Field2
+            Select selecteditem\Field1\Field2
                 Case "radio","fineradio","18vradio"
                     If (((arg0 <> mtfsfx($05)) Or (channelplaying(radiochn($03)) = $00)) <> 0) Then
                         If (radiochn($03) <> $00) Then

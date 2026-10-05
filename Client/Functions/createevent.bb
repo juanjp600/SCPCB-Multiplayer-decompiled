@@ -7,7 +7,7 @@ Function createevent.events(arg0$, arg1$, arg2%, arg3#)
     local0 = $00
     If (0.0 = arg3) Then
         For local4 = Each rooms
-            If (((arg1 = "") Or (arg1 = local4\Field7\Field11)) <> 0) Then
+            If (((arg1 = "") Or (arg1 = local4\Field8\Field11)) <> 0) Then
                 local1 = $00
                 For local3 = Each events
                     If (local3\Field1 = local4) Then
@@ -28,7 +28,7 @@ Function createevent.events(arg0$, arg1$, arg2%, arg3#)
         Next
     Else
         For local4 = Each rooms
-            If (((arg1 = "") Or (arg1 = local4\Field7\Field11)) <> 0) Then
+            If (((arg1 = "") Or (arg1 = local4\Field8\Field11)) <> 0) Then
                 local1 = $00
                 For local3 = Each events
                     If (local3\Field1 = local4) Then

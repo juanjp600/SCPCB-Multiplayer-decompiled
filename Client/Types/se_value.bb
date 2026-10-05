@@ -1,11 +1,12 @@
 Type se_value
     Field Field0%
     Field Field1%
-    Field Field2#
-    Field Field3$
-    Field Field4.se_value
-    Field Field5.se_array
-    Field Field6.se_inst
-    Field Field7.se_funcptr
-    Field Field8%
+    Field Field2%
+    Field Field3#
+    Field Field4$
+    Field Field5.se_value
+    Field Field6.se_array
+    Field Field7.se_inst
+    Field Field8.se_funcptr
+    Field Field9%
 End Type

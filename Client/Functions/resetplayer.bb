@@ -19,6 +19,7 @@ Function resetplayer%()
     sanity = 0.0
     restoresanity = $01
     shake = 0.0
+    infect = 0.0
     lightflash = 0.0
     blurtimer = 0.0
     falltimer = 0.0
@@ -31,7 +32,7 @@ Function resetplayer%()
     injuries = 0.0
     hideentity(head)
     showentity(collider)
-    myplayer\Field33 = $00
+    myplayer\Field31 = $00
     eyeirritation = 0.0
     rotateentity(collider, 0.0, entityyaw(collider, $00), 0.0, $00)
     wearingvest = $00
@@ -41,6 +42,6 @@ Function resetplayer%()
     wearingnightvision = $00
     i_427\Field0 = $00
     i_427\Field1 = 0.0
-    myplayer\Field56 = $00
+    myplayer\Field54 = $00
     Return $00
 End Function

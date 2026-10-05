@@ -16,13 +16,13 @@ Function updatestreamsounds%()
                 EndIf
             EndIf
         Next
-        If (playerinreachableroom($00) = $00) Then
-            If (((playerroom\Field7\Field11 <> "exit1") And (playerroom\Field7\Field11 <> "gatea")) <> 0) Then
+        If (playerinreachableroom($00, $00) = $00) Then
+            If (((playerroom\Field8\Field11 <> "exit1") And (playerroom\Field8\Field11 <> "gatea")) <> 0) Then
                 If (intercomstreamchn <> $00) Then
                     stopstream_strict(intercomstreamchn)
                     intercomstreamchn = $00
                 EndIf
-                If (playerroom\Field7\Field11 <> "dimension1499") Then
+                If (playerroom\Field8\Field11 <> "dimension1499") Then
                     For local0 = Each events
                         If (((local0\Field5 <> $00) And local0\Field9) <> 0) Then
                             stopstream_strict(local0\Field5)

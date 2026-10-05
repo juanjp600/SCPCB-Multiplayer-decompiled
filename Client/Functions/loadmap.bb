@@ -21,9 +21,7 @@ Function loadmap%(arg0$)
     Local local21%
     Local local22.doors
     Local local25.rooms
-    debuglog((Str filesize(arg0)))
     local0 = readfile(arg0)
-    debuglog(arg0)
     Dim maptemp%((mapwidth + $02), (mapheight + $02))
     Dim mapfound%((mapwidth + $02), (mapheight + $02))
     coffindistance = 100.0
@@ -52,18 +50,15 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = (Int ((Float readbyte(local0)) * 90.0))
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             For local7 = Each roomtemplates
                 If (lower(local7\Field11) = local3) Then
-                    local6 = createroom($00, local7\Field10, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3)
-                    debuglog("createroom")
-                    local6\Field6 = local4
-                    If (((local6\Field6 <> $5A) And (local6\Field6 <> $10E)) <> 0) Then
-                        local6\Field6 = (local6\Field6 + $B4)
+                    local6 = createroom($00, local7\Field10, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3, $00)
+                    local6\Field7 = local4
+                    If (((local6\Field7 <> $5A) And (local6\Field7 <> $10E)) <> 0) Then
+                        local6\Field7 = (local6\Field7 + $B4)
                     EndIf
-                    local6\Field6 = (Int wrapangle((Float local6\Field6)))
-                    turnentity(local6\Field2, 0.0, (Float local6\Field6), 0.0, $00)
+                    local6\Field7 = (Int wrapangle((Float local6\Field7)))
+                    turnentity(local6\Field3, 0.0, (Float local6\Field7), 0.0, $00)
                     maptemp((mapwidth - local1), local2) = $01
                     Exit
                 EndIf
@@ -89,7 +84,7 @@ Function loadmap%(arg0$)
             EndIf
         Next
         For local6 = Each rooms
-            If (local6\Field7\Field11 = "room860") Then
+            If (local6\Field8\Field11 = "room860") Then
                 local13 = local6
                 Exit
             EndIf
@@ -102,8 +97,6 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = readbyte(local0)
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             If (((local4 <> $00) And (local4 <> $02)) <> 0) Then
                 local4 = (local4 + $02)
             EndIf
@@ -127,15 +120,14 @@ Function loadmap%(arg0$)
                     Case "scp-860-1 door"
                         local14\Field2[((local2 * $0A) + local1)] = ($15 + local4)
                 End Select
-                debuglog((((("created forest piece " + chr($22)) + local3) + chr($22)) + " successfully"))
             EndIf
         Next
         If (local14 <> Null) Then
             local13\Field11 = local14
-            placeforest_mapcreator(local13\Field11, local13\Field3, (local13\Field4 + 30.0), local13\Field5, local13)
+            placeforest_mapcreator(local13\Field11, local13\Field4, (local13\Field5 + 30.0), local13\Field6, local13)
         EndIf
         For local6 = Each rooms
-            If (local6\Field7\Field11 = "room2tunnel") Then
+            If (local6\Field8\Field11 = "room2tunnel") Then
                 local16 = local6
                 Exit
             EndIf
@@ -148,8 +140,6 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = readbyte(local0)
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             If (((local4 <> $01) And (local4 <> $03)) <> 0) Then
                 local4 = (local4 + $02)
             EndIf
@@ -178,7 +168,6 @@ Function loadmap%(arg0$)
                         local16\Field33\Field0[((local2 * $13) + local1)] = $07
                 End Select
                 local16\Field33\Field1[((local2 * $13) + local1)] = local4
-                debuglog((((("created mtunnel piece " + chr($22)) + local3) + chr($22)) + " successfully"))
             EndIf
         Next
     Else
@@ -191,18 +180,15 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = (Int ((Float readbyte(local0)) * 90.0))
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             For local7 = Each roomtemplates
                 If (lower(local7\Field11) = local3) Then
-                    local6 = createroom($00, local7\Field10, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3)
-                    debuglog("createroom")
-                    local6\Field6 = local4
-                    If (((local6\Field6 <> $5A) And (local6\Field6 <> $10E)) <> 0) Then
-                        local6\Field6 = (local6\Field6 + $B4)
+                    local6 = createroom($00, local7\Field10, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3, $00)
+                    local6\Field7 = local4
+                    If (((local6\Field7 <> $5A) And (local6\Field7 <> $10E)) <> 0) Then
+                        local6\Field7 = (local6\Field7 + $B4)
                     EndIf
-                    local6\Field6 = (Int wrapangle((Float local6\Field6)))
-                    turnentity(local6\Field2, 0.0, (Float local6\Field6), 0.0, $00)
+                    local6\Field7 = (Int wrapangle((Float local6\Field7)))
+                    turnentity(local6\Field3, 0.0, (Float local6\Field7), 0.0, $00)
                     maptemp((mapwidth - local1), local2) = $01
                     Exit
                 EndIf
@@ -250,24 +236,24 @@ Function loadmap%(arg0$)
                     local18 = $00
                 EndIf
                 For local6 = Each rooms
-                    local6\Field6 = (Int wrapangle((Float local6\Field6)))
-                    If ((((Int (local6\Field3 / 8.0)) = local1) And ((Int (local6\Field5 / 8.0)) = local2)) <> 0) Then
+                    local6\Field7 = (Int wrapangle((Float local6\Field7)))
+                    If ((((Int (local6\Field4 / 8.0)) = local1) And ((Int (local6\Field6 / 8.0)) = local2)) <> 0) Then
                         local21 = $00
-                        Select local6\Field7\Field10
+                        Select local6\Field8\Field10
                             Case $01
-                                If (local6\Field6 = $5A) Then
+                                If (local6\Field7 = $5A) Then
                                     local21 = $01
                                 EndIf
                             Case $02
-                                If (((local6\Field6 = $5A) Or (local6\Field6 = $10E)) <> 0) Then
+                                If (((local6\Field7 = $5A) Or (local6\Field7 = $10E)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Case $03
-                                If (((local6\Field6 = $00) Or (local6\Field6 = $5A)) <> 0) Then
+                                If (((local6\Field7 = $00) Or (local6\Field7 = $5A)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Case $04
-                                If ((((local6\Field6 = $00) Or (local6\Field6 = $B4)) Or (local6\Field6 = $5A)) <> 0) Then
+                                If ((((local6\Field7 = $00) Or (local6\Field7 = $B4)) Or (local6\Field7 = $5A)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Default
@@ -276,27 +262,27 @@ Function loadmap%(arg0$)
                         If (local21 <> 0) Then
                             If ((local1 + $01) < (mapwidth + $01)) Then
                                 If (maptemp((local1 + $01), local2) > $00) Then
-                                    local22 = createdoor(local6\Field0, (((Float local1) * local20) + (local20 / 2.0)), 0.0, ((Float local2) * local20), 90.0, local6, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local18, $00, "", $00)
+                                    local22 = createdoor(local6\Field0, (((Float local1) * local20) + (local20 / 2.0)), 0.0, ((Float local2) * local20), 90.0, local6, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local18, $00, "")
                                     local6\Field35[$00] = local22
                                 EndIf
                             EndIf
                         EndIf
                         local21 = $00
-                        Select local6\Field7\Field10
+                        Select local6\Field8\Field10
                             Case $01
-                                If (local6\Field6 = $B4) Then
+                                If (local6\Field7 = $B4) Then
                                     local21 = $01
                                 EndIf
                             Case $02
-                                If (((local6\Field6 = $00) Or (local6\Field6 = $B4)) <> 0) Then
+                                If (((local6\Field7 = $00) Or (local6\Field7 = $B4)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Case $03
-                                If (((local6\Field6 = $B4) Or (local6\Field6 = $5A)) <> 0) Then
+                                If (((local6\Field7 = $B4) Or (local6\Field7 = $5A)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Case $04
-                                If ((((local6\Field6 = $B4) Or (local6\Field6 = $5A)) Or (local6\Field6 = $10E)) <> 0) Then
+                                If ((((local6\Field7 = $B4) Or (local6\Field7 = $5A)) Or (local6\Field7 = $10E)) <> 0) Then
                                     local21 = $01
                                 EndIf
                             Default
@@ -305,7 +291,7 @@ Function loadmap%(arg0$)
                         If (local21 <> 0) Then
                             If ((local2 + $01) < (mapheight + $01)) Then
                                 If (maptemp(local1, (local2 + $01)) > $00) Then
-                                    local22 = createdoor(local6\Field0, ((Float local1) * local20), 0.0, (((Float local2) * local20) + (local20 / 2.0)), 0.0, local6, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local18, $00, "", $00)
+                                    local22 = createdoor(local6\Field0, ((Float local1) * local20), 0.0, (((Float local2) * local20) + (local20 / 2.0)), 0.0, local6, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local18, $00, "")
                                     local6\Field35[$03] = local22
                                 EndIf
                             EndIf
@@ -318,10 +304,10 @@ Function loadmap%(arg0$)
         Wend
         local2 = (local2 + $FFFFFFFF)
     Wend
-    local6 = createroom($00, $01, 8.0, 0.0, (Float ((mapheight + $02) Shl $03)), "173")
-    local6 = createroom($00, $01, (Float ((mapwidth + $02) Shl $03)), 0.0, (Float ((mapheight + $02) Shl $03)), "pocketdimension")
-    local6 = createroom($00, $01, 0.0, 500.0, -16.0, "gatea")
-    local6 = createroom($00, $01, -16.0, 800.0, 0.0, "dimension1499")
+    local6 = createroom($00, $01, 8.0, 0.0, (Float ((mapheight + $02) Shl $03)), "173", $00)
+    local6 = createroom($00, $01, (Float ((mapwidth + $02) Shl $03)), 0.0, (Float ((mapheight + $02) Shl $03)), "pocketdimension", $00)
+    local6 = createroom($00, $01, 0.0, 500.0, -16.0, "gatea", $00)
+    local6 = createroom($00, $01, -16.0, 800.0, 0.0, "dimension1499", $00)
     createevent("173", "173", $00, 0.0)
     createevent("pocketdimension", "pocketdimension", $00, 0.0)
     createevent("gatea", "gatea", $00, 0.0)
@@ -333,25 +319,25 @@ Function loadmap%(arg0$)
         local6\Field34[$03] = Null
         For local25 = Each rooms
             If (local6 <> local25) Then
-                If (local6\Field5 = local25\Field5) Then
-                    If ((local6\Field3 + 8.0) = local25\Field3) Then
+                If (local6\Field6 = local25\Field6) Then
+                    If ((local6\Field4 + 8.0) = local25\Field4) Then
                         local6\Field34[$00] = local25
                         If (local6\Field35[$00] = Null) Then
                             local6\Field35[$00] = local25\Field35[$02]
                         EndIf
-                    ElseIf ((local6\Field3 - 8.0) = local25\Field3) Then
+                    ElseIf ((local6\Field4 - 8.0) = local25\Field4) Then
                         local6\Field34[$02] = local25
                         If (local6\Field35[$02] = Null) Then
                             local6\Field35[$02] = local25\Field35[$00]
                         EndIf
                     EndIf
-                ElseIf (local6\Field3 = local25\Field3) Then
-                    If ((local6\Field5 - 8.0) = local25\Field5) Then
+                ElseIf (local6\Field4 = local25\Field4) Then
+                    If ((local6\Field6 - 8.0) = local25\Field6) Then
                         local6\Field34[$01] = local25
                         If (local6\Field35[$01] = Null) Then
                             local6\Field35[$01] = local25\Field35[$03]
                         EndIf
-                    ElseIf ((local6\Field5 + 8.0) = local25\Field5) Then
+                    ElseIf ((local6\Field6 + 8.0) = local25\Field6) Then
                         local6\Field34[$03] = local25
                         If (local6\Field35[$03] = Null) Then
                             local6\Field35[$03] = local25\Field35[$01]
@@ -367,9 +353,6 @@ Function loadmap%(arg0$)
     For local1 = $00 To (mapwidth + $01) Step $01
         For local2 = $00 To (mapheight + $01) Step $01
             If (maptemp(local1, local2) > $00) Then
-                debuglog((((("MapTemp(" + (Str local1)) + ",") + (Str local2)) + ") = True"))
-            Else
-                debuglog((((("MapTemp(" + (Str local1)) + ",") + (Str local2)) + ") = False"))
             EndIf
         Next
     Next

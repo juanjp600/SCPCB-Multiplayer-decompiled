@@ -33,7 +33,7 @@ Function killsounds%()
     Next
     For local2 = Each npcs
         If (local2\Field17 <> $00) Then
-            If (local2\Field70 = $00) Then
+            If (local2\Field72 = $00) Then
                 If (channelplaying(local2\Field17) <> 0) Then
                     stopchannel(local2\Field17)
                 EndIf
@@ -42,7 +42,7 @@ Function killsounds%()
             EndIf
         EndIf
         If (local2\Field20 <> $00) Then
-            If (local2\Field71 = $00) Then
+            If (local2\Field73 = $00) Then
                 If (channelplaying(local2\Field20) <> 0) Then
                     stopchannel(local2\Field20)
                 EndIf
@@ -95,7 +95,6 @@ Function killsounds%()
             EndIf
         Next
     Next
-    debuglog("Terminated all sounds")
     buttonsfx = loadsound_strict("SFX\Interact\Button.ogg")
     Return $00
 End Function

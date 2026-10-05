@@ -1,9 +1,11 @@
 Function hideroomwithcollision%(arg0.rooms)
     Local local0%
     If (arg0\Field69 <> 0) Then
-        entityalpha(getchild(arg0\Field2, $02), 0.0)
-        For local0 = $00 To arg0\Field76 Step $01
-            entityalpha(arg0\Field75[local0], 0.0)
+        entityalpha(getchild(arg0\Field3, $02), 0.0)
+        For local0 = $00 To (arg0\Field76 - $01) Step $01
+            If (entityexist(arg0\Field75[local0]) <> 0) Then
+                entityalpha(arg0\Field75[local0], 0.0)
+            EndIf
         Next
         If (debughud <> 0) Then
             If (arg0\Field40 > $00) Then

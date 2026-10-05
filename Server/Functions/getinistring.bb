@@ -11,7 +11,6 @@ Function getinistring$(arg0$, arg1$, arg2$, arg3$)
         EndIf
     Next
     If (local1 = Null) Then
-        debuglog(("CREATE BANK FOR " + arg0))
         local1 = (New inifile)
         local1\Field0 = lower(arg0)
         local1\Field1 = $00

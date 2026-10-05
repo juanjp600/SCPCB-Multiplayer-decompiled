@@ -8,7 +8,7 @@ Function drawtiledimagerect%(arg0%, arg1%, arg2%, arg3#, arg4#, arg5%, arg6%, ar
         EndIf
         local1 = arg6
         While (local1 < (arg6 + arg8))
-            drawimagerect(arg0, local0, local1, arg1, arg2, (Int arg3), (Int min((Float ((arg6 + arg8) - local1)), arg4)), $00)
+            drawblockrect(arg0, local0, local1, arg1, arg2, (Int arg3), (Int min((Float ((arg6 + arg8) - local1)), arg4)), $00)
             local1 = (Int ((Float local1) + arg4))
         Wend
         local0 = (Int ((Float local0) + arg3))

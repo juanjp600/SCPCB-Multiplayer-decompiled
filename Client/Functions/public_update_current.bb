@@ -5,6 +5,9 @@ Function public_update_current%(arg0.se_script, arg1%)
     Local local3%[16]
     Local local4%
     Local local5.se_funcptr
+    If (arg0 = Null) Then
+        Return $00
+    EndIf
     local0 = publics\Field0
     local1 = publics\Field1
     For local4 = $01 To publics\Field1 Step $01

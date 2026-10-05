@@ -13,7 +13,7 @@ Function readiniline$(arg0.inifile)
         local0 = peekbyte(local3, local2)
         If (((local0 <> $0D) And (local0 <> $0A)) <> 0) Then
             local1 = $00
-            local4 = (local4 + chr(local0))
+            local4 = (local4 + chrraw(local0))
         EndIf
         local2 = (local2 + $01)
     Wend

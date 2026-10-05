@@ -21,7 +21,7 @@ Function createchunk.chunk(arg0%, arg1#, arg2#, arg3#, arg4%)
     EndIf
     local0\Field7 = copyentity(dimension1499\Field1\Field25[$00], local0\Field6)
     entitytype(local0\Field7, $01, $00)
-    entitypickmode(local0\Field7, $02, $01)
+    entitypickmode(local0\Field7, $01, $01)
     Return local0
     Return Null
 End Function

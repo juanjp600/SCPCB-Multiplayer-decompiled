@@ -4,8 +4,7 @@ Function restartserver%(arg0$)
     Local local2.rooms
     Local local3%
     Local local4.authconnection
-    disconnectfromcentralserver()
-    addlog("Restarting...", $00, $01, $00)
+    addlog("Restarting...", $00, $01, $00, $C0, $C0, $C0)
     Delete Each antiddos
     Delete gameinfo\Field5
     Delete gameinfo
@@ -20,20 +19,20 @@ Function restartserver%(arg0$)
     server\Field45 = $00
     ticks\Field0 = $00
     For local0 = Each players
-        If (local0\Field55 = $00) Then
+        If (local0\Field57 = $00) Then
             For local1 = $00 To $0A Step $01
                 udp_writebyte($4B)
                 udp_writebyte($01)
                 udp_sendmessage(local0\Field30)
             Next
-            kick(local0\Field30, "")
+            kick(local0\Field30, "", "")
         EndIf
     Next
-    server\Field56 = (server\Field56 + $01)
-    If (server\Field56 >= server\Field55) Then
-        addlog("The rounds have exceeded the number of allowed rounds, restart the application.", $00, $01, $00)
+    server\Field55 = (server\Field55 + $01)
+    If (server\Field55 >= server\Field54) Then
+        addlog("The rounds have exceeded the number of allowed rounds, restart the application.", $00, $01, $00, $FF, $00, $00)
         If (reloadapplication() = $00) Then
-            addlog("The application couldn't be restarted, because you maybe don't have server.exe in current directory", $00, $01, $00)
+            addlog("The application couldn't be restarted, because you maybe don't have server.exe in current directory", $00, $01, $00, $04, $C0, $C0)
         EndIf
     EndIf
     public_inqueue($02, $01)
@@ -43,7 +42,7 @@ Function restartserver%(arg0$)
     nullmap($01)
     initnewgame()
     For local0 = Each players
-        If (local0\Field55 <> 0) Then
+        If (local0\Field57 <> 0) Then
             mp_createplayerobject(local0\Field30)
             For local2 = Each rooms
                 If (local2\Field7\Field10 = "173") Then
@@ -60,12 +59,12 @@ Function restartserver%(arg0$)
         public_addparam(local3, server\Field7, $03)
         callback((arg0 <> ""))
     EndIf
-    addlog("Server successfully restarted.", $00, $01, $00)
+    addlog("Server successfully restarted.", $00, $01, $00, $02, $C0, $C0)
     For local4 = Each authconnection
         removeauthconnection(local4)
     Next
     requestdatafromglobal()
     server\Field0 = reloadudpstream(server\Field0)
-    setudpstreambuffersize(server\Field0, (server\Field87 Shl $0D))
+    setudpstreambuffersize(server\Field0, (server\Field85 Shl $0D))
     Return $00
 End Function

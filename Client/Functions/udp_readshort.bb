@@ -1,10 +1,7 @@
 Function udp_readshort%()
-    Local local0%
-    If ((udp_network\Field17 + $02) > udp_readfullavail()) Then
-        Return $00
+    If (networkserver\Field36 <> 0) Then
+        Return steam_pullshort()
     EndIf
-    local0 = peekshort(udp_network\Field15, udp_network\Field17)
-    udp_network\Field17 = (udp_network\Field17 + $02)
-    Return local0
+    Return readshort(udp_network\Field0)
     Return $00
 End Function

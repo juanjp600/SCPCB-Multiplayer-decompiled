@@ -22,7 +22,7 @@ Function loadmap%(arg0$)
     Local local22.doors
     Local local25.rooms
     local0 = readfile(arg0)
-    addlog(("Loading custom map: " + arg0), $00, $00, $00)
+    addlog(("Loading custom map: " + arg0), $00, $00, $00, $C0, $C0, $C0)
     Dim maptemp%((mapwidth + $01), (mapheight + $01))
     Dim mapfound%((mapwidth + $01), (mapheight + $01))
     coffindistance = 100.0
@@ -51,12 +51,9 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = (Int ((Float readbyte(local0)) * 90.0))
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             For local7 = Each roomtemplates
                 If (lower(local7\Field10) = local3) Then
                     local6 = createroom($00, local7\Field9, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3)
-                    debuglog("createroom")
                     local6\Field6 = local4
                     If (((local6\Field6 <> $5A) And (local6\Field6 <> $10E)) <> 0) Then
                         local6\Field6 = (local6\Field6 + $B4)
@@ -101,8 +98,6 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = readbyte(local0)
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             If (((local4 <> $00) And (local4 <> $02)) <> 0) Then
                 local4 = (local4 + $02)
             EndIf
@@ -126,12 +121,11 @@ Function loadmap%(arg0$)
                     Case "scp-860-1 door"
                         local14\Field2[((local2 * $0A) + local1)] = ($15 + local4)
                 End Select
-                debuglog((((("created forest piece " + chr($22)) + local3) + chr($22)) + " successfully"))
             EndIf
         Next
         If (local14 <> Null) Then
             local13\Field11 = local14
-            placeforest_mapcreator(local13\Field11, local13\Field3, (local13\Field4 + 30.0), local13\Field5, local13)
+            placeforest_mapcreator(local13\Field11, local13\Field3, (local13\Field4 + 100.0), local13\Field5, local13)
         EndIf
         For local6 = Each rooms
             If (local6\Field7\Field10 = "room2tunnel") Then
@@ -147,8 +141,6 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = readbyte(local0)
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             If (((local4 <> $01) And (local4 <> $03)) <> 0) Then
                 local4 = (local4 + $02)
             EndIf
@@ -177,7 +169,6 @@ Function loadmap%(arg0$)
                         local16\Field31\Field0[((local2 * $13) + local1)] = $07
                 End Select
                 local16\Field31\Field1[((local2 * $13) + local1)] = local4
-                debuglog((((("created mtunnel piece " + chr($22)) + local3) + chr($22)) + " successfully"))
             EndIf
         Next
     Else
@@ -190,12 +181,9 @@ Function loadmap%(arg0$)
             local2 = readbyte(local0)
             local3 = lower(readstring(local0))
             local4 = (Int ((Float readbyte(local0)) * 90.0))
-            debuglog((((((Str local1) + ", ") + (Str local2)) + ": ") + local3))
-            debuglog(("angle: " + (Str local4)))
             For local7 = Each roomtemplates
                 If (lower(local7\Field10) = local3) Then
                     local6 = createroom($00, local7\Field9, ((Float (mapwidth - local1)) * 8.0), 0.0, ((Float local2) * 8.0), local3)
-                    debuglog("createroom")
                     local6\Field6 = local4
                     If (((local6\Field6 <> $5A) And (local6\Field6 <> $10E)) <> 0) Then
                         local6\Field6 = (local6\Field6 + $B4)
@@ -319,7 +307,7 @@ Function loadmap%(arg0$)
     Wend
     local6 = createroom($00, $01, 8.0, 0.0, (Float ((mapheight + $02) Shl $03)), "173")
     local6 = createroom($00, $01, (Float ((mapwidth + $02) Shl $03)), 0.0, (Float ((mapheight + $02) Shl $03)), "pocketdimension")
-    local6 = createroom($00, $01, 0.0, 500.0, -16.0, "gatea")
+    local6 = createroom($00, $01, 0.0, 40.5, 8.0, "gatea")
     local6 = createroom($00, $01, -16.0, 800.0, 0.0, "dimension1499")
     createevent("173", "173", $00, 0.0)
     createevent("pocketdimension", "pocketdimension", $00, 0.0)
@@ -366,9 +354,6 @@ Function loadmap%(arg0$)
     For local1 = $00 To (mapwidth + $01) Step $01
         For local2 = $00 To (mapheight + $01) Step $01
             If (maptemp(local1, local2) > $00) Then
-                debuglog((((("MapTemp(" + (Str local1)) + ",") + (Str local2)) + ") = True"))
-            Else
-                debuglog((((("MapTemp(" + (Str local1)) + ",") + (Str local2)) + ") = False"))
             EndIf
         Next
     Next

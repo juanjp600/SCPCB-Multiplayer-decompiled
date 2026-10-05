@@ -3,7 +3,7 @@ Function multiplayer_update%()
         sendstatisticrequest($10)
         online_update = (millisecs() + $EA60)
     EndIf
-    steam_update()
+    steamupdate()
     discord_api_update()
     multiplayer_list_serverlistudpmsgs()
     multiplayer_updateconnection()

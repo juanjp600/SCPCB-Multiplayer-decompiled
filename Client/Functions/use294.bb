@@ -15,22 +15,19 @@ Function use294%()
     Local local17%
     Local local18.items
     Local local19.events
-    showpointer()
-    local0 = (Float ((graphicwidth Sar $01) - (imagewidth(panel294) Sar $01)))
-    local1 = (Float ((graphicheight Sar $01) - (imageheight(panel294) Sar $01)))
+    local0 = (Float (viewport_center_x - (imagewidth(panel294) Shr $01)))
+    local1 = (Float (viewport_center_y - (imageheight(panel294) Shr $01)))
     drawimage(panel294, (Int local0), (Int local1), $00)
-    If (fullscreen <> 0) Then
-        drawimage(cursorimg, scaledmousex(), scaledmousey(), $00)
-    EndIf
+    ui_showpointer()
     local5 = $01
-    If (playerroom\Field9 <> $00) Then
+    If (playerroom\Field10 <> $00) Then
         local5 = $00
     EndIf
-    aatext((Int (local0 + 907.0)), (Int (local1 + 185.0)), input294, $01, $01, 1.0)
+    text((Int (local0 + 907.0)), (Int (local1 + 185.0)), input294, $01, $01)
     If (local5 <> 0) Then
         If (mousehit1 <> 0) Then
-            local2 = (Int floor(((((Float scaledmousex()) - local0) - 228.0) / 35.5)))
-            local3 = (Int floor(((((Float scaledmousey()) - local1) - 342.0) / 36.5)))
+            local2 = (Int floor(((((Float scaledmousex()) - local0) - 228.0) * 0.028169)))
+            local3 = (Int floor(((((Float scaledmousey()) - local1) - 342.0) * (1.0 / 36.5))))
             If (((local3 >= $00) And (local3 < $05)) <> 0) Then
                 If (((local2 >= $00) And (local2 < $0A)) <> 0) Then
                     playsound_strict(buttonsfx)
@@ -128,17 +125,17 @@ Function use294%()
                 If (local10 > $00) Then
                     local4 = getinistring2("DATA\SCP-294.ini", local10, "dispensesound", "")
                     If (local4 = "") Then
-                        playerroom\Field9 = playsound_strict(loadtempsound("SFX\SCP\294\dispense1.ogg"))
+                        playerroom\Field10 = playsound_strict(loadtempsound("SFX\SCP\294\dispense1.ogg"))
                         multiplayer_writetempsound("SFX\SCP\294\dispense1.ogg", 0.0, 0.0, 0.0, 10.0, 1.0)
                     Else
-                        playerroom\Field9 = playsound_strict(loadtempsound(local4))
+                        playerroom\Field10 = playsound_strict(loadtempsound(local4))
                         multiplayer_writetempsound(local4, 0.0, 0.0, 0.0, 10.0, 1.0)
                     EndIf
                     If (getiniint2("DATA\SCP-294.ini", local10, "explosion", "") = $01) Then
                         explosiontimer = 135.0
                         If (udp_getstream() <> 0) Then
                             udp_writebyte($07)
-                            udp_writebyte(networkserver\Field28)
+                            udp_writebyte(networkserver\Field20)
                             udp_writeint((Int explosiontimer))
                             udp_sendmessage($00)
                         EndIf
@@ -157,10 +154,10 @@ Function use294%()
                     EndIf
                     local18 = createitem("Cup", "cup", entityx(playerroom\Field25[$01], $01), entityy(playerroom\Field25[$01], $01), entityz(playerroom\Field25[$01], $01), local13, local14, local15, local16, $00, $01)
                     local18\Field0 = ("Cup of " + input294)
-                    entitytype(local18\Field1, $03, $00)
+                    entitytype(local18\Field2, $03, $00)
                 Else
                     input294 = "OUT OF RANGE"
-                    playerroom\Field9 = playsound_strict(loadtempsound("SFX\SCP\294\outofrange.ogg"))
+                    playerroom\Field10 = playsound_strict(loadtempsound("SFX\SCP\294\outofrange.ogg"))
                     multiplayer_writetempsound("SFX\SCP\294\outofrange.ogg", 0.0, 0.0, 0.0, 10.0, 1.0)
                 EndIf
             EndIf
@@ -175,7 +172,7 @@ Function use294%()
         If (input294 <> "OUT OF RANGE") Then
             input294 = "DISPENSING..."
         EndIf
-        If (channelplaying(playerroom\Field9) = $00) Then
+        If (channelplaying(playerroom\Field10) = $00) Then
             If (input294 <> "OUT OF RANGE") Then
                 hidepointer()
                 using294 = $00
@@ -188,7 +185,7 @@ Function use294%()
                 Next
             EndIf
             input294 = ""
-            playerroom\Field9 = $00
+            playerroom\Field10 = $00
         EndIf
     EndIf
     Return $00

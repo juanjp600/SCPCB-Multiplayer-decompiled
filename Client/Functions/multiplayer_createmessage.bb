@@ -1,5 +1,6 @@
 Function multiplayer_createmessage.chatmessage(arg0$, arg1%)
     Local local0.chatmessage
+    Local local1.chatmessage
     If (arg1 >= $00) Then
         For local0 = Each chatmessage
             If (local0\Field3 = arg1) Then
@@ -15,6 +16,14 @@ Function multiplayer_createmessage.chatmessage(arg0$, arg1%)
     local0\Field3 = arg1
     If (local0\Field0 <> getformattedtext(local0\Field0)) Then
         local0\Field4 = $01
+    EndIf
+    chatmsgcount = (chatmsgcount + $01)
+    If (chatmsgcount > $12C) Then
+        local1 = (Last chatmessage)
+        If (local1 <> Null) Then
+            Delete local1
+            chatmsgcount = (chatmsgcount - $01)
+        EndIf
     EndIf
     Return local0
     Return Null

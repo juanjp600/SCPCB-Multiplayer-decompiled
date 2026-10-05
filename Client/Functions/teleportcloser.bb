@@ -13,8 +13,8 @@ Function teleportcloser%(arg0.npcs)
             If (((10.0 > local3) And (1.0 < local3)) <> 0) Then
                 local4 = (Abs (entityz(local2\Field0, $01) - entityz(arg0\Field4, $01)))
                 If (((10.0 > local4) And (1.0 < local4)) <> 0) Then
-                    If ((Float ($10 - (selecteddifficulty\Field3 Shl $03))) < entitydistance(arg0\Field73, local2\Field0)) Then
-                        local5 = entitydistance(arg0\Field73, local2\Field0)
+                    If ((Float ($10 - (selecteddifficulty\Field3 Shl $03))) < entitydistance(arg0\Field75, local2\Field0)) Then
+                        local5 = entitydistance(arg0\Field75, local2\Field0)
                         If (((local0 > local5) Or (local1 = Null)) <> 0) Then
                             local0 = local5
                             local1 = local2
@@ -26,7 +26,7 @@ Function teleportcloser%(arg0.npcs)
     Next
     local6 = $00
     If (local1 <> Null) Then
-        If (((arg0\Field58 <> $01) Or selecteddifficulty\Field3) <> 0) Then
+        If (((arg0\Field60 <> $01) Or selecteddifficulty\Field3) <> 0) Then
             local6 = $01
         ElseIf (((7.0 >= entityy(local1\Field0, $01)) And (-10.0 <= entityy(local1\Field0, $01))) <> 0) Then
             local6 = $01

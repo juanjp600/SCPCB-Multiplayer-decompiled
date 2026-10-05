@@ -3,9 +3,9 @@ Function multiplayer_writemiscellaneous%(arg0%)
     If (mainmenuopen <> 0) Then
         Return $00
     EndIf
-    For local0 = $02 To networkserver\Field14 Step $01
+    For local0 = $02 To networkserver\Field52\Field14 Step $01
         If (player[local0] <> Null) Then
-            If (player[local0]\Field43 <> 0) Then
+            If (player[local0]\Field41 <> 0) Then
                 udp_writebyte($68)
                 udp_writebyte($01)
                 udp_writebyte(arg0)

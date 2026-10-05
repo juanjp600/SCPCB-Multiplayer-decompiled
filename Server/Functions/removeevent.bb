@@ -11,7 +11,6 @@ Function removeevent%(arg0.events)
     If (arg0\Field12 <> $00) Then
         freeimage(arg0\Field12)
     EndIf
-    debuglog(("Removed " + arg0\Field0))
     Delete arg0
     Return $00
 End Function

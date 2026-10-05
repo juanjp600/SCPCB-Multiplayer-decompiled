@@ -11,7 +11,7 @@ Function createsecuritycam.securitycams(arg0#, arg1#, arg2#, arg3.rooms, arg4%)
     If (arg4 <> 0) Then
         local0\Field22 = $01
         local0\Field18 = 12.0
-        local1 = ((roomscale * 4.5) * 0.4)
+        local1 = (1.0 / 142.2222)
         local0\Field4 = createsprite($00)
         entityfx(local0\Field4, $11)
         spriteviewmode(local0\Field4, $02)

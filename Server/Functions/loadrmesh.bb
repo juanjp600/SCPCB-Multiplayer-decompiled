@@ -52,16 +52,16 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
     Local local51.props
     Local local52%
     local0 = createtexture($04, $04, $01, $01)
-    clscolor($FF, $FF, $FF)
+    clscolor($FF, $FF, $FF, $FF)
     setbuffer(texturebuffer(local0, $00))
     cls()
     setbuffer(backbuffer())
     local1 = createtexture($04, $04, $01, $01)
-    clscolor($FF, $FF, $FF)
+    clscolor($FF, $FF, $FF, $FF)
     setbuffer(texturebuffer(local1, $00))
     cls()
     setbuffer(backbuffer())
-    clscolor($00, $00, $00)
+    clscolor($00, $00, $00, $FF)
     local2 = readfile(arg0)
     local19 = createpivot($00)
     local20 = $00
@@ -102,9 +102,9 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
                 If (local28[local4] = $00) Then
                     local33 = $01
                     If (local33 <> (local11 < $03)) Then
-                        local28[local4] = loadtexture_strict((arg0 + local17), $03)
+                        local28[local4] = loadtexture_strict((arg0 + local17), $03, $00)
                     Else
-                        local28[local4] = loadtexture_strict((arg0 + local17), $01)
+                        local28[local4] = loadtexture_strict((arg0 + local17), $01, $00)
                     EndIf
                     If (local28[local4] <> $00) Then
                         addtexturetocache(local28[local4])
@@ -197,7 +197,6 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
         Next
     Next
     If (local20 <> 0) Then
-        debuglog("TriggerBoxEnable")
         arg1\Field14 = readint(local2)
         For local36 = $00 To (arg1\Field14 - $01) Step $01
             arg1\Field15[local36] = createmesh(arg1\Field0)
@@ -228,9 +227,9 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
         local17 = readstring(local2)
         Select local17
             Case "screen"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
+                local14 = (readfloat(local2) * (1.0 / 256.0))
+                local15 = (readfloat(local2) * (1.0 / 256.0))
+                local16 = (readfloat(local2) * (1.0 / 256.0))
                 local18 = readstring(local2)
                 If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
                     local38 = (New tempscreens)
@@ -241,18 +240,18 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
                     local38\Field4 = arg1
                 EndIf
             Case "waypoint"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
+                local14 = (readfloat(local2) * (1.0 / 256.0))
+                local15 = (readfloat(local2) * (1.0 / 256.0))
+                local16 = (readfloat(local2) * (1.0 / 256.0))
                 local39 = (New tempwaypoints)
                 local39\Field3 = arg1
                 local39\Field0 = local14
                 local39\Field1 = local15
                 local39\Field2 = local16
             Case "light"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
+                local14 = (readfloat(local2) * (1.0 / 256.0))
+                local15 = (readfloat(local2) * (1.0 / 256.0))
+                local16 = (readfloat(local2) * (1.0 / 256.0))
                 If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
                     local40 = (readfloat(local2) / 2000.0)
                     local41 = readstring(local2)
@@ -267,9 +266,9 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
                     readfloat(local2)
                 EndIf
             Case "spotlight"
-                local14 = (readfloat(local2) * roomscale)
-                local15 = (readfloat(local2) * roomscale)
-                local16 = (readfloat(local2) * roomscale)
+                local14 = (readfloat(local2) * (1.0 / 256.0))
+                local15 = (readfloat(local2) * (1.0 / 256.0))
+                local16 = (readfloat(local2) * (1.0 / 256.0))
                 If ((((0.0 <> local14) Or (0.0 <> local15)) Or (0.0 <> local16)) <> 0) Then
                     local40 = (readfloat(local2) / 2000.0)
                     local41 = readstring(local2)
@@ -297,9 +296,9 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
                 local11 = $00
                 For local4 = $00 To $07 Step $01
                     If (arg1\Field4[local4] = $00) Then
-                        arg1\Field5[local4] = (readfloat(local2) * roomscale)
-                        arg1\Field6[local4] = (readfloat(local2) * roomscale)
-                        arg1\Field7[local4] = (readfloat(local2) * roomscale)
+                        arg1\Field5[local4] = (readfloat(local2) * (1.0 / 256.0))
+                        arg1\Field6[local4] = (readfloat(local2) * (1.0 / 256.0))
+                        arg1\Field7[local4] = (readfloat(local2) * (1.0 / 256.0))
                         arg1\Field4[local4] = readint(local2)
                         arg1\Field8[local4] = readfloat(local2)
                         local11 = $01
@@ -340,11 +339,9 @@ Function loadrmesh%(arg0$, arg1.roomtemplates)
                     local51\Field7 = readfloat(local2)
                     local51\Field11 = arg1
                 Else
-                    debuglog("file = 0")
                     local14 = readfloat(local2)
                     local15 = readfloat(local2)
                     local16 = readfloat(local2)
-                    debuglog((((((Str local14) + ", ") + (Str local15)) + ", ") + (Str local16)))
                 EndIf
         End Select
     Next

@@ -32,8 +32,8 @@ Function updateending%(arg0.events)
             arg0\Field1\Field30[$01]\Field10 = 10.0
             local1 = createpivot($00)
             positionentity(local1, entityx(arg0\Field1\Field25[$00], $01), entityy(arg0\Field1\Field25[$00], $01), entityz(arg0\Field1\Field25[$00], $01), $00)
-            arg0\Field1\Field25[$17] = loadmesh_strict("GFX\map\exit1terrain.b3d", arg0\Field1\Field2)
-            scaleentity(arg0\Field1\Field25[$17], roomscale, roomscale, roomscale, $01)
+            arg0\Field1\Field25[$17] = loadmesh_strict("GFX\map\exit1terrain.b3d", arg0\Field1\Field2, $00)
+            scaleentity(arg0\Field1\Field25[$17], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $01)
             rotateentity(arg0\Field1\Field25[$17], 0.0, (Float arg0\Field1\Field6), 0.0, $01)
             positionentity(arg0\Field1\Field25[$17], entityx(local1, $00), entityy(local1, $00), entityz(local1, $00), $01)
             freeentity(local1)
@@ -46,13 +46,13 @@ Function updateending%(arg0.events)
                     EndIf
                 Else
                     arg0\Field3 = ((arg0\Field3 + fpsfactor) Mod 3600.0)
-                    positionentity(arg0\Field1\Field30[$00]\Field4, (entityx(arg0\Field1\Field2, $01) + ((cos((arg0\Field3 / 10.0)) * 6000.0) * roomscale)), (14000.0 * roomscale), (entityz(arg0\Field1\Field2, $01) + ((sin((arg0\Field3 / 10.0)) * 6000.0) * roomscale)), $00)
+                    positionentity(arg0\Field1\Field30[$00]\Field4, (entityx(arg0\Field1\Field2, $01) + ((cos((arg0\Field3 / 10.0)) * 6000.0) * (1.0 / 256.0))), 54.6875, (entityz(arg0\Field1\Field2, $01) + ((sin((arg0\Field3 / 10.0)) * 6000.0) * (1.0 / 256.0))), $00)
                     rotateentity(arg0\Field1\Field30[$00]\Field4, 7.0, (arg0\Field3 / 10.0), 20.0, $00)
                     If (playerroom = arg0\Field1) Then
                         local2 = $05
                     EndIf
                 EndIf
-                If ((320.0 * roomscale) > entitydistance(arg0\Field13, arg0\Field1\Field25[$0A])) Then
+                If (1.25 > entitydistance(arg0\Field13, arg0\Field1\Field25[$0A])) Then
                     arg0\Field2 = 2.0
                     arg0\Field1\Field29[$02]\Field5 = $00
                     arg0\Field1\Field29[$02]\Field4 = $06
@@ -160,7 +160,6 @@ Function updateending%(arg0.events)
                                 local7\Field35 = entityz(arg0\Field13, $00)
                             EndIf
                         Next
-                        debuglog("MTF Units spawned!")
                         arg0\Field2 = 5950.0
                         selectedending = "B3"
                     EndIf
@@ -250,10 +249,10 @@ Function updateending%(arg0.events)
             EndIf
             If (1855.0 < arg0\Field2) Then
                 If (arg0\Field1\Field25[$0C] = $00) Then
-                    arg0\Field1\Field25[$0C] = loadmesh_strict("GFX\NPCs\682arm.b3d", $00)
+                    arg0\Field1\Field25[$0C] = loadmesh_strict("GFX\NPCs\682arm.b3d", $00, $00)
                     scaleentity(arg0\Field1\Field25[$0C], 0.15, 0.15, 0.15, $00)
-                    local5 = (Int ((min((((entitydistance(arg0\Field1\Field30[$03]\Field4, arg0\Field13) / roomscale) - 3000.0) / 4.0), 1000.0) + 12192.0) * roomscale))
-                    positionentity(arg0\Field1\Field25[$0C], entityx(arg0\Field1\Field30[$03]\Field4, $00), (12192.0 * roomscale), entityz(arg0\Field1\Field30[$03]\Field4, $00), $00)
+                    local5 = (Int ((min((((entitydistance(arg0\Field1\Field30[$03]\Field4, arg0\Field13) / (1.0 / 256.0)) - 3000.0) / 4.0), 1000.0) + 12192.0) * (1.0 / 256.0)))
+                    positionentity(arg0\Field1\Field25[$0C], entityx(arg0\Field1\Field30[$03]\Field4, $00), 47.625, entityz(arg0\Field1\Field30[$03]\Field4, $00), $00)
                     rotateentity(arg0\Field1\Field25[$0C], 0.0, ((Float arg0\Field1\Field6) + rnd(-10.0, 10.0)), 0.0, $01)
                     turnentity(arg0\Field1\Field25[$0C], 0.0, 0.0, 180.0, $00)
                 ElseIf (340.0 > wrapangle(entityroll(arg0\Field1\Field25[$0C], $00))) Then
@@ -315,9 +314,9 @@ Function updateending%(arg0.events)
         arg0\Field24 = $00
         showentity(arg0\Field1\Field2)
         If (arg0\Field1\Field25[$00] = $00) Then
-            arg0\Field1\Field25[$00] = loadmesh_strict("GFX\MAP\gateatunnel.b3d", $00)
+            arg0\Field1\Field25[$00] = loadmesh_strict("GFX\MAP\gateatunnel.b3d", $00, $00)
             positionentity(arg0\Field1\Field25[$00], entityx(arg0\Field1\Field2, $01), entityy(arg0\Field1\Field2, $01), entityz(arg0\Field1\Field2, $01), $00)
-            scaleentity(arg0\Field1\Field25[$00], roomscale, roomscale, roomscale, $00)
+            scaleentity(arg0\Field1\Field25[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
             entitytype(arg0\Field1\Field25[$00], $01, $00)
             entitypickmode(arg0\Field1\Field25[$00], $02, $01)
             entityparent(arg0\Field1\Field25[$00], arg0\Field1\Field2, $01)
@@ -350,14 +349,14 @@ Function updateending%(arg0.events)
             local13 = entityx(arg0\Field1\Field25[$09], $01)
             local14 = entityz(arg0\Field1\Field25[$09], $01)
             freeentity(arg0\Field1\Field25[$09])
-            arg0\Field1\Field25[$09] = loadmesh_strict("GFX\map\lightgunbase.b3d", $00)
-            scaleentity(arg0\Field1\Field25[$09], roomscale, roomscale, roomscale, $00)
+            arg0\Field1\Field25[$09] = loadmesh_strict("GFX\map\lightgunbase.b3d", $00, $00)
+            scaleentity(arg0\Field1\Field25[$09], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
             entityfx(arg0\Field1\Field25[$09], $00)
-            positionentity(arg0\Field1\Field25[$09], local13, (arg0\Field1\Field4 + (992.0 * roomscale)), local14, $00)
-            arg0\Field1\Field25[$0A] = loadmesh_strict("GFX\map\lightgun.b3d", $00)
+            positionentity(arg0\Field1\Field25[$09], local13, (arg0\Field1\Field4 + 3.875), local14, $00)
+            arg0\Field1\Field25[$0A] = loadmesh_strict("GFX\map\lightgun.b3d", $00, $00)
             entityfx(arg0\Field1\Field25[$0A], $00)
-            scaleentity(arg0\Field1\Field25[$0A], roomscale, roomscale, roomscale, $00)
-            positionentity(arg0\Field1\Field25[$0A], local13, (arg0\Field1\Field4 + (1280.0 * roomscale)), (local14 - (176.0 * roomscale)), $01)
+            scaleentity(arg0\Field1\Field25[$0A], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            positionentity(arg0\Field1\Field25[$0A], local13, (arg0\Field1\Field4 + 5.0), (local14 - 0.6875), $01)
             entityparent(arg0\Field1\Field25[$0A], arg0\Field1\Field25[$09], $01)
             rotateentity(arg0\Field1\Field25[$09], 0.0, 48.0, 0.0, $00)
             rotateentity(arg0\Field1\Field25[$0A], 40.0, 0.0, 0.0, $00)
@@ -380,7 +379,7 @@ Function updateending%(arg0.events)
             For local0 = $02 To $04 Step $01
                 If (arg0\Field1\Field30[local0] <> Null) Then
                     If (2.0 > arg0\Field1\Field30[local0]\Field9) Then
-                        positionentity(arg0\Field1\Field30[local0]\Field4, (entityx(arg0\Field1\Field25[$03], $01) + ((cos(((arg0\Field2 / 10.0) + (Float ($78 * local0)))) * 6000.0) * roomscale)), (arg0\Field1\Field4 + 11.0), (entityz(arg0\Field1\Field25[$03], $01) + ((sin(((arg0\Field2 / 10.0) + (Float ($78 * local0)))) * 6000.0) * roomscale)), $00)
+                        positionentity(arg0\Field1\Field30[local0]\Field4, (entityx(arg0\Field1\Field25[$03], $01) + ((cos(((arg0\Field2 / 10.0) + (Float ($78 * local0)))) * 6000.0) * (1.0 / 256.0))), (arg0\Field1\Field4 + 11.0), (entityz(arg0\Field1\Field25[$03], $01) + ((sin(((arg0\Field2 / 10.0) + (Float ($78 * local0)))) * 6000.0) * (1.0 / 256.0))), $00)
                         rotateentity(arg0\Field1\Field30[local0]\Field4, 7.0, ((arg0\Field2 / 10.0) + (Float ($78 * local0))), 20.0, $00)
                     EndIf
                 EndIf
@@ -502,7 +501,7 @@ Function updateending%(arg0.events)
                                             entityparent(local12\Field1, curr106\Field4, $01)
                                             local12 = createparticle(entityx(arg0\Field1\Field25[$0A], $01), entityy(arg0\Field1\Field25[$0A], $01), entityz(arg0\Field1\Field25[$0A], $01), $04, 2.0, 0.0, $1D5)
                                             rotateentity(local12\Field1, entitypitch(arg0\Field1\Field25[$0A], $01), entityyaw(arg0\Field1\Field25[$0A], $01), 0.0, $01)
-                                            moveentity(local12\Field1, 0.0, (92.0 * roomscale), (512.0 * roomscale))
+                                            moveentity(local12\Field1, 0.0, 0.359375, 2.0)
                                             local12\Field9 = 0.0
                                             local12\Field6 = 1.0
                                             entityparent(local12\Field1, arg0\Field1\Field25[$0A], $01)
@@ -557,17 +556,17 @@ Function updateending%(arg0.events)
                         Next
                         If (1.0 > (Abs (entityy(arg0\Field13, $00) - entityy(arg0\Field1\Field25[$0B], $01)))) Then
                             If (7.0 > distance(entityx(arg0\Field13, $00), entityz(arg0\Field13, $00), entityx(arg0\Field1\Field25[$0B], $01), entityz(arg0\Field1\Field25[$0B], $01))) Then
-                                arg0\Field1\Field25[$0C] = loadmesh_strict("GFX\npcs\s2.b3d", $00)
+                                arg0\Field1\Field25[$0C] = loadmesh_strict("GFX\npcs\s2.b3d", $00, $00)
                                 entitycolor(arg0\Field1\Field25[$0C], 0.0, 0.0, 0.0)
                                 scalemesh(arg0\Field1\Field25[$0C], (1.0 / 66.5625), (1.0 / 66.5625), (1.0 / 66.5625))
                                 positionentity(arg0\Field1\Field25[$0C], entityx(arg0\Field1\Field25[$0B], $01), entityy(arg0\Field1\Field25[$0B], $01), entityz(arg0\Field1\Field25[$0B], $01), $00)
                                 arg0\Field1\Field25[$11] = copyentity(arg0\Field1\Field25[$0C], $00)
-                                positionentity(arg0\Field1\Field25[$11], (entityx(arg0\Field1\Field2, $01) - (3968.0 * roomscale)), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - (1920.0 * roomscale)), $00)
+                                positionentity(arg0\Field1\Field25[$11], (entityx(arg0\Field1\Field2, $01) - 15.5), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - 7.5), $00)
                                 local17 = copyentity(arg0\Field1\Field25[$0C], $00)
-                                positionentity(local17, (entityx(arg0\Field1\Field2, $01) - (4160.0 * roomscale)), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - (1920.0 * roomscale)), $00)
+                                positionentity(local17, (entityx(arg0\Field1\Field2, $01) - 16.25), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - 7.5), $00)
                                 entityparent(local17, arg0\Field1\Field25[$11], $01)
                                 local17 = copyentity(arg0\Field1\Field25[$0C], $00)
-                                positionentity(local17, (entityx(arg0\Field1\Field2, $01) - (4064.0 * roomscale)), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - (2112.0 * roomscale)), $00)
+                                positionentity(local17, (entityx(arg0\Field1\Field2, $01) - 15.875), entityy(arg0\Field1\Field25[$0B], $01), (entityz(arg0\Field1\Field2, $01) - 8.25), $00)
                                 entityparent(local17, arg0\Field1\Field25[$11], $01)
                                 arg0\Field5 = playsound2(loadtempsound("SFX\Ending\GateA\Bell1.ogg"), camera, arg0\Field1\Field25[$0C], 10.0, 1.0)
                                 local12 = createparticle(entityx(arg0\Field1\Field25[$0B], $01), entityy(camera, $01), entityz(arg0\Field1\Field25[$0B], $01), $04, 8.0, 0.0, $32)

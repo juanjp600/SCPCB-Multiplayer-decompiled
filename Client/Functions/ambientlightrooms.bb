@@ -10,9 +10,9 @@ Function ambientlightrooms%(arg0%)
     ambientlightroomval = arg0
     local4 = backbuffer()
     setbuffer(texturebuffer(ambientlightroomtex, $00))
-    clscolor(arg0, arg0, arg0)
+    clscolor(arg0, arg0, arg0, $FF)
     cls()
-    clscolor($00, $00, $00)
+    clscolor($00, $00, $00, $FF)
     setbuffer(local4)
     Return $00
 End Function

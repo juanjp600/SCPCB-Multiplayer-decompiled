@@ -1,5 +1,7 @@
 Function render2d%()
-    updateblur(blurvolume)
+    If (0.0 < blurvolume) Then
+        updateblur(blurvolume)
+    EndIf
     multiplayer_updategui($01)
     drawgui()
     updateconsole()

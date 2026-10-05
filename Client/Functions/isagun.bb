@@ -16,7 +16,7 @@ Function isagun%(arg0$)
             Return $06
         Case "deagle"
             Return $07
-        Case "spas12"
+        Case "m1014"
             Return $08
         Case "m4a4"
             Return $0A

@@ -35,7 +35,6 @@ Function se_vf_savebin%(arg0$, arg1$)
     Next
     For local1 = Each se_vf_inst
         writebyte(local0, local1\Field0)
-        debuglog((Str local1\Field0))
         If (local1\Field1 <> Null) Then
             writebyte(local0, local1\Field1\Field0)
             Select local1\Field1\Field0

@@ -1,4 +1,7 @@
 Function udp_udpmsgip%()
-    Return udp_network\Field7
+    If (networkserver\Field36 <> 0) Then
+        Return steam_getsenderidupper()
+    EndIf
+    Return udpmsgip(udp_network\Field0)
     Return $00
 End Function

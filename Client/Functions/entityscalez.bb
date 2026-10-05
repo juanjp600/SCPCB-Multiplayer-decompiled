@@ -1,9 +1,15 @@
 Function entityscalez#(arg0%, arg1%)
+    Local local0#
+    Local local1#
+    Local local2#
     If (arg1 <> 0) Then
-        tformvector(0.0, 0.0, 1.0, arg0, $00)
+        local0 = getmatelement(arg0, $02, $00)
+        local1 = getmatelement(arg0, $02, $01)
+        local2 = getmatelement(arg0, $02, $02)
     Else
         tformvector(0.0, 0.0, 1.0, arg0, getparent(arg0))
+        Return sqr((((tformedx() * tformedx()) + (tformedy() * tformedy())) + (tformedz() * tformedz())))
     EndIf
-    Return sqr((((tformedx() * tformedx()) + (tformedy() * tformedy())) + (tformedz() * tformedz())))
+    Return sqr((((local0 * local0) + (local1 * local1)) + (local2 * local2)))
     Return 0.0
 End Function

@@ -78,7 +78,6 @@ Function se_loadscriptexec.se_script(arg0$)
         If (se_vf_a_inst(local6)\Field3 <> Null) Then
             local17 = (local17 + (Str se_vf_a_inst(local6)\Field3\Field0))
         EndIf
-        debuglog(local17)
     Next
     local1\Field4 = local1\Field2
     local1\Field9 = readline(local0)

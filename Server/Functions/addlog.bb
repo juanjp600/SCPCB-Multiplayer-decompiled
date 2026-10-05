@@ -1,14 +1,14 @@
-Function addlog%(arg0$, arg1%, arg2%, arg3%)
+Function addlog%(arg0$, arg1%, arg2%, arg3%, arg4%, arg5%, arg6%)
     Local local0%
     Local local1%
     If (arg2 <> 0) Then
         addtexttochat(arg0, arg1)
     EndIf
     local0 = (Int currentdate())
-    If (((arg3 = $00) And (server\Field68 = $00)) <> 0) Then
+    If (((arg3 = $00) And (server\Field66 = $00)) <> 0) Then
         arg0 = ((("[" + currenttime()) + "] ") + arg0)
     EndIf
-    consolelog(arg0, $07)
+    console_write(arg0, arg4, arg5, arg6)
     If (server\Field50 = $00) Then
         If (filetype("serverlogs\") <> $01) Then
             createdir("serverlogs\")

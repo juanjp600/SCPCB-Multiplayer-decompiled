@@ -12,11 +12,11 @@ Function replacedatafile%(arg0%, arg1$, arg2%)
     EndIf
     Select arg0
         Case $01
-            Restore DATA_00000000
+            Restore DATA_00000078
         Case $02
-            Restore DATA_000001D0
+            Restore DATA_00000248
         Case $03
-            Restore DATA_00001948
+            Restore DATA_000019D0
         Default
             Return $00
     End Select

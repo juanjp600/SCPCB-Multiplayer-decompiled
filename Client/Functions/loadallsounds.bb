@@ -1,6 +1,5 @@
 Function loadallsounds%()
     Local local0%
-    Local local1%
     For local0 = $00 To $02 Step $01
         opendoorsfx($00, local0) = loadsound_strict((("SFX\Door\DoorOpen" + (Str (local0 + $01))) + ".ogg"))
         closedoorsfx($00, local0) = loadsound_strict((("SFX\Door\DoorClose" + (Str (local0 + $01))) + ".ogg"))
@@ -14,7 +13,7 @@ Function loadallsounds%()
         closedoorsfx($01, local0) = loadsound_strict((("SFX\Door\BigDoorClose" + (Str (local0 + $01))) + ".ogg"))
     Next
     buttonsfx = loadsound_strict("SFX\Interact\Button.ogg")
-    local1 = loadsound_strict("SFX\General\Eating.mp3")
+    roll066sfx = loadsound_strict("SFX\SCP\066\Rolling.ogg")
     keycardsfx1 = loadsound_strict("SFX\Interact\KeyCardUse1.ogg")
     keycardsfx2 = loadsound_strict("SFX\Interact\KeyCardUse2.ogg")
     buttonsfx2 = loadsound_strict("SFX\Interact\Button2.ogg")
@@ -133,6 +132,8 @@ Function loadallsounds%()
     dooropen079sfx = loadsound_strict("SFX\Door\DoorOpen079.ogg")
     doorclose079sfx = loadsound_strict("SFX\Door\DoorClose079.ogg")
     triggered096sfx = loadsound_strict("SFX\SCP\096\Triggered.ogg")
+    angered096sfx = loadsound_strict("SFX\Music\096Angered.ogg")
+    chase106sfx = loadsound_strict("SFX\Music\106.ogg")
     hisssfx = loadsound_strict("SFX\General\Hiss.ogg")
     Return $00
 End Function

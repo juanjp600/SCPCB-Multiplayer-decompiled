@@ -4,11 +4,11 @@ Type roomtemplates
     Field Field2$
     Field Field3$
     Field Field4%[5]
-    Field Field5%[8]
-    Field Field6#[8]
-    Field Field7#[8]
-    Field Field8#[8]
-    Field Field9#[8]
+    Field Field5%[16]
+    Field Field6#[16]
+    Field Field7#[16]
+    Field Field8#[16]
+    Field Field9#[16]
     Field Field10%
     Field Field11$
     Field Field12%

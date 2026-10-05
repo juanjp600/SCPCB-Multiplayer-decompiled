@@ -1,5 +1,4 @@
-﻿
-*Multiplayer
+﻿*Multiplayer
 		ItsXandromeda - ("Xandro")
 		Dmitriy - ("Ne4to")
 		Mikhaylo - ("Mixarar")
@@ -9,8 +8,11 @@
 		Egor - ("Chumnaya Karkusa") UwU
 		Dylan/Jennifer - ("squeakycube ") UwU
 		Senhor
+		DeSinc
 		Mleczyk76
 		Aesthetical
+		MaxStar5
+		Chris - ("krimbopple")
 		Andy's Toy
 		Kade
 		Wendy's
@@ -24,6 +26,7 @@
 		Luggs123
 		Ryan Stillings ("Risingstar64")
 		Sam Lynch ("InnocentSam")
+		DeSinc ("v1")
 		Shaun Gaylard ("ENDSHN")
 
 
@@ -50,7 +53,9 @@
 		Shaun Gaylard ("ENDSHN")
 		Tom Malinowski
 		Vladislav Borisevich ("Vane Brain")
-
+		DeSinc ("v1")
+		AdrianTheFox ("akaAdrianTheFox")
+		Urxin ("UrxinTheSecond")
 
 *Sound Effects and Music
 
@@ -96,7 +101,7 @@
 		Shadowscale48
 		Shaun Gaylard ("ENDSHN")
 		Vladislav Borisevich ("Vane Brain")
-
+		DeSinc( "v1")
 
 *Writers
 
@@ -122,7 +127,8 @@
 
 
 *Others
-
+		
+		SCP-Yeet
 		Agent G
 		Gage Allen ("Lotims")
 		Haversine
@@ -183,6 +189,9 @@ by "Quikngruvn"
 
 		SCP-427 is based on "SCP-427 - Lovecraftian Locket"
 by "Dr Ouros"
+
+		SCP-457 is based on "SCP-457 - The Burning Man"
+by "yellowdrakex"
 
 		SCP-500 is based on "SCP-500 - Panacea"
 by "far2"

@@ -1,4 +1,21 @@
 .DATA_00000000
+Data "Data"
+Data "GFX"
+Data "LoadingScreens"
+Data "Map Creator"
+Data "multiplayer"
+Data "Saves"
+Data "screens"
+Data "SFX"
+Data "SteamWorkshopUploader"
+Data "Workshop"
+Data "Data\SCPvm_Animations"
+Data "Workshop\backups"
+Data "Workshop\languages"
+Data "Data\Weapon_Animations"
+Data $F0F0F0
+
+.DATA_00000078
 Data $39
 Data "[general]"
 Data "count = 4"
@@ -58,7 +75,7 @@ Data "obj0-x = 1"
 Data "obj0-z = -2"
 Data "obj0-yaw = RANDOM"
 
-.DATA_000001D0
+.DATA_00000248
 Data $2EE
 Data ";=== STYLE ABBREVIATIONS ==="
 Data ";LCZ - Light Containment Zone"
@@ -304,6 +321,7 @@ Data "descr=A two-door contamination airlock."
 Data "mesh path=GFX\map\room2gw_opt.rmesh"
 Data "shape=2"
 Data "commonness = 10"
+Data "disabledecals = true"
 Data "zone1=1"
 Data ""
 Data "[room2gw_b]"
@@ -311,6 +329,7 @@ Data "descr=Broken varient of the two-door contamination airlock."
 Data "mesh path=GFX\map\room2gw_b_opt.rmesh"
 Data "shape=2"
 Data "commonness = 0"
+Data "disabledecals = true"
 Data "zone1=1"
 Data ""
 Data "[room1162]"
@@ -811,7 +830,7 @@ Data "shape=1"
 Data "commonness = 0"
 Data "disabledecals = true"
 
-.DATA_00001948
+.DATA_000019D0
 Data $2F
 Data "[SCP-173]"
 Data "speed = 38.0"
@@ -860,15 +879,9 @@ Data ""
 Data "[SCP-1499-1]"
 Data "speed = 1.5"
 Data "scale = 0.08"
-Data "amogussdfsdfsdfsfdsdf"
-Data "sus"
-Data "amogus"
-Data "sus135315131513531513"
-Data "amogus4242"
-Data "sus33"
 
-.DATA_00001AF8
-Data "_back"
+.DATA_00001B50
+Data "sky_back"
 Data $FFFFFFFF
 Data $01
 Data $FFFFFFFF
@@ -889,7 +902,7 @@ Data $FFFFFFFF
 Data $FFFFFFFF
 Data $00
 Data $01
-Data "_left"
+Data "sky_left"
 Data $01
 Data $01
 Data $FFFFFFFF
@@ -910,7 +923,7 @@ Data $FFFFFFFF
 Data $FFFFFFFF
 Data $00
 Data $01
-Data "_front"
+Data "sky_front"
 Data $01
 Data $01
 Data $01
@@ -931,7 +944,7 @@ Data $FFFFFFFF
 Data $01
 Data $00
 Data $01
-Data "_right"
+Data "sky_right"
 Data $FFFFFFFF
 Data $01
 Data $01
@@ -952,7 +965,7 @@ Data $FFFFFFFF
 Data $01
 Data $00
 Data $01
-Data "_up"
+Data "sky_up"
 Data $FFFFFFFF
 Data $01
 Data $01
@@ -973,7 +986,7 @@ Data $01
 Data $FFFFFFFF
 Data $00
 Data $01
-Data "_down"
+Data "sky_down"
 Data $FFFFFFFF
 Data $FFFFFFFF
 Data $FFFFFFFF
@@ -994,3 +1007,8 @@ Data $FFFFFFFF
 Data $01
 Data $00
 Data $00
+
+.DATA_00001F40
+Data "startup_FCS"
+Data "startup_TSS"
+Data "startup_Undertow"

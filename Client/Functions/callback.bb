@@ -2,7 +2,7 @@ Function callback%()
     Local local0.scriptsthread
     Local local1.workshopthread
     se_return_value\Field0 = $00
-    se_return_value\Field8 = $00
+    se_return_value\Field9 = $00
     For local0 = Each scriptsthread
         public_update_current(local0\Field0, $00)
     Next

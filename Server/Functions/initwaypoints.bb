@@ -121,6 +121,5 @@ Function initwaypoints%(arg0%)
             EndIf
         Next
     Next
-    debuglog(("InitWaypoints() - " + (Str (millisecs2() - local8))))
     Return $00
 End Function

@@ -1,11 +1,12 @@
 Function curvevalue#(arg0#, arg1#, arg2#)
-    If (0.0 = fpsfactor) Then
-        Return arg1
+    Local local0#
+    If (((0.0 >= fpsfactor) Or (0.0 >= arg2)) <> 0) Then
+        Return arg0
     EndIf
-    If (arg1 > arg0) Then
-        Return max((((arg0 - arg1) * ((1.0 / arg2) * fpsfactor)) + arg1), arg0)
-    Else
-        Return min((((arg0 - arg1) * ((1.0 / arg2) * fpsfactor)) + arg1), arg0)
+    local0 = (fpsfactor / arg2)
+    If (1.0 <= local0) Then
+        Return arg0
     EndIf
+    Return (((arg0 - arg1) * local0) + arg1)
     Return 0.0
 End Function

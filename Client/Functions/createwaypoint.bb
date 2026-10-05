@@ -3,7 +3,7 @@ Function createwaypoint.waypoints(arg0#, arg1#, arg2#, arg3.doors, arg4.rooms)
     local0 = (New waypoints)
     local0\Field0 = createpivot($00)
     positionentity(local0\Field0, arg0, arg1, arg2, $00)
-    entityparent(local0\Field0, arg4\Field2, $01)
+    entityparent(local0\Field0, arg4\Field3, $01)
     local0\Field2 = arg4
     local0\Field1 = arg3
     Return local0

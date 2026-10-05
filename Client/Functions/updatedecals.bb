@@ -13,11 +13,13 @@ Function updatedecals%()
                 If (0.0 >= local0\Field9) Then
                     local2 = (Float rand($168, $01))
                     local3 = rnd(local0\Field2, 0.0)
-                    local4 = createdecal($01, (entityx(local0\Field0, $00) + (cos(local2) * local3)), (entityy(local0\Field0, $00) - 0.0005), (entityz(local0\Field0, $00) + (sin(local2) * local3)), entitypitch(local0\Field0, $00), rnd(360.0, 0.0), entityroll(local0\Field0, $00), 1.0, 1.0)
+                    linepick(local0\Field11, (local0\Field12 + 0.02), local0\Field13, 0.0, -10.0, 0.0, 0.0)
+                    local4 = createdecal($01, (((Float fastcos((Int local2))) * local3) + pickedx()), (pickedy() - 0.0005), ((fastsin((Int local2)) * local3) + pickedz()), entitypitch(local0\Field0, $00), rnd(360.0, 0.0), entityroll(local0\Field0, $00), 1.0, 1.0)
+                    aligntovector(local4\Field0, (- pickednx()), (- pickedny()), (- pickednz()), $03, 1.0)
                     local4\Field2 = rnd(0.1, 0.5)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     playsound2(decaysfx(rand($01, $03)), camera, local4\Field0, 10.0, rnd(0.1, 0.5))
-                    local0\Field9 = (Float rand($32, $64))
+                    local0\Field9 = (Float rand($64, $12C))
                 Else
                     local0\Field9 = (local0\Field9 - fpsfactor)
                 EndIf
@@ -34,7 +36,7 @@ Function updatedecals%()
         If (0.0 < local0\Field10) Then
             local0\Field10 = max((local0\Field10 - fpsfactor), 5.0)
         EndIf
-        If (hidedistance < entitydistance(local0\Field0, collider)) Then
+        If ((hidedistance * hidedistance) < entitydistancesquared(local0\Field0, collider)) Then
             hideentity(local0\Field0)
         Else
             showentity(local0\Field0)

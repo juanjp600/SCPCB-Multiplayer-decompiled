@@ -1,4 +1,8 @@
 Function udp_readavail%()
-    Return (udp_network\Field13 - udp_network\Field17)
+    If (networkserver\Field36 <> 0) Then
+        Return steam_readavail()
+    Else
+        Return readavail(udp_network\Field0)
+    EndIf
     Return $00
 End Function

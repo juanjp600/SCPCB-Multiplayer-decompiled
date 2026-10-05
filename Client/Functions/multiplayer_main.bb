@@ -4,7 +4,7 @@ Function multiplayer_main%()
     If (udp_getstream() = $00) Then
         Return $00
     EndIf
-    If (mousehit1 <> 0) Then
+    If ((mousehit1 And (iscoopmode() = $00)) <> 0) Then
         udp_bytestreamwritechar($6A)
         udp_bytestreamwriteshort(mousex())
         udp_bytestreamwriteshort(mousey())
@@ -20,21 +20,24 @@ Function multiplayer_main%()
         EndIf
     EndIf
     If (udp_netout($02) <> 0) Then
-        If (networkserver\Field18 = $00) Then
+        If (networkserver\Field15 = $00) Then
             For local0 = Each players
                 If (local0\Field24 = "") Then
                     udp_bytestreamwritechar($6D)
+                    If (iscoopmode() <> 0) Then
+                        udp_writebyte(networkserver\Field20)
+                    EndIf
                     udp_bytestreamwritechar(local0\Field0)
                     udp_setmicrobyte($6D)
                 EndIf
             Next
-        ElseIf (networkserver\Field42 = $00) Then
+        ElseIf (networkserver\Field32 = $00) Then
             udp_writebyte($FFFFFFFF)
-            udp_sendmessageinternal(udp_network\Field0, udp_network\Field1, udp_network\Field2, $02)
+            udp_sendmessageinternal(udp_network\Field0, udp_network\Field1, udp_network\Field2, $00)
         EndIf
     EndIf
     multiplayer_writenetwork()
-    myplayer\Field67 = $00
+    myplayer\Field65 = $00
     If (networkserver\Field4 < millisecs()) Then
         shouldrestartserver = $01
         Return $C3B

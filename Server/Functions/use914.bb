@@ -1,14 +1,14 @@
 Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
     Local local0.items
     Local local4.decals
-    Local local16.npcs
-    Local local22.items
-    Local local32%
-    Local local33%
-    Local local39.items
-    Local local40.items
-    Local local41.items
-    Local local54%
+    Local local22.npcs
+    Local local28.items
+    Local local38%
+    Local local39%
+    Local local45.items
+    Local local46.items
+    Local local47.items
+    Local local60%
     refineditems = (refineditems + $01)
     If (getscripts() <> 0) Then
         public_inqueue($45, $00)
@@ -44,7 +44,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Smoke grenade"
             Select arg1
                 Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -63,7 +63,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Flashbang"
             Select arg1
                 Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -103,8 +103,11 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     If (rand($04, $01) = $01) Then
                         local0 = createitem("Minigun", "minigun", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
-                    Else
+                    ElseIf (rand($02, $01) <> 0) Then
                         local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    Else
+                        local0 = createitem("AK-47", "ak47", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
                     EndIf
             End Select
@@ -115,7 +118,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                         local0 = createitem("Desert Eagle", "deagle", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
                     Else
-                        local0 = createitem("SPAS-12", "spas12", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        local0 = createitem("Benelli M1014", "m1014", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
                     EndIf
                 Case "1:"
@@ -130,7 +133,53 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                         removeitem(arg0, $01)
                     EndIf
             End Select
-        Case "Desert Eagle","SPAS-12"
+        Case "Desert Eagle"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:"
+                    If (rand($02, $01) = $01) Then
+                        positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                        resetentity(arg0\Field1)
+                    Else
+                        local0 = createitem("Five-Seven", "fiveseven", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    EndIf
+                Case "fine","very fine"
+                    local0 = createitem("FN P90", "p90", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+            End Select
+        Case "Five-Seven"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:"
+                    If (rand($02, $01) = $01) Then
+                        positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                        resetentity(arg0\Field1)
+                    Else
+                        local0 = createitem("Desert Eagle", "deagle", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    EndIf
+                Case "fine","very fine"
+                    local0 = createitem("FN P90", "p90", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+            End Select
+        Case "AK-47"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:1"
+                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                    resetentity(arg0\Field1)
+                Case "fine","very fine"
+                    local0 = createitem("AK-74M", "ak74m", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+            End Select
+        Case "SPAS-12"
             Select arg1
                 Case "rough","course"
                     local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
@@ -155,7 +204,53 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                         local0 = createitem("Desert Eagle", "deagle", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
                     Else
-                        local0 = createitem("SPAS-12", "spas12", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        local0 = createitem("Benelli M1014", "m1014", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    EndIf
+            End Select
+        Case "HK-UMP45"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("MP5-SD", "mp5sd", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:1"
+                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                    resetentity(arg0\Field1)
+                Case "fine","very fine"
+                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+            End Select
+        Case "AK-74M"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("AK-47", "ak47", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:1"
+                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                    resetentity(arg0\Field1)
+                Case "fine","very fine"
+                    If (rand($06, $01) = $01) Then
+                        local0 = createitem("Minigun", "minigun", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    Else
+                        local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    EndIf
+            End Select
+        Case "Famas"
+            Select arg1
+                Case "rough","course"
+                    local0 = createitem("MP5-SD", "mp5sd", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    removeitem(arg0, $01)
+                Case "1:1"
+                    positionentity(arg0\Field1, arg2, arg3, arg4, $00)
+                    resetentity(arg0\Field1)
+                Case "fine","very fine"
+                    If (rand($01, $01) <> 0) Then
+                        local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    Else
+                        local0 = createitem("HK-G36", "hkg36", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         removeitem(arg0, $01)
                     EndIf
             End Select
@@ -168,8 +263,13 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     positionentity(arg0\Field1, arg2, arg3, arg4, $00)
                     resetentity(arg0\Field1)
                 Case "fine","very fine"
-                    local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    removeitem(arg0, $01)
+                    If (rand($02, $01) = $01) Then
+                        local0 = createitem("M4A4", "m4a4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    Else
+                        local0 = createitem("HK-UMP45", "ump45", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                        removeitem(arg0, $01)
+                    EndIf
             End Select
         Case "USP Tactical"
             Select arg1
@@ -186,7 +286,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Combat knife"
             Select arg1
                 Case "rough","course"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -200,7 +300,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Gas Mask","Heavy Gas Mask"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -214,7 +314,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Cooked Chicken"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -222,14 +322,14 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     positionentity(arg0\Field1, arg2, arg3, arg4, $00)
                     resetentity(arg0\Field1)
                 Case "fine","very fine"
-                    local16 = createnpc($04, arg2, arg3, arg4)
-                    local16\Field9 = 1.0
+                    local22 = createnpc($04, arg2, arg3, arg4)
+                    local22\Field9 = 1.0
                     removeitem(arg0, $01)
             End Select
         Case "SCP-1499"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -240,18 +340,18 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("SCP-1499", "super1499", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                     removeitem(arg0, $01)
                 Case "very fine"
-                    local16 = createnpc($14, arg2, arg3, arg4)
-                    local16\Field78 = $01
-                    local16\Field9 = 1.0
-                    local16\Field16 = loadsound_strict("SFX\SCP\1499\Triggered.ogg")
-                    local16\Field17 = playsound2(local16\Field16, camera, local16\Field4, 20.0, 1.0)
-                    local16\Field11 = 1.0
+                    local22 = createnpc($14, arg2, arg3, arg4)
+                    local22\Field78 = $01
+                    local22\Field9 = 1.0
+                    local22\Field16 = loadsound_strict("SFX\SCP\1499\Triggered.ogg")
+                    local22\Field17 = playsound2(local22\Field16, camera, local22\Field4, 20.0, 1.0)
+                    local22\Field11 = 1.0
                     removeitem(arg0, $01)
             End Select
         Case "Ballistic Vest"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -268,7 +368,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Cowbell"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -280,7 +380,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Night Vision Goggles"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                     removeitem(arg0, $01)
@@ -302,13 +402,13 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     removeitem(arg0, $01)
                 Case "1:1","fine","very fine"
                     local0 = Null
-                    For local22 = Each items
-                        If ((((local22 <> arg0) And (local22\Field1 <> $00)) And (local22\Field15 = $00)) <> 0) Then
-                            If ((180.0 * roomscale) > distance(entityx(local22\Field1, $01), entityz(local22\Field1, $01), entityx(arg0\Field1, $01), entityz(arg0\Field1, $01))) Then
-                                local0 = local22
+                    For local28 = Each items
+                        If ((((local28 <> arg0) And (local28\Field1 <> $00)) And (local28\Field15 = $00)) <> 0) Then
+                            If (0.703125 > distance(entityx(local28\Field1, $01), entityz(local28\Field1, $01), entityx(arg0\Field1, $01), entityz(arg0\Field1, $01))) Then
+                                local0 = local28
                                 Exit
-                            ElseIf ((180.0 * roomscale) > distance(entityx(local22\Field1, $01), entityz(local22\Field1, $01), arg2, arg4)) Then
-                                local0 = local22
+                            ElseIf (0.703125 > distance(entityx(local28\Field1, $01), entityz(local28\Field1, $01), arg2, arg4)) Then
+                                local0 = local28
                                 Exit
                             EndIf
                         EndIf
@@ -339,7 +439,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Severed Hand","Black Severed Hand"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($03, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($03, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "1:1","fine","very fine"
@@ -353,7 +453,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "First Aid Kit","Blue First Aid Kit"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.12
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "1:1"
@@ -371,7 +471,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Level 1 Key Card","Level 2 Key Card","Level 3 Key Card","Level 4 Key Card","Level 5 Key Card","Key Card"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.07
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "1:1"
@@ -400,17 +500,9 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                                 Case $00
                                     local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                 Case $01
-                                    If (rand($04, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
+                                    local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                 Case $02
-                                    If (rand($03, $01) = $01) Then
-                                        local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    Else
-                                        local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                                    EndIf
+                                    local0 = createitem("Level 3 Key Card", "key3", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             End Select
                         Case "Level 3 Key Card"
                             Select selecteddifficulty\Field5
@@ -421,13 +513,13 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                                         local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     EndIf
                                 Case $01
-                                    If (rand($0F, $01) = $01) Then
+                                    If (rand($14, $01) = $01) Then
                                         local0 = createitem("Level 4 Key Card", "key4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     Else
                                         local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     EndIf
                                 Case $02
-                                    If (rand($14, $01) = $01) Then
+                                    If (rand($1E, $01) = $01) Then
                                         local0 = createitem("Level 4 Key Card", "key4", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     Else
                                         local0 = createitem("Playing Card", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
@@ -451,28 +543,27 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                                     EndIf
                             End Select
                         Case "Level 5 Key Card"
-                            local32 = $00
-                            For local33 = $00 To $24 Step $01
-                                If (achievements(local33) = $01) Then
-                                    local32 = (local32 + $01)
+                            local38 = $00
+                            For local39 = $00 To $24 Step $01
+                                If (achievements(local39) = $01) Then
+                                    local38 = (local38 + $01)
                                 EndIf
                             Next
-                            debuglog((Str local32))
                             Select selecteddifficulty\Field5
                                 Case $00
-                                    If (rand($00, ($6C - ((local32 - $01) * $03))) = $00) Then
+                                    If (rand($00, (Int (57.6 - (Float ((local38 - $01) Shl $02))))) = $00) Then
                                         local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     Else
                                         local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     EndIf
                                 Case $01
-                                    If (rand($00, ($90 - ((local32 - $01) * $03))) = $00) Then
+                                    If (rand($00, ($48 - ((local38 - $01) Shl $02))) = $00) Then
                                         local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     Else
                                         local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     EndIf
                                 Case $02
-                                    If (rand($00, ($B4 - ((local32 - $01) * $03))) = $00) Then
+                                    If (rand($00, ($6C - ((local38 - $01) Shl $02))) = $00) Then
                                         local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                                     Else
                                         local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
@@ -480,28 +571,27 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                             End Select
                     End Select
                 Case "very fine"
-                    local32 = $00
-                    For local33 = $00 To $24 Step $01
-                        If (achievements(local33) = $01) Then
-                            local32 = (local32 + $01)
+                    local38 = $00
+                    For local39 = $00 To $24 Step $01
+                        If (achievements(local39) = $01) Then
+                            local38 = (local38 + $01)
                         EndIf
                     Next
-                    debuglog((Str local32))
                     Select selecteddifficulty\Field5
                         Case $00
-                            If (rand($00, ($6C - ((local32 - $01) * $03))) = $00) Then
+                            If (rand($00, ($48 - ((local38 - $01) Shl $02))) = $00) Then
                                 local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             Else
                                 local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             EndIf
                         Case $01
-                            If (rand($00, ($90 - ((local32 - $01) * $03))) = $00) Then
+                            If (rand($00, ($6C - ((local38 - $01) Shl $02))) = $00) Then
                                 local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             Else
                                 local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             EndIf
                         Case $02
-                            If (rand($00, ($B4 - ((local32 - $01) * $03))) = $00) Then
+                            If (rand($00, ($90 - ((local38 - $01) Shl $02))) = $00) Then
                                 local0 = createitem("Key Card Omni", "key6", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                             Else
                                 local0 = createitem("Mastercard", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
@@ -512,7 +602,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Key Card Omni"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.07
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "1:1"
@@ -528,7 +618,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Playing Card","Coin","Quarter"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.07
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "1:1"
@@ -540,14 +630,14 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Mastercard"
             Select arg1
                 Case "rough"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.07
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
                 Case "coarse"
                     local0 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local39 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local40 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
-                    local41 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    local45 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    local46 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
+                    local47 = createitem("Quarter", "25ct", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                 Case "1:1"
                     local0 = createitem("Level 1 Key Card", "key1", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                 Case "fine","very fine"
@@ -588,12 +678,12 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
             Select arg1
                 Case "rough","coarse"
                     playsound_strict(loadtempsound("SFX\SCP\513\914Refine.ogg"))
-                    For local16 = Each npcs
-                        If (local16\Field5 = $0C) Then
-                            removenpc(local16, $01)
+                    For local22 = Each npcs
+                        If (local22\Field5 = $0C) Then
+                            removenpc(local22, $01)
                         EndIf
                     Next
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -604,7 +694,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Some SCP-420-J","Cigarette"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -619,7 +709,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "9V Battery","18V Battery","Strange Battery"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -634,7 +724,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "ReVision Eyedrops","RedVision Eyedrops","Eyedrops"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -649,7 +739,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
         Case "Hazmat Suit"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -666,7 +756,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                 Case "syringe"
                     Select arg1
                         Case "rough","coarse"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                            local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                             local4\Field2 = 0.07
                             scalesprite(local4\Field0, local4\Field2, local4\Field2)
                         Case "1:1"
@@ -679,7 +769,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                 Case "finesyringe"
                     Select arg1
                         Case "rough"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                            local4 = createdecal($00, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                             local4\Field2 = 0.07
                             scalesprite(local4\Field0, local4\Field2, local4\Field2)
                         Case "coarse"
@@ -694,16 +784,16 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                         Case "rough","coarse","1:1","fine"
                             local0 = createitem("Electronical components", "misc", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                         Case "very fine"
-                            local16 = createnpc($15, arg2, arg3, arg4)
-                            local16\Field78 = $01
-                            local16\Field9 = 2.0
+                            local22 = createnpc($15, arg2, arg3, arg4)
+                            local22\Field78 = $01
+                            local22\Field9 = 2.0
                     End Select
             End Select
             removeitem(arg0, $01)
         Case "SCP-500-01","Upgraded pill","Pill"
             Select arg1
                 Case "rough","coarse"
-                    local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                     local4\Field2 = 0.2
                     entityalpha(local4\Field0, 0.8)
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -711,14 +801,14 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("Pill", "pill", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                     removeitem(arg0, $01)
                 Case "fine"
-                    local54 = $00
-                    For local39 = Each items
-                        If (local39\Field3\Field2 = "scp427") Then
-                            local54 = $01
+                    local60 = $00
+                    For local45 = Each items
+                        If (local45\Field3\Field2 = "scp427") Then
+                            local60 = $01
                             Exit
                         EndIf
                     Next
-                    If (local54 = $00) Then
+                    If (local60 = $00) Then
                         local0 = createitem("SCP-427", "scp427", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
                     Else
                         local0 = createitem("Upgraded pill", "scp500death", arg2, arg3, arg4, $00, $00, $00, 1.0, $00, $01)
@@ -733,7 +823,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                 Case "cup"
                     Select arg1
                         Case "rough","coarse"
-                            local4 = createdecal($00, arg2, ((8.0 * roomscale) + 0.01), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                            local4 = createdecal($00, arg2, 0.04125, arg4, 90.0, (Float rand($168, $01)), 0.0)
                             local4\Field2 = 0.2
                             entityalpha(local4\Field0, 0.8)
                             scalesprite(local4\Field0, local4\Field2, local4\Field2)
@@ -765,7 +855,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                 Case "paper"
                     Select arg1
                         Case "rough","coarse"
-                            local4 = createdecal($07, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                            local4 = createdecal($07, arg2, 0.03625, arg4, 90.0, (Float rand($168, $01)), 0.0)
                             local4\Field2 = 0.12
                             scalesprite(local4\Field0, local4\Field2, local4\Field2)
                         Case "1:1"
@@ -795,9 +885,9 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
     If (local4 <> Null) Then
         mp_writedecal(local4, $01, $01)
     EndIf
-    If (local22 <> Null) Then
-        local22\Field22 = $00
-        local22\Field15 = $00
+    If (local28 <> Null) Then
+        local28\Field22 = $00
+        local28\Field15 = $00
     EndIf
     If (local0 <> Null) Then
         local0\Field22 = $00

@@ -19,7 +19,11 @@ Function putinivalue%(arg0$, arg1$, arg2$, arg3$)
     local3 = $00
     local4 = $00
     local5 = ""
-    local6 = writefile(local1)
+    local6 = $00
+    If (filesize(local1) = $00) Then
+        local6 = createfile(local1)
+    EndIf
+    local6 = openfile(local1)
     If (local6 = $00) Then
         Return $00
     EndIf

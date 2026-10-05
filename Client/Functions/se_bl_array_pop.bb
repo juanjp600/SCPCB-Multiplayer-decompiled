@@ -17,15 +17,15 @@ Function se_bl_array_pop%()
     local2 = (Object.se_value peekint(local0\Field2, (local1 Shl $02)))
     Select local2\Field0
         Case $01
-            se_returnint(local2\Field1)
+            se_returnint(local2\Field2)
         Case $02
-            se_returnfloat(local2\Field2)
+            se_returnfloat(local2\Field3)
         Case $03
-            se_returnstring(local2\Field3)
+            se_returnstring(local2\Field4)
         Case $05
-            se_returnpointer(local2\Field4)
+            se_returnpointer(local2\Field5)
         Case $07
-            se_returnarray(local2\Field5)
+            se_returnarray(local2\Field6)
     End Select
     local0\Field1 = (local0\Field1 - $01)
     local4 = local0\Field2

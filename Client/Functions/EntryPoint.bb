@@ -3,37 +3,25 @@ Function EntryPoint%()
     Local local1$
     Local local2%
     Local local3%
+    Local local4%
     Local local5%
     Local local6%
-    Local local7%
-    Local local8$
+    Local local7$
+    Local local8%
     Local local9%
-    Local local10%
-    Local local11.servers
-    Local local12%
-    Local local13%
-    Local local14%
-    Local local15%
-    If (filetype((getenv("AppData") + "\SCP Containment Breach Multiplayer\")) <> $02) Then
-        createdir((getenv("AppData") + "\SCP Containment Breach Multiplayer"))
-    EndIf
-    If (filetype((getenv("AppData") + "\SCP Containment Breach Multiplayer\Data\")) <> $02) Then
-        createdir((getenv("AppData") + "\SCP Containment Breach Multiplayer\Data"))
-    EndIf
-    screen_hwnd = (Int systemproperty("AppHWND"))
-    optionfile = (getenv("AppData") + "\SCP Containment Breach Multiplayer\data\options.ini")
-    errorfile = "error_log_"
-    If (filesize(optionfile) = $00) Then
-        createfile((Str ((Int optionfile) And newoptionsini())))
-    EndIf
-    ft = (New fixedtimesteps)
-    settickrate($3C)
+    Local local10.servers
+    totalgfxmodes = countgfxmodes3d()
+    Dim gfxmodewidths%(totalgfxmodes)
+    Dim gfxmodeheights%(totalgfxmodes)
+    win = (New windowcontext)
+    checkdefaultdirectories()
+    setupwindow()
+    checkoptionsini()
     Dim keyname$($D3)
     keyname($01) = "Esc"
-    For local0 = $02 To $0A Step $01
+    For local0 = $02 To $0B Step $01
         keyname(local0) = (Str (local0 - $01))
     Next
-    keyname($0B) = "0"
     keyname($0C) = "-"
     keyname($0D) = "="
     keyname($0E) = "Backspace"
@@ -128,7 +116,7 @@ Function EntryPoint%()
     difficulties($02)\Field7 = $00
     difficulties($02)\Field8 = $00
     difficulties($03) = (New difficulty)
-    difficulties($03)\Field0 = "Custom"
+    difficulties($03)\Field0 = "Esoteric"
     difficulties($03)\Field2 = $00
     difficulties($03)\Field3 = $01
     difficulties($03)\Field4 = $00
@@ -138,7 +126,6 @@ Function EntryPoint%()
     difficulties($03)\Field7 = $FF
     difficulties($03)\Field8 = $FF
     selecteddifficulty = difficulties($00)
-    debuglog("Multiplayer mod for SCP - Containment Breach")
     local1 = ""
     If (filesize("fmod.dll") = $00) Then
         local1 = (((local1 + "fmod.dll") + chr($0D)) + chr($0A))
@@ -146,40 +133,17 @@ Function EntryPoint%()
     If (filesize("zlibwapi.dll") = $00) Then
         local1 = (((local1 + "zlibwapi.dll") + chr($0D)) + chr($0A))
     EndIf
-    If (($01 And ((filesize(((((((((((((chr($73) + chr($74)) + chr($65)) + chr($61)) + chr($6D)) + chr($5F)) + chr($61)) + chr($70)) + chr($69)) + chr($2E)) + chr($64)) + chr($6C)) + chr($6C))) < $34BC0) Or (filesize(((((((((((((chr($73) + chr($74)) + chr($65)) + chr($61)) + chr($6D)) + chr($5F)) + chr($61)) + chr($70)) + chr($69)) + chr($2E)) + chr($64)) + chr($6C)) + chr($6C))) > $35390))) <> 0) Then
-        local1 = (((((((((((((((local1 + chr($73)) + chr($74)) + chr($65)) + chr($61)) + chr($6D)) + chr($5F)) + chr($61)) + chr($70)) + chr($69)) + chr($2E)) + chr($64)) + chr($6C)) + chr($6C)) + chr($0D)) + chr($0A))
+    If (($01 And (filesize("steam_api.dll") = $00)) <> 0) Then
+        local1 = (((local1 + "steam_api.dll") + chr($0D)) + chr($0A))
     EndIf
-    If (($01 And (filesize("BlitzSteam.dll") = $00)) <> 0) Then
-        local1 = (((local1 + "BlitzSteam.dll") + chr($0D)) + chr($0A))
-    EndIf
-    If (($01 And (filesize("BlitzPointer.dll") = $00)) <> 0) Then
-        local1 = (((local1 + "BlitzPointer.dll") + chr($0D)) + chr($0A))
+    If (($01 And (filesize("BlitzSteamworks.dll") = $00)) <> 0) Then
+        local1 = (((local1 + "BlitzSteamworks.dll") + chr($0D)) + chr($0A))
     EndIf
     If (len(local1) > $00) Then
         runtimeerror((((((((("The following DLLs were not found in the game directory or corrupted:" + chr($0D)) + chr($0A)) + chr($0D)) + chr($0A)) + local1) + chr($0D)) + chr($0A)) + "Please reinstall the game."))
     EndIf
-    bs_steamclient_steamidnil = bs_csteamid_new()
-    bs_steamid_dynamic = bs_csteamid_new()
-    bs_steamclient_steamidoutofdategs = bs_csteamid_new_idinstanceuniversetype($00, $00, $00, $00)
-    bs_steamclient_steamidlanmodegs = bs_csteamid_new_idinstanceuniversetype($00, $00, $01, $00)
-    bs_steamclient_steamidnotinityetgs = bs_csteamid_new_idinstanceuniversetype($01, $00, $00, $00)
-    bs_steamclient_steamidnonsteamgs = bs_csteamid_new_idinstanceuniversetype($02, $00, $00, $00)
-    bs_steamcontroller_handle_all_controllers = bs_long_fromii($FFFFFFFF, $FFFFFFFF)
-    bs_steaminventory_steamiteminstanceidinvalid = bs_long_fromii($FFFFFFFF, $FFFFFFFF)
-    steam_warningmessagehook_callback = $00
-    steam_warningmessagehook($00, $00)
-    steambrowser_callback_browserready_p = $00
-    steambrowser_callback_browserready_c = $00
-    steambrowser_callback_needspaint_p = $00
-    steambrowser_callback_needspaint_c = $00
-    steambrowser_callback_startrequest_p = $00
-    steambrowser_callback_startrequest_c = $00
-    steambrowser_callback_browserready($00, $00, $00)
-    steambrowser_callback_needspaint($00, $00, $00)
-    steambrowser_callback_startrequest($00, $00, $00)
     steam_api_init()
-    discord_api_init()
-    multiplayer_version = (version($10209) + ".5")
+    multiplayer_version = (version($10300) + "R")
     statistic_stream = $00
     sendstatisticrequest($05)
     last_breach_type = $00
@@ -211,13 +175,16 @@ Function EntryPoint%()
     menu_open_type = $00
     tab_menu_state = $00
     tab_menu_role_input = ""
-    mp_instructionsdone = getiniint(optionfile, "audio", "mp instructions", $00)
+    mp_instructionsdone = getiniint("options.ini", "audio", "mp instructions", $00)
     Dim keybuffer%($D3)
     Dim inventory.items($0B)
     holdinggun = $00
     key_reload = $13
     gunpivot_yside = $00
     gunpivot_xside = $00
+    calibers = $00
+    eqquipedgun = Null
+    preveqquipedgun = Null
     lastpluginid = $00
     publics = (New pb)
     se_transient_stack_size = $200
@@ -231,6 +198,8 @@ Function EntryPoint%()
     Dim se_vf_a_func_ptr.se_funcptr($00)
     Dim se_vf_a_static.se_value($00)
     Dim se_vf_a_label.se_value($00)
+    Dim se_loadtransientlimit%($00)
+    Dim se_loadowner%($00)
     se_error_dump_line = $01
     se_operators[$00] = "++"
     se_operators[$01] = "--"
@@ -256,22 +225,25 @@ Function EntryPoint%()
     se_defineconst("null", $00, "", $01, Null)
     se_defineconst("true", $01, "1", $01, Null)
     se_defineconst("false", $01, "0", $01, Null)
-    se_defineconst("pi", $02, "3.14159", $01, Null)
+    se_defineconst("pi", $02, "32807.0", $01, Null)
     se_defineconst("se_null", $01, "0", $01, Null)
     se_defineconst("se_int", $01, "1", $01, Null)
     se_defineconst("se_float", $01, "2", $01, Null)
     se_defineconst("se_string", $01, "3", $01, Null)
     se_defineconst("se_pointer", $01, "5", $01, Null)
     se_defineconst("se_array", $01, "7", $01, Null)
-    gg_ocurrent_font = Null
-    server_list_stream = createudpstream($00)
+    bulletsbank = createbank($F4240)
+    activebullets = $00
+    server_list_stream = createudpstream("0", $00)
     networkserver = (New serverudp)
+    networkserver\Field52 = (New serverudpoptions)
     playerintercom = (New intercomsystem)
     scp = (New scps)
     b_br = (New breach)
     rcon = (New rcn)
     spectate = (New spec)
     mpimg = (New multiplayerimages)
+    g_model = (New models)
     m = (New memorystatus)
     host_server_button_text = "CREATE LOBBY"
     outscp = $01
@@ -299,8 +271,7 @@ Function EntryPoint%()
     spectate\Field4 = -25.0
     spectate\Field5 = 180.0
     playerintercom\Field2 = $4E20
-    networkserver\Field51 = $01
-    networkserver\Field48 = $03
+    networkserver\Field38 = $01
     udp_network = udp_init()
     For local0 = $00 To $0A Step $01
         serverpages[local0] = (New serverpage)
@@ -315,128 +286,78 @@ Function EntryPoint%()
         aleffectseteaxreverbparam(echo_effect, 0.316, 0.25, 1.0, 0.017, 0.54, 0.653, 0.01, 0.01, 3.273, 0.1, 0.01, 0.1, 0.1, 1.0, 0.9, $01, 0.1, 0.1, 0.04, 1000.0, 20.0)
         aleffectsetpreset(echo_effect, "Dizzy")
     EndIf
-    getdesktopsize()
-    g_viewport_x = $00
-    g_viewport_y = $00
-    g_viewport_width = g_desktop_screen_width
-    g_viewport_height = g_desktop_screen_height
-    g_app_handle = (Int systemproperty("AppHWND"))
-    useragent = "SCPCB"
-    responsedelay = $7D0
-    newline = (chr($0D) + chr($0A))
-    updatecheckenabled = $01
-    analyzeerrorfile()
     replacedatafile($01, "Data\1499chunks.ini", $01)
     replacedatafile($02, "Data\rooms.ini", $01)
     replacedatafile($03, "Data\NPCs.ini", $01)
-    versionnumber = "1.3.12"
+    versionnumber = "1.3.11"
     compatiblenumber = "1.3.11"
     buttonsfx = loadsound_strict("SFX\Interact\Button.ogg")
-    enablesfxrelease = getiniint(optionfile, "audio", "sfx release", $00)
+    enablesfxrelease = getiniint("options.ini", "audio", "sfx release", $00)
     enablesfxrelease_prev = enablesfxrelease
-    canopenconsole = getiniint(optionfile, "console", "enabled", $00)
+    canopenconsole = getiniint("options.ini", "console", "enabled", $00)
+    discordrichpresence = getiniint("options.ini", "options", "discord rich presence", $00)
     Dim arrowimg%($04)
-    launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width", $00)), 1024.0))
-    launcherheight = (Int min((Float getiniint(optionfile, "launcher", "launcher height", $00)), 768.0))
-    launcherenabled = (getiniint(optionfile, "launcher", "launcher enabled", $00) * (getiniint(optionfile, "launcher", "changeres", $00) = $00))
-    graphicwidth = getiniint(optionfile, "options", "width", $00)
-    graphicheight = getiniint(optionfile, "options", "height", $00)
-    depth = $00
-    fullscreen = getiniint(optionfile, "options", "fullscreen", $00)
-    selectedgfxdriver = (Int max((Float getiniint(optionfile, "options", "gfx driver new", $00)), 0.0))
-    turnongamma = getiniint(optionfile, "options", "gammaoff", $00)
-    camupdate = getiniint(optionfile, "options", "cameraupd", $02)
-    camquality = getiniint(optionfile, "options", "cameraquality", $02)
-    removedecals = getiniint(optionfile, "options", "removedecals", $00)
-    removeparticles = getiniint(optionfile, "options", "removeparticles", $00)
-    mainfov = min(max(getinifloat(optionfile, "options", "fov", 70.0), 60.0), 90.0)
-    enablebullets = getiniint(optionfile, "options", "enablebullets", $01)
+    launcherenabled = (getiniint("options.ini", "launcher", "launcher enabled", $00) * (getiniint("options.ini", "launcher", "changeres", $00) = $00))
+    graphicwidth = getiniint("options.ini", "options", "width", $00)
+    graphicheight = getiniint("options.ini", "options", "height", $00)
+    fullscreen = getiniint("options.ini", "options", "fullscreen", $00)
+    selectedgfxdriver = (Int max((Float getiniint("options.ini", "options", "gfx driver new", $00)), 0.0))
+    turnongamma = getiniint("options.ini", "options", "gammaoff", $00)
+    camupdate = getiniint("options.ini", "options", "cameraupd", $02)
+    camquality = getiniint("options.ini", "options", "cameraquality", $02)
+    removedecals = getiniint("options.ini", "options", "removedecals", $00)
+    removeparticles = getiniint("options.ini", "options", "removeparticles", $00)
+    mainfov = min(max(getinifloat("options.ini", "options", "fov", 75.0), 75.0), 100.0)
+    enablebullets = getiniint("options.ini", "options", "enablebullets", $01)
+    shouldplaystartupvids = getiniint("options.ini", "options", "play startup video", $00)
     currentfov = mainfov
     If (((graphicwidth = $00) Or (graphicheight = $00)) <> 0) Then
-        graphicwidth = $500
-        graphicheight = $2D0
+        graphicwidth = $320
+        graphicheight = $258
     EndIf
-    showfps = getiniint(optionfile, "options", "show FPS", $00)
-    showscpviewmodel = getiniint(optionfile, "options", "showscpviewmodel", $00)
-    totalgfxmodes = countgfxmodes3d()
-    Dim gfxmodewidths%(totalgfxmodes)
-    Dim gfxmodeheights%(totalgfxmodes)
-    borderlesswindowed = getiniint(optionfile, "options", "borderless windowed", $00)
+    lastfont = $FFFFFFFF
+    showfps = getiniint("options.ini", "options", "show FPS", $00)
+    showscpviewmodel = getiniint("options.ini", "options", "showscpviewmodel", $00)
+    borderlesswindowed = getiniint("options.ini", "options", "borderless windowed", $00)
     consoleopening = $00
-    enableroomlights = getiniint(optionfile, "options", "room lights enabled", $00)
-    texturedetails = getiniint(optionfile, "options", "texture details", $00)
-    Select texturedetails
-        Case $00
-            texturefloat = 1.5
-        Case $01
-            texturefloat = 0.4
-        Case $02
-            texturefloat = 0.0
-        Case $03
-            texturefloat = -0.4
-        Case $04
-            texturefloat = -0.8
-    End Select
-    sfxvolume = getinifloat(optionfile, "audio", "sound volume", 0.0)
-    bit16mode = getiniint(optionfile, "options", "16bit", $00)
-    aatextenable = getiniint(optionfile, "options", "antialiased text", $00)
-    aatextenable_prev = aatextenable
-    disableredirectaccess = $00
-    If (aatextenable <> 0) Then
-        graphics3d($280, $1E0, $20, $02)
-        se_init()
-        getcameraquality($04)
-        ws_backuporiginal()
-        ws_checksubscribeditems($01)
-        ws_loadscripts("workshop")
-        If (getscripts() <> 0) Then
-            public_inqueue($01, $01)
-        EndIf
-        endgraphics()
-    Else
-        se_init()
-        getcameraquality($04)
-        ws_backuporiginal()
-        ws_checksubscribeditems($01)
-        ws_loadscripts("workshop")
-        If (getscripts() <> 0) Then
-            public_inqueue($01, $01)
-        EndIf
-        initaafont()
+    enableroomlights = getiniint("options.ini", "options", "room lights enabled", $00)
+    sfxvolume = getinifloat("options.ini", "audio", "sound volume", 0.0)
+    se_init()
+    getcameraquality($04)
+    ws_backuporiginal()
+    ws_checksubscribeditems($01)
+    ws_loadscripts("workshop")
+    If (getscripts() <> 0) Then
+        public_inqueue($01, $01)
     EndIf
     buttonsfx = loadsound_strict("SFX\Interact\Button.ogg")
+    discord_api_init()
     If (launcherenabled <> 0) Then
         aspectratioratio = 1.0
         updatelauncher()
         If (borderlesswindowed <> 0) Then
-            debuglog("Using Borderless Windowed Mode")
-            graphics3dext(graphicwidth, graphicheight, $00, $03)
-            api_setwindowlong(g_app_handle, $FFFFFFF0, $80000000)
-            api_setwindowpos(g_app_handle, $00, g_viewport_x, g_viewport_y, g_viewport_width, g_viewport_height, $40)
-            realgraphicwidth = graphicwidth
-            realgraphicheight = graphicheight
-            aspectratioratio = (((Float graphicwidth) / (Float graphicheight)) / ((Float realgraphicwidth) / (Float realgraphicheight)))
+            createwindow(graphicwidth, graphicheight, $00, $05, "SCP - Containment Breach Multiplayer Mod ")
+            aspectratioratio = (((Float graphicwidth) / (Float graphicheight)) / ((Float win\Field2) / (Float win\Field3)))
             fullscreen = $00
         Else
             aspectratioratio = 1.0
-            realgraphicwidth = graphicwidth
-            realgraphicheight = graphicheight
             If (fullscreen <> 0) Then
-                graphics3dext(graphicwidth, graphicheight, (bit16mode Shl $04), $01)
+                createwindow(graphicwidth, graphicheight, $00, $01, "SCP - Containment Breach Multiplayer Mod ")
             Else
-                graphics3dext(graphicwidth, graphicheight, $00, $02)
+                createwindow(graphicwidth, graphicheight, $00, $02, "SCP - Containment Breach Multiplayer Mod ")
             EndIf
         EndIf
+        Delete fonts[$00]
     Else
         For local0 = $01 To totalgfxmodes Step $01
-            local5 = $00
-            For local6 = $00 To (totalgfxmodes - $01) Step $01
-                If (((gfxmodewidths(local6) = gfxmodewidth(local0)) And (gfxmodeheights(local6) = gfxmodeheight(local0))) <> 0) Then
-                    local5 = $01
+            local4 = $00
+            For local5 = $00 To (totalgfxmodes - $01) Step $01
+                If (((gfxmodewidths(local5) = gfxmodewidth(local0)) And (gfxmodeheights(local5) = gfxmodeheight(local0))) <> 0) Then
+                    local4 = $01
                     Exit
                 EndIf
             Next
-            If (local5 = $00) Then
+            If (local4 = $00) Then
                 If (((graphicwidth = gfxmodewidth(local0)) And (graphicheight = gfxmodeheight(local0))) <> 0) Then
                     selectedgfxmode = gfxmodes
                 EndIf
@@ -448,92 +369,100 @@ Function EntryPoint%()
         graphicwidth = gfxmodewidths(selectedgfxmode)
         graphicheight = gfxmodeheights(selectedgfxmode)
         If (borderlesswindowed <> 0) Then
-            debuglog("Using Faked Fullscreen")
-            graphics3dext(g_viewport_width, g_viewport_height, $00, $03)
-            api_setwindowlong(g_app_handle, $FFFFFFF0, $80000000)
-            api_setwindowpos(g_app_handle, $00, g_viewport_x, g_viewport_y, g_viewport_width, g_viewport_height, $40)
-            realgraphicwidth = g_viewport_width
-            realgraphicheight = g_viewport_height
-            aspectratioratio = (((Float graphicwidth) / (Float graphicheight)) / ((Float realgraphicwidth) / (Float realgraphicheight)))
+            createwindow(graphicwidth, graphicheight, $00, $05, "SCP - Containment Breach Multiplayer Mod ")
+            aspectratioratio = (((Float graphicwidth) / (Float graphicheight)) / ((Float win\Field2) / (Float win\Field3)))
             fullscreen = $00
         Else
             aspectratioratio = 1.0
-            realgraphicwidth = graphicwidth
-            realgraphicheight = graphicheight
             If (fullscreen <> 0) Then
-                graphics3dext(graphicwidth, graphicheight, (bit16mode Shl $04), $01)
+                createwindow(graphicwidth, graphicheight, $00, $01, "SCP - Containment Breach Multiplayer Mod ")
             Else
-                graphics3dext(graphicwidth, graphicheight, $00, $02)
+                createwindow(graphicwidth, graphicheight, $00, $02, "SCP - Containment Breach Multiplayer Mod ")
             EndIf
         EndIf
     EndIf
+    win\Field2 = graphicwidth
+    win\Field3 = graphicheight
+    consolereissue = Null
+    consoler = $FFFFFFFF
+    consoleg = $FFFFFFFF
+    consoleb = $FFFFFFFF
+    consolemsgcount = $00
+    menuscale = ((Float win\Field3) / 1024.0)
+    invmenuscale = (1024.0 / (Float win\Field3))
+    achvscale = ((Float win\Field3) / 768.0)
+    For local0 = $00 To $800 Step $01
+        imenuscale[local0] = (Int ((Float local0) * menuscale))
+    Next
+    loadallfonts()
+    initstaticassets($00)
+    ui_restart()
     If (selectedgfxdriver > $00) Then
         setgfxdriver(selectedgfxdriver)
     EndIf
-    putinivalue(optionfile, "launcher", "isstarted", "1")
-    If (aatextenable <> 0) Then
-        initaafont()
-    EndIf
-    menuscale = ((Float graphicheight) / 1024.0)
-    setbuffer(backbuffer())
-    apptitle("SCP - Containment Breach Multiplayer", "")
-    If (api_iswindowvisible(screen_hwnd) = $00) Then
-        api_showwindow(screen_hwnd, $01)
-    EndIf
-    If (getiniint(optionfile, "launcher", "changeres", $00) = $00) Then
+    putinivalue("options.ini", "launcher", "isstarted", "1")
+    lastcolor = $FFFFFFFF
+    If (getiniint("options.ini", "launcher", "changeres", $00) = $00) Then
         playstartupvideos()
     Else
-        clscolor($00, $00, $00)
-        cls()
         flip($01)
     EndIf
-    putinivalue(optionfile, "launcher", "changeres", "0")
-    framelimit = getiniint(optionfile, "options", "framelimit", $00)
-    verticalsync = getiniint(optionfile, "options", "vsync", $00)
-    opt_antialias = getiniint(optionfile, "options", "antialias", $00)
-    currframelimit = ((Float (framelimit - $13)) / 100.0)
-    screengamma = getinifloat(optionfile, "options", "screengamma", 0.0)
+    putinivalue("options.ini", "launcher", "changeres", "0")
+    framelimit = getiniint("options.ini", "options", "framelimit", $00)
+    verticalsync = getiniint("options.ini", "options", "vsync", $00)
+    opt_antialias = getiniint("options.ini", "options", "antialias", $00)
+    setfontsmooth(opt_antialias)
+    currframelimit = ((Float (framelimit - $13)) * 0.01)
+    screengamma = getinifloat("options.ini", "options", "screengamma", 0.0)
     seedrnd(millisecs())
     cansave = $01
     cursorimg = loadimage_strict("GFX\cursor.png")
+    resizeimage(cursorimg, (Float imenuscale[$0C]), (Float imenuscale[$12]))
     loadingback = loadimage_strict("Loadingscreens\loadingback.jpg")
     maskimage(loadingback, $D4, $D4, $F3)
     initloadingscreens("Loadingscreens\loadingscreens.ini")
-    loadallfonts($00)
     If (getscripts() <> 0) Then
         public_inqueue($02, $01)
     EndIf
-    aasetfont(font2)
+    setfontex(fonts[$01]\Field0)
     blinkmeterimg = loadimage_strict("GFX\blinkmeter.jpg")
+    staminameterimg = loadimage_strict("GFX\staminameter.jpg")
+    resizeimage(blinkmeterimg, (8.0 * menuscale), (14.0 * menuscale))
+    resizeimage(staminameterimg, (8.0 * menuscale), (14.0 * menuscale))
+    loadcustomprogressbars()
     gameload = $01
     drawloading(0.0, $01, $00, $00)
-    drawloading(5.0, $01, $00, $00)
-    viewport_center_x = (graphicwidth Sar $01)
-    viewport_center_y = (graphicheight Sar $01)
+    drawloading(5.0, $01, $00, $01)
+    viewport_center_x = (graphicwidth Shr $01)
+    viewport_center_y = (graphicheight Shr $01)
+    mousescalex = ((Float graphicwidth) / ((Float win\Field2) * aspectratioratio))
+    mouseoffsetx = (((Float win\Field2) * 0.5) * (1.0 - aspectratioratio))
+    mousescaley = ((Float graphicheight) / (Float win\Field3))
     mouselook_x_inc = 0.3
     mouselook_y_inc = 0.3
     mouse_left_limit = (Int (250.0 * menuscale))
     mouse_right_limit = (graphicwidth - mouse_left_limit)
-    mouse_top_limit = (Int (150.0 * menuscale))
+    mouse_top_limit = mouse_left_limit
     mouse_bottom_limit = (graphicheight - mouse_top_limit)
-    key_right = getiniint(optionfile, "binds", "Right key", $00)
-    key_left = getiniint(optionfile, "binds", "Left key", $00)
-    key_up = getiniint(optionfile, "binds", "Up key", $00)
-    key_down = getiniint(optionfile, "binds", "Down key", $00)
-    key_blink = getiniint(optionfile, "binds", "Blink key", $00)
-    key_sprint = getiniint(optionfile, "binds", "Sprint key", $00)
-    key_inv = getiniint(optionfile, "binds", "Inventory key", $00)
-    key_crouch = getiniint(optionfile, "binds", "Crouch key", $00)
-    key_save = getiniint(optionfile, "binds", "Save key", $00)
-    key_console = getiniint(optionfile, "binds", "Console key", $00)
-    key_chat = getiniint(optionfile, "binds", "Chat key", $40)
-    key_voice = getiniint(optionfile, "binds", "Voice key", $2F)
-    key_jump = getiniint(optionfile, "binds", "Jump key", $38)
-    key_leanl = getiniint(optionfile, "binds", "LeanL key", $10)
-    key_leanr = getiniint(optionfile, "binds", "LeanR key", $12)
-    key_using = getiniint(optionfile, "binds", "Using key", $12)
-    mouseinteract = getiniint(optionfile, "binds", "mouseinteract", $01)
-    mousesmooth = getinifloat(optionfile, "options", "mouse smoothing", 1.0)
+    key_right = getiniint("options.ini", "binds", "Right key", $00)
+    key_left = getiniint("options.ini", "binds", "Left key", $00)
+    key_up = getiniint("options.ini", "binds", "Up key", $00)
+    key_down = getiniint("options.ini", "binds", "Down key", $00)
+    key_blink = getiniint("options.ini", "binds", "Blink key", $00)
+    key_sprint = getiniint("options.ini", "binds", "Sprint key", $00)
+    key_inv = getiniint("options.ini", "binds", "Inventory key", $00)
+    key_crouch = getiniint("options.ini", "binds", "Crouch key", $00)
+    key_save = getiniint("options.ini", "binds", "Save key", $00)
+    key_console = getiniint("options.ini", "binds", "Console key", $00)
+    key_chat = getiniint("options.ini", "binds", "Chat key", $40)
+    key_voice = getiniint("options.ini", "binds", "Voice key", $2F)
+    key_jump = getiniint("options.ini", "binds", "Jump key", $38)
+    key_leanl = getiniint("options.ini", "binds", "LeanL key", $10)
+    key_leanr = getiniint("options.ini", "binds", "LeanR key", $12)
+    key_using = getiniint("options.ini", "binds", "Using key", $12)
+    mouseinteract = getiniint("options.ini", "binds", "mouseinteract", $01)
+    mousesmooth = getinifloat("options.ini", "options", "mouse smoothing", 1.0)
+    rawmouseinput = (Int getinifloat("options.ini", "options", "raw mouse input", 0.0))
     otheropen = Null
     Dim drawarrowicon%($04)
     playable = $01
@@ -545,15 +474,15 @@ Function EntryPoint%()
     Dim achievementdescs$($25)
     Dim achvimg%($25)
     For local0 = $00 To $24 Step $01
-        local7 = getinisectionlocation("Data\achievementstrings.ini", ("s" + (Str local0)))
-        achievementstrings(local0) = getinistring2("Data\achievementstrings.ini", local7, "string1", "")
-        achievementdescs(local0) = getinistring2("Data\achievementstrings.ini", local7, "AchvDesc", "")
-        local8 = getinistring2("Data\achievementstrings.ini", local7, "image", "")
-        achvimg(local0) = loadimage_strict((("GFX\menu\achievements\" + local8) + ".jpg"))
-        achvimg(local0) = resizeimage2(achvimg(local0), (Int ((Float (imagewidth(achvimg(local0)) * graphicheight)) / 768.0)), (Int ((Float (imageheight(achvimg(local0)) * graphicheight)) / 768.0)))
+        local6 = getinisectionlocation("Data\achievementstrings.ini", ("s" + (Str local0)))
+        achievementstrings(local0) = getinistring2("Data\achievementstrings.ini", local6, "string1", "")
+        achievementdescs(local0) = getinistring2("Data\achievementstrings.ini", local6, "AchvDesc", "")
+        local7 = getinistring2("Data\achievementstrings.ini", local6, "image", "")
+        achvimg(local0) = loadimage_strict((("GFX\menu\achievements\" + local7) + ".jpg"))
+        achvimg(local0) = resizeimage2(achvimg(local0), (Int ((Float imagewidth(achvimg(local0))) * achvscale)), (Int ((Float imageheight(achvimg(local0))) * achvscale)))
     Next
     achvlocked = loadimage_strict("GFX\menu\achievements\achvlocked.jpg")
-    achvlocked = resizeimage2(achvlocked, (Int ((Float (imagewidth(achvlocked) * graphicheight)) / 768.0)), (Int ((Float (imageheight(achvlocked) * graphicheight)) / 768.0)))
+    achvlocked = resizeimage2(achvlocked, (Int ((Float imagewidth(achvlocked)) * achvscale)), (Int ((Float imageheight(achvlocked)) * achvscale)))
     currachvmsgid = $00
     shouldnullgame = $00
     Dim radiostate#($0A)
@@ -568,24 +497,23 @@ Function EntryPoint%()
     isnvgblinking = $00
     lightson = $01
     noclipspeed = 2.0
-    invertmouse = getiniint(optionfile, "options", "invert mouse y", $00)
+    invertmouse = getiniint("options.ini", "options", "invert mouse y", $00)
     coffindistance = 100.0
-    bumpenabled = getiniint(optionfile, "options", "bump mapping enabled", $00)
-    hudenabled = getiniint(optionfile, "options", "HUD enabled", $00)
-    brightness = (Int getinifloat(optionfile, "options", "brightness", 0.0))
+    bumpenabled = getiniint("options.ini", "options", "bump mapping enabled", $00)
+    hudenabled = getiniint("options.ini", "options", "HUD enabled", $00)
+    overlaysenabled = getiniint("options.ini", "options", "Overlays enabled", $00)
     camerafognear = 0.5
+    camerar = $00
+    camerag = $00
+    camerab = $00
     camerafogfar = 6.0
     storedcamerafogfar = camerafogfar
-    mousesens = getinifloat(optionfile, "options", "mouse sensitivity", 0.0)
-    enablevram = getiniint(optionfile, "options", "enable vram", $00)
+    mousesens = getinifloat("options.ini", "options", "mouse sensitivity", 0.0)
+    enablevram = getiniint("options.ini", "options", "enable vram", $00)
+    ark_blur_x = (smallest_power_two_half - viewport_center_x)
+    ark_blur_y = (smallest_power_two_half - viewport_center_y)
     Dim lightspritetex%($0A)
-    consolereissue = Null
-    consoler = $FF
-    consoleg = $FF
-    consoleb = $FF
-    consoler = $00
-    consoleg = $FF
-    consoleb = $FF
+    setglobalconsolecolor($00, $FF, $FF)
     createconsolemsg("Console commands: ", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
     createconsolemsg("  - teleport [room name]", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
     createconsolemsg("  - godmode [on/off]", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
@@ -605,6 +533,7 @@ Function EntryPoint%()
     createconsolemsg("  - disable106/enable106", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
     createconsolemsg("  - 173state/106state/096state", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
     createconsolemsg("  - spawn [npc type]", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+    setglobalconsolecolor($FFFFFFFF, $FFFFFFFF, $FFFFFFFF)
     tempsoundindex = $00
     Dim music$($28)
     music($00) = "The Dread"
@@ -634,17 +563,19 @@ Function EntryPoint%()
     music($18) = "Credits"
     music($19) = "SaveMeFrom"
     music($1A) = "EarRing"
-    musicvolume = getinifloat(optionfile, "audio", "music volume", 0.0)
+    music($1B) = "1123"
+    musicvolume = getinifloat("options.ini", "audio", "music volume", 0.0)
     musicchn = streamsound_strict((("SFX\Music\" + music($02)) + ".ogg"), musicvolume, $02)
     currmusicvolume = 1.0
     nowplaying = $02
     shouldplay = $0B
     currmusic = $01
-    drawloading(10.0, $01, $00, $00)
+    drawloading(20.0, $01, $00, $01)
+    initmultiplayer($FFFFFFFF, $00)
     Dim opendoorsfx%($03, $03)
     Dim closedoorsfx%($03, $03)
     Dim decaysfx%($05)
-    drawloading(20.0, $01, $00, $00)
+    drawloading(40.0, $01, $00, $01)
     Dim rustlesfx%($03)
     Dim dripsfx%($04)
     Dim radiosfx%($05, $0A)
@@ -670,7 +601,9 @@ Function EntryPoint%()
     Dim coughsfx%($03)
     Dim stepsfx%($05, $02, $08)
     Dim step2sfx%($06)
-    drawloading(30.0, $01, $00, $00)
+    drawloading(50.0, $01, $00, $01)
+    ntf_1499entersfx = loadsound_strict("SFX\SCP\1499\Enter.ogg")
+    ntf_1499leavesfx = loadsound_strict("SFX\SCP\1499\Exit.ogg")
     playcustommusic = $00
     custommusic = $00
     monitortimer = 0.0
@@ -679,8 +612,8 @@ Function EntryPoint%()
     nvgimages = loadanimimage("GFX\battery.png", $40, $40, $00, $02)
     maskimage(nvgimages, $FF, $00, $FF)
     wearing1499 = $00
-    enableusertracks = getiniint(optionfile, "audio", "enable user tracks", $00)
-    usertrackmode = getiniint(optionfile, "audio", "user track setting", $00)
+    enableusertracks = getiniint("options.ini", "audio", "enable user tracks", $00)
+    usertrackmode = getiniint("options.ini", "audio", "user track setting", $00)
     usertrackcheck = $00
     usertrackcheck2 = $00
     usertrackmusicamount = $00
@@ -699,7 +632,7 @@ Function EntryPoint%()
     room2gw_z = 0.0
     menuroomscale = (1.0 / 256.0)
     currmenu_testimg = ""
-    particleamount = getiniint(optionfile, "options", "particle amount", $00)
+    particleamount = getiniint("options.ini", "options", "particle amount", $00)
     Dim navimages%($05)
     For local0 = $00 To $03 Step $01
         navimages(local0) = loadimage_strict((("GFX\navigator\roomborder" + (Str local0)) + ".png"))
@@ -707,22 +640,20 @@ Function EntryPoint%()
     Next
     navimages($04) = loadimage_strict("GFX\navigator\batterymeter.png")
     navbg = createimage(graphicwidth, graphicheight, $01)
-    drawloading(35.0, $01, $00, $00)
+    drawloading(65.0, $01, $00, $01)
     itemsrotaterand = rand($168, $01)
-    Dim particletextures%($0A)
     hisssfx = loadsound_strict("SFX\General\Hiss.ogg")
-    smokedelay = $00
+    emittertimer = 0.0
     Dim bigdoorobj%($02)
     Dim heavydoorobj%($02)
     Dim objtunnel%($07)
-    drawloading(40.0, $01, $00, $00)
+    drawloading(80.0, $01, $00, $01)
     loadroomtemplates("Data\rooms.ini")
-    roomscale = (1.0 / 256.0)
     mapwidth = $12
     mapheight = mapwidth
     Dim maptemp%((mapwidth + $01), (mapheight + $01))
     Dim mapfound%((mapwidth + $01), (mapheight + $01))
-    hidedistance = 15.0
+    hidedistance = 20.0
     secondarylighton = 1.0
     prevsecondarylighton = 1.0
     remotedooron = $01
@@ -739,29 +670,26 @@ Function EntryPoint%()
     Dim maproom$($06, $00)
     Dim gorepics%($0A)
     Dim chunkdata%($40, $40)
-    initmultiplayer($FFFFFFFF, $00)
-    drawloading(80.0, $01, $00, $00)
     collisions($02, $01, $02, $02)
     collisions($02, $0B, $02, $02)
     collisions($02, $02, $01, $03)
+    collisions($02, $09, $02, $02)
+    collisions($02, $05, $02, $03)
     collisions($03, $01, $02, $02)
     collisions($03, $0B, $02, $02)
     collisions($04, $04, $01, $02)
-    collisions($05, $01, $02, $02)
-    collisions($05, $05, $01, $03)
+    collisions($05, $01, $02, $03)
     collisions($06, $01, $02, $02)
     collisions($06, $0B, $02, $02)
     collisions($08, $01, $02, $02)
     collisions($08, $0B, $02, $02)
     collisions($08, $02, $01, $02)
-    collisions($02, $09, $02, $02)
     collisions($0C, $01, $02, $02)
     collisions($0C, $02, $01, $03)
     collisions($08, $0C, $01, $02)
     collisions($0C, $09, $02, $02)
-    drawloading(90.0, $01, $00, $00)
+    drawloading(98.0, $01, $00, $01)
     Dim lightspritetex%($05)
-    Dim decaltextures%($14)
     unabletomove = $00
     shouldentitiesfall = $01
     playerfallingpickdistance = 10.0
@@ -770,27 +698,11 @@ Function EntryPoint%()
     save_msg_y = $00
     mtf_camerachecktimer = 0.0
     mtf_cameracheckdetected = $00
-    menuback = loadimage_strict("GFX\menu\back.jpg")
-    menutext = loadimage_strict("GFX\menu\scptext.jpg")
-    menu173 = loadimage_strict("GFX\menu\173back.jpg")
-    menuwhite = loadimage_strict("GFX\menu\menuwhite.jpg")
-    menublack = loadimage_strict("GFX\menu\menublack.jpg")
-    maskimage(menublack, $FF, $FF, $00)
-    quickloadicon = loadimage_strict("GFX\menu\QuickLoading.png")
-    resizeimage(menuback, ((Float imagewidth(menuback)) * menuscale), ((Float imageheight(menuback)) * menuscale))
-    resizeimage(menutext, ((Float imagewidth(menutext)) * menuscale), ((Float imageheight(menutext)) * menuscale))
-    resizeimage(menu173, ((Float imagewidth(menu173)) * menuscale), ((Float imageheight(menu173)) * menuscale))
-    resizeimage(quickloadicon, ((Float imagewidth(quickloadicon)) * menuscale), ((Float imageheight(quickloadicon)) * menuscale))
-    For local0 = $00 To $03 Step $01
-        arrowimg(local0) = loadimage_strict("GFX\menu\arrow.png")
-        rotateimage(arrowimg(local0), (Float ($5A * local0)))
-        handleimage(arrowimg(local0), $00, $00)
-    Next
     Dim menublinktimer%($02)
     Dim menublinkduration%($02)
     menublinktimer($00) = $01
     menublinktimer($01) = $01
-    introenabled = getiniint(optionfile, "options", "intro enabled", $00)
+    introenabled = getiniint("options.ini", "options", "intro enabled", $00)
     savepath = "Saves\"
     Dim savegames$((savegameamount + $01))
     Dim savegametime$((savegameamount + $01))
@@ -802,72 +714,70 @@ Function EntryPoint%()
     Dim savedmaps$((savedmapsamount + $01))
     Dim savedmapsauthor$((savedmapsamount + $01))
     loadsavegames()
-    local9 = createudpstream($00)
-    local10 = udpstreamport(local9)
-    closeudpstream(local9)
+    local8 = createudpstream("0", $00)
+    local9 = udpstreamport(local8)
+    closeudpstream(local8)
     currloadgamepage = $00
     timegravity = "0.0023"
     timetickrate = $80
     timejumpmode = $01
     timemaxplayers = $10
     timevoice = $01
-    timeport = local10
+    timeport = local9
     timerandomseed = setrandomseed()
     timeservername = ("SCP Server v" + multiplayer_version)
+    shouldexitpage = $00
     keyssave = $00
     keyssavenumpad = $00
     quickloadpercent = $FFFFFFFF
     quickloadpercent_displaytimer = 0.0
     onsliderid = $00
-    scrollbary = 0.0
-    scrollmenuheight = 0.0
+    scrollbary = $00
+    scrollmenuheight = $00
     mainmenuopen = $01
     flushkeys()
     flushmouse()
-    drawloading(100.0, $01, $00, $00)
+    drawloading(100.0, $01, $00, $01)
     loopdelay = millisecs()
     updateparticles_time = 0.0
     input_resettime = 0.0
     i_427 = (New scp427)
     stated = $00
     i_zone = (New mapzones)
-    For local11 = Each servers
-        If (((local11\Field0 = selected_servers) And (local11\Field17 = selected_page)) <> 0) Then
-            multiplayer_list_updateserver(local11, $1388, $01)
+    For local10 = Each servers
+        If (((local10\Field0 = selected_servers) And (local10\Field17 = selected_page)) <> 0) Then
+            multiplayer_list_updateserver(local10, $1388, $01)
         EndIf
     Next
     fullscreensetting = fullscreen
     borderlesswindowedsetting = borderlesswindowed
-    bit16modesetting = bit16mode
     launcherenabledsetting = launcherenabled
     selectedgfxdriversetting = selectedgfxdriver
     Repeat
+        mouseposx = scaledmousex()
+        mouseposy = scaledmousey()
         If (ready = "") Then
             ready = "Not Ready"
             ws_checksubscribeditems($01)
             If (nickname = "") Then
-                nickname = bs_isteamfriends_getpersonaname(bs_steamfriends())
+                nickname = steam_getplayername()
             EndIf
         EndIf
         updatefocus()
         If (keyhit($3E) <> 0) Then
             takescreenshot()
         EndIf
-        cls()
         updatemusic()
         autoreleasesounds()
         updateinput()
         If (mainmenuopen <> 0) Then
-            updateframe($00)
+            updateframe()
             updatemainmenu()
             multiplayer_updategui($01)
             multiplayer_update()
             voice_update()
-            If (nickname = "concheliga2") Then
-                nickname = bs_isteamfriends_getpersonaname(bs_steamfriends())
-            EndIf
         Else
-            updateframe($00)
+            updateframe()
             If (((menuopen = $00) Or udp_getstream()) <> 0) Then
                 updatestreamsounds()
                 updateambient()
@@ -877,85 +787,76 @@ Function EntryPoint%()
                 updatecamera()
                 voice_update()
                 updatesecuritycams($00)
-                local12 = mousehit1
-                local13 = mousehit2
-                local14 = keyhite
-                local15 = $00
-                ft\Field1 = gettickduration()
-                While (0.0 < ft\Field1)
-                    ft\Field1 = (ft\Field1 - gettickduration())
-                    setplayervariables()
-                    multiplayer_updateplayersync()
-                    outscp = multiplayer_updatescps()
-                    If (selecteddoor = Null) Then
-                        If (spectate\Field1 = $FFFFFFFF) Then
-                            If (caninteract() <> 0) Then
-                                mouselook($01)
-                                moveplayer((outscp = $00))
-                            Else
-                                mouselook($00)
-                                moveplayer($01)
-                                updateexistanimation()
-                            EndIf
+                setplayervariables()
+                outscp = multiplayer_updatescps()
+                If (selecteddoor = Null) Then
+                    If (spectate\Field1 = $FFFFFFFF) Then
+                        If (caninteract() <> 0) Then
+                            mouselook($01)
+                            moveplayer((outscp = $00))
+                        Else
+                            mouselook($00)
+                            moveplayer($01)
+                            updateexistanimation()
                         EndIf
-                    Else
-                        updateexistanimation()
                     EndIf
-                    setplayervariables()
-                    multiplayer_breach_update()
-                    multiplayer_updateplayers()
-                    multiplayer_updatespectate()
-                    multiplayer_updateobjects()
-                    multiplayer_animateviewmodel()
-                    updateguns()
-                    animateguns()
-                    updatedeadbodies()
-                    updateexplosion()
-                    updatedoors()
-                    updaterooms()
-                    updateevents()
-                    If (playerroom\Field7\Field11 = "dimension1499") Then
-                        updatedimension1499()
-                        updateleave1499()
-                    Else
-                        updatescreens()
-                        timecheckpointmonitors()
-                        update294()
-                    EndIf
-                    updatedecals()
-                    updatemtf()
-                    updatenpcs()
-                    updaterockets()
-                    updateitems()
-                    updateparticles()
-                    use427()
-                    updatemonitorsaving()
-                    updategame()
-                    multiplayer_update()
-                    mousehit1 = $00
-                    keyhite = $00
-                    mousehit2 = $00
-                    local15 = $01
-                Wend
-                mousehit1 = local12
-                keyhite = local14
-                mousehit2 = local13
+                Else
+                    updateexistanimation()
+                EndIf
+                setplayervariables()
+                multiplayer_breach_update()
+                multiplayer_updateplayers()
+                multiplayer_updatespectate()
+                multiplayer_updateobjects()
+                multiplayer_animateviewmodel()
+                updateguns()
+                animateguns()
+                updatedeadbodies()
+                updateexplosion()
+                updatedoors()
+                updaterooms()
+                updateevents()
+                If (playerroom\Field8\Field11 = "dimension1499") Then
+                    updatedimension1499()
+                    updateleave1499()
+                Else
+                    updatescreens()
+                    timecheckpointmonitors()
+                    update294()
+                EndIf
+                updatedecals()
+                updatemtf()
+                updatenpcs()
+                updaterockets()
+                updateitems()
+                updateparticles()
+                use427()
+                updatemonitorsaving()
+                updategame()
+                multiplayer_update()
                 updatebuttons()
                 update3dsounds()
+                updateresolution($01)
             EndIf
-            render3d(1.0)
+            render3d()
             render2d()
             updatehotkeys()
+            multiplayer_doineedtoleave()
         EndIf
         If (getscripts() <> 0) Then
             public_inqueue($05, $01)
         EndIf
         updatetimers()
-        updateresolution($01, $FFFFFFFF)
+        If (workshopdisablepending <> 0) Then
+            workshopdisablepending = $00
+            ws_disableall()
+        EndIf
+        updatevsync($FFFFFFFF)
     Forever
     If (udp_getstream() <> 0) Then
         disconnectserver("exit", $01)
     EndIf
-    closegame()
+    destroywindow()
     creditstimer = 0.0
+    shouldforcefov = $01
 End Function

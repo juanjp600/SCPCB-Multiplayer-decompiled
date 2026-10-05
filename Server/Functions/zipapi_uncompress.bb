@@ -14,7 +14,7 @@ Function zipapi_uncompress%(arg0%, arg1%)
     local0 = createbank(arg1)
     local1 = createbank($04)
     pokeint(local1, $00, banksize(local0))
-    local2 = zlibwapi_uncompress(local0, local1, arg0, banksize(arg0))
+    local2 = zlib_uncompress(local0, local1, arg0, banksize(arg0))
     If (local2 <> $00) Then
         freebank(local1)
         freebank(local0)

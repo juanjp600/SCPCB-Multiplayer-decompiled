@@ -7,7 +7,6 @@ Function multiplayer_disconnectplayer%(arg0.players)
     If (arg0 = Null) Then
         Return $00
     EndIf
-    debuglog(("Disconnect " + (Str arg0\Field0)))
     For local0 = Each snd3d
         If (local0\Field5 = arg0\Field13) Then
             If (local0\Field0 = $00) Then
@@ -49,25 +48,25 @@ Function multiplayer_disconnectplayer%(arg0.players)
             Delete local3
         EndIf
     Next
-    If (arg0\Field0 <> networkserver\Field28) Then
-        If (arg0\Field53 <> $00) Then
-            stopchannel(arg0\Field53)
+    If (arg0\Field0 <> networkserver\Field20) Then
+        If (arg0\Field51 <> $00) Then
+            stopchannel(arg0\Field51)
         EndIf
-        If (networkserver\Field18 <> 0) Then
+        If (networkserver\Field15 <> 0) Then
             For local4 = Each items
                 If (((local4\Field22 = arg0\Field0) And (local4\Field22 <> $00)) <> 0) Then
                     playerdropitem(local4)
                 EndIf
             Next
         EndIf
-        If (arg0\Field25 <> Null) Then
-            gg_delete_text_block(arg0\Field25\Field11)
+        If (entityexist(arg0\Field25[$00]) <> 0) Then
+            freeentity(arg0\Field25[$00])
         EndIf
-        If (arg0\Field28 <> Null) Then
-            gg_delete_text_block(arg0\Field28\Field11)
+        If (entityexist(arg0\Field25[$03]) <> 0) Then
+            freeentity(arg0\Field25[$03])
         EndIf
-        gg_delete_text_block(arg0\Field27\Field11)
-        gg_delete_text_block(arg0\Field26\Field11)
+        freeentity(arg0\Field25[$02])
+        freeentity(arg0\Field25[$01])
         freeplayerobjects(arg0)
         If (arg0\Field12 <> $00) Then
             freeentity(arg0\Field12)
@@ -77,13 +76,12 @@ Function multiplayer_disconnectplayer%(arg0.players)
             freeentity(arg0\Field13)
             arg0\Field13 = $00
         EndIf
-        If ((networkserver\Field49 And networkserver\Field42) <> 0) Then
-            bs_isteamnetworking_closep2psessionwithuser(bs_steamnetworking(), udp_fillsteam(bs_csteamid_getaccountid(arg0\Field29)))
-            bs_csteamid_destroy(arg0\Field29)
+        If ((networkserver\Field36 And networkserver\Field32) <> 0) Then
+            steam_closeconnection(arg0\Field94, arg0\Field95)
         EndIf
     EndIf
-    freebank(arg0\Field60)
-    opus_remove_decoder(arg0\Field87)
+    freebank(arg0\Field58)
+    opus_remove_decoder(arg0\Field85)
     If (arg0\Field96 <> $00) Then
         freeimage(arg0\Field96)
     EndIf

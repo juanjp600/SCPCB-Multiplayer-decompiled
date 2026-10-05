@@ -12,12 +12,12 @@ Function updatequerys%()
             EndIf
             If (strippath(local0\Field0) = strippath(server\Field46)) Then
                 If (player[local0\Field3] <> Null) Then
-                    player[local0\Field3]\Field74 = $01
+                    player[local0\Field3]\Field76 = $01
                 EndIf
             EndIf
             closefile(local0\Field5)
             Delete local0
-        ElseIf (((server\Field9 = $00) Or ((player[local0\Field3]\Field22 = $01) Or (player[local0\Field3]\Field74 = $00))) <> 0) Then
+        ElseIf (((server\Field9 = $00) Or ((player[local0\Field3]\Field22 = $01) Or (player[local0\Field3]\Field76 = $00))) <> 0) Then
             If (local0\Field7 < millisecs()) Then
                 If (local0\Field1 < local0\Field2) Then
                     resizebank(query_global_data, local0\Field4)

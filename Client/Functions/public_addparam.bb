@@ -1,4 +1,7 @@
 Function public_addparam%(arg0$, arg1%)
+    If (publics\Field1 >= $10) Then
+        Return $00
+    EndIf
     publics\Field1 = (publics\Field1 + $01)
     publics\Field2[publics\Field1] = arg0
     publics\Field3[publics\Field1] = arg1

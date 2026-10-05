@@ -48,44 +48,44 @@ Type npcs
     Field Field46%
     Field Field47.npcs
     Field Field48%
-    Field Field49#
-    Field Field50%
+    Field Field49%
+    Field Field50#
     Field Field51%
     Field Field52%
-    Field Field53$
-    Field Field54#
+    Field Field53%
+    Field Field54$
     Field Field55#
     Field Field56#
-    Field Field57$
-    Field Field58%
+    Field Field57#
+    Field Field58$
     Field Field59%
-    Field Field60#
-    Field Field61#
-    Field Field62$
+    Field Field60%
+    Field Field61%
+    Field Field62#
     Field Field63#
-    Field Field64#
+    Field Field64$
     Field Field65#
-    Field Field66%
-    Field Field67%
-    Field Field68#
-    Field Field69#
-    Field Field70%
-    Field Field71%
-    Field Field72#
+    Field Field66#
+    Field Field67#
+    Field Field68%
+    Field Field69%
+    Field Field70#
+    Field Field71#
+    Field Field72%
     Field Field73%
-    Field Field74%
+    Field Field74#
     Field Field75%
-    Field Field76#
-    Field Field77$
-    Field Field78%
-    Field Field79%
+    Field Field76%
+    Field Field77%
+    Field Field78#
+    Field Field79$
     Field Field80%
     Field Field81%
     Field Field82%
     Field Field83%
     Field Field84%
-    Field Field85#
-    Field Field86#
+    Field Field85%
+    Field Field86%
     Field Field87#
     Field Field88#
     Field Field89#
@@ -95,6 +95,8 @@ Type npcs
     Field Field93#
     Field Field94#
     Field Field95#
-    Field Field96%
-    Field Field97%
+    Field Field96#
+    Field Field97#
+    Field Field98%
+    Field Field99%
 End Type

@@ -25,20 +25,20 @@ Function pausesounds%()
     Next
     For local1 = Each npcs
         If (local1\Field17 <> $00) Then
-            If (local1\Field70 = $00) Then
+            If (local1\Field72 = $00) Then
                 If (channelplaying(local1\Field17) <> 0) Then
                     pausechannel(local1\Field17)
                 EndIf
-            ElseIf (local1\Field70 = $01) Then
+            ElseIf (local1\Field72 = $01) Then
                 setstreampaused_strict(local1\Field17, $01)
             EndIf
         EndIf
         If (local1\Field20 <> $00) Then
-            If (local1\Field71 = $00) Then
+            If (local1\Field73 = $00) Then
                 If (channelplaying(local1\Field20) <> 0) Then
                     pausechannel(local1\Field20)
                 EndIf
-            ElseIf (local1\Field71 = $01) Then
+            ElseIf (local1\Field73 = $01) Then
                 setstreampaused_strict(local1\Field20, $01)
             EndIf
         EndIf

@@ -24,28 +24,28 @@ Type players
     Field Field22#
     Field Field23%
     Field Field24$
-    Field Field25.tgg_textline
-    Field Field26.tgg_textline
-    Field Field27.tgg_textline
-    Field Field28.tgg_textline
-    Field Field29%
+    Field Field25%[3]
+    Field Field26%
+    Field Field27%
+    Field Field28%
+    Field Field29#
     Field Field30%
-    Field Field31#
-    Field Field32%
-    Field Field33%
-    Field Field34$
-    Field Field35#
-    Field Field36#
+    Field Field31%
+    Field Field32$
+    Field Field33#
+    Field Field34#
+    Field Field35%
+    Field Field36%
     Field Field37%
     Field Field38%
     Field Field39%
-    Field Field40%
+    Field Field40.attachs
     Field Field41%
-    Field Field42.attachs
+    Field Field42%
     Field Field43%
-    Field Field44%
+    Field Field44$
     Field Field45%
-    Field Field46$
+    Field Field46%
     Field Field47%
     Field Field48%
     Field Field49%
@@ -58,42 +58,42 @@ Type players
     Field Field56%
     Field Field57%
     Field Field58%
-    Field Field59%
-    Field Field60%
+    Field Field59#
+    Field Field60#
     Field Field61#
-    Field Field62#
+    Field Field62%
     Field Field63#
-    Field Field64%
-    Field Field65#
-    Field Field66#
+    Field Field64#
+    Field Field65%
+    Field Field66%
     Field Field67%
-    Field Field68%
-    Field Field69%
-    Field Field70#
-    Field Field71#
+    Field Field68#
+    Field Field69#
+    Field Field70%
+    Field Field71%
     Field Field72%
     Field Field73%
     Field Field74%
     Field Field75%
     Field Field76%
     Field Field77%
-    Field Field78%
+    Field Field78%[8]
     Field Field79%
-    Field Field80%[8]
+    Field Field80%
     Field Field81%
     Field Field82%
     Field Field83%
     Field Field84%
     Field Field85%
-    Field Field86%
+    Field Field86$
     Field Field87%
-    Field Field88$
+    Field Field88%
     Field Field89%
-    Field Field90%
-    Field Field91%
+    Field Field90#
+    Field Field91#
     Field Field92#
-    Field Field93#
-    Field Field94#
+    Field Field93$
+    Field Field94%
     Field Field95%
     Field Field96%
     Field Field97#
@@ -105,4 +105,9 @@ Type players
     Field Field103.bs
     Field Field104%
     Field Field105%
+    Field Field106%
+    Field Field107#
+    Field Field108#
+    Field Field109#
+    Field Field110$
 End Type

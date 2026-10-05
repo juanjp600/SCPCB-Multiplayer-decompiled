@@ -4,17 +4,17 @@ Function onplayerdropgrenade%(arg0%)
         If (inventory(local0) <> Null) Then
             Select arg0
                 Case $0D
-                    If (inventory(local0)\Field3\Field2 = "grenade") Then
+                    If (inventory(local0)\Field1\Field2 = "grenade") Then
                         removeitem(inventory(local0), $01)
                         Exit
                     EndIf
                 Case $0E
-                    If (inventory(local0)\Field3\Field2 = "grenadeflashbang") Then
+                    If (inventory(local0)\Field1\Field2 = "grenadeflashbang") Then
                         removeitem(inventory(local0), $01)
                         Exit
                     EndIf
                 Case $0F
-                    If (inventory(local0)\Field3\Field2 = "grenadesmoke") Then
+                    If (inventory(local0)\Field1\Field2 = "grenadesmoke") Then
                         removeitem(inventory(local0), $01)
                         Exit
                     EndIf

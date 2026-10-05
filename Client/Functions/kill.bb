@@ -14,9 +14,9 @@ Function kill%(arg0$, arg1%)
         EndIf
     EndIf
     If (0.0 <= killtimer) Then
-        local0 = networkserver\Field28
-        If (networkserver\Field15 = $00) Then
-            createrolecorpse(myplayer\Field51, entityx(myplayer\Field13, $00), (entityy(myplayer\Field13, $00) + 0.32), entityz(myplayer\Field13, $00), entityyaw(myplayer\Field13, $00), myplayer\Field92, $00, $00, $00, $00)
+        local0 = networkserver\Field20
+        If (networkserver\Field12 = $00) Then
+            createrolecorpse(myplayer\Field49, entityx(myplayer\Field13, $00), (entityy(myplayer\Field13, $00) + 0.32), entityz(myplayer\Field13, $00), entityyaw(myplayer\Field13, $00), myplayer\Field90, $00, $00, $00, $00)
         EndIf
         killanim = rand($00, $01)
         playsound_strict(damagesfx($00))
@@ -30,9 +30,9 @@ Function kill%(arg0$, arg1%)
         positionentity(head, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
         resetentity(head)
         rotateentity(head, 0.0, entityyaw(camera, $00), 0.0, $00)
-        myplayer\Field83 = $00
+        myplayer\Field81 = $00
         using294 = $00
-        If (((networkserver\Field23 = $00) Or (networkserver\Field15 = $01)) <> 0) Then
+        If (((networkserver\Field52\Field12 = $00) Or (networkserver\Field12 = $01)) <> 0) Then
             If (wearingnightvision <> 0) Then
                 camerafogfar = storedcamerafogfar
             EndIf
@@ -47,7 +47,7 @@ Function kill%(arg0$, arg1%)
                 EndIf
             Next
         EndIf
-        If (networkserver\Field15 = $01) Then
+        If (networkserver\Field12 = $01) Then
             If (arg0 <> "") Then
                 multiplayer_addchatmsg((" " + arg0), $01)
             EndIf
@@ -64,6 +64,7 @@ Function kill%(arg0$, arg1%)
             public_inqueue($06, $01)
         EndIf
         holdinggun = $00
+        Return $01
     EndIf
     Return $00
 End Function

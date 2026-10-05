@@ -7,10 +7,10 @@ Function getlineamount%(arg0$, arg1%, arg2%, arg3#)
     Local local5$
     Local local6%
     If (arg2 < $01) Then
-        arg2 = (Int smallest_power_two)
+        arg2 = smallest_power_two
     EndIf
     local0 = $00
-    local1 = (Int ((Float aastringheight(arg0)) + arg3))
+    local1 = (Int ((Float stringheight(arg0)) + arg3))
     While (len(arg0) > $00)
         local3 = instr(arg0, " ", $01)
         If (local3 = $00) Then
@@ -19,11 +19,11 @@ Function getlineamount%(arg0$, arg1%, arg2%, arg3#)
         local4 = left(arg0, local3)
         local5 = trim(local4)
         local6 = $00
-        If (((aastringwidth((local2 + local4)) > arg1) And (aastringwidth((local2 + local5)) <= arg1)) <> 0) Then
+        If (((stringwidth((local2 + local4)) > arg1) And (stringwidth((local2 + local5)) <= arg1)) <> 0) Then
             local4 = local5
             local6 = $01
         EndIf
-        If (aastringwidth((local2 + local4)) > arg1) Then
+        If (stringwidth((local2 + local4)) > arg1) Then
             local0 = (local0 + $01)
             local2 = ""
         Else

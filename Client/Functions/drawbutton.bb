@@ -3,7 +3,7 @@ Function drawbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%, arg6%, arg7%, arg
     local0 = $00
     drawframe(arg0, arg1, arg2, arg3, $00, $00)
     If (mouseon(arg0, arg1, arg2, arg3) <> 0) Then
-        color($1E, $1E, $1E)
+        setcolorraw($1E1E1E)
         If (((mousehit1 And (arg6 = $00)) Or (mouseup1 And arg6)) <> 0) Then
             local0 = $01
             If (((((selectserver <> arg8) And (arg8 <> $FFFFFFFF)) Or ((selected_servers <> arg9) And (arg9 <> $FFFFFFFF))) And (((arg8 <> $FFFFFFFF) And (servermenuopen = $01)) = $00)) <> 0) Then
@@ -14,49 +14,51 @@ Function drawbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%, arg6%, arg7%, arg
             EndIf
         EndIf
         If (((arg8 <> $FFFFFFFF) And (arg8 = selectserver)) <> 0) Then
-            rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
+            rect(arg0, arg1, arg2, arg3, $01)
         ElseIf (arg8 = $FFFFFFFF) Then
-            rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
+            rect(arg0, arg1, arg2, arg3, $01)
         EndIf
     ElseIf (arg8 <> $FFFFFFFF) Then
         If (arg8 = selectserver) Then
-            color($1E, $1E, $1E)
-            rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
+            setcolorraw($1E1E1E)
+            rect(arg0, arg1, arg2, arg3, $01)
         Else
-            color($00, $00, $00)
+            setcolorraw($00)
         EndIf
     Else
-        color($00, $00, $00)
+        setcolorraw($00)
     EndIf
     If (((arg10 = selected_page) Or (arg10 = selected_p_page)) <> 0) Then
-        rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
+        rect(arg0, arg1, arg2, arg3, $01)
     EndIf
+    setcolorraw($FFFFFF)
+    rect(arg0, arg1, arg2, arg3, $00)
     If (arg11 <> $FFFFFFFF) Then
-        color(arg11, arg12, arg13)
+        setcolorex(arg11, arg12, arg13)
     Else
-        color($FF, $FF, $FF)
+        setcolorraw($FFFFFF)
     EndIf
     If (((arg9 <> $FFFFFFFF) And (arg9 = selected_servers)) <> 0) Then
-        color($46, $46, $46)
+        setcolorex($46, $46, $46)
     EndIf
     If (arg7 <> 0) Then
         If (arg5 = $01) Then
-            aasetfont(font2)
-        ElseIf (arg5 <> $00) Then
-            aasetfont(arg5)
-        Else
-            aasetfont(font1)
-        EndIf
-        aatext(((arg2 Sar $01) + arg0), ((arg3 Sar $01) + arg1), arg4, $01, $01, 1.0)
-    Else
-        If (arg5 = $01) Then
-            setfont(font2)
+            setfontex(fonts[$01]\Field0)
         ElseIf (arg5 <> $00) Then
             setfont(arg5)
         Else
-            setfont(font1)
+            setfontex(fonts[$00]\Field0)
         EndIf
-        text(((arg2 Sar $01) + arg0), ((arg3 Sar $01) + arg1), arg4, $01, $01)
+        text(((arg2 Shr $01) + arg0), ((arg3 Shr $01) + arg1), arg4, $01, $01)
+    Else
+        If (arg5 = $01) Then
+            setfontex(fonts[$01]\Field0)
+        ElseIf (arg5 <> $00) Then
+            setfont(arg5)
+        Else
+            setfontex(fonts[$00]\Field0)
+        EndIf
+        text(((arg2 Shr $01) + arg0), ((arg3 Shr $01) + arg1), arg4, $01, $01)
     EndIf
     If (((arg8 <> $FFFFFFFF) And (servermenuopen = $01)) <> 0) Then
         Return $00
@@ -73,7 +75,7 @@ Function drawbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%, arg6%, arg7%, arg
                 public_addparam((Str arg3), $01)
                 callback()
             EndIf
-            If (se_return_value\Field8 <> 0) Then
+            If (se_return_value\Field9 <> 0) Then
                 local0 = $00
             EndIf
         EndIf

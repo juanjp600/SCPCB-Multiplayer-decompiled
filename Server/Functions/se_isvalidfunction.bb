@@ -390,10 +390,6 @@ Function se_isvalidfunction%(arg0$)
             Return $01
         Case "dllfunctionstring_9"
             Return $01
-        Case "connecttocentralserver"
-            Return $01
-        Case "reconnecttocentralserver"
-            Return $01
         Case "createsteaminstance"
             Return $01
         Case "getsteaminstancetag"

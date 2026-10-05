@@ -1,10 +1,13 @@
 Function multiplayer_senddoor%(arg0.doors, arg1.items, arg2$)
     udp_bytestreamwritechar($17)
+    If (iscoopmode() <> 0) Then
+        udp_writebyte(networkserver\Field20)
+    EndIf
     udp_bytestreamwriteshort(arg0\Field18)
     udp_bytestreamwritechar(arg0\Field5)
     udp_bytestreamwritechar(arg0\Field4)
     If (arg1 <> Null) Then
-        udp_bytestreamwriteshort(arg1\Field18)
+        udp_bytestreamwriteshort(arg1\Field19)
     Else
         udp_bytestreamwriteshort($00)
     EndIf

@@ -5,95 +5,100 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
     Local local4$
     Local local5.rooms
     Local local6.itemtemplates
-    Local local7.events
-    Local local8.steambrowser
+    Local local7%
+    Local local8.events
     Local local9%
-    Local local10$
+    Local local10%
     Local local11%
-    Local local12%
-    Local local13.bs
-    Local local14$
-    Local local15%
-    Local local17$
-    Local local18$
-    Local local19$
-    Local local20$
-    Local local21.se_script
-    Local local22.scriptsthread
-    Local local23.workshopthread
+    Local local12$
+    Local local13%
+    Local local14%
+    Local local15.bs
+    Local local16$
+    Local local17%
+    Local local18%
+    Local local19%
+    Local local21$
+    Local local22$
+    Local local23$
     Local local24$
     Local local25$
-    Local local26%
-    Local local27%
-    Local local28%
-    Local local29#
-    Local local30#
-    Local local31#
-    Local local32#
-    Local local33#
-    Local local34.sound
-    Local local35%
-    Local local36%
-    Local local37%
-    Local local38.snd3d
-    Local local39%
+    Local local26.se_script
+    Local local27.scriptsthread
+    Local local28.workshopthread
+    Local local29$
+    Local local30$
+    Local local31%
+    Local local32%
+    Local local33%
+    Local local34#
+    Local local35#
+    Local local36#
+    Local local37#
+    Local local38#
+    Local local39.sound
     Local local40%
     Local local41%
-    Local local42$
-    Local local43%
+    Local local42%
+    Local local43.snd3d
     Local local44%
     Local local45%
     Local local46%
-    Local local47%
+    Local local47$
     Local local48%
     Local local49%
     Local local50%
     Local local51%
     Local local52%
-    Local local53#
+    Local local53%
     Local local54%
     Local local55%
-    Local local56$
+    Local local56%
     Local local57%
-    Local local58%
+    Local local58#
     Local local59%
-    Local local60$
-    Local local61%
-    Local local62$
-    Local local63$
-    Local local64.rooms
-    Local local65%
-    Local local66#
-    Local local67#
-    Local local68#
-    Local local69%
+    Local local60%
+    Local local61$
+    Local local62%
+    Local local63%
+    Local local64%
+    Local local65$
+    Local local66%
+    Local local67$
+    Local local68$
+    Local local69.rooms
     Local local70%
-    Local local71$
-    Local local72%
-    Local local73%
+    Local local71#
+    Local local72#
+    Local local73#
     Local local74%
     Local local75%
-    Local local76%
+    Local local76$
     Local local77%
     Local local78%
     Local local79%
     Local local80%
-    Local local81#
-    Local local82#
-    Local local83#
-    Local local84#
-    Local local85#
-    Local local86%
-    Local local87%
-    Local local88$
-    Local local89%
-    Local local90%
+    Local local81%
+    Local local82%
+    Local local83%
+    Local local84%
+    Local local85%
+    Local local86#
+    Local local87#
+    Local local88#
+    Local local89#
+    Local local90#
     Local local91%
-    Local local92$
-    Local local93%
+    Local local92%
+    Local local93$
     Local local94%
     Local local95%
     Local local96%
+    Local local97$
+    Local local98%
+    Local local99%
+    Local local100%
+    Local local101%
     local1 = $00
     se_resetparam()
     se_getparams()
@@ -175,7 +180,7 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $138
             local4 = se_tostringarg($00, "")
             For local5 = Each rooms
-                If (local5\Field7\Field11 = local4) Then
+                If (local5\Field8\Field11 = local4) Then
                     changermesh(local5, se_tostringarg($01, ""))
                 EndIf
             Next
@@ -185,7 +190,15 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str local6\Field0)
             local1 = $01
         Case $136
-            local0 = (Str m_item[se_tointarg($00, $00)]\Field3\Field0)
+            local7 = se_tointarg($00, $00)
+            local0 = "0"
+            If (((local7 > $00) And (local7 < $3E8)) <> 0) Then
+                If (m_item[local7] <> Null) Then
+                    If (m_item[local7]\Field1 <> Null) Then
+                        local0 = (Str m_item[local7]\Field1\Field0)
+                    EndIf
+                EndIf
+            EndIf
             local1 = $01
         Case $135
             local0 = (Str ((millisecs() - networkserver\Field4) - networkserver\Field3))
@@ -194,11 +207,11 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str spectate\Field1)
             local1 = $01
         Case $134
-            myplayer\Field67 = se_getparamint()
+            myplayer\Field65 = se_getparamint()
         Case $133
-            local7 = createevent(se_tostringarg($00, ""), se_tostringarg($01, ""), se_tointarg($02, $00), se_tofloatarg($03, 0.0))
-            If (local7 <> Null) Then
-                local0 = (Str local7\Field15)
+            local8 = createevent(se_tostringarg($00, ""), se_tostringarg($01, ""), se_tointarg($02, $00), se_tofloatarg($03, 0.0))
+            If (local8 <> Null) Then
+                local0 = (Str local8\Field15)
             EndIf
             local1 = $01
         Case $12F
@@ -243,36 +256,26 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $123
             scaleimage(se_tointarg($00, $00), se_tofloatarg($01, 0.0), se_tofloatarg($02, 0.0))
         Case $120
-            local0 = (Str (multiplayer_object[se_tointarg($00, $00)] <> Null))
+            local9 = se_tointarg($00, $00)
+            local0 = "0"
+            If (((local9 >= $00) And (local9 <= $FF)) <> 0) Then
+                local0 = (Str (multiplayer_object[local9] <> Null))
+            EndIf
             local1 = $01
         Case $121
-            local0 = (Str multiplayer_object[se_tointarg($00, $00)]\Field1)
+            local9 = se_tointarg($00, $00)
+            local0 = "0"
+            If (((local9 >= $00) And (local9 <= $FF)) <> 0) Then
+                If (multiplayer_object[local9] <> Null) Then
+                    local0 = (Str multiplayer_object[local9]\Field1)
+                EndIf
+            EndIf
             local1 = $01
-        Case $122
-            steambrowser_loadurl((Object.steambrowser se_tointarg($00, $00)), se_tostringarg($01, ""), se_tostringarg($02, ""))
-        Case $118
-            local8 = steambrowser_create(se_tointarg($00, $00), se_tointarg($01, $00), se_tostringarg($02, ""), "SteamBrowser", "")
-            local0 = (Str (Handle local8))
-            local1 = $01
-        Case $119
-            steambrowser_destroy((Object.steambrowser se_tointarg($00, $00)))
-        Case $11A
-            local0 = (Str steambrowser_getimagehandle((Object.steambrowser se_tointarg($00, $00))))
-            local1 = $01
-        Case $11B
-            local0 = (Str steambrowser_gettexturehandle((Object.steambrowser se_tointarg($00, $00))))
-            local1 = $01
-        Case $11C
-            local8 = (Object.steambrowser se_tointarg($00, $00))
-            bs_isteamhtmlsurface_mousedown(bs_steamhtmlsurface(), local8\Field0, $00)
-        Case $11E
-            local8 = (Object.steambrowser se_tointarg($00, $00))
-            bs_isteamhtmlsurface_mouseup(bs_steamhtmlsurface(), local8\Field0, $00)
-        Case $11D
-            local8 = (Object.steambrowser se_tointarg($00, $00))
-            bs_isteamhtmlsurface_mousemove(bs_steamhtmlsurface(), local8\Field0, se_tointarg($01, $00), se_tointarg($02, $00))
         Case $116
-            local0 = (Str downloadfile(se_tostringarg($00, "")))
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
+            local0 = (Str downloadfile(se_tostringarg($00, ""), se_tostringarg($01, "")))
             local1 = $01
         Case $117
             closetcpstream(se_tointarg($00, $00))
@@ -352,8 +355,12 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $F9
             local0 = (Str deltapitch(se_tointarg($00, $00), se_tointarg($01, $00)))
             local1 = $02
-        Case local9
-            local0 = (Str (player[se_tointarg($00, $00)] <> Null))
+        Case local10
+            local11 = se_tointarg($00, $00)
+            local0 = "0"
+            If (((local11 >= $00) And (local11 <= $41)) <> 0) Then
+                local0 = (Str (player[local11] <> Null))
+            EndIf
             local1 = $01
         Case $F4
         Case $F5
@@ -429,75 +436,127 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $DD
             removetimer((Object.timers se_getparamint()))
         Case $DC
-            local10 = se_getparamstring()
-            local11 = se_getparamint()
-            local12 = se_getparamint()
-            local13 = createbytestream($174)
-            For local15 = $03 To (se_arguments_number - $01) Step $01
-                If (se_argtype(local15) <> $00) Then
-                    Select se_argtype(local15)
+            local12 = se_getparamstring()
+            local13 = se_getparamint()
+            local14 = se_getparamint()
+            local15 = createbytestream($174)
+            local17 = $00
+            local18 = $00
+            For local19 = $03 To (Int min((Float (se_arguments_number - $01)), 18.0)) Step $01
+                If (se_argtype(local19) <> $00) Then
+                    Select se_argtype(local19)
                         Case $01
-                            local14 = (local14 + "i")
-                            bytestreamwriteint(local13, se_tointarg(local15, $00))
+                            If (local17 > $170) Then
+                                local18 = $01
+                            Else
+                                local17 = (local17 + $04)
+                                local16 = (local16 + "i")
+                                bytestreamwriteint(local15, se_tointarg(local19, $00))
+                            EndIf
                         Case $02
-                            local14 = (local14 + "f")
-                            bytestreamwritefloat(local13, se_tofloatarg(local15, 0.0))
+                            If (local17 > $170) Then
+                                local18 = $01
+                            Else
+                                local17 = (local17 + $04)
+                                local16 = (local16 + "f")
+                                bytestreamwritefloat(local15, se_tofloatarg(local19, 0.0))
+                            EndIf
                         Case $03
-                            local14 = (local14 + "s")
-                            bytestreamwritestring(local13, se_tostringarg(local15, ""))
+                            local21 = se_tostringarg(local19, "")
+                            If (((len(local21) > $FF) Or (len(local21) > ($173 - local17))) <> 0) Then
+                                local18 = $01
+                            Else
+                                local17 = ((local17 + $01) + len(local21))
+                                local16 = (local16 + "s")
+                                bytestreamwritestring(local15, local21)
+                            EndIf
                     End Select
                 EndIf
+                If (local18 <> 0) Then
+                    Exit
+                EndIf
             Next
-            local0 = (Str settimer(arg1\Field1, local10, local11, local12, local14, local13))
+            If (local18 <> 0) Then
+                removebytestream(local15)
+                local0 = "0"
+                local1 = $01
+                Return $00
+            EndIf
+            local0 = (Str settimer(arg1\Field1, local12, local13, local14, local16, local15))
             local1 = $01
         Case $D9
-            local17 = se_getparamstring()
-            local18 = se_getparamstring()
-            local19 = se_getparamstring()
-            local20 = se_getparamstring()
+            local22 = se_getparamstring()
+            local23 = se_getparamstring()
+            local24 = se_getparamstring()
+            local25 = se_getparamstring()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                If (isfoldersecured(local22) = $00) Then
+                    Return $00
+                EndIf
+                local22 = ("multiplayer\" + local22)
+            EndIf
             local1 = $03
-            local0 = getinistring(local17, local18, local19, local20)
+            local0 = getinistring(local22, local23, local24, local25)
         Case $DA
-            local17 = se_getparamstring()
-            local18 = se_getparamstring()
-            local19 = se_getparamstring()
-            local20 = se_getparamstring()
-            putinivalue(local17, local18, local19, local20)
+            local22 = se_getparamstring()
+            local23 = se_getparamstring()
+            local24 = se_getparamstring()
+            local25 = se_getparamstring()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                If (isfoldersecured(local22) = $00) Then
+                    Return $00
+                EndIf
+                local22 = ("multiplayer\" + local22)
+            EndIf
+            putinivalue(local22, local23, local24, local25)
         Case $DB
-            updateinifile(se_getparamstring())
+            local22 = se_getparamstring()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                If (isfoldersecured(local22) = $00) Then
+                    Return $00
+                EndIf
+                local22 = ("multiplayer\" + local22)
+            EndIf
+            updateinifile(local22)
         Case $CC
-            local21 = Null
-            For local22 = Each scriptsthread
-                If (local22\Field0 <> Null) Then
-                    If (lower(local22\Field1) = lower(se_tostringarg($00, ""))) Then
-                        local21 = local22\Field0
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
+            local26 = Null
+            For local27 = Each scriptsthread
+                If (local27\Field0 <> Null) Then
+                    If (lower(local27\Field1) = lower(se_tostringarg($00, ""))) Then
+                        local26 = local27\Field0
                         Exit
                     EndIf
                 EndIf
             Next
-            If (local21 = Null) Then
-                For local23 = Each workshopthread
-                    If (local23\Field2 <> Null) Then
-                        If (lower(local23\Field0) = lower(se_tostringarg($00, ""))) Then
-                            local21 = local23\Field2
+            If (local26 = Null) Then
+                For local28 = Each workshopthread
+                    If (local28\Field2 <> Null) Then
+                        If (lower(local28\Field0) = lower(se_tostringarg($00, ""))) Then
+                            local26 = local28\Field2
                             Exit
                         EndIf
                     EndIf
                 Next
             EndIf
-            For local15 = $02 To se_arguments_number Step $01
-                If (se_argtype(local15) <> $00) Then
-                    public_addparam(se_tostringarg(local15, ""), se_argtype(local15))
+            If (local26 = Null) Then
+                Return $00
+            EndIf
+            For local19 = $02 To (se_arguments_number - $01) Step $01
+                If (se_argtype(local19) <> $00) Then
+                    public_addparam(se_tostringarg(local19, ""), se_argtype(local19))
                 EndIf
             Next
-            public_update_by_func(se_findfunc(local21, lower(se_tostringarg($01, ""))), $01)
+            public_update_by_func(se_findfunc(local26, lower(se_tostringarg($01, ""))), $01)
             public_clear()
             local0 = se_getreturnvalue()
             local1 = se_return_value\Field0
         Case $CD
-            For local15 = $01 To se_arguments_number Step $01
-                If (se_argtype(local15) <> $00) Then
-                    public_addparam(se_tostringarg(local15, ""), se_argtype(local15))
+            For local19 = $01 To (se_arguments_number - $01) Step $01
+                If (se_argtype(local19) <> $00) Then
+                    public_addparam(se_tostringarg(local19, ""), se_argtype(local19))
                 EndIf
             Next
             public_update_by_func(se_findfunc(arg1\Field1, lower(se_tostringarg($00, ""))), $01)
@@ -535,7 +594,6 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $D5
             hidepointer()
         Case $01
-            debuglog(se_getparamstring())
         Case $02
             initloadingscreens(se_getparamstring())
         Case $03
@@ -545,9 +603,9 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $05
             If (arg1 <> Null) Then
                 local1 = $03
-                For local23 = Each workshopthread
-                    If (local23\Field2 = arg1\Field1) Then
-                        local23\Field3 = se_getparamstring()
+                For local28 = Each workshopthread
+                    If (local28\Field2 = arg1\Field1) Then
+                        local28\Field3 = se_getparamstring()
                         Exit
                     EndIf
                 Next
@@ -555,83 +613,104 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $06
             If (arg1 <> Null) Then
                 local1 = $03
-                For local23 = Each workshopthread
-                    If (local23\Field2 = arg1\Field1) Then
-                        local0 = local23\Field1
+                For local28 = Each workshopthread
+                    If (local28\Field2 = arg1\Field1) Then
+                        local0 = local28\Field1
                         Exit
                     EndIf
                 Next
             EndIf
         Case $07
-            freeallfonts(se_getparamint(), $00)
         Case $08
-            loadallfonts(se_getparamint())
         Case $09
-            local24 = se_getparamstring()
-            local25 = se_getparamstring()
-            local0 = (Str ws_redirectfont(local24, local25))
+            local29 = se_getparamstring()
+            local30 = se_getparamstring()
+            local0 = (Str ws_redirectfont(local29, local30))
             local1 = $01
         Case $0A
-            local24 = se_getparamstring()
-            local25 = se_getparamstring()
-            local0 = (Str ws_redirectfile(local24, local25))
+            local29 = se_getparamstring()
+            local30 = se_getparamstring()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
+            local0 = (Str ws_redirectfile(local29, local30))
             local1 = $01
         Case $0B
-            local24 = se_getparamstring()
-            local25 = se_getparamstring()
-            local0 = (Str ws_redirecttext(local24, local25))
+            local29 = se_getparamstring()
+            local30 = se_getparamstring()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
+            local0 = (Str ws_redirecttext(local29, local30))
             local1 = $01
         Case $0C
-            local24 = se_getparamstring()
-            local0 = (Str ws_stopredirecttext(local24))
+            local29 = se_getparamstring()
+            local0 = (Str ws_stopredirecttext(local29))
             local1 = $01
         Case $0D
-            ws_disableall()
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
+            workshopdisablepending = $01
         Case $0E
         Case $0F
         Case $10
-            local26 = se_getparamint()
+            local31 = se_getparamint()
             local0 = "Null"
             local1 = $03
-            If (inventory(local26) <> Null) Then
-                local0 = inventory(local26)\Field3\Field1
-                local1 = $03
+            If (((local31 >= $00) And (local31 <= $0A)) <> 0) Then
+                If (inventory(local31) <> Null) Then
+                    local0 = inventory(local31)\Field1\Field1
+                    local1 = $03
+                EndIf
             EndIf
         Case $11
-            local26 = se_getparamint()
-            If (inventory(local26) <> Null) Then
-                selecteditem = inventory(local26)
+            local31 = se_getparamint()
+            If (((local31 >= $00) And (local31 <= $0A)) <> 0) Then
+                If (inventory(local31) <> Null) Then
+                    selecteditem = inventory(local31)
+                EndIf
             EndIf
         Case $12
-            local27 = se_getparamint()
+            local32 = se_getparamint()
             local1 = $01
-            If (((local27 > $00) And (local27 < $3E8)) <> 0) Then
-                local0 = (Str (m_item[local27] <> Null))
+            If (((local32 > $00) And (local32 < $3E8)) <> 0) Then
+                local0 = (Str (m_item[local32] <> Null))
             EndIf
         Case $13
             local1 = $01
             If (selecteditem <> Null) Then
-                local0 = (Str selecteditem\Field18)
+                local0 = (Str selecteditem\Field19)
             Else
                 local0 = "0"
             EndIf
         Case $14
-            local27 = se_getparamint()
+            local32 = se_getparamint()
             local1 = $03
-            If (((local27 > $00) And (local27 < $3E8)) <> 0) Then
-                local0 = m_item[local27]\Field3\Field1
+            If (((local32 > $00) And (local32 < $3E8)) <> 0) Then
+                If (m_item[local32] <> Null) Then
+                    If (m_item[local32]\Field1 <> Null) Then
+                        local0 = m_item[local32]\Field1\Field1
+                    EndIf
+                EndIf
             EndIf
         Case $15
-            local27 = se_getparamint()
+            local32 = se_getparamint()
             local1 = $03
-            If (((local27 > $00) And (local27 < $3E8)) <> 0) Then
-                local0 = m_item[local27]\Field3\Field2
+            If (((local32 > $00) And (local32 < $3E8)) <> 0) Then
+                If (m_item[local32] <> Null) Then
+                    If (m_item[local32]\Field1 <> Null) Then
+                        local0 = m_item[local32]\Field1\Field2
+                    EndIf
+                EndIf
             EndIf
         Case $16
-            local27 = se_getparamint()
+            local32 = se_getparamint()
             local1 = $02
-            If (((local27 > $00) And (local27 < $3E8)) <> 0) Then
-                local0 = (Str m_item[local27]\Field13)
+            If (((local32 > $00) And (local32 < $3E8)) <> 0) Then
+                If (m_item[local32] <> Null) Then
+                    local0 = (Str m_item[local32]\Field13)
+                EndIf
             EndIf
         Case $17
             local0 = (Str i_427\Field1)
@@ -668,48 +747,48 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local1 = $01
         Case $20
             se_flipparams($06)
-            local28 = $00
-            local29 = (Float se_getflippedparamstring())
-            local30 = (Float se_getflippedparamstring())
-            local31 = (Float se_getflippedparamstring())
-            local32 = (Float se_getflippedparamstring())
-            local33 = (Float se_getflippedparamstring())
-            local17 = se_getflippedparamstring()
-            For local34 = Each sound
-                If (local34\Field1 = local17) Then
-                    local28 = play3dsoundentity((Handle local34), camera, local35, (Float local36), (Float local37), "")
-                    local17 = ""
+            local33 = $00
+            local34 = (Float se_getflippedparamstring())
+            local35 = (Float se_getflippedparamstring())
+            local36 = (Float se_getflippedparamstring())
+            local37 = (Float se_getflippedparamstring())
+            local38 = (Float se_getflippedparamstring())
+            local22 = se_getflippedparamstring()
+            For local39 = Each sound
+                If (local39\Field1 = local22) Then
+                    local33 = play3dsoundentity((Handle local39), camera, local40, (Float local41), (Float local42), "")
+                    local22 = ""
                     Exit
                 EndIf
             Next
-            If (local17 <> "") Then
-                local28 = play3dsoundentity($00, camera, local35, (Float local36), (Float local37), local17)
+            If (local22 <> "") Then
+                local33 = play3dsoundentity($00, camera, local40, (Float local41), (Float local42), local22)
             EndIf
-            local0 = (Str local28)
+            local0 = (Str local33)
             local1 = $01
         Case $21
-            local28 = playsound_strict(loadtempsound(se_tostringarg($00, "")))
-            channelvolume(local28, se_tofloatarg($01, 0.0))
-            local0 = (Str local28)
+            local33 = playsound_strict(loadtempsound(se_tostringarg($00, "")))
+            channelvolume(local33, se_tofloatarg($01, 0.0))
+            local0 = (Str local33)
             local1 = $01
         Case $22
             local0 = (Str sfxvolume)
             local1 = $02
         Case $2A
-            For local38 = Each snd3d
-                If (local38\Field0 = $00) Then
-                    stopchannel(local38\Field2)
-                    If (local38\Field1 <> $00) Then
-                        freesound(local38\Field1)
+            For local43 = Each snd3d
+                If (local43\Field0 = $00) Then
+                    stopchannel(local43\Field2)
+                    If (local43\Field1 <> $00) Then
+                        freesound(local43\Field1)
                     EndIf
-                    If (local38\Field6 <> 0) Then
-                        freeentity(local38\Field5)
+                    If (local43\Field6 <> 0) Then
+                        freeentity(local43\Field5)
                     EndIf
-                    Delete local38
+                    Delete local43
                 Else
-                    fsound_stopsound(local38\Field2)
-                    fsound_stream_close(local38\Field1)
-                    Delete local38
+                    fsound_stopsound(local43\Field2)
+                    fsound_stream_close(local43\Field1)
+                    Delete local43
                 EndIf
             Next
         Case $2B
@@ -722,74 +801,74 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             selectedfont_ = se_getparamint()
             setfont(selectedfont_)
         Case $2F
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local41 = se_getparamint()
-            color(local39, local40, local41)
+            local44 = se_getparamint()
+            local45 = se_getparamint()
+            local46 = se_getparamint()
+            color(local44, local45, local46, $FF)
         Case $30
             local0 = (Str loadimage(se_getparamstring()))
             local1 = $01
         Case $31
-            local42 = se_getparamstring()
-            local43 = se_getparamint()
-            local44 = se_getparamint()
-            local45 = se_getparamint()
-            local46 = se_getparamint()
-            local0 = (Str loadanimimage(se_getparamstring(), local43, local44, local45, local46))
-            local1 = $01
-        Case $32
-            local42 = se_getparamstring()
-            local47 = se_getparamint()
+            local47 = se_getparamstring()
             local48 = se_getparamint()
             local49 = se_getparamint()
             local50 = se_getparamint()
-            local0 = (Str loadfont(local42, local47, local48, local49, local50))
+            local51 = se_getparamint()
+            local0 = (Str loadanimimage(se_getparamstring(), local48, local49, local50, local51))
+            local1 = $01
+        Case $32
+            local47 = se_getparamstring()
+            local52 = se_getparamint()
+            local53 = se_getparamint()
+            local54 = se_getparamint()
+            local55 = se_getparamint()
+            local0 = (Str loadfont(local47, local52, local53, local54, local55))
             local1 = $01
         Case $33
             local0 = (Str copyimage(se_getparamint()))
             local1 = $01
         Case $34
-            local51 = se_getparamint()
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local52 = se_getparamint()
-            drawimage(local51, local39, local40, local52)
-        Case $11F
-            local51 = se_getparamint()
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local52 = se_getparamint()
-            drawblock(local51, local39, local40, local52)
-        Case $35
-            local51 = se_getparamint()
-            local43 = se_getparamint()
+            local56 = se_getparamint()
             local44 = se_getparamint()
-            resizeimage(local51, (Float local43), (Float local44))
-        Case $36
-            local51 = se_getparamint()
-            local53 = se_getparamfloat()
-            rotateimage(local51, local53)
-        Case $37
-            local54 = se_getparamint()
-            local55 = se_getparamint()
-            local56 = se_getparamstring()
+            local45 = se_getparamint()
             local57 = se_getparamint()
-            local58 = se_getparamint()
-            text(local54, local55, local56, local57, local58)
+            drawimage(local56, local44, local45, local57)
+        Case $11F
+            local56 = se_getparamint()
+            local44 = se_getparamint()
+            local45 = se_getparamint()
+            local57 = se_getparamint()
+            drawblock(local56, local44, local45, local57)
+        Case $35
+            local56 = se_getparamint()
+            local48 = se_getparamint()
+            local49 = se_getparamint()
+            resizeimage(local56, (Float local48), (Float local49))
+        Case $36
+            local56 = se_getparamint()
+            local58 = se_getparamfloat()
+            rotateimage(local56, local58)
+        Case $37
+            local59 = se_getparamint()
+            local60 = se_getparamint()
+            local61 = se_getparamstring()
+            local62 = se_getparamint()
+            local63 = se_getparamint()
+            text(local59, local60, local61, local62, local63)
         Case $38
-            local54 = se_getparamint()
-            local55 = se_getparamint()
-            local43 = (Int se_getparamstring())
-            local44 = se_getparamint()
             local59 = se_getparamint()
-            oval(local54, local55, local43, local44, local59)
+            local60 = se_getparamint()
+            local48 = (Int se_getparamstring())
+            local49 = se_getparamint()
+            local64 = se_getparamint()
+            oval(local59, local60, local48, local49, local64)
         Case $39
-            local54 = se_getparamint()
-            local55 = se_getparamint()
-            local43 = (Int se_getparamstring())
-            local44 = se_getparamint()
             local59 = se_getparamint()
-            rect(local54, local55, local43, local44, local59)
+            local60 = se_getparamint()
+            local48 = (Int se_getparamstring())
+            local49 = se_getparamint()
+            local64 = se_getparamint()
+            rect(local59, local60, local48, local49, local64)
         Case $3A
             local0 = (Str mousex())
             local1 = $01
@@ -809,20 +888,20 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str mousedown($02))
             local1 = $01
         Case $40
-            local60 = se_getparamstring()
-            local61 = se_getparamint()
-            local62 = se_getparamstring()
+            local65 = se_getparamstring()
+            local66 = se_getparamint()
+            local67 = se_getparamstring()
             disconnectserver("", $01)
-            multiplayer_connectto(local60, local61, local62, $00, $1388)
+            multiplayer_connectto(local65, local66, local67, $00, $1388)
         Case $41
             disconnectserver(se_getparamstring(), $01)
         Case $42
-            local63 = se_getparamstring()
-            For local64 = Each rooms
-                If (local64\Field7\Field11 = local63) Then
-                    local0 = (Str local64\Field65)
+            local68 = se_getparamstring()
+            For local69 = Each rooms
+                If (local69\Field8\Field11 = local68) Then
+                    local0 = (Str local69\Field65)
                     local1 = $01
-                    playerroom = local64
+                    playerroom = local69
                     Exit
                 EndIf
             Next
@@ -842,20 +921,20 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str camera)
             local1 = $01
         Case $48
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local41 = se_getparamint()
-            cameraclscolor(camera, (Float local39), (Float local40), (Float local41))
+            local44 = se_getparamint()
+            local45 = se_getparamint()
+            local46 = se_getparamint()
+            cameraclscolor(camera, (Float local44), (Float local45), (Float local46), 1.0)
         Case $49
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local41 = se_getparamint()
-            camerafogcolor(camera, (Float local39), (Float local40), (Float local41))
+            local44 = se_getparamint()
+            local45 = se_getparamint()
+            local46 = se_getparamint()
+            camerafogcolor(camera, (Float local44), (Float local45), (Float local46))
         Case $4A
-            local39 = se_getparamint()
-            local40 = se_getparamint()
-            local41 = se_getparamint()
-            ambientlight((Float local39), (Float local40), (Float local41))
+            local44 = se_getparamint()
+            local45 = se_getparamint()
+            local46 = se_getparamint()
+            ambientlight((Float local44), (Float local45), (Float local46))
         Case $4B
             hideentity(fog)
         Case $4C
@@ -866,25 +945,19 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
         Case $4E
             selectedscreen = Null
         Case $4F
-            If (sky <> $00) Then
-                showentity(sky)
-            EndIf
         Case $50
-            If (sky <> $00) Then
-                hideentity(sky)
-            EndIf
         Case $51
             If (playerroom <> Null) Then
-                local0 = playerroom\Field7\Field11
+                local0 = playerroom\Field8\Field11
             EndIf
             local1 = $03
         Case $52
-            local65 = se_getparamint()
-            local0 = (Str entityinview(local65, se_getparamint()))
+            local70 = se_getparamint()
+            local0 = (Str entityinview(local70, se_getparamint()))
             local1 = $01
         Case $53
-            local65 = se_getparamint()
-            local0 = (Str entityvisible(local65, se_getparamint()))
+            local70 = se_getparamint()
+            local0 = (Str entityvisible(local70, se_getparamint()))
             local1 = $01
         Case $54
             local0 = (Str entityx(se_getparamint(), $00))
@@ -905,48 +978,48 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str entityroll(se_getparamint(), $00))
             local1 = $02
         Case $5A
-            local65 = se_getparamint()
-            local0 = (Str entitypick(local65, se_getparamfloat()))
+            local70 = se_getparamint()
+            local0 = (Str entitypick(local70, se_getparamfloat()))
             local1 = $01
         Case $5B
-            local65 = se_getparamint()
-            local66 = se_getparamfloat()
-            local67 = se_getparamfloat()
-            local68 = se_getparamfloat()
-            positionentity(local65, local66, local67, local68, se_getparamint())
+            local70 = se_getparamint()
+            local71 = se_getparamfloat()
+            local72 = se_getparamfloat()
+            local73 = se_getparamfloat()
+            positionentity(local70, local71, local72, local73, se_getparamint())
         Case $5C
-            local65 = se_getparamint()
-            local66 = se_getparamfloat()
-            local67 = se_getparamfloat()
-            local68 = se_getparamfloat()
-            rotateentity(local65, local66, local67, local68, se_getparamint())
+            local70 = se_getparamint()
+            local71 = se_getparamfloat()
+            local72 = se_getparamfloat()
+            local73 = se_getparamfloat()
+            rotateentity(local70, local71, local72, local73, se_getparamint())
         Case $5D
             If (se_tointarg($04, $00) = $00) Then
-                local65 = se_getparamint()
-                local66 = se_getparamfloat()
-                local67 = se_getparamfloat()
-                local68 = se_getparamfloat()
-                moveentity(local65, local66, local67, local68)
+                local70 = se_getparamint()
+                local71 = se_getparamfloat()
+                local72 = se_getparamfloat()
+                local73 = se_getparamfloat()
+                moveentity(local70, local71, local72, local73)
             Else
-                local65 = se_getparamint()
-                local66 = se_getparamfloat()
-                local67 = se_getparamfloat()
-                local68 = se_getparamfloat()
-                translateentity(local65, local66, local67, local68, $00)
+                local70 = se_getparamint()
+                local71 = se_getparamfloat()
+                local72 = se_getparamfloat()
+                local73 = se_getparamfloat()
+                translateentity(local70, local71, local72, local73, $00)
             EndIf
         Case $5E
-            local65 = se_getparamint()
-            local66 = se_getparamfloat()
-            scaleentity(local65, local66, local66, local66, $00)
+            local70 = se_getparamint()
+            local71 = se_getparamfloat()
+            scaleentity(local70, local71, local71, local71, $00)
         Case $5F
-            local65 = se_getparamint()
-            entitytype(local65, (se_getparamint() Shl $00), $00)
+            local70 = se_getparamint()
+            entitytype(local70, (se_getparamint() Shl $00), $00)
         Case $60
             freeentity(se_getparamint())
         Case $61
-            local65 = se_getparamint()
-            local66 = se_getparamfloat()
-            setanimtime(local65, local66, $00)
+            local70 = se_getparamint()
+            local71 = se_getparamfloat()
+            setanimtime(local70, local71, $00)
         Case $62
             local0 = (Str fpsfactor)
             local1 = $02
@@ -957,56 +1030,70 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str graphicheight)
             local1 = $01
         Case $65
-            local69 = se_getparamint()
+            local74 = se_getparamint()
             udp_writebyte($72)
-            udp_writebyte(networkserver\Field28)
-            udp_writebytes(local69, $00, banksize(local69))
+            udp_writebyte(networkserver\Field20)
+            udp_writebytes(local74, $00, banksize(local74))
             udp_sendmessage($00)
         Case $66
-            local71 = se_getparamstring()
-            For local15 = $01 To len(local71) Step $01
-                local70 = (local70 + (asc(mid(local71, local15, $01)) Shl ((local15 - $01) Shl $03)))
+            local76 = se_getparamstring()
+            For local19 = $01 To len(local76) Step $01
+                local75 = (local75 + (asc(mid(local76, local19, $01)) Shl ((local19 - $01) Shl $03)))
             Next
-            local0 = (Str local70)
+            local0 = (Str local75)
             local1 = $01
         Case $67
             local0 = (Str eof((Int se_getparamstring())))
             local1 = $01
         Case $68
-            local0 = (Str filetype(("multiplayer\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str filetype(("multiplayer\" + local22)))
             local1 = $01
         Case $69
-            local0 = (Str filesize(("multiplayer\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str filesize(("multiplayer\" + local22)))
             local1 = $01
         Case $6A
-            local0 = (Str filetype(("workshop\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str filetype(("workshop\" + local22)))
             local1 = $01
         Case $6B
-            local0 = (Str filesize(("workshop\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str filesize(("workshop\" + local22)))
             local1 = $01
         Case $6C
-            local72 = se_getparamint()
-            local73 = se_getparamint()
-            seekfile(local72, local73)
+            local77 = se_getparamint()
+            local78 = se_getparamint()
+            seekfile(local77, local78)
         Case $6D
             local0 = (Str filepos(se_getparamint()))
             local1 = $01
         Case $6E
-            local0 = errorlog()
-            local1 = $03
         Case $6F
-            local69 = se_getparamint()
             local74 = se_getparamint()
-            local75 = se_getparamint()
-            local46 = se_getparamint()
-            local0 = (Str writebytes(local69, local74, local75, local46))
+            local79 = se_getparamint()
+            local80 = se_getparamint()
+            local51 = se_getparamint()
+            local0 = (Str writebytes(local74, local79, local80, local51))
             local1 = $01
         Case $70
-            local69 = se_getparamint()
             local74 = se_getparamint()
-            local75 = se_getparamint()
-            local46 = se_getparamint()
-            local0 = (Str readbytes(local69, local74, local75, local46))
+            local79 = se_getparamint()
+            local80 = se_getparamint()
+            local51 = se_getparamint()
+            local0 = (Str readbytes(local74, local79, local80, local51))
             local1 = $01
         Case $71
             local0 = (Str createbank(se_getparamint()))
@@ -1017,56 +1104,56 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str banksize(se_getparamint()))
             local1 = $01
         Case $74
-            local76 = se_getparamint()
-            local46 = se_getparamint()
-            resizebank(local76, local46)
+            local81 = se_getparamint()
+            local51 = se_getparamint()
+            resizebank(local81, local51)
         Case $75
-            local76 = se_getparamint()
-            local77 = se_getparamint()
-            local78 = se_getparamint()
-            local79 = se_getparamint()
-            local46 = se_getparamint()
-            copybank(local76, local77, local78, local79, local46)
+            local81 = se_getparamint()
+            local82 = se_getparamint()
+            local83 = se_getparamint()
+            local84 = se_getparamint()
+            local51 = se_getparamint()
+            copybank(local81, local82, local83, local84, local51)
         Case $76
-            local69 = se_getparamint()
-            local75 = se_getparamint()
-            local0 = (Str peekbyte(local69, local75))
+            local74 = se_getparamint()
+            local80 = se_getparamint()
+            local0 = (Str peekbyte(local74, local80))
             local1 = $01
         Case $77
-            local69 = se_getparamint()
-            local75 = se_getparamint()
-            local0 = (Str peekshort(local69, local75))
+            local74 = se_getparamint()
+            local80 = se_getparamint()
+            local0 = (Str peekshort(local74, local80))
             local1 = $01
         Case $78
-            local69 = se_getparamint()
-            local75 = se_getparamint()
-            local0 = (Str peekint(local69, local75))
+            local74 = se_getparamint()
+            local80 = se_getparamint()
+            local0 = (Str peekint(local74, local80))
             local1 = $01
         Case $79
-            local69 = se_getparamint()
-            local75 = se_getparamint()
-            local0 = (Str peekfloat(local69, local75))
+            local74 = se_getparamint()
+            local80 = se_getparamint()
+            local0 = (Str peekfloat(local74, local80))
             local1 = $02
         Case $7A
-            local69 = se_getparamint()
-            local75 = se_getparamint()
+            local74 = se_getparamint()
             local80 = se_getparamint()
-            pokebyte(local69, local75, local80)
+            local85 = se_getparamint()
+            pokebyte(local74, local80, local85)
         Case $7B
-            local69 = se_getparamint()
-            local75 = se_getparamint()
+            local74 = se_getparamint()
             local80 = se_getparamint()
-            pokeshort(local69, local75, local80)
+            local85 = se_getparamint()
+            pokeshort(local74, local80, local85)
         Case $7C
-            local69 = se_getparamint()
-            local75 = se_getparamint()
+            local74 = se_getparamint()
             local80 = se_getparamint()
-            pokeint(local69, local75, local80)
+            local85 = se_getparamint()
+            pokeint(local74, local80, local85)
         Case $7D
-            local69 = se_getparamint()
-            local75 = se_getparamint()
-            local80 = (Int se_getparamfloat())
-            pokefloat(local69, local75, (Float local80))
+            local74 = se_getparamint()
+            local80 = se_getparamint()
+            local85 = (Int se_getparamfloat())
+            pokefloat(local74, local80, (Float local85))
         Case $7E
             local0 = (Str movex)
             local1 = $02
@@ -1078,22 +1165,22 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local1 = $02
         Case $81
             se_flipparams($08)
-            local81 = (Float se_getflippedparamstring())
-            local82 = (Float se_getflippedparamstring())
-            local83 = (Float se_getflippedparamstring())
-            local84 = (Float se_getflippedparamstring())
-            local85 = (Float se_getflippedparamstring())
-            local68 = (Float se_getflippedparamstring())
-            local67 = (Float se_getflippedparamstring())
-            local66 = (Float se_getflippedparamstring())
-            local86 = createpivot($00)
-            positionentity(local86, local66, local67, local68, $00)
-            rotateentity(local86, local81, local82, 0.0, $00)
-            moveentity(local86, local85, local84, local83)
-            movex = entityx(local86, $00)
-            movey = entityy(local86, $00)
-            movez = entityz(local86, $00)
-            freeentity(local86)
+            local86 = (Float se_getflippedparamstring())
+            local87 = (Float se_getflippedparamstring())
+            local88 = (Float se_getflippedparamstring())
+            local89 = (Float se_getflippedparamstring())
+            local90 = (Float se_getflippedparamstring())
+            local73 = (Float se_getflippedparamstring())
+            local72 = (Float se_getflippedparamstring())
+            local71 = (Float se_getflippedparamstring())
+            local91 = createpivot($00)
+            positionentity(local91, local71, local72, local73, $00)
+            rotateentity(local91, local86, local87, 0.0, $00)
+            moveentity(local91, local90, local89, local88)
+            movex = entityx(local91, $00)
+            movey = entityy(local91, $00)
+            movez = entityz(local91, $00)
+            freeentity(local91)
         Case $82
             local0 = (Str pointyaw)
             local1 = $02
@@ -1102,21 +1189,21 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local1 = $02
         Case $84
             se_flipparams($06)
-            local83 = (Float se_getflippedparamstring())
-            local84 = (Float se_getflippedparamstring())
-            local85 = (Float se_getflippedparamstring())
-            local68 = (Float se_getflippedparamstring())
-            local67 = (Float se_getflippedparamstring())
-            local66 = (Float se_getflippedparamstring())
-            local86 = createpivot($00)
-            local87 = createpivot($00)
-            positionentity(local86, local66, local67, local68, $00)
-            positionentity(local87, local85, local84, local83, $00)
-            pointentity(local86, local87, 0.0)
-            pointyaw = entityyaw(local86, $00)
-            pointpitch = entitypitch(local86, $00)
-            freeentity(local86)
-            freeentity(local87)
+            local88 = (Float se_getflippedparamstring())
+            local89 = (Float se_getflippedparamstring())
+            local90 = (Float se_getflippedparamstring())
+            local73 = (Float se_getflippedparamstring())
+            local72 = (Float se_getflippedparamstring())
+            local71 = (Float se_getflippedparamstring())
+            local91 = createpivot($00)
+            local92 = createpivot($00)
+            positionentity(local91, local71, local72, local73, $00)
+            positionentity(local92, local90, local89, local88, $00)
+            pointentity(local91, local92, 0.0)
+            pointyaw = entityyaw(local91, $00)
+            pointpitch = entitypitch(local91, $00)
+            freeentity(local91)
+            freeentity(local92)
         Case $85
             closefile(se_getparamint())
         Case $86
@@ -1136,54 +1223,70 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local1 = $01
         Case $8B
             se_flipparams($02)
-            local88 = se_getflippedparamstring()
-            local89 = (Int se_getflippedparamstring())
-            writeline(local89, local88)
+            local93 = se_getflippedparamstring()
+            local94 = (Int se_getflippedparamstring())
+            writeline(local94, local93)
         Case $8C
             se_flipparams($02)
-            local88 = se_getflippedparamstring()
-            local89 = (Int se_getflippedparamstring())
-            writeint(local89, (Int local88))
+            local93 = se_getflippedparamstring()
+            local94 = (Int se_getflippedparamstring())
+            writeint(local94, (Int local93))
         Case $8D
             se_flipparams($02)
-            local88 = se_getflippedparamstring()
-            local89 = (Int se_getflippedparamstring())
-            writefloat(local89, (Float local88))
+            local93 = se_getflippedparamstring()
+            local94 = (Int se_getflippedparamstring())
+            writefloat(local94, (Float local93))
         Case $8E
             se_flipparams($02)
-            local88 = se_getflippedparamstring()
-            local89 = (Int se_getflippedparamstring())
-            writeshort(local89, (Int local88))
+            local93 = se_getflippedparamstring()
+            local94 = (Int se_getflippedparamstring())
+            writeshort(local94, (Int local93))
         Case $8F
             se_flipparams($02)
-            local88 = se_getflippedparamstring()
-            local89 = (Int se_getflippedparamstring())
-            writebyte(local89, (Int local88))
+            local93 = se_getflippedparamstring()
+            local94 = (Int se_getflippedparamstring())
+            writebyte(local94, (Int local93))
         Case $90
-            local0 = (Str openfile(("multiplayer\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str openfile(("multiplayer\" + local22)))
             local1 = $01
         Case $91
-            local0 = (Str readfile(("multiplayer\" + se_getparamstring())))
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str readfile(("multiplayer\" + local22)))
             local1 = $01
         Case $92
-            local17 = ("multiplayer\" + se_tostringarg($00, ""))
-            If (isfoldersecured(local17) = $00) Then
+            local22 = se_tostringarg($00, "")
+            If (isfoldersecured(local22) = $00) Then
                 Return $00
             EndIf
-            local0 = (Str writefile(local17))
+            local0 = (Str writefile(("multiplayer\" + local22)))
             local1 = $01
         Case $93
-            local0 = (Str openfile(("workshop\" + se_getparamstring())))
-            local1 = $01
-        Case $94
-            local0 = (Str readfile(("workshop\" + se_getparamstring())))
-            local1 = $01
-        Case $95
-            local17 = ("workshop\" + se_tostringarg($00, ""))
-            If (isfoldersecured(local17) = $00) Then
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
                 Return $00
             EndIf
-            local0 = (Str writefile(local17))
+            local0 = (Str openfile(("workshop\" + local22)))
+            local1 = $01
+        Case $94
+            local22 = se_getparamstring()
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str readfile(("workshop\" + local22)))
+            local1 = $01
+        Case $95
+            local22 = se_tostringarg($00, "")
+            If (isfoldersecured(local22) = $00) Then
+                Return $00
+            EndIf
+            local0 = (Str writefile(("workshop\" + local22)))
             local1 = $01
         Case $96
             local0 = multiplayer_version
@@ -1201,11 +1304,14 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             msg = se_getparamstring()
             msgtimer = (Float (se_getparamint() * $46))
         Case $9B
+            If (se_isremoteserverscript(arg1\Field1) <> 0) Then
+                Return $00
+            EndIf
             executeconsolecommand(se_getparamstring(), $01, $01)
         Case $9C
-            local88 = se_getparamstring()
-            local90 = se_getparamint()
-            multiplayer_addchatmsg(local88, local90)
+            local93 = se_getparamstring()
+            local95 = se_getparamint()
+            multiplayer_addchatmsg(local93, local95)
         Case $9D
         Case $9E
         Case $9F
@@ -1226,7 +1332,7 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             se_returnfloat(ceil(se_tofloatarg($00, 0.0)))
             Return $00
         Case $A6
-            se_returnint((Sgn se_tointarg($00, $00)))
+            se_returnint((- (se_tointarg($00, $00) < 0)))
             Return $00
         Case $A7
             If (se_argtype($00) = $01) Then
@@ -1332,10 +1438,10 @@ Function se_executefunction%(arg0%, arg1.se_funcptr)
             local0 = (Str mainfov)
             local1 = $02
         Case $CA
-            local51 = se_getparamint()
-            local95 = se_getparamint()
-            local96 = se_getparamint()
-            handleimage(local51, local95, local96)
+            local56 = se_getparamint()
+            local100 = se_getparamint()
+            local101 = se_getparamint()
+            handleimage(local56, local100, local101)
         Case $CB
             local0 = (Str caninteract())
             local1 = $01

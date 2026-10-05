@@ -10,7 +10,7 @@ Function initmultiplayer%(arg0%, arg1%)
                 initmultiplayerimages()
                 local0 = (local0 + $01)
             Case $01
-                loadmultiplayeroptions($00)
+                loadmultiplayeroptions()
                 local0 = (local0 + $01)
             Case $02
                 loadnecessaryentities()
@@ -18,7 +18,7 @@ Function initmultiplayer%(arg0%, arg1%)
             Case $03
                 local0 = (local0 + $01)
             Case $04
-                local2 = loadinternetservers("http://127.0.0.1/")
+                local2 = loadinternetservers("https://raw.githubusercontent.com/FusionCreators/scpcbm-datafetch/refs/heads/main/")
                 local0 = (local0 + $01)
             Case $05
                 local0 = (local0 + $01)

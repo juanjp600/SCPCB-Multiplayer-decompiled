@@ -6,9 +6,9 @@ Function updatemisc%()
     shouldentitiesfall = $01
     updatecheckpoint1 = $00
     updatecheckpoint2 = $00
-    playersoundvolume = curvevalue(0.0, playersoundvolume, ((Float (networkserver\Field15 * $1E)) + 5.0))
+    playersoundvolume = curvevalue(0.0, playersoundvolume, ((Float (networkserver\Field12 * $1E)) + 5.0))
     cansave = $01
-    If ((((playerroom\Field7\Field11 = "dimension1499") And (quickloadpercent > $00)) And (quickloadpercent < $64)) <> 0) Then
+    If ((((playerroom\Field8\Field11 = "dimension1499") And (quickloadpercent > $00)) And (quickloadpercent < $64)) <> 0) Then
         shouldentitiesfall = $00
     EndIf
     infacility = checkforplayerinfacility()

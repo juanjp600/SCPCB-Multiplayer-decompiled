@@ -19,6 +19,7 @@ Function playsound_strict%(arg0%)
                             local0\Field0 = loadsound(local0\Field1)
                         EndIf
                         If (local0\Field0 = $00) Then
+                            createconsolemsg(((("Failed to load Sound: " + chr($22)) + local0\Field1) + chr($22)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                             If (consoleopening <> 0) Then
                                 consoleopen = $01
                             EndIf
@@ -30,7 +31,7 @@ Function playsound_strict%(arg0%)
                         local0\Field2[local2] = playsound(local0\Field0)
                     EndIf
                     channelvolume(local0\Field2[local2], sfxvolume)
-                    local0\Field4 = (millisecs2() + $1388)
+                    local0\Field4 = (millisecs() + $1388)
                     Return local0\Field2[local2]
                 EndIf
             Else
@@ -44,6 +45,7 @@ Function playsound_strict%(arg0%)
                         local0\Field0 = loadsound(local0\Field1)
                     EndIf
                     If (local0\Field0 = $00) Then
+                        createconsolemsg(((("Failed to load Sound: " + chr($22)) + local0\Field1) + chr($22)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                         If (consoleopening <> 0) Then
                             consoleopen = $01
                         EndIf
@@ -55,7 +57,7 @@ Function playsound_strict%(arg0%)
                     local0\Field2[local2] = playsound(local0\Field0)
                 EndIf
                 channelvolume(local0\Field2[local2], sfxvolume)
-                local0\Field4 = (millisecs2() + $1388)
+                local0\Field4 = (millisecs() + $1388)
                 local0\Field3 = (local3 + $01)
                 Return local0\Field2[local2]
             EndIf

@@ -13,7 +13,7 @@ Function draw_create%(arg0%, arg1%, arg2%, arg3%, arg4%, arg5%, arg6%, arg7$)
     player[arg0]\Field43[local0]\Field2 = arg5
     player[arg0]\Field43[local0]\Field7 = arg6
     player[arg0]\Field43[local0]\Field8 = ((len(arg7) + $01) + $15)
-    player[arg0]\Field51 = (player[arg0]\Field51 + $01)
+    player[arg0]\Field53 = (player[arg0]\Field53 + $01)
     Return local0
     Return $00
 End Function

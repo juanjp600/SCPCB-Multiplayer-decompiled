@@ -18,9 +18,9 @@ Function updateexplosion%()
                 explosionsfx = loadsound_strict("SFX\Ending\GateB\Nuke2.ogg")
                 playsound_strict(explosionsfx)
                 For local0 = $00 To (((particleamount + $01) * $0A) + $0A) Step $01
-                    local1 = createparticle((entityx(collider, $00) + rnd(-0.5, 0.5)), (entityy(collider, $00) - rnd(0.2, 1.5)), (entityz(collider, $00) + rnd(-0.5, 0.5)), $00, rnd(0.2, 0.6), 0.0, $15E)
+                    local1 = createparticle((entityx(collider, $00) + rnd(-0.5, 0.5)), (entityy(collider, $00) - rnd(0.2, 1.5)), (entityz(collider, $00) + rnd(-0.5, 0.5)), $00, rnd(0.2, 0.6), 0.0, $15E, 1.0, $01)
                     rotateentity(local1\Field1, -90.0, 0.0, 0.0, $01)
-                    local1\Field9 = rnd(0.05, 0.07)
+                    local1\Field6 = rnd(0.05, 0.07)
                 Next
             EndIf
             lightflash = min(((explosiontimer - 140.0) / 10.0), 5.0)

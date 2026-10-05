@@ -16,6 +16,9 @@ Function se_bl_array_sort%()
     local0 = se_arrayarg($00)
     local1 = se_tointarg($01, $01)
     local2 = local0\Field1
+    If (local2 < $02) Then
+        Return $00
+    EndIf
     If (local1 <> 0) Then
         Repeat
             local5 = (Object.se_value peekint(local0\Field2, (local3 Shl $02)))
@@ -37,37 +40,37 @@ Function se_bl_array_sort%()
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = (local8\Field1 < local6\Field1)
+                                local9 = (local8\Field2 < local6\Field2)
                             Case $02
-                                local9 = (local6\Field2 > (Float local8\Field1))
+                                local9 = (local6\Field3 > (Float local8\Field2))
                             Case $03
-                                local9 = ((Str local8\Field1) < local6\Field3)
+                                local9 = ((Str local8\Field2) < local6\Field4)
                         End Select
                     Case $02
                         Select local6\Field0
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = ((Float local6\Field1) > local8\Field2)
+                                local9 = ((Float local6\Field2) > local8\Field3)
                             Case $02
-                                local9 = (local6\Field2 > local8\Field2)
+                                local9 = (local6\Field3 > local8\Field3)
                             Case $03
-                                local9 = ((Str local8\Field2) < local6\Field3)
+                                local9 = ((Str local8\Field3) < local6\Field4)
                         End Select
                     Case $03
                         Select local6\Field0
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = (local8\Field3 < (Str local6\Field1))
+                                local9 = (local8\Field4 < (Str local6\Field2))
                             Case $02
-                                local9 = (local8\Field3 < (Str local6\Field2))
+                                local9 = (local8\Field4 < (Str local6\Field3))
                             Case $03
-                                local9 = (local8\Field3 < local6\Field3)
+                                local9 = (local8\Field4 < local6\Field4)
                         End Select
                     Case $07
                         If (local6\Field0 = $07) Then
-                            local9 = (local8\Field5\Field1 < local6\Field5\Field1)
+                            local9 = (local8\Field6\Field1 < local6\Field6\Field1)
                         Else
                             local9 = $00
                         EndIf
@@ -104,37 +107,37 @@ Function se_bl_array_sort%()
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = (local8\Field1 > local6\Field1)
+                                local9 = (local8\Field2 > local6\Field2)
                             Case $02
-                                local9 = (local6\Field2 < (Float local8\Field1))
+                                local9 = (local6\Field3 < (Float local8\Field2))
                             Case $03
-                                local9 = ((Str local8\Field1) > local6\Field3)
+                                local9 = ((Str local8\Field2) > local6\Field4)
                         End Select
                     Case $02
                         Select local6\Field0
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = ((Float local6\Field1) < local8\Field2)
+                                local9 = ((Float local6\Field2) < local8\Field3)
                             Case $02
-                                local9 = (local6\Field2 < local8\Field2)
+                                local9 = (local6\Field3 < local8\Field3)
                             Case $03
-                                local9 = ((Str local8\Field2) > local6\Field3)
+                                local9 = ((Str local8\Field3) > local6\Field4)
                         End Select
                     Case $03
                         Select local6\Field0
                             Case $00
                                 local9 = $00
                             Case $01
-                                local9 = (local8\Field3 > (Str local6\Field1))
+                                local9 = (local8\Field4 > (Str local6\Field2))
                             Case $02
-                                local9 = (local8\Field3 > (Str local6\Field2))
+                                local9 = (local8\Field4 > (Str local6\Field3))
                             Case $03
-                                local9 = (local8\Field3 > local6\Field3)
+                                local9 = (local8\Field4 > local6\Field4)
                         End Select
                     Case $07
                         If (local6\Field0 = $07) Then
-                            local9 = (local8\Field5\Field1 > local6\Field5\Field1)
+                            local9 = (local8\Field6\Field1 > local6\Field6\Field1)
                         Else
                             local9 = $00
                         EndIf

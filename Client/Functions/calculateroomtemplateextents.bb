@@ -9,6 +9,5 @@ Function calculateroomtemplateextents%(arg0.roomtemplates)
     arg0\Field23 = mesh_maxx
     arg0\Field24 = mesh_maxy
     arg0\Field25 = mesh_maxz
-    debuglog(((((((((((("roomtemplateextents: " + (Str arg0\Field20)) + ", ") + (Str arg0\Field21)) + ", ") + (Str arg0\Field22)) + ", ") + (Str arg0\Field23)) + ", ") + (Str arg0\Field24)) + ", ") + (Str arg0\Field25)))
     Return $00
 End Function

@@ -1,7 +1,10 @@
-Function loadanimmesh_strict%(arg0$, arg1%)
+Function loadanimmesh_strict%(arg0$, arg1%, arg2%)
     Local local0%
     Local local1%
     Local local2%
+    If (arg2 <> 0) Then
+        Return loadrawanimmesh(arg0, arg1)
+    EndIf
     If (filetype(arg0) <> $01) Then
         runtimeerror((("3D Animated Mesh " + arg0) + " not found."))
     EndIf
@@ -12,7 +15,7 @@ Function loadanimmesh_strict%(arg0$, arg1%)
     local1 = animlength(local0)
     freeentity(local0)
     local0 = loadmesh(arg0, $00)
-    local2 = loadtexture_strict(arg0, $01)
+    local2 = createtexture($01, $01, $00, $01)
     entitytexture(local0, local2, $00, $00)
     freetexture(local2)
     addanimseq(local0, local1)

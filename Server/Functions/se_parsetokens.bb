@@ -6,9 +6,7 @@ Function se_parsetokens%()
     Local local4.se_token
     Local local5$
     Local local6%
-    Local local7%
-    Local local8$
-    Local local9%
+    Local local7$
     For local0 = Each se_line
         local1 = $00
         local2 = local0\Field0
@@ -38,10 +36,14 @@ Function se_parsetokens%()
             ElseIf (local5 = "]") Then
                 se_createtoken($0B, "]", local0, local1, "']'")
             ElseIf (asc(local5) = $22) Then
-                local4 = se_createtoken($03, (Str local6), local0, local1, "string")
-                local7 = instr(local2, chr($22), (local1 + $01))
-                local4\Field1 = mid(local2, (local1 + $01), ((local7 - local1) - $01))
-                local1 = local7
+                local4 = se_createtoken($03, "", local0, local1, "string")
+                local6 = instr(local2, chr($22), (local1 + $01))
+                If (local6 = $00) Then
+                    se_seterror((("error at line " + (Str local0\Field1)) + ": unterminated string"), $01)
+                    Return $00
+                EndIf
+                local4\Field1 = mid(local2, (local1 + $01), ((local6 - local1) - $01))
+                local1 = local6
             ElseIf (((local5 >= "0") And (local5 <= "9")) <> 0) Then
                 local4 = se_createtoken($01, local5, local0, local1, "integer ")
                 Repeat
@@ -85,12 +87,12 @@ Function se_parsetokens%()
                     local4\Field4 = (((local4\Field4 + "'") + local4\Field1) + "'")
                 EndIf
             Else
-                local8 = se_checkoperator(local2, local1)
-                If (local8 <> "") Then
-                    local4 = se_createtoken($07, local8, local0, local1, ("operator " + local8))
-                    local1 = ((len(local8) + local1) - $01)
+                local7 = se_checkoperator(local2, local1)
+                If (local7 <> "") Then
+                    local4 = se_createtoken($07, local7, local0, local1, ("operator " + local7))
+                    local1 = ((len(local7) + local1) - $01)
                 Else
-                    se_seterror((((("error at line " + (Str local9)) + ": unknown character '") + local5) + "'"), $01)
+                    se_seterror((((("error at line " + (Str local0\Field1)) + ": unknown character '") + local5) + "'"), $01)
                     Return $00
                 EndIf
             EndIf

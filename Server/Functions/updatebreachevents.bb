@@ -83,7 +83,7 @@ Function updatebreachevents%()
             Case $28
                 If (playerinroom(local10) <> 0) Then
                     If (0.0 = local10\Field2) Then
-                        If (player[local10\Field14]\Field59 = $00) Then
+                        If (player[local10\Field14]\Field61 = $00) Then
                             If (((2.5 > entitydistance(local10\Field13, local10\Field1\Field29[$00]\Field0)) And remotedooron) <> 0) Then
                                 giveachievement($01, $01)
                                 playsound_strict(horrorsfx($07))
@@ -247,7 +247,6 @@ Function updatebreachevents%()
                         EndIf
                         For local1 = $00 To $06 Step $01
                             local28[local1] = copyentity(objtunnel(local1), $00)
-                            debuglog((Str local1))
                             hideentity(local28[local1])
                         Next
                         freetexturecache()
@@ -255,6 +254,8 @@ Function updatebreachevents%()
                         For local38 = $00 To $12 Step $01
                             For local37 = $00 To $12 Step $01
                                 If (local10\Field1\Field31\Field0[((local38 * $13) + local37)] > $00) Then
+                                    rand($50, $FF)
+                                    rnd(100.0, 200.0)
                                     Select local10\Field1\Field31\Field0[((local38 * $13) + local37)]
                                         Case $01,$07
                                             local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
@@ -277,19 +278,19 @@ Function updatebreachevents%()
                                             EndIf
                                             If (((local10\Field1\Field31\Field0[((local37 + $01) + (local38 * $13))] > $00) And (local10\Field1\Field31\Field0[((local37 - $01) + (local38 * $13))] > $00)) <> 0) Then
                                                 local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                                 local36 = rand($00, $01)
                                                 rotateentity(local35, 0.0, (((Float local36) * 180.0) + 90.0), 0.0, $00)
                                                 local10\Field1\Field31\Field1[((local38 * $13) + local37)] = ((local36 Shl $01) + $01)
                                             ElseIf (((local10\Field1\Field31\Field0[(((local38 + $01) * $13) + local37)] > $00) And (local10\Field1\Field31\Field0[(((local38 - $01) * $13) + local37)] > $00)) <> 0) Then
                                                 local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                                 local36 = rand($00, $01)
                                                 rotateentity(local35, 0.0, ((Float local36) * 180.0), 0.0, $00)
                                                 local10\Field1\Field31\Field1[((local38 * $13) + local37)] = (local36 Shl $01)
                                             Else
                                                 local35 = copyentity(local28[local10\Field1\Field31\Field0[((local38 * $13) + local37)]], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((412.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.609375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                                 local30 = local10\Field1\Field31\Field0[(((local38 + $01) * $13) + local37)]
                                                 local31 = local10\Field1\Field31\Field0[(((local38 - $01) * $13) + local37)]
                                                 local32 = local10\Field1\Field31\Field0[((local37 + $01) + (local38 * $13))]
@@ -336,29 +337,33 @@ Function updatebreachevents%()
                                             rotateentity(local35, 0.0, ((Float local36) * 90.0), 0.0, $00)
                                             local10\Field1\Field31\Field1[((local38 * $13) + local37)] = local36
                                     End Select
-                                    scaleentity(local35, roomscale, roomscale, roomscale, $01)
+                                    scaleentity(local35, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $01)
                                     positionentity(local35, (local10\Field1\Field3 + ((Float local37) * 2.0)), 8.0, (local10\Field1\Field5 + ((Float local38) * 2.0)), $01)
+                                    rand($50, $FF)
+                                    rnd(100.0, 200.0)
                                     Select local10\Field1\Field31\Field0[((local38 * $13) + local37)]
                                         Case $01
-                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                         Case $03,$04
-                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((412.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.609375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                         Case $07
                                             local51 = $01
-                                            addlight(Null, (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((cos(entityyaw(local35, $01)) * 16.0) * roomscale)), ((396.0 * roomscale) + 8.0), (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((sin(entityyaw(local35, $01)) * 16.0) * roomscale)), $02, (500.0 * roomscale), $FF, $C8, $C8)
-                                            local12 = createitem("SCP-500-01", "scp500", (((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * -208.0) * roomscale)) - ((sin(entityyaw(local35, $01)) * 1226.0) * roomscale)), ((80.0 * roomscale) + 8.0), (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * -208.0) * roomscale)) + ((cos(entityyaw(local35, $01)) * 1226.0) * roomscale)), $00, $00, $00, 1.0, $00, $01)
+                                            addlight(Null, (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((cos(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), 9.546875, (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((sin(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), $02, (1.0 / 0.512), $FF, $C8, $C8)
+                                            local12 = createitem("SCP-500-01", "scp500", (((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * -208.0) * (1.0 / 256.0))) - ((sin(entityyaw(local35, $01)) * 1226.0) * (1.0 / 256.0))), 8.3125, (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * -208.0) * (1.0 / 256.0))) + ((cos(entityyaw(local35, $01)) * 1226.0) * (1.0 / 256.0))), $00, $00, $00, 1.0, $00, $01)
                                             entitytype(local12\Field1, $03, $00)
-                                            local12 = createitem("Night Vision Goggles", "nvgoggles", (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((cos(entityyaw(local35, $01)) * 16.0) * roomscale)), ((80.0 * roomscale) + 8.0), (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((sin(entityyaw(local35, $01)) * 16.0) * roomscale)), $00, $00, $00, 1.0, $00, $01)
+                                            local12 = createitem("Night Vision Goggles", "nvgoggles", (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((cos(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), 8.3125, (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((sin(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), $00, $00, $00, 1.0, $00, $01)
                                             entitytype(local12\Field1, $03, $00)
                                             local51 = $00
                                     End Select
+                                    rand($50, $FF)
+                                    rnd(100.0, 200.0)
                                     If (((local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $06) Or (local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $05)) <> 0) Then
-                                        local34 = createdoor(local10\Field1\Field0, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 240.0) * roomscale)), 8.0, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 240.0) * roomscale)), (entityyaw(local35, $01) + 90.0), Null, $00, $03, $00, "", $00)
+                                        local34 = createdoor(local10\Field1\Field0, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 240.0) * (1.0 / 256.0))), 8.0, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 240.0) * (1.0 / 256.0))), (entityyaw(local35, $01) + 90.0), Null, $00, $03, $00, "", $00)
                                         positionentity(local34\Field3[$00], (entityx(local34\Field3[$00], $01) + (cos(entityyaw(local35, $01)) * 0.05)), (entityy(local34\Field3[$00], $01) + 0.0), (entityz(local34\Field3[$00], $01) + (sin(entityyaw(local35, $01)) * 0.05)), $01)
-                                        addlight(Null, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 555.0) * roomscale)), ((469.0 * roomscale) + 8.0), ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 555.0) * roomscale)), $02, (600.0 * roomscale), $FF, $FF, $FF)
+                                        addlight(Null, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 555.0) * (1.0 / 256.0))), 9.832031, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 555.0) * (1.0 / 256.0))), $02, 2.34375, $FF, $FF, $FF)
                                         local36 = createpivot($00)
                                         rotateentity(local36, 0.0, (entityyaw(local35, $01) + 180.0), 0.0, $01)
-                                        positionentity(local36, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 552.0) * roomscale)), ((240.0 * roomscale) + 8.0), ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 552.0) * roomscale)), $00)
+                                        positionentity(local36, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 552.0) * (1.0 / 256.0))), 8.9375, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 552.0) * (1.0 / 256.0))), $00)
                                         If (local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $06) Then
                                             If (local10\Field1\Field29[$01] = Null) Then
                                                 local34\Field5 = (local10\Field1\Field29[$00]\Field5 = $00)
@@ -490,10 +495,12 @@ Function updatebreachevents%()
                         Next
                         positionentity(local10\Field1\Field25[$00], (local10\Field1\Field3 + ((Float local45) * 2.0)), 8.0, (local10\Field1\Field5 + ((Float local47) * 2.0)), $01)
                         positionentity(local10\Field1\Field25[$01], (local10\Field1\Field3 + ((Float local46) * 2.0)), 8.0, (local10\Field1\Field5 + ((Float local48) * 2.0)), $01)
+                        seedrnd(local39)
                     ElseIf (local10\Field1\Field31\Field2[$00] = $00) Then
+                        local39 = rndseed()
+                        seedrnd(generateseednumber(server\Field7))
                         For local1 = $00 To $06 Step $01
                             local28[local1] = copyentity(objtunnel(local1), $00)
-                            debuglog((Str local1))
                             hideentity(local28[local1])
                         Next
                         freetexturecache()
@@ -501,43 +508,47 @@ Function updatebreachevents%()
                         For local38 = $00 To $12 Step $01
                             For local37 = $00 To $12 Step $01
                                 If (local10\Field1\Field31\Field0[((local38 * $13) + local37)] > $00) Then
+                                    rand($50, $FF)
+                                    rnd(100.0, 200.0)
                                     Select local10\Field1\Field31\Field0[((local38 * $13) + local37)]
                                         Case $01,$07
                                             local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
                                         Case $02
                                             If (((local10\Field1\Field31\Field0[((local37 + $01) + (local38 * $13))] > $00) And (local10\Field1\Field31\Field0[((local37 - $01) + (local38 * $13))] > $00)) <> 0) Then
                                                 local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                             ElseIf (((local10\Field1\Field31\Field0[(((local38 + $01) * $13) + local37)] > $00) And (local10\Field1\Field31\Field0[(((local38 - $01) * $13) + local37)] > $00)) <> 0) Then
                                                 local35 = copyentity(local28[(local10\Field1\Field31\Field0[((local38 * $13) + local37)] - $01)], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                             Else
                                                 local35 = copyentity(local28[local10\Field1\Field31\Field0[((local38 * $13) + local37)]], $00)
-                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((412.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                                addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.609375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                             EndIf
                                         Case $03,$04
                                             local35 = copyentity(local28[local10\Field1\Field31\Field0[((local38 * $13) + local37)]], $00)
                                         Case $05,$06
                                             local35 = copyentity(local28[$05], $00)
                                     End Select
-                                    scaleentity(local35, roomscale, roomscale, roomscale, $01)
+                                    scaleentity(local35, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $01)
                                     rotateentity(local35, 0.0, ((Float local10\Field1\Field31\Field1[((local38 * $13) + local37)]) * 90.0), 0.0, $00)
                                     positionentity(local35, (local10\Field1\Field3 + ((Float local37) * 2.0)), 8.0, (local10\Field1\Field5 + ((Float local38) * 2.0)), $01)
+                                    rand($50, $FF)
+                                    rnd(100.0, 200.0)
                                     Select local10\Field1\Field31\Field0[((local38 * $13) + local37)]
                                         Case $01,$05,$06
-                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((368.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.4375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                         Case $03,$04
-                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), ((412.0 * roomscale) + 8.0), (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (500.0 * roomscale), $FF, $FF, $FF)
+                                            addlight(Null, (local10\Field1\Field3 + ((Float local37) * 2.0)), 9.609375, (local10\Field1\Field5 + ((Float local38) * 2.0)), $02, (1.0 / 0.512), $FF, $FF, $FF)
                                         Case $07
-                                            addlight(Null, (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((cos(entityyaw(local35, $01)) * 16.0) * roomscale)), ((396.0 * roomscale) + 8.0), (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * roomscale)) + ((sin(entityyaw(local35, $01)) * 16.0) * roomscale)), $02, (500.0 * roomscale), $FF, $C8, $C8)
+                                            addlight(Null, (((local10\Field1\Field3 + ((Float local37) * 2.0)) - ((sin(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((cos(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), 9.546875, (((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((cos(entityyaw(local35, $01)) * 504.0) * (1.0 / 256.0))) + ((sin(entityyaw(local35, $01)) * 16.0) * (1.0 / 256.0))), $02, (1.0 / 0.512), $FF, $C8, $C8)
                                     End Select
                                     If (((local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $06) Or (local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $05)) <> 0) Then
-                                        local34 = createdoor(local10\Field1\Field0, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 240.0) * roomscale)), 8.0, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 240.0) * roomscale)), (entityyaw(local35, $01) + 90.0), Null, $00, $03, $00, "", $00)
-                                        addlight(Null, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 555.0) * roomscale)), ((469.0 * roomscale) + 8.0), ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 555.0) * roomscale)), $02, (600.0 * roomscale), $FF, $FF, $FF)
+                                        local34 = createdoor(local10\Field1\Field0, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 240.0) * (1.0 / 256.0))), 8.0, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 240.0) * (1.0 / 256.0))), (entityyaw(local35, $01) + 90.0), Null, $00, $03, $00, "", $00)
+                                        addlight(Null, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 555.0) * (1.0 / 256.0))), 9.832031, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 555.0) * (1.0 / 256.0))), $02, 2.34375, $FF, $FF, $FF)
                                         positionentity(local34\Field3[$00], (entityx(local34\Field3[$00], $01) + (cos(entityyaw(local35, $01)) * 0.05)), (entityy(local34\Field3[$00], $01) + 0.0), (entityz(local34\Field3[$00], $01) + (sin(entityyaw(local35, $01)) * 0.05)), $01)
                                         local36 = createpivot($00)
                                         rotateentity(local36, 0.0, (entityyaw(local35, $01) + 180.0), 0.0, $01)
-                                        positionentity(local36, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 552.0) * roomscale)), ((240.0 * roomscale) + 8.0), ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 552.0) * roomscale)), $00)
+                                        positionentity(local36, ((local10\Field1\Field3 + ((Float local37) * 2.0)) + ((cos(entityyaw(local35, $01)) * 552.0) * (1.0 / 256.0))), 8.9375, ((local10\Field1\Field5 + ((Float local38) * 2.0)) + ((sin(entityyaw(local35, $01)) * 552.0) * (1.0 / 256.0))), $00)
                                         If (local10\Field1\Field31\Field0[((local38 * $13) + local37)] = $06) Then
                                             If (local10\Field1\Field29[$01] = Null) Then
                                                 local34\Field5 = (local10\Field1\Field29[$00]\Field5 = $00)
@@ -670,16 +681,12 @@ Function updatebreachevents%()
                         seedrnd(local39)
                         For local12 = Each items
                             If (((8.0 <= entityy(local12\Field1, $01)) And (12.0 >= entityy(local12\Field1, $01))) <> 0) Then
-                                debuglog((local12\Field0 + " is within Y limits"))
                                 If ((((local10\Field1\Field3 - 6.0) <= entityx(local12\Field1, $01)) And (((local10\Field1\Field3 + 38.0) + 6.0) >= entityx(local12\Field1, $01))) <> 0) Then
-                                    debuglog("and within X limits")
                                 EndIf
                                 If ((((local10\Field1\Field5 - 6.0) <= entityz(local12\Field1, $01)) And (((local10\Field1\Field5 + 38.0) + 6.0) >= entityz(local12\Field1, $01))) <> 0) Then
-                                    debuglog("and within Z limits")
                                 EndIf
                             EndIf
                             If (((((((8.0 <= entityy(local12\Field1, $01)) And (12.0 >= entityy(local12\Field1, $01))) And ((local10\Field1\Field3 - 6.0) <= entityx(local12\Field1, $01))) And (((local10\Field1\Field3 + 38.0) + 6.0) >= entityx(local12\Field1, $01))) And ((local10\Field1\Field5 - 6.0) <= entityz(local12\Field1, $01))) And (((local10\Field1\Field5 + 38.0) + 6.0) >= entityz(local12\Field1, $01))) <> 0) Then
-                                debuglog(local12\Field0)
                                 translateentity(local12\Field1, 0.0, 0.3, 0.0, $01)
                                 resetentity(local12\Field1)
                             EndIf
@@ -716,7 +723,7 @@ Function updatebreachevents%()
                 EndIf
             Case $27
                 If (playerinroom(local10) <> 0) Then
-                    If ((-2848.0 * roomscale) >= entityy(local10\Field13, $00)) Then
+                    If (-11.125 >= entityy(local10\Field13, $00)) Then
                         If (0.0 < entitypitch(local10\Field1\Field25[$09], $01)) Then
                             local55 = $01
                         Else
@@ -756,7 +763,7 @@ Function updatebreachevents%()
                     hideentity(local57\Field4)
                     For local23 = Each players
                         If (local23\Field32 = local10\Field1\Field69) Then
-                            updateforest(local57, local23\Field63)
+                            updateforest(local57, local23\Field65)
                             local58 = $01
                         EndIf
                     Next
@@ -765,12 +772,12 @@ Function updatebreachevents%()
                     EndIf
                 EndIf
                 If ((playerinroom(local10) And (local57 <> Null)) <> 0) Then
-                    If ((server\Field57 And server\Field60) <> 0) Then
+                    If ((server\Field56 And server\Field59) <> 0) Then
                         For local23 = Each players
                             If (local23\Field32 = local10\Field1\Field69) Then
-                                If (local23\Field94 = $00) Then
-                                    If ((entityy(local57\Field4, $01) + 0.5) < entityy(local23\Field63, $00)) Then
-                                        moveentity(local23\Field63, 0.0, (((entityy(local57\Field4, $01) + 0.5) - entityy(local23\Field63, $00)) * fpsfactor), 0.0)
+                                If (local23\Field96 = $00) Then
+                                    If ((entityy(local57\Field4, $01) + 0.5) < entityy(local23\Field65, $00)) Then
+                                        moveentity(local23\Field65, 0.0, (((entityy(local57\Field4, $01) + 0.5) - entityy(local23\Field65, $00)) * fpsfactor), 0.0)
                                     EndIf
                                 EndIf
                             EndIf
@@ -778,11 +785,11 @@ Function updatebreachevents%()
                     EndIf
                 EndIf
                 If (local57 <> Null) Then
-                    If (server\Field57 <> 0) Then
+                    If (server\Field56 <> 0) Then
                         For local23 = Each players
                             If (local23\Field32 = local10\Field1\Field69) Then
-                                If (1.0 > (Abs distance(entityx(local10\Field1\Field25[$03], $01), entityz(local10\Field1\Field25[$03], $01), entityx(local23\Field63, $01), entityz(local23\Field63, $01)))) Then
-                                    If (local23\Field93 > millisecs()) Then
+                                If (1.0 > (Abs distance(entityx(local10\Field1\Field25[$03], $01), entityz(local10\Field1\Field25[$03], $01), entityx(local23\Field65, $01), entityz(local23\Field65, $01)))) Then
+                                    If (local23\Field95 > millisecs()) Then
                                         playsound_strict(loadtempsound("SFX\Door\WoodenDoorOpen.ogg"))
                                         showentity(local57\Field4)
                                         selecteditem = $00
@@ -797,41 +804,41 @@ Function updatebreachevents%()
                                         pointentity(local3, local10\Field1\Field2, 0.0)
                                         local59 = wrapangle((entityyaw(local3, $00) - entityyaw(local10\Field1\Field2, $01)))
                                         If (((90.0 < local59) And (270.0 > local59)) <> 0) Then
-                                            positionentity(local23\Field62, entityx(local57\Field5[$00], $01), ((entityy(local57\Field5[$00], $01) + entityy(local23\Field62, $01)) + 0.5), entityz(local57\Field5[$00], $01), $01)
-                                            rotateentity(local23\Field62, 0.0, (entityyaw(local57\Field5[$00], $01) - 180.0), 0.0, $01)
-                                            moveentity(local23\Field62, -0.5, 0.0, 0.5)
-                                            local23\Field130 = 1.0
+                                            positionentity(local23\Field64, entityx(local57\Field5[$00], $01), ((entityy(local57\Field5[$00], $01) + entityy(local23\Field64, $01)) + 0.5), entityz(local57\Field5[$00], $01), $01)
+                                            rotateentity(local23\Field64, 0.0, (entityyaw(local57\Field5[$00], $01) - 180.0), 0.0, $01)
+                                            moveentity(local23\Field64, -0.5, 0.0, 0.5)
+                                            local23\Field133 = 1.0
                                         Else
-                                            positionentity(local23\Field62, entityx(local57\Field5[$01], $01), ((entityy(local57\Field5[$01], $01) + entityy(local23\Field62, $01)) + 0.5), entityz(local57\Field5[$01], $01), $01)
-                                            rotateentity(local23\Field62, 0.0, (entityyaw(local57\Field5[$01], $01) - 180.0), 0.0, $01)
-                                            moveentity(local23\Field62, -0.5, 0.0, 0.5)
-                                            local23\Field130 = 0.0
+                                            positionentity(local23\Field64, entityx(local57\Field5[$01], $01), ((entityy(local57\Field5[$01], $01) + entityy(local23\Field64, $01)) + 0.5), entityz(local57\Field5[$01], $01), $01)
+                                            rotateentity(local23\Field64, 0.0, (entityyaw(local57\Field5[$01], $01) - 180.0), 0.0, $01)
+                                            moveentity(local23\Field64, -0.5, 0.0, 0.5)
+                                            local23\Field133 = 0.0
                                         EndIf
                                         freeentity(local3)
-                                        resetentity(local23\Field62)
-                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                        resetentity(local23\Field64)
+                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                     EndIf
                                 Else
                                     For local1 = $00 To $01 Step $01
-                                        If (1.0 > entitydistance(local57\Field5[local1], local23\Field62)) Then
+                                        If (1.0 > entitydistance(local57\Field5[local1], local23\Field64)) Then
                                             If (entityinview(local57\Field5[local1], getcamera(local23\Field30)) <> 0) Then
                                                 local60 = $01
-                                                If (local23\Field93 > millisecs()) Then
-                                                    If ((Float local1) = local23\Field130) Then
+                                                If (local23\Field95 > millisecs()) Then
+                                                    If ((Float local1) = local23\Field133) Then
                                                         blinktimer = -10.0
                                                         playsound_strict(loadtempsound("SFX\Door\WoodenDoorOpen.ogg"))
                                                         rotateentity(local10\Field1\Field25[$03], 0.0, 0.0, 0.0, $00)
                                                         rotateentity(local10\Field1\Field25[$04], 0.0, 180.0, 0.0, $00)
-                                                        positionentity(local23\Field62, entityx(local10\Field1\Field25[$02], $01), 0.5, entityz(local10\Field1\Field25[$02], $01), $00)
-                                                        rotateentity(local23\Field62, 0.0, (entityyaw(local10\Field1\Field2, $01) + (local23\Field130 * 180.0)), 0.0, $00)
-                                                        moveentity(local23\Field62, 0.0, 0.0, 1.5)
-                                                        resetentity(local23\Field62)
+                                                        positionentity(local23\Field64, entityx(local10\Field1\Field25[$02], $01), 0.5, entityz(local10\Field1\Field25[$02], $01), $00)
+                                                        rotateentity(local23\Field64, 0.0, (entityyaw(local10\Field1\Field2, $01) + (local23\Field133 * 180.0)), 0.0, $00)
+                                                        moveentity(local23\Field64, 0.0, 0.0, 1.5)
+                                                        resetentity(local23\Field64)
                                                         local61 = $00
                                                         updatedoors()
                                                         local10\Field2 = 0.0
                                                         local10\Field4 = 0.0
                                                         mp_updateplayerposition(local23, $01)
-                                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                                     Else
                                                         playsound_strict(loadtempsound("SFX\Door\WoodenDoorBudge.ogg"))
                                                         local24 = $00
@@ -861,58 +868,58 @@ Function updatebreachevents%()
                             If (0.0 = local10\Field2) Then
                                 local10\Field2 = 0.1
                             EndIf
-                            scaleentity(local10\Field1\Field2, roomscale, (((sin((local10\Field2 / 14.0)) * 0.2) + 1.0) * roomscale), roomscale, $00)
+                            scaleentity(local10\Field1\Field2, (1.0 / 256.0), (((sin((local10\Field2 / 14.0)) * 0.2) + 1.0) * (1.0 / 256.0)), (1.0 / 256.0), $00)
                             For local1 = $00 To $07 Step $01
-                                scaleentity(local10\Field1\Field25[local1], (((Abs (sin(((local10\Field2 / 21.0) + ((Float local1) * 45.0))) * 0.1)) + 1.0) * roomscale), (((sin(((local10\Field2 / 14.0) + ((Float local1) * 20.0))) * 0.1) + 1.0) * roomscale), roomscale, $01)
+                                scaleentity(local10\Field1\Field25[local1], (((Abs (sin(((local10\Field2 / 21.0) + ((Float local1) * 45.0))) * 0.1)) + 1.0) * (1.0 / 256.0)), (((sin(((local10\Field2 / 14.0) + ((Float local1) * 20.0))) * 0.1) + 1.0) * (1.0 / 256.0)), (1.0 / 256.0), $01)
                             Next
-                            scaleentity(local10\Field1\Field25[$09], (((Abs (sin(((local10\Field2 / 21.0) + ((Float local1) * 45.0))) * 0.1)) + 1.5) * roomscale), (((sin(((local10\Field2 / 14.0) + ((Float local1) * 20.0))) * 0.1) + 1.0) * roomscale), roomscale, $01)
+                            scaleentity(local10\Field1\Field25[$09], (((Abs (sin(((local10\Field2 / 21.0) + ((Float local1) * 45.0))) * 0.1)) + 1.5) * (1.0 / 256.0)), (((sin(((local10\Field2 / 14.0) + ((Float local1) * 20.0))) * 0.1) + 1.0) * (1.0 / 256.0)), (1.0 / 256.0), $01)
                             local10\Field2 = (local10\Field2 + fpsfactor)
-                            positionentity(local10\Field1\Field25[$09], (entityx(local10\Field1\Field25[$08], $01) + (3384.0 * roomscale)), 0.0, entityz(local10\Field1\Field25[$08], $01), $00)
+                            positionentity(local10\Field1\Field25[$09], (entityx(local10\Field1\Field25[$08], $01) + 13.21875), 0.0, entityz(local10\Field1\Field25[$08], $01), $00)
                             translateentity(local10\Field1\Field25[$09], (cos((local10\Field2 * 0.8)) * 5.0), 0.0, (sin((local10\Field2 * 1.6)) * 4.0), $01)
                             rotateentity(local10\Field1\Field25[$09], 0.0, (local10\Field2 * 2.0), 0.0, $00)
-                            positionentity(local10\Field1\Field25[$0A], entityx(local10\Field1\Field25[$08], $01), 0.0, (entityz(local10\Field1\Field25[$08], $01) + (3384.0 * roomscale)), $00)
+                            positionentity(local10\Field1\Field25[$0A], entityx(local10\Field1\Field25[$08], $01), 0.0, (entityz(local10\Field1\Field25[$08], $01) + 13.21875), $00)
                             translateentity(local10\Field1\Field25[$0A], (sin((local10\Field2 * 1.6)) * 4.0), 0.0, (cos((local10\Field2 * 0.8)) * 5.0), $01)
                             rotateentity(local10\Field1\Field25[$0A], 0.0, (local10\Field2 * 2.0), 0.0, $00)
                             local10\Field1\Field26[$09] = $00
                             local10\Field1\Field26[$0A] = $00
                             local62 = $01
                         EndIf
-                        local23\Field61 = (local23\Field61 + (fpsfactor * 0.00005))
-                        If (local23\Field131 = $01) Then
-                            If (6.0 < entityy(local23\Field62, $00)) Then
+                        local23\Field63 = (local23\Field63 + (fpsfactor * 0.00005))
+                        If (local23\Field134 = $01) Then
+                            If (6.0 < entityy(local23\Field64, $00)) Then
                                 local56 = $0F
                                 camerafogcolor(camera, 38.0, 55.0, 47.0)
-                                cameraclscolor(camera, 38.0, 55.0, 47.0)
-                                If (entityx(local10\Field1\Field25[$14], $01) < (entityx(local10\Field1\Field25[$08], $01) - (4000.0 * roomscale))) Then
+                                cameraclscolor(camera, 38.0, 55.0, 47.0, 1.0)
+                                If ((entityx(local10\Field1\Field25[$08], $01) - 15.625) > entityx(local10\Field1\Field25[$14], $01)) Then
                                     local10\Field6 = playsound_strict(local10\Field8)
-                                    positionentity(local10\Field1\Field25[$14], (entityx(local23\Field62, $01) + (4000.0 * roomscale)), 12.0, entityz(local23\Field62, $01), $00)
+                                    positionentity(local10\Field1\Field25[$14], (entityx(local23\Field64, $01) + 15.625), 12.0, entityz(local23\Field64, $01), $00)
                                 EndIf
-                                local18 = (((- fpsfactor) * roomscale) * 4.0)
-                                local19 = ((17.0 - ((Abs (entityx(local23\Field62, $00) - entityx(local10\Field1\Field25[$14], $00))) * 0.5)) - entityy(local10\Field1\Field25[$14], $00))
-                                local20 = (entityz(local23\Field62, $01) - entityz(local10\Field1\Field25[$14], $00))
+                                local18 = (((- fpsfactor) * (1.0 / 256.0)) * 4.0)
+                                local19 = ((17.0 - ((Abs (entityx(local23\Field64, $00) - entityx(local10\Field1\Field25[$14], $00))) * 0.5)) - entityy(local10\Field1\Field25[$14], $00))
+                                local20 = (entityz(local23\Field64, $01) - entityz(local10\Field1\Field25[$14], $00))
                                 translateentity(local10\Field1\Field25[$14], local18, local19, local20, $01)
-                                rotateentity(local10\Field1\Field25[$14], (-90.0 - ((entityx(local23\Field62, $00) - entityx(local10\Field1\Field25[$14], $00)) * 1.5)), -90.0, 0.0, $01)
+                                rotateentity(local10\Field1\Field25[$14], (-90.0 - ((entityx(local23\Field64, $00) - entityx(local10\Field1\Field25[$14], $00)) * 1.5)), -90.0, 0.0, $01)
                                 local63 = $00
                                 For local1 = $00 To $02 Step $01
                                     Select local1
                                         Case $00
-                                            local18 = (-1452.0 * roomscale)
-                                            local20 = (-37.0 * roomscale)
+                                            local18 = -5.671875
+                                            local20 = (1.0 / -6.918919)
                                         Case $01
-                                            local18 = (-121.0 * roomscale)
-                                            local20 = (188.0 * roomscale)
+                                            local18 = (1.0 / -2.115702)
+                                            local20 = 0.734375
                                         Case $02
-                                            local18 = (1223.0 * roomscale)
-                                            local20 = (-196.0 * roomscale)
+                                            local18 = 4.777344
+                                            local20 = -0.765625
                                     End Select
                                     local18 = (entityx(local10\Field1\Field25[$08], $01) + local18)
                                     local20 = (entityz(local10\Field1\Field25[$08], $01) + local20)
-                                    If ((200.0 * roomscale) > distance(entityx(local23\Field62, $00), entityz(local23\Field62, $00), local18, local20)) Then
+                                    If ((1.0 / 1.28) > distance(entityx(local23\Field64, $00), entityz(local23\Field64, $00), local18, local20)) Then
                                         local63 = $01
                                         Exit
                                     EndIf
                                 Next
-                                local0 = entitydistance(local23\Field62, local10\Field1\Field25[$14])
+                                local0 = entitydistance(local23\Field64, local10\Field1\Field25[$14])
                                 If (((local10\Field6 <> $00) And channelplaying(local10\Field6)) <> 0) Then
                                     local10\Field6 = loopsound2(local10\Field8, local10\Field6, camera, camera, 10.0, (((Float (local63 = $00)) * 0.6) + 0.3))
                                 EndIf
@@ -927,45 +934,45 @@ Function updatebreachevents%()
                                             turnentity(local3, 90.0, 0.0, 0.0, $00)
                                             user_camera_pitch = curveangle(entitypitch(local3, $00), (user_camera_pitch + 90.0), 10.0)
                                             user_camera_pitch = (user_camera_pitch - 90.0)
-                                            rotateentity(local23\Field62, entitypitch(local23\Field62, $00), curveangle(entityyaw(local3, $00), entityyaw(local23\Field62, $00), 10.0), 0.0, $00)
+                                            rotateentity(local23\Field64, entitypitch(local23\Field64, $00), curveangle(entityyaw(local3, $00), entityyaw(local23\Field64, $00), 10.0), 0.0, $00)
                                             freeentity(local3)
                                         EndIf
                                     EndIf
                                 EndIf
                                 camerashake = max(((((Float (local63 = $00)) * 4.0) + 4.0) - local0), 0.0)
-                                If (8.5 > entityy(local23\Field62, $00)) Then
+                                If (8.5 > entityy(local23\Field64, $00)) Then
                                     loadeventsound(local10, "SFX\Room\PocketDimension\Rumble.ogg", $00)
                                     loadeventsound(local10, "SFX\Room\PocketDimension\PrisonVoices.ogg", $01)
                                     blurtimer = 1500.0
-                                    local23\Field131 = $01
+                                    local23\Field134 = $01
                                     blinktimer = -10.0
-                                    positionentity(local23\Field62, (entityx(local10\Field1\Field25[$08], $01) - (400.0 * roomscale)), (-304.0 * roomscale), entityz(local10\Field1\Field25[$08], $01), $00)
-                                    resetentity(local23\Field62)
-                                    setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                    positionentity(local23\Field64, (entityx(local10\Field1\Field25[$08], $01) - (1.0 / 0.64)), -1.1875, entityz(local10\Field1\Field25[$08], $01), $00)
+                                    resetentity(local23\Field64)
+                                    setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                     camerafogcolor(camera, 0.0, 0.0, 0.0)
-                                    cameraclscolor(camera, 0.0, 0.0, 0.0)
+                                    cameraclscolor(camera, 0.0, 0.0, 0.0, 1.0)
                                 EndIf
                             Else
                                 local10\Field4 = 0.0
                                 For local1 = $09 To $0A Step $01
-                                    local0 = distance(entityx(local23\Field62, $00), entityz(local23\Field62, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))
+                                    local0 = distance(entityx(local23\Field64, $00), entityz(local23\Field64, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))
                                     If (6.0 > local0) Then
-                                        If (local0 < (100.0 * roomscale)) Then
+                                        If ((1.0 / 2.56) > local0) Then
                                             local3 = createpivot($00)
-                                            positionentity(local3, entityx(local10\Field1\Field25[local1], $01), entityy(local23\Field62, $00), entityz(local10\Field1\Field25[local1], $01), $00)
-                                            pointentity(local3, local23\Field62, 0.0)
+                                            positionentity(local3, entityx(local10\Field1\Field25[local1], $01), entityy(local23\Field64, $00), entityz(local10\Field1\Field25[local1], $01), $00)
+                                            pointentity(local3, local23\Field64, 0.0)
                                             rotateentity(local3, 0.0, (Float ((Int (entityyaw(local3, $00) / 90.0)) * $5A)), 0.0, $01)
-                                            moveentity(local3, 0.0, 0.0, (100.0 * roomscale))
-                                            positionentity(local23\Field62, entityx(local3, $00), entityy(local23\Field62, $00), entityz(local3, $00), $00)
+                                            moveentity(local3, 0.0, 0.0, (1.0 / 2.56))
+                                            positionentity(local23\Field64, entityx(local3, $00), entityy(local23\Field64, $00), entityz(local3, $00), $00)
                                             freeentity(local3)
                                             deathmsg = "In addition to the decomposed appearance typical of SCP-106's victims, the body exhibits injuries that have not been observed before: "
                                             deathmsg = (deathmsg + "massive skull fracture, three broken ribs, fractured shoulder and multiple heavy lacerations.")
                                             playsound_strict(loadtempsound("SFX\Room\PocketDimension\Impact.ogg"))
-                                            If (local23\Field59 = $00) Then
+                                            If (local23\Field61 = $00) Then
                                                 giveplayerhealth(local23\Field30, -1000.0, "was killed in pocket dimension")
-                                                positionentity(local23\Field62, 0.0, 1000.0, 0.0, $00)
-                                                resetentity(local23\Field62)
-                                                setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                                positionentity(local23\Field64, 0.0, 1000.0, 0.0, $00)
+                                                resetentity(local23\Field64)
+                                                setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                             EndIf
                                         EndIf
                                         If (1000.0 > (Float local10\Field11)) Then
@@ -974,24 +981,23 @@ Function updatebreachevents%()
                                     EndIf
                                 Next
                                 local3 = createpivot($00)
-                                positionentity(local3, (entityx(local10\Field1\Field25[$08], $01) - (1536.0 * roomscale)), (500.0 * roomscale), (entityz(local10\Field1\Field25[$08], $01) + (608.0 * roomscale)), $00)
-                                If (5.0 > entitydistance(local3, local23\Field62)) Then
+                                positionentity(local3, (entityx(local10\Field1\Field25[$08], $01) - 6.0), (1.0 / 0.512), (entityz(local10\Field1\Field25[$08], $01) + 2.375), $00)
+                                If (5.0 > entitydistance(local3, local23\Field64)) Then
                                     local10\Field6 = loopsound2(local10\Field8, local10\Field6, camera, local3, 3.0, 1.0)
                                 EndIf
                                 freeentity(local3)
                                 showentity(local10\Field1\Field25[$11])
-                                positionentity(local10\Field1\Field25[$11], entityx(local10\Field1\Field25[$08], $01), (1376.0 * roomscale), (entityz(local10\Field1\Field25[$08], $01) - (2848.0 * roomscale)), $00)
-                                pointentity(local10\Field1\Field25[$11], local23\Field62, 0.0)
+                                positionentity(local10\Field1\Field25[$11], entityx(local10\Field1\Field25[$08], $01), 5.375, (entityz(local10\Field1\Field25[$08], $01) - 11.125), $00)
+                                pointentity(local10\Field1\Field25[$11], local23\Field64, 0.0)
                                 turnentity(local10\Field1\Field25[$11], 0.0, 180.0, 0.0, $00)
-                                local2 = (Int entitydistance(local23\Field62, local10\Field1\Field25[$11]))
-                                If ((Float local2) < (2000.0 * roomscale)) Then
+                                local2 = (Int entitydistance(local23\Field64, local10\Field1\Field25[$11]))
+                                If ((1.0 / 0.128) > (Float local2)) Then
                                     injuries = ((fpsfactor / 4000.0) + injuries)
                                     local10\Field11 = (Str ((Float local10\Field11) + (fpsfactor / 1000.0)))
                                     If (((1.0 < (Float local10\Field11)) And (1000.0 > (Float local10\Field11))) <> 0) Then
                                         playsound_strict(loadtempsound("SFX\Room\PocketDimension\Kneel.ogg"))
                                         loadeventsound(local10, "SFX\Room\PocketDimension\Screech.ogg", $00)
                                         local10\Field11 = "1000.0"
-                                        debuglog("Loaded screech sound")
                                     EndIf
                                     sanity = max((sanity - ((fpsfactor / (Float local2)) / 8.0)), -1000.0)
                                     currcamerazoom = max(currcamerazoom, (((sin(((Float millisecs2()) / 20.0)) + 1.0) * 15.0) * max(((6.0 - (Float local2)) / 6.0), 0.0)))
@@ -1001,36 +1007,36 @@ Function updatebreachevents%()
                                     turnentity(local3, 90.0, 0.0, 0.0, $00)
                                     user_camera_pitch = curveangle(entitypitch(local3, $00), (user_camera_pitch + 90.0), min(max((15000.0 / (- sanity)), 15.0), 500.0))
                                     user_camera_pitch = (user_camera_pitch - 90.0)
-                                    rotateentity(local23\Field62, entitypitch(local23\Field62, $00), curveangle(entityyaw(local3, $00), entityyaw(local23\Field62, $00), min(max((15000.0 / (- sanity)), 15.0), 500.0)), 0.0, $00)
+                                    rotateentity(local23\Field64, entitypitch(local23\Field64, $00), curveangle(entityyaw(local3, $00), entityyaw(local23\Field64, $00), min(max((15000.0 / (- sanity)), 15.0), 500.0)), 0.0, $00)
                                     freeentity(local3)
                                     If ((Int local23\Field26) <> 0) Then
                                         blinktimer = -10.0
-                                        positionentity(local23\Field62, (entityx(local10\Field1\Field25[$08], $01) - (1344.0 * roomscale)), (2944.0 * roomscale), (entityz(local10\Field1\Field25[$08], $01) - (1184.0 * roomscale)), $00)
-                                        resetentity(local23\Field62)
-                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                        positionentity(local23\Field64, (entityx(local10\Field1\Field25[$08], $01) - 5.25), 11.5, (entityz(local10\Field1\Field25[$08], $01) - 4.625), $00)
+                                        resetentity(local23\Field64)
+                                        setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                         loadeventsound(local10, "SFX\Room\PocketDimension\Explosion.ogg", $00)
                                         loadeventsound(local10, "SFX\Room\PocketDimension\TrenchPlane.ogg", $01)
                                         positionentity(local10\Field1\Field25[$14], (entityx(local10\Field1\Field25[$08], $01) - 1000.0), 0.0, 0.0, $01)
                                         local10\Field11 = "0.0"
                                     EndIf
-                                ElseIf ((-180.0 * roomscale) > entityy(local23\Field62, $00)) Then
-                                    local2 = (Int distance(entityx(local23\Field62, $00), entityz(local23\Field62, $00), (entityx(local10\Field1\Field25[$08], $01) + (1024.0 * roomscale)), entityz(local10\Field1\Field25[$08], $01)))
-                                    If ((Float local2) < (640.0 * roomscale)) Then
-                                        blurtimer = (((640.0 * roomscale) - (Float local2)) * 3000.0)
-                                        local10\Field6 = loopsound2(decaysfx(rand($01, $03)), local10\Field6, camera, local23\Field62, 2.0, ((((640.0 * roomscale) - (Float local2)) * (Abs currspeed)) * 100.0))
+                                ElseIf (-0.703125 > entityy(local23\Field64, $00)) Then
+                                    local2 = (Int distance(entityx(local23\Field64, $00), entityz(local23\Field64, $00), (entityx(local10\Field1\Field25[$08], $01) + 4.0), entityz(local10\Field1\Field25[$08], $01)))
+                                    If (2.5 > (Float local2)) Then
+                                        blurtimer = ((2.5 - (Float local2)) * 3000.0)
+                                        local10\Field6 = loopsound2(decaysfx(rand($01, $03)), local10\Field6, camera, local23\Field64, 2.0, (((2.5 - (Float local2)) * (Abs currspeed)) * 100.0))
                                         currspeed = curvevalue(0.0, currspeed, (Float (local2 * $0A)))
-                                        If ((Float local2) < (130.0 * roomscale)) Then
+                                        If ((1.0 / 1.969231) > (Float local2)) Then
                                             For local9 = Each rooms
                                                 If (local9\Field7\Field10 = "room2shaft") Then
                                                     giveachievement($21, $01)
-                                                    local23\Field131 = $00
+                                                    local23\Field134 = $00
                                                     blurtimer = 1500.0
                                                     playerroom = local9
                                                     playsound_strict(loadtempsound("SFX\Room\PocketDimension\Exit.ogg"))
-                                                    teleportentity(local23\Field62, entityx(local9\Field25[$00], $01), 0.4, entityz(local9\Field25[$00], $01), 0.3, $01, 2.0, $00)
+                                                    teleportentity(local23\Field64, entityx(local9\Field25[$00], $01), 0.4, entityz(local9\Field25[$00], $01), 0.3, $01, 2.0, $00)
                                                     local27 = createdecal($00, entityx(local9\Field25[$00], $01), entityy(local9\Field25[$00], $01), entityz(local9\Field25[$00], $01), 270.0, (Float rand($168, $01)), 0.0)
                                                     teleportentity(local27\Field0, entityx(local9\Field25[$00], $01), (entityy(local9\Field25[$00], $01) + 0.6), entityz(local9\Field25[$00], $01), 0.0, $01, 4.0, $01)
-                                                    setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                                    setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                                     For local11 = Each events
                                                         If (local11\Field0 = "room2sl") Then
                                                             local11\Field4 = 0.0
@@ -1048,19 +1054,19 @@ Function updatebreachevents%()
                                     EndIf
                                 EndIf
                             EndIf
-                            If ((-1600.0 * roomscale) > entityy(local23\Field62, $00)) Then
-                                If ((4750.0 * roomscale) < entitydistance(local23\Field62, local10\Field1\Field25[$08])) Then
+                            If (-6.25 > entityy(local23\Field64, $00)) Then
+                                If (18.55469 < entitydistance(local23\Field64, local10\Field1\Field25[$08])) Then
                                     camerafogcolor(camera, 0.0, 0.0, 0.0)
-                                    cameraclscolor(camera, 0.0, 0.0, 0.0)
+                                    cameraclscolor(camera, 0.0, 0.0, 0.0, 1.0)
                                     dropspeed = $00
                                     blurtimer = 500.0
                                     blurtimer = 1500.0
-                                    positionentity(local23\Field62, entityx(local10\Field1\Field2, $01), 0.4, entityx(local10\Field1\Field2, $01), $00)
+                                    positionentity(local23\Field64, entityx(local10\Field1\Field2, $01), 0.4, entityx(local10\Field1\Field2, $01), $00)
                                     For local9 = Each rooms
                                         If (local9\Field7\Field10 = "room106") Then
                                             local10\Field2 = 0.0
-                                            local23\Field131 = $00
-                                            teleportentity(local23\Field62, entityx(local9\Field25[$0A], $01), 0.4, entityz(local9\Field25[$0A], $01), 0.3, $01, 2.0, $00)
+                                            local23\Field134 = $00
+                                            teleportentity(local23\Field64, entityx(local9\Field25[$0A], $01), 0.4, entityz(local9\Field25[$0A], $01), 0.3, $01, 2.0, $00)
                                             giveachievement($21, $01)
                                             For local11 = Each events
                                                 If (local11\Field0 = "room2sl") Then
@@ -1075,55 +1081,55 @@ Function updatebreachevents%()
                                             Return $00
                                         EndIf
                                     Next
-                                    resetentity(local23\Field62)
-                                    setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
-                                    local23\Field131 = $00
+                                    resetentity(local23\Field64)
+                                    setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
+                                    local23\Field134 = $00
                                 Else
                                     giveplayerhealth(local23\Field30, -1000.0, "was killed in pocket dimension")
                                     blurtimer = 3000.0
                                 EndIf
                             EndIf
-                        ElseIf (local23\Field131 = $00) Then
-                            local0 = entitydistance(local23\Field62, local10\Field1\Field2)
-                            If (local0 > (1700.0 * roomscale)) Then
+                        ElseIf (local23\Field134 = $00) Then
+                            local0 = entitydistance(local23\Field64, local10\Field1\Field2)
+                            If (6.640625 < local0) Then
                                 blinktimer = -10.0
                                 Select rand($19, $01)
                                     Case $01,$02,$03,$04
                                         playsound_strict(oldmansfx($03))
                                         local3 = createpivot($00)
-                                        positionentity(local3, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00), $00)
+                                        positionentity(local3, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00), $00)
                                         pointentity(local3, local10\Field1\Field2, 0.0)
                                         moveentity(local3, 0.0, 0.0, (local0 * 1.9))
-                                        positionentity(local23\Field62, entityx(local3, $00), entityy(local23\Field62, $00), entityz(local3, $00), $00)
-                                        resetentity(local23\Field62)
+                                        positionentity(local23\Field64, entityx(local3, $00), entityy(local23\Field64, $00), entityz(local3, $00), $00)
+                                        resetentity(local23\Field64)
                                         moveentity(local3, 0.0, 0.0, 0.8)
                                         positionentity(local10\Field1\Field25[$0A], entityx(local3, $00), 0.0, entityz(local3, $00), $00)
                                         rotateentity(local10\Field1\Field25[$0A], 0.0, entityyaw(local3, $00), 0.0, $01)
                                         freeentity(local3)
                                     Case $05,$06,$07,$08,$09,$0A
-                                        local23\Field131 = $01
+                                        local23\Field134 = $01
                                         blinktimer = -10.0
                                         playsound_strict(oldmansfx($03))
-                                        positionentity(local23\Field62, entityx(local10\Field1\Field25[$08], $01), 0.5, entityz(local10\Field1\Field25[$08], $01), $00)
-                                        resetentity(local23\Field62)
+                                        positionentity(local23\Field64, entityx(local10\Field1\Field25[$08], $01), 0.5, entityz(local10\Field1\Field25[$08], $01), $00)
+                                        resetentity(local23\Field64)
                                     Case $0B,$0C
                                         blurtimer = 500.0
-                                        positionentity(local23\Field62, entityx(local10\Field1\Field2, $00), 0.5, entityz(local10\Field1\Field2, $00), $00)
+                                        positionentity(local23\Field64, entityx(local10\Field1\Field2, $00), 0.5, entityz(local10\Field1\Field2, $00), $00)
                                     Case $0D,$0E,$0F
                                         blurtimer = 1500.0
-                                        local23\Field131 = $01
+                                        local23\Field134 = $01
                                         blinktimer = -10.0
-                                        positionentity(local23\Field62, (entityx(local10\Field1\Field25[$08], $01) - (400.0 * roomscale)), (-304.0 * roomscale), entityz(local10\Field1\Field25[$08], $01), $00)
-                                        resetentity(local23\Field62)
+                                        positionentity(local23\Field64, (entityx(local10\Field1\Field25[$08], $01) - (1.0 / 0.64)), -1.1875, entityz(local10\Field1\Field25[$08], $01), $00)
+                                        resetentity(local23\Field64)
                                     Case $10,$11,$12,$13
                                         blurtimer = 1500.0
                                         For local9 = Each rooms
                                             If (local9\Field7\Field10 = "tunnel") Then
                                                 giveachievement($21, $01)
                                                 local10\Field2 = 0.0
-                                                local23\Field131 = $00
-                                                teleportentity(local23\Field62, entityx(local9\Field2, $01), 0.4, entityz(local9\Field2, $01), 0.3, $01, 2.0, $00)
-                                                setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                                local23\Field134 = $00
+                                                teleportentity(local23\Field64, entityx(local9\Field2, $01), 0.4, entityz(local9\Field2, $01), 0.3, $01, 2.0, $00)
+                                                setplayerpositionex(local23\Field30, local9\Field69, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                                 For local11 = Each events
                                                     If (local11\Field0 = "room2sl") Then
                                                         local11\Field4 = 0.0
@@ -1139,27 +1145,27 @@ Function updatebreachevents%()
                                         Next
                                     Case $14,$15,$16
                                         blinktimer = -10.0
-                                        positionentity(local23\Field62, entityx(local10\Field1\Field25[$0C], $01), 0.6, entityz(local10\Field1\Field25[$0C], $01), $00)
-                                        resetentity(local23\Field62)
-                                        local23\Field131 = $0F
+                                        positionentity(local23\Field64, entityx(local10\Field1\Field25[$0C], $01), 0.6, entityz(local10\Field1\Field25[$0C], $01), $00)
+                                        resetentity(local23\Field64)
+                                        local23\Field134 = $0F
                                     Case $17,$18,$19
                                         blurtimer = 1500.0
-                                        local23\Field131 = $01
+                                        local23\Field134 = $01
                                         local10\Field4 = 1.0
                                         blinktimer = -10.0
                                         playsound_strict(oldmansfx($03))
-                                        positionentity(local23\Field62, entityx(local10\Field1\Field25[$08], $01), (2288.0 * roomscale), entityz(local10\Field1\Field25[$08], $01), $00)
-                                        resetentity(local23\Field62)
+                                        positionentity(local23\Field64, entityx(local10\Field1\Field25[$08], $01), 8.9375, entityz(local10\Field1\Field25[$08], $01), $00)
+                                        resetentity(local23\Field64)
                                 End Select
-                                setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                             EndIf
                         Else
                             camerafogcolor(camera, 19.0, 27.5, 23.5)
-                            cameraclscolor(camera, 19.0, 27.5, 23.5)
+                            cameraclscolor(camera, 19.0, 27.5, 23.5, 1.0)
                             If (particleamount > $00) Then
                                 If (rand($320, $01) = $01) Then
                                     local21 = (entityyaw(camera, $01) + rnd(150.0, 210.0))
-                                    local7 = createparticle((entityx(local23\Field62, $00) + (cos(local21) * 7.5)), 0.0, (entityz(local23\Field62, $00) + (sin(local21) * 7.5)), $03, 4.0, 0.0, $9C4)
+                                    local7 = createparticle((entityx(local23\Field64, $00) + (cos(local21) * 7.5)), 0.0, (entityz(local23\Field64, $00) + (sin(local21) * 7.5)), $03, 4.0, 0.0, $9C4)
                                     entityblend(local7\Field0, $02)
                                     local7\Field9 = 0.01
                                     local7\Field16 = 0.0
@@ -1168,16 +1174,16 @@ Function updatebreachevents%()
                                     turnentity(local7\Field1, (Float rand($0A, $14)), 0.0, 0.0, $01)
                                 EndIf
                             EndIf
-                            If ((-1600.0 * roomscale) > entityy(local23\Field62, $00)) Then
-                                If ((144.0 * roomscale) > distance(entityx(local10\Field1\Field25[$10], $01), entityz(local10\Field1\Field25[$10], $01), entityx(local23\Field62, $00), entityz(local23\Field62, $00))) Then
+                            If (-6.25 > entityy(local23\Field64, $00)) Then
+                                If (0.5625 > distance(entityx(local10\Field1\Field25[$10], $01), entityz(local10\Field1\Field25[$10], $01), entityx(local23\Field64, $00), entityz(local23\Field64, $00))) Then
                                     camerafogcolor(camera, 0.0, 0.0, 0.0)
-                                    cameraclscolor(camera, 0.0, 0.0, 0.0)
+                                    cameraclscolor(camera, 0.0, 0.0, 0.0, 1.0)
                                     dropspeed = $00
                                     blurtimer = 500.0
-                                    positionentity(local23\Field62, entityx(local10\Field1\Field2, $00), 0.5, entityz(local10\Field1\Field2, $00), $00)
-                                    resetentity(local23\Field62)
-                                    local23\Field131 = $00
-                                    setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field62, $00), entityy(local23\Field62, $00), entityz(local23\Field62, $00))
+                                    positionentity(local23\Field64, entityx(local10\Field1\Field2, $00), 0.5, entityz(local10\Field1\Field2, $00), $00)
+                                    resetentity(local23\Field64)
+                                    local23\Field134 = $00
+                                    setplayerpositionex(local23\Field30, local23\Field32, entityx(local23\Field64, $00), entityy(local23\Field64, $00), entityz(local23\Field64, $00))
                                 Else
                                     giveplayerhealth(local23\Field30, -1000.0, "was killed in pocket dimension")
                                     blurtimer = 3000.0
@@ -1321,10 +1327,10 @@ Function updatebreachevents%()
                     local10\Field1\Field29[$00]\Field12 = (Int local10\Field2)
                 EndIf
             Case $3E
-                If (server\Field57 <> 0) Then
+                If (server\Field56 <> 0) Then
                     For local23 = Each players
                         If (local23\Field32 <> local10\Field1\Field69) Then
-                            If ((entityy(local10\Field1\Field2, $00) - 0.5) < entityy(local23\Field62, $00)) Then
+                            If ((entityy(local10\Field1\Field2, $00) - 0.5) < entityy(local23\Field64, $00)) Then
                                 mp_setplayerroomid(local23, local10\Field1)
                             EndIf
                         EndIf
@@ -1339,14 +1345,14 @@ Function updatebreachevents%()
             Case $43
                 If (playerinroom(local10) <> 0) Then
                     If (player[local10\Field14]\Field32 = local10\Field1\Field69) Then
-                        If (((player[local10\Field14]\Field101 = $00) And (player[local10\Field14]\Field59 = $00)) <> 0) Then
-                            If ((-512.0 * roomscale) > entityy(getobject(local10), $00)) Then
-                                player[local10\Field14]\Field156 = (player[local10\Field14]\Field156 + $01)
-                                If (player[local10\Field14]\Field156 >= $04) Then
+                        If (((player[local10\Field14]\Field103 = $00) And (player[local10\Field14]\Field61 = $00)) <> 0) Then
+                            If (-2.0 > entityy(getobject(local10), $00)) Then
+                                player[local10\Field14]\Field159 = (player[local10\Field14]\Field159 + $01)
+                                If (player[local10\Field14]\Field159 >= $04) Then
                                     giveplayerhealth(local10\Field14, -10000.0, "")
                                 EndIf
                             Else
-                                player[local10\Field14]\Field156 = $00
+                                player[local10\Field14]\Field159 = $00
                             EndIf
                         EndIf
                     EndIf
@@ -1399,7 +1405,6 @@ Function updatebreachevents%()
                         hideentity(local10\Field13)
                         positionentity(local10\Field13, tformedx(), entityy(local10\Field13, $00), tformedz(), $01)
                         showentity(local10\Field13)
-                        debuglog("tformedx()>720")
                         local2 = $01
                     ElseIf (-730.0 > tformedx()) Then
                         giveachievement($17, $01)
@@ -1419,7 +1424,6 @@ Function updatebreachevents%()
                         hideentity(local10\Field13)
                         positionentity(local10\Field13, tformedx(), entityy(local10\Field13, $00), tformedz(), $01)
                         showentity(local10\Field13)
-                        debuglog("tformedx()<720")
                         local2 = $01
                     EndIf
                     If (local2 = $01) Then
@@ -1468,7 +1472,7 @@ Function updatebreachevents%()
                     If (1.5 > coffindistance) Then
                         giveachievement($13, $01)
                         If ((((contained106 = $00) And (local10\Field0 = "coffin106")) And (0.0 = local10\Field3)) <> 0) Then
-                            local27 = createdecal($00, entityx(local10\Field1\Field25[$01], $01), (-1531.0 * roomscale), entityz(local10\Field1\Field25[$01], $01), 90.0, (Float rand($168, $01)), 0.0)
+                            local27 = createdecal($00, entityx(local10\Field1\Field25[$01], $01), -5.980469, entityz(local10\Field1\Field25[$01], $01), 90.0, (Float rand($168, $01)), 0.0)
                             local27\Field2 = 0.05
                             local27\Field1 = 0.001
                             entityalpha(local27\Field0, 0.8)
@@ -1677,8 +1681,8 @@ Function updatebreachevents%()
                         If (((181.0 > local21) And (90.0 < local21)) <> 0) Then
                             For local12 = Each items
                                 If (((local12\Field1 <> $00) And (local12\Field15 = $00)) <> 0) Then
-                                    If (200.0 > (Abs (entityx(local12\Field1, $00) - (local10\Field1\Field3 - (712.0 * roomscale))))) Then
-                                        If (104.0 > (Abs (entityy(local12\Field1, $00) - (local10\Field1\Field4 + (648.0 * roomscale))))) Then
+                                    If (200.0 > (Abs (entityx(local12\Field1, $00) - (local10\Field1\Field3 - 2.78125)))) Then
+                                        If (104.0 > (Abs (entityy(local12\Field1, $00) - (local10\Field1\Field4 + 2.53125)))) Then
                                             local10\Field2 = 1.0
                                             local10\Field5 = playsound2(machinesfx, camera, local10\Field1\Field25[$01], 10.0, 1.0)
                                             local10\Field1\Field29[$01]\Field16 = playsound2(loadtempsound("SFX\SCP\914\DoorClose.ogg"), camera, local10\Field1\Field29[$01]\Field0, 10.0, 1.0)
@@ -1737,14 +1741,14 @@ Function updatebreachevents%()
                         If (840.0 < local10\Field2) Then
                             For local12 = Each items
                                 If (((local12\Field1 <> $00) And (local12\Field15 = $00)) <> 0) Then
-                                    If ((180.0 * roomscale) > distance(entityx(local12\Field1, $00), entityz(local12\Field1, $00), entityx(local10\Field1\Field25[$02], $01), entityz(local10\Field1\Field25[$02], $01))) Then
+                                    If (0.703125 > distance(entityx(local12\Field1, $00), entityz(local12\Field1, $00), entityx(local10\Field1\Field25[$02], $01), entityz(local10\Field1\Field25[$02], $01))) Then
                                         use914(local12, local74, entityx(local10\Field1\Field25[$03], $01), entityy(local10\Field1\Field25[$03], $01), entityz(local10\Field1\Field25[$03], $01))
                                     EndIf
                                 EndIf
                             Next
                             For local23 = Each players
                                 If (local23\Field32 = local10\Field1\Field69) Then
-                                    If ((170.0 * roomscale) > distance(entityx(local23\Field62, $00), entityz(local23\Field62, $00), entityx(local10\Field1\Field25[$02], $01), entityz(local10\Field1\Field25[$02], $01))) Then
+                                    If ((1.0 / 1.505882) > distance(entityx(local23\Field64, $00), entityz(local23\Field64, $00), entityx(local10\Field1\Field25[$02], $01), entityz(local10\Field1\Field25[$02], $01))) Then
                                         If (getscripts() <> 0) Then
                                             public_inqueue($45, $00)
                                             public_addparam($00, local74, $03)
@@ -1760,7 +1764,7 @@ Function updatebreachevents%()
                                         EndIf
                                         Select local74
                                             Case "fine","very fine"
-                                                local23\Field173 = 6.0
+                                                local23\Field176 = 6.0
                                         End Select
                                     EndIf
                                 EndIf
@@ -1780,9 +1784,9 @@ Function updatebreachevents%()
                 If (playerinroom(local10) <> 0) Then
                     showentity(local10\Field1\Field2)
                     If (local10\Field1\Field25[$00] = $00) Then
-                        local10\Field1\Field25[$00] = loadmesh_strict("GFX\MAP\gateatunnel.b3d", $00)
+                        local10\Field1\Field25[$00] = loadmesh_strict("GFX\MAP\gateatunnel.b3d", $00, $00)
                         positionentity(local10\Field1\Field25[$00], entityx(local10\Field1\Field2, $01), entityy(local10\Field1\Field2, $01), entityz(local10\Field1\Field2, $01), $00)
-                        scaleentity(local10\Field1\Field25[$00], roomscale, roomscale, roomscale, $00)
+                        scaleentity(local10\Field1\Field25[$00], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                         entitytype(local10\Field1\Field25[$00], $01, $00)
                         entitypickmode(local10\Field1\Field25[$00], $02, $01)
                         entityparent(local10\Field1\Field25[$00], local10\Field1\Field2, $01)
@@ -1790,14 +1794,14 @@ Function updatebreachevents%()
                         local77 = entityx(local10\Field1\Field25[$09], $01)
                         local78 = entityz(local10\Field1\Field25[$09], $01)
                         freeentity(local10\Field1\Field25[$09])
-                        local10\Field1\Field25[$09] = loadmesh_strict("GFX\map\lightgunbase.b3d", $00)
-                        scaleentity(local10\Field1\Field25[$09], roomscale, roomscale, roomscale, $00)
+                        local10\Field1\Field25[$09] = loadmesh_strict("GFX\map\lightgunbase.b3d", $00, $00)
+                        scaleentity(local10\Field1\Field25[$09], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                         entityfx(local10\Field1\Field25[$09], $00)
-                        positionentity(local10\Field1\Field25[$09], local77, (local10\Field1\Field4 + (992.0 * roomscale)), local78, $00)
-                        local10\Field1\Field25[$0A] = loadmesh_strict("GFX\map\lightgun.b3d", $00)
+                        positionentity(local10\Field1\Field25[$09], local77, (local10\Field1\Field4 + 3.875), local78, $00)
+                        local10\Field1\Field25[$0A] = loadmesh_strict("GFX\map\lightgun.b3d", $00, $00)
                         entityfx(local10\Field1\Field25[$0A], $00)
-                        scaleentity(local10\Field1\Field25[$0A], roomscale, roomscale, roomscale, $00)
-                        positionentity(local10\Field1\Field25[$0A], local77, (local10\Field1\Field4 + (1280.0 * roomscale)), (local78 - (176.0 * roomscale)), $01)
+                        scaleentity(local10\Field1\Field25[$0A], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+                        positionentity(local10\Field1\Field25[$0A], local77, (local10\Field1\Field4 + 5.0), (local78 - 0.6875), $01)
                         entityparent(local10\Field1\Field25[$0A], local10\Field1\Field25[$09], $01)
                         rotateentity(local10\Field1\Field25[$09], 0.0, 48.0, 0.0, $00)
                         rotateentity(local10\Field1\Field25[$0A], 40.0, 0.0, 0.0, $00)
@@ -1827,7 +1831,7 @@ Function updatebreachevents%()
                                 local10\Field5 = playsound2(teslaidlesfx, camera, local10\Field1\Field25[$03], 4.0, 0.5)
                             EndIf
                             For local1 = $00 To $02 Step $01
-                                If ((300.0 * roomscale) > distance(entityx(local10\Field13, $00), entityz(local10\Field13, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))) Then
+                                If (1.171875 > distance(entityx(local10\Field13, $00), entityz(local10\Field13, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))) Then
                                     If (0.0 <= killtimer) Then
                                         playersoundvolume = max(8.0, playersoundvolume)
                                         stopchannel(local10\Field5)
@@ -1856,7 +1860,7 @@ Function updatebreachevents%()
                             If (70.0 > local10\Field2) Then
                                 If (0.0 <= killtimer) Then
                                     For local1 = $00 To $02 Step $01
-                                        If ((250.0 * roomscale) > distance(entityx(collider, $00), entityz(collider, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))) Then
+                                        If ((1.0 / 1.024) > distance(entityx(collider, $00), entityz(collider, $00), entityx(local10\Field1\Field25[local1], $01), entityz(local10\Field1\Field25[local1], $01))) Then
                                             showentity(light)
                                             lightflash = 0.4
                                         EndIf
@@ -1892,8 +1896,8 @@ Function updatebreachevents%()
                     If (local10\Field1\Field25[$17] = $00) Then
                         local3 = createpivot($00)
                         positionentity(local3, entityx(local10\Field1\Field25[$00], $01), entityy(local10\Field1\Field25[$00], $01), entityz(local10\Field1\Field25[$00], $01), $00)
-                        local10\Field1\Field25[$17] = loadmesh_strict("GFX\map\exit1terrain.b3d", local10\Field1\Field2)
-                        scaleentity(local10\Field1\Field25[$17], roomscale, roomscale, roomscale, $01)
+                        local10\Field1\Field25[$17] = loadmesh_strict("GFX\map\exit1terrain.b3d", local10\Field1\Field2, $00)
+                        scaleentity(local10\Field1\Field25[$17], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $01)
                         rotateentity(local10\Field1\Field25[$17], 0.0, (Float local10\Field1\Field6), 0.0, $01)
                         positionentity(local10\Field1\Field25[$17], entityx(local3, $00), entityy(local3, $00), entityz(local3, $00), $01)
                         freeentity(local3)
@@ -1908,7 +1912,7 @@ Function updatebreachevents%()
                         If (0.0 = local10\Field2) Then
                             loadeventsound(local10, "SFX\Character\Scientist\EmilyScream.ogg", $00)
                             local10\Field5 = playsound2(local10\Field7, camera, local10\Field1\Field25[$00], 100.0, 1.0)
-                            local27 = createdecal($00, entityx(local10\Field1\Field25[$00], $01), (local10\Field1\Field4 + (2.0 * roomscale)), entityz(local10\Field1\Field25[$00], $01), 90.0, (Float rand($168, $01)), 0.0)
+                            local27 = createdecal($00, entityx(local10\Field1\Field25[$00], $01), (local10\Field1\Field4 + (1.0 / 128.0)), entityz(local10\Field1\Field25[$00], $01), 90.0, (Float rand($168, $01)), 0.0)
                             local27\Field2 = 0.5
                             entityalpha(local27\Field0, 0.8)
                             entityfx(local27\Field0, $01)
@@ -1922,9 +1926,8 @@ Function updatebreachevents%()
                             EndIf
                         EndIf
                     Else
-                        debuglog("Removed 'room2scps2' event")
                         local10\Field1\Field29[$00]\Field4 = $00
-                        local27 = createdecal($00, entityx(local10\Field1\Field25[$00], $01), (local10\Field1\Field4 + (2.0 * roomscale)), entityz(local10\Field1\Field25[$00], $01), 90.0, (Float rand($168, $01)), 0.0)
+                        local27 = createdecal($00, entityx(local10\Field1\Field25[$00], $01), (local10\Field1\Field4 + (1.0 / 128.0)), entityz(local10\Field1\Field25[$00], $01), 90.0, (Float rand($168, $01)), 0.0)
                         local27\Field2 = 0.5
                         entityalpha(local27\Field0, 0.8)
                         entityfx(local27\Field0, $01)
@@ -1944,22 +1947,22 @@ Function updatebreachevents%()
                     Else
                         local10\Field5 = loopsound2(local10\Field7, local10\Field5, camera, local10\Field1\Field2, 4.5, 1.5)
                     EndIf
-                    If (server\Field57 <> 0) Then
+                    If (server\Field56 <> 0) Then
                         For local23 = Each players
                             If (local23\Field32 = local10\Field1\Field69) Then
-                                local0 = distance(entityx(local23\Field62, $00), entityz(local23\Field62, $00), entityx(local10\Field1\Field2, $00), entityz(local10\Field1\Field2, $00))
+                                local0 = distance(entityx(local23\Field64, $00), entityz(local23\Field64, $00), entityx(local10\Field1\Field2, $00), entityz(local10\Field1\Field2, $00))
                                 If (2.0 > local0) Then
                                     currstepsfx = $01
-                                    local23\Field84 = curvevalue(0.0, local23\Field84, max((local0 * 50.0), 1.0))
+                                    local23\Field86 = curvevalue(0.0, local23\Field86, max((local0 * 50.0), 1.0))
                                     crouchstate = ((2.0 - local0) / 2.0)
                                     If (mp_isascp(local23\Field36) = $00) Then
                                         If (0.5 > local0) Then
-                                            local23\Field84 = curvevalue(0.0, local23\Field84, max((local0 * 50.0), 1.0))
-                                            local23\Field141 = min((local23\Field141 + (fpsfactor / 200.0)), 2.0)
-                                            lightblink = min((local23\Field141 * 5.0), 10.0)
-                                            If (2.0 = local23\Field141) Then
+                                            local23\Field86 = curvevalue(0.0, local23\Field86, max((local0 * 50.0), 1.0))
+                                            local23\Field144 = min((local23\Field144 + (fpsfactor / 200.0)), 2.0)
+                                            lightblink = min((local23\Field144 * 5.0), 10.0)
+                                            If (2.0 = local23\Field144) Then
                                                 movetopocketdimension(local23\Field30)
-                                                local23\Field141 = 0.0
+                                                local23\Field144 = 0.0
                                             EndIf
                                         EndIf
                                     EndIf
@@ -2226,7 +2229,7 @@ Function updatebreachevents%()
                 local10\Field1\Field29[$00]\Field29 = updateelevators(local10\Field1\Field29[$00]\Field29, local10\Field1\Field29[$00], local10\Field1\Field29[$01], local10\Field1\Field25[$00], local10\Field1\Field25[$01], $01)
                 local10\Field1\Field29[$02]\Field29 = updateelevators(local10\Field1\Field29[$02]\Field29, local10\Field1\Field29[$02], local10\Field1\Field29[$03], local10\Field1\Field25[$02], local10\Field1\Field25[$03], $01)
                 If (playerinroom(local10) <> 0) Then
-                    If ((-4600.0 * roomscale) > entityy(local10\Field13, $00)) Then
+                    If (-17.96875 > entityy(local10\Field13, $00)) Then
                         If (0.0 = local10\Field2) Then
                             local10\Field2 = 1.0
                         EndIf
@@ -2257,14 +2260,14 @@ Function updatebreachevents%()
                         EndIf
                         playerfallingpickdistance = 0.0
                         If (player[local10\Field14]\Field32 = local10\Field1\Field69) Then
-                            If (((player[local10\Field14]\Field101 = $00) And (player[local10\Field14]\Field59 = $00)) <> 0) Then
-                                If ((-6400.0 * roomscale) > entityy(player[local10\Field14]\Field62, $00)) Then
-                                    player[local10\Field14]\Field156 = (player[local10\Field14]\Field156 + $01)
-                                    If (player[local10\Field14]\Field156 >= $04) Then
+                            If (((player[local10\Field14]\Field103 = $00) And (player[local10\Field14]\Field61 = $00)) <> 0) Then
+                                If (-25.0 > entityy(player[local10\Field14]\Field64, $00)) Then
+                                    player[local10\Field14]\Field159 = (player[local10\Field14]\Field159 + $01)
+                                    If (player[local10\Field14]\Field159 >= $04) Then
                                         giveplayerhealth(local10\Field14, -10000.0, "")
                                     EndIf
                                 Else
-                                    player[local10\Field14]\Field156 = $00
+                                    player[local10\Field14]\Field159 = $00
                                 EndIf
                             EndIf
                         EndIf
@@ -2368,7 +2371,6 @@ Function updatebreachevents%()
                             EndIf
                         EndIf
                         If (local1 > $1A) Then
-                            debuglog("delete alarm")
                             removeevent(local10)
                         EndIf
                     EndIf

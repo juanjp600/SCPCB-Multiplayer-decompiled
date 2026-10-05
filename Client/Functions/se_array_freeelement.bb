@@ -4,10 +4,13 @@ Function se_array_freeelement%(arg0.se_array, arg1%)
     Local local2%
     Local local3.se_value
     Local local4%
+    If (arg0 = Null) Then
+        Return $00
+    EndIf
     If (arg0\Field1 = $00) Then
         Return $00
     EndIf
-    If (((arg1 >= $00) And (arg1 <= arg0\Field1)) <> 0) Then
+    If (((arg1 >= $00) And (arg1 < arg0\Field1)) <> 0) Then
         arg0\Field1 = (arg0\Field1 - $01)
         local0 = arg0\Field2
         local1 = (arg0\Field1 Shl $02)

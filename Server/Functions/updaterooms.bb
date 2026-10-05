@@ -6,7 +6,7 @@ Function updaterooms%()
         local0\Field73 = $00
     Next
     For local1 = $01 To server\Field11 Step $01
-        If (playeroptimize[local1]\Field55 <> 0) Then
+        If (playeroptimize[local1]\Field57 <> 0) Then
             multiplayer_updateplayerroom(playeroptimize[local1])
         EndIf
         If (playeroptimize[local1]\Field32 < $C8) Then

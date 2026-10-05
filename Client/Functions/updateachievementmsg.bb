@@ -1,38 +1,40 @@
 Function updateachievementmsg%()
     Local local0.achievementmsg
     Local local1.achievementmsg
-    Local local2#
+    Local local2%
     Local local3%
     Local local4%
     Local local5%
     Local local6%
-    local2 = ((Float graphicheight) / 768.0)
-    local3 = (Int (264.0 * local2))
-    local4 = (Int (84.0 * local2))
+    Local local7%
+    local2 = (Int (264.0 * achvscale))
+    local3 = (Int (84.0 * achvscale))
+    local4 = (Int (10.0 * achvscale))
+    local5 = (Int (64.0 * achvscale))
     For local0 = Each achievementmsg
         If (0.0 <> local0\Field3) Then
-            local5 = (Int (local0\Field2 + (Float graphicwidth)))
-            local6 = (graphicheight - local4)
+            local6 = (Int (local0\Field2 + (Float graphicwidth)))
+            local7 = (graphicheight - local3)
             For local1 = Each achievementmsg
                 If (local1 <> local0) Then
                     If (local1\Field4 > local0\Field4) Then
-                        local6 = (local6 - local4)
+                        local7 = (local7 - local3)
                     EndIf
                 EndIf
             Next
-            drawframe(local5, local6, local3, local4, $00, $00)
-            color($00, $00, $00)
-            rect((Int ((10.0 * local2) + (Float local5))), (Int ((10.0 * local2) + (Float local6))), (Int (64.0 * local2)), (Int (64.0 * local2)), $01)
-            drawimage(achvimg(local0\Field0), (Int ((10.0 * local2) + (Float local5))), (Int ((10.0 * local2) + (Float local6))), $00)
-            color($32, $32, $32)
-            rect((Int ((10.0 * local2) + (Float local5))), (Int ((10.0 * local2) + (Float local6))), (Int (64.0 * local2)), (Int (64.0 * local2)), $00)
-            color($FF, $FF, $FF)
-            aasetfont(font1)
-            rowtext(("Achievement Unlocked - " + local0\Field1), ((84.0 * local2) + (Float local5)), ((10.0 * local2) + (Float local6)), ((Float local3) - (94.0 * local2)), ((Float local6) - (20.0 * local2)), $00, 1.0, $00)
+            drawframe(local6, local7, local2, local3, $00, $00)
+            setcolorex($00, $00, $00)
+            rect((local6 + local4), (local7 + local4), local5, local5, $01)
+            drawimage(achvimg(local0\Field0), (local6 + local4), (local7 + local4), $00)
+            setcolorex($32, $32, $32)
+            rect((Int ((10.0 * achvscale) + (Float local6))), (Int ((10.0 * achvscale) + (Float local7))), local5, local5, $00)
+            setcolorex($FF, $FF, $FF)
+            setfontex(fonts[$00]\Field0)
+            rowtext(("Achievement Unlocked - " + local0\Field1), ((84.0 * achvscale) + (Float local6)), (Float (local7 + local4)), ((Float local2) - (94.0 * achvscale)), ((Float local7) - (20.0 * achvscale)), $00, 1.0, $00)
             If (((0.0 < local0\Field3) And (490.0 > local0\Field3)) <> 0) Then
                 local0\Field3 = (local0\Field3 + fpsfactor2)
-                If ((Float (- local3)) < local0\Field2) Then
-                    local0\Field2 = max((local0\Field2 - (4.0 * fpsfactor2)), (Float (- local3)))
+                If ((Float (- local2)) < local0\Field2) Then
+                    local0\Field2 = max((local0\Field2 - (4.0 * fpsfactor2)), (Float (- local2)))
                 EndIf
             ElseIf (490.0 <= local0\Field3) Then
                 local0\Field3 = -1.0

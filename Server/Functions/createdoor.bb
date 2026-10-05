@@ -9,42 +9,42 @@ Function createdoor.doors(arg0%, arg1#, arg2#, arg3#, arg4#, arg5.rooms, arg6%, 
     local0 = (New doors)
     If (arg7 = $01) Then
         local0\Field0 = copyentity(bigdoorobj($00), $00)
-        scaleentity(local0\Field0, (55.0 * roomscale), (55.0 * roomscale), (55.0 * roomscale), $00)
+        scaleentity(local0\Field0, (1.0 / 4.654545), (1.0 / 4.654545), (1.0 / 4.654545), $00)
         local0\Field1 = copyentity(bigdoorobj($01), $00)
-        scaleentity(local0\Field1, (55.0 * roomscale), (55.0 * roomscale), (55.0 * roomscale), $00)
+        scaleentity(local0\Field1, (1.0 / 4.654545), (1.0 / 4.654545), (1.0 / 4.654545), $00)
         local0\Field2 = copyentity(doorcoll, $00)
-        scaleentity(local0\Field2, roomscale, roomscale, roomscale, $00)
+        scaleentity(local0\Field2, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
         entitytype(local0\Field2, $0B, $00)
         entityalpha(local0\Field2, 0.0)
     ElseIf (arg7 = $02) Then
         local0\Field0 = copyentity(heavydoorobj($00), $00)
-        scaleentity(local0\Field0, roomscale, roomscale, roomscale, $00)
+        scaleentity(local0\Field0, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
         local0\Field1 = copyentity(heavydoorobj($01), $00)
-        scaleentity(local0\Field1, roomscale, roomscale, roomscale, $00)
+        scaleentity(local0\Field1, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
         local0\Field2 = copyentity(doorframeobj, $00)
     ElseIf (arg7 = $03) Then
         For local3 = Each doors
             If (((local3 <> local0) And (local3\Field9 = $03)) <> 0) Then
                 local0\Field0 = copyentity(local3\Field0, $00)
                 local0\Field1 = copyentity(local3\Field1, $00)
-                scaleentity(local0\Field0, roomscale, roomscale, roomscale, $00)
-                scaleentity(local0\Field1, roomscale, roomscale, roomscale, $00)
+                scaleentity(local0\Field0, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+                scaleentity(local0\Field1, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                 Exit
             EndIf
         Next
         If (local0\Field0 = $00) Then
-            local0\Field0 = loadmesh_strict("GFX\map\elevatordoor.b3d", $00)
+            local0\Field0 = loadmesh_strict("GFX\map\elevatordoor.b3d", $00, $00)
             local0\Field1 = copyentity(local0\Field0, $00)
-            scaleentity(local0\Field0, roomscale, roomscale, roomscale, $00)
-            scaleentity(local0\Field1, roomscale, roomscale, roomscale, $00)
+            scaleentity(local0\Field0, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
+            scaleentity(local0\Field1, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
         EndIf
         local0\Field2 = copyentity(doorframeobj, $00)
     Else
         local0\Field0 = copyentity(doorobj, $00)
-        scaleentity(local0\Field0, ((204.0 * roomscale) / meshwidth(local0\Field0)), ((312.0 * roomscale) / meshheight(local0\Field0)), ((16.0 * roomscale) / meshdepth(local0\Field0)), $00)
+        scaleentity(local0\Field0, (0.796875 / meshwidth(local0\Field0)), (1.21875 / meshheight(local0\Field0)), ((1.0 / 16.0) / meshdepth(local0\Field0)), $00)
         local0\Field2 = copyentity(doorframeobj, $00)
         local0\Field1 = copyentity(doorobj, $00)
-        scaleentity(local0\Field1, ((204.0 * roomscale) / meshwidth(local0\Field0)), ((312.0 * roomscale) / meshheight(local0\Field0)), ((16.0 * roomscale) / meshdepth(local0\Field0)), $00)
+        scaleentity(local0\Field1, (0.796875 / meshwidth(local0\Field0)), (1.21875 / meshheight(local0\Field0)), ((1.0 / 16.0) / meshdepth(local0\Field0)), $00)
     EndIf
     positionentity(local0\Field2, arg1, arg2, arg3, $00)
     scaleentity(local0\Field2, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
@@ -71,8 +71,8 @@ Function createdoor.doors(arg0%, arg1#, arg2#, arg3#, arg4#, arg5.rooms, arg6%, 
         scaleentity(local0\Field3[local2], 0.03, 0.03, 0.03, $00)
     Next
     If (arg7 = $01) Then
-        positionentity(local0\Field3[$00], (arg1 - (432.0 * roomscale)), (arg2 + 0.7), ((192.0 * roomscale) + arg3), $00)
-        positionentity(local0\Field3[$01], ((432.0 * roomscale) + arg1), (arg2 + 0.7), (arg3 - (192.0 * roomscale)), $00)
+        positionentity(local0\Field3[$00], (arg1 - 1.6875), (arg2 + 0.7), (arg3 + 0.75), $00)
+        positionentity(local0\Field3[$01], (arg1 + 1.6875), (arg2 + 0.7), (arg3 - 0.75), $00)
         rotateentity(local0\Field3[$00], 0.0, 90.0, 0.0, $00)
         rotateentity(local0\Field3[$01], 0.0, 270.0, 0.0, $00)
     Else
@@ -124,7 +124,7 @@ Function createdoor.doors(arg0%, arg1#, arg2#, arg3#, arg4#, arg5.rooms, arg6%, 
             EndIf
         Next
         If (local0\Field26 = $00) Then
-            local0\Field26 = loadmesh_strict("GFX\doorhit.b3d", local0\Field2)
+            local0\Field26 = loadmesh_strict("GFX\doorhit.b3d", local0\Field2, $00)
             entityalpha(local0\Field26, 0.0)
             entityfx(local0\Field26, $01)
             entitytype(local0\Field26, $0B, $00)

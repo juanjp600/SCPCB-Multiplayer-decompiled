@@ -14,14 +14,16 @@ Function server_start%()
         nullmap($01)
         initnewgame()
     EndIf
-    addlog("Server successfully started.", $00, $01, $00)
+    addlog("Server successfully started.", $00, $01, $00, $C0, $C0, $C0)
+    console_setinputenabled($01)
     requestdatafromglobal()
     server\Field0 = reloadudpstream(server\Field0)
-    setudpstreambuffersize(server\Field0, (server\Field87 Shl $0D))
+    setudpstreambuffersize(server\Field0, (server\Field85 Shl $0D))
     Repeat
         udpreceive()
         updatemap($00)
         updateserver()
+        updateconsole()
         fpse = (fpse + $01)
         If (shouldrestartserver <> 0) Then
             restartserver("")

@@ -4,7 +4,7 @@ Function updatelever%(arg0%, arg1%)
     local0 = entitydistance(camera, arg0)
     entitypickmode(arg0, $00, $00)
     If (((0.8 > local0) And (arg1 = $00)) <> 0) Then
-        If (((multiplayer_isascp(myplayer\Field51) = $00) Or (myplayer\Field51 = model_049)) <> 0) Then
+        If (((multiplayer_isascp(myplayer\Field49) = $00) Or (myplayer\Field49 = model_049)) <> 0) Then
             If (entityinview(arg0, camera) <> 0) Then
                 entitypickmode(arg0, $01, $00)
                 entitypick(camera, 0.65)

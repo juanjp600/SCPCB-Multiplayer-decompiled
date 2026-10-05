@@ -152,9 +152,9 @@ Function inititemtemplates%()
     local0 = createitemtemplate("Origami", "misc", "GFX\items\origami.b3d", "GFX\items\INVorigami.jpg", "", 0.003, "", "", $00, $09, $00)
     local0\Field3 = $00
     createitemtemplate("Electronical components", "misc", "GFX\items\electronics.x", "GFX\items\INVelectronics.jpg", "", 0.0011, "", "", $00, $09, $00)
-    local0 = createitemtemplate("Metal Panel", "scp148", "GFX\items\metalpanel.x", "GFX\items\INVmetalpanel.jpg", "", roomscale, "", "", $00, $09, $00)
+    local0 = createitemtemplate("Metal Panel", "scp148", "GFX\items\metalpanel.x", "GFX\items\INVmetalpanel.jpg", "", (1.0 / 256.0), "", "", $00, $09, $00)
     local0\Field3 = $02
-    local0 = createitemtemplate("SCP-148 Ingot", "scp148ingot", "GFX\items\scp148.x", "GFX\items\INVscp148.jpg", "", roomscale, "", "", $00, $09, $00)
+    local0 = createitemtemplate("SCP-148 Ingot", "scp148ingot", "GFX\items\scp148.x", "GFX\items\INVscp148.jpg", "", (1.0 / 256.0), "", "", $00, $09, $00)
     local0\Field3 = $02
     createitemtemplate("S-NAV 300 Navigator", "nav", "GFX\items\navigator.x", "GFX\items\INVnavigator.jpg", "GFX\items\navigator.png", 0.0008, "", "", $00, $09, $00)
     createitemtemplate("S-NAV Navigator", "nav", "GFX\items\navigator.x", "GFX\items\INVnavigator.jpg", "GFX\items\navigator.png", 0.0008, "", "", $00, $09, $00)
@@ -164,7 +164,7 @@ Function inititemtemplates%()
     createitemtemplate("Radio Transceiver", "fineradio", "GFX\items\radio.x", "GFX\items\INVradio.jpg", "GFX\items\radioHUD.png", 1.0, "", "", $00, $09, $00)
     createitemtemplate("Radio Transceiver", "veryfineradio", "GFX\items\radio.x", "GFX\items\INVradio.jpg", "GFX\items\radioHUD.png", 1.0, "", "", $00, $09, $00)
     createitemtemplate("Radio Transceiver", "18vradio", "GFX\items\radio.x", "GFX\items\INVradio.jpg", "GFX\items\radioHUD.png", 1.02, "", "", $00, $09, $00)
-    local0 = createitemtemplate("Cigarette", "cigarette", "GFX\items\420.x", "GFX\items\INV420.jpg", "", 0.0004, "", "", $00, $09, $00)
+    local0 = createitemtemplate("Cigarette", "cigarette", "GFX\items\cigarette.b3d", "GFX\items\INV420.jpg", "", 0.0014, "", "", $00, $09, $00)
     local0\Field3 = $02
     local0 = createitemtemplate("Joint", "420s", "GFX\items\420.x", "GFX\items\INV420.jpg", "", 0.0004, "", "", $00, $09, $00)
     local0\Field3 = $02
@@ -240,18 +240,14 @@ Function inititemtemplates%()
     createitemtemplate("MP5-SD", "mp5sd", "GFX\items\mp5sd_worldmodel.b3d", "GFX\items\INVmp5.jpg", "", 0.014, "GFX\items\mp5sd_main.png", "", $00, $09, $00)
     createitemtemplate("Rocket Launcher", "rpg", "GFX\items\rpg_worldmodel.b3d", "GFX\items\INVrpg.jpg", "", 0.015, "", "", $00, $09, $00)
     createitemtemplate("Minigun", "minigun", "GFX\items\M134_Worldmodel.b3d", "GFX\items\INVm134.jpg", "", 0.014, "", "", $00, $09, $00)
-    If (isahalloween() = $00) Then
-        createitemtemplate("Grenade", "grenade", "GFX\items\grenadeworldmodel.b3d", "GFX\items\grenade.jpg", "", 0.014, "", "", $00, $09, $00)
-    Else
-        createitemtemplate("Grenade", "grenade", "GFX\items\grenadeworldmodelHw.b3d", "GFX\items\grenade.jpg", "", 0.014, "", "", $00, $09, $00)
-    EndIf
+    createitemtemplate("Grenade", "grenade", "GFX\items\grenadeworldmodel.b3d", "GFX\items\grenade.jpg", "", 0.014, "", "", $00, $09, $00)
     local0 = createitemtemplate("Uranium Candy", "urancandy", "GFX\items\candy.b3d", "GFX\items\candyicon.jpg", "", 0.01, "", "", $00, $09, $00)
     local0\Field3 = $02
     createitemtemplate("Cooked Chicken", "chicken", "GFX\multiplayer\game\models\c.b3d", "GFX\multiplayer\game\images\chicken.jpg", "", 0.0007, "GFX\multiplayer\game\models\chicken.jpg", "", $00, $09, $00)
     createitemtemplate("Box of ammo", "boxofammo", "GFX\items\box_ammo.b3d", "GFX\items\boxofammo.jpg", "", 0.02, "", "", $00, $09, $00)
     createitemtemplate("Micro-HID", "microhid", "GFX\items\MicroHid_Worldmodel.b3d", "GFX\items\microhid.jpg", "", 0.015, "", "", $00, $09, $00)
     createitemtemplate("Desert Eagle", "deagle", "GFX\items\deagle_worldmodel.b3d", "GFX\items\INVdeagle.jpg", "", 0.02, "", "", $00, $09, $00)
-    createitemtemplate("SPAS-12", "spas12", "GFX\items\SPAS_Worldmodel.b3d", "GFX\items\INVspas.jpg", "", 0.016, "", "", $00, $09, $00)
+    createitemtemplate("Benelli M1014", "m1014", "GFX\items\BenelliM4_worldmodel.b3d", "GFX\items\INVbenM4.jpg", "", 0.016, "", "", $00, $09, $00)
     createitemtemplate("M4A4", "m4a4", "GFX\items\M4_Worldmodel.b3d", "GFX\items\INVm4.jpg", "", 0.02, "", "", $00, $09, $00)
     createitemtemplate("Handcuffs", "handcuffs", "GFX\items\Handcuts_Worldmodel.b3d", "GFX\items\INVhandcuts.jpg", "", 0.01, "", "", $00, $09, $00)
     createitemtemplate("SCP-035", "scp035", "GFX\items\035.b3d", "GFX\items\INV035.jpg", "", 0.018, "", "", $00, $09, $00)

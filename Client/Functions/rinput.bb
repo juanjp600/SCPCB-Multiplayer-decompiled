@@ -105,7 +105,7 @@ Function rinput$(arg0$)
     EndIf
     If (((local0 = $0D) Or (local0 = $00)) <> 0) Then
         Return arg0
-    ElseIf ((((((local0 > $00) And (local0 < $07)) Or (local0 > $1A)) And (local0 < $20)) Or (local0 = $09)) <> 0) Then
+    ElseIf (((((local0 > $00) And (local0 < $07)) Or ((local0 > $1A) And (local0 < $20))) Or (local0 = $09)) <> 0) Then
         Return arg0
     Else
         If (stringpick = len(arg0)) Then

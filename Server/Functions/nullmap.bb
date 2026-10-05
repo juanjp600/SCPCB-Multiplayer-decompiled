@@ -36,13 +36,13 @@ Function nullmap%(arg0%)
     Local local34%
     sound_onkill()
     For local13 = Each players
+        If (local13\Field66 <> $00) Then
+            freeentity(local13\Field66)
+            local13\Field66 = $00
+        EndIf
         If (local13\Field64 <> $00) Then
             freeentity(local13\Field64)
             local13\Field64 = $00
-        EndIf
-        If (local13\Field62 <> $00) Then
-            freeentity(local13\Field62)
-            local13\Field62 = $00
         EndIf
     Next
     Delete Each rockets
@@ -224,6 +224,6 @@ Function nullmap%(arg0%)
     For local30 = Each roomtemplates
         local30\Field0 = $00
     Next
-    clearworld($01, $01, $01)
+    clearworld($01, $01, $01, $01)
     Return $00
 End Function

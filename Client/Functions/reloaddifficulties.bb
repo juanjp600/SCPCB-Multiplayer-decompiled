@@ -28,7 +28,7 @@ Function reloaddifficulties%()
     difficulties($02)\Field6 = $C8
     difficulties($02)\Field7 = $00
     difficulties($02)\Field8 = $00
-    difficulties($03)\Field0 = "Custom"
+    difficulties($03)\Field0 = "Esoteric"
     difficulties($03)\Field2 = $00
     difficulties($03)\Field3 = $01
     difficulties($03)\Field4 = $00

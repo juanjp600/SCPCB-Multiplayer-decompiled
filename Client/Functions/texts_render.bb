@@ -9,13 +9,13 @@ Function texts_render%()
                     Exit
                 EndIf
             Next
-            If (local0\Field2 = $00) Then
-                local0\Field2 = loadfont(local0\Field0, (Int (local0\Field1 * menuscale)), $01, $00, $00)
+            If (((local0\Field2 = $00) And (local0\Field0 <> "")) <> 0) Then
+                local0\Field2 = loadfont(local0\Field0, (Int min(72.0, max(8.0, (local0\Field1 * menuscale)))), $01, $00, $00)
             EndIf
         EndIf
         If (local0\Field2 <> 0) Then
             setfont(local0\Field2)
-            color(intcolor(local0\Field3, $10), intcolor(local0\Field3, $08), intcolor(local0\Field3, $00))
+            setcolorex(intcolor(local0\Field3, $10), intcolor(local0\Field3, $08), intcolor(local0\Field3, $00))
             text(local0\Field5, local0\Field6, local0\Field4, $00, $00)
         EndIf
     Next

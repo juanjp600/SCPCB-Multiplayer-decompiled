@@ -7,6 +7,8 @@ Function giveachievement%(arg0%, arg1%)
             local0 = getinisectionlocation("Data\achievementstrings.ini", ("s" + (Str arg0)))
             local1 = getinistring2("Data\achievementstrings.ini", local0, "string1", "")
             steam_api_setachievement(getinistring2("Data\achievementstrings.ini", local0, "image", ""))
+            playsound_strict(loadtempsound("SFX\General\Save2.ogg"))
+            createachievementmsg(arg0, local1)
         EndIf
     EndIf
     Return $00

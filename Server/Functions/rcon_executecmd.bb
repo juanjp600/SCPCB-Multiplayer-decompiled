@@ -3,11 +3,11 @@ Function rcon_executecmd$(arg0$, arg1$)
         Case "kick"
             rcon_kick(arg1)
         Case "banip"
-            rcon_banip("banlist", arg1)
+            rcon_banip(arg1)
         Case "banid"
-            rcon_bansteamid("banliststeam", (Int arg1))
+            rcon_bansteamid((Int arg1))
         Case "reloadbanlist"
-            rcon_reloadbanlist("banlist")
+            rcon_reloadbanlist()
         Case "hostname"
             rcon_hostname(arg1)
         Case "restart"

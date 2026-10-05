@@ -1,20 +1,21 @@
 Function multiplayer_updategui%(arg0%)
     Local local0%
-    Local local1%
-    Local local2$
+    Local local1#
+    Local local2%
     Local local3%
     Local local4%
     Local local5%
     Local local6%
     Local local7%
     Local local8%
-    Local local9.players
+    Local local9%
     Local local10%
-    Local local11$
+    Local local11%
     Local local12%
+    Local local13%
     Local local14%
     Local local15%
-    Local local16%
+    Local local16$
     Local local17%
     Local local18%
     Local local19%
@@ -22,165 +23,186 @@ Function multiplayer_updategui%(arg0%)
     Local local21%
     Local local22%
     Local local23%
-    Local local24%
-    Local local25%[8]
+    Local local24.players
+    Local local25%
     Local local26%
     Local local27%
     Local local28%
-    Local local29$
+    Local local30%
+    Local local31%
+    Local local32%
+    Local local33%
+    Local local34%
+    Local local35%
+    Local local36%
+    Local local37%
+    Local local38%
+    Local local39%
+    Local local40%
+    Local local41%
+    Local local42%
+    Local local43%
+    Local local44%
+    Local local45%
+    Local local46%
+    Local local47%
+    Local local48%
+    Local local49%[8]
+    Local local50%
+    Local local51%
+    Local local52%
+    Local local53%
+    Local local54$
     If (udp_getstream() <> 0) Then
         updatequery()
+        local0 = millisecs()
+        local1 = menuscale
+        local2 = myplayer\Field49
+        local3 = (hudenabled And arg0)
         If (mainmenuopen = $00) Then
-            If (hudenabled <> 0) Then
-                If (arg0 <> 0) Then
-                    If (networkserver\Field15 <> 0) Then
-                        local0 = ((((b_br\Field7 + $3E7) - millisecs()) / $3E8) Mod $3C)
-                        local1 = ((((b_br\Field7 + $3E7) - millisecs()) / $EA60) Mod $3C)
-                        If (((b_br\Field7 - millisecs()) - b_br\Field6) < $00) Then
-                            local2 = (Str local0)
-                            If (local0 < $0A) Then
-                                local2 = ("0" + (Str local0))
-                            EndIf
-                            aasetfont(font3)
-                            color($FF, $FF, $FF)
-                            If (millisecs() < b_br\Field7) Then
-                                aatext((graphicwidth - $3C), $14, (((Str local1) + ":") + local2), $00, $00, 1.0)
-                            Else
-                                aatext((graphicwidth - $3C), $14, "0:00", $00, $00, 1.0)
+            If (local3 <> 0) Then
+                If (networkserver\Field12 <> 0) Then
+                    If ((consoleopen Or menuopen) = $00) Then
+                        local4 = (b_br\Field7 - local0)
+                        If (local4 < b_br\Field6) Then
+                            setfontex(fonts[$02]\Field0)
+                            setcolorraw($FFFFFF)
+                            If (local4 > $00) Then
+                                local5 = (Int ((Float (local4 + $3E7)) * 0.001))
+                                local6 = (Int ((Float local5) * (1.0 / 60.0)))
+                                local7 = (local5 Mod $3C)
+                                If (local7 < $0A) Then
+                                    text((graphicwidth - $3C), $14, (((Str local6) + ":0") + (Str local7)), $00, $00)
+                                Else
+                                    text((graphicwidth - $3C), $14, (((Str local6) + ":") + (Str local7)), $00, $00)
+                                EndIf
                             EndIf
                         EndIf
-                        If (consoleopen = $00) Then
-                            local3 = $136
-                            local4 = (graphicheight - $5F)
-                            local5 = (Int (252.0 * menuscale))
-                            local6 = (Int (20.0 * menuscale))
-                            If (myplayer\Field51 <> $00) Then
-                                color($FF, $FF, $FF)
-                                rect(local3, local4, local5, local6, $00)
-                                color($B4, $00, $00)
-                                renderprogressbar((Int ((2.0 * menuscale) + (Float local3))), (Int ((2.0 * menuscale) + (Float local4))), (Int ((Float local5) - (4.0 * menuscale))), (Int ((Float local6) - (4.0 * menuscale))), (Float multiplayer_breach_getmaxhp(myplayer\Field51)), (Float (Int myplayer\Field70)))
-                                color($FF, $FF, $FF)
-                                aasetfont(fontsl)
-                                aatext((Int ((1.0 * menuscale) + (Float local3))), (Int ((1.0 * menuscale) + (Float local4))), (Str (Int myplayer\Field70)), $00, $00, 1.0)
-                                If ((multiplayer_isascp(myplayer\Field51) Or multiplayer_breach_isa035(myplayer\Field51)) <> 0) Then
-                                    local4 = (local4 + $28)
-                                    local6 = (Int (10.0 * menuscale))
-                                    color($FF, $FF, $FF)
-                                    rect(local3, local4, local5, local6, $00)
-                                    color($00, $00, $B4)
-                                    renderprogressbar((Int ((2.0 * menuscale) + (Float local3))), (Int ((2.0 * menuscale) + (Float local4))), (Int ((Float local5) - (4.0 * menuscale))), (Int ((Float local6) - (4.0 * menuscale))), (Float scp\Field8), (Float (scp\Field1 - millisecs())))
-                                    color($FF, $FF, $FF)
-                                EndIf
-                                settypecolor(myplayer\Field51)
-                                aasetfont(font1)
-                                aatext((Int ((20.0 * menuscale) + (Float (local3 + local5)))), local4, gettypename(myplayer\Field51), $00, $00, 1.0)
+                    EndIf
+                    If (((local2 > $00) And (local2 <> $12)) <> 0) Then
+                        setfontex(fonts[$00]\Field0)
+                        local8 = imenuscale[$CC]
+                        local9 = imenuscale[$14]
+                        local10 = (local8 Shr $01)
+                        local11 = imenuscale[$50]
+                        local12 = (graphicheight - imenuscale[$87])
+                        local13 = imenuscale[$04]
+                        local14 = imenuscale[$08]
+                        local15 = (Int myplayer\Field68)
+                        local16 = gettypename(local2)
+                        setcolorraw($B40000)
+                        renderprogressbar((imenuscale[$01] + local11), (imenuscale[$01] + local12), (local8 - imenuscale[$02]), (local9 - imenuscale[$02]), (Float multiplayer_breach_getmaxhp(local2)), (Float local15))
+                        setcolorraw($FFFFFF)
+                        rect(local11, local12, local8, local9, $00)
+                        local11 = (local11 + local10)
+                        local9 = imenuscale[$0A]
+                        text(local11, (local12 + local9), (Str local15), $01, $01)
+                        If (local16 <> "") Then
+                            local17 = (len(local16) * fonts[$00]\Field3)
+                            local18 = fonts[$00]\Field2
+                            local19 = (local17 Shr $01)
+                            local20 = (local18 Shr $01)
+                            drawframe(((local11 - local19) - local13), (((local12 - local9) - local20) - local13), (local17 + local14), (local18 + local14), $00, $00)
+                            settypecolor(local2)
+                            text(local11, (local12 - local9), local16, $01, $01)
+                        EndIf
+                        If ((multiplayer_isascp(local2) Or multiplayer_breach_isa035(local2)) <> 0) Then
+                            local8 = imenuscale[$C8]
+                            local9 = imenuscale[$14]
+                            local11 = (viewport_center_x - (local8 Shr $01))
+                            local12 = ((local9 Shl $02) + viewport_center_y)
+                            setcolorraw($B4)
+                            If ((Int renderprogressbar((local11 + local13), (local12 - local13), (local8 + local14), (local9 - local14), (Float scp\Field8), (Float (scp\Field1 - local0)))) <> 0) Then
+                                setcolorraw($FFFFFF)
+                                rect((local11 + local13), (local12 - local13), (local8 + local14), (local9 - local14), $00)
                             EndIf
                         EndIf
                     EndIf
                 EndIf
             EndIf
         EndIf
-        If (networkserver\Field24 = $01) Then
-            For local8 = $01 To networkserver\Field14 Step $01
-                If (player[local8] <> Null) Then
-                    If (player[local8]\Field45 = $01) Then
-                        If ((((mainmenuopen And (networkserver\Field15 = $00)) Or ((player[local8]\Field51 = $00) And (myplayer\Field51 = $00))) Or player[local8]\Field52) <> 0) Then
-                            color($FF, $FF, $FF)
-                            aasetfont(fontsl)
-                            color(player[local8]\Field89, player[local8]\Field90, player[local8]\Field91)
-                            disableredirectaccess = $01
-                            aatext((Int (40.0 * menuscale)), (Int ((Float ($C8 + local7)) * menuscale)), (((player[local8]\Field24 + "[") + (Str local8)) + "]"), $00, $00, 1.0)
-                            disableredirectaccess = $00
-                            color($FF, $FF, $FF)
-                            aasetfont(font1)
-                            drawimage(mpimg\Field1, (Int (25.0 * menuscale)), (Int ((Float ($C8 + local7)) * menuscale)), $00)
-                            local7 = (local7 + $1E)
+        If (networkserver\Field52\Field10 = $01) Then
+            For local22 = $01 To networkserver\Field52\Field14 Step $01
+                If (player[local22] <> Null) Then
+                    If (player[local22]\Field43 = $01) Then
+                        If ((((mainmenuopen And (networkserver\Field12 = $00)) Or ((player[local22]\Field49 = $00) And (myplayer\Field49 = $00))) Or player[local22]\Field50) <> 0) Then
+                            setcolorraw($FFFFFF)
+                            setfontex(fonts[$00]\Field0)
+                            setcolorex(player[local22]\Field87, player[local22]\Field88, player[local22]\Field89)
+                            local23 = $01
+                            text((Int (40.0 * menuscale)), (Int ((Float ($C8 + local21)) * menuscale)), (((player[local22]\Field24 + "[") + (Str local22)) + "]"), $00, $00)
+                            local23 = $00
+                            drawimage(mpimg\Field2[player[local22]\Field50], (Int (25.0 * menuscale)), (Int ((Float ($C8 + local21)) * menuscale)), $00)
+                            local21 = (local21 + $1E)
                         EndIf
                     EndIf
                 EndIf
             Next
         EndIf
         If (arg0 <> 0) Then
-            For local9 = Each players
-                If (local9\Field0 <> networkserver\Field28) Then
-                    multiplayer_renderplayer2d(local9)
+            For local24 = Each players
+                If (local24\Field0 <> networkserver\Field20) Then
+                    multiplayer_renderplayer2d(local24)
                 EndIf
             Next
         EndIf
-        If ((((keyhit(key_chat) And (consoleopen = $00)) And (networkserver\Field27 = $00)) And (tab_menu_state < $02)) <> 0) Then
+        If ((((keyhit(key_chat) And (consoleopen = $00)) And (networkserver\Field19 = $00)) And (tab_menu_state < $02)) <> 0) Then
             flushkeys()
-            networkserver\Field27 = (networkserver\Field27 = $00)
+            networkserver\Field19 = (networkserver\Field19 = $00)
         EndIf
         draws_render()
         texts_render()
         multiplayer_rendervoice()
         multiplayer_renderchat()
-        If (hudenabled <> 0) Then
-            If (arg0 <> 0) Then
-                If ((((b_br\Field9 > $00) And (1.0 > b_br\Field0)) And (((b_br\Field7 - millisecs()) - b_br\Field6) < $01)) <> 0) Then
-                    aasetfont(font1)
-                    color($FF, $FF, $FF)
-                    aatext(((graphicwidth Sar $01) + $01), (Int (((Float graphicheight) * 0.1) + 1.0)), "You are", $01, $00, (min((Float (b_br\Field9 Sar $01)), 255.0) / 255.0))
-                    aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.1)), "You are", $01, $00, (min((Float (b_br\Field9 Sar $01)), 255.0) / 255.0))
-                    aasetfont(font2)
-                    settypecolor(myplayer\Field51)
-                    aatext(((graphicwidth Sar $01) + $01), (Int (((Float graphicheight) * 0.13) + 1.0)), gettypename(myplayer\Field51), $01, $00, (min((Float (b_br\Field9 Sar $01)), 255.0) / 255.0))
-                    aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.13)), gettypename(myplayer\Field51), $01, $00, (min((Float (b_br\Field9 Sar $01)), 255.0) / 255.0))
-                    color($FF, $FF, $FF)
-                    settypetext(((graphicwidth Sar $01) + $0A), (Int ((Float graphicheight) * 0.2)))
+        If (local3 <> 0) Then
+            If ((((b_br\Field9 > $00) And (1.0 > b_br\Field0)) And (((b_br\Field7 - local0) - b_br\Field6) < $01)) <> 0) Then
+            EndIf
+            If (((0.0 < b_br\Field0) And (b_br\Field1 <> "NULL")) <> 0) Then
+                setcolorex($FF, $FF, $FF)
+                setfontex(fonts[$01]\Field0)
+                text(viewport_center_x, (Int ((Float graphicheight) * 0.08)), "THE ROUND HAS FINISHED", $01, $00)
+                setcolorex(b_br\Field2, b_br\Field3, b_br\Field4)
+                If (b_br\Field1 <> "") Then
+                    text(viewport_center_x, (Int ((Float graphicheight) * 0.17)), (b_br\Field1 + " WON"), $01, $00)
                 EndIf
-                If (((0.0 < b_br\Field0) And (b_br\Field1 <> "NULL")) <> 0) Then
-                    color($FF, $FF, $FF)
-                    aasetfont(font2)
-                    aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.08)), "THE ROUND HAS FINISHED", $01, $00, (min((b_br\Field0 / 2.0), 255.0) / 255.0))
-                    aatext(((graphicwidth Sar $01) + $01), (Int (((Float graphicheight) * 0.08) + 1.0)), "THE ROUND HAS FINISHED", $01, $00, (min((b_br\Field0 / 2.0), 255.0) / 255.0))
-                    aasetfont(font2)
-                    color(b_br\Field2, b_br\Field3, b_br\Field4)
-                    If (b_br\Field1 <> "") Then
-                        aatext(((graphicwidth Sar $01) + $01), (Int (((Float graphicheight) * 0.17) + 1.0)), (b_br\Field1 + " WON"), $01, $00, (min((b_br\Field0 / 2.0), 255.0) / 255.0))
-                        aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.17)), (b_br\Field1 + " WON"), $01, $00, (min((b_br\Field0 / 2.0), 255.0) / 255.0))
+            EndIf
+            If ((networkserver\Field12 And (local2 = model_wait)) <> 0) Then
+                local25 = ((b_br\Field7 - local0) - b_br\Field6)
+                If (local25 > $00) Then
+                    local5 = (Int ((Float (local25 + $3E7)) * 0.001))
+                    local26 = (Int ((Float local5) * (1.0 / 60.00024)))
+                    local27 = (local5 Mod $3C)
+                    setcolorex($C8, $C8, $C8)
+                    formattext((Float viewport_center_x), ((Float graphicheight) * 0.08), (("%w%CONNECTED %g%" + (Str networkserver\Field21)) + " %w%PLAYERS"), $01, $00, 1.0, $00)
+                    If (local27 < $0A) Then
+                        text(viewport_center_x, (Int ((Float graphicheight) * 0.12)), ((("Remaining before the start of the game - " + (Str local26)) + ":0") + (Str local27)), $01, $00)
+                    Else
+                        text(viewport_center_x, (Int ((Float graphicheight) * 0.12)), ((("Remaining before the start of the game - " + (Str local26)) + ":") + (Str local27)), $01, $00)
                     EndIf
-                EndIf
-                If (((networkserver\Field15 And (((b_br\Field7 - millisecs()) - b_br\Field6) > $00)) And (myplayer\Field51 = model_wait)) <> 0) Then
-                    local10 = ((b_br\Field7 - millisecs()) - b_br\Field6)
-                    local0 = (((local10 + $3E7) / $3E8) Mod $3C)
-                    local1 = (((local10 + $3E7) / $EA60) Mod $3C)
-                    local2 = (Str local0)
-                    If (local0 < $0A) Then
-                        local2 = ("0" + (Str local0))
-                    EndIf
-                    color($C8, $C8, $C8)
-                    aasetfont(consolefont)
-                    formattext((Float (graphicwidth Sar $01)), ((Float graphicheight) * 0.08), (("%w%CONNECTED %g%" + (Str networkserver\Field29)) + " %w%PLAYERS"), $01, $00, 1.0, $00)
-                    aatext((graphicwidth Sar $01), (Int ((Float graphicheight) * 0.12)), ((("Remaining before the start of the game - " + (Str local1)) + ":") + local2), $01, $00, 1.0)
-                    local11 = ""
-                    If (networkserver\Field29 < $04) Then
-                        local11 = (("%w%Requires %r%" + (Str ($04 - networkserver\Field29))) + " %w%more players to start the game")
-                    EndIf
-                    If (local11 <> "") Then
-                        formattext((Float (graphicwidth Sar $01)), ((Float graphicheight) * 0.15), local11, $01, $00, 1.0, $00)
+                    If (networkserver\Field21 < $04) Then
+                        formattext((Float viewport_center_x), ((Float graphicheight) * 0.15), (("%w%Requires %r%" + (Str ($04 - networkserver\Field21))) + " %w%more players to start the game"), $01, $00, 1.0, $00)
                     EndIf
                 EndIf
             EndIf
         EndIf
         If (udp_respond() = $00) Then
-            aasetfont(font1)
-            color($FF, $00, $00)
-            aatext((Int (20.0 * menuscale)), (Int ((Float graphicheight) - (20.0 * menuscale))), "Server not responding...", $00, $00, 1.0)
-            color($FF, $FF, $FF)
+            setfontex(fonts[$00]\Field0)
+            setcolorex($FF, $00, $00)
+            text(imenuscale[$14], (graphicheight - imenuscale[$14]), "Server not responding...", $00, $00)
+            setcolorex($FF, $FF, $FF)
         EndIf
         If (tab_menu_state <> $00) Then
-            local12 = $00
+            local28 = $00
             menuopen = $00
             invopen = $00
-            aasetfont(font1)
+            setfontex(fonts[$00]\Field0)
             Select tab_menu_state
                 Case $03
-                    local14 = (Int ((Float (graphicwidth Sar $01)) - (175.0 * menuscale)))
-                    local15 = (Int ((Float (graphicheight Sar $01)) - (200.0 * menuscale)))
-                    drawframe(local14, local15, (Int (350.0 * menuscale)), (Int (360.0 * menuscale)), $00, $00)
-                    drawframe(local14, (Int ((Float local15) - (30.0 * menuscale))), (Int (350.0 * menuscale)), (Int (30.0 * menuscale)), $00, $00)
-                    If (drawbutton((Int ((300.0 * menuscale) + (Float local14))), (Int ((Float local15) - (23.0 * menuscale))), (Int (30.0 * menuscale)), (Int (20.0 * menuscale)), "<<", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    local30 = (viewport_center_x - imenuscale[$AF])
+                    local31 = (viewport_center_y - imenuscale[$C8])
+                    drawframe(local30, local31, imenuscale[$15E], imenuscale[$168], $00, $00)
+                    drawframe(local30, (local31 - imenuscale[$1E]), imenuscale[$15E], imenuscale[$1E], $00, $00)
+                    If (drawbutton((imenuscale[$12C] + local30), (local31 - imenuscale[$17]), imenuscale[$1E], imenuscale[$14], "<<", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         currplayer = Null
                         blockguns = $01
                         mousehit1 = $00
@@ -188,74 +210,70 @@ Function multiplayer_updategui%(arg0%)
                     If (currplayer = Null) Then
                         tab_menu_state = $01
                     Else
-                        bs_csteamid_set(bs_steamid_dynamic, currplayer\Field95, $01, $01)
-                        disableredirectaccess = $01
-                        color(currplayer\Field89, currplayer\Field90, currplayer\Field91)
-                        aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((Float local15) - (23.0 * menuscale))), currplayer\Field24, $00, $00, 1.0)
-                        color($FF, $FF, $FF)
-                        disableredirectaccess = $00
-                        currplayer\Field65 = (slidebar((Int ((10.0 * menuscale) + (Float local14))), (Int ((30.0 * menuscale) + (Float local15))), (Int (135.0 * menuscale)), (currplayer\Field65 * 100.0), $00) / 100.0)
-                        aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((5.0 * menuscale) + (Float local15))), ("Player volume: " + (Str (Int (currplayer\Field65 * 100.0)))), $00, $00, 1.0)
-                        If (bs_isteamfriends_getfriendrelationship(bs_steamfriends(), bs_steamid_dynamic) = $03) Then
-                            drawimage(mpimg\Field14, (Int ((Float (aastringwidth(currplayer\Field24) + local14)) + (15.0 * menuscale))), (Int ((Float local15) - (19.0 * menuscale))), $00)
+                        local23 = $01
+                        setcolorex(currplayer\Field87, currplayer\Field88, currplayer\Field89)
+                        text((imenuscale[$0A] + local30), (local31 - imenuscale[$14]), currplayer\Field24, $00, $00)
+                        setcolorex($FF, $FF, $FF)
+                        local23 = $00
+                        local32 = (Int currplayer\Field63)
+                        local33 = ((local32 Shl $02) + local32)
+                        local33 = ((local33 Shl $04) + (local33 Shl $02))
+                        currplayer\Field63 = (slidebar((imenuscale[$0A] + local30), (imenuscale[$1E] + local31), imenuscale[$87], (Float local33), $00, 0.0, 100.0, $00) * 0.01)
+                        text((imenuscale[$0A] + local30), (imenuscale[$05] + local31), ("Player volume: " + (Str local33)), $00, $00)
+                        If (issteamfriend(steamid64) <> 0) Then
+                            drawimage(mpimg\Field12, ((stringwidth(currplayer\Field24) + local30) + imenuscale[$0F]), (local31 - imenuscale[$13]), $00)
                         EndIf
-                        If (currplayer\Field95 <> $00) Then
-                            color($FF, $FF, $FF)
-                            rect((Int ((170.0 * menuscale) + (Float local14))), (Int ((30.0 * menuscale) + (Float local15))), (Int (170.0 * menuscale)), (Int (170.0 * menuscale)), $00)
-                            If (drawbutton((Int ((180.0 * menuscale) + (Float local14))), (Int ((40.0 * menuscale) + (Float local15))), (Int (150.0 * menuscale)), (Int (25.0 * menuscale)), "Open profile", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
-                                bs_isteamfriends_activategameoverlaytouser(bs_steamfriends(), "steamid", bs_steamid_dynamic)
+                        If (currplayer\Field93 <> "") Then
+                            rect((imenuscale[$AA] + local30), (imenuscale[$1E] + local31), imenuscale[$AA], imenuscale[$AA], $00)
+                            If (drawbutton((imenuscale[$B4] + local30), (imenuscale[$28] + local31), imenuscale[$96], imenuscale[$19], "Open profile", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                                steam_activateoverlaytouser("steamid", currplayer\Field94, currplayer\Field95)
                             EndIf
-                            If (bs_isteamfriends_getfriendrelationship(bs_steamfriends(), bs_steamid_dynamic) > $00) Then
-                                drawbutton((Int ((180.0 * menuscale) + (Float local14))), (Int ((70.0 * menuscale) + (Float local15))), (Int (150.0 * menuscale)), (Int (25.0 * menuscale)), "Add to friends", $00, $00, $01, $FFFFFFFF, selected_servers, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                            ElseIf (drawbutton((Int ((180.0 * menuscale) + (Float local14))), (Int ((70.0 * menuscale) + (Float local15))), (Int (150.0 * menuscale)), (Int (25.0 * menuscale)), "Add to friends", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
-                                bs_isteamfriends_activategameoverlaytouser(bs_steamfriends(), "friendadd", bs_steamid_dynamic)
+                            If (issteamfriend(steamid64) <> 0) Then
+                                If (drawbutton((imenuscale[$B4] + local30), (imenuscale[$46] + local31), imenuscale[$96], imenuscale[$19], "Add to friends", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                                    steam_activateoverlaytouser("friendadd", currplayer\Field94, currplayer\Field95)
+                                EndIf
                             EndIf
-                            If (bs_isteamfriends_requestuserinformation(bs_steamfriends(), bs_steamid_dynamic, $00) = $00) Then
+                            setcolorex($FF, $FF, $FF)
+                            If (steam_requestuserinformation(currplayer\Field94, currplayer\Field95, $00) = $00) Then
                                 If (currplayer\Field96 = $00) Then
-                                    local16 = bs_isteamfriends_getlargefriendavatar(bs_steamfriends(), bs_steamid_dynamic)
-                                    If (((local16 = $FFFFFFFF) Or (local16 = $00)) = $00) Then
-                                        local17 = createbank($04)
-                                        local18 = createbank($04)
-                                        bs_steamutils_getimagesize(bs_steamutils(), local16, local17, local18)
-                                        local19 = peekint(local17, $00)
-                                        local20 = peekint(local18, $00)
-                                        freebank(local17)
-                                        freebank(local18)
-                                        If (((local19 > $00) And (local20 > $00)) <> 0) Then
-                                            local21 = createbank(((local19 * local20) Shl $02))
-                                            local22 = createbank(((local19 * local20) * $03))
-                                            local23 = $00
-                                            bs_steamutils_getimagergba(bs_steamutils(), local16, local21, banksize(local21))
-                                            For local8 = $00 To (banksize(local21) - $01) Step $04
-                                                pokebyte(local22, local23, peekbyte(local21, (local8 + $02)))
-                                                local23 = (local23 + $01)
-                                                pokebyte(local22, local23, peekbyte(local21, (local8 + $01)))
-                                                local23 = (local23 + $01)
-                                                pokebyte(local22, local23, peekbyte(local21, local8))
-                                                local23 = (local23 + $01)
+                                    local34 = steam_getlargeuseravatar(currplayer\Field94, currplayer\Field95)
+                                    If (local34 > $00) Then
+                                        local35 = steam_getuserimageheight(local34)
+                                        local36 = steam_getuserimagewidth(local34)
+                                        local37 = createbank(((local36 * local35) Shl $02))
+                                        local38 = steam_getuserimagergba(local34, local37, banksize(local37))
+                                        If (local38 <> 0) Then
+                                            currplayer\Field96 = createimage(local36, local35, $01)
+                                            lockbuffer(imagebuffer(currplayer\Field96, $00))
+                                            local21 = $00
+                                            For local12 = $00 To (local35 - $01) Step $01
+                                                For local11 = $00 To (local36 - $01) Step $01
+                                                    local39 = peekbyte(local37, local21)
+                                                    local40 = peekbyte(local37, (local21 + $01))
+                                                    local41 = peekbyte(local37, (local21 + $02))
+                                                    local42 = peekbyte(local37, (local21 + $03))
+                                                    local43 = ((((local42 Shl $18) Or (local39 Shl $10)) Or (local40 Shl $08)) Or local41)
+                                                    writepixelfast(local11, local12, local43, imagebuffer(currplayer\Field96, $00))
+                                                    local21 = (local21 + $04)
+                                                Next
                                             Next
-                                            local24 = fi_convertfromrawbits(local22, local19, local20, (local19 * $03), $18, $FF0000, $FF00, $FF, $01)
-                                            fi_save($0D, local24, (("Temp\avatar" + (Str currplayer\Field95)) + ".png"), $00)
-                                            fi_unload(local24)
-                                            freebank(local21)
-                                            freebank(local22)
-                                            currplayer\Field96 = loadimage((("Temp\avatar" + (Str currplayer\Field95)) + ".png"))
-                                            resizeimage(currplayer\Field96, (((Float imagewidth(currplayer\Field96)) * 0.3) * menuscale), (((Float imageheight(currplayer\Field96)) * 0.3) * menuscale))
+                                            unlockbuffer(imagebuffer(currplayer\Field96, $00))
                                         EndIf
+                                        freebank(local37)
                                     EndIf
                                 Else
-                                    color($FF, $FF, $FF)
-                                    rect((Int ((178.0 * menuscale) + (Float local14))), (Int ((108.0 * menuscale) + (Float local15))), (Int ((Float imagewidth(currplayer\Field96)) + (4.0 * menuscale))), (Int ((Float imageheight(currplayer\Field96)) + (4.0 * menuscale))), $01)
-                                    drawblock(currplayer\Field96, (Int ((180.0 * menuscale) + (Float local14))), (Int ((110.0 * menuscale) + (Float local15))), $00)
-                                    aasetfont(font1)
-                                    aatext((Int ((178.0 * menuscale) + (Float local14))), (Int (((118.0 * menuscale) + (Float local15)) + (Float imageheight(currplayer\Field96)))), (("[U:1:" + (Str currplayer\Field95)) + "]"), $00, $00, 1.0)
+                                    local44 = imagewidth(currplayer\Field96)
+                                    local45 = imageheight(currplayer\Field96)
+                                    rect((imenuscale[$B2] + local30), (imenuscale[$6C] + local31), (Int ((4.0 * local1) + (Float local44))), (Int ((4.0 * local1) + (Float local45))), $01)
+                                    drawimage(currplayer\Field96, (imenuscale[$B4] + local30), (imenuscale[$6E] + local31), $00)
+                                    text((imenuscale[$B2] + local30), ((imenuscale[$76] + local31) + local45), (("[" + currplayer\Field93) + "]"), $00, $00)
                                 EndIf
                             EndIf
                         EndIf
                         If ((multiplayer_isfullsync() And isplayeradmin()) <> 0) Then
-                            aasetfont(font1)
-                            color($FF, $FF, $FF)
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((60.0 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Ban IP", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            setfontex(fonts[$00]\Field0)
+                            setcolorex($FF, $FF, $FF)
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$3C] + local31), imenuscale[$74], imenuscale[$16], "Ban IP", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $01) Then
                                     executeconsolecommand(("ban " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -263,7 +281,7 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $01
                                 EndIf
                             EndIf
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((78.94737 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Ban steam", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$4F] + local31), imenuscale[$74], imenuscale[$16], "Ban steam", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $02) Then
                                     executeconsolecommand(("bansteam " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -271,7 +289,7 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $02
                                 EndIf
                             EndIf
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.0095) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Kick", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$69] + local31), imenuscale[$75], imenuscale[$16], "Kick", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $03) Then
                                     executeconsolecommand(("kick " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -279,7 +297,7 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $03
                                 EndIf
                             EndIf
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.0076) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Mute\Unmute", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$84] + local31), imenuscale[$75], imenuscale[$16], "Mute\Unmute", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $04) Then
                                     executeconsolecommand(("mute " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -287,7 +305,7 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $04
                                 EndIf
                             EndIf
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((157.8947 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Teleport to", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$9E] + local31), imenuscale[$75], imenuscale[$16], "Teleport to", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $05) Then
                                     executeconsolecommand(("tpto " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -295,7 +313,7 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $05
                                 EndIf
                             EndIf
-                            If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((184.2105 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Teleport to me", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$B8] + local31), imenuscale[$75], imenuscale[$16], "Teleport to me", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 If (previousclickedbutton = $06) Then
                                     executeconsolecommand(("tpme " + (Str currplayer\Field0)), $00, $01)
                                     previousclickedbutton = $00
@@ -303,146 +321,151 @@ Function multiplayer_updategui%(arg0%)
                                     previousclickedbutton = $06
                                 EndIf
                             EndIf
-                            aasetfont(font1)
+                            setfontex(fonts[$00]\Field0)
                             If (previousclickedbutton <> $00) Then
-                                aatext((Int ((135.0 * menuscale) + (Float local14))), (Int ((((((1.0 / 0.038) * (Float (previousclickedbutton - $01))) + 60.0) * menuscale) + (Float local15)) - (5.0 * menuscale))), "Sure?", $00, $00, 1.0)
+                                text((imenuscale[$87] + local30), (Int ((((Float ((imenuscale[$1A] * (previousclickedbutton - $01)) + $3C)) * menuscale) + (Float local31)) - (Float imenuscale[$05]))), "Sure?", $00, $00)
                             EndIf
-                            aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), "Give role:", $00, $00, 1.0)
-                            tab_menu_role_input = inputbox((Int ((110.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), (Int (180.0 * menuscale)), (Int (20.0 * menuscale)), tab_menu_role_input, $08, $00, -1.0)
-                            If (drawbutton((Int ((290.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), (Int (50.0 * menuscale)), (Int (20.0 * menuscale)), "Give", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            text((imenuscale[$0A] + local30), (imenuscale[$104] + local31), "Give role:", $00, $00)
+                            tab_menu_role_input = inputbox((imenuscale[$6E] + local30), (imenuscale[$104] + local31), imenuscale[$B4], imenuscale[$14], tab_menu_role_input, $08, $00, -1.0)
+                            If (drawbutton((imenuscale[$122] + local30), (imenuscale[$104] + local31), imenuscale[$32], imenuscale[$14], "Give", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 executeconsolecommand(((("giverole " + (Str currplayer\Field0)) + " ") + tab_menu_role_input), $00, $01)
                             EndIf
-                            aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((300.0 * menuscale) + (Float local15))), "Give item:", $00, $00, 1.0)
-                            tab_menu_item_input = inputbox((Int ((110.0 * menuscale) + (Float local14))), (Int ((300.0 * menuscale) + (Float local15))), (Int (180.0 * menuscale)), (Int (20.0 * menuscale)), tab_menu_item_input, $09, $00, -1.0)
-                            If (drawbutton((Int ((290.0 * menuscale) + (Float local14))), (Int ((300.0 * menuscale) + (Float local15))), (Int (50.0 * menuscale)), (Int (20.0 * menuscale)), "Give", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            text((imenuscale[$0A] + local30), (imenuscale[$12C] + local31), "Give item:", $00, $00)
+                            tab_menu_item_input = inputbox((imenuscale[$6E] + local30), (imenuscale[$12C] + local31), imenuscale[$B4], imenuscale[$14], tab_menu_item_input, $09, $00, -1.0)
+                            If (drawbutton((imenuscale[$122] + local30), (imenuscale[$12C] + local31), imenuscale[$32], imenuscale[$14], "Give", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 executeconsolecommand(((("giveitem " + (Str currplayer\Field0)) + " ") + tab_menu_item_input), $00, $01)
                             EndIf
-                            If (drawbutton((Int ((85.0 * menuscale) + (Float local14))), (Int ((340.0 * menuscale) + (Float local15))), (Int (200.0 * menuscale)), (Int (20.0 * menuscale)), "ADMIN PANEL", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                            If (drawbutton((imenuscale[$55] + local30), (imenuscale[$154] + local31), imenuscale[$C8], imenuscale[$14], "ADMIN PANEL", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                 tab_menu_state = $04
                             EndIf
                         EndIf
                     EndIf
                 Case $04
-                    local14 = (Int ((Float (graphicwidth Sar $01)) - (175.0 * menuscale)))
-                    local15 = (Int ((Float (graphicheight Sar $01)) - (200.0 * menuscale)))
-                    drawframe(local14, local15, (Int (350.0 * menuscale)), (Int (360.0 * menuscale)), $00, $00)
-                    drawframe(local14, (Int ((Float local15) - (30.0 * menuscale))), (Int (350.0 * menuscale)), (Int (30.0 * menuscale)), $00, $00)
-                    If (drawbutton((Int ((250.0 * menuscale) + (Float local14))), (Int ((4.0 * menuscale) + (Float local15))), (Int (30.0 * menuscale)), (Int (20.0 * menuscale)), "<<", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    local30 = (viewport_center_x - imenuscale[$AF])
+                    local31 = (viewport_center_y - imenuscale[$C8])
+                    local46 = imenuscale[$75]
+                    local47 = imenuscale[$16]
+                    drawframe(local30, local31, imenuscale[$15E], imenuscale[$168], $00, $00)
+                    drawframe(local30, (local31 - imenuscale[$1E]), imenuscale[$15E], imenuscale[$1E], $00, $00)
+                    If (drawbutton((imenuscale[$FA] + local30), (imenuscale[$04] + local31), imenuscale[$1E], imenuscale[$14], "<<", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         tab_menu_state = $03
                     EndIf
-                    aasetfont(fontservers)
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.057) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Start match", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    setfontex(fonts[$00]\Field0)
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$12] + local31), local46, local47, "Start match", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("startmatch", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.0228) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Restart server", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$2C] + local31), local46, local47, "Restart server", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("restart", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.01425) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Spawn Chaos", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$46] + local31), local46, local47, "Spawn Chaos", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("spawnchaos", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((96.49123 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Spawn MTF", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$60] + local31), local46, local47, "Spawn MTF", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("spawnmtf", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((122.807 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Use warheads", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$7B] + local31), local46, local47, "Use warheads", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("activatewarheads", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((149.1228 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Explode warheads", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$95] + local31), local46, local47, "Explode warheads", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("forcewarheads", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int (((1.0 / 0.0057) * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Cancel warheads", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$AF] + local31), local46, local47, "Cancel warheads", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("cancelwarheads", $00, $01)
                     EndIf
-                    If (drawbutton((Int ((10.0 * menuscale) + (Float local14))), (Int ((201.7544 * menuscale) + (Float local15))), (Int (116.6667 * menuscale)), (Int ((1.0 / 0.0456) * menuscale)), "Intercom", fontservers, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((imenuscale[$0A] + local30), (imenuscale[$CA] + local31), local46, local47, "Intercom", fonts[$00]\Field0, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand("shouldannounc", $00, $01)
                     EndIf
-                    aasetfont(font1)
-                    aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((230.0 * menuscale) + (Float local15))), "Lobby time (min):", $00, $00, 1.0)
-                    tab_menu_lobby_input = inputbox((Int ((160.0 * menuscale) + (Float local14))), (Int ((230.0 * menuscale) + (Float local15))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), tab_menu_lobby_input, $0A, $00, -1.0)
-                    If (drawbutton((Int ((290.0 * menuscale) + (Float local14))), (Int ((230.0 * menuscale) + (Float local15))), (Int (50.0 * menuscale)), (Int (20.0 * menuscale)), "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    setfontex(fonts[$00]\Field0)
+                    local48 = (imenuscale[$E6] + local31)
+                    text((imenuscale[$0A] + local30), local48, "Lobby time (min):", $00, $00)
+                    tab_menu_lobby_input = inputbox((imenuscale[$A0] + local30), local48, imenuscale[$64], imenuscale[$14], tab_menu_lobby_input, $0A, $00, -1.0)
+                    If (drawbutton((imenuscale[$122] + local30), local48, imenuscale[$32], imenuscale[$14], "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand(("lob " + tab_menu_lobby_input), $00, $01)
                     EndIf
-                    aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), "MTF Tickets:", $00, $00, 1.0)
-                    tab_menu_role_input = inputbox((Int ((160.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), tab_menu_role_input, $08, $00, -1.0)
-                    If (drawbutton((Int ((290.0 * menuscale) + (Float local14))), (Int ((260.0 * menuscale) + (Float local15))), (Int (50.0 * menuscale)), (Int (20.0 * menuscale)), "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    local48 = (imenuscale[$104] + local31)
+                    text((imenuscale[$0A] + local30), local48, "MTF Tickets:", $00, $00)
+                    tab_menu_role_input = inputbox((imenuscale[$A0] + local30), local48, imenuscale[$64], imenuscale[$14], tab_menu_role_input, $08, $00, -1.0)
+                    If (drawbutton((imenuscale[$122] + local30), local48, imenuscale[$32], imenuscale[$14], "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand(("setmtftickets " + tab_menu_role_input), $00, $01)
                     EndIf
-                    aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((290.0 * menuscale) + (Float local15))), "Chaos Tickets:", $00, $00, 1.0)
-                    tab_menu_item_input = inputbox((Int ((160.0 * menuscale) + (Float local14))), (Int ((290.0 * menuscale) + (Float local15))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), tab_menu_item_input, $09, $00, -1.0)
-                    If (drawbutton((Int ((290.0 * menuscale) + (Float local14))), (Int ((290.0 * menuscale) + (Float local15))), (Int (50.0 * menuscale)), (Int (20.0 * menuscale)), "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    local48 = (imenuscale[$122] + local31)
+                    text((imenuscale[$0A] + local30), local48, "Chaos Tickets:", $00, $00)
+                    tab_menu_item_input = inputbox((imenuscale[$A0] + local30), local48, imenuscale[$64], imenuscale[$14], tab_menu_item_input, $09, $00, -1.0)
+                    If (drawbutton((imenuscale[$122] + local30), local48, imenuscale[$32], imenuscale[$14], "Set", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         executeconsolecommand(("setchaostickets " + tab_menu_item_input), $00, $01)
                     EndIf
                 Default
                     previousclickedbutton = $00
-                    local14 = (Int ((Float (graphicwidth Sar $01)) - (175.0 * menuscale)))
-                    local15 = (Int ((Float (graphicheight Sar $01)) - (200.0 * menuscale)))
-                    drawframe(local14, local15, (Int (350.0 * menuscale)), (Int (330.0 * menuscale)), $00, $00)
-                    drawframe(local14, (Int ((Float local15) - (30.0 * menuscale))), (Int (350.0 * menuscale)), (Int (30.0 * menuscale)), $00, $00)
-                    drawframe(local14, (Int ((30.0 * menuscale) + (Float local15))), (Int (330.0 * menuscale)), (Int (2.0 * menuscale)), $00, $00)
-                    drawframe((Int ((260.0 * menuscale) + (Float local14))), local15, (Int (2.0 * menuscale)), (Int (30.0 * menuscale)), $00, $00)
-                    formattext(((11.0 * menuscale) + (Float local14)), ((Float local15) - (23.0 * menuscale)), networkserver\Field21, $00, $00, 1.0, $00)
-                    aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((5.0 * menuscale) + (Float local15))), "Nickname", $00, $00, 1.0)
-                    aatext((Int ((270.0 * menuscale) + (Float local14))), (Int ((5.0 * menuscale) + (Float local15))), "Ping", $00, $00, 1.0)
-                    local26 = $00
-                    For local9 = Each players
-                        If (local9\Field24 <> "") Then
-                            For local27 = $00 To $07 Step $01
-                                If ((local12 Sar $03) = local27) Then
-                                    local9\Field69 = local27
-                                    local25[local27] = $01
+                    local30 = (viewport_center_x - imenuscale[$AF])
+                    local31 = (viewport_center_y - imenuscale[$C8])
+                    drawframe(local30, local31, imenuscale[$15E], imenuscale[$14A], $00, $00)
+                    drawframe(local30, (local31 - imenuscale[$1E]), imenuscale[$15E], imenuscale[$1E], $00, $00)
+                    drawframe(local30, (imenuscale[$1E] + local31), imenuscale[$14A], imenuscale[$02], $00, $00)
+                    drawframe((imenuscale[$104] + local30), local31, imenuscale[$02], imenuscale[$1E], $00, $00)
+                    formattext((Float (imenuscale[$0B] + local30)), (Float (local31 - imenuscale[$17])), networkserver\Field52\Field0, $00, $00, 1.0, $00)
+                    text((imenuscale[$0A] + local30), (imenuscale[$05] + local31), "Nickname", $00, $00)
+                    text((imenuscale[$10E] + local30), (imenuscale[$05] + local31), "Ping", $00, $00)
+                    local50 = $00
+                    For local24 = Each players
+                        If (local24\Field24 <> "") Then
+                            For local42 = $00 To $07 Step $01
+                                If ((local28 Sar $03) = local42) Then
+                                    local24\Field67 = local42
+                                    local49[local42] = $01
                                     Exit
                                 EndIf
                             Next
-                            local12 = (local12 + $01)
+                            local28 = (local28 + $01)
                         EndIf
                     Next
-                    For local9 = Each players
-                        If (local9\Field24 <> "") Then
-                            If (selected_p_page = local9\Field69) Then
-                                drawframe(local14, (Int (((Float ($1E + local28)) * menuscale) + (Float local15))), (Int (350.0 * menuscale)), (Int (30.0 * menuscale)), $00, $00)
-                                If (local9\Field0 = networkserver\Field28) Then
-                                    local9\Field48 = serverping
-                                    local9\Field24 = nickname
-                                ElseIf (bs_isteamfriends_getfriendrelationship(bs_steamfriends(), udp_fillsteam(local9\Field95)) = $03) Then
-                                    drawimage(mpimg\Field14, (Int ((250.0 * menuscale) + (Float local14))), (Int (((Float ($1E + local28)) * menuscale) + (Float (local15 + $07)))), $00)
+                    For local24 = Each players
+                        If (local24\Field24 <> "") Then
+                            If (selected_p_page = local24\Field67) Then
+                                drawframe(local30, (imenuscale[($1E + local51)] + local31), imenuscale[$15E], imenuscale[$1E], $00, $00)
+                                If (local24\Field0 = networkserver\Field20) Then
+                                    local24\Field46 = serverping
+                                    local24\Field24 = nickname
+                                ElseIf (issteamfriend(local24\Field93) <> 0) Then
+                                    drawimage(mpimg\Field12, (imenuscale[$FA] + local30), (imenuscale[($25 + local51)] + local31), $00)
                                 EndIf
-                                color($FF, $FF, $FF)
-                                disableredirectaccess = $01
-                                color(local9\Field89, local9\Field90, local9\Field91)
-                                aatext((Int ((10.0 * menuscale) + (Float local14))), (Int (((Float ($1E + local28)) * menuscale) + (Float (local15 + $05)))), ((("[" + (Str local9\Field0)) + "] ") + local9\Field24), $00, $00, 1.0)
-                                disableredirectaccess = $00
-                                color($FF, $FF, $FF)
-                                aatext((Int ((270.0 * menuscale) + (Float local14))), (Int (((Float ($1E + local28)) * menuscale) + (Float (local15 + $05)))), (Str local9\Field48), $00, $00, 1.0)
-                                If (drawbutton((Int ((305.0 * menuscale) + (Float local14))), (Int (((Float ($1E + local28)) * menuscale) + (Float (local15 + $04)))), (Int (20.0 * menuscale)), (Int (20.0 * menuscale)), "+", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                                setcolorex($FF, $FF, $FF)
+                                local23 = $01
+                                setcolorex(local24\Field87, local24\Field88, local24\Field89)
+                                text((imenuscale[$0A] + local30), (imenuscale[($23 + local51)] + local31), ((("[" + (Str local24\Field0)) + "] ") + local24\Field24), $00, $00)
+                                local23 = $00
+                                setcolorex($FF, $FF, $FF)
+                                text((imenuscale[$10E] + local30), (imenuscale[($23 + local51)] + local31), (Str local24\Field46), $00, $00)
+                                If (drawbutton((imenuscale[$131] + local30), ((imenuscale[$04] + local31) + imenuscale[($1E + local51)]), imenuscale[$14], imenuscale[$14], "+", $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                                     tab_menu_state = $03
-                                    currplayer = local9
+                                    currplayer = local24
                                 EndIf
-                                local28 = (local28 + $1E)
+                                local51 = (local51 + $1E)
                             EndIf
                         EndIf
                     Next
-                    For local8 = $00 To $07 Step $01
-                        If (local25[local8] = $01) Then
-                            If (selected_p_page = local8) Then
-                                drawbutton((Int (((Float (($1E * local8) + $0A)) * menuscale) + (Float local14))), (Int ((280.0 * menuscale) + (Float local15))), (Int (20.0 * menuscale)), (Int (20.0 * menuscale)), (Str (local8 + $01)), $00, $00, $01, $FFFFFFFF, $FFFFFFFF, selected_p_page, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                            ElseIf (drawbutton((Int (((Float (($1E * local8) + $0A)) * menuscale) + (Float local14))), (Int ((280.0 * menuscale) + (Float local15))), (Int (20.0 * menuscale)), (Int (20.0 * menuscale)), (Str (local8 + $01)), $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
-                                selected_p_page = local8
+                    For local22 = $00 To $07 Step $01
+                        If (local49[local22] = $01) Then
+                            If (selected_p_page = local22) Then
+                                drawbutton((Int (((Float (($1E * local22) + $0A)) * menuscale) + (Float local30))), (Int ((280.0 * menuscale) + (Float local31))), (Int (20.0 * menuscale)), (Int (20.0 * menuscale)), (Str (local22 + $01)), $00, $00, $01, $FFFFFFFF, $FFFFFFFF, selected_p_page, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                            ElseIf (drawbutton((Int (((Float (($1E * local22) + $0A)) * menuscale) + (Float local30))), (Int ((280.0 * menuscale) + (Float local31))), (Int (20.0 * menuscale)), (Int (20.0 * menuscale)), (Str (local22 + $01)), $00, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                                selected_p_page = local22
                             EndIf
                         EndIf
                     Next
-                    color($FF, $FF, $FF)
-                    aatext((Int ((10.0 * menuscale) + (Float local14))), (Int ((310.0 * menuscale) + (Float local15))), (((Str networkserver\Field29) + " / ") + (Str networkserver\Field14)), $00, $00, 1.0)
+                    setcolorex($FF, $FF, $FF)
+                    text((Int ((10.0 * menuscale) + (Float local30))), (Int ((310.0 * menuscale) + (Float local31))), (((Str networkserver\Field21) + " / ") + (Str networkserver\Field52\Field14)), $00, $00)
             End Select
             If ((fullscreen And (tab_menu_state > $01)) <> 0) Then
-                drawimage(cursorimg, scaledmousex(), scaledmousey(), $00)
+                drawimage(cursorimg, mouseposx, mouseposy, $00)
             EndIf
         EndIf
     EndIf
-    If ((((currentworkshopdownloaditems <> $00) Or (currentworkshopuploadingitems <> $00)) And (have_querys() = $00)) <> 0) Then
-        local29 = (("Downloading workshop items... (" + (Str (currentworkshopdownloaditems + currentworkshopuploadingitems))) + " item left)")
-        color($FF, $FF, $FF)
-        aasetfont(font1)
-        aatext((Int ((Float (graphicwidth - aastringwidth(local29))) - (30.0 * menuscale))), (graphicheight - $2D), local29, $00, $00, 1.0)
-        loading_frame = playanimimage(mpimg\Field9, (Int ((Float (graphicwidth - aastringwidth(local29))) - (70.0 * menuscale))), (graphicheight - $32), (0.05 * fpsfactor), loading_frame, 11.0)
+    If ((((local52 <> $00) Or (local53 <> $00)) And (have_querys() = $00)) <> 0) Then
+        local54 = ((("Downloading workshop items... (" + (Str local52)) + (Str local53)) + " item left)")
+        setcolorex($FF, $FF, $FF)
+        setfontex(fonts[$00]\Field0)
+        text((Int ((Float (graphicwidth - stringwidth(local54))) - (30.0 * menuscale))), (graphicheight - $2D), local54, $00, $00)
+        loading_frame = playanimimage(mpimg\Field7, (Int ((Float (graphicwidth - stringwidth(local54))) - (70.0 * menuscale))), (graphicheight - $32), (0.05 * fpsfactor), loading_frame, 11.0)
     EndIf
     Return $00
 End Function

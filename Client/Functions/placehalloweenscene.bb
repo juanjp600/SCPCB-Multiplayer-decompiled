@@ -16,19 +16,19 @@ Function placehalloweenscene%(arg0.rooms, arg1%, arg2%, arg3#, arg4#, arg5#, arg
         rotateentity(local0, 0.0, arg6, 0.0, $00)
         local1 = findchild(local0, "Cylinder.007")
         If (local1 <> $00) Then
-            local2 = addlight(arg0, entityx(local1, $01), entityy(local1, $01), entityz(local1, $01), $02, 0.2, $F2, $9D, $00)
+            local2 = addlight(arg0, entityx(local1, $01), entityy(local1, $01), entityz(local1, $01), $02, 0.2, $F2, $9D, $00, $00)
             entityparent(local2, local1, $01)
             For local3 = $00 To arg0\Field18 Step $01
                 If (arg0\Field16[local3] = local2) Then
                     entityparent(arg0\Field20[local3], local1, $01)
                     entityparent(arg0\Field24[local3], local1, $01)
-                    moveentity(arg0\Field21[local3], 0.0, 1410065000.0, 0.0)
+                    moveentity(arg0\Field21[local3], 0.0, 2147484000.0, 0.0)
                 EndIf
             Next
         Else
-            addlight(arg0, arg3, arg4, arg5, $04, 0.2, $F2, $9D, $00)
+            addlight(arg0, arg3, arg4, arg5, $04, 0.2, $F2, $9D, $00, $00)
         EndIf
-        entityparent(local0, arg0\Field2, $01)
+        entityparent(local0, arg0\Field3, $01)
         scaleentity(local0, ((0.7 + (Float local4)) * 80.0), ((0.7 + (Float local4)) * 80.0), ((0.7 + (Float local4)) * 80.0), $00)
         addentitytoroomprops(arg0, local0)
     ElseIf (newyearindex <> 0) Then

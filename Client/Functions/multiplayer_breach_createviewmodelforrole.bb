@@ -8,9 +8,9 @@ Function multiplayer_breach_createviewmodelforrole%(arg0%, arg1$, arg2#, arg3#, 
         freeentity(local0\Field20)
     EndIf
     local0\Field20 = loadanimmesh_strict(arg1, $00)
-    scaleentity(local0\Field20, arg4, arg4, arg5, $00)
+    scaleentity(local0\Field20, (arg4 * 0.2), (arg4 * 0.2), (arg5 * 0.2), $00)
     entityparent(local0\Field20, viewmodelpivot, $01)
-    moveentity(local0\Field20, 0.0, arg2, arg3)
+    moveentity(local0\Field20, 0.0, (arg2 * 0.2), (arg3 * 0.2))
     hideentity(local0\Field20)
     Return $00
 End Function

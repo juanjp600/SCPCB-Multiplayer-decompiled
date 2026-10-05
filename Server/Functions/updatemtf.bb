@@ -19,8 +19,8 @@ Function updatemtf%()
             If (local4 <> Null) Then
                 For local5 = Each players
                     If ((((((0.0 <> local5\Field0) Or (0.0 <> local5\Field1)) Or (0.0 <> local5\Field2)) And local5\Field22) And (local5\Field32 <> $00)) <> 0) Then
-                        If ((((local5\Field67 <> "pocketdimension") And (local5\Field67 <> "dimension1499")) And (local5\Field67 <> "")) <> 0) Then
-                            If (30.0 > (Abs (entityz(local4\Field2, $00) - entityz(local5\Field62, $00)))) Then
+                        If ((((local5\Field69 <> "pocketdimension") And (local5\Field69 <> "dimension1499")) And (local5\Field69 <> "")) <> 0) Then
+                            If (30.0 > (Abs (entityz(local4\Field2, $00) - entityz(local5\Field64, $00)))) Then
                                 mtftimer = fpsfactor
                                 playannouncement("SFX\Character\MTF\Announc.ogg", $01)
                                 For local3 = $00 To $02 Step $01

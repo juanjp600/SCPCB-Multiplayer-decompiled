@@ -3,6 +3,7 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
     Local local1%
     Local local2.itemtemplates
     Local local3%
+    Local local4%
     local0 = (New itemtemplates)
     For local2 = Each itemtemplates
         If (((local2\Field6 = arg2) And (local2\Field5 <> $00)) <> 0) Then
@@ -21,6 +22,7 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
         EndIf
         local0\Field6 = arg2
     EndIf
+    applyreflection(local0\Field5)
     local0\Field6 = arg2
     If (arg6 <> "") Then
         local3 = loadtexture_strict(arg6, arg9)
@@ -39,25 +41,23 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
         EndIf
     Next
     If (local0\Field8 = $00) Then
+        local4 = (Int (64.0 * menuscale))
         If (arg10 = $01) Then
-            local0\Field8 = create3dicon($40, $40, arg2, arg6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, $00)
+            local0\Field8 = create3dicon(local4, local4, arg2, arg6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, $00)
             maskimage(local0\Field8, $7B, $36, $22)
         Else
             local0\Field8 = loadimage_strict(arg3)
             local0\Field10 = arg3
             maskimage(local0\Field8, $7B, $36, $22)
-            If (((imagewidth(local0\Field8) > $40) Or (imageheight(local0\Field8) > $40)) <> 0) Then
-                resizeimage(local0\Field8, 64.0, 64.0)
-            EndIf
+            resizeimage(local0\Field8, (Float local4), (Float local4))
         EndIf
     EndIf
     If (arg7 <> "") Then
         If (local0\Field9 = $00) Then
+            local4 = (Int (64.0 * menuscale))
             local0\Field9 = loadimage_strict(arg7)
             maskimage(local0\Field9, $7B, $36, $22)
-            If (((imagewidth(local0\Field9) > $40) Or (imageheight(local0\Field9) > $40)) <> 0) Then
-                resizeimage(local0\Field9, 64.0, 64.0)
-            EndIf
+            resizeimage(local0\Field9, (Float local4), (Float local4))
         EndIf
     Else
         local0\Field9 = $00
@@ -68,9 +68,6 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
     local0\Field3 = $01
     local0\Field0 = findfreeitemtemplateid()
     hideentity(local0\Field5)
-    If (arg1 = "chicken") Then
-        rotatemesh(local0\Field5, 0.0, 0.0, 90.0)
-    EndIf
     local0\Field0 = (((((((((((generateseednumber(arg0) + generateseednumber(arg1)) + generateseednumber(arg2)) + generateseednumber(arg3)) + generateseednumber(arg4)) + generateseednumber((Str arg5))) + generateindex(arg0)) + generateindex(arg1)) + generateindex(arg2)) + generateindex(arg3)) + generateindex(arg4)) + generateindex((Str arg5)))
     Return local0
     Return Null

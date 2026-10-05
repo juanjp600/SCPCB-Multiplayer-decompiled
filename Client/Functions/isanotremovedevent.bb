@@ -10,6 +10,8 @@ Function isanotremovedevent%(arg0.events)
             Return $01
         Case $4A
             Return $01
+        Case $0F
+            Return $01
         Case $02
             Return $01
         Case $39

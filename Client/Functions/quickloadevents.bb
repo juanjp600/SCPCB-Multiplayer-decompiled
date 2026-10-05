@@ -11,7 +11,8 @@ Function quickloadevents%()
     Local local9#
     Local local10#
     Local local12%
-    Local local13.chunk
+    Local local13%
+    Local local14.chunk
     If (quickload_currevent = Null) Then
         quickloadpercent = $FFFFFFFF
         Return $00
@@ -32,21 +33,20 @@ Function quickloadevents%()
                     If (local0\Field1\Field32[$00] = Null) Then
                         For local6 = Each npcs
                             If (local6\Field5 = $0A) Then
+                                local0\Field1\Field32[$00] = local6
                                 local12 = $01
                                 Exit
                             EndIf
                         Next
                         If (local12 = $00) Then
                             local0\Field1\Field32[$00] = createnpc($0A, entityx(local0\Field1\Field25[$07], $01), (entityy(local0\Field1\Field25[$07], $01) + 5.0), entityz(local0\Field1\Field25[$07], $01))
-                            local0\Field1\Field32[$00]\Field66 = $01
+                            local0\Field1\Field32[$00]\Field68 = $01
+                            local0\Field1\Field32[$00]\Field49 = $00
                             positionentity(local0\Field1\Field32[$00]\Field4, entityx(local0\Field1\Field25[$07], $01), (entityy(local0\Field1\Field25[$07], $01) + 5.0), entityz(local0\Field1\Field25[$07], $01), $00)
                             resetentity(local0\Field1\Field32[$00]\Field4)
-                            rotateentity(local0\Field1\Field32[$00]\Field4, 0.0, (Float (local0\Field1\Field6 + $B4)), 0.0, $00)
+                            rotateentity(local0\Field1\Field32[$00]\Field4, 0.0, (Float (local0\Field1\Field7 + $B4)), 0.0, $00)
                             local0\Field1\Field32[$00]\Field9 = 0.0
                             local0\Field1\Field32[$00]\Field12 = $02
-                            debuglog((((((Str entityx(local0\Field1\Field25[$07], $01)) + ", ") + (Str entityy(local0\Field1\Field25[$07], $01))) + ", ") + (Str entityz(local0\Field1\Field25[$07], $01))))
-                        Else
-                            debuglog("Skipped 049 spawning in room2sl")
                         EndIf
                     EndIf
                     quickloadpercent = $50
@@ -65,7 +65,8 @@ Function quickloadevents%()
                 If (local0\Field11 = "load0") Then
                     quickloadpercent = $0A
                     If (local0\Field1\Field32[$00] = Null) Then
-                        local0\Field1\Field32[$00] = createnpc($04, entityx(local0\Field1\Field25[$00], $01), entityy(local0\Field1\Field25[$00], $01), entityz(local0\Field1\Field25[$00], $01))
+                        local0\Field1\Field32[$00] = createnpc($04, entityx(local0\Field1\Field25[$00], $01), (entityy(local0\Field1\Field25[$00], $01) - 0.16), entityz(local0\Field1\Field25[$00], $01))
+                        local0\Field1\Field32[$00]\Field49 = $00
                     EndIf
                     changenpctextureid(local0\Field1\Field32[$00], $04)
                     local0\Field11 = "load1"
@@ -80,7 +81,8 @@ Function quickloadevents%()
                 ElseIf (local0\Field11 = "load3") Then
                     quickloadpercent = $37
                     If (local0\Field1\Field32[$01] = Null) Then
-                        local0\Field1\Field32[$01] = createnpc($04, entityx(local0\Field1\Field25[$01], $01), entityy(local0\Field1\Field25[$01], $01), entityz(local0\Field1\Field25[$01], $01))
+                        local0\Field1\Field32[$01] = createnpc($04, entityx(local0\Field1\Field25[$01], $01), (entityy(local0\Field1\Field25[$01], $01) - 0.16), entityz(local0\Field1\Field25[$01], $01))
+                        local0\Field1\Field32[$01]\Field49 = $00
                     EndIf
                     changenpctextureid(local0\Field1\Field32[$01], $02)
                     local0\Field11 = "load4"
@@ -96,17 +98,16 @@ Function quickloadevents%()
                 EndIf
             EndIf
         Case $27
-            debuglog("Creating...")
             If (0.0 = local0\Field2) Then
                 If (local0\Field11 = "load0") Then
                     local6 = createnpc($0B, entityx(local0\Field1\Field25[$04], $01), entityy(local0\Field1\Field25[$04], $01), entityz(local0\Field1\Field25[$04], $01))
-                    pointentity(local6\Field4, local0\Field1\Field2, 0.0)
+                    pointentity(local6\Field4, local0\Field1\Field3, 0.0)
                     turnentity(local6\Field4, 0.0, 190.0, 0.0, $00)
                     quickloadpercent = $14
                     local0\Field11 = "load1"
                 ElseIf (local0\Field11 = "load1") Then
                     local6 = createnpc($0B, entityx(local0\Field1\Field25[$05], $01), entityy(local0\Field1\Field25[$05], $01), entityz(local0\Field1\Field25[$05], $01))
-                    pointentity(local6\Field4, local0\Field1\Field2, 0.0)
+                    pointentity(local6\Field4, local0\Field1\Field3, 0.0)
                     turnentity(local6\Field4, 0.0, 20.0, 0.0, $00)
                     quickloadpercent = $3C
                     local0\Field11 = "load2"
@@ -116,7 +117,7 @@ Function quickloadevents%()
                             local0\Field1\Field32[$00] = local6
                             local0\Field1\Field32[$00]\Field9 = 2.0
                             local0\Field1\Field32[$00]\Field24 = 1.0
-                            local0\Field1\Field32[$00]\Field66 = $01
+                            local0\Field1\Field32[$00]\Field68 = $01
                             positionentity(local0\Field1\Field32[$00]\Field4, entityx(local0\Field1\Field25[$04], $01), (entityy(local0\Field1\Field25[$04], $01) + 3.0), entityz(local0\Field1\Field25[$04], $01), $00)
                             resetentity(local0\Field1\Field32[$00]\Field4)
                             Exit
@@ -124,10 +125,10 @@ Function quickloadevents%()
                     Next
                     If (local0\Field1\Field32[$00] = Null) Then
                         local6 = createnpc($0A, entityx(local0\Field1\Field25[$04], $01), (entityy(local0\Field1\Field25[$04], $01) + 3.0), entityz(local0\Field1\Field25[$04], $01))
-                        pointentity(local6\Field4, local0\Field1\Field2, 0.0)
+                        pointentity(local6\Field4, local0\Field1\Field3, 0.0)
                         local6\Field9 = 2.0
                         local6\Field24 = 1.0
-                        local6\Field66 = $01
+                        local6\Field68 = $01
                         local0\Field1\Field32[$00] = local6
                     EndIf
                     quickloadpercent = $64
@@ -175,7 +176,7 @@ Function quickloadevents%()
             If (local0\Field11 = "load0") Then
                 quickloadpercent = $0F
                 forestnpc = createsprite($00)
-                scalesprite(forestnpc, (1.0 / 3.904762), 0.75)
+                scalesprite(forestnpc, 0.256, 0.75)
                 spriteviewmode(forestnpc, $04)
                 entityfx(forestnpc, $09)
                 forestnpctex = loadanimtexture("GFX\npcs\AgentIJ.AIJ", $03, $8C, $19A, $00, $04)
@@ -217,11 +218,14 @@ Function quickloadevents%()
                 If (local0\Field11 = "load0") Then
                     quickloadpercent = $0A
                     local0\Field1\Field25[$00] = loadmesh_strict("GFX\map\dimension1499\1499plane.b3d", $00)
-                    hideentity(local0\Field1\Field25[$00])
+                    local13 = loadtexture_strict("GFX\map\dimension1499\grit3.jpg", $01)
+                    scaletexture(local13, 0.5, 0.5)
+                    entitytexture(local0\Field1\Field25[$00], local13, $00, $00)
+                    freetexture(local13)
                     local0\Field11 = "load1"
                 ElseIf (local0\Field11 = "load1") Then
                     quickloadpercent = $1E
-                    ntf_1499sky = sky_createsky("GFX\map\sky\1499sky", $00)
+                    sky_createsky($FFFFFFFF, $02, "GFX\map\sky\1499\1499sky\")
                     local0\Field11 = "1"
                 ElseIf ((Int local0\Field11) < $10) Then
                     quickloadpercent = (quickloadpercent + $02)
@@ -234,13 +238,13 @@ Function quickloadevents%()
                     local0\Field11 = "17"
                 ElseIf ((Int local0\Field11) = $11) Then
                     quickloadpercent = $64
-                    local9 = entityx(local0\Field1\Field2, $00)
-                    local10 = entityz(local0\Field1\Field2, $00)
+                    local9 = entityx(local0\Field1\Field3, $00)
+                    local10 = entityz(local0\Field1\Field3, $00)
                     For local8 = $FFFFFFFE To $00 Step $02
-                        local13 = createchunk($FFFFFFFF, (((Float local8) * 2.5) * local9), entityy(local0\Field1\Field2, $00), local10, $01)
+                        local14 = createchunk($FFFFFFFF, (((Float local8) * 2.5) * local9), entityy(local0\Field1\Field3, $00), local10, $01)
                     Next
                     For local8 = $FFFFFFFE To $00 Step $02
-                        local13 = createchunk($FFFFFFFF, (((Float local8) * 2.5) * local9), entityy(local0\Field1\Field2, $00), (local10 - 40.0), $01)
+                        local14 = createchunk($FFFFFFFF, (((Float local8) * 2.5) * local9), entityy(local0\Field1\Field3, $00), (local10 - 40.0), $01)
                     Next
                     local0\Field2 = 2.0
                     local0\Field11 = "18"

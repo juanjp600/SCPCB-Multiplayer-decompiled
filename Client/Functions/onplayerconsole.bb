@@ -89,7 +89,7 @@ Function onplayerconsole%(arg0%, arg1$)
             Next
             If (local9 = $01) Then
                 local11 = createitem(local10\Field1, local10\Field2, entityx(player[local2]\Field13, $00), (entityy(getplayercamera(local2), $01) + 0.1), entityz(player[local2]\Field13, $00), $00, $00, $00, 1.0, $00, $01)
-                entitytype(local11\Field1, $03, $00)
+                entitytype(local11\Field2, $03, $00)
             EndIf
     End Select
     Return $00

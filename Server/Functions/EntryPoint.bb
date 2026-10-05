@@ -49,7 +49,7 @@ Function EntryPoint%()
     se_defineconst("null", $00, "", $01, Null)
     se_defineconst("true", $01, "1", $01, Null)
     se_defineconst("false", $01, "0", $01, Null)
-    se_defineconst("pi", $02, "3.14159", $01, Null)
+    se_defineconst("pi", $02, "32807.0", $01, Null)
     se_defineconst("se_null", $01, "0", $01, Null)
     se_defineconst("se_int", $01, "1", $01, Null)
     se_defineconst("se_float", $01, "2", $01, Null)
@@ -59,7 +59,7 @@ Function EntryPoint%()
     lastpluginid = $00
     publics = (New pb)
     steam_release = $00
-    mp_version = (version($10209) + ".5")
+    mp_version = (version($10300) + "R")
     addversion(mp_version)
     ntf_model = $01
     guard_model = $02
@@ -91,6 +91,7 @@ Function EntryPoint%()
     seedrnd(millisecs())
     gameinfo = (New g_i)
     server = (New multiplayerserver)
+    server\Field87 = (New mpserveroptions)
     ticks = (New types_ticks)
     newyearindex = isanewyear()
     halloweenindex = isahalloween()
@@ -99,12 +100,6 @@ Function EntryPoint%()
     framelimit = $12C
     fake_stream_ip = hostip(counthostips("localhost"))
     query_global_data = createbank($01)
-    tcptimeouts($00, $00)
-    fasttcp = (New fasttcps)
-    tcp_init()
-    centralserver = (New centralserverdata)
-    centralserver\Field1 = createudpstream($00)
-    initsteaminstances()
     server_init()
     difficulties($00) = (New difficulty)
     difficulties($00)\Field0 = "Safe"
@@ -241,7 +236,6 @@ Function EntryPoint%()
     hisssfx = loadsound_strict("SFX\General\Hiss.ogg")
     smokedelay = $00
     loadroomtemplates("Data\rooms.ini")
-    roomscale = (1.0 / 256.0)
     mapwidth = $12
     mapheight = mapwidth
     Dim maptemp%((mapwidth + $01), (mapheight + $01))

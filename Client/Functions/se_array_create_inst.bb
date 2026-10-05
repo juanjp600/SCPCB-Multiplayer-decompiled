@@ -7,13 +7,13 @@ Function se_array_create_inst%(arg0%, arg1.se_value)
         local2 = (se_arguments_number - $01)
         If (local2 <> $FFFFFFFF) Then
             If (local2 = $00) Then
-                se_array_addelements(local0, se_arguments_stack(se_arguments_stack_offset)\Field1, $01)
+                se_array_addelements(local0, se_arguments_stack(se_arguments_stack_offset)\Field2, $01)
             ElseIf (local2 = $01) Then
-                se_array_addelements(local0, se_arguments_stack(se_arguments_stack_offset)\Field1, se_arguments_stack((se_arguments_stack_offset + $01))\Field1)
+                se_array_addelements(local0, se_arguments_stack(se_arguments_stack_offset)\Field2, se_arguments_stack((se_arguments_stack_offset + $01))\Field2)
             EndIf
         EndIf
     EndIf
     arg1\Field0 = $07
-    arg1\Field5 = local0
+    arg1\Field6 = local0
     Return $00
 End Function

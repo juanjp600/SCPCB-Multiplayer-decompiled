@@ -84,8 +84,8 @@ Function savegame%(arg0$)
     writefloat(local7, ntf_1499y)
     writefloat(local7, ntf_1499z)
     If (ntf_1499prevroom <> Null) Then
-        writefloat(local7, ntf_1499prevroom\Field3)
-        writefloat(local7, ntf_1499prevroom\Field5)
+        writefloat(local7, ntf_1499prevroom\Field4)
+        writefloat(local7, ntf_1499prevroom\Field6)
     Else
         writefloat(local7, 0.0)
         writefloat(local7, 0.0)
@@ -120,7 +120,6 @@ Function savegame%(arg0$)
     Next
     writeint(local7, local3)
     For local4 = Each npcs
-        debuglog((((("Saving NPC " + local4\Field43) + " (ID ") + (Str local4\Field6)) + ")"))
         writebyte(local7, local4\Field5)
         writefloat(local7, entityx(local4\Field4, $01))
         writefloat(local7, entityy(local4\Field4, $01))
@@ -150,14 +149,14 @@ Function savegame%(arg0$)
         writestring(local7, local4\Field23)
         writefloat(local7, animtime(local4\Field0))
         writeint(local7, local4\Field48)
-        writefloat(local7, local4\Field60)
-        writefloat(local7, local4\Field61)
-        writeint(local7, local4\Field59)
-        writestring(local7, local4\Field62)
+        writefloat(local7, local4\Field62)
         writefloat(local7, local4\Field63)
-        writefloat(local7, local4\Field64)
+        writeint(local7, local4\Field61)
+        writestring(local7, local4\Field64)
         writefloat(local7, local4\Field65)
-        writeint(local7, local4\Field67)
+        writefloat(local7, local4\Field66)
+        writefloat(local7, local4\Field67)
+        writeint(local7, local4\Field69)
     Next
     writefloat(local7, mtftimer)
     For local2 = $00 To $06 Step $01
@@ -178,11 +177,11 @@ Function savegame%(arg0$)
     Next
     writeint(local7, local3)
     For local5 = Each rooms
-        writeint(local7, local5\Field7\Field1)
-        writeint(local7, local5\Field6)
-        writefloat(local7, local5\Field3)
+        writeint(local7, local5\Field8\Field1)
+        writeint(local7, local5\Field7)
         writefloat(local7, local5\Field4)
         writefloat(local7, local5\Field5)
+        writefloat(local7, local5\Field6)
         writebyte(local7, local5\Field1)
         writeint(local7, local5\Field0)
         If (playerroom = local5) Then
@@ -252,7 +251,7 @@ Function savegame%(arg0$)
         writebyte(local7, local6\Field5)
         writefloat(local7, local6\Field7)
         writebyte(local7, local6\Field4)
-        writebyte(local7, local6\Field21)
+        writebyte(local7, local6\Field20)
         writefloat(local7, entityx(local6\Field0, $01))
         writefloat(local7, entityz(local6\Field0, $01))
         If (local6\Field1 <> $00) Then
@@ -264,11 +263,10 @@ Function savegame%(arg0$)
         EndIf
         writefloat(local7, (Float local6\Field10))
         writefloat(local7, local6\Field11)
+        writebyte(local7, local6\Field22)
         writebyte(local7, local6\Field23)
-        writebyte(local7, local6\Field24)
     Next
     writeint(local7, $735)
-    debuglog("1845")
     local3 = $00
     For local10 = Each decals
         local3 = (local3 + $01)
@@ -300,8 +298,8 @@ Function savegame%(arg0$)
         writefloat(local7, local11\Field2)
         writefloat(local7, local11\Field3)
         writefloat(local7, local11\Field4)
-        writefloat(local7, entityx(local11\Field1\Field2, $00))
-        writefloat(local7, entityz(local11\Field1\Field2, $00))
+        writefloat(local7, entityx(local11\Field1\Field3, $00))
+        writefloat(local7, entityz(local11\Field1\Field3, $00))
         writebyte(local7, local11\Field24)
         writestring(local7, local11\Field11)
     Next
@@ -311,20 +309,20 @@ Function savegame%(arg0$)
     Next
     writeint(local7, local3)
     For local12 = Each items
-        writestring(local7, local12\Field3\Field1)
-        writestring(local7, local12\Field3\Field2)
+        writestring(local7, local12\Field1\Field1)
+        writestring(local7, local12\Field1\Field2)
         writestring(local7, local12\Field0)
-        writefloat(local7, entityx(local12\Field1, $01))
-        writefloat(local7, entityy(local12\Field1, $01))
-        writefloat(local7, entityz(local12\Field1, $01))
+        writefloat(local7, entityx(local12\Field2, $01))
+        writefloat(local7, entityy(local12\Field2, $01))
+        writefloat(local7, entityz(local12\Field2, $01))
         writebyte(local7, local12\Field5)
         writebyte(local7, local12\Field6)
         writebyte(local7, local12\Field7)
         writefloat(local7, local12\Field8)
-        writefloat(local7, entitypitch(local12\Field1, $00))
-        writefloat(local7, entityyaw(local12\Field1, $00))
+        writefloat(local7, entitypitch(local12\Field2, $00))
+        writefloat(local7, entityyaw(local12\Field2, $00))
         writefloat(local7, local12\Field13)
-        writebyte(local7, local12\Field15)
+        writebyte(local7, local12\Field16)
         writebyte(local7, local12\Field22)
         If (selecteditem = local12) Then
             writebyte(local7, $01)
@@ -343,12 +341,12 @@ Function savegame%(arg0$)
         Else
             writebyte(local7, $42)
         EndIf
-        If (local12\Field3\Field13 <> $00) Then
-            writefloat(local7, animtime(local12\Field2))
+        If (local12\Field1\Field13 <> $00) Then
+            writefloat(local7, animtime(local12\Field3))
         EndIf
-        writebyte(local7, local12\Field19)
-        writeint(local7, local12\Field18)
-        If (local12\Field3\Field8 = local12\Field16) Then
+        writebyte(local7, local12\Field20)
+        writeint(local7, local12\Field19)
+        If (local12\Field1\Field8 = local12\Field17) Then
             writebyte(local7, $00)
         Else
             writebyte(local7, $01)
@@ -357,7 +355,6 @@ Function savegame%(arg0$)
     writeint(local7, $11CF)
     If (usedconsole <> 0) Then
         writeint(local7, $64)
-        debuglog("Used Console")
     Else
         writeint(local7, $3E2)
     EndIf
@@ -368,17 +365,17 @@ Function savegame%(arg0$)
     writebyte(local7, wearing714)
     local3 = $00
     For local12 = Each items
-        If (local12\Field19 > $00) Then
+        If (local12\Field20 > $00) Then
             local3 = (local3 + $01)
         EndIf
     Next
     writeint(local7, local3)
     For local12 = Each items
-        If (local12\Field19 > $00) Then
-            writeint(local7, local12\Field18)
-            For local2 = $00 To (local12\Field19 - $01) Step $01
-                If (local12\Field17[local2] <> Null) Then
-                    writeint(local7, local12\Field17[local2]\Field18)
+        If (local12\Field20 > $00) Then
+            writeint(local7, local12\Field19)
+            For local2 = $00 To (local12\Field20 - $01) Step $01
+                If (local12\Field18[local2] <> Null) Then
+                    writeint(local7, local12\Field18[local2]\Field19)
                 Else
                     writeint(local7, $FFFFFFFF)
                 EndIf

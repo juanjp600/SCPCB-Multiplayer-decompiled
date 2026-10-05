@@ -20,17 +20,15 @@ Function initnewgame%()
     Local local18%
     Local local19%
     If (udp_getstream() = $00) Then
-        networkserver\Field28 = $01
-        networkserver\Field14 = $01
-        networkserver\Field29 = $01
-        multiplayer_createplayer(networkserver\Field28)
-        networkserver\Field18 = $01
-        myplayer\Field51 = classd_model
+        networkserver\Field20 = $01
+        networkserver\Field52\Field14 = $01
+        networkserver\Field21 = $01
+        multiplayer_createplayer(networkserver\Field20)
+        networkserver\Field15 = $01
+        myplayer\Field49 = classd_model
     EndIf
-    bs_isteamfriends_setrichpresence(bs_steamfriends(), "steam_display", "#Status_Connecting")
-    discord_api_setstate("Loading to game", $00)
-    discord_api_setstate("", $02)
-    myplayer\Field43 = $00
+    steam_setrichpresence("steam_display", "#Status_Connecting")
+    myplayer\Field41 = $00
     myplayer\Field13 = collider
     myplayer\Field19 = myhitbox
     myplayer\Field15 = camera
@@ -38,13 +36,12 @@ Function initnewgame%()
     npccount = $00
     local0 = $00
     gameload = $01
-    networkserver\Field26 = $00
+    networkserver\Field18 = $00
     selected_p_page = $00
     chatscrolldragging = $00
-    chatscroll = 0.0
-    chatmousemem = 0.0
-    drawloading(45.0, $00, $00, $00)
-    hidedistance = 15.0
+    chatscroll = $00
+    chatmousemem = $00
+    hidedistance = 20.0
     heartbeatrate = 70.0
     seedrnd(generateseednumber(randomseed))
     accesscode = $00
@@ -57,13 +54,13 @@ Function initnewgame%()
         EndIf
         accesscode = $00
     Forever
-    If (networkserver\Field44 <> "") Then
+    If (networkserver\Field52\Field8 <> "") Then
         updatequery()
-        loadmap(("multiplayer\serversdata\servermaps\" + networkserver\Field44))
+        loadmap(("multiplayer\serversdata\servermaps\" + networkserver\Field52\Field8))
     ElseIf (((selectedmap <> "") And (udp_getstream() = $00)) <> 0) Then
         loadmap(("Map Creator\Maps\" + selectedmap))
     Else
-        createmap(($03 - networkserver\Field48))
+        createmap()
     EndIf
     initevents()
     initwaypoints($2D)
@@ -73,15 +70,15 @@ Function initnewgame%()
                 entityparent(local7\Field16[local1], $00, $01)
             EndIf
         Next
-        If (local7\Field7\Field14 = $00) Then
+        If (local7\Field8\Field14 = $00) Then
             If (rand($04, $01) = $01) Then
-                local2 = createdecal(rand($02, $03), (entityx(local7\Field2, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local7\Field2, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
+                local2 = createdecal(rand($02, $03), (entityx(local7\Field3, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local7\Field3, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
                 local2\Field2 = rnd(0.1, 0.4)
                 scalesprite(local2\Field0, local2\Field2, local2\Field2)
                 entityalpha(local2\Field0, rnd(0.85, 0.95))
             EndIf
             If (rand($04, $01) = $01) Then
-                local2 = createdecal($00, (entityx(local7\Field2, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local7\Field2, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
+                local2 = createdecal($00, (entityx(local7\Field3, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local7\Field3, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0, 1.0, 1.0)
                 local2\Field2 = rnd(0.5, 0.7)
                 entityalpha(local2\Field0, 0.7)
                 local2\Field8 = $01
@@ -89,18 +86,18 @@ Function initnewgame%()
                 entityalpha(local2\Field0, rnd(0.7, 0.85))
             EndIf
         EndIf
-        If (((local7\Field7\Field11 = "start") And ((introenabled = $00) Or networkserver\Field15)) <> 0) Then
-            positionentity(collider, (entityx(local7\Field2, $00) + (3584.0 * roomscale)), (704.0 * roomscale), (entityz(local7\Field2, $00) + (1024.0 * roomscale)), $00)
+        If (((local7\Field8\Field11 = "start") And ((introenabled = $00) Or networkserver\Field12)) <> 0) Then
+            positionentity(collider, (entityx(local7\Field3, $00) + 14.0), 2.75, (entityz(local7\Field3, $00) + 4.0), $00)
             resetentity(collider)
             playerroom = local7
-            If (networkserver\Field15 = $00) Then
-                If (networkserver\Field18 = $01) Then
+            If (networkserver\Field12 = $00) Then
+                If (networkserver\Field15 = $01) Then
                     giveitem("Class D Orientation Leaflet", "paper", $00)
                     giveitem("Document SCP-173", "paper", $00)
                 EndIf
             EndIf
-        ElseIf (local7\Field7\Field11 = "173") Then
-            If (networkserver\Field15 <> 0) Then
+        ElseIf (local7\Field8\Field11 = "173") Then
+            If (networkserver\Field12 <> 0) Then
                 positionentity(collider, entityx(local7\Field25[$05], $01), 0.5, entityz(local7\Field25[$05], $01), $00)
                 resetentity(collider)
                 playerroom = local7
@@ -115,18 +112,20 @@ Function initnewgame%()
                     EndIf
                 Next
             ElseIf (introenabled <> 0) Then
-                local8 = (Int (entityx(local7\Field2, $00) - (4248.0 * roomscale)))
-                local9 = (Int (136.0 * roomscale))
-                local10 = (Int (entityz(local7\Field2, $00) + (8.0 * roomscale)))
+                local8 = (Int (entityx(local7\Field3, $00) - 16.59375))
+                local9 = $01
+                local10 = (Int (entityz(local7\Field3, $00) + (1.0 / 32.0)))
                 positionentity(collider, (Float local8), ((Float local9) + 0.1), (Float local10), $00)
                 resetentity(collider)
                 playerroom = local7
             EndIf
         EndIf
     Next
-    curr173 = createnpc($01, 0.0, -30.0, 0.0)
-    curr106 = createnpc($02, 0.0, -30.0, 0.0)
-    curr106\Field9 = (Float (rand($0C, $11) * $1068))
+    If (networkserver\Field12 = $00) Then
+        curr173 = createnpc($01, 0.0, -30.0, 0.0)
+        curr106 = createnpc($02, 0.0, -30.0, 0.0)
+        curr106\Field9 = (Float (rand($0C, $11) * $1068))
+    EndIf
     drawloading(79.0, $00, $00, $00)
     For local3 = Each doors
         entityparent(local3\Field0, $00, $01)
@@ -143,15 +142,15 @@ Function initnewgame%()
             entityparent(local3\Field3[$01], $00, $01)
         EndIf
         If (((local3\Field1 <> $00) And (local3\Field9 = $00)) <> 0) Then
-            moveentity(local3\Field0, 0.0, 0.0, (8.0 * roomscale))
-            moveentity(local3\Field1, 0.0, 0.0, (8.0 * roomscale))
+            moveentity(local3\Field0, 0.0, 0.0, (1.0 / 32.0))
+            moveentity(local3\Field1, 0.0, 0.0, (1.0 / 32.0))
         EndIf
     Next
     For local4 = Each items
-        entitytype(local4\Field1, $03, $00)
-        entityparent(local4\Field1, $00, $01)
+        entitytype(local4\Field2, $03, $00)
+        entityparent(local4\Field2, $00, $01)
     Next
-    drawloading(80.0, $00, $00, $00)
+    drawloading(90.0, $00, $00, $00)
     For local5 = Each securitycams
         local5\Field11 = (entityyaw(local5\Field0, $00) + local5\Field11)
         entityparent(local5\Field0, $00, $01)
@@ -167,15 +166,12 @@ Function initnewgame%()
     For local6 = Each events
         If (local6\Field0 = "room2nuke") Then
             local6\Field2 = 1.0
-            debuglog("room2nuke")
         EndIf
         If (local6\Field0 = "room106") Then
             local6\Field3 = 1.0
-            debuglog("room106")
         EndIf
         If (local6\Field0 = "room2sl") Then
             local6\Field4 = 1.0
-            debuglog("room2sl")
         EndIf
     Next
     For local7 = Each rooms
@@ -185,10 +181,9 @@ Function initnewgame%()
         countroomtriggerbox(local7)
     Next
     movemouse(viewport_center_x, viewport_center_y)
-    aasetfont(font1)
+    setfontex(fonts[$00]\Field0)
     hidepointer()
-    blinktimer = -10.0
-    blurtimer = 100.0
+    blinktimer = 50.0
     stamina = 100.0
     For local1 = $00 To $46 Step $01
         fpsfactor = 1.0
@@ -197,52 +192,49 @@ Function initnewgame%()
         updatedoors()
         updatenpcs()
         updateworld(1.0)
-        If ((Int ((Float local1) * 0.27)) <> (Int ((Float (local1 - $01)) * 0.27))) Then
-            drawloading((Float ((Int ((Float local1) * 0.27)) + $50)), $00, $00, $00)
-        EndIf
     Next
     freetexturecache()
     flushkeys()
     flushmouse()
     dropspeed = 0.0
-    myplayer\Field43 = $01
+    myplayer\Field41 = $01
     If (udp_getstream() <> 0) Then
         networkserver\Field4 = (millisecs() + $3A98)
         multiplayer_update()
-        If (networkserver\Field15 = $00) Then
+        If (networkserver\Field12 = $00) Then
             Repeat
                 If (udp_getstream() = $00) Then
                     Exit
                 EndIf
-                updateframe($00)
+                updateframe()
                 setplayervariables()
                 multiplayer_update()
                 multiplayer_updateplayers()
                 voice_update()
                 local13 = $00
                 drawloading(99.0, $00, $01, $01)
-                myplayer\Field43 = $01
+                myplayer\Field41 = $01
                 For local14 = Each players
-                    If (local14\Field43 <> 0) Then
+                    If (local14\Field41 <> 0) Then
                         local13 = (local13 + $01)
                     EndIf
                 Next
-                If (local13 >= networkserver\Field29) Then
+                If (local13 >= networkserver\Field21) Then
                     Exit
                 EndIf
                 If (player[$01] <> Null) Then
-                    If (player[$01]\Field43 = $01) Then
+                    If (player[$01]\Field41 = $01) Then
                         Exit
                     EndIf
                 EndIf
             Forever
         EndIf
-        If (networkserver\Field66 <> 0) Then
+        If (networkserver\Field52\Field2 <> 0) Then
             drawloading(99.3, $00, $01, $01)
             multiplayer_loadobjects($7D, $01)
             local15 = (millisecs() + $1388)
             While (local15 > millisecs())
-                updateframe($00)
+                updateframe()
                 setplayervariables()
                 multiplayer_update()
                 multiplayer_updateplayers()
@@ -253,14 +245,12 @@ Function initnewgame%()
                 EndIf
             Wend
         EndIf
-        If (networkserver\Field15 <> 0) Then
-            camerafognear = 0.0
-            camerafogfar = hidedistance
-        EndIf
-        If ((((0.0 <> networkserver\Field36) Or (0.0 <> networkserver\Field37)) Or (0.0 <> networkserver\Field38)) <> 0) Then
+        camerafognear = 0.5
+        camerafogfar = (10.0 - (4.0 * (Float iscoopmode())))
+        If ((((0.0 <> networkserver\Field27) Or (0.0 <> networkserver\Field28)) Or (0.0 <> networkserver\Field29)) <> 0) Then
             For local7 = Each rooms
-                If (local7\Field7\Field11 = networkserver\Field39) Then
-                    positionentity(collider, networkserver\Field36, networkserver\Field37, networkserver\Field38, $00)
+                If (local7\Field8\Field11 = networkserver\Field30) Then
+                    positionentity(collider, networkserver\Field27, networkserver\Field28, networkserver\Field29, $00)
                     resetentity(collider)
                     playerroom = local7
                     Exit
@@ -273,15 +263,14 @@ Function initnewgame%()
     EndIf
     setplayervariables()
     gameload = $00
-    drawloading(100.0, $00, $01, $01)
-    prevtime = (Float millisecs())
+    prevtime = millisecs()
     For local7 = Each rooms
-        If (local7\Field7\Field11 = "start") Then
-            setsavingposition(local7\Field7\Field11, (entityx(local7\Field2, $00) + (3584.0 * roomscale)), (704.0 * roomscale), (entityz(local7\Field2, $00) + (1024.0 * roomscale)), 130.3)
+        If (local7\Field8\Field11 = "start") Then
+            setsavingposition(local7\Field8\Field11, (entityx(local7\Field3, $00) + 14.0), 2.75, (entityz(local7\Field3, $00) + 4.0), 130.3)
             Exit
         EndIf
     Next
-    If (networkserver\Field15 <> 0) Then
+    If (networkserver\Field12 <> 0) Then
         For local16 = Each waypoints
             freeentity(local16\Field0)
             Delete local16
@@ -297,8 +286,6 @@ Function initnewgame%()
             Next
         Next
     Next
-    If (menubrowser <> Null) Then
-        steambrowser_destroy(menubrowser)
-    EndIf
+    drawloading(100.0, $01, $01, $01)
     Return $00
 End Function

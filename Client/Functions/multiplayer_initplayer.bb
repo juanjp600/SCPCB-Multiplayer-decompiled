@@ -1,17 +1,24 @@
 Function multiplayer_initplayer%(arg0%)
+    Local local0%
     If (player[arg0]\Field12 <> $00) Then
         freeentity(player[arg0]\Field12)
         player[arg0]\Field12 = $00
     EndIf
-    If (player[arg0]\Field27 = Null) Then
-        gg_set_current_font(sound3dfont)
-        player[arg0]\Field27 = gg_create_text_block("a", $40, $00, 1.0, 1.0, $00)
-        scaleentity(player[arg0]\Field27\Field11, 0.02, 0.02, 0.02, $00)
+    If (entityexist(player[arg0]\Field25[$02]) = $00) Then
+        local0 = createsprite($00)
+        scalesprite(local0, 0.04, 0.04)
+        spriteviewmode(local0, $04)
+        entityfx(local0, $0F)
+        entitytexture(local0, voicespritetexture, $00, $00)
+        player[arg0]\Field25[$02] = local0
     EndIf
-    If (player[arg0]\Field26 = Null) Then
-        gg_set_current_font(afk3dfont)
-        player[arg0]\Field26 = gg_create_text_block("a", $40, $00, 1.0, 1.0, $00)
-        scaleentity(player[arg0]\Field26\Field11, 0.02, 0.02, 0.02, $00)
+    If (entityexist(player[arg0]\Field25[$01]) = $00) Then
+        local0 = createsprite($00)
+        scalesprite(local0, 0.07, 0.07)
+        spriteviewmode(local0, $04)
+        entityfx(local0, $0F)
+        entitytexture(local0, afkspritetexture, $00, $00)
+        player[arg0]\Field25[$01] = local0
     EndIf
     multiplayer_createplayerobject(arg0)
     Return $00

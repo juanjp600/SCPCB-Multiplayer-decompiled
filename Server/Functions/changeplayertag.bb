@@ -10,14 +10,14 @@ Function changeplayertag%(arg0%, arg1$, arg2%, arg3%, arg4%)
             udp_writebyte(arg3)
             udp_writebyte(arg4)
             udp_writeshort((Int (player[arg0]\Field28 * 100.0)))
-            udp_writeint(player[arg0]\Field129)
+            udp_writeint(player[arg0]\Field131)
             udp_writebyte(player[arg0]\Field39)
             udp_sendmessage(local0)
         EndIf
     Next
-    player[arg0]\Field157 = arg1
-    player[arg0]\Field158 = arg2
-    player[arg0]\Field159 = arg3
-    player[arg0]\Field160 = arg4
+    player[arg0]\Field160 = arg1
+    player[arg0]\Field161 = arg2
+    player[arg0]\Field162 = arg3
+    player[arg0]\Field163 = arg4
     Return $00
 End Function

@@ -7,7 +7,7 @@ Function multiplayer_breach_setrolesettings%(arg0%, arg1%, arg2%, arg3%, arg4#, 
     local0\Field48 = arg4
     local0\Field40 = arg7
     local0\Field39 = arg6
-    local0\Field57 = arg8
+    local0\Field58 = arg8
     local0\Field49 = arg5
     Return $00
 End Function

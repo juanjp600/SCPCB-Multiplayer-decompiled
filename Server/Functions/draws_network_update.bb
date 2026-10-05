@@ -2,13 +2,13 @@ Function draws_network_update%()
     Local local0%
     Local local1%
     For local0 = $01 To server\Field11 Step $01
-        If (playeroptimize[local0]\Field51 > $FF) Then
-            playeroptimize[local0]\Field51 = $01
+        If (playeroptimize[local0]\Field53 > $FF) Then
+            playeroptimize[local0]\Field53 = $01
         EndIf
-        If (playeroptimize[local0]\Field48 <> playeroptimize[local0]\Field51) Then
+        If (playeroptimize[local0]\Field48 <> playeroptimize[local0]\Field53) Then
             udp_writebyte($5E)
             udp_writebyte($01)
-            udp_writebyte(playeroptimize[local0]\Field51)
+            udp_writebyte(playeroptimize[local0]\Field53)
             For local1 = $01 To $1F Step $01
                 If (playeroptimize[local0]\Field43[local1] <> Null) Then
                     udp_writebyte(local1)

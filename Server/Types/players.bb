@@ -53,22 +53,22 @@ Type players
     Field Field51%
     Field Field52%
     Field Field53%
-    Field Field54$
+    Field Field54%
     Field Field55%
-    Field Field56%
+    Field Field56$
     Field Field57%
     Field Field58%
     Field Field59%
-    Field Field60#
-    Field Field61#
-    Field Field62%
-    Field Field63%
+    Field Field60%
+    Field Field61%
+    Field Field62#
+    Field Field63#
     Field Field64%
     Field Field65%
     Field Field66%
-    Field Field67$
+    Field Field67%
     Field Field68%
-    Field Field69%
+    Field Field69$
     Field Field70%
     Field Field71%
     Field Field72%
@@ -76,50 +76,50 @@ Type players
     Field Field74%
     Field Field75%
     Field Field76%
-    Field Field77#
+    Field Field77%
     Field Field78%
-    Field Field79%
+    Field Field79#
     Field Field80%
     Field Field81%
     Field Field82%
     Field Field83%
-    Field Field84#
-    Field Field85#
+    Field Field84%
+    Field Field85%
     Field Field86#
-    Field Field87%
-    Field Field88%
+    Field Field87#
+    Field Field88#
     Field Field89%
-    Field Field90#
-    Field Field91#
+    Field Field90%
+    Field Field91%
     Field Field92#
-    Field Field93%
-    Field Field94%
-    Field Field95#
+    Field Field93#
+    Field Field94#
+    Field Field95%
     Field Field96%
     Field Field97#
-    Field Field98#
+    Field Field98%
     Field Field99#
-    Field Field100%
-    Field Field101%
+    Field Field100#
+    Field Field101#
     Field Field102%
-    Field Field103$
-    Field Field104#
-    Field Field105#
-    Field Field106%
+    Field Field103%
+    Field Field104%
+    Field Field105$
+    Field Field106#
     Field Field107#
-    Field Field108#
+    Field Field108%
     Field Field109#
     Field Field110#
-    Field Field111%
-    Field Field112%
-    Field Field113#
+    Field Field111#
+    Field Field112#
+    Field Field113%
     Field Field114%
-    Field Field115%
+    Field Field115#
     Field Field116%
-    Field Field117#
-    Field Field118#
-    Field Field119%
-    Field Field120%
+    Field Field117%
+    Field Field118%
+    Field Field119#
+    Field Field120#
     Field Field121%
     Field Field122%
     Field Field123%
@@ -129,51 +129,55 @@ Type players
     Field Field127%
     Field Field128%
     Field Field129%
-    Field Field130#
+    Field Field130%
     Field Field131%
-    Field Field132#
+    Field Field132$
     Field Field133#
-    Field Field134#
+    Field Field134%
     Field Field135#
-    Field Field136.rooms
-    Field Field137$
-    Field Field138%
-    Field Field139%
-    Field Field140%
-    Field Field141#
-    Field Field142#
-    Field Field143#
-    Field Field144%
-    Field Field145%
-    Field Field146%[1]
-    Field Field147#[1]
-    Field Field148#[1]
-    Field Field149#[1]
-    Field Field150#
-    Field Field151#
-    Field Field152#
-    Field Field153%
-    Field Field154%
-    Field Field155%
+    Field Field136#
+    Field Field137#
+    Field Field138#
+    Field Field139.rooms
+    Field Field140$
+    Field Field141%
+    Field Field142%
+    Field Field143%
+    Field Field144#
+    Field Field145#
+    Field Field146#
+    Field Field147%
+    Field Field148%
+    Field Field149%[1]
+    Field Field150#[1]
+    Field Field151#[1]
+    Field Field152#[1]
+    Field Field153#
+    Field Field154#
+    Field Field155#
     Field Field156%
-    Field Field157$
+    Field Field157%
     Field Field158%
     Field Field159%
-    Field Field160%
+    Field Field160$
     Field Field161%
     Field Field162%
     Field Field163%
     Field Field164%
-    Field Field165#
-    Field Field166#
-    Field Field167#
-    Field Field168$
-    Field Field169%
-    Field Field170%
-    Field Field171%
+    Field Field165%
+    Field Field166%
+    Field Field167%
+    Field Field168#
+    Field Field169#
+    Field Field170#
+    Field Field171$
     Field Field172%
-    Field Field173#
-    Field Field174#
-    Field Field175.bs[1]
-    Field Field176%
+    Field Field173%
+    Field Field174%
+    Field Field175%
+    Field Field176#
+    Field Field177#
+    Field Field178.bs[1]
+    Field Field179%
+    Field Field180#
 End Type

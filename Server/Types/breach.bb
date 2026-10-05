@@ -8,8 +8,8 @@ Type breach
     Field Field6%
     Field Field7%
     Field Field8%
-    Field Field9#
-    Field Field10#
+    Field Field9%
+    Field Field10%
     Field Field11$
     Field Field12%
     Field Field13%

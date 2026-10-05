@@ -39,10 +39,10 @@ Function use427%()
                 EndIf
             EndIf
             If (((4200.0 > local4) And (4200.0 <= i_427\Field1)) <> 0) Then
-                msg = "You feel refreshed and energetic."
+                setmsg("You feel refreshed and energetic.")
                 msgtimer = 350.0
             ElseIf (((12600.0 > local4) And (12600.0 <= i_427\Field1)) <> 0) Then
-                msg = "You feel gentle muscle spasms all over your body."
+                setmsg("You feel gentle muscle spasms all over your body.")
                 msgtimer = 350.0
             EndIf
         Else
@@ -56,10 +56,10 @@ Function use427%()
         EndIf
     Else
         If (((25200.0 > (local4 - fpsfactor)) And (25200.0 <= i_427\Field1)) <> 0) Then
-            msg = "Your muscles are swelling. You feel more powerful than ever."
+            setmsg("Your muscles are swelling. You feel more powerful than ever.")
             msgtimer = 350.0
         ElseIf (((27300.0 > (local4 - fpsfactor)) And (27300.0 <= i_427\Field1)) <> 0) Then
-            msg = "You can't feel your legs. But you don't need legs anymore."
+            setmsg("You can't feel your legs. But you don't need legs anymore.")
             msgtimer = 350.0
         EndIf
         i_427\Field1 = (i_427\Field1 + fpsfactor)

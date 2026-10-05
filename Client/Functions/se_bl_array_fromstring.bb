@@ -5,7 +5,7 @@ Function se_bl_array_fromstring%()
     Local local3%
     Local local4.se_value
     local1 = se_tostringarg($00, "")
-    local2 = len(local1)
+    local2 = (Int min((Float len(local1)), 65536.0))
     If (local2 = $00) Then
         Return $00
     EndIf
@@ -13,7 +13,7 @@ Function se_bl_array_fromstring%()
     For local3 = $01 To local2 Step $01
         local4 = se_array_addelement(local0)
         local4\Field0 = $03
-        local4\Field3 = mid(local1, local3, $01)
+        local4\Field4 = mid(local1, local3, $01)
     Next
     se_returnarray(local0)
     Return $00

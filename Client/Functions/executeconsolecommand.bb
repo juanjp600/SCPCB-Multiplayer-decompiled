@@ -3,25 +3,25 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
     Local local3%
     Local local4.decals
     Local local5%
-    Local local6.events
+    Local local6.sound
     Local local7%
-    Local local8%
-    Local local9%
-    Local local10%
-    Local local11$
-    Local local12.items
-    Local local14.rooms
-    Local local15%
-    Local local16.players
-    Local local17%
-    Local local18.itemtemplates
-    Local local20.npcs
+    Local local8.events
+    Local local9.snd3d
+    Local local10.events
+    Local local11%
+    Local local12%
+    Local local13%
+    Local local14%
+    Local local15$
+    Local local16.items
+    Local local18.rooms
+    Local local19%
+    Local local20.players
     Local local21%
-    Local local22%
-    Local local23%
-    Local local27.sound
-    Local local28.events
-    Local local29.snd3d
+    Local local22.itemtemplates
+    Local local24.npcs
+    Local local25%
+    Local local26%
     Local local30$
     Local local31$
     Local local34$
@@ -33,10 +33,14 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
     If (arg2 <> 0) Then
         If (udp_getstream() <> 0) Then
             udp_bytestreamwritechar($77)
+            If (iscoopmode() <> 0) Then
+                udp_writebyte(networkserver\Field20)
+            EndIf
             udp_bytestreamwriteline(arg0)
             udp_setmicrobyte($77)
         EndIf
     EndIf
+    setglobalconsolecolor($00, $FF, $FF)
     Select lower(local0)
         Case "help"
             If (instr(arg0, " ", $01) <> $00) Then
@@ -44,9 +48,6 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             Else
                 local0 = ""
             EndIf
-            consoler = $00
-            consoleg = $FF
-            consoleb = $FF
             Select lower(local0)
                 Case "1",""
                     createconsolemsg("LIST OF COMMANDS - PAGE 1/3", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
@@ -224,16 +225,57 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             local0 = lower(right(arg0, (len(arg0) - instr(arg0, " ", $01))))
             shouldplay = (Int local0)
         Case "asd"
-            wireframe($01)
-            wireframestate = $01
             godmode = $01
             noclip = $01
-            camerafognear = 15.0
-            camerafogfar = 20.0
+            notarget = $01
+            camerafognear = 30.0
+            camerafogfar = 30.0
+            For local6 = Each sound
+                For local7 = $00 To $1F Step $01
+                    If (local6\Field2[local7] <> $00) Then
+                        stopchannel(local6\Field2[local7])
+                    EndIf
+                Next
+            Next
+            If (((udp_getstream() = $00) Or networkserver\Field15) <> 0) Then
+                For local8 = Each events
+                    If (local8\Field0 = "alarm") Then
+                        If (local8\Field1\Field32[$00] <> Null) Then
+                            removenpc(local8\Field1\Field32[$00], $00)
+                        EndIf
+                        If (local8\Field1\Field32[$01] <> Null) Then
+                            removenpc(local8\Field1\Field32[$01], $00)
+                        EndIf
+                        If (local8\Field1\Field32[$02] <> Null) Then
+                            removenpc(local8\Field1\Field32[$02], $00)
+                        EndIf
+                        positionentity(curr173\Field4, 0.0, 0.0, 0.0, $00)
+                        resetentity(curr173\Field4)
+                        showentity(curr173\Field0)
+                        removeevent(local8)
+                        Exit
+                    EndIf
+                Next
+                createconsolemsg("Stopped all sounds.", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+            Else
+                multiplayer_send($2A, $FFFFFFFF, $FFFFFFFF)
+            EndIf
+            For local9 = Each snd3d
+                If (local9\Field0 = $00) Then
+                    stopchannel(local9\Field2)
+                    If (local9\Field6 <> 0) Then
+                        freeentity(local9\Field5)
+                    EndIf
+                    Delete local9
+                Else
+                    fsound_stopsound(local9\Field2)
+                    fsound_stream_stop(local9\Field1)
+                    fsound_stream_close(local9\Field1)
+                    Delete local9
+                EndIf
+            Next
         Case "status"
-            consoler = $00
-            consoleg = $FF
-            consoleb = $00
+            setglobalconsolecolor($00, $FF, $00)
             createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg("Status: ", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg("Coordinates: ", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
@@ -242,17 +284,17 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             createconsolemsg("Rotation: ", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(((((("    - collider: " + (Str entitypitch(collider, $00))) + ", ") + (Str entityyaw(collider, $00))) + ", ") + (Str entityroll(collider, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(((((("    - camera: " + (Str entitypitch(camera, $00))) + ", ") + (Str entityyaw(camera, $00))) + ", ") + (Str entityroll(camera, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-            createconsolemsg(("Room: " + playerroom\Field7\Field11), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-            For local6 = Each events
-                If (local6\Field1 = playerroom) Then
-                    createconsolemsg(("Room event: " + local6\Field0), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(("-    state: " + (Str local6\Field2)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(("-    state2: " + (Str local6\Field3)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(("-    state3: " + (Str local6\Field4)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+            createconsolemsg(("Room: " + playerroom\Field8\Field11), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+            For local10 = Each events
+                If (local10\Field1 = playerroom) Then
+                    createconsolemsg(("Room event: " + local10\Field0), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(("-    state: " + (Str local10\Field2)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(("-    state2: " + (Str local10\Field3)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(("-    state3: " + (Str local10\Field4)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                     Exit
                 EndIf
             Next
-            createconsolemsg(((("Room coordinates: " + (Str floor(((entityx(playerroom\Field2, $00) / 8.0) + 0.5)))) + ", ") + (Str floor(((entityz(playerroom\Field2, $00) / 8.0) + 0.5)))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+            createconsolemsg(((("Room coordinates: " + (Str floor(((entityx(playerroom\Field3, $00) / 8.0) + 0.5)))) + ", ") + (Str floor(((entityz(playerroom\Field3, $00) / 8.0) + 0.5)))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(("Stamina: " + (Str stamina)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(("Death timer: " + (Str killtimer)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(("Blinktimer: " + (Str blinktimer)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
@@ -260,23 +302,21 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             createconsolemsg(("Bloodloss: " + (Str bloodloss)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Case "camerapick"
-            consoler = $00
-            consoleg = $FF
-            consoleb = $00
-            local7 = camerapick(camera, (Float (graphicwidth Sar $01)), (Float (graphicheight Sar $01)))
-            If (local7 = $00) Then
+            setglobalconsolecolor($00, $FF, $00)
+            local11 = camerapick(camera, (Float viewport_center_x), (Float viewport_center_y))
+            If (local11 = $00) Then
                 createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                 createconsolemsg("No entity  picked", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                 createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             Else
                 createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                 createconsolemsg("Picked entity:", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                local8 = getsurface(local7, $01)
-                local9 = getsurfacebrush(local8)
-                local10 = getbrushtexture(local9, $00)
-                local11 = strippath(texturename(local10))
-                createconsolemsg(("Texture name: " + local11), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                createconsolemsg(((((("Coordinates: " + (Str entityx(local7, $00))) + ", ") + (Str entityy(local7, $00))) + ", ") + (Str entityz(local7, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                local12 = getsurface(local11, $01)
+                local13 = getsurfacebrush(local12)
+                local14 = getbrushtexture(local13, $00)
+                local15 = strippath(texturename(local14))
+                createconsolemsg(("Texture name: " + local15), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                createconsolemsg(((((("Coordinates: " + (Str entityx(local11, $00))) + ", ") + (Str entityy(local11, $00))) + ", ") + (Str entityz(local11, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                 createconsolemsg("******************************", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             EndIf
         Case "ending"
@@ -298,8 +338,8 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             injuries = 0.0
             bloodloss = 0.0
         Case "freeitems"
-            For local12 = Each items
-                removeitem(local12, $01)
+            For local16 = Each items
+                removeitem(local16, $01)
             Next
         Case "role"
             local0 = lower(right(arg0, (len(arg0) - instr(arg0, " ", $01))))
@@ -318,75 +358,75 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
                 Case "offices","office"
                     local0 = "room2offices"
             End Select
-            For local14 = Each rooms
-                If (local14\Field7\Field11 = local0) Then
-                    positionentity(collider, entityx(local14\Field2, $00), (entityy(local14\Field2, $00) + 0.7), entityz(local14\Field2, $00), $00)
+            For local18 = Each rooms
+                If (local18\Field8\Field11 = local0) Then
+                    positionentity(collider, entityx(local18\Field3, $00), (entityy(local18\Field3, $00) + 0.7), entityz(local18\Field3, $00), $00)
                     resetentity(collider)
                     updatedoors()
                     updaterooms()
-                    For local12 = Each items
-                        local12\Field12 = 0.0
+                    For local16 = Each items
+                        local16\Field12 = 0.0
                     Next
-                    playerroom = local14
+                    playerroom = local18
                     Exit
                 EndIf
             Next
-            local15 = $00
-            For local16 = Each players
-                If (local16\Field0 <> networkserver\Field28) Then
-                    If (lower(local16\Field24) = lower(local0)) Then
-                        For local14 = Each rooms
-                            If (local14\Field7\Field11 = local16\Field46) Then
-                                positionentity(collider, entityx(local16\Field13, $00), entityy(local16\Field13, $00), entityz(local16\Field13, $00), $00)
+            local19 = $00
+            For local20 = Each players
+                If (local20\Field0 <> networkserver\Field20) Then
+                    If (lower(local20\Field24) = lower(local0)) Then
+                        For local18 = Each rooms
+                            If (local18\Field8\Field11 = local20\Field44) Then
+                                positionentity(collider, entityx(local20\Field13, $00), entityy(local20\Field13, $00), entityz(local20\Field13, $00), $00)
                                 resetentity(collider)
                                 updatedoors()
                                 updaterooms()
-                                For local12 = Each items
-                                    local12\Field12 = 0.0
+                                For local16 = Each items
+                                    local16\Field12 = 0.0
                                 Next
-                                playerroom = local14
-                                local15 = $01
+                                playerroom = local18
+                                local19 = $01
                                 Exit
                             EndIf
                         Next
-                        If (local15 = $00) Then
-                            positionentity(collider, entityx(local16\Field13, $00), entityy(local16\Field13, $00), entityz(local16\Field13, $00), $00)
+                        If (local19 = $00) Then
+                            positionentity(collider, entityx(local20\Field13, $00), entityy(local20\Field13, $00), entityz(local20\Field13, $00), $00)
                             resetentity(collider)
                             updatedoors()
                             updaterooms()
-                            For local12 = Each items
-                                local12\Field12 = 0.0
+                            For local16 = Each items
+                                local16\Field12 = 0.0
                             Next
-                            local15 = $01
+                            local19 = $01
                         EndIf
                     EndIf
                 EndIf
             Next
-            If (((playerroom\Field7\Field11 <> local0) And (local15 = $00)) <> 0) Then
+            If (((playerroom\Field8\Field11 <> local0) And (local19 = $00)) <> 0) Then
                 createconsolemsg("Room or player not found.", $FF, $96, $00, $00)
             EndIf
         Case "spawnitem"
             local0 = lower(right(arg0, (len(arg0) - instr(arg0, " ", $01))))
-            local17 = $00
-            For local18 = Each itemtemplates
-                If (lower(local18\Field1) = local0) Then
-                    local17 = $01
+            local21 = $00
+            For local22 = Each itemtemplates
+                If (lower(local22\Field1) = local0) Then
+                    local21 = $01
                     Exit
-                ElseIf (lower(local18\Field2) = local0) Then
-                    local17 = $01
+                ElseIf (lower(local22\Field2) = local0) Then
+                    local21 = $01
                     Exit
                 EndIf
             Next
-            If (local17 = $01) Then
-                If (networkserver\Field18 <> 0) Then
+            If (local21 = $01) Then
+                If (networkserver\Field15 <> 0) Then
                     gameload = $01
-                    createconsolemsg((local18\Field1 + " spawned."), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    local12 = createitem(local18\Field1, local18\Field2, entityx(collider, $00), (entityy(camera, $01) - 0.1), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
-                    entitytype(local12\Field1, $03, $00)
+                    createconsolemsg((local22\Field1 + " spawned."), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    local16 = createitem(local22\Field1, local22\Field2, entityx(collider, $00), (entityy(camera, $01) - 0.1), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
+                    entitytype(local16\Field2, $03, $00)
                     gameload = $00
                 EndIf
             EndIf
-            If (local17 = $00) Then
+            If (local21 = $00) Then
                 createconsolemsg("Item not found.", $FF, $96, $00, $00)
             EndIf
         Case "wireframe"
@@ -424,14 +464,14 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             createconsolemsg(("Idle: " + (Str curr106\Field24)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             createconsolemsg(("State: " + (Str curr106\Field9)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Case "reset096"
-            For local20 = Each npcs
-                If (local20\Field5 = $09) Then
-                    local20\Field9 = 0.0
-                    stopstream_strict(local20\Field17)
-                    local20\Field17 = $00
-                    If (local20\Field20 <> $00) Then
-                        stopstream_strict(local20\Field20)
-                        local20\Field20 = $00
+            For local24 = Each npcs
+                If (local24\Field5 = $09) Then
+                    local24\Field9 = 0.0
+                    stopstream_strict(local24\Field17)
+                    local24\Field17 = $00
+                    If (local24\Field20 <> $00) Then
+                        stopstream_strict(local24\Field20)
+                        local24\Field20 = $00
                     EndIf
                     Exit
                 EndIf
@@ -456,14 +496,14 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
         Case "halloween"
             halloweentex = (halloweentex = $00)
             If (halloweentex <> 0) Then
-                local21 = loadtexture_strict("GFX\npcs\173h.pt", $01)
-                entitytexture(curr173\Field0, local21, $00, $00)
-                freetexture(local21)
+                local25 = loadtexture_strict("GFX\npcs\173h.pt", $01)
+                entitytexture(curr173\Field0, local25, $00, $00)
+                freetexture(local25)
                 createconsolemsg("173 JACK-O-LANTERN ON", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             Else
-                local22 = loadtexture_strict("GFX\npcs\173texture.jpg", $01)
-                entitytexture(curr173\Field0, local22, $00, $00)
-                freetexture(local22)
+                local26 = loadtexture_strict("GFX\npcs\173texture.jpg", $01)
+                entitytexture(curr173\Field0, local26, $00, $00)
+                freetexture(local26)
                 createconsolemsg("173 JACK-O-LANTERN OFF", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             EndIf
         Case "sanic"
@@ -474,14 +514,14 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
                 createconsolemsg("WHOA SLOW DOWN", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             EndIf
         Case "scp-420-j","420","weed"
-            If (networkserver\Field18 <> 0) Then
-                For local23 = $01 To $14 Step $01
+            If (networkserver\Field15 <> 0) Then
+                For local7 = $01 To $14 Step $01
                     If (rand($02, $01) = $01) Then
-                        local12 = createitem("Some SCP-420-J", "420", ((cos((18.0 * (Float local23))) * rnd(0.3, 0.5)) + entityx(collider, $01)), entityy(camera, $01), ((sin((18.0 * (Float local23))) * rnd(0.3, 0.5)) + entityz(collider, $01)), $00, $00, $00, 1.0, $00, $01)
+                        local16 = createitem("Some SCP-420-J", "420", ((cos((18.0 * (Float local7))) * rnd(0.3, 0.5)) + entityx(collider, $01)), entityy(camera, $01), ((sin((18.0 * (Float local7))) * rnd(0.3, 0.5)) + entityz(collider, $01)), $00, $00, $00, 1.0, $00, $01)
                     Else
-                        local12 = createitem("Joint", "420s", ((cos((18.0 * (Float local23))) * rnd(0.3, 0.5)) + entityx(collider, $01)), entityy(camera, $01), ((sin((18.0 * (Float local23))) * rnd(0.3, 0.5)) + entityz(collider, $01)), $00, $00, $00, 1.0, $00, $01)
+                        local16 = createitem("Joint", "420s", ((cos((18.0 * (Float local7))) * rnd(0.3, 0.5)) + entityx(collider, $01)), entityy(camera, $01), ((sin((18.0 * (Float local7))) * rnd(0.3, 0.5)) + entityz(collider, $01)), $00, $00, $00, 1.0, $00, $01)
                     EndIf
-                    entitytype(local12\Field1, $03, $00)
+                    entitytype(local16\Field2, $03, $00)
                 Next
                 playsound_strict(loadtempsound("SFX\Music\420J.ogg"))
                 multiplayer_writetempsound("SFX\Music\420J.ogg", 0.0, 0.0, 0.0, 20.0, 1.0)
@@ -505,8 +545,8 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             stamina = 60.0
             staminaeffect = 1.0
             staminaeffecttimer = 0.0
-            For local23 = $00 To $05 Step $01
-                scp1025state[local23] = 0.0
+            For local7 = $00 To $05 Step $01
+                scp1025state[local7] = 0.0
             Next
             bloodloss = 0.0
             superman = $00
@@ -520,7 +560,7 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             camerashake = 0.0
             shake = 0.0
             lightflash = 0.0
-            blurtimer = 0.0
+            blurtimer = 1.0
             falltimer = 0.0
             menuopen = $00
             godmode = $00
@@ -530,7 +570,7 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             resetentity(collider)
             killtimer = 0.0
             killanim = $00
-            myplayer\Field33 = $00
+            myplayer\Field31 = $00
             eyeirritation = 0.0
             hideentity(head)
             If (getscripts() <> 0) Then
@@ -565,12 +605,12 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             showfps = (showfps = $00)
             createconsolemsg(("ShowFPS: " + (Str showfps)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Case "096state"
-            For local20 = Each npcs
-                If (local20\Field5 = $09) Then
+            For local24 = Each npcs
+                If (local24\Field5 = $09) Then
                     createconsolemsg("SCP-096", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(((((("Position: " + (Str entityx(local20\Field0, $00))) + ", ") + (Str entityy(local20\Field0, $00))) + ", ") + (Str entityz(local20\Field0, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(("Idle: " + (Str local20\Field24)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
-                    createconsolemsg(("State: " + (Str local20\Field9)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(((((("Position: " + (Str entityx(local24\Field0, $00))) + ", ") + (Str entityy(local24\Field0, $00))) + ", ") + (Str entityz(local24\Field0, $00))), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(("Idle: " + (Str local24\Field24)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
+                    createconsolemsg(("State: " + (Str local24\Field9)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
                     Exit
                 EndIf
             Next
@@ -595,29 +635,29 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             vomittimer = (Float (Int local0))
             createconsolemsg(("Vomit timer set to " + (Str vomittimer)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Case "stopsound","stfu"
-            For local27 = Each sound
-                For local23 = $00 To $1F Step $01
-                    If (local27\Field2[local23] <> $00) Then
-                        stopchannel(local27\Field2[local23])
+            For local6 = Each sound
+                For local7 = $00 To $1F Step $01
+                    If (local6\Field2[local7] <> $00) Then
+                        stopchannel(local6\Field2[local7])
                     EndIf
                 Next
             Next
-            If (((udp_getstream() = $00) Or networkserver\Field18) <> 0) Then
-                For local28 = Each events
-                    If (local28\Field0 = "alarm") Then
-                        If (local28\Field1\Field32[$00] <> Null) Then
-                            removenpc(local28\Field1\Field32[$00], $00)
+            If (((udp_getstream() = $00) Or networkserver\Field15) <> 0) Then
+                For local8 = Each events
+                    If (local8\Field0 = "alarm") Then
+                        If (local8\Field1\Field32[$00] <> Null) Then
+                            removenpc(local8\Field1\Field32[$00], $00)
                         EndIf
-                        If (local28\Field1\Field32[$01] <> Null) Then
-                            removenpc(local28\Field1\Field32[$01], $00)
+                        If (local8\Field1\Field32[$01] <> Null) Then
+                            removenpc(local8\Field1\Field32[$01], $00)
                         EndIf
-                        If (local28\Field1\Field32[$02] <> Null) Then
-                            removenpc(local28\Field1\Field32[$02], $00)
+                        If (local8\Field1\Field32[$02] <> Null) Then
+                            removenpc(local8\Field1\Field32[$02], $00)
                         EndIf
                         positionentity(curr173\Field4, 0.0, 0.0, 0.0, $00)
                         resetentity(curr173\Field4)
                         showentity(curr173\Field0)
-                        removeevent(local28)
+                        removeevent(local8)
                         Exit
                     EndIf
                 Next
@@ -625,18 +665,18 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             Else
                 multiplayer_send($2A, $FFFFFFFF, $FFFFFFFF)
             EndIf
-            For local29 = Each snd3d
-                If (local29\Field0 = $00) Then
-                    stopchannel(local29\Field2)
-                    If (local29\Field6 <> 0) Then
-                        freeentity(local29\Field5)
+            For local9 = Each snd3d
+                If (local9\Field0 = $00) Then
+                    stopchannel(local9\Field2)
+                    If (local9\Field6 <> 0) Then
+                        freeentity(local9\Field5)
                     EndIf
-                    Delete local29
+                    Delete local9
                 Else
-                    fsound_stopsound(local29\Field2)
-                    fsound_stream_stop(local29\Field1)
-                    fsound_stream_close(local29\Field1)
-                    Delete local29
+                    fsound_stopsound(local9\Field2)
+                    fsound_stream_stop(local9\Field1)
+                    fsound_stream_close(local9\Field1)
+                    Delete local9
                 EndIf
             Next
         Case "camerafog"
@@ -646,7 +686,7 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             createconsolemsg(((("Near set to: " + (Str camerafognear)) + ", far set to: ") + (Str camerafogfar)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             If (hidedistance < camerafogfar) Then
                 hideentity(fog)
-            Else
+            ElseIf (overlaysenabled <> 0) Then
                 showentity(fog)
             EndIf
         Case "gamma"
@@ -678,13 +718,13 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
                 createconsolemsg("INFINITE STAMINA OFF", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
             EndIf
         Case "unlockexits"
-            For local28 = Each events
-                If (local28\Field0 = "gateaentrance") Then
-                    local28\Field4 = 1.0
-                    local28\Field1\Field29[$01]\Field5 = $01
-                ElseIf (local28\Field0 = "exit1") Then
-                    local28\Field4 = 1.0
-                    local28\Field1\Field29[$04]\Field5 = $01
+            For local8 = Each events
+                If (local8\Field0 = "gateaentrance") Then
+                    local8\Field4 = 1.0
+                    local8\Field1\Field29[$01]\Field5 = $01
+                ElseIf (local8\Field0 = "exit1") Then
+                    local8\Field4 = 1.0
+                    local8\Field1\Field29[$04]\Field5 = $01
                 EndIf
             Next
             createconsolemsg("Gate A and B are now unlocked.", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
@@ -736,10 +776,10 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
                 EndIf
             EndIf
         Case "tp"
-            For local20 = Each npcs
-                If (local20\Field5 = $08) Then
-                    If (local20\Field47 = Null) Then
-                        positionentity(collider, entityx(local20\Field4, $00), (entityy(local20\Field4, $00) + 5.0), entityz(local20\Field4, $00), $00)
+            For local24 = Each npcs
+                If (local24\Field5 = $08) Then
+                    If (local24\Field47 = Null) Then
+                        positionentity(collider, entityx(local24\Field4, $00), (entityy(local24\Field4, $00) + 5.0), entityz(local24\Field4, $00), $00)
                         resetentity(collider)
                         Exit
                     EndIf
@@ -772,19 +812,19 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
             EndIf
             multiplayer_send($6E, $FFFFFFFF, $FFFFFFFF)
         Case "spawnradio"
-            local12 = createitem("Radio Transceiver", "fineradio", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
-            entitytype(local12\Field1, $03, $00)
-            local12\Field13 = 101.0
+            local16 = createitem("Radio Transceiver", "fineradio", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
+            entitytype(local16\Field2, $03, $00)
+            local16\Field13 = 101.0
         Case "spawnnvg"
-            local12 = createitem("Night Vision Goggles", "nvgoggles", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
-            entitytype(local12\Field1, $03, $00)
-            local12\Field13 = 1000.0
+            local16 = createitem("Night Vision Goggles", "nvgoggles", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
+            entitytype(local16\Field2, $03, $00)
+            local16\Field13 = 1000.0
         Case "spawnpumpkin","pumpkin"
             createconsolemsg("What pumpkin?", $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Case "spawnnav"
-            local12 = createitem("S-NAV Navigator Ultimate", "nav", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
-            entitytype(local12\Field1, $03, $00)
-            local12\Field13 = 101.0
+            local16 = createitem("S-NAV Navigator Ultimate", "nav", entityx(collider, $00), entityy(camera, $01), entityz(collider, $00), $00, $00, $00, 1.0, $00, $01)
+            entitytype(local16\Field2, $03, $00)
+            local16\Field13 = 101.0
         Case "teleport173"
             positionentity(curr173\Field4, entityx(collider, $00), (entityy(collider, $00) + 0.2), entityz(collider, $00), $00)
             resetentity(curr173\Field4)
@@ -826,11 +866,13 @@ Function executeconsolecommand%(arg0$, arg1%, arg2%)
         Case "jorge"
             createconsolemsg(((((((((((((((((((((((((((((chr($4A) + chr($4F)) + chr($52)) + chr($47)) + chr($45)) + chr($20)) + chr($48)) + chr($41)) + chr($53)) + chr($20)) + chr($42)) + chr($45)) + chr($45)) + chr($4E)) + chr($20)) + chr($45)) + chr($58)) + chr($50)) + chr($45)) + chr($43)) + chr($54)) + chr($49)) + chr($4E)) + chr($47)) + chr($20)) + chr($59)) + chr($4F)) + chr($55)) + chr($2E)), $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00)
         Default
+            setglobalconsolecolor($FFFFFFFF, $FFFFFFFF, $FFFFFFFF)
             If (arg1 <> 0) Then
                 createconsolemsg("Command not found.", $FF, $00, $00, $00)
             EndIf
             Return $00
     End Select
+    setglobalconsolecolor($FFFFFFFF, $FFFFFFFF, $FFFFFFFF)
     usedconsole = $01
     Return $00
 End Function

@@ -18,7 +18,7 @@ Function voice_wave_create%(arg0%, arg1%, arg2#, arg3%)
     closefile(local2)
     local3 = $00
     If (player[arg0] <> Null) Then
-        If (player[arg0]\Field52 <> 0) Then
+        If (player[arg0]\Field50 <> 0) Then
             local3 = $01
         EndIf
     EndIf
@@ -39,9 +39,9 @@ Function voice_wave_create%(arg0%, arg1%, arg2#, arg3%)
     local4\Field2 = arg2
     local4\Field5 = local0
     If (player[arg0] <> Null) Then
-        player[arg0]\Field45 = $01
-        player[arg0]\Field66 = 60.0
-        If (player[arg0]\Field52 <> 0) Then
+        player[arg0]\Field43 = $01
+        player[arg0]\Field64 = 60.0
+        If (player[arg0]\Field50 <> 0) Then
             local4\Field4 = voice_attachecho(local4\Field0)
             local4\Field6 = (millisecs() + $3A98)
         EndIf

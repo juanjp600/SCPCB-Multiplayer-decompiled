@@ -1,4 +1,4 @@
-Function kick%(arg0%, arg1$)
+Function kick%(arg0%, arg1$, arg2$)
     Local local0%
     Local local1.rockets
     Local local2.grenades
@@ -10,11 +10,20 @@ Function kick%(arg0%, arg1$)
         public_addparam($00, (Str arg0), $01)
         public_addparam($00, arg1, $03)
         callback($00)
+        If (se_getreturnvalue() <> "-1") Then
+            arg1 = se_getreturnvalue()
+        EndIf
     EndIf
     If (arg1 <> "") Then
-        addlog(arg1, $00, $01, $00)
+        addlog(arg1, $00, $01, $00, $C0, $C0, $C0)
     EndIf
-    clearchatforplayer(arg0)
+    If (arg2 <> "") Then
+        udp_writebyte($1F)
+        udp_writebyte($01)
+        udp_writeline(arg2)
+        udp_sendmessage(arg0)
+        clearchatforplayer(arg0)
+    EndIf
     For local0 = $01 To $FF Step $01
         If (player[arg0]\Field45[local0] <> Null) Then
             Delete player[arg0]\Field45[local0]
@@ -52,7 +61,7 @@ Function kick%(arg0%, arg1$)
             If (mp_isascp(player[arg0]\Field36) = $00) Then
                 positionentity(local4\Field1, player[local4\Field22]\Field0, (player[local4\Field22]\Field1 + 0.7), player[local4\Field22]\Field2, $01)
                 resetentity(local4\Field1)
-                rotateentity(local4\Field1, 0.0, (entityyaw(player[local4\Field22]\Field62, $00) + rnd(-110.0, 110.0)), 0.0, $00)
+                rotateentity(local4\Field1, 0.0, (entityyaw(player[local4\Field22]\Field64, $00) + rnd(-110.0, 110.0)), 0.0, $00)
                 moveentity(local4\Field1, 0.0, -0.1, 0.1)
                 local4\Field15 = $00
                 local4\Field22 = $00
@@ -61,22 +70,22 @@ Function kick%(arg0%, arg1$)
             EndIf
         EndIf
     Next
+    If (player[arg0]\Field66 <> $00) Then
+        freeentity(player[arg0]\Field66)
+        player[arg0]\Field66 = $00
+    EndIf
     If (player[arg0]\Field64 <> $00) Then
         freeentity(player[arg0]\Field64)
         player[arg0]\Field64 = $00
     EndIf
-    If (player[arg0]\Field62 <> $00) Then
-        freeentity(player[arg0]\Field62)
-        player[arg0]\Field62 = $00
+    If (player[arg0]\Field65 <> $00) Then
+        freeentity(player[arg0]\Field65)
+        player[arg0]\Field65 = $00
     EndIf
-    If (player[arg0]\Field63 <> $00) Then
-        freeentity(player[arg0]\Field63)
-        player[arg0]\Field63 = $00
-    EndIf
-    For local0 = $01 To player[arg0]\Field176 Step $01
-        removebytestream(player[arg0]\Field175[local0])
+    For local0 = $01 To player[arg0]\Field179 Step $01
+        removebytestream(player[arg0]\Field178[local0])
     Next
-    local5 = player[arg0]\Field67
+    local5 = player[arg0]\Field69
     Delete player[arg0]
     server\Field11 = (server\Field11 - $01)
     If (server\Field11 = $00) Then

@@ -13,17 +13,19 @@ Function draws_render%()
                     EndIf
                 Next
                 If (local0\Field2 = $00) Then
-                    local0\Field2 = loadimage(local0\Field0)
-                    If (((local0\Field5 <> $FFFFFFFF) And (local0\Field2 <> $00)) <> 0) Then
+                    If (local0\Field0 <> "") Then
+                        local0\Field2 = loadimage(local0\Field0)
+                    EndIf
+                    If ((((((local0\Field5 > $00) And (local0\Field5 <= $800)) And (local0\Field6 > $00)) And (local0\Field6 <= $800)) And (local0\Field2 <> $00)) <> 0) Then
                         resizeimage(local0\Field2, (Float local0\Field5), (Float local0\Field6))
                     EndIf
                 EndIf
             EndIf
             If (local0\Field2 <> 0) Then
-                drawblock(local0\Field2, local0\Field3, local0\Field4, $00)
+                drawimage(local0\Field2, local0\Field3, local0\Field4, $00)
             EndIf
         Else
-            color(intcolor(local0\Field8, $10), intcolor(local0\Field8, $08), intcolor(local0\Field8, $00))
+            setcolorex(intcolor(local0\Field8, $10), intcolor(local0\Field8, $08), intcolor(local0\Field8, $00))
             Select local0\Field1
                 Case $01
                     rect(local0\Field3, local0\Field4, local0\Field5, local0\Field6, $01)

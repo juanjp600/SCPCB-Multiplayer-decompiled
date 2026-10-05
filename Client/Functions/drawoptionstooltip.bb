@@ -25,9 +25,11 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
     local10 = $00
     local11 = $00
     local12 = $00
-    aasetfont(font1)
-    color($FF, $FF, $FF)
+    setfontex(fonts[$00]\Field0)
+    setcolorex($FF, $FF, $FF)
     Select lower(arg4)
+        Case "overlays"
+            local6 = "Toggles the rendering of in-game overlays."
         Case "cmqu"
             local6 = "Affects the quality of the picture in surveillance cameras. Strongly affects performance. It is recommended to set a low value"
         Case "cam"
@@ -57,27 +59,28 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
             local7 = "Please don't turn the intro!"
             local8 = $FF
         Case "bump"
-            local6 = (((chr($22) + "Bump mapping") + chr($22)) + " is used to simulate bumps and dents by distorting the lightmaps.")
+            local6 = "Bump mapping is used to simulate bumps and dents by distorting the map's lightmaps."
             local7 = "This option cannot be changed in-game."
             local8 = $FF
         Case "vsync"
-            local6 = (((chr($22) + "Vertical sync") + chr($22)) + " waits for the display to finish its current refresh cycle before calculating the next frame, preventing issues such as ")
-            local6 = (local6 + "screen tearing. This ties the game's frame rate to your display's refresh rate and may cause some input lag.")
+            local6 = "Vertical sync limits the framerate to your monitor's HZ, it causes input lag in monitors with less than 100/140 HZ "
         Case "antialias"
-            local6 = (((chr($22) + "Anti-Aliasing") + chr($22)) + " is used to smooth the rendered image before displaying in order to reduce aliasing around the edges of models.")
-            local7 = "This option only takes effect in fullscreen."
+            local6 = "Anti-Aliasing is used to smooth the rendered image before displaying in order to reduce aliasing around the edges of models."
+            local7 = "This option only takes effect upon restarting the game."
             local8 = $FF
         Case "roomlights"
-            local6 = "Toggles the artificial lens flare effect generated over specific light sources."
+            local6 = "Toggles the artificial lens flare effect generated over specific light sources and other material effects."
         Case "gamma"
-            local6 = (((chr($22) + "Gamma correction") + chr($22)) + " is used to achieve a good brightness factor to balance out your display's gamma if the game appears either too dark or bright. ")
-            local6 = (local6 + "Setting it too high or low can cause the graphics to look less detailed.")
+            local6 = "Gamma correction is used to achieve a good brightness factor to balance out your display's gamma if the game appears too dark."
+            local6 = (local6 + "Setting it too high can cause the graphics to look less detailed.")
             local8 = $FF
             local9 = $FF
             local10 = $FF
-            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 100%)")
+            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 0%)")
         Case "texquality"
-            local6 = (((chr($22) + "Texture LOD Bias") + chr($22)) + " affects the distance at which texture detail will change to prevent aliasing. Change this option if textures flicker or look too blurry.")
+            local6 = "Texture LOD Bias affects the distance at which texture detail will change to prevent aliasing. Change this option if textures flicker or look too blurry."
+            local7 = "this only affects textures loaded without the VRAM texture flag"
+            local8 = $FF
         Case "particleamount"
             local6 = "Determines the amount of particles that can be rendered per tick."
             Select arg5
@@ -93,8 +96,8 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
                     local7 = "All particles are rendered."
             End Select
         Case "vram"
-            local6 = "Textures that are stored in the Video-RAM will load faster, but this also has negative effects on the texture quality as well."
-            local7 = "This option cannot be changed in-game."
+            local6 = "[EXPERIMENTAL] Textures that are stored in the VRAM will load faster, mipmapping is disabled for these."
+            local7 = "This option cannot be changed in-game, restart recommended to clean memory."
             local8 = $FF
         Case "musicvol"
             local6 = "Adjusts the volume of background music. Sliding the bar fully to the left will mute all music."
@@ -107,7 +110,7 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
             local8 = $FF
             local9 = $FF
             local10 = $FF
-            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 100%)")
+            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 50%)")
         Case "sfxautorelease"
             local6 = (((chr($22) + "Sound auto-release") + chr($22)) + " will free a sound from memory if it not used after 5 seconds. Prevents memory allocation issues.")
             local8 = $FF
@@ -132,13 +135,15 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
             local10 = $FF
             local7 = (("Current value: " + (Str (Int ((0.5 + arg5) * 100.0)))) + "% (default is 50%)")
         Case "mouseinvert"
-            local6 = (((chr($22) + "Invert mouse Y-axis") + chr($22)) + " is self-explanatory.")
+            local6 = ((chr($22) + "Invert mouse Y-axis") + chr($22))
+        Case "mouseraw"
+            local6 = ((chr($22) + "Mouse direct inputs, consistent between resolutions") + chr($22))
         Case "mousesmoothing"
-            local6 = "Adjusts the amount of smoothing of the mouse pointer."
+            local6 = "Adjusts the amount of smoothing used by the camera."
             local8 = $FF
             local9 = $FF
             local10 = $FF
-            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 100%)")
+            local7 = (("Current value: " + (Str (Int (arg5 * 100.0)))) + "% (default is 0%)")
         Case "controls"
             local6 = "Configure the in-game control scheme."
         Case "hud"
@@ -160,31 +165,30 @@ Function drawoptionstooltip%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5#, arg6%)
                 local9 = $FF
                 local7 = "Usually, 60 FPS or higher is preferred. If you are noticing excessive stuttering at this setting, try lowering it to make your framerate more consistent."
             EndIf
-        Case "antialiastext"
-            local6 = (((chr($22) + "Antialiased text") + chr($22)) + " smooths out the text before displaying. Makes text easier to read at high resolutions.")
     End Select
     local4 = getlineamount(local6, (Int local2), (Int local3), 1.0)
     If (local11 <> 0) Then
-        local12 = (Int (210.0 * menuscale))
+        local12 = imenuscale[$D2]
     EndIf
     If (local7 = "") Then
-        drawframe(arg0, arg1, arg2, (Int ((((Float ($0A + local4)) * menuscale) + (Float (aastringheight(local6) * local4))) + (Float local12))), $00, $00)
+        drawframe(arg0, arg1, arg2, (Int ((((Float ($0A + local4)) * menuscale) + (Float (stringheight(local6) * local4))) + (Float local12))), $00, $00)
     Else
         local5 = getlineamount(local7, (Int local2), (Int local3), 1.0)
-        drawframe(arg0, arg1, arg2, (Int ((((((Float ($0A + local4)) * menuscale) + (Float (aastringheight(local6) * local4))) + (Float (aastringheight(local7) * local5))) + ((Float ($0A + local5)) * menuscale)) + (Float local12))), $00, $00)
+        drawframe(arg0, arg1, arg2, (Int ((((((Float ($0A + local4)) * menuscale) + (Float (stringheight(local6) * local4))) + (Float (stringheight(local7) * local5))) + ((Float ($0A + local5)) * menuscale)) + (Float local12))), $00, $00)
     EndIf
     rowtext(local6, local0, local1, local2, local3, $00, 1.0, $00)
     If (local7 <> "") Then
-        color(local8, local9, local10)
-        rowtext(local7, local0, ((local1 + (Float (aastringheight(local6) * local4))) + ((Float ($05 + local4)) * menuscale)), local2, local3, $00, 1.0, $00)
+        setcolorex(local8, local9, local10)
+        rowtext(local7, local0, ((local1 + (Float (stringheight(local6) * local4))) + ((Float ($05 + local4)) * menuscale)), local2, local3, $00, 1.0, $00)
     EndIf
     If (local11 <> 0) Then
         midhandle(menu_testimg)
         If (local7 = "") Then
-            drawimage(menu_testimg, ((arg2 Sar $01) + arg0), (Int (((100.0 * menuscale) + (Float arg1)) + (((Float ($0A + local4)) * menuscale) + (Float (aastringheight(local6) * local4))))), $00)
+            drawimage(menu_testimg, ((arg2 Sar $01) + arg0), (Int (((100.0 * menuscale) + (Float arg1)) + (((Float ($0A + local4)) * menuscale) + (Float (stringheight(local6) * local4))))), $00)
         Else
-            drawimage(menu_testimg, ((arg2 Sar $01) + arg0), (Int ((((((Float ($0A + local4)) * menuscale) + (Float (aastringheight(local6) * local4))) + (Float (aastringheight(local7) * local5))) + ((Float ($0A + local5)) * menuscale)) + ((100.0 * menuscale) + (Float arg1)))), $00)
+            drawimage(menu_testimg, ((arg2 Sar $01) + arg0), (Int ((((((Float ($0A + local4)) * menuscale) + (Float (stringheight(local6) * local4))) + (Float (stringheight(local7) * local5))) + ((Float ($0A + local5)) * menuscale)) + ((100.0 * menuscale) + (Float arg1)))), $00)
         EndIf
     EndIf
+    setcolorraw($FFFFFF)
     Return $00
 End Function

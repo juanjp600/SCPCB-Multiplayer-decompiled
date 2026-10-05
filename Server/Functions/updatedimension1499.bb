@@ -29,12 +29,12 @@ Function updatedimension1499%()
         Return $00
     EndIf
     If (local1\Field1\Field25[$00] = $00) Then
-        local1\Field1\Field25[$00] = loadmesh_strict("GFX\map\dimension1499\1499plane.b3d", $00)
+        local1\Field1\Field25[$00] = loadmesh_strict("GFX\map\dimension1499\1499plane.b3d", $00, $00)
         hideentity(local1\Field1\Field25[$00])
         local1\Field11 = "1"
         While (local1\Field11 <> "18")
             If ((Int local1\Field11) < $10) Then
-                local1\Field1\Field25[(Int local1\Field11)] = loadmesh_strict((("GFX\map\dimension1499\1499object" + (Str (Int local1\Field11))) + ".b3d"), $00)
+                local1\Field1\Field25[(Int local1\Field11)] = loadmesh_strict((("GFX\map\dimension1499\1499object" + (Str (Int local1\Field11))) + ".b3d"), $00, $00)
                 hideentity(local1\Field1\Field25[(Int local1\Field11)])
                 local1\Field11 = (Str ((Int local1\Field11) + $01))
             ElseIf ((Int local1\Field11) = $10) Then
@@ -80,11 +80,11 @@ Function updatedimension1499%()
         For local16 = Each players
             If (local16\Field32 = local1\Field1\Field69) Then
                 showentity(local1\Field1\Field2)
-                updatechunks(local1\Field1, $0F, $01, local16\Field62, local16)
+                updatechunks(local1\Field1, $0F, $01, local16\Field64, local16)
                 local17 = $12
-                If (800.0 > entityy(local16\Field62, $00)) Then
-                    positionentity(local16\Field62, entityx(local16\Field62, $00), 800.5, entityz(local16\Field62, $00), $01)
-                    resetentity(local16\Field62)
+                If (800.0 > entityy(local16\Field64, $00)) Then
+                    positionentity(local16\Field64, entityx(local16\Field64, $00), 800.5, entityz(local16\Field64, $00), $01)
+                    resetentity(local16\Field64)
                 EndIf
             EndIf
         Next

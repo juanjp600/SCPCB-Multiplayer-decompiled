@@ -1,13 +1,13 @@
 Function initevents%()
     Local local0.events
-    If ((introenabled And (networkserver\Field15 = $00)) <> 0) Then
+    If ((introenabled And (networkserver\Field12 = $00)) <> 0) Then
         createevent("173", "173", $00, 0.0)
     EndIf
-    If (networkserver\Field15 = $00) Then
+    If (networkserver\Field12 = $00) Then
         createevent("alarm", "start", $00, 0.0)
     EndIf
     createevent("pocketdimension", "pocketdimension", $00, 0.0)
-    createevent("tunnel106", "tunnel", $00, (((Float selecteddifficulty\Field3) * 0.1) + 0.07))
+    createevent("tunnel106", "tunnel", $00, (((Float selecteddifficulty\Field3) * 0.2) + 0.07))
     If (rand($03, $01) < $03) Then
         createevent("lockroom173", "lockroom", $00, 0.0)
     EndIf
@@ -115,7 +115,7 @@ Function initevents%()
     createevent("room2offices035", "room2offices", $00, 0.0)
     createevent("room2pit106", "room2pit", $00, (((Float selecteddifficulty\Field3) * 0.1) + 0.07))
     createevent("room1archive", "room1archive", $00, 1.0)
-    If (networkserver\Field15 = $01) Then
+    If (networkserver\Field12 = $01) Then
         local0 = (New events)
         local0\Field0 = "breach"
         seteventvar(local0)

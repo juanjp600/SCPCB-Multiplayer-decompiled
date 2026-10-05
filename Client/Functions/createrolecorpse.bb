@@ -8,9 +8,9 @@ Function createrolecorpse%(arg0%, arg1#, arg2#, arg3#, arg4#, arg5#, arg6%, arg7
         Return $00
     EndIf
     local1 = copyentity(local0\Field2, $00)
-    positionentity(local1, arg1, ((arg2 - 0.32) - local0\Field52), arg3, $00)
+    positionentity(local1, arg1, ((arg2 - 0.32) - local0\Field53), arg3, $00)
     scaleentity(local1, (local0\Field3 * arg5), (local0\Field3 * arg5), (local0\Field3 * arg5), $00)
-    rotateentity(local1, local0\Field54, (local0\Field53 + arg4), 0.0, $00)
+    rotateentity(local1, local0\Field55, (local0\Field54 + arg4), 0.0, $00)
     resetentity(local1)
     meshcullbox(local1, (- meshwidth(local0\Field2)), (- meshheight(local0\Field2)), (- meshdepth(local0\Field2)), (meshwidth(local0\Field2) * 2.0), (meshheight(local0\Field2) * 2.0), (meshdepth(local0\Field2) * 2.0))
     extractanimseq(local1, getfirstpackedvalue(local0\Field14), getsecondpackedvalue(local0\Field14), $00)
@@ -34,6 +34,7 @@ Function createrolecorpse%(arg0%, arg1#, arg2#, arg3#, arg4#, arg5#, arg6%, arg7
         local3\Field0 = arg8
     EndIf
     m_corpse[local3\Field0] = local3
+    Return $00
     Return local1
     Return $00
 End Function

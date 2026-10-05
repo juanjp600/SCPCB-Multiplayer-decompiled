@@ -21,7 +21,6 @@ Function findpath%(arg0.npcs, arg1#, arg2#, arg3#)
     Local local19.waypoints
     Local local20.waypoints
     Local local21%
-    debuglog(("findpath: " + (Str arg0\Field5)))
     local9 = (Int floor(((entityx(arg0\Field4, $01) / 8.0) + 0.5)))
     local10 = (Int floor(((entityz(arg0\Field4, $01) / 8.0) + 0.5)))
     local11 = (Int floor(((arg1 / 8.0) + 0.5)))
@@ -57,7 +56,6 @@ Function findpath%(arg0.npcs, arg1#, arg2#, arg3#)
             EndIf
         EndIf
     Next
-    debuglog(("DIST: " + (Str local1)))
     freeentity(local0)
     If (local7 = Null) Then
         Return $02

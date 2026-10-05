@@ -114,7 +114,6 @@ Function updatemtfunit%(arg0.npcs)
                                     local2 = local5\Field3
                                     local3 = 0.1
                                     local4 = local5\Field5
-                                    debuglog(local5\Field7\Field10)
                                     Exit
                                 EndIf
                             Next
@@ -130,10 +129,9 @@ Function updatemtfunit%(arg0.npcs)
                                     If (local5\Field7\Field10 = "start") Then
                                         local16 = $00
                                         local17 = createpivot($00)
-                                        positionentity(local17, (entityx(local5\Field2, $01) + (4736.0 * roomscale)), 0.5, (entityz(local5\Field2, $01) + (1692.0 * roomscale)), $00)
+                                        positionentity(local17, (entityx(local5\Field2, $01) + 18.5), 0.5, (entityz(local5\Field2, $01) + 6.609375), $00)
                                         If (3.5 > distance(entityx(local17, $00), entityz(local17, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))) Then
                                             local16 = $01
-                                            debuglog((Str distance(entityx(local17, $00), entityz(local17, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00))))
                                         EndIf
                                         If (((3.0 = curr173\Field24) And (4.0 < distance(entityx(local17, $00), entityz(local17, $00), entityx(arg0\Field4, $00), entityz(arg0\Field4, $00)))) <> 0) Then
                                             If (local5\Field29[$01]\Field5 = $01) Then
@@ -141,16 +139,14 @@ Function updatemtfunit%(arg0.npcs)
                                             EndIf
                                         EndIf
                                         freeentity(local17)
-                                        If (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local5\Field2, $01) + (4736.0 * roomscale)), (entityz(local5\Field2, $01) + (1692.0 * roomscale)))) And (local16 = $00)) <> 0) Then
-                                            local2 = (entityx(local5\Field2, $01) + (4736.0 * roomscale))
+                                        If (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local5\Field2, $01) + 18.5), (entityz(local5\Field2, $01) + 6.609375))) And (local16 = $00)) <> 0) Then
+                                            local2 = (entityx(local5\Field2, $01) + 18.5)
                                             local3 = 0.1
-                                            local4 = (entityz(local5\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move to 173's chamber")
+                                            local4 = (entityz(local5\Field2, $01) + 6.609375)
                                             Exit
-                                        ElseIf (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local5\Field2, $01) + (4736.0 * roomscale)), (entityz(local5\Field2, $01) + (1692.0 * roomscale)))) And local16) <> 0) Then
-                                            arg0\Field60 = (entityx(local5\Field2, $01) + (4736.0 * roomscale))
-                                            arg0\Field61 = (entityz(local5\Field2, $01) + (1692.0 * roomscale))
-                                            debuglog("Move inside 173's chamber")
+                                        ElseIf (((1.6 < distance(entityx(arg0\Field4, $00), entityz(arg0\Field4, $00), (entityx(local5\Field2, $01) + 18.5), (entityz(local5\Field2, $01) + 6.609375))) And local16) <> 0) Then
+                                            arg0\Field60 = (entityx(local5\Field2, $01) + 18.5)
+                                            arg0\Field61 = (entityz(local5\Field2, $01) + 6.609375)
                                             Exit
                                         Else
                                             curr173\Field24 = 3.0
@@ -163,7 +159,6 @@ Function updatemtfunit%(arg0.npcs)
                                             arg0\Field16 = loadsound_strict((("SFX\Character\MTF\173\Cont" + (Str rand($01, $04))) + ".ogg"))
                                             playmtfsound(arg0\Field16, arg0)
                                             playannouncement("SFX\Character\MTF\Announc173Contain.ogg", $01)
-                                            debuglog("173 contained")
                                             Exit
                                         EndIf
                                     EndIf
@@ -172,7 +167,6 @@ Function updatemtfunit%(arg0.npcs)
                                 local2 = entityx(curr173\Field4, $00)
                                 local3 = 0.1
                                 local4 = entityz(curr173\Field4, $00)
-                                debuglog("Going back to 173's cage")
                             EndIf
                         EndIf
                         If (0.0 = arg0\Field60) Then
@@ -325,7 +319,6 @@ Function updatemtfunit%(arg0.npcs)
                     arg0\Field34 = entityy(arg0\Field73, $01)
                     arg0\Field35 = entityz(arg0\Field73, $01)
                     arg0\Field10 = ((15.0 * (Float local19)) * 70.0)
-                    debuglog(("player spotted :" + (Str arg0\Field10)))
                     arg0\Field38 = 0.0
                     arg0\Field37 = $00
                     arg0\Field25 = (Float ($C8 - (selecteddifficulty\Field3 * $64)))
@@ -342,7 +335,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -364,7 +356,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
                             arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -385,7 +376,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -408,7 +398,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field38 = 0.0
                                 arg0\Field37 = $00
                                 arg0\Field31 = local8
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -431,7 +420,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local8
                                 arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -454,7 +442,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local8
                                 arg0\Field25 = 350.0
-                                debuglog(("008 spotted :" + (Str arg0\Field10)))
                                 Exit
                             EndIf
                         EndIf
@@ -647,7 +634,6 @@ Function updatemtfunit%(arg0.npcs)
                 EndIf
                 If (((0.0 >= arg0\Field10) And (0.0 < (arg0\Field10 + fpsfactor))) <> 0) Then
                     If (arg0\Field47 = Null) Then
-                        debuglog(("targetlost: " + (Str arg0\Field10)))
                         playmtfsound(loadtempsound((("SFX\Character\MTF\Targetlost" + (Str rand($01, $03))) + ".ogg")), arg0)
                         If (0.0 = mtf_camerachecktimer) Then
                             If (rand(($0F - (selecteddifficulty\Field3 * $07)), $01) = $01) Then
@@ -667,7 +653,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field34 = entityy(curr173\Field4, $01)
                             arg0\Field35 = entityz(curr173\Field4, $01)
                             arg0\Field10 = 1050.0
-                            debuglog(("173 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field16 <> $00) Then
                                 freesound_strict(arg0\Field16)
                                 arg0\Field16 = $00
@@ -692,7 +677,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
                             arg0\Field31 = curr106
-                            debuglog(("106 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field47 = Null) Then
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
@@ -715,7 +699,6 @@ Function updatemtfunit%(arg0.npcs)
                             arg0\Field11 = 0.0
                             arg0\Field38 = 0.0
                             arg0\Field37 = $00
-                            debuglog(("096 spotted :" + (Str arg0\Field10)))
                             If (arg0\Field47 = Null) Then
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
@@ -740,7 +723,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field38 = 0.0
                                 arg0\Field37 = $00
                                 arg0\Field31 = local8
-                                debuglog(("049 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -763,7 +745,6 @@ Function updatemtfunit%(arg0.npcs)
                                 arg0\Field37 = $00
                                 arg0\Field31 = local8
                                 arg0\Field25 = 350.0
-                                debuglog(("049-2 spotted :" + (Str arg0\Field10)))
                                 If (arg0\Field16 <> $00) Then
                                     freesound_strict(arg0\Field16)
                                     arg0\Field16 = $00
@@ -800,7 +781,6 @@ Function updatemtfunit%(arg0.npcs)
                         If (local26 > local25) Then
                             If (arg0\Field47 = Null) Then
                                 arg0\Field11 = (arg0\Field11 + fpsfactor)
-                                debuglog(("CONTAINING 173: " + (Str arg0\Field11)))
                                 If (1050.0 <= arg0\Field11) Then
                                     curr173\Field24 = 2.0
                                     If (arg0\Field47 = Null) Then
@@ -1030,7 +1010,6 @@ Function updatemtfunit%(arg0.npcs)
                                         local2 = local5\Field3
                                         local3 = 0.1
                                         local4 = local5\Field5
-                                        debuglog(local5\Field7\Field10)
                                         Exit
                                     EndIf
                                 EndIf
@@ -1171,7 +1150,6 @@ Function updatemtfunit%(arg0.npcs)
                                 local2 = local5\Field3
                                 local3 = 0.1
                                 local4 = local5\Field5
-                                debuglog(local5\Field7\Field10)
                                 Exit
                             EndIf
                         Next

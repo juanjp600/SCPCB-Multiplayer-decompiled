@@ -9,6 +9,6 @@ Function setchunkdatavalues%()
             chunkdata(local1, local2) = rand($00, getiniint("Data\1499chunks.INI", "general", "count", $00))
         Next
     Next
-    seedrnd(millisecs2())
+    seedrnd(millisecs())
     Return $00
 End Function

@@ -1,7 +1,9 @@
 Function multiplayer_requestload%(arg0$, arg1$, arg2$, arg3%)
-    If (networkserver\Field18 = $00) Then
+    If (networkserver\Field15 = $00) Then
+        pendingserverload = $01
+        pendingserverloadpath = arg0
         udp_writebyte($55)
-        udp_writebyte(networkserver\Field28)
+        udp_writebyte(networkserver\Field20)
         udp_writeline(arg0)
         udp_writeline(arg2)
         udp_writeline(arg1)

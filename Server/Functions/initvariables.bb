@@ -17,13 +17,10 @@ Function initvariables%()
     server\Field13 = (Int limit2(limit((Float server\Field13), 300000.0), 0.0))
     server\Field22 = (Int limit2(limit((Float server\Field22), 3599999.0), 400000.0))
     server\Field1 = (Str limit2(limit((Float server\Field1), 65535.0), 80.0))
+    server\Field87\Field8 = (Int limit2(limit((Float server\Field87\Field8), 1.0), 0.0))
     server\Field32 = $BB80
-    If (server\Field52 = $00) Then
-        server\Field52 = $04
-    EndIf
-    server\Field52 = (Int (limit2(limit((Float server\Field52), 4.0), 1.0) - 1.0))
-    If (server\Field55 = $00) Then
-        server\Field55 = $04
+    If (server\Field54 = $00) Then
+        server\Field54 = $04
     EndIf
     local0 = $00
     For local1 = $00 To $02 Step $01
@@ -44,8 +41,14 @@ Function initvariables%()
     If (server\Field13 < $1388) Then
         server\Field13 = $3A98
     EndIf
-    server\Field53 = server\Field18
-    server\Field57 = $01
+    server\Field52 = server\Field18
+    server\Field56 = $01
+    If (server\Field78 = "localhost") Then
+        server\Field78 = "127.0.0.1"
+    EndIf
+    If (server\Field78 = "0") Then
+        server\Field78 = "0.0.0.0"
+    EndIf
     seedrnd(millisecs())
     fsound_init($1F40, $40, $00)
     Return $00

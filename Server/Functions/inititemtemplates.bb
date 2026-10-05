@@ -1,6 +1,7 @@
 Function inititemtemplates%()
     Local local0.itemtemplates
     Local local1%
+    Local local2%
     local0 = createitemtemplate("Some SCP-420-J", "420", "GFX\items\420.x", "GFX\items\INV420.jpg", "", 0.0005, "", "", $00, $09, $00)
     local0\Field3 = $02
     createitemtemplate("Level 1 Key Card", "key1", "GFX\items\keycard.x", "GFX\items\INVkey1.jpg", "", 0.0004, "GFX\items\keycard1.jpg", "", $00, $09, $00)
@@ -151,9 +152,9 @@ Function inititemtemplates%()
     local0 = createitemtemplate("Origami", "misc", "GFX\items\origami.b3d", "GFX\items\INVorigami.jpg", "", 0.003, "", "", $00, $09, $00)
     local0\Field3 = $00
     createitemtemplate("Electronical components", "misc", "GFX\items\electronics.x", "GFX\items\INVelectronics.jpg", "", 0.0011, "", "", $00, $09, $00)
-    local0 = createitemtemplate("Metal Panel", "scp148", "GFX\items\metalpanel.x", "GFX\items\INVmetalpanel.jpg", "", roomscale, "", "", $00, $09, $00)
+    local0 = createitemtemplate("Metal Panel", "scp148", "GFX\items\metalpanel.x", "GFX\items\INVmetalpanel.jpg", "", (1.0 / 256.0), "", "", $00, $09, $00)
     local0\Field3 = $02
-    local0 = createitemtemplate("SCP-148 Ingot", "scp148ingot", "GFX\items\scp148.x", "GFX\items\INVscp148.jpg", "", roomscale, "", "", $00, $09, $00)
+    local0 = createitemtemplate("SCP-148 Ingot", "scp148ingot", "GFX\items\scp148.x", "GFX\items\INVscp148.jpg", "", (1.0 / 256.0), "", "", $00, $09, $00)
     local0\Field3 = $02
     createitemtemplate("S-NAV 300 Navigator", "nav", "GFX\items\navigator.x", "GFX\items\INVnavigator.jpg", "GFX\items\navigator.png", 0.0008, "", "", $00, $09, $00)
     createitemtemplate("S-NAV Navigator", "nav", "GFX\items\navigator.x", "GFX\items\INVnavigator.jpg", "GFX\items\navigator.png", 0.0008, "", "", $00, $09, $00)
@@ -248,7 +249,7 @@ Function inititemtemplates%()
     createitemtemplate("Box of ammo", "boxofammo", "GFX\items\box_ammo.b3d", "GFX\items\boxofammo.jpg", "", 0.02, "", "", $00, $09, $00)
     createitemtemplate("Micro-HID", "microhid", "GFX\items\MicroHid_Worldmodel.b3d", "GFX\items\microhid.jpg", "", 0.015, "", "", $00, $09, $00)
     createitemtemplate("Desert Eagle", "deagle", "GFX\items\deagle_worldmodel.b3d", "GFX\items\INVdeagle.jpg", "", 0.02, "", "", $00, $09, $00)
-    createitemtemplate("SPAS-12", "spas12", "GFX\items\SPAS_Worldmodel.b3d", "GFX\items\INVspas.jpg", "", 0.016, "", "", $00, $09, $00)
+    createitemtemplate("Benelli M1014", "m1014", "GFX\items\SPAS_Worldmodel.b3d", "GFX\items\INVspas.jpg", "", 0.016, "", "", $00, $09, $00)
     createitemtemplate("M4A4", "m4a4", "GFX\items\M4_Worldmodel.b3d", "GFX\items\INVm4.jpg", "", 0.02, "", "", $00, $09, $00)
     createitemtemplate("Handcuffs", "handcuffs", "GFX\items\Handcuts_Worldmodel.b3d", "GFX\items\INVhandcuts.jpg", "", 0.01, "", "", $00, $09, $00)
     createitemtemplate("SCP-035", "scp035", "GFX\items\035.b3d", "GFX\items\INV035.jpg", "", 0.018, "", "", $00, $09, $00)
@@ -256,5 +257,13 @@ Function inititemtemplates%()
     createitemtemplate("Smoke grenade", "grenadesmoke", "GFX\items\smokegrenadeworldmodel.b3d", "GFX\items\INVsmokegrenade.jpg", "", 0.014, "", "", $00, $09, $00)
     createitemtemplate("Combat knife", "knife", "GFX\items\knife_worldmodel.b3d", "GFX\items\INVknife.jpg", "", 0.012, "", "", $00, $09, $00)
     createitemtemplate("HK-G36", "hkg36", "GFX\items\HKG36_Worldmodel.b3d", "GFX\items\INVhkg36.jpg", "", 0.027, "", "", $00, $09, $00)
+    createitemtemplate("AK-47", "ak47", "GFX\items\AK47_Worldmodel.b3d", "GFX\items\INVAK47.png", "", 0.027, "", "", $00, $09, $00)
+    createitemtemplate("Famas", "famas", "GFX\items\Famas_Worldmodel.b3d", "GFX\items\invfamas.jpg", "", 0.027, "", "", $00, $09, $00)
+    createitemtemplate("HK-UMP45", "ump45", "GFX\items\ump45_Worldmodel.b3d", "GFX\items\INVump45.png", "", 0.015, "", "", $00, $09, $00)
+    createitemtemplate("Five-Seven", "fiveseven", "GFX\items\fiveseven_Worldmodel.b3d", "GFX\items\INVfiveseven.png", "", 0.027, "", "", $00, $09, $00)
+    createitemtemplate("AK-74M", "ak74m", "GFX\items\AK74M_Worldmodel.b3d", "GFX\items\INVak74m.png", "", 0.027, "", "", $00, $09, $00)
+    If (getscripts() <> 0) Then
+        public_inqueue(local2, $01)
+    EndIf
     Return $00
 End Function

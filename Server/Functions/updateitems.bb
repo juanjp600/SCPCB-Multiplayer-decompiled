@@ -12,7 +12,7 @@ Function updateitems%()
         If (local4\Field15 = $00) Then
             hideentity(local4\Field1)
             For local5 = Each players
-                If (7.5 > entitydistance(local5\Field62, local4\Field1)) Then
+                If (7.5 > entitydistance(local5\Field64, local4\Field1)) Then
                     local4\Field33 = $01
                     showentity(local4\Field1)
                     If (local4\Field31 = $00) Then
@@ -49,7 +49,7 @@ Function updateitems%()
             local4\Field29 = -14934890.0
         EndIf
     Next
-    If (server\Field81 <> 0) Then
+    If (server\Field79 <> 0) Then
         local6 = $00
         If (detectitemmoving <> 0) Then
             For local4 = Each items

@@ -4,10 +4,10 @@ Function multiplayer_addchatmsg%(arg0$, arg1%)
     If (udp_getstream() = $00) Then
         Return $00
     EndIf
-    If (networkserver\Field18 <> 0) Then
+    If (networkserver\Field15 <> 0) Then
         local0 = multiplayer_createmessage((nickname + arg0), $FFFFFFFF)
         For local1 = Each players
-            If (local1\Field0 <> networkserver\Field28) Then
+            If (local1\Field0 <> networkserver\Field20) Then
                 udp_writebyte($0B)
                 udp_writebyte($00)
                 udp_writeline(local0\Field0)
@@ -16,10 +16,11 @@ Function multiplayer_addchatmsg%(arg0$, arg1%)
             EndIf
         Next
     Else
-        udp_bytestreamwritechar($0B)
-        udp_bytestreamwriteline(arg0)
-        udp_bytestreamwritechar(arg1)
-        udp_setmicrobyte($0B)
+        udp_writebyte($0B)
+        udp_writebyte(networkserver\Field20)
+        udp_writeline(arg0)
+        udp_writebyte(arg1)
+        udp_sendmessage($00)
     EndIf
     Return $00
 End Function

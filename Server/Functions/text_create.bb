@@ -11,7 +11,7 @@ Function text_create%(arg0%, arg1$, arg2%, arg3%, arg4%, arg5$, arg6#)
     player[arg0]\Field44[local0]\Field5 = arg3
     player[arg0]\Field44[local0]\Field6 = arg4
     player[arg0]\Field44[local0]\Field3 = arg1
-    player[arg0]\Field50 = (player[arg0]\Field50 + $01)
+    player[arg0]\Field52 = (player[arg0]\Field52 + $01)
     Return local0
     Return $00
 End Function

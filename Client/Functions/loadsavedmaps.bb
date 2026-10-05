@@ -8,14 +8,15 @@ Function loadsavedmaps%()
         savedmapsauthor(local0) = ""
     Next
     savedmapsamount = $00
+    If (filesize("Map Creator\Maps") = $00) Then
+        createdir("Map Creator\Maps")
+    EndIf
     local1 = readdir("Map Creator\Maps")
     Repeat
         local2 = nextfile(local1)
-        debuglog(local2)
         If (local2 = "") Then
             Exit
         EndIf
-        debuglog(((currentdir() + "Map Creator\Maps\") + local2))
         If (filetype(((currentdir() + "Map Creator\Maps\") + local2)) = $01) Then
             If (((local2 <> ".") And (local2 <> "..")) <> 0) Then
                 If (((right(local2, $06) = "cbmap2") Or (right(local2, $05) = "cbmap")) <> 0) Then
@@ -31,11 +32,9 @@ Function loadsavedmaps%()
     local1 = readdir("Map Creator\Maps")
     Repeat
         local2 = nextfile(local1)
-        debuglog(local2)
         If (local2 = "") Then
             Exit
         EndIf
-        debuglog(((currentdir() + "Map Creator\Maps\") + local2))
         If (filetype(((currentdir() + "Map Creator\Maps\") + local2)) = $01) Then
             If (((local2 <> ".") And (local2 <> "..")) <> 0) Then
                 If (((right(local2, $06) = "cbmap2") Or (right(local2, $05) = "cbmap")) <> 0) Then

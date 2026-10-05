@@ -2,7 +2,7 @@ Function writenpcs%(arg0%)
     Local local0.npcs
     udp_writebyte(notarget)
     For local0 = Each npcs
-        If (((((((local0\Field80 <> $00) Or (hidedistance > entitydistance(local0\Field4, player[arg0]\Field62))) Or (curr106 = local0)) Or (curr5131 = local0)) Or (curr096 = local0)) Or (curr173 = local0)) <> 0) Then
+        If (((((((local0\Field80 <> $00) Or (hidedistance > entitydistance(local0\Field4, player[arg0]\Field64))) Or (curr106 = local0)) Or (curr5131 = local0)) Or (curr096 = local0)) Or (curr173 = local0)) <> 0) Then
             udp_writebyte(local0\Field6)
             udp_writebyte(local0\Field5)
             udp_writebyte((Int local0\Field24))

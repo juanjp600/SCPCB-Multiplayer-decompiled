@@ -13,7 +13,6 @@ Function load_terrain%(arg0%, arg1#, arg2%, arg3%, arg4%)
     Local local11%
     Local local12%
     Local local13#
-    debuglog(("load_terrain: " + (Str arg0)))
     If (arg0 = $00) Then
         runtimeerror((("Heightmap image " + (Str arg0)) + " does not exist."))
     EndIf

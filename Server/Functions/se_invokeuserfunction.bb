@@ -15,7 +15,6 @@ Function se_invokeuserfunction%(arg0.se_funcptr, arg1%)
     Local local96%
     Local local97%
     Local local99%
-    Local local100$
     se_current_function = arg0
     se_current_script = arg0\Field1
     local0 = se_transient_stack_level
@@ -1321,9 +1320,5 @@ Function se_invokeuserfunction%(arg0.se_funcptr, arg1%)
     Next
     se_transient_stack_level = local0
     se_transient_stack_offset = local1
-    local100 = errorlog()
-    If (local100 <> "") Then
-        adderrorlog(((local100 + " in: ") + arg0\Field0))
-    EndIf
     Return $00
 End Function

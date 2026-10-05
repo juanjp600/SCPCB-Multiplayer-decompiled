@@ -11,13 +11,13 @@ Function drawmapcreatortooltip%(arg0%, arg1%, arg2%, arg3%, arg4$)
     Local local9%
     Local local10%
     Local local11%
-    local0 = ((6.0 * menuscale) + (Float arg0))
-    local1 = ((6.0 * menuscale) + (Float arg1))
-    local2 = ((Float arg2) - (12.0 * menuscale))
-    local3 = ((Float arg3) - (12.0 * menuscale))
+    local0 = (Float (imenuscale[$06] + arg0))
+    local1 = (Float (imenuscale[$06] + arg1))
+    local2 = (Float (arg2 - imenuscale[$0C]))
+    local3 = (Float (arg3 - imenuscale[$0C]))
     local4 = $00
-    aasetfont(font1)
-    color($FF, $FF, $FF)
+    setfontex(fonts[$00]\Field0)
+    setcolorraw($FFFFFF)
     If (right(arg4, $06) = "cbmap2") Then
         local5[$00] = left(arg4, (len(arg4) - $07))
         local6 = openfile(("Map Creator\Maps\" + arg4))
@@ -63,13 +63,13 @@ Function drawmapcreatortooltip%(arg0%, arg1%, arg2%, arg3%, arg4$)
         local5[$05] = "Has custom maintenance tunnel: No"
     EndIf
     local4 = getlineamount(local5[$02], (Int local2), (Int local3), 1.0)
-    drawframe(arg0, arg1, arg2, (Int ((Float ((aastringheight(local5[$00]) * $06) + (aastringheight(local5[$02]) * local4))) + (5.0 * menuscale))), $00, $00)
-    color($FF, $FF, $FF)
-    aatext((Int local0), (Int local1), local5[$00], $00, $00, 1.0)
-    aatext((Int local0), (Int (local1 + (Float aastringheight(local5[$00])))), local5[$01], $00, $00, 1.0)
-    rowtext(local5[$02], local0, (local1 + (Float (aastringheight(local5[$00]) Shl $01))), local2, local3, $00, 1.0, $00)
-    aatext((Int local0), (Int (((Float ((aastringheight(local5[$00]) Shl $01) + (aastringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$03], $00, $00, 1.0)
-    aatext((Int local0), (Int (((Float ((aastringheight(local5[$00]) * $03) + (aastringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$04], $00, $00, 1.0)
-    aatext((Int local0), (Int (((Float ((aastringheight(local5[$00]) Shl $02) + (aastringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$05], $00, $00, 1.0)
+    drawframe(arg0, arg1, arg2, (Int ((Float ((stringheight(local5[$00]) * $06) + (stringheight(local5[$02]) * local4))) + (5.0 * menuscale))), $00, $00)
+    setcolorraw($FFFFFF)
+    text((Int local0), (Int local1), local5[$00], $00, $00)
+    text((Int local0), (Int (local1 + (Float stringheight(local5[$00])))), local5[$01], $00, $00)
+    rowtext(local5[$02], local0, (local1 + (Float (stringheight(local5[$00]) Shl $01))), local2, local3, $00, 1.0, $00)
+    text((Int local0), (Int (((Float ((stringheight(local5[$00]) Shl $01) + (stringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$03], $00, $00)
+    text((Int local0), (Int (((Float ((stringheight(local5[$00]) * $03) + (stringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$04], $00, $00)
+    text((Int local0), (Int (((Float ((stringheight(local5[$00]) Shl $02) + (stringheight(local5[$02]) * local4))) + (5.0 * menuscale)) + local1)), local5[$05], $00, $00)
     Return $00
 End Function

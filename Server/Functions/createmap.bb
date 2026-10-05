@@ -1,4 +1,4 @@
-Function createmap%(arg0$, arg1%)
+Function createmap%(arg0$)
     Local local0%
     Local local1%
     Local local2%
@@ -11,23 +11,24 @@ Function createmap%(arg0$, arg1%)
     Local local9%
     Local local10%
     Local local11%
-    Local local12%[3]
+    Local local12%
     Local local13%[3]
     Local local14%[3]
     Local local15%[3]
     Local local16%[3]
-    Local local18%
-    Local local21%
-    Local local24%
+    Local local17%[3]
+    Local local19%
+    Local local22%
     Local local25%
     Local local26%
-    Local local27.rooms
-    Local local28#
-    Local local30.doors
-    Local local31%
-    Local local34.rooms
-    arg1 = (Int max(min((Float arg1), 3.0), 0.0))
-    addlog((("Generating a map using the seed " + arg0) + "..."), $00, $00, $00)
+    Local local27%
+    Local local28.rooms
+    Local local29#
+    Local local31.doors
+    Local local32%
+    Local local35.rooms
+    local0 = $00
+    addlog((("Generating a map using the seed " + arg0) + " ..."), $00, $00, $00, $C0, $C0, $C0)
     Dim maptemp%((mapwidth + $01), (mapheight + $01))
     Dim mapfound%((mapwidth + $01), (mapheight + $01))
     i_zone\Field0[$00] = $0D
@@ -37,580 +38,564 @@ Function createmap%(arg0$, arg1%)
     seedrnd(generateseednumber(arg0))
     Dim mapname$(mapwidth, mapheight)
     Dim maproomid%($06)
-    local0 = (Int floor((Float (mapwidth Sar $01))))
-    local1 = (mapheight - $02)
-    For local3 = local1 To (mapheight - $01) Step $01
-        maptemp(local0, local3) = $01
+    local1 = (Int floor((Float (mapwidth Sar $01))))
+    local2 = (mapheight - $02)
+    For local4 = local2 To (mapheight - $01) Step $01
+        maptemp(local1, local4) = $01
     Next
     Repeat
-        local6 = rand(($0A / (arg1 + $01)), ($0F / (arg1 + $01)))
-        If ((Float local0) > ((Float mapwidth) * 0.6)) Then
-            local6 = (- local6)
-        ElseIf ((Float local0) > ((Float mapwidth) * 0.4)) Then
-            local0 = (local0 - (local6 Sar $01))
+        local7 = rand(($0A / (local0 + $01)), ($0F / (local0 + $01)))
+        If ((Float local1) > ((Float mapwidth) * 0.6)) Then
+            local7 = (- local7)
+        ElseIf ((Float local1) > ((Float mapwidth) * 0.4)) Then
+            local1 = (local1 - (local7 Sar $01))
         EndIf
-        If ((local0 + local6) > (mapwidth - $03)) Then
-            local6 = ((mapwidth - $03) - local0)
-        ElseIf ((local0 + local6) < $02) Then
-            local6 = ((- local0) + $02)
+        If ((local1 + local7) > (mapwidth - $03)) Then
+            local7 = ((mapwidth - $03) - local1)
+        ElseIf ((local1 + local7) < $02) Then
+            local7 = ((- local1) + $02)
         EndIf
-        local0 = (Int min((Float local0), (Float (local0 + local6))))
-        local6 = (Abs local6)
-        For local3 = local0 To (local0 + local6) Step $01
-            maptemp((Int min((Float local3), (Float mapwidth))), local1) = $01
+        local1 = (Int min((Float local1), (Float (local1 + local7))))
+        local7 = ((local7 Xor (- (local7 < 0))) - (- (local7 < 0)))
+        For local4 = local1 To (local1 + local7) Step $01
+            maptemp((Int min((Float local4), (Float mapwidth))), local2) = $01
         Next
-        local7 = rand((Int max(2.0, (Float ($03 - arg1)))), ($04 - (arg1 Sar $01)))
-        If ((local1 - local7) < $01) Then
-            local7 = (local1 - $01)
+        local8 = rand((Int max(2.0, (Float ($03 - local0)))), ($04 - (local0 Sar $01)))
+        If ((local2 - local8) < $01) Then
+            local8 = (local2 - $01)
         EndIf
-        local9 = rand($04, $05)
-        If (getzone((local1 - local7)) <> getzone(((local1 - local7) + $01))) Then
-            local7 = (local7 - $01)
+        local10 = rand($04, $05)
+        If (getzone((local2 - local8)) <> getzone(((local2 - local8) + $01))) Then
+            local8 = (local8 - $01)
         EndIf
-        For local3 = $01 To local9 Step $01
-            local4 = (Int max(min((Float rand(local0, ((local0 + local6) - $01))), (Float (mapwidth - $02))), 2.0))
-            While (((maptemp(local4, (local1 - $01)) Or maptemp((local4 - $01), (local1 - $01))) Or maptemp((local4 + $01), (local1 - $01))) <> 0)
-                local4 = (local4 + $01)
+        For local4 = $01 To local10 Step $01
+            local5 = (Int max(min((Float rand(local1, ((local1 + local7) - $01))), (Float (mapwidth - $02))), 2.0))
+            While (((maptemp(local5, (local2 - $01)) Or maptemp((local5 - $01), (local2 - $01))) Or maptemp((local5 + $01), (local2 - $01))) <> 0)
+                local5 = (local5 + $01)
             Wend
-            If (local4 < (local0 + local6)) Then
-                If (local3 = $01) Then
-                    local10 = local7
+            If (local5 < (local1 + local7)) Then
+                If (local4 = $01) Then
+                    local11 = local8
                     If (rand($02, $01) = $01) Then
-                        local4 = local0
+                        local5 = local1
                     Else
-                        local4 = (local0 + local6)
+                        local5 = (local1 + local7)
                     EndIf
                 Else
-                    local10 = rand($01, local7)
+                    local11 = rand($01, local8)
                 EndIf
-                For local5 = (local1 - local10) To local1 Step $01
-                    If (getzone(local5) <> getzone((local5 + $01))) Then
-                        maptemp(local4, local5) = $FF
+                For local6 = (local2 - local11) To local2 Step $01
+                    If (getzone(local6) <> getzone((local6 + $01))) Then
+                        maptemp(local5, local6) = $FF
                     Else
-                        maptemp(local4, local5) = $01
+                        maptemp(local5, local6) = $01
                     EndIf
                 Next
-                If (local10 = local7) Then
-                    local2 = local4
+                If (local11 = local8) Then
+                    local3 = local5
                 EndIf
             EndIf
         Next
-        local0 = local2
-        local1 = (local1 - local7)
-    Until (local1 < $02)
-    local11 = $03
-    For local1 = $01 To (mapheight - $01) Step $01
-        local8 = getzone(local1)
-        For local0 = $01 To (mapwidth - $01) Step $01
-            If (maptemp(local0, local1) > $00) Then
-                local2 = (Int (min((Float maptemp((local0 + $01), local1)), 1.0) + min((Float maptemp((local0 - $01), local1)), 1.0)))
-                local2 = (Int ((min((Float maptemp(local0, (local1 + $01))), 1.0) + (Float local2)) + min((Float maptemp(local0, (local1 - $01))), 1.0)))
-                If (maptemp(local0, local1) < $FF) Then
-                    maptemp(local0, local1) = local2
+        local1 = local3
+        local2 = (local2 - local8)
+    Until (local2 < $02)
+    local12 = $03
+    For local2 = $01 To (mapheight - $01) Step $01
+        local9 = getzone(local2)
+        For local1 = $01 To (mapwidth - $01) Step $01
+            If (maptemp(local1, local2) > $00) Then
+                local3 = (Int (min((Float maptemp((local1 + $01), local2)), 1.0) + min((Float maptemp((local1 - $01), local2)), 1.0)))
+                local3 = (Int ((min((Float maptemp(local1, (local2 + $01))), 1.0) + (Float local3)) + min((Float maptemp(local1, (local2 - $01))), 1.0)))
+                If (maptemp(local1, local2) < $FF) Then
+                    maptemp(local1, local2) = local3
                 EndIf
-                Select maptemp(local0, local1)
+                Select maptemp(local1, local2)
                     Case $01
-                        local12[local8] = (local12[local8] + $01)
+                        local13[local9] = (local13[local9] + $01)
                     Case $02
-                        If (2.0 = (min((Float maptemp((local0 + $01), local1)), 1.0) + min((Float maptemp((local0 - $01), local1)), 1.0))) Then
-                            local13[local8] = (local13[local8] + $01)
-                        ElseIf (2.0 = (min((Float maptemp(local0, (local1 + $01))), 1.0) + min((Float maptemp(local0, (local1 - $01))), 1.0))) Then
-                            local13[local8] = (local13[local8] + $01)
+                        If (2.0 = (min((Float maptemp((local1 + $01), local2)), 1.0) + min((Float maptemp((local1 - $01), local2)), 1.0))) Then
+                            local14[local9] = (local14[local9] + $01)
+                        ElseIf (2.0 = (min((Float maptemp(local1, (local2 + $01))), 1.0) + min((Float maptemp(local1, (local2 - $01))), 1.0))) Then
+                            local14[local9] = (local14[local9] + $01)
                         Else
-                            local14[local8] = (local14[local8] + $01)
+                            local15[local9] = (local15[local9] + $01)
                         EndIf
                     Case $03
-                        local15[local8] = (local15[local8] + $01)
+                        local16[local9] = (local16[local9] + $01)
                     Case $04
-                        local16[local8] = (local16[local8] + $01)
+                        local17[local9] = (local17[local9] + $01)
                 End Select
             EndIf
         Next
     Next
-    For local3 = $00 To $02 Step $01
-        local2 = (Int (max(1.0, (Float ($05 - (arg1 Shl $01)))) + (Float (- local12[local3]))))
-        If (local2 > $00) Then
-            For local1 = (((mapheight / local11) * ($02 - local3)) + $01) To (Int (((Float (mapheight / local11)) * ((Float ($02 - local3)) + 1.0)) - 2.0)) Step $01
-                For local0 = $02 To (mapwidth - $02) Step $01
-                    If (maptemp(local0, local1) = $00) Then
-                        If (1.0 = (((min((Float maptemp((local0 + $01), local1)), 1.0) + min((Float maptemp((local0 - $01), local1)), 1.0)) + min((Float maptemp(local0, (local1 + $01))), 1.0)) + min((Float maptemp(local0, (local1 - $01))), 1.0))) Then
-                            If (maptemp((local0 + $01), local1) <> 0) Then
-                                local4 = (local0 + $01)
-                                local5 = local1
-                            ElseIf (maptemp((local0 - $01), local1) <> 0) Then
-                                local4 = (local0 - $01)
-                                local5 = local1
-                            ElseIf (maptemp(local0, (local1 + $01)) <> 0) Then
-                                local4 = local0
+    For local4 = $00 To $02 Step $01
+        local3 = (Int (max(1.0, (Float ($05 - (local0 Shl $01)))) + (Float (- local13[local4]))))
+        If (local3 > $00) Then
+            For local2 = (((mapheight / local12) * ($02 - local4)) + $01) To (Int (((Float (mapheight / local12)) * ((Float ($02 - local4)) + 1.0)) - 2.0)) Step $01
+                For local1 = $02 To (mapwidth - $02) Step $01
+                    If (maptemp(local1, local2) = $00) Then
+                        If (1.0 = (((min((Float maptemp((local1 + $01), local2)), 1.0) + min((Float maptemp((local1 - $01), local2)), 1.0)) + min((Float maptemp(local1, (local2 + $01))), 1.0)) + min((Float maptemp(local1, (local2 - $01))), 1.0))) Then
+                            If (maptemp((local1 + $01), local2) <> 0) Then
                                 local5 = (local1 + $01)
-                            ElseIf (maptemp(local0, (local1 - $01)) <> 0) Then
-                                local4 = local0
+                                local6 = local2
+                            ElseIf (maptemp((local1 - $01), local2) <> 0) Then
                                 local5 = (local1 - $01)
+                                local6 = local2
+                            ElseIf (maptemp(local1, (local2 + $01)) <> 0) Then
+                                local5 = local1
+                                local6 = (local2 + $01)
+                            ElseIf (maptemp(local1, (local2 - $01)) <> 0) Then
+                                local5 = local1
+                                local6 = (local2 - $01)
                             EndIf
-                            local18 = $00
-                            If (((maptemp(local4, local5) > $01) And (maptemp(local4, local5) < $04)) <> 0) Then
-                                Select maptemp(local4, local5)
+                            local19 = $00
+                            If (((maptemp(local5, local6) > $01) And (maptemp(local5, local6) < $04)) <> 0) Then
+                                Select maptemp(local5, local6)
                                     Case $02
-                                        If (2.0 = (min((Float maptemp((local4 + $01), local5)), 1.0) + min((Float maptemp((local4 - $01), local5)), 1.0))) Then
-                                            local13[local3] = (local13[local3] - $01)
-                                            local15[local3] = (local15[local3] + $01)
-                                            local18 = $01
-                                        ElseIf (2.0 = (min((Float maptemp(local4, (local5 + $01))), 1.0) + min((Float maptemp(local4, (local5 - $01))), 1.0))) Then
-                                            local13[local3] = (local13[local3] - $01)
-                                            local15[local3] = (local15[local3] + $01)
-                                            local18 = $01
+                                        If (2.0 = (min((Float maptemp((local5 + $01), local6)), 1.0) + min((Float maptemp((local5 - $01), local6)), 1.0))) Then
+                                            local14[local4] = (local14[local4] - $01)
+                                            local16[local4] = (local16[local4] + $01)
+                                            local19 = $01
+                                        ElseIf (2.0 = (min((Float maptemp(local5, (local6 + $01))), 1.0) + min((Float maptemp(local5, (local6 - $01))), 1.0))) Then
+                                            local14[local4] = (local14[local4] - $01)
+                                            local16[local4] = (local16[local4] + $01)
+                                            local19 = $01
                                         EndIf
                                     Case $03
-                                        local15[local3] = (local15[local3] - $01)
-                                        local16[local3] = (local16[local3] + $01)
-                                        local18 = $01
+                                        local16[local4] = (local16[local4] - $01)
+                                        local17[local4] = (local17[local4] + $01)
+                                        local19 = $01
                                 End Select
-                                If (local18 <> 0) Then
-                                    maptemp(local4, local5) = (maptemp(local4, local5) + $01)
-                                    maptemp(local0, local1) = $01
-                                    local12[local3] = (local12[local3] + $01)
-                                    local2 = (local2 - $01)
+                                If (local19 <> 0) Then
+                                    maptemp(local5, local6) = (maptemp(local5, local6) + $01)
+                                    maptemp(local1, local2) = $01
+                                    local13[local4] = (local13[local4] + $01)
+                                    local3 = (local3 - $01)
                                 EndIf
                             EndIf
                         EndIf
                     EndIf
-                    If (local2 = $00) Then
+                    If (local3 = $00) Then
                         Exit
                     EndIf
                 Next
-                If (local2 = $00) Then
+                If (local3 = $00) Then
                     Exit
                 EndIf
             Next
         EndIf
     Next
-    For local3 = $00 To $02 Step $01
-        Select local3
+    For local4 = $00 To $02 Step $01
+        Select local4
             Case $02
-                local8 = $02
-                local21 = (mapheight / $03)
+                local9 = $02
+                local22 = (mapheight / $03)
             Case $01
-                local8 = ((mapheight / $03) + $01)
-                local21 = (Int (((Float mapheight) * (1.0 / 1.5)) - 1.0))
+                local9 = ((mapheight / $03) + $01)
+                local22 = (Int (((Float mapheight) * (1.0 / 1.5)) - 1.0))
             Case $00
-                local8 = (Int (((Float mapheight) * (1.0 / 1.5)) + 1.0))
-                local21 = (mapheight - $02)
+                local9 = (Int (((Float mapheight) * (1.0 / 1.5)) + 1.0))
+                local22 = (mapheight - $02)
         End Select
-        If (local16[local3] < $01) Then
-            debuglog(("forcing a ROOM4 into zone " + (Str local3)))
-            local2 = $00
-            For local1 = local8 To local21 Step $01
-                For local0 = $02 To (mapwidth - $02) Step $01
-                    If (maptemp(local0, local1) = $03) Then
+        If (local17[local4] < $01) Then
+            local3 = $00
+            For local2 = local9 To local22 Step $01
+                For local1 = $02 To (mapwidth - $02) Step $01
+                    If (maptemp(local1, local2) = $03) Then
                         Select $00
-                            Case (((maptemp((local0 + $01), local1) Or maptemp((local0 + $01), (local1 + $01))) Or maptemp((local0 + $01), (local1 - $01))) Or maptemp((local0 + $02), local1))
-                                maptemp((local0 + $01), local1) = $01
-                                local2 = $01
-                            Case (((maptemp((local0 - $01), local1) Or maptemp((local0 - $01), (local1 + $01))) Or maptemp((local0 - $01), (local1 - $01))) Or maptemp((local0 - $02), local1))
-                                maptemp((local0 - $01), local1) = $01
-                                local2 = $01
-                            Case (((maptemp(local0, (local1 + $01)) Or maptemp((local0 + $01), (local1 + $01))) Or maptemp((local0 - $01), (local1 + $01))) Or maptemp(local0, (local1 + $02)))
-                                maptemp(local0, (local1 + $01)) = $01
-                                local2 = $01
-                            Case (((maptemp(local0, (local1 - $01)) Or maptemp((local0 + $01), (local1 - $01))) Or maptemp((local0 - $01), (local1 - $01))) Or maptemp(local0, (local1 - $02)))
-                                maptemp(local0, (local1 - $01)) = $01
-                                local2 = $01
+                            Case (((maptemp((local1 + $01), local2) Or maptemp((local1 + $01), (local2 + $01))) Or maptemp((local1 + $01), (local2 - $01))) Or maptemp((local1 + $02), local2))
+                                maptemp((local1 + $01), local2) = $01
+                                local3 = $01
+                            Case (((maptemp((local1 - $01), local2) Or maptemp((local1 - $01), (local2 + $01))) Or maptemp((local1 - $01), (local2 - $01))) Or maptemp((local1 - $02), local2))
+                                maptemp((local1 - $01), local2) = $01
+                                local3 = $01
+                            Case (((maptemp(local1, (local2 + $01)) Or maptemp((local1 + $01), (local2 + $01))) Or maptemp((local1 - $01), (local2 + $01))) Or maptemp(local1, (local2 + $02)))
+                                maptemp(local1, (local2 + $01)) = $01
+                                local3 = $01
+                            Case (((maptemp(local1, (local2 - $01)) Or maptemp((local1 + $01), (local2 - $01))) Or maptemp((local1 - $01), (local2 - $01))) Or maptemp(local1, (local2 - $02)))
+                                maptemp(local1, (local2 - $01)) = $01
+                                local3 = $01
                         End Select
-                        If (local2 = $01) Then
-                            maptemp(local0, local1) = $04
-                            debuglog((((("ROOM4 forced into slot (" + (Str local0)) + ", ") + (Str local1)) + ")"))
-                            local16[local3] = (local16[local3] + $01)
-                            local15[local3] = (local15[local3] - $01)
-                            local12[local3] = (local12[local3] + $01)
+                        If (local3 = $01) Then
+                            maptemp(local1, local2) = $04
+                            local17[local4] = (local17[local4] + $01)
+                            local16[local4] = (local16[local4] - $01)
+                            local13[local4] = (local13[local4] + $01)
                         EndIf
                     EndIf
-                    If (local2 = $01) Then
+                    If (local3 = $01) Then
                         Exit
                     EndIf
                 Next
-                If (local2 = $01) Then
+                If (local3 = $01) Then
                     Exit
                 EndIf
             Next
-            If (local2 = $00) Then
-                debuglog(("Couldn't place ROOM4 in zone " + (Str local3)))
+            If (local3 = $00) Then
             EndIf
         EndIf
-        If (local14[local3] < $01) Then
-            debuglog(("forcing a ROOM2C into zone " + (Str local3)))
-            local2 = $00
-            local8 = (local8 + $01)
-            local21 = (local21 - $01)
-            For local1 = local8 To local21 Step $01
-                For local0 = $03 To (mapwidth - $03) Step $01
-                    If (maptemp(local0, local1) = $01) Then
+        If (local15[local4] < $01) Then
+            local3 = $00
+            local9 = (local9 + $01)
+            local22 = (local22 - $01)
+            For local2 = local9 To local22 Step $01
+                For local1 = $03 To (mapwidth - $03) Step $01
+                    If (maptemp(local1, local2) = $01) Then
                         Select $01
-                            Case (maptemp((local0 - $01), local1) > $00)
-                                If (((maptemp(local0, (local1 - $01)) + maptemp(local0, (local1 + $01))) + maptemp((local0 + $02), local1)) = $00) Then
-                                    If (((maptemp((local0 + $01), (local1 - $02)) + maptemp((local0 + $02), (local1 - $01))) + maptemp((local0 + $01), (local1 - $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp((local0 + $01), local1) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str (local0 + $01))) + ", ") + (Str local1)) + ")"))
-                                        maptemp((local0 + $01), (local1 - $01)) = $01
-                                        local2 = $01
-                                    ElseIf (((maptemp((local0 + $01), (local1 + $02)) + maptemp((local0 + $02), (local1 + $01))) + maptemp((local0 + $01), (local1 + $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp((local0 + $01), local1) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str (local0 + $01))) + ", ") + (Str local1)) + ")"))
-                                        maptemp((local0 + $01), (local1 + $01)) = $01
-                                        local2 = $01
+                            Case (maptemp((local1 - $01), local2) > $00)
+                                If (((maptemp(local1, (local2 - $01)) + maptemp(local1, (local2 + $01))) + maptemp((local1 + $02), local2)) = $00) Then
+                                    If (((maptemp((local1 + $01), (local2 - $02)) + maptemp((local1 + $02), (local2 - $01))) + maptemp((local1 + $01), (local2 - $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp((local1 + $01), local2) = $02
+                                        maptemp((local1 + $01), (local2 - $01)) = $01
+                                        local3 = $01
+                                    ElseIf (((maptemp((local1 + $01), (local2 + $02)) + maptemp((local1 + $02), (local2 + $01))) + maptemp((local1 + $01), (local2 + $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp((local1 + $01), local2) = $02
+                                        maptemp((local1 + $01), (local2 + $01)) = $01
+                                        local3 = $01
                                     EndIf
                                 EndIf
-                            Case (maptemp((local0 + $01), local1) > $00)
-                                If (((maptemp(local0, (local1 - $01)) + maptemp(local0, (local1 + $01))) + maptemp((local0 - $02), local1)) = $00) Then
-                                    If (((maptemp((local0 - $01), (local1 - $02)) + maptemp((local0 - $02), (local1 - $01))) + maptemp((local0 - $01), (local1 - $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp((local0 - $01), local1) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str (local0 - $01))) + ", ") + (Str local1)) + ")"))
-                                        maptemp((local0 - $01), (local1 - $01)) = $01
-                                        local2 = $01
-                                    ElseIf (((maptemp((local0 - $01), (local1 + $02)) + maptemp((local0 - $02), (local1 + $01))) + maptemp((local0 - $01), (local1 + $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp((local0 - $01), local1) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str (local0 - $01))) + ", ") + (Str local1)) + ")"))
-                                        maptemp((local0 - $01), (local1 + $01)) = $01
-                                        local2 = $01
+                            Case (maptemp((local1 + $01), local2) > $00)
+                                If (((maptemp(local1, (local2 - $01)) + maptemp(local1, (local2 + $01))) + maptemp((local1 - $02), local2)) = $00) Then
+                                    If (((maptemp((local1 - $01), (local2 - $02)) + maptemp((local1 - $02), (local2 - $01))) + maptemp((local1 - $01), (local2 - $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp((local1 - $01), local2) = $02
+                                        maptemp((local1 - $01), (local2 - $01)) = $01
+                                        local3 = $01
+                                    ElseIf (((maptemp((local1 - $01), (local2 + $02)) + maptemp((local1 - $02), (local2 + $01))) + maptemp((local1 - $01), (local2 + $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp((local1 - $01), local2) = $02
+                                        maptemp((local1 - $01), (local2 + $01)) = $01
+                                        local3 = $01
                                     EndIf
                                 EndIf
-                            Case (maptemp(local0, (local1 - $01)) > $00)
-                                If (((maptemp((local0 - $01), local1) + maptemp((local0 + $01), local1)) + maptemp(local0, (local1 + $02))) = $00) Then
-                                    If (((maptemp((local0 - $02), (local1 + $01)) + maptemp((local0 - $01), (local1 + $02))) + maptemp((local0 - $01), (local1 + $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp(local0, (local1 + $01)) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str local0)) + ", ") + (Str (local1 + $01))) + ")"))
-                                        maptemp((local0 - $01), (local1 + $01)) = $01
-                                        local2 = $01
-                                    ElseIf (((maptemp((local0 + $02), (local1 + $01)) + maptemp((local0 + $01), (local1 + $02))) + maptemp((local0 + $01), (local1 + $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp(local0, (local1 + $01)) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str local0)) + ", ") + (Str (local1 + $01))) + ")"))
-                                        maptemp((local0 + $01), (local1 + $01)) = $01
-                                        local2 = $01
+                            Case (maptemp(local1, (local2 - $01)) > $00)
+                                If (((maptemp((local1 - $01), local2) + maptemp((local1 + $01), local2)) + maptemp(local1, (local2 + $02))) = $00) Then
+                                    If (((maptemp((local1 - $02), (local2 + $01)) + maptemp((local1 - $01), (local2 + $02))) + maptemp((local1 - $01), (local2 + $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp(local1, (local2 + $01)) = $02
+                                        maptemp((local1 - $01), (local2 + $01)) = $01
+                                        local3 = $01
+                                    ElseIf (((maptemp((local1 + $02), (local2 + $01)) + maptemp((local1 + $01), (local2 + $02))) + maptemp((local1 + $01), (local2 + $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp(local1, (local2 + $01)) = $02
+                                        maptemp((local1 + $01), (local2 + $01)) = $01
+                                        local3 = $01
                                     EndIf
                                 EndIf
-                            Case (maptemp(local0, (local1 + $01)) > $00)
-                                If (((maptemp((local0 - $01), local1) + maptemp((local0 + $01), local1)) + maptemp(local0, (local1 - $02))) = $00) Then
-                                    If (((maptemp((local0 - $02), (local1 - $01)) + maptemp((local0 - $01), (local1 - $02))) + maptemp((local0 - $01), (local1 - $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp(local0, (local1 - $01)) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str local0)) + ", ") + (Str (local1 - $01))) + ")"))
-                                        maptemp((local0 - $01), (local1 - $01)) = $01
-                                        local2 = $01
-                                    ElseIf (((maptemp((local0 + $02), (local1 - $01)) + maptemp((local0 + $01), (local1 - $02))) + maptemp((local0 + $01), (local1 - $01))) = $00) Then
-                                        maptemp(local0, local1) = $02
-                                        maptemp(local0, (local1 - $01)) = $02
-                                        debuglog((((("ROOM2C forced into slot (" + (Str local0)) + ", ") + (Str (local1 - $01))) + ")"))
-                                        maptemp((local0 + $01), (local1 - $01)) = $01
-                                        local2 = $01
+                            Case (maptemp(local1, (local2 + $01)) > $00)
+                                If (((maptemp((local1 - $01), local2) + maptemp((local1 + $01), local2)) + maptemp(local1, (local2 - $02))) = $00) Then
+                                    If (((maptemp((local1 - $02), (local2 - $01)) + maptemp((local1 - $01), (local2 - $02))) + maptemp((local1 - $01), (local2 - $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp(local1, (local2 - $01)) = $02
+                                        maptemp((local1 - $01), (local2 - $01)) = $01
+                                        local3 = $01
+                                    ElseIf (((maptemp((local1 + $02), (local2 - $01)) + maptemp((local1 + $01), (local2 - $02))) + maptemp((local1 + $01), (local2 - $01))) = $00) Then
+                                        maptemp(local1, local2) = $02
+                                        maptemp(local1, (local2 - $01)) = $02
+                                        maptemp((local1 + $01), (local2 - $01)) = $01
+                                        local3 = $01
                                     EndIf
                                 EndIf
                         End Select
-                        If (local2 = $01) Then
-                            local14[local3] = (local14[local3] + $01)
-                            local13[local3] = (local13[local3] + $01)
+                        If (local3 = $01) Then
+                            local15[local4] = (local15[local4] + $01)
+                            local14[local4] = (local14[local4] + $01)
                         EndIf
                     EndIf
-                    If (local2 = $01) Then
+                    If (local3 = $01) Then
                         Exit
                     EndIf
                 Next
-                If (local2 = $01) Then
+                If (local3 = $01) Then
                     Exit
                 EndIf
             Next
-            If (local2 = $00) Then
-                debuglog(("Couldn't place ROOM2C in zone " + (Str local3)))
+            If (local3 = $00) Then
             EndIf
         EndIf
     Next
-    local24 = (($37 * mapwidth) / $14)
-    local24 = (Int max((Float local24), (Float (((local12[$00] + local12[$01]) + local12[$02]) + $01))))
-    local24 = (Int max((Float local24), (Float (((local13[$00] + local13[$01]) + local13[$02]) + $01))))
-    local24 = (Int max((Float local24), (Float (((local14[$00] + local14[$01]) + local14[$02]) + $01))))
-    local24 = (Int max((Float local24), (Float (((local15[$00] + local15[$01]) + local15[$02]) + $01))))
-    local24 = (Int max((Float local24), (Float (((local16[$00] + local16[$01]) + local16[$02]) + $01))))
-    Dim maproom$($06, local24)
-    local25 = $01
-    local26 = (local12[$00] - $01)
+    local25 = (($37 * mapwidth) / $14)
+    local25 = (Int max((Float local25), (Float (((local13[$00] + local13[$01]) + local13[$02]) + $01))))
+    local25 = (Int max((Float local25), (Float (((local14[$00] + local14[$01]) + local14[$02]) + $01))))
+    local25 = (Int max((Float local25), (Float (((local15[$00] + local15[$01]) + local15[$02]) + $01))))
+    local25 = (Int max((Float local25), (Float (((local16[$00] + local16[$01]) + local16[$02]) + $01))))
+    local25 = (Int max((Float local25), (Float (((local17[$00] + local17[$01]) + local17[$02]) + $01))))
+    Dim maproom$($06, local25)
+    local26 = $01
+    local27 = (local13[$00] - $01)
     maproom($01, $00) = "start"
-    setroom("roompj", $01, (Int floor((0.1 * (Float local12[$00])))), local25, local26)
-    setroom("914", $01, (Int floor((0.3 * (Float local12[$00])))), local25, local26)
-    setroom("room1archive", $01, (Int floor((0.5 * (Float local12[$00])))), local25, local26)
-    setroom("room205", $01, (Int floor((0.6 * (Float local12[$00])))), local25, local26)
+    setroom("roompj", $01, (Int floor((0.1 * (Float local13[$00])))), local26, local27)
+    setroom("914", $01, (Int floor((0.3 * (Float local13[$00])))), local26, local27)
+    setroom("room1archive", $01, (Int floor((0.5 * (Float local13[$00])))), local26, local27)
+    setroom("room205", $01, (Int floor((0.6 * (Float local13[$00])))), local26, local27)
     maproom($03, $00) = "lockroom"
-    local25 = $01
-    local26 = (local13[$00] - $01)
+    local26 = $01
+    local27 = (local14[$00] - $01)
     maproom($02, $00) = "room2closets"
-    setroom("room2testroom2", $02, (Int floor((0.1 * (Float local13[$00])))), local25, local26)
-    setroom("room2scps", $02, (Int floor((0.2 * (Float local13[$00])))), local25, local26)
-    setroom("room2storage", $02, (Int floor((0.3 * (Float local13[$00])))), local25, local26)
-    setroom("room2gw_b", $02, (Int floor((0.4 * (Float local13[$00])))), local25, local26)
-    setroom("room2sl", $02, (Int floor((0.5 * (Float local13[$00])))), local25, local26)
-    setroom("room012", $02, (Int floor((0.55 * (Float local13[$00])))), local25, local26)
-    setroom("room2scps2", $02, (Int floor((0.6 * (Float local13[$00])))), local25, local26)
-    setroom("room1123", $02, (Int floor((0.7 * (Float local13[$00])))), local25, local26)
-    setroom("room2elevator", $02, (Int floor((0.85 * (Float local13[$00])))), local25, local26)
-    maproom($04, (Int floor((rnd(0.2, 0.8) * (Float local15[$00]))))) = "room3storage"
-    maproom($03, (Int floor((0.5 * (Float local14[$00]))))) = "room1162"
-    maproom($05, (Int floor((0.3 * (Float local16[$00]))))) = "room4info"
-    local25 = local12[$00]
-    local26 = ((local12[$00] + local12[$01]) - $01)
-    setroom("room079", $01, (Int (floor((0.15 * (Float local12[$01]))) + (Float local12[$00]))), local25, local26)
-    setroom("room106", $01, (Int (floor((0.3 * (Float local12[$01]))) + (Float local12[$00]))), local25, local26)
-    setroom("008", $01, (Int (floor((0.4 * (Float local12[$01]))) + (Float local12[$00]))), local25, local26)
-    setroom("room035", $01, (Int (floor((0.5 * (Float local12[$01]))) + (Float local12[$00]))), local25, local26)
-    setroom("coffin", $01, (Int (floor((0.7 * (Float local12[$01]))) + (Float local12[$00]))), local25, local26)
-    local25 = local13[$00]
-    local26 = ((local13[$00] + local13[$01]) - $01)
-    maproom($02, (Int (floor((0.1 * (Float local13[$01]))) + (Float local13[$00])))) = "room2nuke"
-    setroom("room2tunnel", $02, (Int (floor((0.25 * (Float local13[$01]))) + (Float local13[$00]))), local25, local26)
-    setroom("room049", $02, (Int (floor((0.4 * (Float local13[$01]))) + (Float local13[$00]))), local25, local26)
-    setroom("room2shaft", $02, (Int (floor((0.6 * (Float local13[$01]))) + (Float local13[$00]))), local25, local26)
-    setroom("testroom", $02, (Int (floor((0.7 * (Float local13[$01]))) + (Float local13[$00]))), local25, local26)
-    setroom("room2servers", $02, (Int (floor((0.9 * (Float local13[$01]))) + (Float local13[$00]))), local25, local26)
-    maproom($04, (Int (floor((0.3 * (Float local15[$01]))) + (Float local15[$00])))) = "room513"
-    maproom($04, (Int (floor((0.6 * (Float local15[$01]))) + (Float local15[$00])))) = "room966"
-    maproom($03, (Int (floor((0.5 * (Float local14[$01]))) + (Float local14[$00])))) = "room2cpit"
-    maproom($01, (((local12[$00] + local12[$01]) + local12[$02]) - $02)) = "exit1"
-    maproom($01, (((local12[$00] + local12[$01]) + local12[$02]) - $01)) = "gateaentrance"
-    maproom($01, (local12[$00] + local12[$01])) = "room1lifts"
-    local25 = (local13[$00] + local13[$01])
-    local26 = (((local13[$00] + local13[$01]) + local13[$02]) - $01)
-    maproom($02, (Int (floor((0.1 * (Float local13[$02]))) + (Float local25)))) = "room2poffices"
-    setroom("room2cafeteria", $02, (Int (floor((0.2 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2sroom", $02, (Int (floor((0.3 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2servers2", $02, (Int (floor((0.4 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2offices", $02, (Int (floor((0.45 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2offices4", $02, (Int (floor((0.5 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room860", $02, (Int (floor((0.6 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("medibay", $02, (Int (floor((0.7 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2poffices2", $02, (Int (floor((0.8 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    setroom("room2offices2", $02, (Int (floor((0.9 * (Float local13[$02]))) + (Float local25))), local25, local26)
-    maproom($03, (local14[$00] + local14[$01])) = "room2ccont"
-    maproom($03, ((local14[$00] + local14[$01]) + $01)) = "lockroom2"
-    maproom($04, (Int ((Float (local15[$00] + local15[$01])) + floor((0.3 * (Float local15[$02])))))) = "room3servers"
-    maproom($04, (Int ((Float (local15[$00] + local15[$01])) + floor((0.7 * (Float local15[$02])))))) = "room3servers2"
-    maproom($04, (Int ((Float (local15[$00] + local15[$01])) + floor((0.5 * (Float local15[$02])))))) = "room3offices"
-    local2 = $00
-    local28 = 8.0
-    local1 = (mapheight - $01)
-    While (local1 >= $01)
-        If (local1 < ((mapheight / $03) + $01)) Then
-            local8 = $03
-        ElseIf ((Float local1) < ((Float mapheight) * (1.0 / 1.5))) Then
-            local8 = $02
+    setroom("room2testroom2", $02, (Int floor((0.1 * (Float local14[$00])))), local26, local27)
+    setroom("room2scps", $02, (Int floor((0.2 * (Float local14[$00])))), local26, local27)
+    setroom("room2storage", $02, (Int floor((0.3 * (Float local14[$00])))), local26, local27)
+    setroom("room2gw_b", $02, (Int floor((0.4 * (Float local14[$00])))), local26, local27)
+    setroom("room2sl", $02, (Int floor((0.5 * (Float local14[$00])))), local26, local27)
+    setroom("room012", $02, (Int floor((0.55 * (Float local14[$00])))), local26, local27)
+    setroom("room2scps2", $02, (Int floor((0.6 * (Float local14[$00])))), local26, local27)
+    setroom("room1123", $02, (Int floor((0.7 * (Float local14[$00])))), local26, local27)
+    setroom("room2elevator", $02, (Int floor((0.85 * (Float local14[$00])))), local26, local27)
+    maproom($04, (Int floor((rnd(0.2, 0.8) * (Float local16[$00]))))) = "room3storage"
+    maproom($03, (Int floor((0.5 * (Float local15[$00]))))) = "room1162"
+    maproom($05, (Int floor((0.3 * (Float local17[$00]))))) = "room4info"
+    local26 = local13[$00]
+    local27 = ((local13[$00] + local13[$01]) - $01)
+    setroom("room079", $01, (Int (floor((0.15 * (Float local13[$01]))) + (Float local13[$00]))), local26, local27)
+    setroom("room106", $01, (Int (floor((0.3 * (Float local13[$01]))) + (Float local13[$00]))), local26, local27)
+    setroom("008", $01, (Int (floor((0.4 * (Float local13[$01]))) + (Float local13[$00]))), local26, local27)
+    setroom("room035", $01, (Int (floor((0.5 * (Float local13[$01]))) + (Float local13[$00]))), local26, local27)
+    setroom("coffin", $01, (Int (floor((0.7 * (Float local13[$01]))) + (Float local13[$00]))), local26, local27)
+    local26 = local14[$00]
+    local27 = ((local14[$00] + local14[$01]) - $01)
+    maproom($02, (Int (floor((0.1 * (Float local14[$01]))) + (Float local14[$00])))) = "room2nuke"
+    setroom("room2tunnel", $02, (Int (floor((0.25 * (Float local14[$01]))) + (Float local14[$00]))), local26, local27)
+    setroom("room049", $02, (Int (floor((0.4 * (Float local14[$01]))) + (Float local14[$00]))), local26, local27)
+    setroom("room2shaft", $02, (Int (floor((0.6 * (Float local14[$01]))) + (Float local14[$00]))), local26, local27)
+    setroom("testroom", $02, (Int (floor((0.7 * (Float local14[$01]))) + (Float local14[$00]))), local26, local27)
+    setroom("room2servers", $02, (Int (floor((0.9 * (Float local14[$01]))) + (Float local14[$00]))), local26, local27)
+    maproom($04, (Int (floor((0.3 * (Float local16[$01]))) + (Float local16[$00])))) = "room513"
+    maproom($04, (Int (floor((0.6 * (Float local16[$01]))) + (Float local16[$00])))) = "room966"
+    maproom($03, (Int (floor((0.5 * (Float local15[$01]))) + (Float local15[$00])))) = "room2cpit"
+    maproom($01, (((local13[$00] + local13[$01]) + local13[$02]) - $02)) = "exit1"
+    maproom($01, (((local13[$00] + local13[$01]) + local13[$02]) - $01)) = "gateaentrance"
+    maproom($01, (local13[$00] + local13[$01])) = "room1lifts"
+    local26 = (local14[$00] + local14[$01])
+    local27 = (((local14[$00] + local14[$01]) + local14[$02]) - $01)
+    maproom($02, (Int (floor((0.1 * (Float local14[$02]))) + (Float local26)))) = "room2poffices"
+    setroom("room2cafeteria", $02, (Int (floor((0.2 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2sroom", $02, (Int (floor((0.3 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2servers2", $02, (Int (floor((0.4 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2offices", $02, (Int (floor((0.45 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2offices4", $02, (Int (floor((0.5 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room860", $02, (Int (floor((0.6 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("medibay", $02, (Int (floor((0.7 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2poffices2", $02, (Int (floor((0.8 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    setroom("room2offices2", $02, (Int (floor((0.9 * (Float local14[$02]))) + (Float local26))), local26, local27)
+    maproom($03, (local15[$00] + local15[$01])) = "room2ccont"
+    maproom($03, ((local15[$00] + local15[$01]) + $01)) = "lockroom2"
+    maproom($04, (Int ((Float (local16[$00] + local16[$01])) + floor((0.3 * (Float local16[$02])))))) = "room3servers"
+    maproom($04, (Int ((Float (local16[$00] + local16[$01])) + floor((0.7 * (Float local16[$02])))))) = "room3servers2"
+    maproom($04, (Int ((Float (local16[$00] + local16[$01])) + floor((0.5 * (Float local16[$02])))))) = "room3offices"
+    local3 = $00
+    local29 = 8.0
+    local2 = (mapheight - $01)
+    While (local2 >= $01)
+        If (local2 < ((mapheight / $03) + $01)) Then
+            local9 = $03
+        ElseIf ((Float local2) < ((Float mapheight) * (1.0 / 1.5))) Then
+            local9 = $02
         Else
-            local8 = $01
+            local9 = $01
         EndIf
-        For local0 = $01 To (mapwidth - $02) Step $01
-            If (maptemp(local0, local1) = $FF) Then
-                If (local1 > (mapheight Sar $01)) Then
-                    local27 = createroom(local8, $02, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), "checkpoint1")
+        For local1 = $01 To (mapwidth - $02) Step $01
+            If (maptemp(local1, local2) = $FF) Then
+                If (local2 > (mapheight Sar $01)) Then
+                    local28 = createroom(local9, $02, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), "checkpoint1")
                 Else
-                    local27 = createroom(local8, $02, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), "checkpoint2")
+                    local28 = createroom(local9, $02, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), "checkpoint2")
                 EndIf
-            ElseIf (maptemp(local0, local1) > $00) Then
-                local2 = (Int (((min((Float maptemp((local0 + $01), local1)), 1.0) + min((Float maptemp((local0 - $01), local1)), 1.0)) + min((Float maptemp(local0, (local1 + $01))), 1.0)) + min((Float maptemp(local0, (local1 - $01))), 1.0)))
-                Select local2
+            ElseIf (maptemp(local1, local2) > $00) Then
+                local3 = (Int (((min((Float maptemp((local1 + $01), local2)), 1.0) + min((Float maptemp((local1 - $01), local2)), 1.0)) + min((Float maptemp(local1, (local2 + $01))), 1.0)) + min((Float maptemp(local1, (local2 - $01))), 1.0)))
+                Select local3
                     Case $01
-                        If (((maproomid($01) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                        If (((maproomid($01) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                             If (maproom($01, maproomid($01)) <> "") Then
-                                mapname(local0, local1) = maproom($01, maproomid($01))
+                                mapname(local1, local2) = maproom($01, maproomid($01))
                             EndIf
                         EndIf
-                        local27 = createroom(local8, $01, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
-                        If (maptemp(local0, (local1 + $01)) <> 0) Then
-                            local27\Field6 = $B4
-                            turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
-                        ElseIf (maptemp((local0 - $01), local1) <> 0) Then
-                            local27\Field6 = $10E
-                            turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
-                        ElseIf (maptemp((local0 + $01), local1) <> 0) Then
-                            local27\Field6 = $5A
-                            turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
+                        local28 = createroom(local9, $01, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
+                        If (maptemp(local1, (local2 + $01)) <> 0) Then
+                            local28\Field6 = $B4
+                            turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
+                        ElseIf (maptemp((local1 - $01), local2) <> 0) Then
+                            local28\Field6 = $10E
+                            turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
+                        ElseIf (maptemp((local1 + $01), local2) <> 0) Then
+                            local28\Field6 = $5A
+                            turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
                         Else
-                            local27\Field6 = $00
+                            local28\Field6 = $00
                         EndIf
                         maproomid($01) = (maproomid($01) + $01)
                     Case $02
-                        If (((maptemp((local0 - $01), local1) > $00) And (maptemp((local0 + $01), local1) > $00)) <> 0) Then
-                            If (((maproomid($02) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                        If (((maptemp((local1 - $01), local2) > $00) And (maptemp((local1 + $01), local2) > $00)) <> 0) Then
+                            If (((maproomid($02) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                                 If (maproom($02, maproomid($02)) <> "") Then
-                                    mapname(local0, local1) = maproom($02, maproomid($02))
+                                    mapname(local1, local2) = maproom($02, maproomid($02))
                                 EndIf
                             EndIf
-                            local27 = createroom(local8, $02, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
+                            local28 = createroom(local9, $02, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
                             If (rand($02, $01) = $01) Then
-                                local27\Field6 = $5A
+                                local28\Field6 = $5A
                             Else
-                                local27\Field6 = $10E
+                                local28\Field6 = $10E
                             EndIf
-                            turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
+                            turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
                             maproomid($02) = (maproomid($02) + $01)
-                        ElseIf (((maptemp(local0, (local1 - $01)) > $00) And (maptemp(local0, (local1 + $01)) > $00)) <> 0) Then
-                            If (((maproomid($02) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                        ElseIf (((maptemp(local1, (local2 - $01)) > $00) And (maptemp(local1, (local2 + $01)) > $00)) <> 0) Then
+                            If (((maproomid($02) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                                 If (maproom($02, maproomid($02)) <> "") Then
-                                    mapname(local0, local1) = maproom($02, maproomid($02))
+                                    mapname(local1, local2) = maproom($02, maproomid($02))
                                 EndIf
                             EndIf
-                            local27 = createroom(local8, $02, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
+                            local28 = createroom(local9, $02, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
                             If (rand($02, $01) = $01) Then
-                                local27\Field6 = $B4
+                                local28\Field6 = $B4
                             Else
-                                local27\Field6 = $00
+                                local28\Field6 = $00
                             EndIf
-                            turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
+                            turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
                             maproomid($02) = (maproomid($02) + $01)
                         Else
-                            If (((maproomid($03) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                            If (((maproomid($03) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                                 If (maproom($03, maproomid($03)) <> "") Then
-                                    mapname(local0, local1) = maproom($03, maproomid($03))
+                                    mapname(local1, local2) = maproom($03, maproomid($03))
                                 EndIf
                             EndIf
-                            If (((maptemp((local0 - $01), local1) > $00) And (maptemp(local0, (local1 + $01)) > $00)) <> 0) Then
-                                local27 = createroom(local8, $03, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
-                                local27\Field6 = $B4
-                                turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
-                            ElseIf (((maptemp((local0 + $01), local1) > $00) And (maptemp(local0, (local1 + $01)) > $00)) <> 0) Then
-                                local27 = createroom(local8, $03, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
-                                local27\Field6 = $5A
-                                turnentity(local27\Field2, 0.0, (Float local27\Field6), 0.0, $00)
-                            ElseIf (((maptemp((local0 - $01), local1) > $00) And (maptemp(local0, (local1 - $01)) > $00)) <> 0) Then
-                                local27 = createroom(local8, $03, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
-                                turnentity(local27\Field2, 0.0, 270.0, 0.0, $00)
-                                local27\Field6 = $10E
+                            If (((maptemp((local1 - $01), local2) > $00) And (maptemp(local1, (local2 + $01)) > $00)) <> 0) Then
+                                local28 = createroom(local9, $03, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
+                                local28\Field6 = $B4
+                                turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
+                            ElseIf (((maptemp((local1 + $01), local2) > $00) And (maptemp(local1, (local2 + $01)) > $00)) <> 0) Then
+                                local28 = createroom(local9, $03, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
+                                local28\Field6 = $5A
+                                turnentity(local28\Field2, 0.0, (Float local28\Field6), 0.0, $00)
+                            ElseIf (((maptemp((local1 - $01), local2) > $00) And (maptemp(local1, (local2 - $01)) > $00)) <> 0) Then
+                                local28 = createroom(local9, $03, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
+                                turnentity(local28\Field2, 0.0, 270.0, 0.0, $00)
+                                local28\Field6 = $10E
                             Else
-                                local27 = createroom(local8, $03, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
+                                local28 = createroom(local9, $03, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
                             EndIf
                             maproomid($03) = (maproomid($03) + $01)
                         EndIf
                     Case $03
-                        If (((maproomid($04) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                        If (((maproomid($04) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                             If (maproom($04, maproomid($04)) <> "") Then
-                                mapname(local0, local1) = maproom($04, maproomid($04))
+                                mapname(local1, local2) = maproom($04, maproomid($04))
                             EndIf
                         EndIf
-                        local27 = createroom(local8, $04, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
-                        If (maptemp(local0, (local1 - $01)) = $00) Then
-                            turnentity(local27\Field2, 0.0, 180.0, 0.0, $00)
-                            local27\Field6 = $B4
-                        ElseIf (maptemp((local0 - $01), local1) = $00) Then
-                            turnentity(local27\Field2, 0.0, 90.0, 0.0, $00)
-                            local27\Field6 = $5A
-                        ElseIf (maptemp((local0 + $01), local1) = $00) Then
-                            turnentity(local27\Field2, 0.0, -90.0, 0.0, $00)
-                            local27\Field6 = $10E
+                        local28 = createroom(local9, $04, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
+                        If (maptemp(local1, (local2 - $01)) = $00) Then
+                            turnentity(local28\Field2, 0.0, 180.0, 0.0, $00)
+                            local28\Field6 = $B4
+                        ElseIf (maptemp((local1 - $01), local2) = $00) Then
+                            turnentity(local28\Field2, 0.0, 90.0, 0.0, $00)
+                            local28\Field6 = $5A
+                        ElseIf (maptemp((local1 + $01), local2) = $00) Then
+                            turnentity(local28\Field2, 0.0, -90.0, 0.0, $00)
+                            local28\Field6 = $10E
                         EndIf
                         maproomid($04) = (maproomid($04) + $01)
                     Case $04
-                        If (((maproomid($05) < local24) And (mapname(local0, local1) = "")) <> 0) Then
+                        If (((maproomid($05) < local25) And (mapname(local1, local2) = "")) <> 0) Then
                             If (maproom($05, maproomid($05)) <> "") Then
-                                mapname(local0, local1) = maproom($05, maproomid($05))
+                                mapname(local1, local2) = maproom($05, maproomid($05))
                             EndIf
                         EndIf
-                        local27 = createroom(local8, $05, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), mapname(local0, local1))
+                        local28 = createroom(local9, $05, (Float (local1 Shl $03)), 0.0, (Float (local2 Shl $03)), mapname(local1, local2))
                         maproomid($05) = (maproomid($05) + $01)
                 End Select
             EndIf
         Next
-        local1 = (local1 + $FFFFFFFF)
+        local2 = (local2 + $FFFFFFFF)
     Wend
-    local27 = createroom($00, $01, (Float ((mapwidth - $01) Shl $03)), 500.0, 8.0, "gatea")
+    local28 = createroom($00, $01, (Float ((mapwidth - $01) Shl $03)), 40.5, 8.0, "gatea")
     maproomid($01) = (maproomid($01) + $01)
-    local27 = createroom($00, $01, (Float ((mapwidth - $01) Shl $03)), 0.0, (Float ((mapheight - $01) Shl $03)), "pocketdimension")
+    local28 = createroom($00, $01, (Float ((mapwidth - $01) Shl $03)), 0.0, (Float ((mapheight - $01) Shl $03)), "pocketdimension")
     maproomid($01) = (maproomid($01) + $01)
-    local27 = createroom($00, $01, 8.0, 0.0, (Float ((mapheight - $01) Shl $03)), "173")
+    local28 = createroom($00, $01, 8.0, 0.0, (Float ((mapheight - $01) Shl $03)), "173")
     maproomid($01) = (maproomid($01) + $01)
-    local27 = createroom($00, $01, 8.0, 800.0, 0.0, "dimension1499")
+    local28 = createroom($00, $01, 8.0, 800.0, 0.0, "dimension1499")
     maproomid($01) = (maproomid($01) + $01)
-    For local27 = Each rooms
-        preventroomoverlap(local27)
-    Next
-    For local1 = $00 To mapheight Step $01
-        For local0 = $00 To mapwidth Step $01
-            maptemp(local0, local1) = (Int min((Float maptemp(local0, local1)), 1.0))
+    For local2 = $00 To mapheight Step $01
+        For local1 = $00 To mapwidth Step $01
+            maptemp(local1, local2) = (Int min((Float maptemp(local1, local2)), 1.0))
         Next
     Next
-    local1 = mapheight
-    While (local1 >= $00)
-        If (local1 < (i_zone\Field0[$01] - $01)) Then
-            local8 = $03
-        ElseIf (((local1 >= (i_zone\Field0[$01] - $01)) And (local1 < (i_zone\Field0[$00] - $01))) <> 0) Then
-            local8 = $02
+    local2 = mapheight
+    While (local2 >= $00)
+        If (local2 < (i_zone\Field0[$01] - $01)) Then
+            local9 = $03
+        ElseIf (((local2 >= (i_zone\Field0[$01] - $01)) And (local2 < (i_zone\Field0[$00] - $01))) <> 0) Then
+            local9 = $02
         Else
-            local8 = $01
+            local9 = $01
         EndIf
-        local0 = mapwidth
-        While (local0 >= $00)
-            If (maptemp(local0, local1) > $00) Then
-                If (local8 = $02) Then
-                    local2 = $02
+        local1 = mapwidth
+        While (local1 >= $00)
+            If (maptemp(local1, local2) > $00) Then
+                If (local9 = $02) Then
+                    local3 = $02
                 Else
-                    local2 = $00
+                    local3 = $00
                 EndIf
-                For local27 = Each rooms
-                    local27\Field6 = (Int wrapangle((Float local27\Field6)))
-                    If ((((Int (local27\Field3 / 8.0)) = local0) And ((Int (local27\Field5 / 8.0)) = local1)) <> 0) Then
-                        local31 = $00
-                        Select local27\Field7\Field9
+                For local28 = Each rooms
+                    local28\Field6 = (Int wrapangle((Float local28\Field6)))
+                    If ((((Int (local28\Field3 / 8.0)) = local1) And ((Int (local28\Field5 / 8.0)) = local2)) <> 0) Then
+                        local32 = $00
+                        Select local28\Field7\Field9
                             Case $01
-                                If (local27\Field6 = $5A) Then
-                                    local31 = $01
+                                If (local28\Field6 = $5A) Then
+                                    local32 = $01
                                 EndIf
                             Case $02
-                                If (((local27\Field6 = $5A) Or (local27\Field6 = $10E)) <> 0) Then
-                                    local31 = $01
+                                If (((local28\Field6 = $5A) Or (local28\Field6 = $10E)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Case $03
-                                If (((local27\Field6 = $00) Or (local27\Field6 = $5A)) <> 0) Then
-                                    local31 = $01
+                                If (((local28\Field6 = $00) Or (local28\Field6 = $5A)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Case $04
-                                If ((((local27\Field6 = $00) Or (local27\Field6 = $B4)) Or (local27\Field6 = $5A)) <> 0) Then
-                                    local31 = $01
+                                If ((((local28\Field6 = $00) Or (local28\Field6 = $B4)) Or (local28\Field6 = $5A)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Default
-                                local31 = $01
+                                local32 = $01
                         End Select
-                        If (local31 <> 0) Then
-                            If ((local0 + $01) < (mapwidth + $01)) Then
-                                If (maptemp((local0 + $01), local1) > $00) Then
-                                    local30 = createdoor(local27\Field0, (((Float local0) * local28) + (local28 / 2.0)), 0.0, ((Float local1) * local28), 90.0, local27, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local2, $00, "", $00)
-                                    local27\Field33[$00] = local30
+                        If (local32 <> 0) Then
+                            If ((local1 + $01) < (mapwidth + $01)) Then
+                                If (maptemp((local1 + $01), local2) > $00) Then
+                                    local31 = createdoor(local28\Field0, (((Float local1) * local29) + (local29 / 2.0)), 0.0, ((Float local2) * local29), 90.0, local28, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local3, $00, "", $00)
+                                    local28\Field33[$00] = local31
                                 EndIf
                             EndIf
                         EndIf
-                        local31 = $00
-                        Select local27\Field7\Field9
+                        local32 = $00
+                        Select local28\Field7\Field9
                             Case $01
-                                If (local27\Field6 = $B4) Then
-                                    local31 = $01
+                                If (local28\Field6 = $B4) Then
+                                    local32 = $01
                                 EndIf
                             Case $02
-                                If (((local27\Field6 = $00) Or (local27\Field6 = $B4)) <> 0) Then
-                                    local31 = $01
+                                If (((local28\Field6 = $00) Or (local28\Field6 = $B4)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Case $03
-                                If (((local27\Field6 = $B4) Or (local27\Field6 = $5A)) <> 0) Then
-                                    local31 = $01
+                                If (((local28\Field6 = $B4) Or (local28\Field6 = $5A)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Case $04
-                                If ((((local27\Field6 = $B4) Or (local27\Field6 = $5A)) Or (local27\Field6 = $10E)) <> 0) Then
-                                    local31 = $01
+                                If ((((local28\Field6 = $B4) Or (local28\Field6 = $5A)) Or (local28\Field6 = $10E)) <> 0) Then
+                                    local32 = $01
                                 EndIf
                             Default
-                                local31 = $01
+                                local32 = $01
                         End Select
-                        If (local31 <> 0) Then
-                            If ((local1 + $01) < (mapheight + $01)) Then
-                                If (maptemp(local0, (local1 + $01)) > $00) Then
-                                    local30 = createdoor(local27\Field0, ((Float local0) * local28), 0.0, (((Float local1) * local28) + (local28 / 2.0)), 0.0, local27, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local2, $00, "", $00)
-                                    local27\Field33[$03] = local30
+                        If (local32 <> 0) Then
+                            If ((local2 + $01) < (mapheight + $01)) Then
+                                If (maptemp(local1, (local2 + $01)) > $00) Then
+                                    local31 = createdoor(local28\Field0, ((Float local1) * local29), 0.0, (((Float local2) * local29) + (local29 / 2.0)), 0.0, local28, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local3, $00, "", $00)
+                                    local28\Field33[$03] = local31
                                 EndIf
                             EndIf
                         EndIf
@@ -618,45 +603,45 @@ Function createmap%(arg0$, arg1%)
                     EndIf
                 Next
             EndIf
-            local0 = (local0 + $FFFFFFFF)
+            local1 = (local1 + $FFFFFFFF)
         Wend
-        local1 = (local1 + $FFFFFFFF)
+        local2 = (local2 + $FFFFFFFF)
     Wend
-    For local27 = Each rooms
-        local27\Field6 = (Int wrapangle((Float local27\Field6)))
-        local27\Field32[$00] = Null
-        local27\Field32[$01] = Null
-        local27\Field32[$02] = Null
-        local27\Field32[$03] = Null
-        For local34 = Each rooms
-            If (local27 <> local34) Then
-                If (local27\Field5 = local34\Field5) Then
-                    If ((local27\Field3 + 8.0) = local34\Field3) Then
-                        local27\Field32[$00] = local34
-                        If (local27\Field33[$00] = Null) Then
-                            local27\Field33[$00] = local34\Field33[$02]
+    For local28 = Each rooms
+        local28\Field6 = (Int wrapangle((Float local28\Field6)))
+        local28\Field32[$00] = Null
+        local28\Field32[$01] = Null
+        local28\Field32[$02] = Null
+        local28\Field32[$03] = Null
+        For local35 = Each rooms
+            If (local28 <> local35) Then
+                If (local28\Field5 = local35\Field5) Then
+                    If ((local28\Field3 + 8.0) = local35\Field3) Then
+                        local28\Field32[$00] = local35
+                        If (local28\Field33[$00] = Null) Then
+                            local28\Field33[$00] = local35\Field33[$02]
                         EndIf
-                    ElseIf ((local27\Field3 - 8.0) = local34\Field3) Then
-                        local27\Field32[$02] = local34
-                        If (local27\Field33[$02] = Null) Then
-                            local27\Field33[$02] = local34\Field33[$00]
+                    ElseIf ((local28\Field3 - 8.0) = local35\Field3) Then
+                        local28\Field32[$02] = local35
+                        If (local28\Field33[$02] = Null) Then
+                            local28\Field33[$02] = local35\Field33[$00]
                         EndIf
                     EndIf
-                ElseIf (local27\Field3 = local34\Field3) Then
-                    If ((local27\Field5 - 8.0) = local34\Field5) Then
-                        local27\Field32[$01] = local34
-                        If (local27\Field33[$01] = Null) Then
-                            local27\Field33[$01] = local34\Field33[$03]
+                ElseIf (local28\Field3 = local35\Field3) Then
+                    If ((local28\Field5 - 8.0) = local35\Field5) Then
+                        local28\Field32[$01] = local35
+                        If (local28\Field33[$01] = Null) Then
+                            local28\Field33[$01] = local35\Field33[$03]
                         EndIf
-                    ElseIf ((local27\Field5 + 8.0) = local34\Field5) Then
-                        local27\Field32[$03] = local34
-                        If (local27\Field33[$03] = Null) Then
-                            local27\Field33[$03] = local34\Field33[$01]
+                    ElseIf ((local28\Field5 + 8.0) = local35\Field5) Then
+                        local28\Field32[$03] = local35
+                        If (local28\Field33[$03] = Null) Then
+                            local28\Field33[$03] = local35\Field33[$01]
                         EndIf
                     EndIf
                 EndIf
             EndIf
-            If (((((local27\Field32[$00] <> Null) And (local27\Field32[$01] <> Null)) And (local27\Field32[$02] <> Null)) And (local27\Field32[$03] <> Null)) <> 0) Then
+            If (((((local28\Field32[$00] <> Null) And (local28\Field32[$01] <> Null)) And (local28\Field32[$02] <> Null)) And (local28\Field32[$03] <> Null)) <> 0) Then
                 Exit
             EndIf
         Next

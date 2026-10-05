@@ -3,7 +3,7 @@ Function loadtexture_strict%(arg0$, arg1%)
     If (filetype(arg0) <> $01) Then
         runtimeerror((("Texture " + arg0) + " not found."))
     EndIf
-    local0 = loadtexture(arg0, (((enablevram = $01) Shl $08) + arg1))
+    local0 = loadtexture(arg0, (((enablevram = $01) * $00) + arg1))
     If (local0 = $00) Then
         runtimeerror(("Failed to load Texture: " + arg0))
     EndIf

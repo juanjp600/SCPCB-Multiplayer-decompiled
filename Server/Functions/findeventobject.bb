@@ -7,13 +7,13 @@ Function findeventobject%(arg0.events)
     For local0 = (arg0\Field14 + $01) To server\Field18 Step $01
         If (player[local0] <> Null) Then
             arg0\Field21 = (arg0\Field21 + $01)
-            If (((player[local0]\Field32 = arg0\Field1\Field69) And (player[local0]\Field59 = $00)) <> 0) Then
+            If (((player[local0]\Field32 = arg0\Field1\Field69) And (player[local0]\Field61 = $00)) <> 0) Then
                 arg0\Field14 = local0
-                Return player[arg0\Field14]\Field62
+                Return player[arg0\Field14]\Field64
             EndIf
         EndIf
     Next
     arg0\Field14 = findplayer()
-    Return player[arg0\Field14]\Field62
+    Return player[arg0\Field14]\Field64
     Return $00
 End Function

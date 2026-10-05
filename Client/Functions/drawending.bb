@@ -13,7 +13,6 @@ Function drawending%()
     Local local13%
     Local local14%
     Local local15%
-    showpointer()
     fpsfactor = 0.0
     If (-2000.0 < endingtimer) Then
         endingtimer = max((endingtimer - fpsfactor2), -1111.0)
@@ -29,9 +28,9 @@ Function drawending%()
     EndIf
     Select lower(selectedending)
         Case "b2","a1"
-            clscolor((Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)))
+            clscolor((Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), $FF)
         Default
-            clscolor($00, $00, $00)
+            clscolor($00, $00, $00, $FF)
     End Select
     shouldplay = $42
     cls()
@@ -54,11 +53,11 @@ Function drawending%()
         EndIf
         If (-700.0 < endingtimer) Then
             If (min(((Abs endingtimer) - 200.0), 155.0) > (Float rand($01, $96))) Then
-                drawimage(endingscreen, ((graphicwidth Sar $01) - $190), ((graphicheight Sar $01) - $190), $00)
+                drawimage(endingscreen, (viewport_center_x - $190), (viewport_center_y - $190), $00)
             Else
-                color($00, $00, $00)
+                setcolorex($00, $00, $00)
                 rect($64, $64, (graphicwidth - $C8), (graphicheight - $C8), $01)
-                color($FF, $FF, $FF)
+                setcolorex($FF, $FF, $FF)
             EndIf
             If (((-450.0 < (endingtimer + fpsfactor2)) And (-450.0 >= endingtimer)) <> 0) Then
                 Select lower(selectedending)
@@ -69,24 +68,24 @@ Function drawending%()
                 End Select
             EndIf
         Else
-            drawimage(endingscreen, ((graphicwidth Sar $01) - $190), ((graphicheight Sar $01) - $190), $00)
+            drawimage(endingscreen, (viewport_center_x - $190), (viewport_center_y - $190), $00)
             If (((-1000.0 > endingtimer) And (-2000.0 < endingtimer)) <> 0) Then
                 local2 = imagewidth(pausemenuimg)
                 local3 = imageheight(pausemenuimg)
-                local0 = ((graphicwidth Sar $01) - (local2 Sar $01))
-                local1 = ((graphicheight Sar $01) - (local3 Sar $01))
+                local0 = ((graphicwidth Shr $01) - (local2 Shr $01))
+                local1 = ((graphicheight Shr $01) - (local3 Shr $01))
                 drawimage(pausemenuimg, local0, local1, $00)
-                color($FF, $FF, $FF)
-                aasetfont(font2)
-                aatext((Int ((40.0 * menuscale) + (Float ((local2 Sar $01) + local0)))), (Int ((20.0 * menuscale) + (Float local1))), "THE END", $01, $00, 1.0)
-                aasetfont(font1)
+                setcolorraw($FFFFFF)
+                setfontex(fonts[$01]\Field0)
+                text((((local2 Shr $01) + local0) + imenuscale[$28]), (imenuscale[$14] + local1), "THE END", $01, $00)
+                setfontex(fonts[$00]\Field0)
                 If (achievementsmenu = $00) Then
-                    local0 = (Int ((132.0 * menuscale) + (Float local0)))
-                    local1 = (Int ((122.0 * menuscale) + (Float local1)))
+                    local0 = (local0 + imenuscale[$84])
+                    local1 = (local1 + imenuscale[$7A])
                     local9 = $00
                     local10 = $00
                     For local6 = Each rooms
-                        If ((((local6\Field7\Field11 <> "dimension1499") And (local6\Field7\Field11 <> "gatea")) And (local6\Field7\Field11 <> "pocketdimension")) <> 0) Then
+                        If ((((local6\Field8\Field11 <> "dimension1499") And (local6\Field8\Field11 <> "gatea")) And (local6\Field8\Field11 <> "pocketdimension")) <> 0) Then
                             local9 = (local9 + $01)
                             local10 = (local10 + local6\Field1)
                         EndIf
@@ -107,19 +106,19 @@ Function drawending%()
                     For local14 = $00 To $24 Step $01
                         local15 = (local15 + achievements(local14))
                     Next
-                    aatext(local0, local1, ("SCPs encountered: " + (Str local13)), $00, $00, 1.0)
-                    aatext(local0, (Int ((20.0 * menuscale) + (Float local1))), ((("Achievements unlocked: " + (Str local15)) + "/") + "37"), $00, $00, 1.0)
-                    aatext(local0, (Int ((40.0 * menuscale) + (Float local1))), ((("Rooms found: " + (Str local10)) + "/") + (Str local9)), $00, $00, 1.0)
-                    aatext(local0, (Int ((60.0 * menuscale) + (Float local1))), ((("Documents discovered: " + (Str local12)) + "/") + (Str local11)), $00, $00, 1.0)
-                    aatext(local0, (Int ((80.0 * menuscale) + (Float local1))), ("Items refined in SCP-914: " + (Str refineditems)), $00, $00, 1.0)
-                    local0 = ((graphicwidth Sar $01) - (local2 Sar $01))
-                    local1 = ((graphicheight Sar $01) - (local3 Sar $01))
-                    local0 = (local0 + (local2 Sar $01))
-                    local1 = (Int ((Float (local1 + local3)) - (100.0 * menuscale)))
-                    If (drawbutton((Int ((Float local0) - (145.0 * menuscale))), (Int ((Float local1) - (200.0 * menuscale))), (Int (390.0 * menuscale)), (Int (60.0 * menuscale)), "ACHIEVEMENTS", $01, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    text(local0, local1, ("SCPs encountered: " + (Str local13)), $00, $00)
+                    text(local0, (imenuscale[$14] + local1), ((("Achievements unlocked: " + (Str local15)) + "/") + "37"), $00, $00)
+                    text(local0, (imenuscale[$28] + local1), ((("Rooms found: " + (Str local10)) + "/") + (Str local9)), $00, $00)
+                    text(local0, (imenuscale[$3C] + local1), ((("Documents discovered: " + (Str local12)) + "/") + (Str local11)), $00, $00)
+                    text(local0, (imenuscale[$50] + local1), ("Items refined in SCP-914: " + (Str refineditems)), $00, $00)
+                    local0 = ((graphicwidth Shr $01) - (local2 Shr $01))
+                    local1 = ((graphicheight Shr $01) - (local3 Shr $01))
+                    local0 = (local0 + (local2 Shr $01))
+                    local1 = ((local1 + local3) - imenuscale[$64])
+                    If (drawbutton((local0 - imenuscale[$91]), (local1 - imenuscale[$C8]), imenuscale[$186], imenuscale[$3C], "ACHIEVEMENTS", $01, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         achievementsmenu = $01
                     EndIf
-                    If (drawbutton((Int ((Float local0) - (145.0 * menuscale))), (Int ((Float local1) - (100.0 * menuscale))), (Int (390.0 * menuscale)), (Int (60.0 * menuscale)), "MAIN MENU", $01, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
+                    If (drawbutton((local0 - imenuscale[$91]), (local1 - imenuscale[$64]), imenuscale[$186], imenuscale[$3C], "MAIN MENU", $01, $00, $01, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $FFFFFFFF, $00) <> 0) Then
                         shouldplay = $18
                         nowplaying = shouldplay
                         For local14 = $00 To $09 Step $01
@@ -145,9 +144,7 @@ Function drawending%()
             EndIf
         EndIf
     EndIf
-    If (fullscreen <> 0) Then
-        drawimage(cursorimg, scaledmousex(), scaledmousey(), $00)
-    EndIf
-    aasetfont(font1)
+    ui_showpointer()
+    setfontex(fonts[$00]\Field0)
     Return $00
 End Function

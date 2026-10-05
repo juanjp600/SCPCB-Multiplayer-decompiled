@@ -17,15 +17,12 @@ Function teleportentity%(arg0%, arg1#, arg2#, arg3#, arg4#, arg5%, arg6#, arg7%)
             positionentity(arg0, arg1, ((pickedy() + arg4) - 0.02), arg3, arg5)
         EndIf
         local2 = $01
-        debuglog("Entity teleported successfully")
     Else
         positionentity(arg0, arg1, arg2, arg3, arg5)
-        debuglog("Warning: no ground found when teleporting an entity")
         local2 = $00
     EndIf
     freeentity(local0)
     resetentity(arg0)
-    debuglog(((((("Teleported entity to: " + (Str entityx(arg0, $00))) + "/") + (Str entityy(arg0, $00))) + "/") + (Str entityz(arg0, $00))))
     Return local2
     Return $00
 End Function

@@ -1,8 +1,8 @@
 Type items
     Field Field0$
-    Field Field1%
+    Field Field1.itemtemplates
     Field Field2%
-    Field Field3.itemtemplates
+    Field Field3%
     Field Field4#
     Field Field5%
     Field Field6%
@@ -14,22 +14,23 @@ Type items
     Field Field12#
     Field Field13#
     Field Field14#
-    Field Field15%
+    Field Field15#
     Field Field16%
-    Field Field17.items[20]
-    Field Field18%
+    Field Field17%
+    Field Field18.items[20]
     Field Field19%
-    Field Field20#
-    Field Field21%
+    Field Field20%
+    Field Field21#
     Field Field22%
     Field Field23%
-    Field Field24#
+    Field Field24%
     Field Field25#
     Field Field26#
     Field Field27#
     Field Field28#
     Field Field29#
-    Field Field30%
+    Field Field30#
     Field Field31%
-    Field Field32#
+    Field Field32%
+    Field Field33#
 End Type

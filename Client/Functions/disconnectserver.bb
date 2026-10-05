@@ -5,19 +5,19 @@ Function disconnectserver%(arg0$, arg1%)
     EndIf
     If (udp_getstream() <> 0) Then
         udp_writebyte($0D)
-        udp_writebyte(networkserver\Field28)
-        If ((networkserver\Field18 And (networkserver\Field42 = $00)) <> 0) Then
+        udp_writebyte(networkserver\Field20)
+        If ((networkserver\Field15 And (networkserver\Field32 = $00)) <> 0) Then
             udp_writebyte($FD)
             udp_writeint($00)
             udp_writeint($00)
-            udp_sendmessageinternal(udp_network\Field0, udp_network\Field1, udp_network\Field2, $02)
+            udp_sendmessageinternal(udp_network\Field0, udp_network\Field1, udp_network\Field2, $00)
         Else
             udp_sendmessage($00)
-            If (networkserver\Field49 <> 0) Then
-                local0 = (millisecs2() + $3E8)
+            If (networkserver\Field36 <> 0) Then
+                local0 = (millisecs() + $3E8)
                 Repeat
-                    steam_update()
-                    If (local0 < millisecs2()) Then
+                    steamupdate()
+                    If (local0 < millisecs()) Then
                         Exit
                     EndIf
                 Forever
@@ -31,6 +31,5 @@ Function disconnectserver%(arg0$, arg1%)
         clearserver()
     EndIf
     adderrorlog(arg0, $FF, $FF, $FF, $3A98)
-    debuglog("DISCONNECT SUCCESSFUL")
     Return $00
 End Function

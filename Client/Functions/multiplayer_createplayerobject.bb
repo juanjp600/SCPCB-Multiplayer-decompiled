@@ -5,16 +5,16 @@ Function multiplayer_createplayerobject%(arg0%)
     Local local3#
     Local local4%
     Local local5.breachtypes
-    local0 = getbreachtype(player[arg0]\Field51)
+    local0 = getbreachtype(player[arg0]\Field49)
     For local1 = $00 To $07 Step $01
-        player[arg0]\Field80[local1] = $00
+        player[arg0]\Field78[local1] = $00
     Next
     If (player[arg0]\Field12 <> $00) Then
         freeentity(player[arg0]\Field12)
         player[arg0]\Field12 = $00
     EndIf
     freeplayerobjects(player[arg0])
-    If (player[arg0]\Field40 = $00) Then
+    If (player[arg0]\Field38 = $00) Then
         player[arg0]\Field12 = copyentity(local0\Field2, $00)
         If (local0\Field4 <> "") Then
             local2 = loadtexture_strict(local0\Field4, $01)
@@ -28,11 +28,19 @@ Function multiplayer_createplayerobject%(arg0%)
         player[arg0]\Field17 = findchild(player[arg0]\Field12, local0\Field24[$03])
         player[arg0]\Field23 = findchild(player[arg0]\Field12, local0\Field24[$04])
         player[arg0]\Field18 = findchild(player[arg0]\Field12, local0\Field24[$05])
+        If (player[arg0]\Field49 = haos_model) Then
+            If (player[arg0]\Field15 <> $00) Then
+                turnentity(player[arg0]\Field15, 0.0, 0.0, -90.0, $00)
+            EndIf
+            If (player[arg0]\Field23 <> $00) Then
+                turnentity(player[arg0]\Field23, 0.0, 0.0, -90.0, $00)
+            EndIf
+        EndIf
     Else
-        player[arg0]\Field12 = copyentity(hazmat_object, $00)
+        player[arg0]\Field12 = copyentity(g_model\Field38, $00)
         local3 = 0.013
         scaleentity(player[arg0]\Field12, local3, local3, local3, $00)
-        meshcullbox(player[arg0]\Field12, (- meshwidth(classdobj)), (- meshheight(classdobj)), (- meshdepth(classdobj)), (meshwidth(classdobj) * 2.0), (meshheight(classdobj) * 2.0), (meshdepth(classdobj) * 2.0))
+        meshcullbox(player[arg0]\Field12, (- meshwidth(g_model\Field4)), (- meshheight(g_model\Field4)), (- meshdepth(g_model\Field4)), (meshwidth(g_model\Field4) * 2.0), (meshheight(g_model\Field4) * 2.0), (meshdepth(g_model\Field4) * 2.0))
         local4 = loadtexture_strict("GFX\items\hazmat.jpg", $01)
         entitytexture(player[arg0]\Field12, local4, $00, $00)
         freetexture(local4)
@@ -44,18 +52,22 @@ Function multiplayer_createplayerobject%(arg0%)
         player[arg0]\Field18 = findchild(player[arg0]\Field12, local5\Field24[$05])
     EndIf
     If (getplayerhead(arg0) <> $00) Then
-        player[arg0]\Field20 = entityroll(getplayerhead(arg0), $01)
+        If (player[arg0]\Field49 = haos_model) Then
+            player[arg0]\Field20 = 0.0
+        Else
+            player[arg0]\Field20 = entityroll(getplayerhead(arg0), $01)
+        EndIf
     EndIf
-    If (((player[arg0]\Field51 = classd_model) And (player[arg0]\Field40 = $00)) <> 0) Then
-        If (player[arg0]\Field50 > $00) Then
-            local4 = loadtexture_strict((("GFX\npcs\classd" + (Str player[arg0]\Field50)) + ".jpg"), $01)
+    If (((player[arg0]\Field49 = classd_model) And (player[arg0]\Field38 = $00)) <> 0) Then
+        If (player[arg0]\Field48 > $00) Then
+            local4 = loadtexture_strict((("GFX\npcs\classd" + (Str player[arg0]\Field48)) + ".jpg"), $01)
             entitytexture(player[arg0]\Field12, local4, $00, $00)
             freetexture(local4)
         EndIf
     EndIf
     player[arg0]\Field14 = createcamera($00)
-    If (player[arg0]\Field75 <> $00) Then
-        cameraviewport(player[arg0]\Field14, $00, $00, player[arg0]\Field75, player[arg0]\Field76)
+    If (player[arg0]\Field73 <> $00) Then
+        cameraviewport(player[arg0]\Field14, $00, $00, player[arg0]\Field73, player[arg0]\Field74)
     Else
         cameraviewport(player[arg0]\Field14, $00, $00, graphicwidth, graphicheight)
     EndIf

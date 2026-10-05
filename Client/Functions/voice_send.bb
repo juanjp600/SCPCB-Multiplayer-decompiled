@@ -11,7 +11,7 @@ Function voice_send%(arg0%, arg1%)
             local3 = opus_pcm_encode(local1)
             If (((local3 <> $FFFFFFFF) And (local3 <> $00)) <> 0) Then
                 udp_writebyte($1D)
-                udp_writebyte(networkserver\Field28)
+                udp_writebyte(networkserver\Field20)
                 udp_writebytes(local3, $00, banksize(local3))
                 udp_sendmessage($00)
                 freebank(local3)
@@ -20,7 +20,7 @@ Function voice_send%(arg0%, arg1%)
         freebank(local1)
     Else
         udp_writebyte($7B)
-        udp_writebyte(networkserver\Field28)
+        udp_writebyte(networkserver\Field20)
         udp_sendmessage($00)
     EndIf
     Return $00

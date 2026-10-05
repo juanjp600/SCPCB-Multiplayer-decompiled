@@ -1,6 +1,7 @@
 Function createdecal.decals(arg0%, arg1#, arg2#, arg3#, arg4#, arg5#, arg6#, arg7#, arg8#)
     Local local0.decals
     local0 = (New decals)
+    arg2 = (arg2 + 0.01)
     local0\Field11 = arg1
     local0\Field12 = arg2
     local0\Field13 = arg3
@@ -12,14 +13,14 @@ Function createdecal.decals(arg0%, arg1#, arg2#, arg3#, arg4#, arg5#, arg6#, arg
     local0\Field2 = arg7
     local0\Field0 = createsprite($00)
     local0\Field6 = $01
-    entitytexture(local0\Field0, decaltextures(arg0), $00, $00)
-    entityfx(local0\Field0, $00)
+    entitytexture(local0\Field0, decaltextures[arg0], $00, $00)
+    entityfx(local0\Field0, $08)
     spriteviewmode(local0\Field0, $02)
     positionentity(local0\Field0, arg1, arg2, arg3, $00)
     rotateentity(local0\Field0, arg4, arg5, arg6, $00)
     local0\Field17 = (removedecals Shl $01)
     local0\Field8 = arg0
-    If (((decaltextures(arg0) = $00) Or (local0\Field0 = $00)) <> 0) Then
+    If (((decaltextures[arg0] = $00) Or (local0\Field0 = $00)) <> 0) Then
         Return Null
     EndIf
     Return local0

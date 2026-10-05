@@ -7,8 +7,8 @@ Function voice_wave_update%()
             alsourceset3dposition(local0\Field0, entityx(local0\Field3, $00), entityy(local0\Field3, $00), entityz(local0\Field3, $00))
         EndIf
         If (player[local0\Field7] <> Null) Then
-            player[local0\Field7]\Field45 = $01
-            player[local0\Field7]\Field66 = 10.0
+            player[local0\Field7]\Field43 = $01
+            player[local0\Field7]\Field64 = 10.0
         EndIf
         If (local0\Field4 = $00) Then
             If (alsourceisplaying(local0\Field0) = $00) Then

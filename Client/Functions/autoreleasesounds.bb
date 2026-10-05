@@ -9,13 +9,13 @@ Function autoreleasesounds%()
                 If (local0\Field2[local2] <> $00) Then
                     If (channelplaying(local0\Field2[local2]) <> 0) Then
                         local1 = $00
-                        local0\Field4 = (millisecs2() + $1388)
+                        local0\Field4 = (millisecs() + $1388)
                         Exit
                     EndIf
                 EndIf
             Next
             If (local1 <> 0) Then
-                If (local0\Field4 < millisecs2()) Then
+                If (local0\Field4 < millisecs()) Then
                     If (local0\Field0 <> $00) Then
                         freesound(local0\Field0)
                         local0\Field0 = $00

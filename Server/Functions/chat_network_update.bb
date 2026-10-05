@@ -2,7 +2,7 @@ Function chat_network_update%()
     Local local0%
     Local local1.chatmessage
     For local0 = $01 To server\Field11 Step $01
-        If (playeroptimize[local0]\Field53 <> ticks\Field0) Then
+        If (playeroptimize[local0]\Field55 <> ticks\Field0) Then
             udp_writebyte($3F)
             udp_writebyte($01)
             udp_writebyte(ticks\Field0)

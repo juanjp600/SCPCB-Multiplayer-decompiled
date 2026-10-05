@@ -2,7 +2,7 @@ Function updateambient%()
     Local local0%
     Local local2$
     shouldplay = (Int min((Float playerzone), 2.0))
-    If ((((playerroom\Field7\Field11 <> "pocketdimension") And (playerroom\Field7\Field11 <> "gatea")) And (playerroom\Field7\Field11 <> "exit1")) <> 0) Then
+    If ((((playerroom\Field8\Field11 <> "pocketdimension") And (playerroom\Field8\Field11 <> "gatea")) And (playerroom\Field8\Field11 <> "exit1")) <> 0) Then
         If (rand($5DC, $01) = $01) Then
             For local0 = $00 To $05 Step $01
                 If (ambientsfx(local0, currambientsfx) <> $00) Then
@@ -16,9 +16,9 @@ Function updateambient%()
             If (rand($03, $01) = $01) Then
                 playerzone = $03
             EndIf
-            If (playerroom\Field7\Field11 = "173") Then
+            If (playerroom\Field8\Field11 = "173") Then
                 playerzone = $04
-            ElseIf (playerroom\Field7\Field11 = "room860") Then
+            ElseIf (playerroom\Field8\Field11 = "room860") Then
                 If (1.0 = room860event\Field2) Then
                     playerzone = $05
                     positionentity(soundemitter, entityx(soundemitter, $00), 30.0, entityz(soundemitter, $00), $00)
@@ -47,7 +47,7 @@ Function updateambient%()
         EndIf
         updatesoundorigin(ambientsfxchn, camera, soundemitter, 10.0, 1.0)
         If (rand($C350, $01) = $03) Then
-            local2 = playerroom\Field7\Field11
+            local2 = playerroom\Field8\Field11
             If (((((local2 <> "room860") And (local2 <> "room1123")) And (local2 <> "173")) And (local2 <> "dimension1499")) <> 0) Then
                 If (0.0 < fpsfactor) Then
                     lightblink = rnd(1.0, 2.0)

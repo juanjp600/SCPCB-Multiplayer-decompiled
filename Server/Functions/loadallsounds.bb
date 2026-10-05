@@ -131,5 +131,6 @@ Function loadallsounds%()
     dooropen079sfx = loadsound_strict("SFX\Door\DoorOpen079.ogg")
     doorclose079sfx = loadsound_strict("SFX\Door\DoorClose079.ogg")
     triggered096sfx = loadsound_strict("SFX\SCP\096\Triggered.ogg")
+    chase106sfx = loadsound_strict("SFX\Music\106.ogg")
     Return $00
 End Function

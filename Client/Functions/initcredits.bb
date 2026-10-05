@@ -3,8 +3,6 @@ Function initcredits%()
     Local local1%
     Local local2$
     local1 = openfile("Credits.txt")
-    creditsfont = loadfont_strict("GFX\font\cour\Courier New.ttf", (Int (((Float graphicheight) / 1024.0) * 21.0)), $00, $00, $00)
-    creditsfont2 = loadfont_strict("GFX\font\courbd\Courier New.ttf", (Int (((Float graphicheight) / 1024.0) * 35.0)), $00, $00, $00)
     If (creditsscreen = $00) Then
         creditsscreen = loadimage_strict("GFX\creditsscreen.pt")
     EndIf

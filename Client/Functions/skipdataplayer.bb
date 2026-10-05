@@ -1,5 +1,5 @@
 Function skipdataplayer%()
-    If (networkserver\Field43 = $01) Then
+    If (networkserver\Field33 = $01) Then
         otherindex2 = udp_readbyte()
         If (otherindex2 <> $00) Then
             udp_readfloat()

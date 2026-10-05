@@ -1,8 +1,8 @@
 Function udp_readbytes%(arg0%, arg1%, arg2%)
-    Local local0%
-    local0 = (Int min((Float arg2), (Float udp_readavail())))
-    copybank(udp_network\Field15, udp_network\Field17, arg0, arg1, local0)
-    udp_network\Field17 = (udp_network\Field17 + local0)
-    Return local0
+    If (networkserver\Field36 <> 0) Then
+        steam_pullbytes(arg0, arg1, arg2)
+        Return $00
+    EndIf
+    Return readbytes(arg0, udp_network\Field0, arg1, arg2)
     Return $00
 End Function

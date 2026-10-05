@@ -39,7 +39,7 @@ Global camerashake#
 Global camerashaketimer%
 Global camobj%
 Global cautionsfx%
-Global centralserver.centralserverdata
+Global chase106sfx%
 Global checkfps%
 Global classd_model%
 Global classdobj%
@@ -110,9 +110,9 @@ Global explosionsfx%
 Global explosiontimer#
 Global eyeirritation#
 Global eyestuck%
+Global failedconnectionalreadysaid%
 Global fake_stream_ip%
 Global falltimer#
-Global fasttcp.fasttcps
 Global femurbreakersfx%
 Global fixedtimesteps%
 Global fog%
@@ -316,8 +316,10 @@ Global plugins.plugin[64]
 Global pocketdimension106.events
 Global pointpitch#
 Global pointyaw#
+Global prevconnection%
 Global prevfpsfactor#
 Global prevgl$
+Global prevloggedon%
 Global prevmusicvolume%
 Global prevsecondarylighton#
 Global prevsfxvolume%
@@ -346,7 +348,6 @@ Global room2slcam%
 Global room3storageevent.events
 Global room860event.events
 Global roomambience%[20]
-Global roomscale#
 Global roomtempid%
 Global rpg_object%
 Global s_variables.servervariables[512]

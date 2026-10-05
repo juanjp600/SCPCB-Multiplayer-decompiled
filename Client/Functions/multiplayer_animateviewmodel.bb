@@ -7,40 +7,42 @@ Function multiplayer_animateviewmodel%()
     Local local10%
     Local local11%
     Local local18%
-    local0 = myplayer\Field51
+    local0 = myplayer\Field49
     If (spectate\Field1 <> $FFFFFFFF) Then
         If (spectate\Field0 = $01) Then
-            local0 = player[spectate\Field1]\Field51
+            local0 = player[spectate\Field1]\Field49
         EndIf
     EndIf
     If (showscpviewmodel = $00) Then
         local0 = $00
     EndIf
-    If (myplayer\Field74 <> local0) Then
-        local1 = getbreachtype(myplayer\Field74)
+    If (myplayer\Field72 <> local0) Then
+        local1 = getbreachtype(myplayer\Field72)
         If (local1\Field20 <> $00) Then
             hideentity(local1\Field20)
         EndIf
     EndIf
-    myplayer\Field74 = local0
+    myplayer\Field72 = local0
     local1 = getbreachtype(local0)
     If (local1\Field20 <> $00) Then
         If (spectate\Field1 <> $FFFFFFFF) Then
             If (spectate\Field0 = $01) Then
                 If (player[spectate\Field1] <> Null) Then
-                    If (player[spectate\Field1]\Field55 < $1E) Then
+                    If (player[spectate\Field1]\Field53 < $1E) Then
                         prev_player_move = player_move
-                        player_move = player[spectate\Field1]\Field55
+                        player_move = player[spectate\Field1]\Field53
                         If (player_move_timed = $00) Then
-                            player_move_timed = player[spectate\Field1]\Field56
+                            player_move_timed = player[spectate\Field1]\Field54
                         EndIf
                     EndIf
                 EndIf
             EndIf
         EndIf
         positionentity(viewmodelpivot, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
-        rotateentity(viewmodelpivot, entitypitch(camera, $00), entityyaw(camera, $00), entityroll(camera, $00), $00)
-        showentity(local1\Field20)
+        rotateentity(viewmodelpivot, entitypitch(camera, $00), entityyaw(camera, $00), 0.0, $00)
+        If (entityhidden(local1\Field20) <> 0) Then
+            showentity(local1\Field20)
+        EndIf
         local2 = local0
         If (local2 <> model_096) Then
             If (player_move_timed = $00) Then

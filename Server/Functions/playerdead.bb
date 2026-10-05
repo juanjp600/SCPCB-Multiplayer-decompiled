@@ -3,10 +3,10 @@ Function playerdead%(arg0%, arg1$)
     If (server\Field21 <> 0) Then
         setplayertype(arg0, $00)
     EndIf
-    player[arg0]\Field60 = 0.0
-    player[arg0]\Field59 = $01
-    player[arg0]\Field61 = 0.0
-    player[arg0]\Field131 = $00
+    player[arg0]\Field62 = 0.0
+    player[arg0]\Field61 = $01
+    player[arg0]\Field63 = 0.0
+    player[arg0]\Field134 = $00
     If (arg1 <> "") Then
         If (getscripts() <> 0) Then
             local0 = public_inqueue($18, $00)
@@ -18,7 +18,7 @@ Function playerdead%(arg0%, arg1$)
             If ((server\Field21 And (server\Field47 = $00)) <> 0) Then
                 Return $00
             EndIf
-            addlog(((player[arg0]\Field15 + " ") + arg1), $00, $01, $00)
+            addlog(((player[arg0]\Field15 + " ") + arg1), $00, $00, $00, $C0, $C0, $C0)
         EndIf
     EndIf
     Return $00

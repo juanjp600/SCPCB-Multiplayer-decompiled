@@ -4,13 +4,13 @@ Function objects_network_update%()
     Local local2$
     Local local3.players
     For local0 = $01 To server\Field11 Step $01
-        If (playeroptimize[local0]\Field52 > $FF) Then
-            playeroptimize[local0]\Field52 = $01
+        If (playeroptimize[local0]\Field54 > $FF) Then
+            playeroptimize[local0]\Field54 = $01
         EndIf
-        If (playeroptimize[local0]\Field49 <> playeroptimize[local0]\Field52) Then
+        If (playeroptimize[local0]\Field49 <> playeroptimize[local0]\Field54) Then
             udp_writebyte($5D)
             udp_writebyte($01)
-            udp_writebyte(playeroptimize[local0]\Field52)
+            udp_writebyte(playeroptimize[local0]\Field54)
             For local1 = Each mp_objects
                 If (local1\Field13[playeroptimize[local0]\Field30] = $00) Then
                     If (((0.0 = local1\Field12) Or ((0.0 < local1\Field12) And local1\Field14[playeroptimize[local0]\Field30])) <> 0) Then
@@ -37,7 +37,7 @@ Function objects_network_update%()
             For local3 = Each players
                 If (local1\Field13[local3\Field30] = $00) Then
                     If ((local1\Field14[local3\Field30] Or (0.0 = local1\Field12)) <> 0) Then
-                        local3\Field52 = (local3\Field52 + $01)
+                        local3\Field54 = (local3\Field54 + $01)
                     EndIf
                 EndIf
             Next
@@ -48,19 +48,19 @@ Function objects_network_update%()
         For local1 = Each mp_objects
             If (0.0 < local1\Field12) Then
                 For local3 = Each players
-                    If (local1\Field12 > entitydistance(local3\Field62, local1\Field11)) Then
+                    If (local1\Field12 > entitydistance(local3\Field64, local1\Field11)) Then
                         If (local1\Field14[local3\Field30] = $00) Then
-                            local3\Field52 = (local3\Field52 + $01)
+                            local3\Field54 = (local3\Field54 + $01)
                             local1\Field14[local3\Field30] = $01
                         EndIf
                     ElseIf (local1\Field14[local3\Field30] <> 0) Then
-                        local3\Field52 = (local3\Field52 + $01)
+                        local3\Field54 = (local3\Field54 + $01)
                         local1\Field14[local3\Field30] = $00
                     EndIf
                 Next
             Else
                 For local3 = Each players
-                    local3\Field52 = (local3\Field52 + $01)
+                    local3\Field54 = (local3\Field54 + $01)
                 Next
             EndIf
         Next

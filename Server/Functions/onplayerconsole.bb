@@ -25,9 +25,9 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
             Case "scp-420-j","420","weed"
                 For local4 = $01 To $14 Step $01
                     If (rand($02, $01) = $01) Then
-                        local5 = createitem("Some SCP-420-J", "420", ((cos((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityx(local1\Field62, $01)), entityy(getcamera(arg0), $01), ((sin((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityz(local1\Field62, $01)), $00, $00, $00, 1.0, $00, $01)
+                        local5 = createitem("Some SCP-420-J", "420", ((cos((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityx(local1\Field64, $01)), entityy(getcamera(arg0), $01), ((sin((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityz(local1\Field64, $01)), $00, $00, $00, 1.0, $00, $01)
                     Else
-                        local5 = createitem("Joint", "420s", ((cos((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityx(local1\Field62, $01)), entityy(getcamera(arg0), $01), ((sin((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityz(local1\Field62, $01)), $00, $00, $00, 1.0, $00, $01)
+                        local5 = createitem("Joint", "420s", ((cos((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityx(local1\Field64, $01)), entityy(getcamera(arg0), $01), ((sin((18.0 * (Float local4))) * rnd(0.3, 0.5)) + entityz(local1\Field64, $01)), $00, $00, $00, 1.0, $00, $01)
                     EndIf
                     entitytype(local5\Field1, $03, $00)
                 Next
@@ -54,9 +54,9 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 local0 = piece(local8, $01, " ")
                 local9 = piece(local8, $02, " ")
                 If (local0 <> local9) Then
-                    console_spawnnpc(player[arg0]\Field62, local0, local9)
+                    console_spawnnpc(player[arg0]\Field64, local0, local9)
                 Else
-                    console_spawnnpc(player[arg0]\Field62, local0, "")
+                    console_spawnnpc(player[arg0]\Field64, local0, "")
                 EndIf
             Case "stfu","stopsound"
                 If (curr173 <> Null) Then
@@ -105,18 +105,18 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 Select local0
                     Case "on","1","true"
-                        local1\Field94 = $01
+                        local1\Field96 = $01
                     Case "off","0","false"
-                        local1\Field94 = $00
+                        local1\Field96 = $00
                     Default
-                        local1\Field94 = (local1\Field94 = $00)
+                        local1\Field96 = (local1\Field96 = $00)
                 End Select
-                player[arg0]\Field86 = 0.0
+                player[arg0]\Field88 = 0.0
             Case "noclipspeed"
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
-                local1\Field95 = (Float local0)
+                local1\Field97 = (Float local0)
             Case "revive","undead","resurrect"
-                player[local2]\Field59 = $00
+                player[local2]\Field61 = $00
             Case "spawnitem"
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 local12 = $00
@@ -130,7 +130,7 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                     EndIf
                 Next
                 If (local12 = $01) Then
-                    local5 = createitem(local13\Field1, local13\Field2, entityx(player[local2]\Field62, $00), (entityy(getcamera(local2), $01) - 0.1), entityz(player[local2]\Field62, $00), $00, $00, $00, 1.0, $00, $01)
+                    local5 = createitem(local13\Field1, local13\Field2, entityx(player[local2]\Field64, $00), (entityy(getcamera(local2), $01) - 0.1), entityz(player[local2]\Field64, $00), $00, $00, $00, 1.0, $00, $01)
                     entitytype(local5\Field1, $03, $00)
                 EndIf
             Case "role"
@@ -143,20 +143,20 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 local0 = piece(local8, $01, " ")
                 local9 = piece(local8, $02, " ")
                 local14 = piece(local8, $03, " ")
-                positionentity(local1\Field62, (Float local0), (Float local9), (Float local14), $00)
-                resetentity(local1\Field62)
-                setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
+                positionentity(local1\Field64, (Float local0), (Float local9), (Float local14), $00)
+                resetentity(local1\Field64)
+                setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
             Case "tfd"
-                If (local1\Field67 = "dimension1499") Then
-                    positionentity(local1\Field62, local1\Field133, local1\Field134, local1\Field135, $00)
-                    resetentity(local1\Field62)
-                    mp_setplayerroomid(local1, local1\Field136)
+                If (local1\Field69 = "dimension1499") Then
+                    positionentity(local1\Field64, local1\Field136, local1\Field137, local1\Field138, $00)
+                    resetentity(local1\Field64)
+                    mp_setplayerroomid(local1, local1\Field139)
                     mp_updateplayerposition(local1, $01)
-                    setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
-                    local1\Field133 = 0.0
-                    local1\Field134 = 0.0
-                    local1\Field135 = 0.0
-                    local1\Field136 = Null
+                    setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
+                    local1\Field136 = 0.0
+                    local1\Field137 = 0.0
+                    local1\Field138 = 0.0
+                    local1\Field139 = Null
                 EndIf
             Case "teleport"
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
@@ -167,17 +167,17 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                                 For local7 = Each events
                                     If (local7\Field22 = $3E) Then
                                         If (room[local1\Field32]\Field7\Field10 <> "dimension1499") Then
-                                            local1\Field133 = entityx(local1\Field62, $00)
-                                            local1\Field134 = entityy(local1\Field62, $00)
-                                            local1\Field135 = entityz(local1\Field62, $00)
-                                            local1\Field136 = room[local1\Field32]
+                                            local1\Field136 = entityx(local1\Field64, $00)
+                                            local1\Field137 = entityy(local1\Field64, $00)
+                                            local1\Field138 = entityz(local1\Field64, $00)
+                                            local1\Field139 = room[local1\Field32]
                                         EndIf
-                                        positionentity(local1\Field62, entityx(local7\Field1\Field2, $00), (entityy(local7\Field1\Field2, $00) + 1.0), entityz(local7\Field1\Field2, $00), $00)
-                                        resetentity(local1\Field62)
+                                        positionentity(local1\Field64, entityx(local7\Field1\Field2, $00), (entityy(local7\Field1\Field2, $00) + 1.0), entityz(local7\Field1\Field2, $00), $00)
+                                        resetentity(local1\Field64)
                                         mp_setplayerroomid(local1, local7\Field1)
                                         mp_updateplayerposition(local1, $01)
-                                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
-                                        local1\Field131 = $00
+                                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
+                                        local1\Field134 = $00
                                         Return $00
                                     EndIf
                                 Next
@@ -196,31 +196,31 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 End Select
                 For local16 = Each rooms
                     If (local16\Field7\Field10 = local0) Then
-                        positionentity(local1\Field62, entityx(local16\Field2, $00), (entityy(local16\Field2, $00) + 1.0), entityz(local16\Field2, $00), $00)
-                        resetentity(local1\Field62)
+                        positionentity(local1\Field64, entityx(local16\Field2, $00), (entityy(local16\Field2, $00) + 1.0), entityz(local16\Field2, $00), $00)
+                        resetentity(local1\Field64)
                         mp_setplayerroomid(local1, local16)
                         mp_updateplayerposition(local1, $01)
-                        setplayerpositionex(local1\Field30, local16\Field69, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
+                        setplayerpositionex(local1\Field30, local16\Field69, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
                         local0 = ""
-                        local1\Field131 = $00
+                        local1\Field134 = $00
                         Exit
                     EndIf
                 Next
                 For local17 = Each players
                     If (local17\Field15 <> "") Then
                         If (lower(local17\Field15) = lower(local0)) Then
-                            positionentity(local1\Field62, entityx(local17\Field62, $00), (entityy(local17\Field62, $00) + 0.1), entityz(local17\Field62, $00), $00)
-                            resetentity(local1\Field62)
+                            positionentity(local1\Field64, entityx(local17\Field64, $00), (entityy(local17\Field64, $00) + 0.1), entityz(local17\Field64, $00), $00)
+                            resetentity(local1\Field64)
                             For local16 = Each rooms
-                                If (local16\Field7\Field10 = local17\Field67) Then
+                                If (local16\Field7\Field10 = local17\Field69) Then
                                     mp_setplayerroomid(local1, local16)
                                     mp_updateplayerposition(local1, $01)
                                     Exit
                                 EndIf
                             Next
-                            local1\Field131 = $00
+                            local1\Field134 = $00
                             local0 = ""
-                            setplayerpositionex(local1\Field30, local1\Field32, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
+                            setplayerpositionex(local1\Field30, local1\Field32, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
                             Exit
                         EndIf
                     EndIf
@@ -229,21 +229,21 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 Select local0
                     Case "on","1","true"
-                        local1\Field101 = $01
+                        local1\Field103 = $01
                     Case "off","0","false"
-                        local1\Field101 = $00
+                        local1\Field103 = $00
                     Default
-                        local1\Field101 = (local1\Field101 = $00)
+                        local1\Field103 = (local1\Field103 = $00)
                 End Select
             Case "heal"
-                local1\Field61 = 0.0
-                local1\Field60 = (Float local1\Field96)
+                local1\Field63 = 0.0
+                local1\Field62 = (Float local1\Field98)
             Case "ban"
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 If (isplayeradmin(arg0) <> 0) Then
                     If (isvalidplayer((Int local0)) <> 0) Then
                         If (player[(Int local0)] <> Null) Then
-                            rcon_banip("banlist", player[(Int local0)]\Field40)
+                            rcon_banip(player[(Int local0)]\Field40)
                         EndIf
                     EndIf
                 EndIf
@@ -252,7 +252,7 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 If (isplayeradmin(arg0) <> 0) Then
                     If (isvalidplayer((Int local0)) <> 0) Then
                         If (player[(Int local0)] <> Null) Then
-                            rcon_bansteamid("banliststeam", player[(Int local0)]\Field129)
+                            rcon_bansteamid(player[(Int local0)]\Field131)
                         EndIf
                     EndIf
                 EndIf
@@ -269,22 +269,22 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 If (isplayeradmin(arg0) <> 0) Then
                     If (isvalidplayer((Int local0)) <> 0) Then
-                        positionentity(local1\Field62, entityx(player[(Int local0)]\Field62, $00), (entityy(player[(Int local0)]\Field62, $00) + 0.1), entityz(player[(Int local0)]\Field62, $00), $00)
-                        resetentity(local1\Field62)
+                        positionentity(local1\Field64, entityx(player[(Int local0)]\Field64, $00), (entityy(player[(Int local0)]\Field64, $00) + 0.1), entityz(player[(Int local0)]\Field64, $00), $00)
+                        resetentity(local1\Field64)
                         mp_setplayerroomid(local1, room[player[(Int local0)]\Field32])
                         mp_updateplayerposition(local1, $01)
-                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), (entityy(local1\Field62, $00) + 0.1), entityz(local1\Field62, $00))
+                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), (entityy(local1\Field64, $00) + 0.1), entityz(local1\Field64, $00))
                     EndIf
                 EndIf
             Case "tpme"
                 local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
                 If (isplayeradmin(arg0) <> 0) Then
                     If (isvalidplayer((Int local0)) <> 0) Then
-                        positionentity(player[(Int local0)]\Field62, entityx(local1\Field62, $00), (entityy(local1\Field62, $00) + 0.1), entityz(local1\Field62, $00), $00)
-                        resetentity(player[(Int local0)]\Field62)
+                        positionentity(player[(Int local0)]\Field64, entityx(local1\Field64, $00), (entityy(local1\Field64, $00) + 0.1), entityz(local1\Field64, $00), $00)
+                        resetentity(player[(Int local0)]\Field64)
                         mp_setplayerroomid(player[(Int local0)], room[local1\Field32])
                         mp_updateplayerposition(player[(Int local0)], $01)
-                        setplayerposition((Int local0), room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), (entityy(local1\Field62, $00) + 0.1), entityz(local1\Field62, $00))
+                        setplayerposition((Int local0), room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), (entityy(local1\Field64, $00) + 0.1), entityz(local1\Field64, $00))
                     EndIf
                 EndIf
             Case "mute"
@@ -292,8 +292,8 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                 If (isplayeradmin(arg0) <> 0) Then
                     If (isvalidplayer((Int local0)) <> 0) Then
                         If (player[(Int local0)] <> Null) Then
-                            player[(Int local0)]\Field139 = (player[(Int local0)]\Field139 = $00)
-                            If (player[(Int local0)]\Field139 <> 0) Then
+                            player[(Int local0)]\Field142 = (player[(Int local0)]\Field142 = $00)
+                            If (player[(Int local0)]\Field142 <> 0) Then
                                 addtexttochat(("[RCON] You muted the " + player[(Int local0)]\Field15), local1\Field30)
                                 addtexttochat("You get muted.", player[(Int local0)]\Field30)
                             Else
@@ -348,9 +348,9 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
             Case "spawnchaos"
                 If (isplayeradmin(arg0) <> 0) Then
                     If (breach_isstarted() <> 0) Then
-                        If (1.0 <= gameinfo\Field5\Field10) Then
+                        If (gameinfo\Field5\Field10 >= $01) Then
                             gameinfo\Field5\Field8 = $01
-                            spawnmtf()
+                            spawnwave()
                             addtexttochat("[RCON] Chaos successfully spawned!", local1\Field30)
                         Else
                             addtexttochat("[RCON] Chaos doesn't have tickets!", local1\Field30)
@@ -360,9 +360,9 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
             Case "spawnmtf"
                 If (isplayeradmin(arg0) <> 0) Then
                     If (breach_isstarted() <> 0) Then
-                        If (1.0 <= gameinfo\Field5\Field9) Then
+                        If (gameinfo\Field5\Field9 >= $01) Then
                             gameinfo\Field5\Field8 = $00
-                            spawnmtf()
+                            spawnwave()
                             addtexttochat("[RCON] MTF successfully spawned!", local1\Field30)
                         Else
                             addtexttochat("[RCON] MTF doesn't have tickets!", local1\Field30)
@@ -381,8 +381,8 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
             Case "shouldannounc"
                 If (isplayeradmin(arg0) <> 0) Then
                     If (breach_isstarted() <> 0) Then
-                        player[arg0]\Field162 = (player[arg0]\Field162 = $00)
-                        If (player[arg0]\Field162 <> 0) Then
+                        player[arg0]\Field165 = (player[arg0]\Field165 = $00)
+                        If (player[arg0]\Field165 <> 0) Then
                             playsoundforplayer(arg0, "GFX\multiplayer\game\sounds\Announcement.ogg")
                         Else
                             playsoundforplayer(arg0, "GFX\multiplayer\game\sounds\Announcement2.ogg")
@@ -414,7 +414,7 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                         For local4 = $01 To server\Field18 Step $01
                             If (player[local4] <> Null) Then
                                 playerzone = getplayerzone(local4)
-                                If ((((playerzone > $00) And (playerzone < $04)) And (((player[local4]\Field67 = "exit1") And ((1040.0 * roomscale) < entityy(player[local4]\Field62, $00))) = $00)) <> 0) Then
+                                If ((((playerzone > $00) And (playerzone < $04)) And (((player[local4]\Field69 = "exit1") And (4.0625 < entityy(player[local4]\Field64, $00))) = $00)) <> 0) Then
                                     udp_writebyte($07)
                                     udp_writebyte($01)
                                     udp_writeint($01)
@@ -429,31 +429,31 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
             Case "setmtftickets"
                 If (isplayeradmin(arg0) <> 0) Then
                     local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
-                    gameinfo\Field5\Field9 = (Float local0)
+                    gameinfo\Field5\Field9 = (Int (Float local0))
                     addtexttochat((("[RCON] " + (Str gameinfo\Field5\Field9)) + " tickets set to MTF"), local1\Field30)
                 EndIf
             Case "setchaostickets"
                 If (isplayeradmin(arg0) <> 0) Then
                     local0 = lower(right(arg1, (len(arg1) - instr(arg1, " ", $01))))
-                    gameinfo\Field5\Field10 = (Float local0)
+                    gameinfo\Field5\Field10 = (Int (Float local0))
                     addtexttochat((("[RCON] " + (Str gameinfo\Field5\Field10)) + " tickets set to Chaos"), local1\Field30)
                 EndIf
             Case "sanic"
-                local1\Field173 = 6.0
+                local1\Field176 = 6.0
         End Select
     Else
         Select lower(local0)
             Case "tfd"
-                If (local1\Field67 = "dimension1499") Then
-                    positionentity(local1\Field62, local1\Field133, local1\Field134, local1\Field135, $00)
-                    resetentity(local1\Field62)
-                    mp_setplayerroomid(local1, local1\Field136)
+                If (local1\Field69 = "dimension1499") Then
+                    positionentity(local1\Field64, local1\Field136, local1\Field137, local1\Field138, $00)
+                    resetentity(local1\Field64)
+                    mp_setplayerroomid(local1, local1\Field139)
                     mp_updateplayerposition(local1, $01)
-                    setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
-                    local1\Field133 = 0.0
-                    local1\Field134 = 0.0
-                    local1\Field135 = 0.0
-                    local1\Field136 = Null
+                    setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
+                    local1\Field136 = 0.0
+                    local1\Field137 = 0.0
+                    local1\Field138 = 0.0
+                    local1\Field139 = Null
                     Return $00
                 EndIf
             Case "teleport"
@@ -465,17 +465,17 @@ Function onplayerconsole%(arg0%, arg1$, arg2%)
                                 For local7 = Each events
                                     If (local7\Field22 = $3E) Then
                                         If (room[local1\Field32]\Field7\Field10 <> "dimension1499") Then
-                                            local1\Field133 = entityx(local1\Field62, $00)
-                                            local1\Field134 = entityy(local1\Field62, $00)
-                                            local1\Field135 = entityz(local1\Field62, $00)
-                                            local1\Field136 = room[local1\Field32]
+                                            local1\Field136 = entityx(local1\Field64, $00)
+                                            local1\Field137 = entityy(local1\Field64, $00)
+                                            local1\Field138 = entityz(local1\Field64, $00)
+                                            local1\Field139 = room[local1\Field32]
                                         EndIf
-                                        positionentity(local1\Field62, entityx(local7\Field1\Field2, $00), (entityy(local7\Field1\Field2, $00) + 0.7), entityz(local7\Field1\Field2, $00), $00)
-                                        resetentity(local1\Field62)
+                                        positionentity(local1\Field64, entityx(local7\Field1\Field2, $00), (entityy(local7\Field1\Field2, $00) + 0.7), entityz(local7\Field1\Field2, $00), $00)
+                                        resetentity(local1\Field64)
                                         mp_setplayerroomid(local1, local7\Field1)
                                         mp_updateplayerposition(local1, $01)
-                                        local1\Field131 = $00
-                                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field62, $00), entityy(local1\Field62, $00), entityz(local1\Field62, $00))
+                                        local1\Field134 = $00
+                                        setplayerposition(local1\Field30, room[local1\Field32]\Field7\Field10, entityx(local1\Field64, $00), entityy(local1\Field64, $00), entityz(local1\Field64, $00))
                                         Return $00
                                     EndIf
                                 Next

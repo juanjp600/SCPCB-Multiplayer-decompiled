@@ -12,12 +12,12 @@ Function updatescreens%()
             If (1.2 > entitydistance(collider, local0\Field0)) Then
                 entitypick(camera, 1.2)
                 If (((pickedentity() = local0\Field0) And (local0\Field1 <> "")) <> 0) Then
-                    If ((((networkserver\Field15 And ((multiplayer_isascp(myplayer\Field51) = $00) Or multiplayer_breach_isa049(myplayer\Field51))) And (playerroom\Field7\Field11 = "room2ccont")) And (player_isdead() = $00)) <> 0) Then
+                    If ((((networkserver\Field12 And ((multiplayer_isascp(myplayer\Field49) = $00) Or multiplayer_breach_isa049(myplayer\Field49))) And (playerroom\Field8\Field11 = "room2ccont")) And (player_isdead() = $00)) <> 0) Then
                         playerintercom\Field3 = $01
                     EndIf
                     drawhandicon = $01
                     If (mousehit1 <> 0) Then
-                        If ((((playerroom\Field7\Field11 = "room2ccont") And (networkserver\Field15 = $01)) And ((multiplayer_isascp(myplayer\Field51) = $00) Or multiplayer_breach_isa049(myplayer\Field51))) <> 0) Then
+                        If ((((playerroom\Field8\Field11 = "room2ccont") And (networkserver\Field12 = $01)) And ((multiplayer_isascp(myplayer\Field49) = $00) Or multiplayer_breach_isa049(myplayer\Field49))) <> 0) Then
                             useintercom()
                         Else
                             selectedscreen = local0

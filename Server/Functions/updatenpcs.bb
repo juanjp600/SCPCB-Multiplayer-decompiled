@@ -65,7 +65,7 @@ Function updatenpcs%()
         local0\Field58 = checkfornpcinfacility(local0)
         local0\Field92 = local0\Field74
         local0\Field74 = findnearestid(local0)
-        local0\Field73 = player[local0\Field74]\Field62
+        local0\Field73 = player[local0\Field74]\Field64
         Select local0\Field5
             Case $01
                 If (3.0 <> local0\Field24) Then
@@ -116,14 +116,13 @@ Function updatenpcs%()
                                 local0\Field9 = max(0.0, (local0\Field9 - (fpsfactor / 20.0)))
                             ElseIf (50.0 < local6) Then
                                 If (rand($46, $01) = $01) Then
-                                    If ((((player[local0\Field74]\Field67 <> "exit1") And (player[local0\Field74]\Field67 <> "gatea")) And (player[local0\Field74]\Field67 <> "pocketdimension")) <> 0) Then
+                                    If ((((player[local0\Field74]\Field69 <> "exit1") And (player[local0\Field74]\Field69 <> "gatea")) And (player[local0\Field74]\Field69 <> "pocketdimension")) <> 0) Then
                                         For local23 = Each waypoints
                                             If (((local23\Field1 = Null) And (rand($05, $01) = $01)) <> 0) Then
                                                 local9 = (Abs (entityx(local0\Field73, $00) - entityx(local23\Field0, $01)))
                                                 If (((25.0 > local9) And (15.0 < local9)) <> 0) Then
                                                     local11 = (Abs (entityz(local0\Field73, $00) - entityz(local23\Field0, $01)))
                                                     If (((25.0 > local11) And (15.0 < local11)) <> 0) Then
-                                                        debuglog(("MOVING 173 TO " + local23\Field2\Field7\Field10))
                                                         positionentity(local0\Field4, entityx(local23\Field0, $01), (entityy(local23\Field0, $01) + 0.25), entityz(local23\Field0, $01), $00)
                                                         resetentity(local0\Field4)
                                                         Exit
@@ -174,7 +173,7 @@ Function updatenpcs%()
                                 EndIf
                                 If (local18 <> 0) Then
                                     If (0.65 > local6) Then
-                                        If (((player[local0\Field74]\Field101 = $00) And (player[local0\Field74]\Field59 = $00)) <> 0) Then
+                                        If (((player[local0\Field74]\Field103 = $00) And (player[local0\Field74]\Field61 = $00)) <> 0) Then
                                             Select playerroom\Field7\Field10
                                                 Case "lockroom","room2closets","coffin"
                                                     deathmsg = "Subject D-9341. Cause of death: Fatal cervical fracture. The surveillance tapes confirm that the subject was killed by SCP-173."
@@ -188,7 +187,7 @@ Function updatenpcs%()
                                                     deathmsg = "Subject D-9341. Cause of death: Fatal cervical fracture. Assumed to be attacked by SCP-173."
                                             End Select
                                             playsound_strict(necksnapsfx(rand($00, $02)))
-                                            If (instr(player[local0\Field74]\Field103, "Neck", $01) = $00) Then
+                                            If (instr(player[local0\Field74]\Field105, "Neck", $01) = $00) Then
                                                 createsound((("SFX\SCP\173\NeckSnap" + (Str rand($01, $03))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                             EndIf
                                             If (rand($02, $01) = $01) Then
@@ -263,7 +262,7 @@ Function updatenpcs%()
                 Else
                     local6 = entitydistance(local0\Field4, local0\Field73)
                     local27 = $01
-                    If (player[local0\Field74]\Field67 <> "pocketdimension") Then
+                    If (player[local0\Field74]\Field69 <> "pocketdimension") Then
                         If (pocketdimension106\Field14 > $00) Then
                             If (playerinroom(pocketdimension106) <> 0) Then
                                 local27 = $00
@@ -272,7 +271,7 @@ Function updatenpcs%()
                     ElseIf (50.0 < entitydistance(local0\Field73, local0\Field4)) Then
                         local27 = $00
                     EndIf
-                    If (player[local0\Field74]\Field67 = "dimension1499") Then
+                    If (player[local0\Field74]\Field69 = "dimension1499") Then
                         local27 = $00
                     EndIf
                     If (room860event <> Null) Then
@@ -282,7 +281,7 @@ Function updatenpcs%()
                     EndIf
                     If (0.0 <> gateaevent\Field2) Then
                         local27 = $01
-                        If (player[local0\Field74]\Field67 = "dimension1499") Then
+                        If (player[local0\Field74]\Field69 = "dimension1499") Then
                             local0\Field24 = 1.0
                         Else
                             local0\Field24 = 0.0
@@ -306,7 +305,7 @@ Function updatenpcs%()
                                 EndIf
                                 local0\Field29 = entityy(local0\Field73, $00)
                                 setanimtime(local0\Field0, 110.0, $00)
-                                If (player[local0\Field74]\Field67 <> "coffin") Then
+                                If (player[local0\Field74]\Field69 <> "coffin") Then
                                     positionentity(local0\Field4, entityx(local0\Field73, $00), (entityy(local0\Field73, $00) - 15.0), entityz(local0\Field73, $00), $00)
                                 EndIf
                             EndIf
@@ -336,7 +335,7 @@ Function updatenpcs%()
                                     local29 = $00
                                 EndIf
                                 If (local29 <> 0) Then
-                                    If (player[local0\Field74]\Field67 <> "gatea") Then
+                                    If (player[local0\Field74]\Field69 <> "gatea") Then
                                         local0\Field38 = 0.0
                                     EndIf
                                     If (entityinview(local0\Field4, camera) <> 0) Then
@@ -353,8 +352,8 @@ Function updatenpcs%()
                                     local0\Field9 = (local0\Field9 - fpsfactor)
                                 EndIf
                                 If (0.8 < local6) Then
-                                    If ((((((25.0 < local6) Or (player[local0\Field74]\Field67 = "pocketdimension")) Or local29) Or (local0\Field37 <> $01)) And (player[local0\Field74]\Field67 <> "gatea")) <> 0) Then
-                                        If (((40.0 < local6) Or (player[local0\Field74]\Field67 = "pocketdimension")) <> 0) Then
+                                    If ((((((25.0 < local6) Or (player[local0\Field74]\Field69 = "pocketdimension")) Or local29) Or (local0\Field37 <> $01)) And (player[local0\Field74]\Field69 <> "gatea")) <> 0) Then
+                                        If (((40.0 < local6) Or (player[local0\Field74]\Field69 = "pocketdimension")) <> 0) Then
                                             translateentity(local0\Field4, 0.0, (((entityy(local0\Field73, $00) - 0.14) - entityy(local0\Field4, $00)) / 50.0), 0.0, $00)
                                         EndIf
                                         local0\Field22 = curvevalue(local0\Field21, local0\Field22, 10.0)
@@ -418,7 +417,7 @@ Function updatenpcs%()
                                             local0\Field22 = curvevalue(0.0, local0\Field22, 10.0)
                                         EndIf
                                     EndIf
-                                ElseIf (((player[local0\Field74]\Field67 <> "gatea") And (notarget = $00)) <> 0) Then
+                                ElseIf (((player[local0\Field74]\Field69 <> "gatea") And (notarget = $00)) <> 0) Then
                                     If (0.5 < local6) Then
                                         local0\Field22 = curvevalue((local0\Field21 * 2.5), local0\Field22, 10.0)
                                     Else
@@ -431,10 +430,10 @@ Function updatenpcs%()
                                         If (((110.0 = ceil(local0\Field14)) And (godmode = $00)) <> 0) Then
                                             playsound_strict(damagesfx($01))
                                             playsound_strict(horrorsfx($05))
-                                            If (instr(player[local0\Field74]\Field103, "Damage", $01) = $00) Then
+                                            If (instr(player[local0\Field74]\Field105, "Damage", $01) = $00) Then
                                                 createsound("SFX\Character\D9341\Damage1.ogg", entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                             EndIf
-                                            If (player[local0\Field74]\Field67 = "pocketdimension") Then
+                                            If (player[local0\Field74]\Field69 = "pocketdimension") Then
                                                 deathmsg = (((("Subject D-9341. Body partially decomposed by what is assumed to be SCP-106's " + chr($22)) + "corrosion") + chr($22)) + " effect. Body disposed of via incineration.")
                                                 giveplayerhealth(local0\Field74, -1000.0, "was killed by SCP-106")
                                             Else
@@ -459,7 +458,7 @@ Function updatenpcs%()
                                 EndIf
                             EndIf
                             If (0.0 = local0\Field25) Then
-                                If (((((10.0 < local6) And (player[local0\Field74]\Field67 <> "pocketdimension")) And (player[local0\Field74]\Field67 <> "gatea")) And (-5.0 > local0\Field9)) <> 0) Then
+                                If (((((10.0 < local6) And (player[local0\Field74]\Field69 <> "pocketdimension")) And (player[local0\Field74]\Field69 <> "gatea")) And (-5.0 > local0\Field9)) <> 0) Then
                                     If (entityinview(local0\Field0, getcamera(local0\Field74)) = $00) Then
                                         turnentity(local0\Field73, 0.0, 180.0, 0.0, $00)
                                         local30 = entitypick(local0\Field73, 5.0)
@@ -473,7 +472,6 @@ Function updatenpcs%()
                                             local0\Field20 = playsound2(oldmansfx((rand($00, $02) + $06)), camera, local0\Field4, 10.0, 1.0)
                                             local0\Field38 = 0.0
                                             local0\Field25 = (700.0 / (Float (selecteddifficulty\Field5 + $01)))
-                                            debuglog((("Teleported 106 (Distance: " + (Str entitydistance(local0\Field4, local0\Field73))) + ")"))
                                         EndIf
                                     EndIf
                                 EndIf
@@ -487,7 +485,7 @@ Function updatenpcs%()
                             local0\Field14 = 110.0
                             If (room[player[local0\Field74]\Field32] <> Null) Then
                                 If (room[player[local0\Field74]\Field32]\Field7\Field13 = $00) Then
-                                    If (player[local0\Field74]\Field67 <> "gatea") Then
+                                    If (player[local0\Field74]\Field69 <> "gatea") Then
                                         If (selecteddifficulty\Field3 <> 0) Then
                                             local0\Field9 = (local0\Field9 - (fpsfactor * 2.0))
                                         Else
@@ -548,14 +546,14 @@ Function updatenpcs%()
                             If (notarget = $00) Then
                                 For local5 = $01 To server\Field18 Step $01
                                     If (player[local5] <> Null) Then
-                                        If (player[local5]\Field59 = $00) Then
-                                            local8 = wrapangle(deltayaw(local0\Field4, player[local5]\Field68))
+                                        If (player[local5]\Field61 = $00) Then
+                                            local8 = wrapangle(deltayaw(local0\Field4, player[local5]\Field70))
                                             If (((90.0 > local8) Or (270.0 < local8)) <> 0) Then
-                                                cameraproject(player[local5]\Field68, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) + 0.25), entityz(local0\Field4, $00))
-                                                If (((0.0 < projectedx()) And (projectedx() < (Float player[local5]\Field71))) <> 0) Then
-                                                    If (((0.0 < projectedy()) And (projectedy() < (Float player[local5]\Field72))) <> 0) Then
-                                                        If (entityvisible(player[local5]\Field62, local0\Field4) <> 0) Then
-                                                            If ((((-16.0 > player[local5]\Field17) Or (-6.0 < player[local5]\Field17)) And (player[local5]\Field59 = $00)) <> 0) Then
+                                                cameraproject(player[local5]\Field70, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) + 0.25), entityz(local0\Field4, $00))
+                                                If (((0.0 < projectedx()) And (projectedx() < (Float player[local5]\Field73))) <> 0) Then
+                                                    If (((0.0 < projectedy()) And (projectedy() < (Float player[local5]\Field74))) <> 0) Then
+                                                        If (entityvisible(player[local5]\Field64, local0\Field4) <> 0) Then
+                                                            If ((((-16.0 > player[local5]\Field17) Or (-6.0 < player[local5]\Field17)) And (player[local5]\Field61 = $00)) <> 0) Then
                                                                 If (channelplaying(local0\Field84) = $00) Then
                                                                     local0\Field84 = playsound_strict(triggered096sfx)
                                                                 EndIf
@@ -625,7 +623,7 @@ Function updatenpcs%()
                                 local6 = entitydistance(local0\Field31\Field4, local0\Field4)
                             EndIf
                             If (local0\Field92 <> $00) Then
-                                local6 = entitydistance(player[local0\Field92]\Field62, local0\Field4)
+                                local6 = entitydistance(player[local0\Field92]\Field64, local0\Field4)
                             EndIf
                             If (((2.8 > local6) Or (150.0 > local0\Field14)) <> 0) Then
                                 If (193.0 < local0\Field14) Then
@@ -637,7 +635,7 @@ Function updatenpcs%()
                                 Else
                                     local0\Field22 = 0.0
                                     If (local0\Field31 = Null) Then
-                                        If (player[local0\Field92]\Field59 <> 0) Then
+                                        If (player[local0\Field92]\Field61 <> 0) Then
                                             local0\Field9 = 0.0
                                             If (local0\Field17 <> $00) Then
                                                 stopstream_strict(local0\Field17)
@@ -835,13 +833,13 @@ Function updatenpcs%()
                             If (notarget = $00) Then
                                 For local5 = $01 To server\Field18 Step $01
                                     If (player[local5] <> Null) Then
-                                        If (player[local5]\Field59 = $00) Then
-                                            local8 = wrapangle(deltayaw(local0\Field4, player[local5]\Field68))
+                                        If (player[local5]\Field61 = $00) Then
+                                            local8 = wrapangle(deltayaw(local0\Field4, player[local5]\Field70))
                                             If (((55.0 > local8) Or (305.0 < local8)) <> 0) Then
-                                                cameraproject(player[local5]\Field68, entityx(local0\Field4, $00), ((entityy(player[local5]\Field62, $00) + 1.16) - 0.25), entityz(local0\Field4, $00))
-                                                If (((0.0 < projectedx()) And (projectedx() < (Float player[local5]\Field71))) <> 0) Then
-                                                    If (((0.0 < projectedy()) And (projectedy() < (Float player[local5]\Field72))) <> 0) Then
-                                                        If (entityvisible(player[local5]\Field62, local0\Field4) <> 0) Then
+                                                cameraproject(player[local5]\Field70, entityx(local0\Field4, $00), ((entityy(player[local5]\Field64, $00) + 1.16) - 0.25), entityz(local0\Field4, $00))
+                                                If (((0.0 < projectedx()) And (projectedx() < (Float player[local5]\Field73))) <> 0) Then
+                                                    If (((0.0 < projectedy()) And (projectedy() < (Float player[local5]\Field74))) <> 0) Then
+                                                        If (entityvisible(player[local5]\Field64, local0\Field4) <> 0) Then
                                                             If (((-16.0 > player[local5]\Field17) Or (-6.0 < player[local5]\Field17)) <> 0) Then
                                                                 If (channelplaying(local0\Field84) = $00) Then
                                                                     local0\Field84 = playsound_strict(triggered096sfx)
@@ -873,7 +871,7 @@ Function updatenpcs%()
                 local6 = entitydistance(local0\Field73, local0\Field4)
                 local0\Field49 = 1.0
                 If (0.1 < local0\Field24) Then
-                    If (player[local0\Field74]\Field67 <> "room049") Then
+                    If (player[local0\Field74]\Field69 <> "room049") Then
                         local0\Field24 = max((local0\Field24 - ((Float (selecteddifficulty\Field3 + $01)) * fpsfactor)), 0.1)
                     EndIf
                     local0\Field7 = 0.0
@@ -901,7 +899,6 @@ Function updatenpcs%()
                                     EndIf
                                 Next
                                 local0\Field24 = 0.0
-                                debuglog("SCP-049 not idle")
                             EndIf
                         EndIf
                     EndIf
@@ -956,7 +953,7 @@ Function updatenpcs%()
                                                 local36 = $01
                                                 blurtimer = 0.0
                                             EndIf
-                                        ElseIf (readbool(player[local0\Field74]\Field76, $04) <> 0) Then
+                                        ElseIf (readbool(player[local0\Field74]\Field78, $04) <> 0) Then
                                             blurtimer = ((fpsfactor * 2.5) + blurtimer)
                                             If ((((250.0 < blurtimer) And (250.0 >= (blurtimer - (fpsfactor * 2.5)))) And (local0\Field12 <> $03)) <> 0) Then
                                                 If (local0\Field20 <> $00) Then
@@ -970,7 +967,7 @@ Function updatenpcs%()
                                             EndIf
                                         EndIf
                                         If (local36 <> 0) Then
-                                            If (player[local0\Field74]\Field101 = $00) Then
+                                            If (player[local0\Field74]\Field103 = $00) Then
                                                 deathmsg = "An active instance of SCP-049-2 was discovered in [REDACTED]. Terminated by Nine-Tailed Fox."
                                                 kill("was killed by SCP-049", $00)
                                                 playsound_strict(horrorsfx($0D))
@@ -981,7 +978,7 @@ Function updatenpcs%()
                                                 local0\Field19 = loadsound_strict((("SFX\SCP\049\Kidnap" + (Str local35)) + ".ogg"))
                                                 local0\Field20 = loopsound2(local0\Field19, local0\Field20, camera, local0\Field0, 10.0, 1.0)
                                                 local0\Field9 = 1.0
-                                                If (instr(player[local0\Field74]\Field103, "Horror", $01) = $00) Then
+                                                If (instr(player[local0\Field74]\Field105, "Horror", $01) = $00) Then
                                                     createsound("SFX\Horror\Horror13.ogg", entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                                 EndIf
                                             EndIf
@@ -1092,7 +1089,6 @@ Function updatenpcs%()
                                                 EndIf
                                             Next
                                             local0\Field37 = findpath(local0, entityx(local38\Field2, $00), 0.5, entityz(local38\Field2, $00))
-                                            debuglog((("Find path for 049 in another room (pathstatus: " + (Str local0\Field37)) + ")"))
                                         EndIf
                                         While ((Int local0\Field11) < $03)
                                             If (local0\Field37 = $01) Then
@@ -1100,13 +1096,11 @@ Function updatenpcs%()
                                                     If (((local0\Field36[$02] = Null) And (0.4 > entitydistance(local0\Field36[$01]\Field0, local0\Field4))) <> 0) Then
                                                         local0\Field39 = $00
                                                         local0\Field37 = $00
-                                                        debuglog("Breaking up path for 049 because no waypoint number 2 has been found and waypoint number 1 is too close.")
                                                     EndIf
                                                 EndIf
                                                 If (((local0\Field36[$00] <> Null) And (local0\Field36[$01] = Null)) <> 0) Then
                                                     local0\Field39 = $00
                                                     local0\Field37 = $00
-                                                    debuglog("Breaking up path for 049 because no waypoint number 1 has been found.")
                                                 EndIf
                                             EndIf
                                             If (local0\Field37 <> $01) Then
@@ -1130,7 +1124,6 @@ Function updatenpcs%()
                                                     EndIf
                                                 Next
                                                 local0\Field37 = findpath(local0, entityx(local38\Field2, $00), 0.5, entityz(local38\Field2, $00))
-                                                debuglog((("Find path for 049 in another further away room (pathstatus: " + (Str local0\Field37)) + ")"))
                                             EndIf
                                             If (local0\Field37 = $01) Then
                                                 If (local0\Field36[$01] <> Null) Then
@@ -1146,7 +1139,6 @@ Function updatenpcs%()
                                                                 EndIf
                                                                 If (local0\Field36[local0\Field39] <> Null) Then
                                                                     If ((45.0 - (Abs deltayaw(local0\Field4, local0\Field36[$01]\Field0))) < (Abs deltayaw(local0\Field4, local0\Field36[local0\Field39]\Field0))) Then
-                                                                        debuglog(("Skip until waypoint number " + (Str local0\Field39)))
                                                                         local0\Field11 = 3.0
                                                                         Exit
                                                                     EndIf
@@ -1182,10 +1174,8 @@ Function updatenpcs%()
                                 If ((otherplayerinreachableroom(local0\Field74, $01) And (infacility = $01)) <> 0) Then
                                     If (rand($01, ($03 - selecteddifficulty\Field5)) = $01) Then
                                         teleportcloser(local0)
-                                        debuglog("SCP-049 teleported closer due to distance")
                                     Else
                                         local0\Field24 = 4200.0
-                                        debuglog("SCP-049 is now idle")
                                     EndIf
                                 EndIf
                             EndIf
@@ -1400,7 +1390,7 @@ Function updatenpcs%()
                                         If (1.1 > entitydistance(local0\Field4, local0\Field73)) Then
                                             If (60.0 >= (Abs deltayaw(local0\Field4, local0\Field73))) Then
                                                 giveplayerhealth(local0\Field74, -18.0, "was killed by SCP-049-2")
-                                                If (instr(player[local0\Field74]\Field103, "Damage", $01) = $00) Then
+                                                If (instr(player[local0\Field74]\Field105, "Damage", $01) = $00) Then
                                                     createsound((("SFX\Character\D9341\Damage" + (Str rand($06, $08))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                                 EndIf
                                             EndIf
@@ -1414,7 +1404,7 @@ Function updatenpcs%()
                                         If (1.1 > entitydistance(local0\Field4, local0\Field73)) Then
                                             If (60.0 >= (Abs deltayaw(local0\Field4, local0\Field73))) Then
                                                 giveplayerhealth(local0\Field74, -18.0, "was killed by SCP-049-2")
-                                                If (instr(player[local0\Field74]\Field103, "Damage", $01) = $00) Then
+                                                If (instr(player[local0\Field74]\Field105, "Damage", $01) = $00) Then
                                                     createsound((("SFX\Character\D9341\Damage" + (Str rand($06, $08))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                                 EndIf
                                             EndIf
@@ -1466,7 +1456,6 @@ Function updatenpcs%()
                                 pointentity(local24, local0\Field73, 0.0)
                                 rotateentity(local24, min(entitypitch(local24, $00), 40.0), entityyaw(local0\Field4, $00), 0.0, $00)
                                 If (0.0 = local0\Field25) Then
-                                    debuglog("entitypick")
                                     entitypick(local24, local6)
                                     If (((pickedentity() = local0\Field73) Or (1.0 = local0\Field11)) <> 0) Then
                                         local45 = $00
@@ -1607,7 +1596,6 @@ Function updatenpcs%()
                                 pointentity(local24, local0\Field73, 0.0)
                                 rotateentity(local24, min(entitypitch(local24, $00), 40.0), entityyaw(local0\Field4, $00), 0.0, $00)
                                 If (0.0 = local0\Field25) Then
-                                    debuglog("entitypick")
                                     entitypick(local24, local6)
                                     If (((pickedentity() = local0\Field73) Or (1.0 = local0\Field11)) <> 0) Then
                                         local45 = $00
@@ -1822,7 +1810,7 @@ Function updatenpcs%()
                 positionentity(local0\Field0, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) - 0.32), entityz(local0\Field4, $00), $00)
                 rotateentity(local0\Field0, entitypitch(local0\Field4, $00), (entityyaw(local0\Field4, $00) - 180.0), 0.0, $00)
             Case $0C
-                If (player[local0\Field74]\Field67 <> "pocketdimension") Then
+                If (player[local0\Field74]\Field69 <> "pocketdimension") Then
                     If ((Int local0\Field24) <> 0) Then
                         hideentity(local0\Field0)
                         hideentity(local0\Field1)
@@ -1968,7 +1956,7 @@ Function updatenpcs%()
                 local0\Field7 = 0.0
                 resetentity(local0\Field4)
             Case $06
-                local14 = player[local0\Field74]\Field67
+                local14 = player[local0\Field74]\Field69
                 If (((local14 <> "pocketdimension") And (local14 <> "dimension1499")) <> 0) Then
                     If ((Int local0\Field24) <> 0) Then
                         hideentity(local0\Field0)
@@ -2023,7 +2011,7 @@ Function updatenpcs%()
                 local6 = entitydistance(collider, local0\Field4)
                 If (60.0 > local6) Then
                     If (playerroom\Field7\Field10 = "exit1") Then
-                        local7 = max(min((entitydistance(local0\Field4, playerroom\Field25[$03]) / (8000.0 * roomscale)), 1.0), 0.0)
+                        local7 = max(min((entitydistance(local0\Field4, playerroom\Field25[$03]) / 31.25), 1.0), 0.0)
                     Else
                         local7 = 1.0
                     EndIf
@@ -2191,14 +2179,14 @@ Function updatenpcs%()
                                             If (player[local0\Field74]\Field20 <> 0) Then
                                                 injuries = (rnd(0.5, 0.0) + injuries)
                                                 playsound_strict(loadtempsound("SFX\General\BodyFall.ogg"))
-                                                If (instr(player[local0\Field74]\Field103, "BodyFall", $01) = $00) Then
+                                                If (instr(player[local0\Field74]\Field105, "BodyFall", $01) = $00) Then
                                                     createsound("SFX\General\BodyFall.ogg", entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                                 EndIf
                                             Else
                                                 blurtimer = 100.0
                                                 injuries = (rnd(1.0, 1.5) + injuries)
                                                 playsound_strict(damagesfx(rand($02, $03)))
-                                                If (instr(player[local0\Field74]\Field103, "Damage", $01) = $00) Then
+                                                If (instr(player[local0\Field74]\Field105, "Damage", $01) = $00) Then
                                                     createsound((("SFX\Character\D9341\Damage" + (Str rand($03, $04))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                                 EndIf
                                                 If (3.0 < injuries) Then
@@ -2232,7 +2220,7 @@ Function updatenpcs%()
                 local0\Field7 = 0.0
                 resetentity(local0\Field4)
             Case $0E
-                If (player[local0\Field74]\Field67 = "room860") Then
+                If (player[local0\Field74]\Field69 = "room860") Then
                     local54 = room[player[local0\Field74]\Field32]\Field11
                     local6 = entitydistance(local0\Field73, local0\Field4)
                     If (forestnpc <> $00) Then
@@ -2267,9 +2255,7 @@ Function updatenpcs%()
                                             tformpoint(((((Float local56) + local9) / 2.0) * 12.0), 0.0, ((((Float local57) + local11) / 2.0) * 12.0), local54\Field4, $00)
                                             If (entityinview(local0\Field4, camera) <> 0) Then
                                                 positionentity(local0\Field4, 0.0, -110.0, 0.0, $00)
-                                                debuglog("spawned monster in view -> hide")
                                             Else
-                                                debuglog("spawned monster successfully")
                                                 positionentity(local0\Field4, tformedx(), (entityy(local54\Field4, $01) + 2.3), tformedz(), $00)
                                                 local56 = $0A
                                                 Exit
@@ -2382,7 +2368,6 @@ Function updatenpcs%()
                                         If ((((local54\Field2[((local57 * $0A) + local56)] > $00) And ((local9 <> (Float local56)) Or (local11 <> (Float local57)))) And ((local9 = (Float local56)) Or (local11 = (Float local57)))) <> 0) Then
                                             tformpoint(((Float local56) * 12.0), 0.0, ((Float local57) * 12.0), local54\Field4, $00)
                                             positionentity(local0\Field4, tformedx(), (entityy(local54\Field4, $01) + 1.0), tformedz(), $00)
-                                            debuglog((((Str tformedx()) + ", ") + (Str tformedz())))
                                             If (entityinview(local0\Field4, camera) <> 0) Then
                                                 blinktimer = -10.0
                                             Else
@@ -2563,7 +2548,7 @@ Function updatenpcs%()
                                     If (local18 <> 0) Then
                                         If (1.5 > distance(entityx(local0\Field73, $00), entityz(local0\Field73, $00), entityx(local0\Field4, $00), entityz(local0\Field4, $00))) Then
                                             giveplayerhealth(local0\Field74, -50.0, "was killed by SCP-939")
-                                            If (instr(player[local0\Field74]\Field103, "Slash", $01) = $00) Then
+                                            If (instr(player[local0\Field74]\Field105, "Slash", $01) = $00) Then
                                                 createsound("SFX\General\Slash1.ogg", entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                             EndIf
                                         Else
@@ -3014,9 +2999,9 @@ Function updatenpcs%()
                                 EndIf
                             EndIf
                             If (1.0 > local6) Then
-                                If (((((((470.0 < local0\Field14) And (470.0 >= local12)) Or (500.0 < local0\Field14)) And (500.0 >= local12)) Or (527.0 < local0\Field14)) And (527.0 >= local12)) <> 0) Then
+                                If (((((470.0 < local0\Field14) And (470.0 >= local12)) Or ((500.0 < local0\Field14) And (500.0 >= local12))) Or ((527.0 < local0\Field14) And (527.0 >= local12))) <> 0) Then
                                     giveplayerhealth(local0\Field74, -15.0, "was killed by SCP-966")
-                                    If (instr(player[local0\Field74]\Field103, "Slash", $01) = $00) Then
+                                    If (instr(player[local0\Field74]\Field105, "Slash", $01) = $00) Then
                                         createsound((("SFX\General\Slash" + (Str rand($01, $02))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                     EndIf
                                 EndIf
@@ -3317,7 +3302,7 @@ Function updatenpcs%()
                                 If (((89.0 > local12) And (89.0 <= local0\Field14)) <> 0) Then
                                     If (((0.85 < local6) Or (60.0 < (Abs deltayaw(local0\Field4, local0\Field73)))) = 0) Then
                                         giveplayerhealth(local0\Field74, -20.0, "was killed by SCP-1499")
-                                        If (instr(player[local0\Field74]\Field103, "Slash", $01) = $00) Then
+                                        If (instr(player[local0\Field74]\Field105, "Slash", $01) = $00) Then
                                             createsound((("SFX\General\Slash" + (Str rand($01, $02))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                         EndIf
                                     EndIf
@@ -3330,7 +3315,7 @@ Function updatenpcs%()
                                 If (((189.0 > local12) And (189.0 <= local0\Field14)) <> 0) Then
                                     If (((0.85 < local6) Or (60.0 < (Abs deltayaw(local0\Field4, local0\Field73)))) = 0) Then
                                         giveplayerhealth(local0\Field74, -20.0, "was killed by SCP-1499")
-                                        If (instr(player[local0\Field74]\Field103, "Slash", $01) = $00) Then
+                                        If (instr(player[local0\Field74]\Field105, "Slash", $01) = $00) Then
                                             createsound((("SFX\General\Slash" + (Str rand($01, $02))) + ".ogg"), entityx(local0\Field73, $00), entityy(local0\Field73, $00), entityz(local0\Field73, $00), 10.0, 1.0)
                                         EndIf
                                     EndIf
@@ -3447,7 +3432,6 @@ Function updatenpcs%()
                                     If ((Float (((selecteddifficulty\Field3 * $0A) + $0F) * $46)) > local0\Field11) Then
                                         local0\Field11 = (local0\Field11 + fpsfactor)
                                     Else
-                                        debuglog("SCP-008-1 IDLE")
                                         local0\Field11 = 25200.0
                                         local0\Field9 = 4.0
                                     EndIf
@@ -3501,7 +3485,6 @@ Function updatenpcs%()
                                                     local11 = (Abs (entityz(local0\Field4, $00) - entityz(local23\Field0, $01)))
                                                     If (((12.0 > local11) And (4.0 < local11)) <> 0) Then
                                                         If (4.0 < local23\Field2\Field9) Then
-                                                            debuglog(("MOVING 008-1 TO " + local23\Field2\Field7\Field10))
                                                             positionentity(local0\Field4, entityx(local23\Field0, $01), (entityy(local23\Field0, $01) + 0.25), entityz(local23\Field0, $01), $00)
                                                             resetentity(local0\Field4)
                                                             local0\Field37 = $00
@@ -3563,7 +3546,6 @@ Function updatenpcs%()
             EndIf
         EndIf
         If (local0\Field5 = $0B) Then
-            debuglog((Str entityy(local0\Field4, $00)))
         EndIf
     Next
     If (((0.0 < mtf_camerachecktimer) And (6300.0 > mtf_camerachecktimer)) <> 0) Then

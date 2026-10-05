@@ -12,7 +12,10 @@ Function createpropobj.props(arg0$)
     Next
     local0 = (New props)
     local0\Field0 = arg0
-    local0\Field1 = loadmesh_strict(arg0, $00)
+    local0\Field1 = loadmesh(arg0, $00)
+    If (entityexist(local0\Field1) = $00) Then
+        local0\Field1 = createcube($00)
+    EndIf
     hideentity(local0\Field1)
     Return local0
     Return Null

@@ -1,6 +1,12 @@
 Function se_array_addelement.se_value(arg0.se_array)
     Local local0.se_value
     Local local1%
+    If (arg0 = Null) Then
+        Return Null
+    EndIf
+    If (arg0\Field1 >= $10000) Then
+        Return Null
+    EndIf
     local0 = (New se_value)
     local1 = (arg0\Field1 Shl $02)
     arg0\Field1 = (arg0\Field1 + $01)

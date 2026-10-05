@@ -1,9 +1,9 @@
 Function bool$(arg0%)
     Select arg0
         Case $00
-            Return "False"
+            Return "false"
         Case $01
-            Return "True"
+            Return "true"
     End Select
     Return "Undefined"
     Return ""

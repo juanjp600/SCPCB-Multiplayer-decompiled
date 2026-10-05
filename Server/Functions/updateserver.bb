@@ -4,7 +4,9 @@ Function updateserver%()
     If (getscripts() <> 0) Then
         public_inqueue($05, $01)
     EndIf
-    updatesteamauthconnections()
+    If (server\Field87\Field7 <> 0) Then
+        updatesteamauthconnections()
+    EndIf
     mp_updateplayers($01)
     updatetimers()
     updateplayerscount()
@@ -33,7 +35,7 @@ Function updateserver%()
     dynamic_shoot_ticks = (Int max(min((fpsfactor * 3.0), 1.0), 2.0))
     local1 = errorlogex()
     If (((local1 <> "") And (errorupd < millisecs())) <> 0) Then
-        addlog(("Detected error: " + local1), $00, $00, $00)
+        addlog(("Detected error: " + local1), $00, $00, $00, $FF, $00, $00)
         errorupd = (millisecs() + $3E8)
     EndIf
     Return $00

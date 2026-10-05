@@ -6,14 +6,14 @@ Function multiplayer_loadobjects%(arg0%, arg1%)
         Return $00
     EndIf
     udp_writebyte(arg0)
-    udp_writebyte(networkserver\Field28)
+    udp_writebyte(networkserver\Field20)
     udp_sendmessage($00)
     local0 = (millisecs() + $3E8)
     Repeat
         If (udp_netout($00) <> 0) Then
             multiplayer_send($01, $FFFFFFFF, $00)
         EndIf
-        While (udp_recvudpmsg($00) <> 0)
+        While (udp_recvudpmsg() <> 0)
             local2 = udp_readbyte()
             If (local2 = convertpacket(arg0)) Then
                 udp_readbyte()
@@ -22,10 +22,10 @@ Function multiplayer_loadobjects%(arg0%, arg1%)
                         local0 = $FFFFFFFF
                         Exit
                     Case $6C
-                        networkserver\Field39 = udp_readline()
-                        networkserver\Field36 = udp_readfloat()
-                        networkserver\Field37 = udp_readfloat()
-                        networkserver\Field38 = udp_readfloat()
+                        networkserver\Field30 = udp_readline()
+                        networkserver\Field27 = udp_readfloat()
+                        networkserver\Field28 = udp_readfloat()
+                        networkserver\Field29 = udp_readfloat()
                         local0 = $FFFFFFFF
                         Exit
                     Case $32
@@ -33,7 +33,6 @@ Function multiplayer_loadobjects%(arg0%, arg1%)
                         Exit
                 End Select
             ElseIf (local2 = $28) Then
-                debuglog("Close")
                 disconnectserver("The server is restarted", $01)
                 adderrorlog("or closed", $FF, $FF, $FF, $3A98)
                 Return $00
@@ -45,13 +44,12 @@ Function multiplayer_loadobjects%(arg0%, arg1%)
         If (millisecs() > local0) Then
             local1 = (local1 + $01)
             If (local1 > $0A) Then
-                debuglog("Close")
                 disconnectserver("The server not responding", $01)
                 adderrorlog("or closed", $FF, $FF, $FF, $3A98)
                 Return $00
             EndIf
             udp_writebyte(arg0)
-            udp_writebyte(networkserver\Field28)
+            udp_writebyte(networkserver\Field20)
             udp_sendmessage($00)
             local0 = (millisecs() + $3E8)
         EndIf

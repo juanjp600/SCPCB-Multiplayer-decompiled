@@ -18,21 +18,26 @@ Type guns
     Field Field16#[2]
     Field Field17#[2]
     Field Field18%
-    Field Field19%
-    Field Field20$
-    Field Field21%
-    Field Field22%[2]
-    Field Field23%
+    Field Field19#
+    Field Field20%
+    Field Field21$
+    Field Field22%
+    Field Field23%[2]
     Field Field24%
-    Field Field25#
-    Field Field26#
+    Field Field25%
+    Field Field26%
     Field Field27#
     Field Field28#
-    Field Field29%
-    Field Field30#[1]
-    Field Field31#
-    Field Field32%
-    Field Field33%
-    Field Field34#
+    Field Field29#
+    Field Field30#
+    Field Field31%
+    Field Field32#[2]
+    Field Field33#
+    Field Field34%
     Field Field35%
+    Field Field36#
+    Field Field37%
+    Field Field38%
+    Field Field39#
+    Field Field40%
 End Type

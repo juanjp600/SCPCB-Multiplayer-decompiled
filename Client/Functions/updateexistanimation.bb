@@ -5,7 +5,7 @@ Function updateexistanimation%()
     Else
         player_move = $0B
     EndIf
-    local0 = myplayer\Field51
+    local0 = myplayer\Field49
     If (local0 = model_096) Then
         If (0.0 <> scp\Field7) Then
             player_move = $0E

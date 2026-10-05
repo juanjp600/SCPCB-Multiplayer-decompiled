@@ -50,7 +50,6 @@ Function loadsavegames%()
     Dim savegameseed$((savegameamount + $01))
     Dim savegamedifficulty%((savegameamount + $01))
     For local2 = $01 To savegameamount Step $01
-        debuglog(((savepath + savegames((local2 - $01))) + "\save.txt"))
         local3 = readfile(((savepath + savegames((local2 - $01))) + "\save.txt"))
         savegametime((local2 - $01)) = readstring(local3)
         savegamedate((local2 - $01)) = readstring(local3)

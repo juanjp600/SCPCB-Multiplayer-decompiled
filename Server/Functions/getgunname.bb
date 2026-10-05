@@ -17,7 +17,7 @@ Function getgunname$(arg0%)
         Case $07
             Return "deagle"
         Case $08
-            Return "spas12"
+            Return "m1014"
         Case $0A
             Return "m4a4"
         Case $0B

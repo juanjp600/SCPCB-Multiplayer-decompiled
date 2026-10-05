@@ -2,7 +2,7 @@ Function update3dsounds%()
     Local local0.snd3d
     For local0 = Each snd3d
         If (local0\Field0 = $00) Then
-            If (local0\Field5 <> $00) Then
+            If (entityexist(local0\Field5) <> 0) Then
                 updatesoundorigin(local0\Field2, camera, local0\Field5, local0\Field3, local0\Field4)
             EndIf
             If (channelplaying(local0\Field2) = $00) Then
@@ -13,7 +13,7 @@ Function update3dsounds%()
                 Delete local0
             EndIf
         Else
-            If (local0\Field5 <> $00) Then
+            If (entityexist(local0\Field5) <> 0) Then
                 updatesoundfmod(local0\Field2, camera, local0\Field5, local0\Field3, local0\Field4)
             EndIf
             If (fsound_isplaying(local0\Field2) = $00) Then

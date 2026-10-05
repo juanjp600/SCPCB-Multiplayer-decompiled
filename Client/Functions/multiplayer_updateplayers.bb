@@ -1,7 +1,8 @@
 Function multiplayer_updateplayers%()
     Local local0.players
+    updateafksprite()
     For local0 = Each players
-        If (local0\Field0 <> networkserver\Field28) Then
+        If (local0\Field0 <> networkserver\Field20) Then
             multiplayer_updateplayer(local0)
             multiplayer_updateplayerobjects(local0)
             If (local0\Field15 <> $00) Then
@@ -13,6 +14,7 @@ Function multiplayer_updateplayers%()
         EndIf
         multiplayer_updateplayermicrohid(local0)
         multiplayer_updateplayersounds(local0)
+        fillplayers(local0)
     Next
     Return $00
 End Function

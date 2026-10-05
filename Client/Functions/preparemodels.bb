@@ -243,6 +243,6 @@ Function preparemodels%()
     preparemodelidentifier($F1, "GFX\multiplayer\game\models\Pumpkin1.b3d")
     preparemodelidentifier($F2, "GFX\multiplayer\game\models\Pumpkin2.b3d")
     preparemodelidentifier($F3, "GFX\multiplayer\game\models\tree.b3d")
-    preparemodelidentifier($F3, "GFX\npcs\clerkMP.b3d")
+    preparemodelidentifier($F3, "GFX\npcs\G_Model\ClerkMP_OBJ.b3d")
     Return $00
 End Function

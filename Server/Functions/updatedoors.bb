@@ -172,8 +172,8 @@ Function updatedoors%()
                     positionentity(local0\Field1, entityx(local0\Field2, $01), entityy(local0\Field2, $01), entityz(local0\Field2, $01), $00)
                 EndIf
                 If (((local0\Field1 <> $00) And (local0\Field9 = $00)) <> 0) Then
-                    moveentity(local0\Field0, 0.0, 0.0, (8.0 * roomscale))
-                    moveentity(local0\Field1, 0.0, 0.0, (8.0 * roomscale))
+                    moveentity(local0\Field0, 0.0, 0.0, (1.0 / 32.0))
+                    moveentity(local0\Field1, 0.0, 0.0, (1.0 / 32.0))
                 EndIf
                 If (local0\Field26 <> $00) Then
                     hideentity(local0\Field26)

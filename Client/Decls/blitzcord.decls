@@ -1,0 +1,12 @@
+.lib "blitzcord.dll"
+
+blitzcordcreatecore%(arg0$):"_BlitzcordCreateCore@4"
+blitzcordruncallbacks%():"_BlitzcordRunCallbacks@0"
+blitzcordsetactivitystate%(arg0$):"_BlitzcordSetActivityState@4"
+blitzcordsetactivitydetails%(arg0$):"_BlitzcordSetActivityDetails@4"
+blitzcordupdateactivity%():"_BlitzcordUpdateActivity@0"
+blitzcordsetsmallimage%(arg0$):"_BlitzcordSetSmallImage@4"
+blitzcordsetlargeimage%(arg0$):"_BlitzcordSetLargeImage@4"
+blitzcordsetlargetext%(arg0$):"_BlitzcordSetLargeText@4"
+blitzcordsettimestampstart%(arg0$):"_BlitzcordSetTimestampStart@4"
+blitzcordgetcurrenttimestamp$():"_BlitzcordGetCurrentTimestamp@0"

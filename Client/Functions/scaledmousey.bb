@@ -1,4 +1,4 @@
 Function scaledmousey%()
-    Return (Int (((Float mousey()) * (Float graphicheight)) / (Float realgraphicheight)))
+    Return (Int ((Float mousey()) * mousescaley))
     Return $00
 End Function

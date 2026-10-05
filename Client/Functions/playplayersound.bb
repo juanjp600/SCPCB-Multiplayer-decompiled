@@ -4,11 +4,11 @@ Function playplayersound%(arg0.players, arg1$, arg2#, arg3#, arg4%)
     local0 = arg4
     If (local0 <> $01) Then
         If (instr(arg1, "SFX\General\Slash", $01) <> 0) Then
-            If (multiplayer_breach_isa035(arg0\Field51) = $00) Then
-                arg0\Field56 = $0F
+            If (multiplayer_breach_isa035(arg0\Field49) = $00) Then
+                arg0\Field54 = $0F
             EndIf
         ElseIf (instr(arg1, "SFX\Guns\Knife", $01) <> 0) Then
-            arg0\Field56 = $0F
+            arg0\Field54 = $0F
             arg0\Field99 = $01
         ElseIf (instr(lower(arg1), "reload", $01) <> 0) Then
             arg0\Field100 = $01
@@ -17,7 +17,7 @@ Function playplayersound%(arg0.players, arg1$, arg2#, arg3#, arg4%)
         ElseIf (arg1 = "SFX\SCP\513\Bell1.ogg") Then
             If (curr5131 = Null) Then
                 curr5131 = createnpc($0C, 0.0, 0.0, 0.0)
-                curr5131\Field78 = $01
+                curr5131\Field80 = $01
             EndIf
         EndIf
     Else

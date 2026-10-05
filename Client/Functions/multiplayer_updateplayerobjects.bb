@@ -1,56 +1,57 @@
 Function multiplayer_updateplayerobjects%(arg0.players)
     Local local0%
-    If (((arg0\Field25 <> Null) And (camera <> $00)) <> 0) Then
-        If ((((((arg0\Field51 <> model_966) Or multiplayer_isafriend(myplayer\Field51, arg0\Field51)) And (arg0\Field51 <> $00)) And (arg0\Field78 = $01)) And networkserver\Field25) <> 0) Then
-            pointentity(arg0\Field25\Field11, camera, 0.0)
-            pointentity(arg0\Field26\Field11, camera, 0.0)
-            pointentity(arg0\Field27\Field11, camera, 0.0)
-            If (arg0\Field28 <> Null) Then
-                pointentity(arg0\Field28\Field11, camera, 0.0)
-            EndIf
-            local0 = (((((arg0\Field55 = $05) Or (arg0\Field55 = $09)) Or (arg0\Field55 = $0A)) Or (arg0\Field55 = $07)) Or (arg0\Field55 = $08))
-            rotateentity(arg0\Field25\Field11, (- entitypitch(arg0\Field25\Field11, $00)), (entityyaw(arg0\Field25\Field11, $00) - 180.0), 0.0, $01)
-            positionentity(arg0\Field25\Field11, entityx(arg0\Field13, $00), (((entityy(arg0\Field13, $00) + ((arg0\Field92 * 1.0) * 0.76)) - 0.32) - (0.32 * (Float local0))), entityz(arg0\Field13, $00), $00)
-            rotateentity(arg0\Field27\Field11, entitypitch(arg0\Field25\Field11, $00), entityyaw(arg0\Field25\Field11, $00), 0.0, $01)
-            positionentity(arg0\Field27\Field11, entityx(arg0\Field13, $00), (((entityy(arg0\Field13, $00) + ((arg0\Field92 * 1.0) * 0.8)) - 0.32) - (0.32 * (Float local0))), entityz(arg0\Field13, $00), $00)
-            rotateentity(arg0\Field26\Field11, entitypitch(arg0\Field25\Field11, $00), entityyaw(arg0\Field25\Field11, $00), 0.0, $01)
-            positionentity(arg0\Field26\Field11, entityx(arg0\Field13, $00), (((entityy(arg0\Field13, $00) + ((arg0\Field92 * 1.0) * 0.86)) - 0.32) - (0.32 * (Float local0))), entityz(arg0\Field13, $00), $00)
-            If (arg0\Field28 <> Null) Then
-                rotateentity(arg0\Field28\Field11, entitypitch(arg0\Field25\Field11, $00), entityyaw(arg0\Field25\Field11, $00), 0.0, $01)
-                positionentity(arg0\Field28\Field11, entityx(arg0\Field13, $00), (((entityy(arg0\Field13, $00) + ((arg0\Field92 * 1.0) * 0.92)) - 0.32) - (0.32 * (Float local0))), entityz(arg0\Field13, $00), $00)
-            EndIf
-            If (((arg0\Field51 = myplayer\Field51) Or multiplayer_isafriend(myplayer\Field51, arg0\Field51)) <> 0) Then
-                settypecolor(arg0\Field51)
+    Local local1#
+    Local local2#
+    Local local3#
+    Local local4#
+    Local local5#
+    If ((entityexist(arg0\Field25[$00]) And (camera <> $00)) <> 0) Then
+        If ((((((arg0\Field49 <> model_966) Or multiplayer_isafriend(myplayer\Field49, arg0\Field49)) And (arg0\Field49 <> $00)) And (arg0\Field76 = $01)) And networkserver\Field52\Field11) <> 0) Then
+            local0 = ((arg0\Field53 > $04) And (arg0\Field53 < $0B))
+            local1 = entityx(arg0\Field13, $01)
+            local2 = entityy(arg0\Field13, $01)
+            local3 = entityz(arg0\Field13, $01)
+            local4 = (0.32 - (0.32 * (Float local0)))
+            local5 = arg0\Field90
+            positionentity(arg0\Field25[$00], local1, (((0.76 * local5) + local2) - local4), local3, $00)
+            If (((arg0\Field49 = myplayer\Field49) Or multiplayer_isafriend(myplayer\Field49, arg0\Field49)) <> 0) Then
+                settypecolor(arg0\Field49)
             Else
-                color($FF, $FF, $FF)
+                setcolorex($FF, $FF, $FF)
             EndIf
-            gg_set_color(arg0\Field25, colorred(), colorgreen(), colorblue())
-            showentity(arg0\Field25\Field11)
-            If (networkserver\Field24 = $01) Then
-                If (arg0\Field45 = $01) Then
-                    showentity(arg0\Field27\Field11)
+            entitycolor(arg0\Field25[$00], (Float colorredex()), (Float colorgreenex()), (Float colorblueex()))
+            showentity(arg0\Field25[$00])
+            If (networkserver\Field52\Field10 = $01) Then
+                If (arg0\Field43 <> 0) Then
+                    showentity(arg0\Field25[$02])
+                    positionentity(arg0\Field25[$02], local1, ((((0.9 - ((Float (entityexist(arg0\Field25[$03]) = $00)) * 0.06)) * local5) + local2) - local4), local3, $00)
                 Else
-                    hideentity(arg0\Field27\Field11)
+                    hideentity(arg0\Field25[$02])
                 EndIf
             Else
-                hideentity(arg0\Field27\Field11)
+                hideentity(arg0\Field25[$02])
             EndIf
-            If (arg0\Field32 <> 0) Then
-                showentity(arg0\Field26\Field11)
+            If (arg0\Field30 <> 0) Then
+                showentity(arg0\Field25[$01])
+                positionentity(arg0\Field25[$01], local1, (((((1.0 - ((Float (arg0\Field43 = $00)) * 0.1)) - ((Float (entityexist(arg0\Field25[$03]) = $00)) * 0.06)) * local5) + local2) - local4), local3, $00)
+                If (arg0\Field26 <> afkspriteframe) Then
+                    entitytexture(arg0\Field25[$01], afkspritetexture, afkspriteframe, $00)
+                    arg0\Field26 = afkspriteframe
+                EndIf
             Else
-                hideentity(arg0\Field26\Field11)
+                hideentity(arg0\Field25[$01])
             EndIf
-            If (arg0\Field28 <> Null) Then
-                color(arg0\Field89, arg0\Field90, arg0\Field91)
-                gg_set_color(arg0\Field28, colorred(), colorgreen(), colorblue())
-                showentity(arg0\Field28\Field11)
+            If (entityexist(arg0\Field25[$03]) <> 0) Then
+                entitycolor(arg0\Field25[$03], (Float arg0\Field87), (Float arg0\Field88), (Float arg0\Field89))
+                showentity(arg0\Field25[$03])
+                positionentity(arg0\Field25[$03], local1, (((0.84 * local5) + local2) - local4), local3, $00)
             EndIf
         Else
-            hideentity(arg0\Field27\Field11)
-            hideentity(arg0\Field26\Field11)
-            hideentity(arg0\Field25\Field11)
-            If (arg0\Field28 <> Null) Then
-                hideentity(arg0\Field28\Field11)
+            hideentity(arg0\Field25[$02])
+            hideentity(arg0\Field25[$01])
+            hideentity(arg0\Field25[$00])
+            If (entityexist(arg0\Field25[$03]) <> 0) Then
+                hideentity(arg0\Field25[$03])
             EndIf
         EndIf
     EndIf

@@ -6,4 +6,5 @@ Type timers
     Field Field4%
     Field Field5%
     Field Field6.se_funcptr
+    Field Field7%
 End Type

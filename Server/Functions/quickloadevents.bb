@@ -44,9 +44,6 @@ Function quickloadevents%()
                             rotateentity(local0\Field1\Field30[$00]\Field4, 0.0, (Float (local0\Field1\Field6 + $B4)), 0.0, $00)
                             local0\Field1\Field30[$00]\Field9 = 0.0
                             local0\Field1\Field30[$00]\Field12 = $02
-                            debuglog((((((Str entityx(local0\Field1\Field25[$07], $01)) + ", ") + (Str entityy(local0\Field1\Field25[$07], $01))) + ", ") + (Str entityz(local0\Field1\Field25[$07], $01))))
-                        Else
-                            debuglog("Skipped 049 spawning in room2sl")
                         EndIf
                     EndIf
                     quickloadpercent = $50
@@ -136,19 +133,19 @@ Function quickloadevents%()
         Case $38
             If (((0.0 = local0\Field2) Or (local0\Field1\Field25[$00] = $00)) <> 0) Then
                 If (local0\Field11 = "load0") Then
-                    local0\Field1\Field25[$03] = loadanimmesh_strict("GFX\npcs\205_demon1.b3d", $00)
+                    local0\Field1\Field25[$03] = loadanimmesh_strict("GFX\npcs\205_demon1.b3d", $00, $00)
                     quickloadpercent = $0A
                     local0\Field11 = "load1"
                 ElseIf (local0\Field11 = "load1") Then
-                    local0\Field1\Field25[$04] = loadanimmesh_strict("GFX\npcs\205_demon2.b3d", $00)
+                    local0\Field1\Field25[$04] = loadanimmesh_strict("GFX\npcs\205_demon2.b3d", $00, $00)
                     quickloadpercent = $14
                     local0\Field11 = "load2"
                 ElseIf (local0\Field11 = "load2") Then
-                    local0\Field1\Field25[$05] = loadanimmesh_strict("GFX\npcs\205_demon3.b3d", $00)
+                    local0\Field1\Field25[$05] = loadanimmesh_strict("GFX\npcs\205_demon3.b3d", $00, $00)
                     quickloadpercent = $1E
                     local0\Field11 = "load3"
                 ElseIf (local0\Field11 = "load3") Then
-                    local0\Field1\Field25[$06] = loadanimmesh_strict("GFX\npcs\205_woman.b3d", $00)
+                    local0\Field1\Field25[$06] = loadanimmesh_strict("GFX\npcs\205_woman.b3d", $00, $00)
                     quickloadpercent = $28
                     local0\Field11 = "load4"
                 ElseIf (local0\Field11 = "load4") Then
@@ -168,7 +165,6 @@ Function quickloadevents%()
                     hideentity(local0\Field1\Field25[$05])
                     quickloadpercent = $64
                     local0\Field11 = "loaddone"
-                    debuglog("LOADED ROOM 205!")
                 EndIf
             EndIf
         Case $39
@@ -216,7 +212,7 @@ Function quickloadevents%()
             If (0.0 = local0\Field2) Then
                 If (local0\Field11 = "load0") Then
                     quickloadpercent = $0A
-                    local0\Field1\Field25[$00] = loadmesh_strict("GFX\map\dimension1499\1499plane.b3d", $00)
+                    local0\Field1\Field25[$00] = loadmesh_strict("GFX\map\dimension1499\1499plane.b3d", $00, $00)
                     hideentity(local0\Field1\Field25[$00])
                     local0\Field11 = "load1"
                 ElseIf (local0\Field11 = "load1") Then
@@ -224,7 +220,7 @@ Function quickloadevents%()
                     local0\Field11 = "1"
                 ElseIf ((Int local0\Field11) < $10) Then
                     quickloadpercent = (quickloadpercent + $02)
-                    local0\Field1\Field25[(Int local0\Field11)] = loadmesh_strict((("GFX\map\dimension1499\1499object" + (Str (Int local0\Field11))) + ".b3d"), $00)
+                    local0\Field1\Field25[(Int local0\Field11)] = loadmesh_strict((("GFX\map\dimension1499\1499object" + (Str (Int local0\Field11))) + ".b3d"), $00, $00)
                     hideentity(local0\Field1\Field25[(Int local0\Field11)])
                     local0\Field11 = (Str ((Int local0\Field11) + $01))
                 ElseIf ((Int local0\Field11) = $10) Then

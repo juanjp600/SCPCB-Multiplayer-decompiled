@@ -14,9 +14,9 @@ Function checktriggers$(arg0.events)
                 entitycolor(arg0\Field1\Field41[local0], 255.0, 255.0, 255.0)
                 entityalpha(arg0\Field1\Field41[local0], 0.0)
             EndIf
-            If (((entityx(arg0\Field13, $00) > ((arg0\Field1\Field49[local0] * arg0\Field1\Field43[local0]) + arg0\Field1\Field3)) And (entityx(arg0\Field13, $00) < ((arg0\Field1\Field49[local0] * arg0\Field1\Field46[local0]) + arg0\Field1\Field3))) <> 0) Then
-                If (((entityy(arg0\Field13, $00) > ((arg0\Field1\Field50[local0] * arg0\Field1\Field44[local0]) + arg0\Field1\Field4)) And (entityy(arg0\Field13, $00) < ((arg0\Field1\Field50[local0] * arg0\Field1\Field47[local0]) + arg0\Field1\Field4))) <> 0) Then
-                    If (((entityz(arg0\Field13, $00) > ((arg0\Field1\Field51[local0] * arg0\Field1\Field45[local0]) + arg0\Field1\Field5)) And (entityz(arg0\Field13, $00) < ((arg0\Field1\Field51[local0] * arg0\Field1\Field48[local0]) + arg0\Field1\Field5))) <> 0) Then
+            If (((entityx(arg0\Field13, $00) > ((arg0\Field1\Field49[local0] * arg0\Field1\Field43[local0]) + arg0\Field1\Field4)) And (entityx(arg0\Field13, $00) < ((arg0\Field1\Field49[local0] * arg0\Field1\Field46[local0]) + arg0\Field1\Field4))) <> 0) Then
+                If (((entityy(arg0\Field13, $00) > ((arg0\Field1\Field50[local0] * arg0\Field1\Field44[local0]) + arg0\Field1\Field5)) And (entityy(arg0\Field13, $00) < ((arg0\Field1\Field50[local0] * arg0\Field1\Field47[local0]) + arg0\Field1\Field5))) <> 0) Then
+                    If (((entityz(arg0\Field13, $00) > ((arg0\Field1\Field51[local0] * arg0\Field1\Field45[local0]) + arg0\Field1\Field6)) And (entityz(arg0\Field13, $00) < ((arg0\Field1\Field51[local0] * arg0\Field1\Field48[local0]) + arg0\Field1\Field6))) <> 0) Then
                         Return arg0\Field1\Field42[local0]
                     EndIf
                 EndIf

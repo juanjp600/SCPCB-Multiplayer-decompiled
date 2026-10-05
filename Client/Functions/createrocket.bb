@@ -1,7 +1,7 @@
 Function createrocket.rockets(arg0#, arg1#, arg2#, arg3#, arg4#, arg5#, arg6%)
     Local local0.rockets
     local0 = (New rockets)
-    local0\Field2 = copyentity(rocket_object, $00)
+    local0\Field2 = copyentity(g_model\Field25, $00)
     scaleentity(local0\Field2, 0.01, 0.01, 0.01, $00)
     local0\Field7 = arg4
     local0\Field8 = arg5
@@ -13,12 +13,12 @@ Function createrocket.rockets(arg0#, arg1#, arg2#, arg3#, arg4#, arg5#, arg6%)
     moveentity(local0\Field1, 0.1, -0.17, 0.0)
     local0\Field11 = arg6
     local0\Field5 = play3dsound($00, camera, local0\Field1, 20.0, 1.0, "SFX\Guns\Bazooka\shoot.ogg")
-    local0\Field9 = createemitter(entityx(local0\Field2, $01), entityy(local0\Field2, $01), entityz(local0\Field2, $01), $00, 0.0)
+    local0\Field9 = createemitter(entityx(local0\Field2, $01), entityy(local0\Field2, $01), entityz(local0\Field2, $01), $00, 0.0, 0.0, 0.0, 0.0)
     turnentity(local0\Field9\Field0, 90.0, 0.0, 0.0, $01)
-    local0\Field9\Field10 = 5.0
-    local0\Field9\Field9 = 0.0
-    local0\Field9\Field13 = 0.1
-    local0\Field9\Field11 = 0.01
+    local0\Field9\Field14 = 5.0
+    local0\Field9\Field13 = 0.0
+    local0\Field9\Field17 = 0.1
+    local0\Field9\Field15 = 0.01
     local0\Field9\Field4 = 0.0
     local0\Field9\Field2 = $06
     local0\Field9\Field3 = $06

@@ -1,5 +1,5 @@
 Function getplayercamera%(arg0%)
-    If (arg0 = networkserver\Field28) Then
+    If (arg0 = networkserver\Field20) Then
         Return camera
     EndIf
     If (player[arg0] = Null) Then

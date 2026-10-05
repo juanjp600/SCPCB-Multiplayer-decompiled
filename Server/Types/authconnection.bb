@@ -6,9 +6,8 @@ Type authconnection
     Field Field4%
     Field Field5%
     Field Field6%
-    Field Field7%
+    Field Field7$
     Field Field8%
     Field Field9%
     Field Field10%
-    Field Field11%
 End Type

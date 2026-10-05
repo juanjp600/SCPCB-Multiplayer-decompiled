@@ -24,7 +24,7 @@ Function server_init%()
     scriptbstream = createbytestream($2000)
     compactbank[$00] = createbytestream($2000)
     compactbank[$01] = createbytestream($2000)
-    addlog("Creating scene...", $00, $00, $00)
+    addlog("Creating scene...", $00, $00, $00, $C0, $C0, $C0)
     preparemodels()
     Return $00
 End Function

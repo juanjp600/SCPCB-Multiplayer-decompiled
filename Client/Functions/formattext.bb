@@ -20,21 +20,21 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
     Local local18$
     Local local19%
     Local local20#
-    Local local23$
-    Local local24%
+    Local local21%
+    Local local24$
     Local local25%
     Local local26%
     Local local27%
-    Local local28.loadedfonts
+    Local local28%
     Local local29.loadedfonts
-    Local local30$
-    Local local31%
-    Local local32$
-    Local local33%
+    Local local30.loadedfonts
+    Local local31$
+    Local local32%
+    Local local33$
     Local local34%
     Local local35%
-    local0 = aaselectedfont
-    If (disableredirectaccess = $00) Then
+    Local local36%
+    If (local0 = $00) Then
         For local1 = Each redirecttext
             If (instr(arg2, local1\Field1, $01) <> 0) Then
                 arg2 = replace(arg2, local1\Field1, local1\Field2)
@@ -42,9 +42,9 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
             EndIf
         Next
     EndIf
-    local2 = colorred()
-    local3 = colorgreen()
-    local4 = colorblue()
+    local2 = colorredex()
+    local3 = colorgreenex()
+    local4 = colorblueex()
     local6 = 0.0
     local12 = $00
     For local17 = $01 To len(arg2) Step $01
@@ -60,53 +60,54 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
     local19 = $00
     local20 = 0.0
     If (arg3 <> 0) Then
-        arg0 = (arg0 - (Float (aastringwidth(local7) Sar $01)))
+        arg0 = (arg0 - (Float (stringwidth(local7) Sar $01)))
     EndIf
     If (arg4 <> 0) Then
-        arg1 = (arg1 - (Float (aastringheight(local7) Sar $01)))
+        arg1 = (arg1 - (Float (stringheight(local7) Sar $01)))
     EndIf
+    local21 = currentfont()
     For local17 = $01 To len(arg2) Step $01
         local19 = $00
         local5 = mid(arg2, local17, $01)
         If (local5 = "%") Then
             local8 = piece(right(arg2, (Int max((Float ((len(arg2) - local17) + $02)), 0.0))), $02, "%")
             local9 = ""
-            color((Int (255.0 * arg5)), (Int (255.0 * arg5)), (Int (255.0 * arg5)))
+            setcolorex((Int (255.0 * arg5)), (Int (255.0 * arg5)), (Int (255.0 * arg5)))
             Select local8
                 Case "r"
-                    color((Int (255.0 * arg5)), $00, $00)
+                    setcolorex((Int (255.0 * arg5)), $00, $00)
                 Case "g"
-                    color($00, (Int (255.0 * arg5)), $00)
+                    setcolorex($00, (Int (255.0 * arg5)), $00)
                 Case "b"
-                    color($00, $00, (Int (255.0 * arg5)))
+                    setcolorex($00, $00, (Int (255.0 * arg5)))
                 Case "y"
-                    color((Int (255.0 * arg5)), (Int (255.0 * arg5)), $00)
+                    setcolorex((Int (255.0 * arg5)), (Int (255.0 * arg5)), $00)
                 Case "w"
-                    color((Int (255.0 * arg5)), (Int (255.0 * arg5)), (Int (255.0 * arg5)))
+                    setcolorex((Int (255.0 * arg5)), (Int (255.0 * arg5)), (Int (255.0 * arg5)))
                 Case "p"
-                    color((Int (255.0 * arg5)), $00, (Int (255.0 * arg5)))
+                    setcolorex((Int (255.0 * arg5)), $00, (Int (255.0 * arg5)))
                 Default
                     local19 = (local19 + $01)
             End Select
             Select piece(local8, $01, "|")
                 Case "color"
                     local9 = piece(local8, $02, "|")
-                    color((Int ((Float (Int piece(local9, $01, ","))) * arg5)), (Int ((Float (Int piece(local9, $02, ","))) * arg5)), (Int ((Float (Int piece(local9, $03, ","))) * arg5)))
+                    setcolorex((Int ((Float (Int piece(local9, $01, ","))) * arg5)), (Int ((Float (Int piece(local9, $02, ","))) * arg5)), (Int ((Float (Int piece(local9, $03, ","))) * arg5)))
                 Case "font"
                     local9 = piece(local8, $02, "|")
-                    local23 = piece(local9, $01, ",")
-                    local24 = (Int piece(local9, $02, ","))
-                    local25 = (Int piece(local9, $03, ","))
-                    local26 = (Int piece(local9, $04, ","))
-                    local27 = (Int piece(local9, $05, ","))
-                    local28 = Null
-                    For local29 = Each loadedfonts
-                        If (local29\Field0 = local23) Then
-                            If (local29\Field1 = local24) Then
-                                If (local29\Field2 = local25) Then
-                                    If (local29\Field3 = local26) Then
-                                        If (local29\Field4 = local27) Then
-                                            local28 = local29
+                    local24 = piece(local9, $01, ",")
+                    local25 = (Int piece(local9, $02, ","))
+                    local26 = (Int piece(local9, $03, ","))
+                    local27 = (Int piece(local9, $04, ","))
+                    local28 = (Int piece(local9, $05, ","))
+                    local29 = Null
+                    For local30 = Each loadedfonts
+                        If (local30\Field0 = local24) Then
+                            If (local30\Field1 = local25) Then
+                                If (local30\Field2 = local26) Then
+                                    If (local30\Field3 = local27) Then
+                                        If (local30\Field4 = local28) Then
+                                            local29 = local30
                                             Exit
                                         EndIf
                                     EndIf
@@ -114,21 +115,22 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
                             EndIf
                         EndIf
                     Next
-                    If (local28 = Null) Then
-                        local28 = (New loadedfonts)
-                        local28\Field0 = local23
-                        local28\Field1 = local24
-                        local28\Field2 = local25
-                        local28\Field3 = local26
-                        local28\Field4 = local27
-                        local28\Field5 = aaloadfont(local23, ((Float local24) * menuscale), local25, local26, local27, $02)
+                    If (local29 = Null) Then
+                        local29 = (New loadedfonts)
+                        local29\Field0 = local24
+                        local29\Field1 = local25
+                        local29\Field2 = local26
+                        local29\Field3 = local27
+                        local29\Field4 = local28
+                        local29\Field5 = loadfont_mp(local24, (Int ((Float local25) * menuscale)), local26, local27, local28)
                     EndIf
-                    aasetfont(local28\Field5)
+                    setfont(local29\Field5)
+                    lastfont = $00
                 Case "align"
                     arg3 = $01
                 Case "alignfix"
                     arg3 = $01
-                    arg0 = (arg0 - (Float (aastringwidth(local7) Sar $01)))
+                    arg0 = (arg0 - (Float (stringwidth(local7) Shr $01)))
                 Case "tab"
                     local9 = piece(local8, $02, "|")
                     arg0 = (((Float piece(local9, $01, ",")) * menuscale) + arg0)
@@ -139,22 +141,22 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
                     local14 = (Int piece(local9, $03, ","))
                     local15 = (Int piece(local9, $04, ","))
                     local16 = (Int piece(local9, $05, ","))
-                    local30 = ""
+                    local31 = ""
                     local18 = ""
                     If (local12 = $00) Then
                         local20 = 0.0
                     Else
-                        local20 = ((Float aastringwidth(getformattedtext(left(arg2, (local17 - $01))))) + local20)
+                        local20 = ((Float stringwidth(getformattedtext(left(arg2, (local17 - $01))))) + local20)
                         If (instr(arg2, "%", (local17 + $01)) > $00) Then
-                            For local31 = instr(arg2, "%", (local17 + $01)) To len(arg2) Step $01
-                                local30 = mid(arg2, local31, $01)
-                                If (local30 = "%") Then
-                                    local32 = piece(piece(right(arg2, (Int max((Float ((len(arg2) - local31) + $02)), 0.0))), $02, "%"), $01, "|")
-                                    If (local32 = "clickable") Then
+                            For local32 = instr(arg2, "%", (local17 + $01)) To len(arg2) Step $01
+                                local31 = mid(arg2, local32, $01)
+                                If (local31 = "%") Then
+                                    local33 = piece(piece(right(arg2, (Int max((Float ((len(arg2) - local32) + $02)), 0.0))), $02, "%"), $01, "|")
+                                    If (local33 = "clickable") Then
                                         Exit
                                     EndIf
                                 Else
-                                    local18 = (local18 + local30)
+                                    local18 = (local18 + local31)
                                 EndIf
                             Next
                         EndIf
@@ -172,47 +174,47 @@ Function formattext$(arg0#, arg1#, arg2$, arg3%, arg4%, arg5#, arg6%)
         EndIf
         If (local19 = $00) Then
             If (local12 <> 0) Then
-                local33 = colorred()
-                local34 = colorgreen()
-                local35 = colorblue()
-                If (mouseon((Int (arg0 + local20)), (Int arg1), aastringwidth(local18), aastringheight(local18)) <> 0) Then
+                local34 = colorredex()
+                local35 = colorgreenex()
+                local36 = colorblueex()
+                If (mouseon((Int (arg0 + local20)), (Int arg1), stringwidth(local18), stringheight(local18)) <> 0) Then
                     If (arg6 <> 0) Then
-                        color($00, $00, $00)
-                        aatext((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00, 1.0)
+                        setcolorex($00, $00, $00)
+                        text((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00)
                     EndIf
-                    color((Int ((Float local14) * arg5)), (Int ((Float local15) * arg5)), (Int ((Float local16) * arg5)))
+                    setcolorex((Int ((Float local14) * arg5)), (Int ((Float local15) * arg5)), (Int ((Float local16) * arg5)))
                     If (mousehit1 <> 0) Then
                         execfile(local13)
                         mousehit1 = $00
                     EndIf
                 Else
                     If (arg6 <> 0) Then
-                        color($00, $00, $00)
-                        aatext((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00, 1.0)
+                        setcolorex($00, $00, $00)
+                        text((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00)
                     EndIf
-                    color(local33, local34, local35)
+                    setcolorex(local34, local35, local36)
                 EndIf
-                aatext((Int (arg0 + local6)), (Int arg1), local5, $00, $00, 1.0)
+                text((Int (arg0 + local6)), (Int arg1), local5, $00, $00)
             Else
                 If (arg6 <> 0) Then
-                    local33 = colorred()
-                    local34 = colorgreen()
-                    local35 = colorblue()
-                    color($00, $00, $00)
-                    aatext((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00, 1.0)
-                    color(local33, local34, local35)
+                    local34 = colorredex()
+                    local35 = colorgreenex()
+                    local36 = colorblueex()
+                    setcolorex($00, $00, $00)
+                    text((Int ((arg0 + local6) + 1.0)), (Int (arg1 + 1.0)), local5, $00, $00)
+                    setcolorex(local34, local35, local36)
                 EndIf
-                aatext((Int (arg0 + local6)), (Int arg1), local5, $00, $00, 1.0)
+                text((Int (arg0 + local6)), (Int arg1), local5, $00, $00)
             EndIf
-            local6 = (local6 + (Float aastringwidth(local5)))
-            local11 = (local11 + (Float aastringwidth(local5)))
-            If (local10 <= (Float aastringheight(local5))) Then
-                local10 = (Float aastringheight(local5))
+            local6 = (local6 + (Float stringwidth(local5)))
+            local11 = (local11 + (Float stringwidth(local5)))
+            If (local10 <= (Float stringheight(local5))) Then
+                local10 = (Float stringheight(local5))
             EndIf
         EndIf
     Next
-    color(local2, local3, local4)
-    aasetfont(local0)
+    setcolorex(local2, local3, local4)
+    setfont(local21)
     Return (((Str local10) + " ") + (Str local11))
     Return ""
 End Function

@@ -39,23 +39,23 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                     arg2\Field4 = $00
                     arg0 = 0.0
                     For local8 = Each players
-                        If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local8\Field63, $00) - entityx(arg3, $01)))) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local8\Field63, $00) - entityz(arg3, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local8\Field63, $00) - entityy(arg3, $01)))) Then
+                        If (1.0945 > (Abs (entityx(local8\Field65, $00) - entityx(arg3, $01)))) Then
+                            If (1.0945 > (Abs (entityz(local8\Field65, $00) - entityz(arg3, $01)))) Then
+                                If (1.0945 > (Abs (entityy(local8\Field65, $00) - entityy(arg3, $01)))) Then
                                     If (arg5 = $00) Then
-                                        local3 = distance(entityx(local8\Field63, $00), entityz(local8\Field63, $00), entityx(arg3, $01), entityz(arg3, $01))
-                                        local4 = point_direction(entityx(local8\Field63, $00), entityz(local8\Field63, $00), entityx(arg3, $01), entityz(arg3, $01))
+                                        local3 = distance(entityx(local8\Field65, $00), entityz(local8\Field65, $00), entityx(arg3, $01), entityz(arg3, $01))
+                                        local4 = point_direction(entityx(local8\Field65, $00), entityz(local8\Field65, $00), entityx(arg3, $01), entityz(arg3, $01))
                                         local4 = ((entityyaw(arg4, $01) + local4) - entityyaw(arg3, $01))
                                         local4 = wrapangle(local4)
-                                        local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        rotateentity(local8\Field62, entitypitch(local8\Field62, $00), (angledist(entityyaw(local8\Field62, $00), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local8\Field62, $00), $00)
+                                        local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                        local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
+                                        rotateentity(local8\Field64, entitypitch(local8\Field64, $00), (angledist(entityyaw(local8\Field64, $00), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local8\Field64, $00), $00)
                                     Else
-                                        local0 = max(min((entityx(local8\Field63, $00) - entityx(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((entityz(local8\Field63, $00) - entityz(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((entityx(local8\Field65, $00) - entityx(arg3, $01)), 0.87375), -0.87375)
+                                        local1 = max(min((entityz(local8\Field65, $00) - entityz(arg3, $01)), 0.87375), -0.87375)
                                     EndIf
                                     local9 = $00
-                                    If (local8\Field67 = "gatea") Then
+                                    If (local8\Field69 = "gatea") Then
                                         For local10 = Each rooms
                                             If (local10\Field7\Field10 = "gateaentrance") Then
                                                 mp_setplayerroomid(local8, local10)
@@ -65,26 +65,26 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                                         Next
                                     EndIf
                                     setplayerpositionex(local8\Field30, local8\Field32, (entityx(arg4, $01) + local0), (entityy(arg4, $01) + 0.32), (entityz(arg4, $01) + local1))
-                                    local8\Field172 = $01
+                                    local8\Field175 = $01
                                 EndIf
                             EndIf
                         EndIf
                     Next
                     For local5 = Each npcs
-                        If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local5\Field4, $00) - entityx(arg3, $01)))) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local5\Field4, $00) - entityz(arg3, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local5\Field4, $00) - entityy(arg3, $01)))) Then
+                        If (1.0945 > (Abs (entityx(local5\Field4, $00) - entityx(arg3, $01)))) Then
+                            If (1.0945 > (Abs (entityz(local5\Field4, $00) - entityz(arg3, $01)))) Then
+                                If (1.0945 > (Abs (entityy(local5\Field4, $00) - entityy(arg3, $01)))) Then
                                     If (arg5 = $00) Then
                                         local3 = distance(entityx(local5\Field4, $01), entityz(local5\Field4, $01), entityx(arg3, $01), entityz(arg3, $01))
                                         local4 = point_direction(entityx(local5\Field4, $01), entityz(local5\Field4, $01), entityx(arg3, $01), entityz(arg3, $01))
                                         local4 = ((entityyaw(arg4, $01) + local4) - entityyaw(arg3, $01))
                                         local4 = wrapangle(local4)
-                                        local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                        local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
                                         rotateentity(local5\Field4, entitypitch(local5\Field4, $01), (angledist(entityyaw(local5\Field4, $01), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local5\Field4, $01), $01)
                                     Else
-                                        local0 = max(min((entityx(local5\Field4, $00) - entityx(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((entityz(local5\Field4, $00) - entityz(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((entityx(local5\Field4, $00) - entityx(arg3, $01)), 0.87375), -0.87375)
+                                        local1 = max(min((entityz(local5\Field4, $00) - entityz(arg3, $01)), 0.87375), -0.87375)
                                     EndIf
                                     teleportentity(local5\Field4, (entityx(arg4, $01) + local0), ((entityy(local5\Field4, $00) - entityy(arg3, $01)) + (entityy(arg4, $01) + 0.005)), (entityz(arg4, $01) + local1), local5\Field68, $01, 2.0, $00)
                                     If (local5 = curr173) Then
@@ -96,20 +96,20 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                     Next
                     For local6 = Each items
                         If (local6\Field22 < $01) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local6\Field1, $00) - entityx(arg3, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local6\Field1, $00) - entityz(arg3, $01)))) Then
-                                    If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local6\Field1, $00) - entityy(arg3, $01)))) Then
+                            If (1.0945 > (Abs (entityx(local6\Field1, $00) - entityx(arg3, $01)))) Then
+                                If (1.0945 > (Abs (entityz(local6\Field1, $00) - entityz(arg3, $01)))) Then
+                                    If (1.0945 > (Abs (entityy(local6\Field1, $00) - entityy(arg3, $01)))) Then
                                         If (arg5 = $00) Then
                                             local3 = distance(entityx(local6\Field1, $01), entityz(local6\Field1, $01), entityx(arg3, $01), entityz(arg3, $01))
                                             local4 = point_direction(entityx(local6\Field1, $01), entityz(local6\Field1, $01), entityx(arg3, $01), entityz(arg3, $01))
                                             local4 = ((entityyaw(arg4, $01) + local4) - entityyaw(arg3, $01))
                                             local4 = wrapangle(local4)
-                                            local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                            local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                            local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                            local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
                                             rotateentity(local6\Field1, entitypitch(local6\Field1, $01), (angledist(entityyaw(local6\Field1, $01), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local6\Field1, $01), $01)
                                         Else
-                                            local0 = max(min((entityx(local6\Field1, $00) - entityx(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                            local1 = max(min((entityz(local6\Field1, $00) - entityz(arg3, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                            local0 = max(min((entityx(local6\Field1, $00) - entityx(arg3, $01)), 0.87375), -0.87375)
+                                            local1 = max(min((entityz(local6\Field1, $00) - entityz(arg3, $01)), 0.87375), -0.87375)
                                         EndIf
                                         teleportentity(local6\Field1, (entityx(arg4, $01) + local0), ((entityy(local6\Field1, $00) - entityy(arg3, $01)) + (entityy(arg4, $01) + 0.005)), (entityz(arg4, $01) + local1), 0.01, $01, 2.0, $00)
                                     EndIf
@@ -130,22 +130,22 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                     arg2\Field4 = $01
                     arg0 = 0.0
                     For local8 = Each players
-                        If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local8\Field63, $00) - entityx(arg4, $01)))) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local8\Field63, $00) - entityz(arg4, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local8\Field63, $00) - entityy(arg4, $01)))) Then
+                        If (1.0945 > (Abs (entityx(local8\Field65, $00) - entityx(arg4, $01)))) Then
+                            If (1.0945 > (Abs (entityz(local8\Field65, $00) - entityz(arg4, $01)))) Then
+                                If (1.0945 > (Abs (entityy(local8\Field65, $00) - entityy(arg4, $01)))) Then
                                     If (arg5 = $00) Then
-                                        local3 = distance(entityx(local8\Field63, $00), entityz(local8\Field63, $00), entityx(arg4, $01), entityz(arg4, $01))
-                                        local4 = point_direction(entityx(local8\Field63, $00), entityz(local8\Field63, $00), entityx(arg4, $01), entityz(arg4, $01))
+                                        local3 = distance(entityx(local8\Field65, $00), entityz(local8\Field65, $00), entityx(arg4, $01), entityz(arg4, $01))
+                                        local4 = point_direction(entityx(local8\Field65, $00), entityz(local8\Field65, $00), entityx(arg4, $01), entityz(arg4, $01))
                                         local4 = ((entityyaw(arg3, $01) + local4) - entityyaw(arg4, $01))
-                                        local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        rotateentity(local8\Field62, entitypitch(local8\Field62, $00), (angledist(entityyaw(local8\Field62, $00), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local8\Field62, $00), $01)
+                                        local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                        local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
+                                        rotateentity(local8\Field64, entitypitch(local8\Field64, $00), (angledist(entityyaw(local8\Field64, $00), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local8\Field64, $00), $01)
                                     Else
-                                        local0 = max(min((entityx(local8\Field63, $00) - entityx(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((entityz(local8\Field63, $00) - entityz(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((entityx(local8\Field65, $00) - entityx(arg4, $01)), 0.87375), -0.87375)
+                                        local1 = max(min((entityz(local8\Field65, $00) - entityz(arg4, $01)), 0.87375), -0.87375)
                                     EndIf
                                     local9 = $00
-                                    If (local8\Field67 = "gatea") Then
+                                    If (local8\Field69 = "gatea") Then
                                         For local10 = Each rooms
                                             If (local10\Field7\Field10 = "gateaentrance") Then
                                                 mp_setplayerroomid(local8, local10)
@@ -155,25 +155,25 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                                         Next
                                     EndIf
                                     setplayerpositionex(local8\Field30, local8\Field32, (entityx(arg3, $01) + local0), (entityy(arg3, $01) + 0.32), (entityz(arg3, $01) + local1))
-                                    local8\Field172 = $01
+                                    local8\Field175 = $01
                                 EndIf
                             EndIf
                         EndIf
                     Next
                     For local5 = Each npcs
-                        If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local5\Field4, $00) - entityx(arg4, $01)))) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local5\Field4, $00) - entityz(arg4, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local5\Field4, $00) - entityy(arg4, $01)))) Then
+                        If (1.0945 > (Abs (entityx(local5\Field4, $00) - entityx(arg4, $01)))) Then
+                            If (1.0945 > (Abs (entityz(local5\Field4, $00) - entityz(arg4, $01)))) Then
+                                If (1.0945 > (Abs (entityy(local5\Field4, $00) - entityy(arg4, $01)))) Then
                                     If (arg5 = $00) Then
                                         local3 = distance(entityx(local5\Field4, $01), entityz(local5\Field4, $01), entityx(arg4, $01), entityz(arg4, $01))
                                         local4 = point_direction(entityx(local5\Field4, $01), entityz(local5\Field4, $01), entityx(arg4, $01), entityz(arg4, $01))
                                         local4 = ((entityyaw(arg3, $01) + local4) - entityyaw(arg4, $01))
-                                        local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                        local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
                                         rotateentity(local5\Field4, entitypitch(local5\Field4, $01), (angledist(entityyaw(local5\Field4, $01), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local5\Field4, $01), $01)
                                     Else
-                                        local0 = max(min((entityx(local5\Field4, $00) - entityx(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                        local1 = max(min((entityz(local5\Field4, $00) - entityz(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                        local0 = max(min((entityx(local5\Field4, $00) - entityx(arg4, $01)), 0.87375), -0.87375)
+                                        local1 = max(min((entityz(local5\Field4, $00) - entityz(arg4, $01)), 0.87375), -0.87375)
                                     EndIf
                                     teleportentity(local5\Field4, (entityx(arg3, $01) + local0), ((entityy(local5\Field4, $00) - entityy(arg4, $01)) + (entityy(arg3, $01) + 0.005)), (entityz(arg3, $01) + local1), local5\Field68, $01, 2.0, $00)
                                     If (local5 = curr173) Then
@@ -185,19 +185,19 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5%)
                     Next
                     For local6 = Each items
                         If (local6\Field22 < $01) Then
-                            If (((280.0 * roomscale) + 0.00075) > (Abs (entityx(local6\Field1, $00) - entityx(arg4, $01)))) Then
-                                If (((280.0 * roomscale) + 0.00075) > (Abs (entityz(local6\Field1, $00) - entityz(arg4, $01)))) Then
-                                    If (((280.0 * roomscale) + 0.00075) > (Abs (entityy(local6\Field1, $00) - entityy(arg4, $01)))) Then
+                            If (1.0945 > (Abs (entityx(local6\Field1, $00) - entityx(arg4, $01)))) Then
+                                If (1.0945 > (Abs (entityz(local6\Field1, $00) - entityz(arg4, $01)))) Then
+                                    If (1.0945 > (Abs (entityy(local6\Field1, $00) - entityy(arg4, $01)))) Then
                                         If (arg5 = $00) Then
                                             local3 = distance(entityx(local6\Field1, $01), entityz(local6\Field1, $01), entityx(arg4, $01), entityz(arg4, $01))
                                             local4 = point_direction(entityx(local6\Field1, $01), entityz(local6\Field1, $01), entityx(arg4, $01), entityz(arg4, $01))
                                             local4 = ((entityyaw(arg3, $01) + local4) - entityyaw(arg4, $01))
-                                            local0 = max(min((cos(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                            local1 = max(min((sin(local4) * local3), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                            local0 = max(min((cos(local4) * local3), 0.87375), -0.87375)
+                                            local1 = max(min((sin(local4) * local3), 0.87375), -0.87375)
                                             rotateentity(local6\Field1, entitypitch(local6\Field1, $01), (angledist(entityyaw(local6\Field1, $01), entityyaw(arg3, $01)) + entityyaw(arg4, $01)), entityroll(local6\Field1, $01), $01)
                                         Else
-                                            local0 = max(min((entityx(local6\Field1, $00) - entityx(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
-                                            local1 = max(min((entityz(local6\Field1, $00) - entityz(arg4, $01)), ((280.0 * roomscale) - 0.22)), ((-280.0 * roomscale) + 0.22))
+                                            local0 = max(min((entityx(local6\Field1, $00) - entityx(arg4, $01)), 0.87375), -0.87375)
+                                            local1 = max(min((entityz(local6\Field1, $00) - entityz(arg4, $01)), 0.87375), -0.87375)
                                         EndIf
                                         teleportentity(local6\Field1, (entityx(arg3, $01) + local0), ((entityy(local6\Field1, $00) - entityy(arg4, $01)) + (entityy(arg3, $01) + 0.005)), (entityz(arg3, $01) + local1), 0.01, $01, 2.0, $00)
                                     EndIf

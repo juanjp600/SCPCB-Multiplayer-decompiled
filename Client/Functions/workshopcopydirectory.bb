@@ -34,8 +34,8 @@ Function workshopcopydirectory$(arg0$, arg1$, arg2%)
             local8 = $00
             local7 = $00
             local11 = (arg1 + replace(stripdirectorypath(scanneddirfiles[local1], local0), ((Str arg2) + "\"), ""))
-            local9 = api_createfile(scanneddirfiles[local1], $80000000, $01, local6, $03, $40000080, $00)
-            local10 = api_createfile(local11, $80000000, $01, local6, $03, $40000080, $00)
+            local9 = api_createfile(scanneddirfiles[local1], $7FFFFFFF, $01, local6, $03, $40000080, $00)
+            local10 = api_createfile(local11, $7FFFFFFF, $01, local6, $03, $40000080, $00)
             api_getfiletime(local9, local3, local4, local5)
             local7 = (peekint(local5, $00) + peekint(local5, $04))
             api_closehandle(local9)

@@ -3,11 +3,11 @@ Function se_getreturnvalue$()
         Case $00
             Return "-1"
         Case $01
-            Return (Str se_return_value\Field1)
-        Case $02
             Return (Str se_return_value\Field2)
+        Case $02
+            Return (Str se_return_value\Field3)
         Case $03
-            Return se_return_value\Field3
+            Return se_return_value\Field4
     End Select
     Return ""
 End Function

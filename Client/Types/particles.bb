@@ -14,8 +14,6 @@ Type particles
     Field Field12#
     Field Field13#
     Field Field14#
-    Field Field15#
+    Field Field15%
     Field Field16#
-    Field Field17#
-    Field Field18%
 End Type

@@ -5,48 +5,55 @@ Function cfg_findcmd%(arg0$)
     local0 = trim(right(arg0, (len(arg0) - instr(arg0, " ", $01))))
     arg0 = trim(left(arg0, instr(arg0, " ", $01)))
     Select arg0
-        Case "maxiconnfromip"
+        Case "duplicate_names"
+            local0 = (Str cfg_findbool(local0))
+            server\Field87\Field8 = (Int local0)
+        Case "updatebanlist"
+            If (local0 = "off") Then
+                local0 = "-1"
+            EndIf
             server\Field86 = (Int local0)
-        Case "globalblinktimer"
-            server\Field83 = (Int local0)
-        Case "globalblinktimerinterval"
+        Case "maxiconnfromip"
             server\Field84 = (Int local0)
-        Case "max_receive_bytes"
+        Case "globalblinktimer"
+            server\Field81 = (Int local0)
+        Case "globalblinktimerinterval"
+            server\Field82 = (Int local0)
         Case "recvbuffermult"
-            server\Field87 = (Int max((Float (Int local0)), 1.0))
+            server\Field85 = (Int max((Float (Int local0)), 1.0))
+        Case "steam_auth"
+            local0 = (Str cfg_findbool(local0))
+            server\Field87\Field7 = (Int local0)
         Case "bind"
-            server\Field80 = local0
+            server\Field78 = local0
         Case "intercom_timeout"
-            server\Field77 = (Int local0)
+            server\Field75 = (Int local0)
         Case "intercom_timeout"
-            server\Field78 = (Int local0)
+            server\Field76 = (Int local0)
         Case "intercom_enable"
             local0 = (Str cfg_findbool(local0))
-            server\Field79 = ($01 - (Int local0))
+            server\Field77 = ($01 - (Int local0))
         Case "speedhack_rate"
-            server\Field74 = (Float local0)
+            server\Field72 = (Float local0)
         Case "noclipanticheat"
             local0 = (Str cfg_findbool(local0))
-            server\Field73 = (Int local0)
+            server\Field71 = (Int local0)
         Case "camerashakeondamage"
             local0 = (Str cfg_findbool(local0))
-            server\Field72 = (Int local0)
-        Case "centralservertcprequest"
-            local0 = (Str cfg_findbool(local0))
             server\Field70 = (Int local0)
-        Case "centralserver"
-            local0 = (Str cfg_findbool(local0))
-            server\Field69 = (Int local0)
         Case "disabletimestamp"
             local0 = (Str cfg_findbool(local0))
-            server\Field68 = (Int local0)
+            server\Field66 = (Int local0)
+        Case "fullsync"
+            local0 = (Str cfg_findbool(local0))
+            server\Field56 = (Int local0)
         Case "roundslimitperstart"
-            server\Field55 = (Int local0)
+            server\Field54 = (Int local0)
         Case "resettimerafterconnect"
             local0 = (Str cfg_findbool(local0))
-            server\Field54 = (Int local0)
-        Case "minplayerstostart"
             server\Field53 = (Int local0)
+        Case "minplayerstostart"
+            server\Field52 = (Int local0)
         Case "voice_quality"
             server\Field32 = (Int local0)
         Case "keepinventory"
@@ -61,9 +68,6 @@ Function cfg_findcmd%(arg0$)
         Case "breach_onlydeathmatch"
             local0 = (Str cfg_findbool(local0))
             server\Field29 = (Int local0)
-        Case "disableauthkey"
-            local0 = (Str cfg_findbool(local0))
-            server\Field65 = ((Int local0) = $00)
         Case "breach"
             local0 = (Str cfg_findbool(local0))
             server\Field21 = (Int local0)
@@ -82,7 +86,7 @@ Function cfg_findcmd%(arg0$)
             server\Field14 = local0
         Case "timeout"
             server\Field13 = (Int local0)
-        Case "nocheat","nocheat mode"
+        Case "nocheat"
             local0 = (Str cfg_findbool(local0))
             server\Field2 = (Int local0)
         Case "hostname"
@@ -97,8 +101,6 @@ Function cfg_findcmd%(arg0$)
             server\Field4 = gettickratedelay()
         Case "port"
             server\Field1 = (Str (Int local0))
-        Case "mapsize"
-            server\Field52 = (Int local0)
         Case "mapseed"
             server\Field7 = local0
         Case "description"
@@ -106,9 +108,9 @@ Function cfg_findcmd%(arg0$)
         Case "weburl"
             server\Field44 = local0
         Case "menuhtml"
-            server\Field75 = local0
+            server\Field73 = local0
         Case "restartmenuhtml"
-            server\Field76 = local0
+            server\Field74 = local0
         Case "gamestate"
             server\Field43 = local0
         Case "savegameafterexit"

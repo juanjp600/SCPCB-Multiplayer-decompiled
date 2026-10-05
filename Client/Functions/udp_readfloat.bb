@@ -1,10 +1,7 @@
 Function udp_readfloat#()
-    Local local0#
-    If ((udp_network\Field17 + $04) > udp_readfullavail()) Then
-        Return 0.0
+    If (networkserver\Field36 <> 0) Then
+        Return steam_pullfloat()
     EndIf
-    local0 = peekfloat(udp_network\Field15, udp_network\Field17)
-    udp_network\Field17 = (udp_network\Field17 + $04)
-    Return local0
+    Return readfloat(udp_network\Field0)
     Return 0.0
 End Function

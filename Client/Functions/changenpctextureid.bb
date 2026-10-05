@@ -10,15 +10,15 @@ Function changenpctextureid%(arg0.npcs, arg1%)
     If ((((arg1 + $01) < $01) Or ((arg1 + $01) > $0B)) <> 0) Then
         Return $00
     EndIf
-    If (arg0\Field67 = (arg1 + $01)) Then
+    If (arg0\Field69 = (arg1 + $01)) Then
         Return $00
     EndIf
-    arg0\Field67 = (arg1 + $01)
+    arg0\Field69 = (arg1 + $01)
     freeentity(arg0\Field0)
     arg0\Field0 = copyentity(dtextures[(arg1 + $01)], $00)
     local0 = (0.5 / meshwidth(arg0\Field0))
     scaleentity(arg0\Field0, local0, local0, local0, $00)
-    meshcullbox(arg0\Field0, (- meshwidth(classdobj)), (- meshheight(classdobj)), (- meshdepth(classdobj)), (meshwidth(classdobj) * 2.0), (meshheight(classdobj) * 2.0), (meshdepth(classdobj) * 2.0))
+    meshcullbox(arg0\Field0, (- meshwidth(g_model\Field4)), (- meshheight(g_model\Field4)), (- meshdepth(g_model\Field4)), (meshwidth(g_model\Field4) * 2.0), (meshheight(g_model\Field4) * 2.0), (meshdepth(g_model\Field4) * 2.0))
     setnpcframe(arg0, arg0\Field14)
     Return $00
 End Function

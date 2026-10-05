@@ -1,5 +1,8 @@
 Function se_array_getelement.se_value(arg0.se_array, arg1%)
     Local local0.se_value
+    If (arg0 = Null) Then
+        Return Null
+    EndIf
     If (arg0\Field1 = $00) Then
         Return Null
     EndIf

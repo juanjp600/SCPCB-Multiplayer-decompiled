@@ -8,7 +8,7 @@ Function addtexturetocache%(arg0%)
         If (bumpenabled <> 0) Then
             local1 = getinistring("Data\materials.ini", local0\Field0, "bump", "")
             If (local1 <> "") Then
-                local0\Field2 = loadtexture_strict(local1, $01)
+                local0\Field2 = loadtexture_strict(local1, $01, $00)
             Else
                 local0\Field2 = $00
             EndIf

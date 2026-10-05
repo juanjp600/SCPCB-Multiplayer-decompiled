@@ -24,6 +24,5 @@ Function calculateroomextents%(arg0.rooms)
         arg0\Field62 = arg0\Field59
         arg0\Field59 = local2
     EndIf
-    debuglog(((((((((((("roomextents: " + (Str arg0\Field57)) + ", ") + (Str arg0\Field58)) + ", ") + (Str arg0\Field59)) + ", ") + (Str arg0\Field60)) + ", ") + (Str arg0\Field61)) + ", ") + (Str arg0\Field62)))
     Return $00
 End Function

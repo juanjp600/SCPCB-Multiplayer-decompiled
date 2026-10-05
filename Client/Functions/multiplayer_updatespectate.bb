@@ -12,19 +12,35 @@ Function multiplayer_updatespectate%()
     If (spectate\Field1 <> $FFFFFFFF) Then
         If (menuopen = $00) Then
             local0 = spectate\Field1
-            If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field27 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
+            If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field19 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
                 If (mousehit1 <> 0) Then
                     spectate\Field1 = findspectateplayer($00)
                 EndIf
                 If (mousehit2 <> 0) Then
                     spectate\Field1 = findspectateplayer($01)
                 EndIf
+                If (keyhit($13) <> 0) Then
+                    spectate\Field0 = ((spectate\Field0 + $01) Mod $03)
+                    If (player[spectate\Field1] <> Null) Then
+                        If (player[spectate\Field1]\Field12 <> $00) Then
+                            If (spectate\Field0 = $00) Then
+                                showentity(player[spectate\Field1]\Field12)
+                            ElseIf (spectate\Field0 = $01) Then
+                                hideentity(player[spectate\Field1]\Field12)
+                            Else
+                                showentity(player[spectate\Field1]\Field12)
+                            EndIf
+                        EndIf
+                    EndIf
+                    mp_instructionsdone = $01
+                    putinivalue("options.ini", "options", "mp instructions", "1")
+                EndIf
             EndIf
             If (local0 <> spectate\Field1) Then
                 If (player[spectate\Field1] <> Null) Then
                     positionentity(collider, entityx(player[spectate\Field1]\Field12, $00), (entityy(player[spectate\Field1]\Field12, $00) + 1.0), entityz(player[spectate\Field1]\Field12, $00), $00)
                     For local1 = Each rooms
-                        If (local1\Field65 = player[spectate\Field1]\Field47) Then
+                        If (local1\Field65 = player[spectate\Field1]\Field45) Then
                             playerroom = local1
                             Exit
                         EndIf
@@ -37,7 +53,7 @@ Function multiplayer_updatespectate%()
             camerafogfar = storedcamerafogfar
             wearingnightvision = $00
         EndIf
-        myplayer\Field33 = $01
+        myplayer\Field31 = $01
         For local2 = $00 To $05 Step $01
             scp1025state[local2] = 0.0
         Next
@@ -66,37 +82,23 @@ Function multiplayer_updatespectate%()
         wearing714 = $00
         wearing1499 = $00
         using294 = $00
-        hideentity(gasmaskoverlay)
-        hideentity(nvoverlay)
-        hideentity(infectoverlay)
-        hideentity(dark)
-        myplayer\Field51 = $00
-        hideentity(head)
-        If (keyhit($13) <> 0) Then
-            spectate\Field0 = ((spectate\Field0 + $01) Mod $03)
-            If (player[spectate\Field1] <> Null) Then
-                If (player[spectate\Field1]\Field12 <> $00) Then
-                    If (spectate\Field0 = $00) Then
-                        showentity(player[spectate\Field1]\Field12)
-                    ElseIf (spectate\Field0 = $01) Then
-                        hideentity(player[spectate\Field1]\Field12)
-                    Else
-                        showentity(player[spectate\Field1]\Field12)
-                    EndIf
-                EndIf
-            EndIf
-            mp_instructionsdone = $01
-            putinivalue(optionfile, "options", "mp instructions", "1")
+        If (overlaysenabled <> 0) Then
+            hideentity(gasmaskoverlay)
+            hideentity(nvoverlay)
+            hideentity(infectoverlay)
         EndIf
+        hideentity(dark)
+        myplayer\Field49 = $00
+        hideentity(head)
         If (spectate\Field0 < $02) Then
             If (player[spectate\Field1] <> Null) Then
                 For local1 = Each rooms
-                    If (local1\Field65 = player[spectate\Field1]\Field47) Then
+                    If (local1\Field65 = player[spectate\Field1]\Field45) Then
                         playerroom = local1
                         Exit
                     EndIf
                 Next
-                If (player[spectate\Field1]\Field51 = $00) Then
+                If (player[spectate\Field1]\Field49 = $00) Then
                     spectate\Field1 = findspectateplayer($00)
                     spectate\Field1 = findspectateplayer($01)
                 EndIf
@@ -106,7 +108,7 @@ Function multiplayer_updatespectate%()
                 Return $00
             EndIf
         EndIf
-        camerazoom(camera, (1.0 / tan(((atan((tan((currentfov / 2.0)) * ((Float realgraphicwidth) / (Float realgraphicheight)))) * 2.0) / 2.0))))
+        camerazoom(camera, (1.0 / tan(((atan((((Float win\Field2) / (Float win\Field3)) * tan((currentfov / 2.0)))) * 2.0) / 2.0))))
         Select spectate\Field0
             Case $00
                 If (player[spectate\Field1] <> Null) Then
@@ -114,10 +116,10 @@ Function multiplayer_updatespectate%()
                         local4 = entityx(player[spectate\Field1]\Field12, $00)
                         local5 = entityy(player[spectate\Field1]\Field12, $00)
                         local6 = entityz(player[spectate\Field1]\Field12, $00)
-                        If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field27 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
+                        If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field19 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
                             local8 = (((Float mousexspeed()) * 0.2) * (mousesens + 0.6))
                             local9 = (((Float mouseyspeed()) * 0.2) * (mousesens + 0.6))
-                            movemouse((graphicwidth Sar $01), (graphicheight Sar $01))
+                            movemouse(viewport_center_x, viewport_center_y)
                             local3 = $01
                         EndIf
                         spectate\Field4 = (spectate\Field4 + local9)
@@ -141,37 +143,37 @@ Function multiplayer_updatespectate%()
                         local4 = entityx(player[spectate\Field1]\Field12, $00)
                         local5 = entityy(player[spectate\Field1]\Field12, $00)
                         local6 = entityz(player[spectate\Field1]\Field12, $00)
-                        local10 = getbreachtype(player[spectate\Field1]\Field51)
-                        If (player[spectate\Field1]\Field51 <> model_173) Then
+                        local10 = getbreachtype(player[spectate\Field1]\Field49)
+                        If (player[spectate\Field1]\Field49 <> model_173) Then
                             positionentity(camera, entityx(getplayerhead(spectate\Field1), $01), entityy(getplayerhead(spectate\Field1), $01), entityz(getplayerhead(spectate\Field1), $01), $00)
-                            If (0.0 <> local10\Field53) Then
+                            If (0.0 <> local10\Field54) Then
                                 rotateentity(camera, player[spectate\Field1]\Field10, entityyaw(player[spectate\Field1]\Field13, $00), player[spectate\Field1]\Field98, $00)
                             Else
                                 rotateentity(camera, player[spectate\Field1]\Field10, entityyaw(player[spectate\Field1]\Field13, $00), flipvalue(player[spectate\Field1]\Field98), $00)
                             EndIf
                         Else
-                            positionentity(camera, entityx(player[spectate\Field1]\Field12, $00), (entityy(player[spectate\Field1]\Field12, $00) + (player[spectate\Field1]\Field92 * 1.0)), entityz(player[spectate\Field1]\Field12, $00), $00)
+                            positionentity(camera, entityx(player[spectate\Field1]\Field12, $00), (entityy(player[spectate\Field1]\Field12, $00) + (player[spectate\Field1]\Field90 * 1.0)), entityz(player[spectate\Field1]\Field12, $00), $00)
                             rotateentity(camera, player[spectate\Field1]\Field5, entityyaw(player[spectate\Field1]\Field13, $00), 0.0, $00)
                         EndIf
                         positionentity(collider, local4, (local5 + 1.0), local6, $00)
                         resetentity(collider)
                         hideentity(player[spectate\Field1]\Field12)
-                        If (player[spectate\Field1]\Field42\Field8 <> $00) Then
-                            hideentity(player[spectate\Field1]\Field42\Field8)
+                        If (player[spectate\Field1]\Field40\Field8 <> $00) Then
+                            hideentity(player[spectate\Field1]\Field40\Field8)
                         EndIf
-                        hideentity(player[spectate\Field1]\Field42\Field6)
-                        hideentity(player[spectate\Field1]\Field42\Field5)
-                        hideentity(player[spectate\Field1]\Field42\Field4)
+                        hideentity(player[spectate\Field1]\Field40\Field6)
+                        hideentity(player[spectate\Field1]\Field40\Field5)
+                        hideentity(player[spectate\Field1]\Field40\Field4)
                         For local2 = $01 To $0F Step $01
-                            hideentity(player[spectate\Field1]\Field42\Field7[local2])
+                            hideentity(player[spectate\Field1]\Field40\Field7[local2])
                         Next
                     EndIf
                 EndIf
             Case $02
-                If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field27 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
+                If (((((((((((((menuopen = $00) And (invopen = $00)) And (otheropen = Null)) And (selecteddoor = Null)) And (consoleopen = $00)) And (lockmouse = $00)) And (using294 = $00)) And (selectedscreen = Null)) And (0.0 <= endingtimer)) And (networkserver\Field19 = $00)) And ((tab_menu_state > $01) = $00)) Or mainmenuopen) <> 0) Then
                     local8 = (((Float mousexspeed()) * 0.2) * (mousesens + 0.6))
                     local9 = (((Float mouseyspeed()) * 0.2) * (mousesens + 0.6))
-                    movemouse((graphicwidth Sar $01), (graphicheight Sar $01))
+                    movemouse(viewport_center_x, viewport_center_y)
                     If (keybuffer(key_down) <> 0) Then
                         moveentity(collider, 0.0, 0.0, ((- (max(((Float keybuffer(key_sprint)) * 2.5), 1.0) * 0.036)) * fpsfactor))
                     EndIf

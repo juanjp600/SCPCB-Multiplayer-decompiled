@@ -7,6 +7,7 @@ Function ws_redirectfile%(arg0$, arg1$)
                 If (arg0 = "GFX\blinkmeter.jpg") Then
                     freeimage(blinkmeterimg)
                     blinkmeterimg = loadimage_strict("GFX\blinkmeter.jpg")
+                    resizeimage(blinkmeterimg, (8.0 * menuscale), (14.0 * menuscale))
                 EndIf
                 Return $01
             EndIf

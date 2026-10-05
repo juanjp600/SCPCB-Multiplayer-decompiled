@@ -41,8 +41,8 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
     Next
     arg0\Field4 = createpivot($00)
     positionentity(arg0\Field4, arg1, arg2, arg3, $01)
-    local12 = loadtexture_strict("GFX\map\forest\forestfloor.jpg", $01)
-    local13 = loadtexture_strict("GFX\map\forest\forestpath.jpg", $01)
+    local12 = loadtexture_strict("GFX\map\forest\forestfloor.jpg", $01, $00)
+    local13 = loadtexture_strict("GFX\map\forest\forestpath.jpg", $01, $00)
     local10[$01] = loadimage("GFX\map\forest\forest1h.png")
     local11[$01] = loadtexture("GFX\map\forest\forest1h_mask.png", $03)
     local10[$02] = loadimage("GFX\map\forest\forest2h.png")
@@ -58,11 +58,11 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
     Next
     freetexture(local12)
     freetexture(local13)
-    arg0\Field1[$00] = loadmesh_strict("GFX\map\forest\detail\treetest4.b3d", $00)
-    arg0\Field1[$01] = loadmesh_strict("GFX\map\forest\detail\rock.b3d", $00)
-    arg0\Field1[$02] = loadmesh_strict("GFX\map\forest\detail\rock2.b3d", $00)
-    arg0\Field1[$03] = loadmesh_strict("GFX\map\forest\detail\treetest5.b3d", $00)
-    arg0\Field1[$04] = loadmesh_strict("GFX\map\forest\wall.b3d", $00)
+    arg0\Field1[$00] = loadmesh_strict("GFX\map\forest\detail\treetest4.b3d", $00, $00)
+    arg0\Field1[$01] = loadmesh_strict("GFX\map\forest\detail\rock.b3d", $00, $00)
+    arg0\Field1[$02] = loadmesh_strict("GFX\map\forest\detail\rock2.b3d", $00, $00)
+    arg0\Field1[$03] = loadmesh_strict("GFX\map\forest\detail\treetest5.b3d", $00, $00)
+    arg0\Field1[$04] = loadmesh_strict("GFX\map\forest\wall.b3d", $00, $00)
     For local9 = $01 To $05 Step $01
         hideentity(arg0\Field0[local9])
     Next
@@ -133,8 +133,6 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
                     Case $04
                         local4 = copyentity(arg0\Field0[$05], $00)
                         local3 = $05
-                    Default
-                        debuglog(("tile_type: " + (Str local3)))
                 End Select
                 If (local3 > $00) Then
                     local17 = Null
@@ -192,8 +190,6 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
                         entityparent(local17\Field1, $00, $01)
                     EndIf
                     arg0\Field3[((local1 * $0A) + local0)] = local4
-                Else
-                    debuglog(((((("INVALID TILE @ (" + (Str local0)) + ", ") + (Str local1)) + "): ") + (Str local3)))
                 EndIf
             EndIf
         Next
@@ -203,15 +199,15 @@ Function placeforest%(arg0.forest, arg1#, arg2#, arg3#, arg4.rooms)
         For local0 = $00 To $09 Step $01
             If (arg0\Field2[((local1 * $0A) + local0)] = $03) Then
                 arg0\Field6[local9] = copyentity(arg0\Field1[$04], $00)
-                scaleentity(arg0\Field6[local9], roomscale, roomscale, roomscale, $00)
+                scaleentity(arg0\Field6[local9], (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
                 arg0\Field5[local9] = copyentity(arg4\Field25[$03], $00)
-                positionentity(arg0\Field5[local9], (72.0 * roomscale), (32.0 * roomscale), 0.0, $01)
+                positionentity(arg0\Field5[local9], 0.28125, 0.125, 0.0, $01)
                 rotateentity(arg0\Field5[local9], 0.0, 180.0, 0.0, $00)
-                scaleentity(arg0\Field5[local9], (48.0 * roomscale), (45.0 * roomscale), (48.0 * roomscale), $01)
+                scaleentity(arg0\Field5[local9], 0.1875, (1.0 / 5.688889), 0.1875, $01)
                 entityparent(arg0\Field5[local9], arg0\Field6[local9], $01)
                 local24 = copyentity(arg4\Field25[$02], arg0\Field5[local9])
-                positionentity(local24, 0.0, (32.0 * roomscale), 0.0, $01)
-                scaleentity(local24, (48.0 * roomscale), (45.0 * roomscale), (48.0 * roomscale), $01)
+                positionentity(local24, 0.0, 0.125, 0.0, $01)
+                scaleentity(local24, 0.1875, (1.0 / 5.688889), 0.1875, $01)
                 entityparent(local24, arg0\Field6[local9], $01)
                 entitytype(arg0\Field6[local9], $01, $00)
                 entitypickmode(arg0\Field6[local9], $02, $01)

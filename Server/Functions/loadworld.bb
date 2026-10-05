@@ -26,7 +26,7 @@ Function loadworld%(arg0$, arg1.roomtemplates)
     Local local25#
     Local local26#
     Local local27%
-    local0 = loadanimmesh_strict(arg0, $00)
+    local0 = loadanimmesh_strict(arg0, $00, $00)
     If (local0 = $00) Then
         Return $00
     EndIf
@@ -58,9 +58,9 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                 local5 = (local5 - $01)
             Case "item"
             Case "screen"
-                local1 = (entityx(local11, $00) * roomscale)
-                local2 = (entityy(local11, $00) * roomscale)
-                local3 = (entityz(local11, $00) * roomscale)
+                local1 = (entityx(local11, $00) * (1.0 / 256.0))
+                local2 = (entityy(local11, $00) * (1.0 / 256.0))
+                local3 = (entityz(local11, $00) * (1.0 / 256.0))
                 If ((((0.0 <> local1) Or (0.0 <> local2)) Or (0.0 <> local3)) <> 0) Then
                     local14 = (New tempscreens)
                     local14\Field1 = local1
@@ -70,18 +70,18 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                     local14\Field4 = arg1
                 EndIf
             Case "waypoint"
-                local1 = (entityx(local11, $00) * roomscale)
-                local2 = (entityy(local11, $00) * roomscale)
-                local3 = (entityz(local11, $00) * roomscale)
+                local1 = (entityx(local11, $00) * (1.0 / 256.0))
+                local2 = (entityy(local11, $00) * (1.0 / 256.0))
+                local3 = (entityz(local11, $00) * (1.0 / 256.0))
                 local15 = (New tempwaypoints)
                 local15\Field3 = arg1
                 local15\Field0 = local1
                 local15\Field1 = local2
                 local15\Field2 = local3
             Case "light"
-                local1 = (entityx(local11, $00) * roomscale)
-                local2 = (entityy(local11, $00) * roomscale)
-                local3 = (entityz(local11, $00) * roomscale)
+                local1 = (entityx(local11, $00) * (1.0 / 256.0))
+                local2 = (entityy(local11, $00) * (1.0 / 256.0))
+                local3 = (entityz(local11, $00) * (1.0 / 256.0))
                 If ((((0.0 <> local1) Or (0.0 <> local2)) Or (0.0 <> local3)) <> 0) Then
                     local16 = ((Float keyvalue(local11, "range", "1")) / 2000.0)
                     local17 = keyvalue(local11, "color", "255 255 255")
@@ -92,9 +92,9 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                     addtemplight(arg1, local1, local2, local3, $02, local16, local19, local20, local21)
                 EndIf
             Case "spotlight"
-                local1 = (entityx(local11, $00) * roomscale)
-                local2 = (entityy(local11, $00) * roomscale)
-                local3 = (entityz(local11, $00) * roomscale)
+                local1 = (entityx(local11, $00) * (1.0 / 256.0))
+                local2 = (entityy(local11, $00) * (1.0 / 256.0))
+                local3 = (entityz(local11, $00) * (1.0 / 256.0))
                 If ((((0.0 <> local1) Or (0.0 <> local2)) Or (0.0 <> local3)) <> 0) Then
                     local16 = ((Float keyvalue(local11, "range", "1")) / 700.0)
                     local17 = keyvalue(local11, "color", "255 255 255")
@@ -114,9 +114,9 @@ Function loadworld%(arg0$, arg1.roomtemplates)
             Case "soundemitter"
                 For local4 = $00 To $03 Step $01
                     If (arg1\Field4[local4] = $00) Then
-                        arg1\Field5[local4] = (entityx(local11, $00) * roomscale)
-                        arg1\Field6[local4] = (entityy(local11, $00) * roomscale)
-                        arg1\Field7[local4] = (entityz(local11, $00) * roomscale)
+                        arg1\Field5[local4] = (entityx(local11, $00) * (1.0 / 256.0))
+                        arg1\Field6[local4] = (entityy(local11, $00) * (1.0 / 256.0))
+                        arg1\Field7[local4] = (entityz(local11, $00) * (1.0 / 256.0))
                         arg1\Field4[local4] = (Int keyvalue(local11, "sound", "0"))
                         arg1\Field8[local4] = (Float keyvalue(local11, "range", "1"))
                         Exit

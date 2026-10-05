@@ -1,7 +1,7 @@
 Function cancelsteamticket%()
-    If (currentsessionticket <> $00) Then
-        bs_isteamuser_cancelauthticket(bs_steamuser(), currentsessionticket)
-        currentsessionticket = $00
+    If (steamauthtickethandle <> $00) Then
+        steam_cancelauthticket(steamauthtickethandle)
+        steamauthtickethandle = $00
     EndIf
     Return $00
 End Function

@@ -2,13 +2,13 @@ Function texts_network_update%()
     Local local0%
     Local local1%
     For local0 = $01 To server\Field11 Step $01
-        If (playeroptimize[local0]\Field50 > $FF) Then
-            playeroptimize[local0]\Field50 = $01
+        If (playeroptimize[local0]\Field52 > $FF) Then
+            playeroptimize[local0]\Field52 = $01
         EndIf
-        If (playeroptimize[local0]\Field47 <> playeroptimize[local0]\Field50) Then
+        If (playeroptimize[local0]\Field47 <> playeroptimize[local0]\Field52) Then
             udp_writebyte($5F)
             udp_writebyte($01)
-            udp_writebyte(playeroptimize[local0]\Field50)
+            udp_writebyte(playeroptimize[local0]\Field52)
             For local1 = $01 To $1F Step $01
                 If (playeroptimize[local0]\Field44[local1] <> Null) Then
                     udp_writebyte(local1)

@@ -37,7 +37,7 @@ Function updategame%()
             darka = min(max(darka, ((6000.0 - eyestuck) / 5000.0)), 1.0)
         EndIf
         If (((9000.0 > eyestuck) And (9000.0 <= (eyestuck + fpsfactor))) <> 0) Then
-            msg = "The eyedrops are causing your eyes to tear up."
+            setmsg("The eyedrops are causing your eyes to tear up.")
             msgtimer = 420.0
         EndIf
     EndIf
@@ -94,7 +94,7 @@ Function updategame%()
         selectedmonitor = Null
         blurtimer = (Abs (killtimer * 5.0))
         killtimer = (killtimer - (fpsfactor * 0.8))
-        If (((-360.0 > killtimer) And (networkserver\Field15 = $00)) <> 0) Then
+        If (((-360.0 > killtimer) And (networkserver\Field12 = $00)) <> 0) Then
             menu_open_type = $01
             menuopen = $01
             If (selectedending <> "") Then
@@ -105,7 +105,7 @@ Function updategame%()
     EndIf
     If (0.0 > falltimer) Then
         If (selecteditem <> Null) Then
-            If ((instr(selecteditem\Field3\Field2, "hazmatsuit", $01) Or instr(selecteditem\Field3\Field2, "vest", $01)) <> 0) Then
+            If ((instr(selecteditem\Field1\Field2, "hazmatsuit", $01) Or instr(selecteditem\Field1\Field2, "vest", $01)) <> 0) Then
                 If (((wearinghazmat = $00) And (wearingvest = $00)) <> 0) Then
                     dropitem(selecteditem, $01)
                 EndIf
@@ -118,11 +118,6 @@ Function updategame%()
         blurtimer = (Abs (falltimer * 10.0))
         falltimer = (falltimer - fpsfactor)
         darka = max(darka, min((Abs (falltimer / 400.0)), 1.0))
-    EndIf
-    If (selecteditem <> Null) Then
-        If (((selecteditem\Field3\Field2 = "navigator") Or (selecteditem\Field3\Field2 = "nav")) <> 0) Then
-            darka = max(darka, 0.5)
-        EndIf
     EndIf
     If (selectedscreen <> Null) Then
         darka = max(darka, 0.5)

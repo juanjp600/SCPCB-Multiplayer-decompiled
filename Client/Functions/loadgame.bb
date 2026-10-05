@@ -69,7 +69,6 @@ Function loadgame%(arg0$)
     Local local71#
     Local local72.rooms
     local0 = ""
-    debuglog("---------------------------------------------------------------------------")
     dropspeed = 0.0
     debughud = $00
     gamesaved = $01
@@ -190,7 +189,6 @@ Function loadgame%(arg0$)
         local9\Field25 = readfloat(local11)
         forcesetnpcid(local9, readint(local11))
         local9\Field32 = readint(local11)
-        debuglog((((("Loading NPC " + local9\Field43) + " (ID ") + (Str local9\Field6)) + ")"))
         local9\Field33 = readfloat(local11)
         local9\Field34 = readfloat(local11)
         local9\Field35 = readfloat(local11)
@@ -206,22 +204,22 @@ Function loadgame%(arg0$)
         End Select
         local9\Field14 = local17
         local9\Field48 = readint(local11)
-        local9\Field60 = readfloat(local11)
-        local9\Field61 = readfloat(local11)
-        local9\Field59 = readint(local11)
-        local9\Field62 = readstring(local11)
+        local9\Field62 = readfloat(local11)
         local9\Field63 = readfloat(local11)
-        local9\Field64 = readfloat(local11)
+        local9\Field61 = readint(local11)
+        local9\Field64 = readstring(local11)
         local9\Field65 = readfloat(local11)
-        If (local9\Field62 <> "") Then
+        local9\Field66 = readfloat(local11)
+        local9\Field67 = readfloat(local11)
+        If (local9\Field64 <> "") Then
             freeentity(local9\Field0)
-            local9\Field0 = loadanimmesh_strict(local9\Field62, $00)
-            scaleentity(local9\Field0, local9\Field63, local9\Field64, local9\Field65, $00)
+            local9\Field0 = loadanimmesh_strict(local9\Field64, $00)
+            scaleentity(local9\Field0, local9\Field65, local9\Field66, local9\Field67, $00)
             setanimtime(local9\Field0, local17, $00)
         EndIf
-        local9\Field67 = readint(local11)
-        If (local9\Field67 > $00) Then
-            changenpctextureid(local9, (local9\Field67 - $01))
+        local9\Field69 = readint(local11)
+        If (local9\Field69 > $00) Then
+            changenpctextureid(local9, (local9\Field69 - $01))
             setanimtime(local9\Field0, local17, $00)
         EndIf
     Next
@@ -264,9 +262,9 @@ Function loadgame%(arg0$)
         local21 = (Int wrapangle((Float local21)))
         For local25 = Each roomtemplates
             If (local25\Field1 = local20) Then
-                local7 = createroom(local23, local25\Field10, local1, local2, local3, local25\Field11)
-                turnentity(local7\Field2, 0.0, (Float local21), 0.0, $00)
-                local7\Field6 = local21
+                local7 = createroom(local23, local25\Field10, local1, local2, local3, local25\Field11, $00)
+                turnentity(local7\Field3, 0.0, (Float local21), 0.0, $00)
+                local7\Field7 = local21
                 local7\Field1 = local22
                 Exit
             EndIf
@@ -341,7 +339,6 @@ Function loadgame%(arg0$)
                     local7\Field11\Field2[(Int ((local2 * 10.0) + local1))] = readbyte(local11)
                     local28 = (local28 + (Str local7\Field11\Field2[(Int ((local2 * 10.0) + local1))]))
                 Next
-                debuglog(local28)
             Next
             local29 = readfloat(local11)
             local30 = readfloat(local11)
@@ -357,7 +354,7 @@ Function loadgame%(arg0$)
         EndIf
     Next
     For local7 = Each rooms
-        If (((local12 = local7\Field3) And (local13 = local7\Field5)) <> 0) Then
+        If (((local12 = local7\Field4) And (local13 = local7\Field6)) <> 0) Then
             ntf_1499prevroom = local7
             Exit
         EndIf
@@ -384,24 +381,24 @@ Function loadgame%(arg0$)
                     local5 = $00
                 EndIf
                 For local7 = Each rooms
-                    local7\Field6 = (Int wrapangle((Float local7\Field6)))
-                    If (((local1 = (Float (Int (local7\Field3 / 8.0)))) And (local2 = (Float (Int (local7\Field5 / 8.0))))) <> 0) Then
+                    local7\Field7 = (Int wrapangle((Float local7\Field7)))
+                    If (((local1 = (Float (Int (local7\Field4 / 8.0)))) And (local2 = (Float (Int (local7\Field6 / 8.0))))) <> 0) Then
                         local34 = $00
-                        Select local7\Field7\Field10
+                        Select local7\Field8\Field10
                             Case $01
-                                If (local7\Field6 = $5A) Then
+                                If (local7\Field7 = $5A) Then
                                     local34 = $01
                                 EndIf
                             Case $02
-                                If (((local7\Field6 = $5A) Or (local7\Field6 = $10E)) <> 0) Then
+                                If (((local7\Field7 = $5A) Or (local7\Field7 = $10E)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Case $03
-                                If (((local7\Field6 = $00) Or (local7\Field6 = $5A)) <> 0) Then
+                                If (((local7\Field7 = $00) Or (local7\Field7 = $5A)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Case $04
-                                If ((((local7\Field6 = $00) Or (local7\Field6 = $B4)) Or (local7\Field6 = $5A)) <> 0) Then
+                                If ((((local7\Field7 = $00) Or (local7\Field7 = $B4)) Or (local7\Field7 = $5A)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Default
@@ -410,27 +407,27 @@ Function loadgame%(arg0$)
                         If (local34 <> 0) Then
                             If ((Float (mapwidth + $01)) > (local1 + 1.0)) Then
                                 If (maptemp((Int (local1 + 1.0)), (Int local2)) > $00) Then
-                                    local10 = createdoor(local7\Field0, ((local1 * local32) + (local32 / 2.0)), 0.0, (local2 * local32), 90.0, local7, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local5, $00, "", $00)
+                                    local10 = createdoor(local7\Field0, ((local1 * local32) + (local32 / 2.0)), 0.0, (local2 * local32), 90.0, local7, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local5, $00, "")
                                     local7\Field35[$00] = local10
                                 EndIf
                             EndIf
                         EndIf
                         local34 = $00
-                        Select local7\Field7\Field10
+                        Select local7\Field8\Field10
                             Case $01
-                                If (local7\Field6 = $B4) Then
+                                If (local7\Field7 = $B4) Then
                                     local34 = $01
                                 EndIf
                             Case $02
-                                If (((local7\Field6 = $00) Or (local7\Field6 = $B4)) <> 0) Then
+                                If (((local7\Field7 = $00) Or (local7\Field7 = $B4)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Case $03
-                                If (((local7\Field6 = $B4) Or (local7\Field6 = $5A)) <> 0) Then
+                                If (((local7\Field7 = $B4) Or (local7\Field7 = $5A)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Case $04
-                                If ((((local7\Field6 = $B4) Or (local7\Field6 = $5A)) Or (local7\Field6 = $10E)) <> 0) Then
+                                If ((((local7\Field7 = $B4) Or (local7\Field7 = $5A)) Or (local7\Field7 = $10E)) <> 0) Then
                                     local34 = $01
                                 EndIf
                             Default
@@ -439,7 +436,7 @@ Function loadgame%(arg0$)
                         If (local34 <> 0) Then
                             If ((Float (mapheight + $01)) > (local2 + 1.0)) Then
                                 If (maptemp((Int local1), (Int (local2 + 1.0))) > $00) Then
-                                    local10 = createdoor(local7\Field0, (local1 * local32), 0.0, ((local2 * local32) + (local32 / 2.0)), 0.0, local7, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local5, $00, "", $00)
+                                    local10 = createdoor(local7\Field0, (local1 * local32), 0.0, ((local2 * local32) + (local32 / 2.0)), 0.0, local7, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), local5, $00, "")
                                     local7\Field35[$03] = local10
                                 EndIf
                             EndIf
@@ -474,11 +471,11 @@ Function loadgame%(arg0$)
                 local10\Field5 = local37
                 local10\Field7 = local38
                 local10\Field4 = local39
-                local10\Field21 = local40
+                local10\Field20 = local40
                 local10\Field10 = local45
                 local10\Field11 = local46
-                local10\Field23 = local47
-                local10\Field24 = local48
+                local10\Field22 = local47
+                local10\Field23 = local48
                 positionentity(local10\Field0, local41, local2, local42, $01)
                 If (local10\Field1 <> $00) Then
                     positionentity(local10\Field1, local43, local2, local44, $01)
@@ -515,7 +512,6 @@ Function loadgame%(arg0$)
         scalesprite(local49\Field0, local49\Field2, local49\Field2)
         entityblend(local49\Field0, local49\Field6)
         entityfx(local49\Field0, local49\Field7)
-        debuglog(((((("Created Decal @" + (Str local1)) + ",") + (Str local2)) + ",") + (Str local3)))
     Next
     updatedecals()
     local5 = readint(local11)
@@ -528,7 +524,7 @@ Function loadgame%(arg0$)
         local1 = readfloat(local11)
         local3 = readfloat(local11)
         For local7 = Each rooms
-            If (((local1 = entityx(local7\Field2, $00)) And (local3 = entityz(local7\Field2, $00))) <> 0) Then
+            If (((local1 = entityx(local7\Field3, $00)) And (local3 = entityz(local7\Field3, $00))) <> 0) Then
                 local53\Field1 = local7
                 Exit
             EndIf
@@ -542,7 +538,6 @@ Function loadgame%(arg0$)
         If (local53\Field0 = "room2sl") Then
             local53\Field2 = 0.0
             local53\Field11 = ""
-            debuglog(("Reset Eventstate in " + local53\Field0))
         ElseIf (local53\Field0 = "dimension1499") Then
             If (0.0 < local53\Field2) Then
                 local53\Field2 = 0.0
@@ -551,7 +546,7 @@ Function loadgame%(arg0$)
                 deletechunks()
                 For local9 = Each npcs
                     If (local9\Field5 = $14) Then
-                        If (local9\Field58 = $00) Then
+                        If (local9\Field60 = $00) Then
                             removenpc(local9, $00)
                         EndIf
                     EndIf
@@ -559,7 +554,6 @@ Function loadgame%(arg0$)
                 For local54 = Each dummy1499
                     Delete local54
                 Next
-                debuglog(("Reset Eventstate in " + local53\Field0))
             EndIf
         ElseIf (local53\Field0 = "room860") Then
             local53\Field11 = ""
@@ -567,7 +561,7 @@ Function loadgame%(arg0$)
             local53\Field11 = ""
         ElseIf (local53\Field0 = "room106") Then
             If (0.0 = local53\Field3) Then
-                positionentity(local53\Field1\Field25[$06], entityx(local53\Field1\Field25[$06], $01), (-1280.0 * roomscale), entityz(local53\Field1\Field25[$06], $01), $01)
+                positionentity(local53\Field1\Field25[$06], entityx(local53\Field1\Field25[$06], $01), -5.0, entityz(local53\Field1\Field25[$06], $01), $01)
             EndIf
         EndIf
     Next
@@ -594,13 +588,13 @@ Function loadgame%(arg0$)
         local55\Field0 = local58
         local1 = readfloat(local11)
         local2 = readfloat(local11)
-        rotateentity(local55\Field1, local1, local2, 0.0, $00)
+        rotateentity(local55\Field2, local1, local2, 0.0, $00)
         local55\Field13 = readfloat(local11)
-        local55\Field15 = readbyte(local11)
+        local55\Field16 = readbyte(local11)
         local55\Field22 = readbyte(local11)
         If (local55\Field22 <> $01) Then
             local55\Field22 = $00
-            local55\Field15 = $00
+            local55\Field16 = $00
         EndIf
         local63 = readbyte(local11)
         If (local63 = $01) Then
@@ -614,17 +608,17 @@ Function loadgame%(arg0$)
         For local64 = Each itemtemplates
             If (((local64\Field2 = local57) And (local64\Field1 = local56)) <> 0) Then
                 If (local64\Field13 <> $00) Then
-                    setanimtime(local55\Field2, readfloat(local11), $00)
+                    setanimtime(local55\Field3, readfloat(local11), $00)
                     Exit
                 EndIf
             EndIf
         Next
-        local55\Field19 = readbyte(local11)
+        local55\Field20 = readbyte(local11)
         readint(local11)
         If (readbyte(local11) = $00) Then
-            local55\Field16 = local55\Field3\Field8
+            local55\Field17 = local55\Field1\Field8
         Else
-            local55\Field16 = local55\Field3\Field9
+            local55\Field17 = local55\Field1\Field9
         EndIf
     Next
     If (readint(local11) <> $11CF) Then
@@ -632,7 +626,6 @@ Function loadgame%(arg0$)
     EndIf
     If (readint(local11) <> $3E2) Then
         usedconsole = $01
-        debuglog("Used Console")
     EndIf
     camerafogfar = readfloat(local11)
     storedcamerafogfar = readfloat(local11)
@@ -650,18 +643,17 @@ Function loadgame%(arg0$)
     For local4 = $01 To local5 Step $01
         local65 = readint(local11)
         For local66 = Each items
-            If (local66\Field18 = local65) Then
+            If (local66\Field19 = local65) Then
                 local55 = local66
                 Exit
             EndIf
         Next
-        For local67 = $00 To (local55\Field19 - $01) Step $01
+        For local67 = $00 To (local55\Field20 - $01) Step $01
             local65 = readint(local11)
-            debuglog(("secondinv " + (Str local65)))
             If (local65 <> $FFFFFFFF) Then
                 For local66 = Each items
-                    If (local66\Field18 = local65) Then
-                        local55\Field17[local67] = local66
+                    If (local66\Field19 = local65) Then
+                        local55\Field18[local67] = local66
                         Exit
                     EndIf
                 Next
@@ -685,7 +677,7 @@ Function loadgame%(arg0$)
         If (local10\Field13 <> Null) Then
             local69 = 20.0
             For local7 = Each rooms
-                local71 = entitydistance(local7\Field2, local10\Field0)
+                local71 = entitydistance(local7\Field3, local10\Field0)
                 If (local69 > local71) Then
                     local69 = local71
                     local70 = local7
@@ -702,25 +694,25 @@ Function loadgame%(arg0$)
         local7\Field34[$03] = Null
         For local72 = Each rooms
             If (local7 <> local72) Then
-                If (local7\Field5 = local72\Field5) Then
-                    If ((local7\Field3 + 8.0) = local72\Field3) Then
+                If (local7\Field6 = local72\Field6) Then
+                    If ((local7\Field4 + 8.0) = local72\Field4) Then
                         local7\Field34[$00] = local72
                         If (local7\Field35[$00] = Null) Then
                             local7\Field35[$00] = local72\Field35[$02]
                         EndIf
-                    ElseIf ((local7\Field3 - 8.0) = local72\Field3) Then
+                    ElseIf ((local7\Field4 - 8.0) = local72\Field4) Then
                         local7\Field34[$02] = local72
                         If (local7\Field35[$02] = Null) Then
                             local7\Field35[$02] = local72\Field35[$00]
                         EndIf
                     EndIf
-                ElseIf (local7\Field3 = local72\Field3) Then
-                    If ((local7\Field5 - 8.0) = local72\Field5) Then
+                ElseIf (local7\Field4 = local72\Field4) Then
+                    If ((local7\Field6 - 8.0) = local72\Field6) Then
                         local7\Field34[$01] = local72
                         If (local7\Field35[$01] = Null) Then
                             local7\Field35[$01] = local72\Field35[$03]
                         EndIf
-                    ElseIf ((local7\Field5 + 8.0) = local72\Field5) Then
+                    ElseIf ((local7\Field6 + 8.0) = local72\Field6) Then
                         local7\Field34[$03] = local72
                         If (local7\Field35[$03] = Null) Then
                             local7\Field35[$03] = local72\Field35[$01]
@@ -734,16 +726,16 @@ Function loadgame%(arg0$)
         Next
         For local10 = Each doors
             If (((local10\Field12 = $00) And (local10\Field17 = "")) <> 0) Then
-                If (local7\Field5 = entityz(local10\Field2, $01)) Then
-                    If ((local7\Field3 + 4.0) = entityx(local10\Field2, $01)) Then
+                If (local7\Field6 = entityz(local10\Field2, $01)) Then
+                    If ((local7\Field4 + 4.0) = entityx(local10\Field2, $01)) Then
                         local7\Field35[$00] = local10
-                    ElseIf ((local7\Field3 - 4.0) = entityx(local10\Field2, $01)) Then
+                    ElseIf ((local7\Field4 - 4.0) = entityx(local10\Field2, $01)) Then
                         local7\Field35[$02] = local10
                     EndIf
-                ElseIf (local7\Field3 = entityx(local10\Field2, $01)) Then
-                    If ((local7\Field5 + 4.0) = entityz(local10\Field2, $01)) Then
+                ElseIf (local7\Field4 = entityx(local10\Field2, $01)) Then
+                    If ((local7\Field6 + 4.0) = entityz(local10\Field2, $01)) Then
                         local7\Field35[$03] = local10
-                    ElseIf ((local7\Field5 - 4.0) = entityz(local10\Field2, $01)) Then
+                    ElseIf ((local7\Field6 - 4.0) = entityz(local10\Field2, $01)) Then
                         local7\Field35[$01] = local10
                     EndIf
                 EndIf
@@ -753,7 +745,7 @@ Function loadgame%(arg0$)
     For local7 = Each rooms
         initadjacentroomdoors(local7)
     Next
-    If (playerroom\Field7\Field11 = "dimension1499") Then
+    If (playerroom\Field8\Field11 = "dimension1499") Then
         blinktimer = -1.0
         shouldentitiesfall = $00
         playerroom = ntf_1499prevroom
@@ -765,12 +757,12 @@ Function loadgame%(arg0$)
     EndIf
     If (collider <> $00) Then
         If (playerroom <> Null) Then
-            showentity(playerroom\Field2)
+            showentity(playerroom\Field3)
         EndIf
         showentity(collider)
         teleportentity(collider, entityx(collider, $00), (entityy(collider, $00) + 0.5), entityz(collider, $00), 0.3, $01, 2.0, $00)
         If (playerroom <> Null) Then
-            hideentity(playerroom\Field2)
+            hideentity(playerroom\Field3)
         EndIf
     EndIf
     updatedoorstimer = 0.0

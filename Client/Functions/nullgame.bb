@@ -1,35 +1,33 @@
 Function nullgame%(arg0%)
-    Local local0.screens
-    Local local1%
+    Local local0%
+    Local local1.screens
     Local local2%
     Local local3%
-    Local local4.itemtemplates
-    Local local5.events
-    Local local6.soundtodelete
-    Local local7.redirectedsound
+    Local local4%
+    Local local5.itemtemplates
+    Local local6.events
+    Local local7.soundtodelete
     Local local8.redirectedsound
-    Local local9.roomtemplates
+    Local local9.redirectedsound
+    Local local10.roomtemplates
     If (arg0 <> 0) Then
         playsound_strict(buttonsfx)
-    EndIf
-    If (menubrowser <> Null) Then
-        steambrowser_destroy(menubrowser)
     EndIf
     deleteguns()
     reloaddifficulties()
     freeparticles()
     cleartexturecache()
     killsounds()
-    cube = $00
+    local0 = $00
     gameload = $00
-    vest_obj = $00
-    nvg_obj = $00
-    gasmask_obj = $00
+    g_model\Field41 = $00
+    g_model\Field39 = $00
+    g_model\Field40 = $00
     stated = $00
     spectate\Field1 = $FFFFFFFF
     holdinggun = $00
-    classdobj = $00
-    clerkmp = $00
+    g_model\Field4 = $00
+    g_model\Field6 = $00
     using294 = $00
     input294 = ""
     debughud = $00
@@ -43,7 +41,7 @@ Function nullgame%(arg0%)
     doortempid = $00
     roomtempid = $00
     gamesaved = $00
-    hidedistance = 15.0
+    hidedistance = 20.0
     dropspeed = 0.0
     shake = 0.0
     currspeed = 0.0
@@ -74,34 +72,34 @@ Function nullgame%(arg0%)
         camerafogfar = storedcamerafogfar
         wearingnightvision = $00
     EndIf
-    For local0 = Each screens
-        If (local0\Field2 <> $00) Then
-            freeimage(local0\Field2)
-            local0\Field2 = $00
+    For local1 = Each screens
+        If (local1\Field2 <> $00) Then
+            freeimage(local1\Field2)
+            local1\Field2 = $00
         EndIf
     Next
-    For local1 = $00 To $05 Step $01
-        scp1025state[local1] = 0.0
+    For local2 = $00 To $05 Step $01
+        scp1025state[local2] = 0.0
     Next
-    For local1 = $00 To $24 Step $01
-        achievements(local1) = $00
+    For local2 = $00 To $24 Step $01
+        achievements(local2) = $00
     Next
-    For local2 = $00 To (mapwidth + $01) Step $01
-        For local3 = $00 To (mapheight + $01) Step $01
-            maptemp(local2, local3) = $00
-            mapfound(local2, local3) = $00
+    For local3 = $00 To (mapwidth + $01) Step $01
+        For local4 = $00 To (mapheight + $01) Step $01
+            maptemp(local3, local4) = $00
+            mapfound(local3, local4) = $00
         Next
     Next
-    For local4 = Each itemtemplates
-        local4\Field4 = $00
-        If (local4\Field8 <> $00) Then
-            freeimage(local4\Field8)
+    For local5 = Each itemtemplates
+        local5\Field4 = $00
+        If (local5\Field8 <> $00) Then
+            freeimage(local5\Field8)
         EndIf
-        If (local4\Field9 <> $00) Then
-            freeimage(local4\Field9)
+        If (local5\Field9 <> $00) Then
+            freeimage(local5\Field9)
         EndIf
-        If (local4\Field12 <> $00) Then
-            freeimage(local4\Field12)
+        If (local5\Field12 <> $00) Then
+            freeimage(local5\Field12)
         EndIf
     Next
     i_427\Field0 = $00
@@ -137,21 +135,21 @@ Function nullgame%(arg0%)
     soundtransmission = $00
     closestbutton = $00
     infinitestamina = $00
-    msg = ""
+    setmsg("")
     msgtimer = 0.0
     selecteditem = Null
     forestnpc = $00
     forestnpctex = $00
-    For local5 = Each events
-        If (local5\Field7 <> $00) Then
-            freesound_strict(local5\Field7)
+    For local6 = Each events
+        If (local6\Field7 <> $00) Then
+            freesound_strict(local6\Field7)
         EndIf
-        If (local5\Field8 <> $00) Then
-            freesound_strict(local5\Field8)
+        If (local6\Field8 <> $00) Then
+            freesound_strict(local6\Field8)
         EndIf
     Next
     Delete Each rockets
-    Delete Each bullets
+    clearbullets()
     Delete Each grenades
     Delete Each p_obj
     Delete Each singlelights
@@ -175,24 +173,24 @@ Function nullgame%(arg0%)
     Delete Each particles
     Delete Each achievementmsg
     Delete Each forest
-    For local6 = Each soundtodelete
-        If (local6\Field0 <> $00) Then
-            freesound(local6\Field0)
+    For local7 = Each soundtodelete
+        If (local7\Field0 <> $00) Then
+            freesound(local7\Field0)
         EndIf
     Next
-    For local7 = Each redirectedsound
-        If (local7\Field3 <> 0) Then
-            local8 = redirectsound(local7\Field1, local7\Field0, $01)
+    For local8 = Each redirectedsound
+        If (local8\Field3 <> 0) Then
+            local9 = redirectsound(local8\Field1, local8\Field0, $01)
+            Delete local9
             Delete local8
-            Delete local7
         EndIf
     Next
-    For local9 = Each roomtemplates
-        local9\Field0 = $00
+    For local10 = Each roomtemplates
+        local10\Field0 = $00
     Next
-    For local1 = $00 To $05 Step $01
-        If (channelplaying(radiochn(local1)) <> 0) Then
-            stopchannel(radiochn(local1))
+    For local2 = $00 To $05 Step $01
+        If (channelplaying(radiochn(local2)) <> 0) Then
+            stopchannel(radiochn(local2))
         EndIf
     Next
     currachvmsgid = $00
@@ -215,15 +213,13 @@ Function nullgame%(arg0%)
     wearing1499 = $00
     deletechunks()
     deletedevilemitters()
-    aatextcam = $00
-    freeallfonts($00, $00)
-    clearworld($01, $01, $01)
+    clearworld($01, $01, $01, $01)
     camera = $00
-    ark_blur_cam = $00
+    camera = $00
     collider = $00
-    sky = $00
-    loadallfonts($01)
-    initfastresize()
+    For local2 = $00 To $02 Step $01
+        sky[local2] = $00
+    Next
     reloadnecessaryentities()
     Return $00
 End Function

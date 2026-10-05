@@ -2,6 +2,7 @@
 
 alinit%(arg0#, arg1#):"_alInit@8"
 aldeviceinit%(arg0%, arg1%, arg2%):"_alDeviceInit@12"
+aldestroy%():"_alDestroy@0"
 alupdate%():"_alUpdate@0"
 allistenersetposition%(arg0#, arg1#, arg2#):"_alListenerSetPosition@12"
 allistenersetdirection%(arg0#, arg1#, arg2#):"_alListenerSetDirection@12"

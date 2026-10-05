@@ -18,7 +18,7 @@ Function initnewgame%()
     If (player[$00] = Null) Then
         createplayer($00)
         player[$00]\Field36 = model_wait
-        player[$00]\Field55 = $01
+        player[$00]\Field57 = $01
         mp_createplayerobject($00)
     EndIf
     seedrnd(generateseednumber(server\Field7))
@@ -35,7 +35,7 @@ Function initnewgame%()
     If (server\Field46 <> "") Then
         loadmap(server\Field46)
     Else
-        createmap(server\Field7, ($03 - server\Field52))
+        createmap(server\Field7)
     EndIf
     initevents()
     initwaypoints($2D)
@@ -87,8 +87,8 @@ Function initnewgame%()
             entityparent(local2\Field3[$01], $00, $01)
         EndIf
         If (((local2\Field1 <> $00) And (local2\Field9 = $00)) <> 0) Then
-            moveentity(local2\Field0, 0.0, 0.0, (8.0 * roomscale))
-            moveentity(local2\Field1, 0.0, 0.0, (8.0 * roomscale))
+            moveentity(local2\Field0, 0.0, 0.0, (1.0 / 32.0))
+            moveentity(local2\Field1, 0.0, 0.0, (1.0 / 32.0))
         EndIf
     Next
     For local3 = Each items
@@ -107,15 +107,12 @@ Function initnewgame%()
     For local6 = Each events
         If (local6\Field0 = "room2nuke") Then
             local6\Field2 = 1.0
-            debuglog("room2nuke")
         EndIf
         If (local6\Field0 = "room106") Then
             local6\Field3 = 1.0
-            debuglog("room106")
         EndIf
         If (local6\Field0 = "room2sl") Then
             local6\Field4 = 1.0
-            debuglog("room2sl")
         EndIf
     Next
     For local4 = Each rooms

@@ -3,6 +3,9 @@ Function multiplayer_writedecal%(arg0.decals, arg1%, arg2%)
         Return $00
     EndIf
     udp_bytestreamwritechar($05)
+    If (iscoopmode() <> 0) Then
+        udp_writebyte(networkserver\Field20)
+    EndIf
     udp_bytestreamwritechar(arg0\Field8)
     udp_bytestreamwritefloat(arg0\Field11)
     udp_bytestreamwritefloat(arg0\Field12)

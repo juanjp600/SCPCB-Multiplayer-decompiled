@@ -14,7 +14,7 @@ Function activatewarheads%(arg0$, arg1%, arg2%)
     For local0 = $01 To server\Field11 Step $01
         breach_getcategorycolor(arg1)
         If (arg1 = $00) Then
-            color($00, $00, $00)
+            color($00, $00, $00, $FF)
         EndIf
         udp_writebyte($75)
         udp_writebyte($01)

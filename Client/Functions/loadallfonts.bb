@@ -1,17 +1,10 @@
-Function loadallfonts%(arg0%)
-    If (arg0 <> 0) Then
-        initaafont()
-    EndIf
-    font1 = aaloadfont("GFX\font\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 19.0))), $00, $00, $00, $02)
-    font1_2 = aaloadfont("GFX\font\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 28.0))), $00, $00, $00, $02)
-    font2 = aaloadfont("GFX\font\courbd\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 58.0))), $00, $00, $00, $02)
-    font3 = aaloadfont("GFX\font\DS-DIGI\DS-Digital.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 22.0))), $00, $00, $00, $02)
-    font4 = aaloadfont("GFX\Font\DS-DIGI\DS-Digital.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 60.0))), $00, $00, $00, $02)
-    font5 = aaloadfont("GFX\fOnt\Journal\Journal.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 58.0))), $00, $00, $00, $02)
-    fontsl = aaloadfont("GFX\foNt\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 16.0))), $00, $00, $00, $02)
-    fontsl_1 = aaloadfont("GFX\fonT\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 16.0))), $00, $00, $01, $02)
-    fontservers = aaloadfont("GFX\foNt\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * (1.0 / 0.0725)))), $00, $00, $00, $02)
-    consolefont = aaloadfont("Blitz", (Float (Int (((Float graphicheight) / 1024.0) * 20.0))), $00, $00, $00, $01)
-    fontres = aaloadfont("GFX\fonT\cour\Courier New Rus.ttf", (Float (Int (((Float graphicheight) / 1024.0) * 18.0))), $00, $00, $00, $02)
+Function loadallfonts%()
+    fonts[$00] = createfont("GFX\font\cour\Courier New.ttf", (Int (16.0 * menuscale)), $00, $00, $00)
+    fonts[$01] = createfont("GFX\font\cour\Courier New.ttf", (Int (52.0 * menuscale)), $00, $00, $00)
+    fonts[$02] = createfont("GFX\font\DS-DIGI\DS-Digital.ttf", (Int (20.0 * menuscale)), $00, $00, $00)
+    fonts[$03] = createfont("GFX\font\DS-DIGI\DS-Digital.ttf", (Int (60.0 * menuscale)), $00, $00, $00)
+    fonts[$04] = createfont("GFX\font\Journal\Journal.ttf", (Int (58.0 * menuscale)), $00, $00, $00)
+    fonts[$05] = createfont(fontpath("Consolas"), (Int (16.0 * menuscale)), $00, $00, $00)
+    fonts[$06] = createfont("GFX\font\cour\Courier New.ttf", $31, $00, $00, $00)
     Return $00
 End Function

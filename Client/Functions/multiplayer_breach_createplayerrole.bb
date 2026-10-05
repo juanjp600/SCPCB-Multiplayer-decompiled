@@ -16,10 +16,10 @@ Function multiplayer_breach_createplayerrole%(arg0$, arg1%, arg2#, arg3$, arg4%,
     local0\Field24[$04] = "Bip01_Spine2"
     local0\Field24[$05] = "Bip01_R_Forearm"
     local0\Field31 = $01
-    local0\Field52 = 0.3
-    local0\Field53 = -180.0
-    local0\Field54 = 0.0
-    local0\Field58 = local0\Field1
+    local0\Field53 = 0.3
+    local0\Field54 = -180.0
+    local0\Field55 = 0.0
+    local0\Field59 = local0\Field1
     local0\Field42 = local0\Field1
     breachtypesarray[local0\Field1] = local0
     last_breach_type = (last_breach_type + $01)

@@ -8,10 +8,13 @@ Function clearserver%()
     Local local6.draws
     Local local7.multiplayer_texts
     Local local8.multiplayer_texts
+    serverdownloadbytes = $00
+    pendingserverload = $00
+    pendingserverloadpath = ""
     For local0 = Each players
         multiplayer_disconnectplayer(local0)
     Next
-    networkserver\Field15 = $00
+    networkserver\Field12 = $00
     If (mainmenuopen = $00) Then
         playsound_strict(buttonsfx)
         nullgame($00)
@@ -25,33 +28,31 @@ Function clearserver%()
     flushkeys()
     udp_setstream(udp_network, $00, $00, $00, $01)
     cancelsteamticket()
-    networkserver\Field66 = $00
-    networkserver\Field57 = $00
-    networkserver\Field18 = $00
-    networkserver\Field42 = $00
-    networkserver\Field33 = $00
-    networkserver\Field32 = $00
-    networkserver\Field34 = $00
-    networkserver\Field35 = $00
-    networkserver\Field31 = $00
-    networkserver\Field22 = $00
-    networkserver\Field36 = 0.0
-    networkserver\Field37 = 0.0
-    networkserver\Field38 = 0.0
-    networkserver\Field28 = $00
-    networkserver\Field44 = ""
-    networkserver\Field45 = $00
-    networkserver\Field21 = ""
-    networkserver\Field47 = $00
-    networkserver\Field49 = $00
-    networkserver\Field50 = $00
-    networkserver\Field13 = $00
+    networkserver\Field52\Field2 = $00
+    networkserver\Field44 = $00
     networkserver\Field15 = $00
-    networkserver\Field48 = $03
-    networkserver\Field52 = $00
-    networkserver\Field64 = $00
-    networkserver\Field65 = $00
-    discord_api_setstate("", $02)
+    networkserver\Field32 = $00
+    networkserver\Field24 = $00
+    networkserver\Field23 = $00
+    networkserver\Field25 = $00
+    networkserver\Field26 = $00
+    networkserver\Field22 = $00
+    networkserver\Field17 = $00
+    networkserver\Field27 = 0.0
+    networkserver\Field28 = 0.0
+    networkserver\Field29 = 0.0
+    networkserver\Field20 = $00
+    networkserver\Field52\Field8 = ""
+    networkserver\Field34 = $00
+    networkserver\Field52\Field0 = ""
+    networkserver\Field52\Field6 = $00
+    networkserver\Field36 = $00
+    networkserver\Field37 = $00
+    networkserver\Field52\Field16 = $00
+    networkserver\Field12 = $00
+    networkserver\Field52\Field7 = $00
+    networkserver\Field49 = $00
+    networkserver\Field52\Field3 = $00
     secondarylighton = 1.0
     rcon\Field0 = $00
     currentpositionid = $00
@@ -97,8 +98,10 @@ Function clearserver%()
     For local4 = Each workshopthread
         If (local4\Field2 = Null) Then
             local4\Field2 = se_loadscriptexec(local4\Field0)
-            skynet_onload($01)
-            init_publics_for_script(local4\Field2)
+            If (local4\Field2 <> Null) Then
+                skynet_onload($01)
+                init_publics_for_script(local4\Field2)
+            EndIf
         EndIf
     Next
     For local5 = Each draws
